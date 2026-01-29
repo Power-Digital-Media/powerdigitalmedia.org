@@ -24,17 +24,17 @@ const mainGear = [
 
 export default function TechStack() {
     return (
-        <section id="studio" className="relative py-32 overflow-hidden bg-background">
-            <div className="container relative z-10 px-4 mx-auto">
+        <section id="studio" className="relative py-28 md:py-48 overflow-hidden bg-background">
+            <div className="container relative z-10 px-6 mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="max-w-4xl mx-auto text-center mb-32"
+                    className="max-w-4xl mx-auto text-center mb-24 md:mb-40"
                 >
-                    <span className="text-accent font-bold tracking-[0.4em] uppercase text-xs mb-4 block">Infrastructure</span>
-                    <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight">Precision Implements.</h2>
-                    <p className="text-xl text-foreground/70 leading-relaxed">
+                    <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[9px] md:text-xs mb-4 block">Infrastructure</span>
+                    <h2 className="text-4xl md:text-8xl font-black mb-8 tracking-tighter uppercase leading-none">Precision Implements.</h2>
+                    <p className="text-base md:text-2xl text-foreground/70 leading-relaxed text-balance font-light">
                         We don&apos;t just hit record. We use world-class signal chains and broadcast-grade equipment to ensure your message is felt, not just heard.
                     </p>
                 </motion.div>
