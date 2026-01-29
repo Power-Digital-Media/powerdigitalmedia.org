@@ -9,7 +9,7 @@ export default function Services() {
     return (
         <div id="services">
             {/* Section 1: The Studio */}
-            <section className="relative min-h-[60vh] md:min-h-[80vh] flex flex-col justify-center pt-12 pb-16 md:pt-40 md:pb-24">
+            <section className="relative flex flex-col justify-start pt-6 pb-16 md:pt-40 md:pb-24">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=2070&auto=format&fit=crop"
@@ -50,7 +50,7 @@ export default function Services() {
             </section>
 
             {/* Section 2: The Reach */}
-            <section className="relative min-h-[60vh] md:min-h-[80vh] flex flex-col justify-center pt-12 pb-16 md:pt-40 md:pb-24 overflow-hidden">
+            <section className="relative flex flex-col justify-start pt-6 pb-16 md:pt-40 md:pb-24 overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
@@ -62,13 +62,13 @@ export default function Services() {
                 </div>
 
                 <div className="container relative z-10 px-6 mx-auto">
-                    <div className="flex md:justify-end">
+                    <div className="flex justify-end">
                         <motion.div
                             initial={{ opacity: 0, x: 30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                            className="max-w-xl md:text-right flex flex-col md:items-end"
+                            className="max-w-xl text-right flex flex-col items-end"
                         >
                             <span className="text-blue-400 font-bold tracking-[0.4em] uppercase text-[9px] md:text-xs mb-4 block">The Velocity</span>
                             <h2 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight uppercase leading-none">The Reach.</h2>
