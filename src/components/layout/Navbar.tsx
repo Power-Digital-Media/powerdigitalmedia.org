@@ -18,7 +18,7 @@ export default function Navbar() {
     }, []);
 
     const navLinks = [
-        { name: "Services", href: "/web-design" },
+        { name: "Design", href: "/web-design" },
         { name: "Podcasting", href: "/podcasting" },
         { name: "Marketing", href: "https://powerdigitalgrowth.org", external: true },
         { name: "Portfolio", href: "/our-work" },
