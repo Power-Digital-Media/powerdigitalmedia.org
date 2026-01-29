@@ -9,7 +9,7 @@ export default function Services() {
     return (
         <div id="services">
             {/* Section 1: The Studio */}
-            <section className="relative min-h-[80vh] flex items-center pt-28 pb-16 md:pt-40 md:pb-24">
+            <section className="relative min-h-[60vh] md:min-h-[80vh] flex flex-col justify-center pt-12 pb-16 md:pt-40 md:pb-24">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=2070&auto=format&fit=crop"
@@ -17,7 +17,7 @@ export default function Services() {
                         fill
                         className="object-cover opacity-30 scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
                 </div>
 
                 <div className="container relative z-10 px-6 mx-auto">
@@ -50,7 +50,7 @@ export default function Services() {
             </section>
 
             {/* Section 2: The Reach */}
-            <section className="relative min-h-[80vh] flex items-center pt-28 pb-16 md:pt-40 md:pb-24 overflow-hidden">
+            <section className="relative min-h-[60vh] md:min-h-[80vh] flex flex-col justify-center pt-12 pb-16 md:pt-40 md:pb-24 overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
@@ -58,7 +58,7 @@ export default function Services() {
                         fill
                         className="object-cover opacity-20 scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-l from-background via-background/80 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-l from-background via-background/70 to-transparent" />
                 </div>
 
                 <div className="container relative z-10 px-6 mx-auto">
