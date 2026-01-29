@@ -5,17 +5,17 @@ import { Send, Calendar, MessageSquare, Phone, ArrowRight } from "lucide-react";
 
 export default function Contact() {
     return (
-        <section id="contact" className="relative py-32 overflow-hidden bg-background">
+        <section id="contact" className="relative pt-28 pb-20 md:py-48 overflow-hidden bg-background">
             {/* Ecosystem Grid Fade-In */}
             <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
-            <div className="container relative z-10 px-4 mx-auto">
+            <div className="container relative z-10 px-6 mx-auto">
                 <div className="max-w-6xl mx-auto">
-                    <div className="mb-24 text-center">
-                        <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-xs mb-4 block">Initialize Contact</span>
-                        <h2 className="text-5xl md:text-8xl font-bold mb-8 tracking-tight">Let&apos;s Connect.</h2>
-                        <p className="text-xl text-foreground/60 max-w-2xl mx-auto leading-relaxed">
-                            Whether you&apos;re looking to launch a flagship production or deploy a <span className="text-cyan-400">Growth Architecture</span>, our studio is ready to execute.
+                    <div className="mb-16 md:mb-32 text-center">
+                        <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[9px] md:text-xs mb-4 block">Initialize Contact</span>
+                        <h2 className="text-4xl md:text-8xl font-black mb-8 tracking-tighter uppercase leading-none">Let&apos;s Connect.</h2>
+                        <p className="text-base md:text-2xl text-foreground/60 max-w-2xl mx-auto leading-relaxed text-balance font-light">
+                            Whether you&apos;re looking to launch a flagship production or deploy a <span className="text-cyan-400 font-medium whitespace-nowrap">Growth Architecture</span>, our studio is ready to execute.
                         </p>
                     </div>
 
