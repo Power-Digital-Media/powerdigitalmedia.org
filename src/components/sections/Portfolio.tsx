@@ -10,7 +10,7 @@ import { projects } from "@/data/projects";
 
 export default function Portfolio() {
     return (
-        <section id="portfolio" className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-24 md:pt-48 md:pb-32 overflow-hidden bg-background">
+        <section id="portfolio" className="relative min-h-screen flex flex-col items-center justify-center pt-20 pb-16 md:pt-24 md:pb-20 overflow-hidden bg-background">
             {/* --- Hero Background Layer --- */}
             <div className="absolute inset-0 z-0">
                 <Image
@@ -30,7 +30,7 @@ export default function Portfolio() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                    className="max-w-4xl mx-auto mb-20 md:mb-32"
+                    className="max-w-4xl mx-auto mb-12 md:mb-16"
                 >
                     <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[8px] md:text-[9px] mb-4 md:mb-6 block">Engineered Dominance</span>
                     <h1 className="text-4xl md:text-8xl font-black mb-6 md:mb-8 tracking-tighter leading-[0.85] uppercase">
@@ -55,7 +55,7 @@ export default function Portfolio() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
-                    className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8 mt-16 md:mt-24"
+                    className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8 mt-12 md:mt-16"
                 >
                     <Link href="/contact" className="w-full sm:w-auto px-8 py-4 md:px-12 md:py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 hover:text-white transition-all uppercase tracking-widest text-[9px] shadow-[0_0_50px_rgba(255,255,255,0.1)] active:scale-95 text-center">
                         Start My Show

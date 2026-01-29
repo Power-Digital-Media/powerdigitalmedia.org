@@ -87,7 +87,7 @@ export default function ThreeDCarousel() {
                 duration: 2.5,
                 ease: [0.16, 1, 0.3, 1]
             }}
-            className="relative w-full h-[500px] md:h-[650px] flex items-center justify-center perspective overflow-visible select-none touch-none"
+            className="relative w-full h-[450px] md:h-[550px] flex items-center justify-center perspective overflow-visible select-none touch-none"
             style={{ perspective: dimensions.perspective }}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
