@@ -141,13 +141,13 @@ export default function ThreeDCarousel() {
 
                                     {/* Top-Level Tags (Architectural Badge) */}
                                     <div className={`absolute top-6 left-6 right-6 md:top-10 md:left-10 md:right-10 flex justify-between items-start transition-all duration-1000 ${isActive ? 'translate-y-0 opacity-100' : '-translate-y-5 opacity-0'}`}>
-                                        <div className="flex flex-col gap-1 md:gap-2">
-                                            <span className="px-3 py-1.5 md:px-5 md:py-2 rounded-full bg-cyan-400/20 backdrop-blur-xl border border-cyan-400/30 text-[8px] md:text-[10px] font-black uppercase tracking-[0.4em] text-cyan-400 w-fit shadow-[0_0_20px_rgba(34,211,238,0.2)]">
+                                        <div className="flex flex-row items-center gap-3 md:gap-4">
+                                            <span className="px-3 py-1.5 md:px-4 md:py-1.5 rounded-full bg-cyan-400/20 backdrop-blur-xl border border-cyan-400/30 text-[7px] md:text-[8px] font-black uppercase tracking-[0.4em] text-cyan-400 w-fit shadow-[0_0_20px_rgba(34,211,238,0.2)] whitespace-nowrap">
                                                 Protocol {index + 1}
                                             </span>
                                             <div className="flex items-center gap-2">
                                                 <div className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-cyan-400 animate-pulse outline outline-4 outline-cyan-400/20" />
-                                                <span className="text-[7px] md:text-[9px] font-bold text-white/40 uppercase tracking-[0.2em]">{project.tags[0]} Infrastructure</span>
+                                                <span className="text-[7px] md:text-[8px] font-bold text-white/40 uppercase tracking-[0.2em] whitespace-nowrap">{project.tags[0]} Infrastructure</span>
                                             </div>
                                         </div>
                                         <div className="px-3 py-2 md:px-5 md:py-2.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/5 text-[8px] md:text-[10px] font-black text-white/40 uppercase tracking-[0.3em] leading-none">
@@ -155,23 +155,23 @@ export default function ThreeDCarousel() {
                                         </div>
                                     </div>
 
-                                    {/* Action Footer */}
-                                    <div className={`absolute bottom-8 left-8 right-8 md:bottom-12 md:left-12 md:right-12 transition-all duration-1000 ${isActive ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                                        <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6">
-                                            <Link
-                                                href={`/portfolio/${project.id}`}
-                                                className="w-full sm:w-auto px-6 py-4 md:px-10 md:py-5 bg-white text-black rounded-full font-black uppercase tracking-[0.2em] text-[8px] md:text-[10px] hover:bg-cyan-400 hover:text-white transition-all shadow-2xl shadow-cyan-400/20 active:scale-95 text-center"
-                                            >
-                                                Initialize Build
-                                            </Link>
+                                    {/* Small Action Layer (Repositioned to Right) */}
+                                    <div className={`absolute bottom-6 right-6 md:bottom-8 md:right-8 transition-all duration-1000 ${isActive ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
+                                        <div className="flex items-center gap-4 md:gap-6">
                                             <a
                                                 href={project.netlifyUrl}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="flex items-center gap-3 text-[8px] md:text-[10px] font-black uppercase tracking-[0.3em] text-white/30 hover:text-cyan-400 transition-colors group/link pb-1 border-b border-transparent hover:border-cyan-400/50"
+                                                className="flex items-center gap-2 text-[7px] md:text-[8px] font-black uppercase tracking-[0.3em] text-white/30 hover:text-cyan-400 transition-colors group/link"
                                             >
-                                                Live Intel <ExternalLink className="w-4 h-4 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
+                                                Live Intel <ExternalLink className="w-3 h-3 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
                                             </a>
+                                            <Link
+                                                href={`/portfolio/${project.id}`}
+                                                className="px-5 py-3 md:px-8 md:py-4 bg-white text-black rounded-full font-black uppercase tracking-[0.2em] text-[7px] md:text-[8px] hover:bg-cyan-400 hover:text-white transition-all shadow-xl shadow-cyan-400/10 active:scale-95 text-center"
+                                            >
+                                                Initialize Build
+                                            </Link>
                                         </div>
                                     </div>
                                 </motion.div>
