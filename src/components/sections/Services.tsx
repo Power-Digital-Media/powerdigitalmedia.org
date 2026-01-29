@@ -9,7 +9,7 @@ export default function Services() {
     return (
         <div id="services">
             {/* Section 1: The Studio */}
-            <section className="relative flex flex-col justify-start pt-16 pb-12 md:pt-32 md:pb-20 overflow-hidden">
+            <section id="work" className="relative pt-12 pb-0 md:pt-16 md:pb-0 min-h-[90vh] md:min-h-screen flex flex-col justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="https://images.unsplash.com/photo-1590602847861-f357a332bbc?q=80&w=2070&auto=format&fit=crop"
@@ -51,19 +51,19 @@ export default function Services() {
             </section>
 
             {/* Section 2: The Reach */}
-            <section className="relative flex flex-col justify-start pt-12 pb-12 md:pt-32 md:pb-20 overflow-hidden">
+            <section className="relative flex flex-col justify-start pt-8 pb-12 md:pt-32 md:pb-20 overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
                         alt="Content Distribution"
                         fill
-                        className="object-cover object-right opacity-25 scale-125"
+                        className="object-cover object-right-top opacity-30 scale-[1.3] -translate-y-[10%]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background/20" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background/40" />
                     <div className="absolute inset-0 bg-gradient-to-l from-background via-background/60 to-transparent" />
                 </div>
 
-                <div className="container relative z-10 px-4 md:px-6 mx-auto">
+                <div className="container relative z-10 px-2 md:px-6 mx-auto">
                     <div className="flex justify-end">
                         <motion.div
                             initial={{ opacity: 0, x: 30 }}
