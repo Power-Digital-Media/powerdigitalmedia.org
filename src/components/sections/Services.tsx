@@ -9,7 +9,7 @@ export default function Services() {
     return (
         <div id="services">
             {/* Section 1: The Studio */}
-            <section id="work" className="relative pt-12 pb-0 md:pt-16 md:pb-0 min-h-[90vh] md:min-h-screen flex flex-col justify-center overflow-hidden">
+            <section className="relative flex flex-col justify-start pt-0 pb-12 md:pt-24 md:pb-20 overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="https://images.unsplash.com/photo-1590602847861-f357a332bbc?q=80&w=2070&auto=format&fit=crop"
@@ -17,8 +17,8 @@ export default function Services() {
                         fill
                         className="object-cover object-top opacity-30 scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background/20" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background/40" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-background via-background/40 to-transparent" />
                 </div>
 
                 <div className="container relative z-10 px-6 mx-auto">
@@ -51,7 +51,7 @@ export default function Services() {
             </section>
 
             {/* Section 2: The Reach */}
-            <section className="relative flex flex-col justify-start pt-8 pb-12 md:pt-32 md:pb-20 overflow-hidden">
+            <section className="relative flex flex-col justify-start pt-4 pb-12 md:pt-24 md:pb-20 overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
@@ -59,8 +59,8 @@ export default function Services() {
                         fill
                         className="object-cover object-right-top opacity-30 scale-[1.3] -translate-y-[10%]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background/40" />
-                    <div className="absolute inset-0 bg-gradient-to-l from-background via-background/60 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background/40" />
+                    <div className="absolute inset-0 bg-gradient-to-l from-background via-background/40 to-transparent" />
                 </div>
 
                 <div className="container relative z-10 px-2 md:px-6 mx-auto">
@@ -94,7 +94,7 @@ export default function Services() {
             </section>
 
             {/* Section 3: The System -> Ecosystem Bridge */}
-            <section className="relative min-h-[70vh] flex items-center pt-28 pb-20 md:pt-48 md:pb-32 overflow-hidden">
+            <section id="portfolio" className="relative min-h-[90vh] md:min-h-screen flex flex-col items-center justify-center pt-12 pb-0 md:pt-16 md:pb-0 overflow-hidden bg-background">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop"
