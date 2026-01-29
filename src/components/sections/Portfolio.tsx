@@ -30,7 +30,7 @@ export default function Portfolio() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                    className="max-w-5xl mx-auto mb-16 md:mb-24"
+                    className="max-w-5xl mx-auto mb-24 md:mb-32"
                 >
                     <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[8px] md:text-[10px] mb-4 md:mb-6 block">Engineered Dominance</span>
                     <h1 className="text-5xl md:text-9xl font-black mb-6 md:mb-8 tracking-tighter leading-[0.85] uppercase">
