@@ -24,11 +24,11 @@ export default function ThreeDCarousel() {
         const handleResize = () => {
             const w = window.innerWidth;
             if (w < 640) { // Mobile
-                setDimensions({ radius: 220, width: 280, height: 380, perspective: 1000 });
+                setDimensions({ radius: 180, width: 240, height: 300, perspective: 1000 });
             } else if (w < 1024) { // Tablet
-                setDimensions({ radius: 350, width: 500, height: 350, perspective: 1200 });
+                setDimensions({ radius: 280, width: 400, height: 280, perspective: 1200 });
             } else { // Desktop
-                setDimensions({ radius: 550, width: 750, height: 420, perspective: 1500 });
+                setDimensions({ radius: 450, width: 650, height: 350, perspective: 1500 });
             }
         };
 
