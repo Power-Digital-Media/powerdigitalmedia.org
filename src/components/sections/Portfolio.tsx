@@ -30,7 +30,7 @@ export default function Portfolio() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                    className="max-w-5xl mx-auto mb-10 md:mb-16"
+                    className="max-w-5xl mx-auto mb-16 md:mb-24"
                 >
                     <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[8px] md:text-[10px] mb-4 md:mb-6 block">Engineered Dominance</span>
                     <h1 className="text-5xl md:text-9xl font-black mb-6 md:mb-8 tracking-tighter leading-[0.85] uppercase">
@@ -39,13 +39,13 @@ export default function Portfolio() {
                             Redefined.
                         </span>
                     </h1>
-                    <p className="text-lg md:text-2xl text-foreground font-medium tracking-tight opacity-70 max-w-2xl mx-auto text-balance font-light">
+                    <p className="text-lg md:text-2xl text-foreground font-medium tracking-tight opacity-70 max-w-2xl mx-auto text-balance font-light px-4">
                         The elite standard for high-prestige content strategy and digital engineering.
                     </p>
                 </motion.div>
 
                 {/* --- The Showpiece --- */}
-                <div className="relative z-10 my-10 md:scale-110">
+                <div className="relative z-10 my-4 md:my-10">
                     <ThreeDCarousel />
                 </div>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { projects } from "@/data/projects";
 import Image from "next/image";
@@ -11,7 +11,8 @@ export default function ThreeDCarousel() {
     const [activeIndex, setActiveIndex] = useState(0);
     const [rotation, setRotation] = useState(0);
     const [isAutoSpin, setIsAutoSpin] = useState(true);
-    const [dimensions, setDimensions] = useState({ radius: 600, width: 800, height: 500, perspective: 1500 });
+    const [dimensions, setDimensions] = useState({ radius: 600, width: 800, height: 450, perspective: 1500 });
+    const dragX = useRef(0);
 
     const projectCount = projects.length;
     const rotateStep = 360 / projectCount;
@@ -21,11 +22,11 @@ export default function ThreeDCarousel() {
         const handleResize = () => {
             const w = window.innerWidth;
             if (w < 640) { // Mobile
-                setDimensions({ radius: 250, width: 320, height: 450, perspective: 1000 });
+                setDimensions({ radius: 220, width: 280, height: 380, perspective: 1000 });
             } else if (w < 1024) { // Tablet
-                setDimensions({ radius: 400, width: 600, height: 400, perspective: 1200 });
+                setDimensions({ radius: 350, width: 500, height: 350, perspective: 1200 });
             } else { // Desktop
-                setDimensions({ radius: 600, width: 800, height: 500, perspective: 1500 });
+                setDimensions({ radius: 550, width: 750, height: 420, perspective: 1500 });
             }
         };
 
@@ -48,7 +49,22 @@ export default function ThreeDCarousel() {
         setActiveIndex((prev) => (prev - 1 + projectCount) % projectCount);
     };
 
-    // Auto-spin logic - maintains same direction
+    // Swipe Physics Engine
+    const onDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: { velocity: { x: number }; offset: { x: number } }) => {
+        const threshold = 50;
+        const velocity = info.velocity.x;
+        const offset = info.offset.x;
+
+        if (Math.abs(velocity) > 500 || Math.abs(offset) > threshold) {
+            if (velocity > 0 || offset > threshold) {
+                handlePrev();
+            } else {
+                handleNext();
+            }
+        }
+    };
+
+    // Auto-spin logic
     useEffect(() => {
         if (!isAutoSpin) return;
         const interval = setInterval(() => {
@@ -67,8 +83,13 @@ export default function ThreeDCarousel() {
                 duration: 2.5,
                 ease: [0.16, 1, 0.3, 1]
             }}
-            className="relative w-full h-[600px] md:h-[700px] flex items-center justify-center perspective overflow-visible select-none"
+            className="relative w-full h-[500px] md:h-[650px] flex items-center justify-center perspective overflow-visible select-none touch-none"
             style={{ perspective: dimensions.perspective }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.2}
+            onDragStart={() => setIsAutoSpin(false)}
+            onDragEnd={onDragEnd}
         >
             {/* --- The Spatial Stage --- */}
             <div className="relative w-full h-full flex items-center justify-center p-4 md:p-20 preserve-3d">
