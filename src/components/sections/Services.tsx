@@ -9,15 +9,16 @@ export default function Services() {
     return (
         <div id="services">
             {/* Section 1: The Studio */}
-            <section className="relative flex flex-col justify-start pt-20 pb-16 md:pt-40 md:pb-24">
+            <section className="relative flex flex-col justify-start pt-16 pb-12 md:pt-32 md:pb-20 overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=2070&auto=format&fit=crop"
+                        src="https://images.unsplash.com/photo-1590602847861-f357a332bbc?q=80&w=2070&auto=format&fit=crop"
                         alt="Professional Podcasting Studio"
                         fill
-                        className="object-cover opacity-30 scale-105"
+                        className="object-cover object-top opacity-30 scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background/20" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent" />
                 </div>
 
                 <div className="container relative z-10 px-6 mx-auto">
@@ -50,18 +51,19 @@ export default function Services() {
             </section>
 
             {/* Section 2: The Reach */}
-            <section className="relative flex flex-col justify-start pt-6 pb-16 md:pt-40 md:pb-24 overflow-hidden">
+            <section className="relative flex flex-col justify-start pt-12 pb-12 md:pt-32 md:pb-20 overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
                         alt="Content Distribution"
                         fill
-                        className="object-cover opacity-20 scale-110"
+                        className="object-cover object-right opacity-25 scale-125"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-l from-background via-background/70 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background/20" />
+                    <div className="absolute inset-0 bg-gradient-to-l from-background via-background/60 to-transparent" />
                 </div>
 
-                <div className="container relative z-10 px-6 mx-auto">
+                <div className="container relative z-10 px-4 md:px-6 mx-auto">
                     <div className="flex justify-end">
                         <motion.div
                             initial={{ opacity: 0, x: 30 }}
