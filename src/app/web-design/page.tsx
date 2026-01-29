@@ -1,7 +1,8 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Globe, Cpu, Zap, Shield, Search, ArrowRight, MousePointer2, Layers, BarChart3 } from "lucide-react";
+import { Globe, Cpu, Zap, Shield, Search, ArrowRight, BarChart3, Layers } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -13,7 +14,7 @@ interface Protocol {
     subtitle: string;
     description: string;
     features: string[];
-    icon: any; // Lucide icon
+    icon: React.ElementType; // Lucide icon
     color: string;
     bg: string;
 }

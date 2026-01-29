@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Radio, Camera, Cpu, Settings, Zap } from "lucide-react";
+import { Zap, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const mainGear = [
     {
@@ -95,5 +96,3 @@ export default function TechStack() {
     );
 }
 
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
