@@ -9,7 +9,7 @@ export default function Services() {
     return (
         <div id="services">
             {/* Section 1: The Studio */}
-            <section className="relative flex flex-col justify-start pt-6 pb-16 md:pt-40 md:pb-24">
+            <section className="relative flex flex-col justify-start pt-20 pb-16 md:pt-40 md:pb-24">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=2070&auto=format&fit=crop"
