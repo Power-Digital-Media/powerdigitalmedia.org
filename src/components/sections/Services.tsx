@@ -43,9 +43,14 @@ export default function Services() {
                                     </li>
                                 ))}
                             </ul>
-                            <Link href="/podcasting" className="inline-flex items-center gap-2 px-8 py-4 border border-white/10 rounded-full hover:bg-white/5 transition-all font-bold uppercase tracking-widest text-[10px] active:scale-95">
-                                Explore Production <ArrowRight className="w-3 h-3" />
-                            </Link>
+                            <div className="flex flex-col sm:flex-row items-center gap-4">
+                                <Link href="/contact" className="w-full sm:w-auto px-8 py-4 bg-cyan-400 text-slate-950 font-black rounded-full hover:bg-white transition-all uppercase tracking-widest text-[10px] active:scale-95 text-center">
+                                    Start My Show
+                                </Link>
+                                <Link href="/our-work" className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 border border-white/10 rounded-full font-black uppercase tracking-widest text-[10px] hover:bg-white/5 transition-all group active:scale-95">
+                                    Watch Showreel <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                                </Link>
+                            </div>
                         </motion.div>
                     </div>
                 </div>
