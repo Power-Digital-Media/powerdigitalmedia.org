@@ -11,7 +11,8 @@ export default function ThreeDCarousel() {
     const [activeIndex, setActiveIndex] = useState(0);
     const [rotation, setRotation] = useState(0);
     const [isAutoSpin, setIsAutoSpin] = useState(true);
-    const [dimensions, setDimensions] = useState({ radius: 600, width: 800, height: 450, perspective: 1500 });
+    const [dimensions, setDimensions] = useState({ radius: 250, width: 320, height: 450, perspective: 1200 }); // Mobile-first defaults
+    const [mounted, setMounted] = useState(false);
     const dragX = useRef(0);
 
     const projectCount = projects.length;
@@ -19,6 +20,7 @@ export default function ThreeDCarousel() {
 
     // Dynamic Scaling Engine
     useEffect(() => {
+        setMounted(true);
         const handleResize = () => {
             const w = window.innerWidth;
             if (w < 640) { // Mobile
@@ -73,6 +75,8 @@ export default function ThreeDCarousel() {
         }, 8000);
         return () => clearInterval(interval);
     }, [isAutoSpin, rotateStep, projectCount]);
+
+    if (!mounted) return <div className="h-[500px] md:h-[650px]" />;
 
     return (
         <motion.div
