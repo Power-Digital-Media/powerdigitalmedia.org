@@ -48,7 +48,7 @@ export default function Navbar() {
                             <span className="text-xl font-bold tracking-tighter leading-none">
                                 POWER <span className="text-accent">DIGITAL</span>
                             </span>
-                            <span className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground uppercase leading-none mt-1">
+                            <span className="text-[8px] font-bold tracking-[0.3em] text-muted-foreground uppercase leading-none mt-1">
                                 Media Studio
                             </span>
                         </div>
