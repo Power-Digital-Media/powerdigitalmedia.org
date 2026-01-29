@@ -24,11 +24,11 @@ export default function ThreeDCarousel() {
         const handleResize = () => {
             const w = window.innerWidth;
             if (w < 640) { // Mobile
-                setDimensions({ radius: 180, width: 240, height: 300, perspective: 1000 });
+                setDimensions({ radius: 160, width: 340, height: 260, perspective: 1000 });
             } else if (w < 1024) { // Tablet
-                setDimensions({ radius: 280, width: 400, height: 280, perspective: 1200 });
+                setDimensions({ radius: 250, width: 450, height: 280, perspective: 1200 });
             } else { // Desktop
-                setDimensions({ radius: 450, width: 650, height: 350, perspective: 1500 });
+                setDimensions({ radius: 400, width: 620, height: 320, perspective: 1500 });
             }
         };
 
@@ -87,7 +87,7 @@ export default function ThreeDCarousel() {
                 duration: 2.5,
                 ease: [0.16, 1, 0.3, 1]
             }}
-            className="relative w-full h-[450px] md:h-[550px] flex items-center justify-center perspective overflow-visible select-none touch-none"
+            className="relative w-full h-[380px] md:h-[480px] flex items-center justify-center perspective overflow-visible select-none touch-none"
             style={{ perspective: dimensions.perspective }}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
@@ -96,7 +96,7 @@ export default function ThreeDCarousel() {
             onDragEnd={onDragEnd}
         >
             {/* --- The Spatial Stage --- */}
-            <div className="relative w-full h-full flex items-center justify-center p-4 md:p-20 preserve-3d">
+            <div className="relative w-full h-full flex items-center justify-center p-2 md:p-10 preserve-3d">
 
                 {/* 3D Rotor Wrapper */}
                 <motion.div
@@ -182,7 +182,7 @@ export default function ThreeDCarousel() {
             </div>
 
             {/* --- Radial Navigation Control --- */}
-            <div className="absolute -bottom-20 md:-bottom-16 left-1/2 -translate-x-1/2 flex items-center gap-8 md:gap-16 z-50">
+            <div className="absolute -bottom-12 md:-bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-8 md:gap-16 z-50">
                 <button
                     onClick={handlePrev}
                     className="group w-14 h-14 md:w-20 md:h-20 rounded-full border border-white/10 flex items-center justify-center hover:border-cyan-400/50 hover:bg-cyan-400/5 transition-all active:scale-90"
