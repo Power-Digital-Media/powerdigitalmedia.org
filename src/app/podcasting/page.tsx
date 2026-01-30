@@ -5,6 +5,7 @@ import { Mic2, Radio, Camera, Video, Zap, CheckCircle2, ArrowRight, Star } from 
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import ShowcaseReel from "@/components/ui/ShowcaseReel";
 
 const tiers = [
     {
@@ -88,6 +89,9 @@ export default function PodcastingPage() {
                     </motion.div>
                 </div>
             </section>
+
+            {/* Showcase Section */}
+            <ShowcaseReel />
 
             {/* Pricing Section */}
             <section className="py-24 relative z-10">
