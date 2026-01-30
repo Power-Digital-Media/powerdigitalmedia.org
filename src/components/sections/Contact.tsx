@@ -1,9 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Send, Calendar, MessageSquare, Phone, ArrowRight } from "lucide-react";
+import { Send, Calendar, MessageSquare, Phone, ArrowRight, X } from "lucide-react";
+import { useState } from "react";
+import BookingModal from "@/components/ui/BookingModal";
 
 export default function Contact() {
+    const [isBookingOpen, setIsBookingOpen] = useState(false);
+
     return (
         <section id="contact" className="relative pt-28 pb-20 md:py-48 overflow-hidden bg-background">
             {/* Ecosystem Grid Fade-In */}
@@ -31,15 +35,20 @@ export default function Contact() {
                         >
                             <div className="space-y-10">
                                 <div>
-                                    <div className="flex items-center gap-4 mb-4">
-                                        <div className="w-10 h-10 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
-                                            <Calendar className="w-5 h-5 text-cyan-400" />
+                                    <button
+                                        onClick={() => setIsBookingOpen(true)}
+                                        className="w-full text-left group"
+                                    >
+                                        <div className="flex items-center gap-4 mb-4">
+                                            <div className="w-10 h-10 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center group-hover:bg-cyan-500/20 group-hover:border-cyan-500/40 transition-all">
+                                                <Calendar className="w-5 h-5 text-cyan-400" />
+                                            </div>
+                                            <h4 className="text-xl font-bold group-hover:text-cyan-400 transition-colors">Protocol Sync</h4>
                                         </div>
-                                        <h4 className="text-xl font-bold">Protocol Sync</h4>
-                                    </div>
-                                    <p className="text-foreground/70 leading-relaxed pl-14">
-                                        Book a 30-minute deep dive into your content and growth goals. Zero pressure. Total clarity.
-                                    </p>
+                                        <p className="text-foreground/70 leading-relaxed pl-14">
+                                            Book a 30-minute deep dive into your content and growth goals. Zero pressure. Total clarity.
+                                        </p>
+                                    </button>
                                 </div>
 
                                 <div>
@@ -58,7 +67,7 @@ export default function Contact() {
                             <div className="pt-10 border-t border-white/5 space-y-4">
                                 <div className="flex items-center gap-4 text-sm font-bold uppercase tracking-widest text-muted-foreground">
                                     <Phone className="w-4 h-4 text-cyan-400" />
-                                    <span>Jackson Protocol Hub & Global</span>
+                                    <span>601-446-2393</span>
                                 </div>
                                 <p className="text-foreground/50 text-xs pl-8">
                                     Broadcast-grade production available on-site or via secure remote systems.
@@ -75,12 +84,18 @@ export default function Contact() {
                             className="lg:col-span-3 relative"
                         >
                             <div className="p-10 rounded-[40px] glass-card border-white/5 bg-cyan-500/[0.01] overflow-hidden">
-                                <form className="space-y-8">
+                                <form
+                                    action="https://formspree.io/f/mdazlovb"
+                                    method="POST"
+                                    className="space-y-8"
+                                >
                                     <div className="grid gap-8 sm:grid-cols-2">
                                         <div className="space-y-3">
                                             <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground ml-1">Your Name</label>
                                             <input
                                                 type="text"
+                                                name="name"
+                                                required
                                                 className="w-full px-6 py-4 rounded-2xl bg-white/5 border border-white/10 focus:border-cyan-500/50 focus:bg-white/[0.08] outline-none transition-all placeholder:text-muted-foreground/30 font-medium"
                                                 placeholder="Enter Full Name"
                                             />
@@ -89,6 +104,8 @@ export default function Contact() {
                                             <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground ml-1">Email Address</label>
                                             <input
                                                 type="email"
+                                                name="email"
+                                                required
                                                 className="w-full px-6 py-4 rounded-2xl bg-white/5 border border-white/10 focus:border-cyan-500/50 focus:bg-white/[0.08] outline-none transition-all placeholder:text-muted-foreground/30 font-medium"
                                                 placeholder="name@company.com"
                                             />
@@ -99,6 +116,8 @@ export default function Contact() {
                                         <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground ml-1">Vision Summary</label>
                                         <textarea
                                             rows={5}
+                                            name="message"
+                                            required
                                             className="w-full px-6 py-5 rounded-2xl bg-white/5 border border-white/10 focus:border-cyan-500/50 focus:bg-white/[0.08] outline-none transition-all placeholder:text-muted-foreground/30 font-medium resize-none"
                                             placeholder="Tell us about your production goals..."
                                         />
@@ -116,6 +135,11 @@ export default function Contact() {
             </div>
 
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-accent/5 rounded-full blur-[160px] pointer-events-none" />
+
+            <BookingModal
+                isOpen={isBookingOpen}
+                onClose={() => setIsBookingOpen(false)}
+            />
         </section>
     );
 }

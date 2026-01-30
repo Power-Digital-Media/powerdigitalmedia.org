@@ -8,6 +8,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Image from "next/image";
 import Portfolio from "@/components/sections/Portfolio";
+import BookingModal from "@/components/ui/BookingModal";
 
 interface Protocol {
     title: string;
@@ -88,6 +89,8 @@ const tiers: Tier[] = [
 ];
 
 export default function WebDesignPage() {
+    const [isBookingOpen, setIsBookingOpen] = useState(false);
+
     return (
         <main className="relative min-h-screen bg-background text-foreground overflow-x-hidden">
             <Navbar />
@@ -123,9 +126,12 @@ export default function WebDesignPage() {
                             We don&apos;t build websites. We deploy <span className="text-white font-medium">high-velocity digital engines</span> engineered for prestige and engineered for dominance.
                         </p>
                         <div className="flex flex-wrap justify-center gap-6">
-                            <Link href="/contact" className="px-12 py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 hover:text-white transition-all uppercase tracking-widest text-sm shadow-[0_0_40px_rgba(255,255,255,0.2)]">
+                            <button
+                                onClick={() => setIsBookingOpen(true)}
+                                className="px-12 py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 hover:text-white transition-all uppercase tracking-widest text-sm shadow-[0_0_40px_rgba(255,255,255,0.2)]"
+                            >
                                 Initialize Build
-                            </Link>
+                            </button>
                             <Link href="#protocols" className="px-12 py-5 border border-white/20 rounded-full hover:bg-white/5 transition-all font-bold uppercase tracking-widest text-sm">
                                 View Protocols
                             </Link>
@@ -283,7 +289,10 @@ export default function WebDesignPage() {
                                         </div>
                                     ))}
                                 </div>
-                                <button className={`mt-auto w-full py-5 rounded-full font-black uppercase tracking-widest text-[10px] transition-all duration-300 ${tier.featured ? "bg-cyan-500 text-slate-950 hover:bg-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.2)]" : "bg-white/5 text-white hover:bg-white/10 border border-white/10"}`}>
+                                <button
+                                    onClick={() => setIsBookingOpen(true)}
+                                    className={`mt-auto w-full py-5 rounded-full font-black uppercase tracking-widest text-[10px] transition-all duration-300 ${tier.featured ? "bg-cyan-500 text-slate-950 hover:bg-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.2)]" : "bg-white/5 text-white hover:bg-white/10 border border-white/10"}`}
+                                >
                                     {tier.cta}
                                 </button>
                             </motion.div>
@@ -316,14 +325,22 @@ export default function WebDesignPage() {
                         <p className="text-xl text-foreground/60 mb-16 max-w-xl mx-auto leading-relaxed">
                             Stop building websites. Start engineering your digital dominance. Deploy your custom growth architecture today.
                         </p>
-                        <Link href="/contact" className="inline-block bg-white text-black px-16 py-8 rounded-full font-black uppercase tracking-[0.3em] text-sm hover:scale-105 transition-all shadow-[0_0_60px_rgba(255,255,255,0.2)] hover:shadow-cyan-400/50">
+                        <button
+                            onClick={() => setIsBookingOpen(true)}
+                            className="inline-block bg-white text-black px-16 py-8 rounded-full font-black uppercase tracking-[0.3em] text-sm hover:scale-105 transition-all shadow-[0_0_60px_rgba(255,255,255,0.2)] hover:shadow-cyan-400/50"
+                        >
                             Initialize Contact
-                        </Link>
+                        </button>
                     </motion.div>
                 </div>
             </section>
 
             <Footer />
+
+            <BookingModal
+                isOpen={isBookingOpen}
+                onClose={() => setIsBookingOpen(false)}
+            />
         </main>
     );
 }

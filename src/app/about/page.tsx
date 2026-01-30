@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { Users, Target, Rocket, Shield, Heart, ArrowRight, Mic2 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { useState } from "react";
+import BookingModal from "@/components/ui/BookingModal";
 
 const values = [
     {
@@ -29,6 +31,8 @@ const values = [
 ];
 
 export default function AboutPage() {
+    const [isBookingOpen, setIsBookingOpen] = useState(false);
+
     return (
         <main className="relative min-h-screen bg-background">
             <Navbar />
@@ -115,13 +119,21 @@ export default function AboutPage() {
                         <Target className="w-4 h-4" /> Your Mission, Our Mission
                     </div>
                     <h3 className="text-4xl font-bold mb-8 max-w-2xl mx-auto">Experience the difference of working with a team that values your success.</h3>
-                    <button className="px-10 py-5 font-bold text-white bg-accent rounded-full border-glow hover:bg-accent/90 transition-all flex items-center gap-2 mx-auto">
+                    <button
+                        onClick={() => setIsBookingOpen(true)}
+                        className="px-10 py-5 font-bold text-white bg-accent rounded-full border-glow hover:bg-accent/90 transition-all flex items-center gap-2 mx-auto"
+                    >
                         Contact Us Today <ArrowRight className="w-5 h-5" />
                     </button>
                 </div>
             </section>
 
             <Footer />
+
+            <BookingModal
+                isOpen={isBookingOpen}
+                onClose={() => setIsBookingOpen(false)}
+            />
         </main>
     );
 }

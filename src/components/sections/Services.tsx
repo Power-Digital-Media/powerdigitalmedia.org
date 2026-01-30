@@ -4,8 +4,12 @@ import { motion } from "framer-motion";
 import { Mic2, Film, TrendingUp, CheckCircle2, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import BookingModal from "@/components/ui/BookingModal";
 
 export default function Services() {
+    const [isBookingOpen, setIsBookingOpen] = useState(false);
+
     return (
         <div id="services">
             {/* Section 1: The Studio */}
@@ -44,9 +48,12 @@ export default function Services() {
                                 ))}
                             </ul>
                             <div className="flex flex-col sm:flex-row items-center gap-4">
-                                <Link href="/contact" className="w-full sm:w-auto px-8 py-4 bg-cyan-400 text-slate-950 font-black rounded-full hover:bg-white transition-all uppercase tracking-widest text-[10px] active:scale-95 text-center">
+                                <button
+                                    onClick={() => setIsBookingOpen(true)}
+                                    className="w-full sm:w-auto px-8 py-4 bg-cyan-400 text-slate-950 font-black rounded-full hover:bg-white transition-all uppercase tracking-widest text-[10px] active:scale-95 text-center"
+                                >
                                     Start My Show
-                                </Link>
+                                </button>
                                 <Link href="/our-work" className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 border border-white/10 rounded-full font-black uppercase tracking-widest text-[10px] hover:bg-white/5 transition-all group active:scale-95">
                                     Watch Showreel <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                                 </Link>
@@ -132,13 +139,21 @@ export default function Services() {
                             <Link href="https://powerdigitalgrowth.org" target="_blank" rel="noopener noreferrer" className="px-10 py-5 bg-cyan-400 text-slate-950 font-black rounded-full shadow-[0_0_40px_rgba(34,211,238,0.2)] hover:scale-105 transition-all uppercase tracking-widest text-[10px] active:scale-95">
                                 Initialize Protocol
                             </Link>
-                            <Link href="/contact" className="px-10 py-5 border border-white/10 rounded-full hover:bg-white/5 transition-all font-bold uppercase tracking-widest text-[10px] active:scale-95">
+                            <button
+                                onClick={() => setIsBookingOpen(true)}
+                                className="px-10 py-5 border border-white/10 rounded-full hover:bg-white/5 transition-all font-bold uppercase tracking-widest text-[10px] active:scale-95"
+                            >
                                 Get A Consultation
-                            </Link>
+                            </button>
                         </div>
                     </motion.div>
                 </div>
             </section>
+
+            <BookingModal
+                isOpen={isBookingOpen}
+                onClose={() => setIsBookingOpen(false)}
+            />
         </div>
     );
 }

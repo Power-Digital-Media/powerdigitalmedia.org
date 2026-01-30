@@ -4,11 +4,15 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 import ThreeDCarousel from "../ui/ThreeDCarousel";
+import BookingModal from "../ui/BookingModal";
 
 import { projects } from "@/data/projects";
 
 export default function Portfolio() {
+    const [isBookingOpen, setIsBookingOpen] = useState(false);
+
     return (
         <section id="portfolio" className="relative min-h-screen flex flex-col items-center justify-center pt-12 pb-8 md:pt-16 md:pb-12 overflow-hidden bg-background">
             {/* --- Hero Background Layer --- */}
@@ -57,9 +61,12 @@ export default function Portfolio() {
                     transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
                     className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8 mt-6 md:mt-10"
                 >
-                    <Link href="/contact" className="w-full sm:w-auto px-8 py-4 md:px-12 md:py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 hover:text-white transition-all uppercase tracking-widest text-[9px] shadow-[0_0_50px_rgba(255,255,255,0.1)] active:scale-95 text-center">
+                    <button
+                        onClick={() => setIsBookingOpen(true)}
+                        className="w-full sm:w-auto px-8 py-4 md:px-12 md:py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 hover:text-white transition-all uppercase tracking-widest text-[9px] shadow-[0_0_50px_rgba(255,255,255,0.1)] active:scale-95 text-center"
+                    >
                         Initialize Build
-                    </Link>
+                    </button>
                     <Link href="#services" className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 md:px-12 md:py-5 border border-white/10 rounded-full font-black uppercase tracking-widest text-[9px] hover:bg-white/5 hover:border-white/20 transition-all group active:scale-95">
                         View Protocols <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </Link>
@@ -69,6 +76,11 @@ export default function Portfolio() {
             {/* Global Decorative Lights */}
             <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
             <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[140px] pointer-events-none" />
+
+            <BookingModal
+                isOpen={isBookingOpen}
+                onClose={() => setIsBookingOpen(false)}
+            />
         </section>
     );
 }

@@ -4,8 +4,10 @@ import { motion } from "framer-motion";
 import { Play, ExternalLink, Globe, Film, Share2, MousePointer2, Megaphone, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import BookingModal from "@/components/ui/BookingModal";
 
 const workCategories = [
     {
@@ -35,6 +37,8 @@ const workCategories = [
 ];
 
 export default function OurWorkPage() {
+    const [isBookingOpen, setIsBookingOpen] = useState(false);
+
     return (
         <main className="relative min-h-screen bg-background">
             <Navbar />
@@ -98,9 +102,12 @@ export default function OurWorkPage() {
                                             {cat.description}
                                         </p>
 
-                                        <Link href="/contact" className="flex items-center gap-2 text-sm font-bold text-accent uppercase tracking-widest group/btn">
+                                        <button
+                                            onClick={() => setIsBookingOpen(true)}
+                                            className="flex items-center gap-2 text-sm font-bold text-accent uppercase tracking-widest group/btn text-left"
+                                        >
                                             Explore Series <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-2" />
-                                        </Link>
+                                        </button>
                                     </div>
 
                                     <div className="absolute top-8 right-8 w-12 h-12 rounded-full glass-card border-accent/20 flex items-center justify-center translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500">
@@ -117,13 +124,21 @@ export default function OurWorkPage() {
             <section className="py-24 bg-accent/5 border-y border-white/5">
                 <div className="container px-4 mx-auto text-center">
                     <h3 className="text-3xl font-bold mb-8">Want to see what we can do for you?</h3>
-                    <Link href="/contact" className="inline-block px-10 py-5 font-bold text-white bg-accent rounded-full border-glow hover:bg-accent/90 transition-all">
+                    <button
+                        onClick={() => setIsBookingOpen(true)}
+                        className="inline-block px-10 py-5 font-bold text-white bg-accent rounded-full border-glow hover:bg-accent/90 transition-all"
+                    >
                         Schedule A Free Consultation
-                    </Link>
+                    </button>
                 </div>
             </section>
 
             <Footer />
+
+            <BookingModal
+                isOpen={isBookingOpen}
+                onClose={() => setIsBookingOpen(false)}
+            />
         </main>
     );
 }

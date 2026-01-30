@@ -6,96 +6,177 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ShowcaseReel from "@/components/ui/ShowcaseReel";
+import BookingModal from "@/components/ui/BookingModal";
+import ProductionPipeline from "@/components/ui/ProductionPipeline";
+import AudioComparison from "@/components/ui/AudioComparison";
+import TechSchematic from "@/components/ui/TechSchematic";
+import AddOnProtocols from "@/components/ui/AddOnProtocols";
+import HookGenerator from "@/components/ui/HookGenerator";
+import { useState } from "react";
+import Image from "next/image";
 
 const tiers = [
     {
-        name: "Pilot Plan",
+        name: "Foundational Broadcast",
         price: "500",
-        description: "The essential foundation for high-fidelity audio messaging.",
+        description: "Your proven entry-level protocol. High-fidelity audio messaging with cinematic single-cam capture.",
         features: [
             "4 Episodes (1 Session/mo)",
-            "Studio-Grade Audio Chain",
+            "Up to 4 In-Studio Guests",
+            "Quad RØDE PodMic Array",
             "Professional Engineering",
-            "Essential Post-Production",
-            "Worldwide Distribution"
+            "YouTube/FB/Twitch Sync"
         ],
         accent: "blue"
     },
     {
-        name: "Velocity Plan",
-        price: "1,200",
-        description: "High-velocity 4K video production for digital dominance.",
+        name: "Growth Engine",
+        price: "1,000",
+        description: "The sweet spot for brand authority. Multi-cam 4K production + high-velocity viral clipping.",
         features: [
             "4 Episodes (4K Video)",
-            "8 Viral Social Clips",
-            "Single-Cam 4K Setup",
-            "Post-Production & SEO",
-            "YouTube Optimization"
+            "Quad-Platform Live Stream",
+            "4 Viral Social Clips",
+            "Multi-Mic + Dual-Cam AI",
+            "Post-Production & SEO"
         ],
         accent: "blue",
         popular: true
     },
     {
-        name: "Elite Protocol",
-        price: "2,500",
-        description: "Cinematic multi-cam production for total industry authority.",
+        name: "Authority Suite",
+        price: "1,500",
+        description: "The total production takeover. Cinematic multi-cam, viral synchronization, and global distribution.",
         features: [
             "4 Episodes (Multi-Cam 4K)",
-            "Unlimited Viral Clips",
-            "Social Distribution Engine",
-            "Dedicated Show Manager",
-            "VIP Strategy Consulting"
+            "Quad-Platform Live Stream",
+            "8 Viral Social Clips",
+            "Full Quad-Cam AI Array",
+            "Dedicated Show Manager"
         ],
         accent: "blue"
     }
 ];
 
 export default function PodcastingPage() {
+    const [isBookingOpen, setIsBookingOpen] = useState(false);
+
     return (
-        <main className="relative min-h-screen bg-background">
+        <main className="relative min-h-screen bg-background overflow-x-hidden">
             <Navbar />
 
-            {/* Hero Section */}
-            <section className="relative pt-32 pb-20 overflow-hidden">
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-accent/5 blur-[120px] pointer-events-none -z-10" />
+            {/* Cinematic Background Layers (Global for Landing Page) */}
+            <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+                {/* Darkened Studio Base with Vertical Fade */}
+                <div className="absolute inset-0 mask-gradient-v opacity-30 md:opacity-100">
+                    <Image
+                        src="/images/studio-mood-bg.png"
+                        alt="Studio Environment"
+                        fill
+                        className="object-cover opacity-20 scale-105"
+                    />
+                </div>
 
-                <div className="container px-4 mx-auto text-center">
+                {/* Growth Graphs Overlay - Top Right with Radial Fade */}
+                <div className="absolute top-12 -right-32 md:top-24 md:-right-24 w-[300px] h-[300px] md:w-[600px] md:h-[600px] opacity-10 md:opacity-20 blur-[2px] md:blur-[1px] mask-gradient-radial">
+                    <Image
+                        src="/images/growth-data-overlay.png"
+                        alt="Growth Metrics"
+                        fill
+                        className="object-contain"
+                    />
+                </div>
+
+                {/* Growth Graphs Overlay - Bottom Left with Radial Fade */}
+                <div className="absolute -bottom-24 -left-32 md:-bottom-48 md:-left-24 w-[400px] h-[400px] md:w-[800px] md:h-[800px] opacity-10 blur-[4px] rotate-12 mask-gradient-radial">
+                    <Image
+                        src="/images/growth-data-overlay.png"
+                        alt="Audience Dynamics"
+                        fill
+                        className="object-contain"
+                    />
+                </div>
+
+                {/* Global Vignette & Blend Layer */}
+                <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background opacity-90 md:opacity-80" />
+                <div className="absolute inset-0 bg-radial-vignette opacity-80 md:opacity-70" />
+            </div>
+
+            {/* Hero Section */}
+            <section className="relative min-h-[90vh] flex items-center pt-24 pb-20 overflow-hidden">
+                {/* Cinematic Background Image */}
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src="/images/podcast-hero-cinematic.png"
+                        alt="High-end Podcast Studio"
+                        fill
+                        className="object-cover opacity-30 scale-110"
+                        priority
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background opacity-60" />
+                </div>
+
+                <div className="container px-4 mx-auto relative z-10 text-center">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="max-w-3xl mx-auto"
+                        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                        className="max-w-4xl mx-auto"
                     >
-                        <h1 className="text-sm font-bold tracking-[0.3em] text-accent uppercase mb-6">
-                            Production Architecture
-                        </h1>
-                        <h2 className="text-5xl font-bold tracking-tight md:text-7xl mb-8">
-                            Engineered for <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400 text-glow">
-                                High-Velocity Growth.
+                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-card border-accent/20 text-accent text-[10px] font-black uppercase tracking-[0.4em] mb-10 shadow-[0_0_20px_rgba(34,211,238,0.1)]">
+                            <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                            Elite Production Suite
+                        </div>
+
+                        <h1 className="text-5xl md:text-9xl font-black tracking-tighter mb-10 leading-[0.85] uppercase">
+                            The Audio <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-blue-400 to-indigo-500 text-glow-cyan">
+                                Authority.
                             </span>
-                        </h2>
-                        <p className="text-lg text-muted-foreground leading-relaxed mb-10 text-balance font-light">
-                            Your message, our infrastructure. We deploy studio-grade production and viral distribution engines designed to scale your brand with recurring precision.
+                        </h1>
+
+                        <p className="text-xl md:text-2xl text-foreground/70 leading-relaxed mb-12 max-w-2xl mx-auto font-light tracking-tight">
+                            We don&apos;t just record episodes. We engineer <span className="text-white font-medium italic">high-velocity digital assets</span> designed for total industry dominance.
                         </p>
-                        <div className="flex flex-wrap justify-center gap-4">
-                            <Link href="/contact" className="px-8 py-4 font-bold text-white bg-accent rounded-full border-glow hover:bg-accent/90 transition-all">
-                                Get A Quote
-                            </Link>
-                            <Link href="/#studio" className="px-8 py-4 font-bold transition-all border rounded-full glass-card hover:bg-white/5">
-                                View Studio Specs
+
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                            <button
+                                onClick={() => setIsBookingOpen(true)}
+                                className="w-full sm:w-auto px-10 py-5 font-black text-slate-950 bg-accent rounded-full border-glow hover:bg-white transition-all uppercase tracking-widest text-[11px]"
+                            >
+                                Initialize Protocol
+                            </button>
+                            <Link href="#tiers" className="w-full sm:w-auto px-10 py-5 font-black transition-all border border-white/10 rounded-full glass-card hover:bg-white/5 uppercase tracking-widest text-[11px]">
+                                View Production Tiers
                             </Link>
                         </div>
                     </motion.div>
                 </div>
+
+                {/* Ambient Floor Glow */}
+                <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-background to-transparent pointer-events-none" />
             </section>
 
             {/* Showcase Section */}
             <ShowcaseReel />
 
+            {/* AI Growth Intelligence (Primary Conversion Slot) */}
+            <HookGenerator />
+
+            {/* Power Protocol Pipeline */}
+            <ProductionPipeline />
+
+            {/* Audio Fidelity Comparison */}
+            <AudioComparison />
+
             {/* Pricing Section */}
-            <section className="py-24 relative z-10">
+            <section id="tiers" className="py-24 relative z-10 bg-slate-950/20 backdrop-blur-sm">
                 <div className="container px-4 mx-auto">
+                    <div className="text-center mb-20">
+                        <span className="text-accent font-bold tracking-[0.4em] uppercase text-[10px] mb-4 block">Engineered Tiers</span>
+                        <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase">Production <span className="text-white/40">Tiers.</span></h2>
+                    </div>
                     <div className="grid gap-8 lg:grid-cols-3">
                         {tiers.map((tier, index) => (
                             <motion.div
@@ -112,7 +193,7 @@ export default function PodcastingPage() {
                                     </div>
                                 )}
 
-                                <div className={`h-full p-8 rounded-[2.5rem] glass-card transition-all duration-500 border-white/5 ${tier.popular ? "border-accent/40 bg-accent/5 scale-105" : "hover:border-accent/30"}`}>
+                                <div className={`h-full p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] glass-card transition-all duration-500 border-white/5 ${tier.popular ? "border-accent/40 bg-accent/5 lg:scale-105" : "hover:border-accent/30"}`}>
                                     <h3 className="text-xl font-bold mb-2">{tier.name}</h3>
                                     <div className="flex items-baseline gap-1 mb-4">
                                         <span className="text-4xl font-bold">${tier.price}</span>
@@ -131,12 +212,12 @@ export default function PodcastingPage() {
                                         ))}
                                     </div>
 
-                                    <Link
-                                        href="/contact"
+                                    <button
+                                        onClick={() => setIsBookingOpen(true)}
                                         className={`w-full py-4 flex items-center justify-center font-bold rounded-2xl transition-all ${tier.popular ? "bg-accent text-white border-glow" : "glass-card hover:bg-accent hover:text-white"}`}
                                     >
-                                        Book Session
-                                    </Link>
+                                        Inquire / Book
+                                    </button>
                                 </div>
                             </motion.div>
                         ))}
@@ -144,55 +225,20 @@ export default function PodcastingPage() {
                 </div>
             </section>
 
-            {/* Feature Sections */}
-            <section className="py-24 bg-accent/5">
-                <div className="container px-4 mx-auto">
-                    <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
-                        <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
-                        >
-                            <div className="w-12 h-12 rounded-2xl bg-accent/20 flex items-center justify-center mb-6">
-                                <Radio className="w-6 h-6 text-accent" />
-                            </div>
-                            <h3 className="text-4xl font-bold mb-6">Live Streaming <br /> Without Limits.</h3>
-                            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                                Broadcast your message across multiple platforms simultaneously. Whether it&apos;s YouTube, Facebook, or Twitch, our RØDECaster-powered system ensures high-quality real-time engagement.
-                            </p>
-                            <ul className="space-y-4">
-                                <li className="flex items-center gap-3">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-accent" />
-                                    <span className="font-medium text-foreground/80">Multi-Platform Simultaneous Broadcast</span>
-                                </li>
-                                <li className="flex items-center gap-3">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-accent" />
-                                    <span className="font-medium text-foreground/80">Real-time Technical Management</span>
-                                </li>
-                                <li className="flex items-center gap-3">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-accent" />
-                                    <span className="font-medium text-foreground/80">Ultra-low Latency Monitoring</span>
-                                </li>
-                            </ul>
-                        </motion.div>
+            {/* Technical Schematic Overlay */}
+            <TechSchematic />
 
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
-                            className="relative aspect-video rounded-3xl overflow-hidden glass-card border-white/10"
-                        >
-                            <div className="absolute inset-0 bg-accent/10 transition-colors group-hover:bg-accent/20 flex items-center justify-center">
-                                <Zap className="w-12 h-12 text-accent animate-pulse" />
-                            </div>
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
+            {/* Feature Sections Removed (Integrated into TechSchematic) */}
+
+            {/* Add-On Protocols */}
+            <AddOnProtocols />
 
             <Footer />
+
+            <BookingModal
+                isOpen={isBookingOpen}
+                onClose={() => setIsBookingOpen(false)}
+            />
         </main>
     );
 }

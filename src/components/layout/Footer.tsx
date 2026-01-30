@@ -1,9 +1,13 @@
 "use client";
 
-import { Mic2, Instagram, Youtube, Twitter, Mail } from "lucide-react";
+import { Instagram, Twitter, Youtube, Mail, Phone, MapPin } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
+import BookingModal from "../ui/BookingModal";
 
 export default function Footer() {
+    const [isBookingOpen, setIsBookingOpen] = useState(false);
+
     const currentYear = new Date().getFullYear();
 
     return (
@@ -15,7 +19,7 @@ export default function Footer() {
                     <div className="lg:col-span-2">
                         <Link href="/" className="flex items-center gap-2 mb-6 group w-fit">
                             <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-accent group-hover:bg-accent/90 transition-colors">
-                                <Mic2 className="w-6 h-6 text-white" />
+                                <Phone className="w-6 h-6 text-white" />
                             </div>
                             <div className="flex flex-col">
                                 <span className="text-xl font-bold tracking-tighter leading-none">
@@ -63,21 +67,36 @@ export default function Footer() {
                         <ul className="space-y-4 text-sm text-muted-foreground">
                             <li>Jackson, Mississippi</li>
                             <li>info@powerdigitalmedia.org</li>
-                            <li>(601) 000-0000</li>
-                            <li><Link href="/contact" className="text-accent font-bold hover:underline">Book Strategy Call</Link></li>
+                            <li>601-446-2393</li>
+                            <li>
+                                <button
+                                    onClick={() => setIsBookingOpen(true)}
+                                    className="text-accent font-bold hover:underline"
+                                >
+                                    Book Strategy Call
+                                </button>
+                            </li>
                         </ul>
                     </div>
 
                 </div>
 
                 <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground font-medium">
-                    <p>© {currentYear} Power Digital Media LLC. All rights reserved.</p>
+                    <div className="flex flex-col gap-1">
+                        <p>© {currentYear} Power Digital Media LLC. All rights reserved.</p>
+                        <p className="text-[10px] opacity-50 uppercase tracking-widest">As an Amazon Associate I earn from qualifying purchases.</p>
+                    </div>
                     <div className="flex items-center gap-8">
                         <Link href="#" className="hover:text-accent transition-colors">Privacy Policy</Link>
                         <Link href="#" className="hover:text-accent transition-colors">Terms of Service</Link>
                     </div>
                 </div>
             </div>
+
+            <BookingModal
+                isOpen={isBookingOpen}
+                onClose={() => setIsBookingOpen(false)}
+            />
         </footer>
     );
 }

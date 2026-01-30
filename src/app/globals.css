@@ -84,6 +84,15 @@ body::after {
 .cyber-grid {
   background-image: linear-gradient(to right, rgba(34, 211, 238, 0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(34, 211, 238, 0.05) 1px, transparent 1px);
+
+  .mask-gradient-v {
+    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  }
+
+  .mask-gradient-radial {
+    mask-image: radial-gradient(circle at center, black, transparent 70%);
+  }
+
   background-size: 40px 40px;
 }
 

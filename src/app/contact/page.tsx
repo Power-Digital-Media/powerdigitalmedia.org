@@ -4,8 +4,12 @@ import { motion } from "framer-motion";
 import { Send, MapPin, Mail, Phone, Calendar, ArrowRight } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import BookingModal from "@/components/ui/BookingModal";
+import { useState } from "react";
 
 export default function StandaloneContactPage() {
+    const [isBookingOpen, setIsBookingOpen] = useState(false);
+
     return (
         <main className="relative min-h-screen bg-background">
             <Navbar />
@@ -65,20 +69,23 @@ export default function StandaloneContactPage() {
                                             </div>
                                             <div>
                                                 <p className="text-xs font-bold text-accent uppercase tracking-widest">Phone</p>
-                                                <p className="font-medium">(601) 000-0000</p>
+                                                <p className="font-medium">601-446-2393</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="p-8 rounded-3xl glass-card border-accent/20 bg-accent/5">
-                                    <Calendar className="w-10 h-10 text-accent mb-6" />
+                                <button
+                                    onClick={() => setIsBookingOpen(true)}
+                                    className="w-full text-left p-8 rounded-3xl glass-card border-accent/20 bg-accent/5 hover:border-accent/50 transition-all group"
+                                >
+                                    <Calendar className="w-10 h-10 text-accent mb-6 group-hover:scale-110 transition-transform" />
                                     <h4 className="text-xl font-bold mb-2">Strategy Calls</h4>
                                     <p className="text-muted-foreground mb-6">Book a 30-minute deep dive into your content goals. We&apos;ll outline a path to success.</p>
-                                    <button className="flex items-center gap-2 font-bold text-accent group/btn">
-                                        Schedule Now <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-2" />
-                                    </button>
-                                </div>
+                                    <div className="flex items-center gap-2 font-bold text-accent group-hover:translate-x-2 transition-transform">
+                                        Schedule Now <ArrowRight className="w-4 h-4" />
+                                    </div>
+                                </button>
                             </motion.div>
 
                             {/* Form Column */}
@@ -88,20 +95,24 @@ export default function StandaloneContactPage() {
                                 viewport={{ once: true }}
                             >
                                 <div className="p-10 rounded-[3rem] glass-card border-white/10 bg-accent/5">
-                                    <form className="space-y-8">
+                                    <form
+                                        action="https://formspree.io/f/mdazlovb"
+                                        method="POST"
+                                        className="space-y-8"
+                                    >
                                         <div className="grid gap-8 sm:grid-cols-2">
                                             <div className="space-y-2">
                                                 <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Name</label>
-                                                <input type="text" className="w-full px-0 py-3 bg-transparent border-b border-white/10 focus:border-accent outline-none transition-all placeholder:text-muted-foreground/30" placeholder="John Doe" />
+                                                <input type="text" name="name" required className="w-full px-0 py-3 bg-transparent border-b border-white/10 focus:border-accent outline-none transition-all placeholder:text-muted-foreground/30" placeholder="John Doe" />
                                             </div>
                                             <div className="space-y-2">
                                                 <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Email</label>
-                                                <input type="email" className="w-full px-0 py-3 bg-transparent border-b border-white/10 focus:border-accent outline-none transition-all placeholder:text-muted-foreground/30" placeholder="john@example.com" />
+                                                <input type="email" name="email" required className="w-full px-0 py-3 bg-transparent border-b border-white/10 focus:border-accent outline-none transition-all placeholder:text-muted-foreground/30" placeholder="john@example.com" />
                                             </div>
                                         </div>
                                         <div className="space-y-2">
                                             <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Topic</label>
-                                            <select className="w-full px-0 py-3 bg-transparent border-b border-white/10 focus:border-accent outline-none text-muted-foreground">
+                                            <select name="topic" className="w-full px-0 py-3 bg-transparent border-b border-white/10 focus:border-accent outline-none text-muted-foreground">
                                                 <option>General Inquiry</option>
                                                 <option>Studio Booking</option>
                                                 <option>Web Design Bundle</option>
@@ -110,7 +121,7 @@ export default function StandaloneContactPage() {
                                         </div>
                                         <div className="space-y-2">
                                             <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Message</label>
-                                            <textarea rows={4} className="w-full px-0 py-3 bg-transparent border-b border-white/10 focus:border-accent outline-none transition-all placeholder:text-muted-foreground/30 resize-none" placeholder="Tell us about your project..."></textarea>
+                                            <textarea rows={4} name="message" required className="w-full px-0 py-3 bg-transparent border-b border-white/10 focus:border-accent outline-none transition-all placeholder:text-muted-foreground/30 resize-none" placeholder="Tell us about your project..."></textarea>
                                         </div>
                                         <button className="w-full py-5 bg-accent text-white font-bold rounded-2xl border-glow flex items-center justify-center gap-2 hover:bg-accent/90 transition-all group">
                                             Send Message <Send className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -125,6 +136,11 @@ export default function StandaloneContactPage() {
             </section>
 
             <Footer />
+
+            <BookingModal
+                isOpen={isBookingOpen}
+                onClose={() => setIsBookingOpen(false)}
+            />
         </main>
     );
 }

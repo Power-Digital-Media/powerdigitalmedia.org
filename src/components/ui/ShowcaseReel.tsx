@@ -1,15 +1,23 @@
 "use client";
 
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
-import { Play, Mic2, Tv, Video as VideoIcon } from "lucide-react";
+import { Play } from "lucide-react";
 
-const productions = [
+interface Production {
+    title: string;
+    category: string;
+    thumbnail: string;
+    link: string;
+    stats: string;
+}
+
+const initialProductions: Production[] = [
     {
         title: "All Things New Podcast",
         category: "Ministry & Growth",
-        thumbnail: "https://i.ytimg.com/vi/j9yMH9Yxcxw/hqdefault.jpg",
+        thumbnail: "https://i.ytimg.com/vi/8qHbfb0aKek/hqdefault.jpg",
         link: "https://youtube.com/playlist?list=PLhZ7JXj1xJmTFftL8GVjM0v5aXdJAOaI3",
         stats: "4K RAW EDIT"
     },
@@ -23,7 +31,7 @@ const productions = [
     {
         title: "HSP PodCast",
         category: "Business & Strategy",
-        thumbnail: "https://i.ytimg.com/vi/OatX6k6U6as/hqdefault.jpg",
+        thumbnail: "https://i.ytimg.com/vi/MhlTopnX68g/hqdefault.jpg",
         link: "https://www.youtube.com/@HSP-PodCast",
         stats: "MULTI-CAM ARRAY"
     }
@@ -31,9 +39,51 @@ const productions = [
 
 export default function ShowcaseReel() {
     const containerRef = useRef<HTMLDivElement>(null);
-    const { scrollXProgress } = useScroll({
-        container: containerRef,
-    });
+    const [productions, setProductions] = useState<Production[]>(initialProductions);
+
+    useEffect(() => {
+        const fetchLiveContent = async () => {
+            try {
+                // Fetch All Things New latest
+                const res1 = await fetch('/api/youtube?type=playlist&id=PLhZ7JXj1xJmTFftL8GVjM0v5aXdJAOaI3');
+                const data1 = await res1.json();
+
+                // Fetch A Fool N His Folly latest
+                const res2 = await fetch('/api/youtube?type=playlist&id=PLhZ7JXj1xJmQlSNvqmaq2h8o9XqhAY3Pr');
+                const data2 = await res2.json();
+
+                // Fetch HSP latest
+                const res3 = await fetch('/api/youtube?type=channel&id=UC1gXNCvb26aHf4ffXO918-Q');
+                const data3 = await res3.json();
+
+                if (Array.isArray(data1) && data1.length > 0 && Array.isArray(data2) && data2.length > 0 && Array.isArray(data3) && data3.length > 0) {
+                    setProductions(prev => {
+                        const next = [...prev];
+                        next[0] = {
+                            ...prev[0],
+                            thumbnail: data1[0].thumbnail,
+                            link: `https://www.youtube.com/watch?v=${data1[0].id}`
+                        };
+                        next[1] = {
+                            ...prev[1],
+                            thumbnail: data2[0].thumbnail,
+                            link: `https://www.youtube.com/watch?v=${data2[0].id}`
+                        };
+                        next[2] = {
+                            ...prev[2],
+                            thumbnail: data3[0].thumbnail,
+                            link: `https://www.youtube.com/watch?v=${data3[0].id}`
+                        };
+                        return next;
+                    });
+                }
+            } catch (error) {
+                console.warn("YouTube Sync Protocol: Error fetching live data, falling back to cached assets.");
+            }
+        };
+
+        fetchLiveContent();
+    }, []);
 
     return (
         <section className="relative py-24 overflow-hidden">
@@ -46,7 +96,7 @@ export default function ShowcaseReel() {
                         </h2>
                     </div>
                     <p className="max-w-md text-foreground/50 font-light text-balance md:text-right">
-                        Real-world execution using our Elite Protocol. Studio-grade engineering meet high-velocity viral distribution.
+                        Real-world execution using our Elite Protocol. Studio-grade engineering meets high-velocity viral distribution.
                     </p>
                 </div>
             </div>
@@ -74,6 +124,7 @@ export default function ShowcaseReel() {
                             alt={show.title}
                             fill
                             className="object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[20%] group-hover:grayscale-0"
+                            unoptimized
                         />
 
                         {/* Production Overlay */}
@@ -84,7 +135,7 @@ export default function ShowcaseReel() {
                             <div className="flex justify-between items-start opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <div className="flex items-center gap-2 text-[10px] font-mono tracking-widest text-white/50 bg-black/40 px-3 py-1.5 rounded-full backdrop-blur-md">
                                     <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                                    REC [00:42:12:08]
+                                    REC [LIVE_FEED]
                                 </div>
                                 <div className="text-[10px] font-mono tracking-widest text-white/50 bg-black/40 px-3 py-1.5 rounded-full backdrop-blur-md uppercase">
                                     {show.stats}
@@ -95,7 +146,7 @@ export default function ShowcaseReel() {
                                 <span className="text-cyan-400 font-bold tracking-[0.2em] uppercase text-[10px] mb-2 block">{show.category}</span>
                                 <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight mb-4">{show.title}</h3>
                                 <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 group-hover:text-cyan-400 transition-colors">
-                                    Launch Stream <Play className="w-3 h-3 fill-current" />
+                                    Watch Latest <Play className="w-3 h-3 fill-current" />
                                 </div>
                             </div>
                         </div>

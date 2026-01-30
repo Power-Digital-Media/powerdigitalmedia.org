@@ -4,10 +4,12 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Mic2 } from "lucide-react";
 import Link from "next/link";
+import BookingModal from "../ui/BookingModal";
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isBookingOpen, setIsBookingOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -22,6 +24,7 @@ export default function Navbar() {
         { name: "Podcasting", href: "/podcasting" },
         { name: "Marketing", href: "https://powerdigitalgrowth.org", external: true },
         { name: "Portfolio", href: "/our-work" },
+        { name: "Showroom", href: "/showroom" },
         { name: "Blog", href: "/blog" },
         { name: "About", href: "/about" },
     ];
@@ -67,12 +70,12 @@ export default function Navbar() {
                                 {link.name}
                             </Link>
                         ))}
-                        <Link
-                            href="#contact"
+                        <button
+                            onClick={() => setIsBookingOpen(true)}
                             className="px-5 py-2 text-sm font-bold text-white bg-accent rounded-full hover:bg-accent/90 transition-all border-glow"
                         >
                             Book Studio
-                        </Link>
+                        </button>
                     </div>
 
                     {/* Mobile Toggle */}
@@ -107,17 +110,23 @@ export default function Navbar() {
                                     {link.name}
                                 </Link>
                             ))}
-                            <Link
-                                href="#contact"
+                            <button
+                                onClick={() => {
+                                    setIsMobileMenuOpen(false);
+                                    setIsBookingOpen(true);
+                                }}
                                 className="w-full py-4 text-center font-bold text-white bg-accent rounded-2xl"
-                                onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 Book Studio
-                            </Link>
+                            </button>
                         </div>
                     </motion.div>
                 )}
             </AnimatePresence>
+            <BookingModal
+                isOpen={isBookingOpen}
+                onClose={() => setIsBookingOpen(false)}
+            />
         </nav>
     );
 }
