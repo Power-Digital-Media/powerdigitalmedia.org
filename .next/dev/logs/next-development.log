@@ -1,0 +1,6 @@
+[00:00:00.902] Server  LOG     ✓ Ready in 604ms
+[00:00:27.887] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:31.332] Browser WARN    Image with src "/portfolio/all-things-new-real.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:33.424] Browser WARN    Image with src "/portfolio/simmons-memorial-real.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:33.424] Browser WARN    Image with src "/portfolio/corner-pharmacy-real.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:33.424] Browser WARN    Image with src "/portfolio/growth-engine-real.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
