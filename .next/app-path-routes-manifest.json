@@ -1,0 +1,18 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/about/page": "/about",
+  "/api/ai/hooks/route": "/api/ai/hooks",
+  "/api/amazon/product/route": "/api/amazon/product",
+  "/api/youtube/route": "/api/youtube",
+  "/blog/[slug]/page": "/blog/[slug]",
+  "/blog/page": "/blog",
+  "/contact/page": "/contact",
+  "/favicon.ico/route": "/favicon.ico",
+  "/our-work/page": "/our-work",
+  "/page": "/",
+  "/podcasting/page": "/podcasting",
+  "/portfolio/[slug]/page": "/portfolio/[slug]",
+  "/showroom/page": "/showroom",
+  "/web-design/page": "/web-design"
+}

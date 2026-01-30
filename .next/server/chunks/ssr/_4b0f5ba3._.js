@@ -1,0 +1,60 @@
+module.exports=[38783,(a,b,c)=>{"use strict";b.exports=a.r(97877).vendored["react-ssr"].ReactServerDOMTurbopackClient},32860,a=>{"use strict";let b=(0,a.i(70106).default)("arrow-right",[["path",{d:"M5 12h14",key:"1ays0h"}],["path",{d:"m12 5 7 7-7 7",key:"xquz4c"}]]);a.s(["ArrowRight",()=>b],32860)},41675,a=>{"use strict";let b=(0,a.i(70106).default)("calendar",[["path",{d:"M8 2v4",key:"1cmpym"}],["path",{d:"M16 2v4",key:"4m81vk"}],["rect",{width:"18",height:"18",x:"3",y:"4",rx:"2",key:"1hopcy"}],["path",{d:"M3 10h18",key:"8toen8"}]]);a.s(["Calendar",()=>b],41675)},87532,a=>{"use strict";let b=(0,a.i(70106).default)("search",[["path",{d:"m21 21-4.34-4.34",key:"14j7rj"}],["circle",{cx:"11",cy:"11",r:"8",key:"4ej97u"}]]);a.s(["Search",()=>b],87532)},92929,a=>{"use strict";let b=(0,a.i(70106).default)("share-2",[["circle",{cx:"18",cy:"5",r:"3",key:"gq8acd"}],["circle",{cx:"6",cy:"12",r:"3",key:"w7nqdw"}],["circle",{cx:"18",cy:"19",r:"3",key:"1xt0gg"}],["line",{x1:"8.59",x2:"15.42",y1:"13.51",y2:"17.49",key:"47mynk"}],["line",{x1:"15.41",x2:"8.59",y1:"6.51",y2:"10.49",key:"1n3mei"}]]);a.s(["Share2",()=>b],92929)},60353,a=>{"use strict";let b=[{slug:"mastering-rodecaster-pro-ii",title:"Mastering the RØDECaster Pro II for Live Production",excerpt:"Discover how to leverage the world's most powerful audio production studio to elevate your podcast or ministry broadcast.",date:"Feb 28, 2026",category:"Studio Tech",image:"https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=1000&auto=format&fit=crop",author:{name:"Marcus Wade",role:"Lead Engineer"},content:`
+      ## The New Standard in Audio Production
+
+      The R\xd8DECaster Pro II isn't just a mixer; it's a complete production studio. For the modern podcaster or ministry leader, this device represents a massive leap forward in ease-of-use and professional output. At Power Digital Media, we use the RCP2 as the heart of our audio chain.
+
+      ### 1. Processing Power: APHEX\xae Onboard
+      One of the standout features is the integration of APHEX\xae audio processing. This gives your voice that "radio ready" sizzle—the deep lows of the Big Bottom and the crisp highs of the Aural Exciter. When you record with us, we pre-tune these settings to your specific vocal profile.
+
+      ### 2. The Smart Pads: More Than Just Sound Effects
+      Most people think the pads are just for air horns. In a professional production, we use them for:
+      - **Live Intro/Outro music**: Seamless transitions without post-production.
+      - **MIDI Triggers**: Controlling ATEM video switchers via the RCP2.
+      - **Voice FX**: High-quality vocal reverb or pitch shifting for creative storytelling.
+
+      ### 3. Bluetooth & USB Mix-Minus
+      The ability to bring in callers via Bluetooth or a second USB source with automatic mix-minus is a lifesaver. No more echo for your guests, and no complex wiring required.
+
+      *Want to see the RCP2 in action? Book a studio tour today and experience the blue glow for yourself.*
+    `},{slug:"why-digital-strategy-matters",title:"Why Your Digital Message Needs A Strategy",excerpt:"In a world of noise, content without distribution is invisible. Learn the 'Power' way to amplify your message.",date:"Feb 15, 2026",category:"Marketing",image:"https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",author:{name:"Sarah Chen",role:"Growth Strategist"},content:`
+      ## Content is the Seed, Strategy is the Soil
+
+      You've spent hours recording a perfect episode or designing a beautiful website. You hit publish. And... silence. We've all been there. The missing piece isn't your quality—it's your strategy.
+
+      ### The Rule of Repurposing
+      A 30-minute podcast episode shouldn't just be one piece of content. At Power Digital Media, we follow the "Multi-Impact" framework:
+      - **The Micro-Clip**: 3-5 high-impact clips for Reels and TikTok.
+      - **The Article**: A SEO-optimized blog post summarizing the key insights.
+      - **The Newsletter**: Directly reaching your core audience's inbox.
+
+      ### Distribution is King
+      Where does your audience live? If you're a ministry, your strategy might focus more on Facebook and YouTube. If you're a B2B business, LinkedIn is your primary battleground. A good strategy identifies the platform first, then tailors the content to fit.
+
+      ### Consistency Over Intensity
+      It's better to release one high-quality piece every two weeks than to flood the feed for five days and disappear for a month. We help you build a sustainable rhythm that keeps your brand top-of-mind.
+
+      *Ready to stop shouting into the void? Let's build a distribution system that actually works.*
+    `},{slug:"multi-cam-podcasting-tips",title:"5 Tips for Cinematic Multi-Cam Podcasting",excerpt:"Moving from a single webcam to a professional multi-cam setup can transform your brand's authority overnight.",date:"Jan 10, 2026",category:"Production",image:"https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1000&auto=format&fit=crop",author:{name:"Marcus Wade",role:"Lead Engineer"},content:`
+      ## The Visual Shift
+
+      Podcasting is becoming a visual medium. YouTube is now the largest podcast discovery platform in the world. To compete, your visuals need to match your audio quality. Here are 5 tips for a cinematic multi-cam setup:
+
+      ### 1. Use the "Wide-Tight-Tight" Setup
+      The classic cinematic setup involves one wide shot and two tight shots (one for each speaker). This allows you to cut to the person speaking, creating a much more engaging experience for the viewer.
+
+      ### 2. Lighting the Depth
+      Don't just light the faces; light the background. Using "rim lights" or "hair lights" helps separate the speaker from the background, creating a 3D feel. At our studio, we use the signature blue glow to create depth and brand identity.
+
+      ### 3. Match Your Frame Rates
+      One of the biggest mistakes is having one camera at 24fps and another at 30fps. It creates a jarring "jitter" in the edit. Ensure all your cameras (and your OBS/ATEM project) are set to the same frame rate.
+
+      ### 4. Directing While Recording
+      Tools like the ATEM Mini Pro allow us to "live switch." This saves hours in post-production and creates a more natural flow. You can even use macros to automate camera switching based on who is talking.
+
+      ### 5. Lens Choice Matters
+      If you want that blurred background (bokeh), you need a lens with a wide aperture (f/1.8 or f/2.8). We recommend 35mm or 50mm primes for tight shots to get that professional "studio" look.
+
+      *Upgrade your visuals today. Our studio is equipped with BMPCC 4K cameras and sigma glass to bring your vision to life.*
+    `}];a.s(["blogPosts",0,b])},17262,a=>{"use strict";var b=a.i(87924),c=a.i(46271);let d=(0,a.i(70106).default)("book-open",[["path",{d:"M12 7v14",key:"1akyts"}],["path",{d:"M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z",key:"ruj8y"}]]);var e=a.i(41675),f=a.i(32860),g=a.i(92929),h=a.i(87532),i=a.i(71987),j=a.i(45903),k=a.i(25250),l=a.i(60353),m=a.i(38246);function n(){return(0,b.jsxs)("main",{className:"relative min-h-screen bg-background text-foreground",children:[(0,b.jsx)(j.default,{}),(0,b.jsxs)("section",{className:"relative pt-32 pb-20 overflow-hidden",children:[(0,b.jsx)("div",{className:"absolute top-0 left-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] pointer-events-none"}),(0,b.jsx)("div",{className:"container px-4 mx-auto text-center",children:(0,b.jsxs)(c.motion.div,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{duration:.6},className:"max-w-3xl mx-auto",children:[(0,b.jsxs)("h1",{className:"text-sm font-bold tracking-[0.3em] text-accent uppercase mb-6 flex items-center justify-center gap-2",children:[(0,b.jsx)(d,{className:"w-4 h-4"})," Your Go-To Resource"]}),(0,b.jsxs)("h2",{className:"text-5xl font-bold tracking-tight md:text-7xl mb-8 leading-[1.1]",children:["Explore Our Dynamic ",(0,b.jsx)("br",{}),(0,b.jsx)("span",{className:"text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400 text-glow",children:"Collection of Insights."})]}),(0,b.jsx)("p",{className:"text-lg text-muted-foreground leading-relaxed mb-10 text-balance",children:"Discover a wealth of information designed to inspire and inform. Join us on this journey and transform your understanding of digital content."}),(0,b.jsxs)("div",{className:"relative max-w-lg mx-auto mb-16",children:[(0,b.jsx)("input",{type:"text",placeholder:"Search articles...",className:"w-full px-6 py-4 rounded-full glass-card border-white/10 focus:border-accent/50 outline-none transition-all pr-12"}),(0,b.jsx)(h.Search,{className:"absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground"})]})]})})]}),(0,b.jsx)("section",{className:"py-24 relative z-10",children:(0,b.jsx)("div",{className:"container px-4 mx-auto",children:(0,b.jsx)("div",{className:"grid gap-12 lg:grid-cols-3",children:l.blogPosts.map((a,d)=>(0,b.jsx)(c.motion.article,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.5,delay:.1*d},className:"group cursor-pointer",children:(0,b.jsx)(m.default,{href:`/blog/${a.slug}`,className:"block",children:(0,b.jsxs)("div",{className:"glass-card rounded-[2.5rem] border-white/5 overflow-hidden transition-all duration-500 group-hover:border-accent/30 group-hover:shadow-[0_0_30px_rgba(59,130,246,0.1)]",children:[(0,b.jsxs)("div",{className:"aspect-video relative overflow-hidden",children:[(0,b.jsx)(i.default,{src:a.image,alt:a.title,fill:!0,className:"object-cover transition-transform duration-700 group-hover:scale-110"}),(0,b.jsx)("div",{className:"absolute top-6 left-6 px-4 py-1.5 rounded-full bg-background/80 backdrop-blur-md text-xs font-bold text-accent border border-white/5",children:a.category})]}),(0,b.jsxs)("div",{className:"p-8",children:[(0,b.jsxs)("div",{className:"flex items-center gap-2 mb-4 text-xs font-medium text-muted-foreground",children:[(0,b.jsx)(e.Calendar,{className:"w-3.5 h-3.5"})," ",a.date]}),(0,b.jsx)("h3",{className:"text-2xl font-bold mb-4 line-clamp-2 group-hover:text-glow transition-all",children:a.title}),(0,b.jsx)("p",{className:"text-muted-foreground leading-relaxed mb-8 line-clamp-3",children:a.excerpt}),(0,b.jsxs)("div",{className:"flex items-center gap-2 text-sm font-bold text-accent uppercase tracking-widest group/btn",children:["Read Story ",(0,b.jsx)(f.ArrowRight,{className:"w-4 h-4 transition-transform group-hover/btn:translate-x-2"})]})]})]})})},a.slug))})})}),(0,b.jsx)("section",{className:"py-24 bg-accent/5 border-t border-white/5",children:(0,b.jsxs)("div",{className:"container px-4 mx-auto text-center",children:[(0,b.jsx)(g.Share2,{className:"w-12 h-12 text-accent mx-auto mb-6"}),(0,b.jsx)("h3",{className:"text-3xl font-bold mb-4",children:"Stay Ahead of the Curve."}),(0,b.jsx)("p",{className:"text-muted-foreground mb-8",children:"Join our newsletter for the latest insights in studio tech and digital strategy."}),(0,b.jsxs)("form",{action:"https://formspree.io/f/mdazlovb",method:"POST",className:"max-w-md mx-auto flex gap-4",children:[(0,b.jsx)("input",{type:"email",name:"email",required:!0,placeholder:"email@example.com",className:"flex-1 px-6 py-4 rounded-2xl glass-card border-white/10 outline-none focus:border-accent/40"}),(0,b.jsx)("button",{className:"px-8 py-4 font-bold text-white bg-accent rounded-2xl border-glow hover:bg-accent/90",children:"Join"})]})]})}),(0,b.jsx)(k.default,{})]})}a.s(["default",()=>n],17262)}];
+
+//# sourceMappingURL=_4b0f5ba3._.js.map

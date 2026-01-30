@@ -1,0 +1,156 @@
+[00:00:01.115] Server  LOG     ✓ Ready in 787ms
+[00:00:02.711] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:02.723] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:03.224] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:03.292] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:03.331] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:03.335] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:03.384] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:03.422] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:03.425] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:03.474] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:03.509] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:03.511] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:03.548] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:03.591] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:03.594] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:03.631] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:03.669] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:03.671] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:03.715] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:03.755] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:03.828] Browser WARN    Image with src "/images/growth-data-overlay.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:03.869] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:03.905] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:03.957] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:03.961] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:04.009] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:04.043] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:04.047] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:04.095] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:04.134] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:04.137] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:04.176] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:04.222] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:04.224] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:04.257] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:04.300] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:04.302] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:04.338] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:04.372] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:04.476] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:04.516] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:04.564] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:04.567] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:04.606] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:04.656] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:04.658] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:04.694] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:04.741] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:04.744] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:04.779] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:04.814] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:44.841] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:45.106] Browser WARN    Image with src "/portfolio/all-things-new-real.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:45.106] Browser WARN    Image with src "/portfolio/corner-pharmacy-real.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:45.106] Browser WARN    Image with src "/portfolio/simmons-memorial-real.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:45.106] Browser WARN    Image with src "/portfolio/growth-engine-real.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:45.106] Browser WARN    Image with src "/portfolio/simmons-memorial-real.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:00:48.356] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:48.412] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:48.464] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:48.468] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:48.534] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:48.573] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:48.575] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:48.623] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:48.679] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:48.682] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:48.726] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:48.779] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:48.782] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:48.824] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:48.877] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:48.879] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:48.927] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:48.972] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:49.075] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:49.120] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:49.170] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:49.173] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:49.224] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:49.260] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:49.263] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:49.323] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:49.365] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:49.367] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:49.402] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:49.459] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:49.461] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:49.497] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:49.553] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:49.555] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:49.589] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:49.635] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:49.735] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:49.778] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:49.816] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:49.819] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:49.864] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:49.926] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:49.928] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:49.964] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:50.004] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:50.006] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:50.057] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:50.102] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:50.104] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:50.147] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:50.204] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:50.207] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:50.253] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:50.315] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:50.424] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:50.468] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:50.513] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:50.516] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:50.558] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:50.600] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:50.602] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:50.643] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:50.686] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:50.688] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:50.736] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:50.782] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:50.784] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:50.827] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:50.884] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:50.886] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:50.932] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:50.975] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:51.106] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:51.142] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:51.183] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:51.185] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:51.236] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:51.276] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:51.278] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:51.313] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:51.361] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:51.365] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:51.407] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:51.447] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:51.449] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:51.503] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:51.557] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:51.659] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:51.705] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:51.764] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:51.766] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:51.811] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:51.858] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:00:51.968] Server  ERROR   Creators API Token Error: "{\"error_description\":\"Client authentication failed\",\"error\":\"invalid_client\"}"
+[00:00:52.018] Server  ERROR   Auth Error: Error: Token exchange failed: 401
+[00:00:52.078] Server  ERROR   Creators API Error: Error: Token exchange failed: 401
+[00:01:11.499] Server  LOG     ✓ Compiled in 50ms

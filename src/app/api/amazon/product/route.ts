@@ -10,27 +10,13 @@ export async function GET(request: Request) {
     }
 
     try {
-        const data = await fetchAmazonProduct(asin);
+        const product = await fetchAmazonProduct(asin);
 
-        // Extract relevant info from PA-API response
-        const item = data.ItemsResult?.Items?.[0];
-
-        if (!item) {
+        if (!product) {
             return NextResponse.json({ error: 'Product not found' }, { status: 404 });
         }
 
-        const price = item.Offers?.Listings?.[0]?.Price?.DisplayAmount || 'N/A';
-        const title = item.ItemInfo?.Title?.DisplayValue || '';
-        const isAvailable = !!item.Offers?.Listings?.[0]?.Price;
-        const liveLink = item.DetailPageURL || '';
-
-        return NextResponse.json({
-            asin,
-            price,
-            title,
-            isAvailable,
-            liveLink
-        });
+        return NextResponse.json(product);
     } catch (error: any) {
         console.error('API Route Error:', error);
         return NextResponse.json({ error: error.message || 'Internal Server Error' }, { status: 500 });

@@ -1,0 +1,3 @@
+{
+  "/api/amazon/product/route": "app/api/amazon/product/route.js"
+}

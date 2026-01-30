@@ -31,8 +31,8 @@ const initialProductions: Production[] = [
     {
         title: "HSP PodCast",
         category: "Business & Strategy",
-        thumbnail: "https://i.ytimg.com/vi/MhlTopnX68g/hqdefault.jpg",
-        link: "https://www.youtube.com/@HSP-PodCast",
+        thumbnail: "https://img.youtube.com/vi/MhlTopnX68g/maxresdefault.jpg",
+        link: "https://youtu.be/MhlTopnX68g",
         stats: "MULTI-CAM ARRAY"
     }
 ];
@@ -52,11 +52,10 @@ export default function ShowcaseReel() {
                 const res2 = await fetch('/api/youtube?type=playlist&id=PLhZ7JXj1xJmQlSNvqmaq2h8o9XqhAY3Pr');
                 const data2 = await res2.json();
 
-                // Fetch HSP latest
-                const res3 = await fetch('/api/youtube?type=channel&id=UC1gXNCvb26aHf4ffXO918-Q');
-                const data3 = await res3.json();
+                // NOTE: HSP Podcast (Index 2) is locked to a specific refined episode per user request.
+                // We are intentionally NOT fetching dynamic content for it to preserve the 'Houseguests' asset.
 
-                if (Array.isArray(data1) && data1.length > 0 && Array.isArray(data2) && data2.length > 0 && Array.isArray(data3) && data3.length > 0) {
+                if (Array.isArray(data1) && data1.length > 0 && Array.isArray(data2) && data2.length > 0) {
                     setProductions(prev => {
                         const next = [...prev];
                         next[0] = {
@@ -69,11 +68,7 @@ export default function ShowcaseReel() {
                             thumbnail: data2[0].thumbnail,
                             link: `https://www.youtube.com/watch?v=${data2[0].id}`
                         };
-                        next[2] = {
-                            ...prev[2],
-                            thumbnail: data3[0].thumbnail,
-                            link: `https://www.youtube.com/watch?v=${data3[0].id}`
-                        };
+                        // Index 2 (HSP) is left untouched
                         return next;
                     });
                 }
