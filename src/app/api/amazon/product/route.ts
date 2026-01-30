@@ -12,7 +12,7 @@ export async function GET(request: Request) {
     try {
         const product = await fetchAmazonProduct(asin);
 
-        if (!product) {
+        if (!product || !product.ItemsResult) {
             return NextResponse.json({ error: 'Product not found' }, { status: 404 });
         }
 

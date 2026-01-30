@@ -33,6 +33,7 @@ export default function GearCard({ item }: GearCardProps) {
         setImgSrc(item.image);
     }, [item.image]);
 
+    /*
     useEffect(() => {
         const fetchProductData = async () => {
             if (!item.asin) return;
@@ -58,8 +59,10 @@ export default function GearCard({ item }: GearCardProps) {
             }
         };
 
-        fetchProductData();
+        // API DISABLED BY USER REQUEST (Netlify Stabilization)
+        // fetchProductData(); 
     }, [item.asin]);
+    */
 
     // Handle image errors with a fallback to the brand's primary mic image
     const handleImageError = () => {

@@ -1271,36 +1271,36 @@ function GearCard({ item }) {
     }["GearCard.useEffect"], [
         item.image
     ]);
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "GearCard.useEffect": ()=>{
-            const fetchProductData = {
-                "GearCard.useEffect.fetchProductData": async ()=>{
-                    if (!item.asin) return;
-                    setIsLoading(true);
-                    try {
-                        const response = await fetch(`/api/amazon/product?asin=${item.asin}`);
-                        if (!response.ok) throw new Error('API Sync Failed');
-                        const data = await response.json();
-                        if (data.price && data.price !== 'N/A') {
-                            setLivePrice(data.price);
-                        }
-                        if (data.liveLink && data.liveLink.startsWith('http')) {
-                            setLiveLink(data.liveLink.trim());
-                        }
-                    } catch (error) {
-                        // Silently fail to static link (Hibernate Mode)
-                        setIsError(true);
-                    } finally{
-                        setIsLoading(false);
-                    }
+    /*
+    useEffect(() => {
+        const fetchProductData = async () => {
+            if (!item.asin) return;
+
+            setIsLoading(true);
+            try {
+                const response = await fetch(`/api/amazon/product?asin=${item.asin}`);
+                if (!response.ok) throw new Error('API Sync Failed');
+                const data = await response.json();
+
+                if (data.price && data.price !== 'N/A') {
+                    setLivePrice(data.price);
                 }
-            }["GearCard.useEffect.fetchProductData"];
-            fetchProductData();
-        }
-    }["GearCard.useEffect"], [
-        item.asin
-    ]);
-    // Handle image errors with a fallback to the brand's primary mic image
+
+                if (data.liveLink && data.liveLink.startsWith('http')) {
+                    setLiveLink(data.liveLink.trim());
+                }
+            } catch (error) {
+                // Silently fail to static link (Hibernate Mode)
+                setIsError(true);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        // API DISABLED BY USER REQUEST (Netlify Stabilization)
+        // fetchProductData(); 
+    }, [item.asin]);
+    */ // Handle image errors with a fallback to the brand's primary mic image
     const handleImageError = ()=>{
         if (imgSrc !== '/images/gear/shure_sm7b.png') {
             setImgSrc('/images/gear/shure_sm7b.png');
@@ -1332,7 +1332,7 @@ function GearCard({ item }) {
                         className: "absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10 opacity-60"
                     }, void 0, false, {
                         fileName: "[project]/src/components/ui/showroom/GearCard.tsx",
-                        lineNumber: 82,
+                        lineNumber: 85,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
@@ -1342,7 +1342,7 @@ function GearCard({ item }) {
                         className: "w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     }, void 0, false, {
                         fileName: "[project]/src/components/ui/showroom/GearCard.tsx",
-                        lineNumber: 83,
+                        lineNumber: 86,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1353,7 +1353,7 @@ function GearCard({ item }) {
                                 children: item.brand
                             }, void 0, false, {
                                 fileName: "[project]/src/components/ui/showroom/GearCard.tsx",
-                                lineNumber: 92,
+                                lineNumber: 95,
                                 columnNumber: 21
                             }, this),
                             item.level && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1364,13 +1364,13 @@ function GearCard({ item }) {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/ui/showroom/GearCard.tsx",
-                                lineNumber: 96,
+                                lineNumber: 99,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/ui/showroom/GearCard.tsx",
-                        lineNumber: 91,
+                        lineNumber: 94,
                         columnNumber: 17
                     }, this),
                     item.useCase && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1384,18 +1384,18 @@ function GearCard({ item }) {
                                     children: item.useCase
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/ui/showroom/GearCard.tsx",
-                                    lineNumber: 109,
+                                    lineNumber: 112,
                                     columnNumber: 42
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/ui/showroom/GearCard.tsx",
-                            lineNumber: 108,
+                            lineNumber: 111,
                             columnNumber: 25
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/ui/showroom/GearCard.tsx",
-                        lineNumber: 107,
+                        lineNumber: 110,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1420,23 +1420,23 @@ function GearCard({ item }) {
                                 className: "w-3 h-3 animate-spin"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/ui/showroom/GearCard.tsx",
-                                lineNumber: 124,
+                                lineNumber: 127,
                                 columnNumber: 29
                             }, this) : livePrice ? livePrice : item.priceRange
                         }, void 0, false, {
                             fileName: "[project]/src/components/ui/showroom/GearCard.tsx",
-                            lineNumber: 116,
+                            lineNumber: 119,
                             columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/ui/showroom/GearCard.tsx",
-                        lineNumber: 115,
+                        lineNumber: 118,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/ui/showroom/GearCard.tsx",
-                lineNumber: 81,
+                lineNumber: 84,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1450,7 +1450,7 @@ function GearCard({ item }) {
                                 children: item.name
                             }, void 0, false, {
                                 fileName: "[project]/src/components/ui/showroom/GearCard.tsx",
-                                lineNumber: 137,
+                                lineNumber: 140,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1458,13 +1458,13 @@ function GearCard({ item }) {
                                 children: item.description
                             }, void 0, false, {
                                 fileName: "[project]/src/components/ui/showroom/GearCard.tsx",
-                                lineNumber: 140,
+                                lineNumber: 143,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/ui/showroom/GearCard.tsx",
-                        lineNumber: 136,
+                        lineNumber: 139,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1476,19 +1476,19 @@ function GearCard({ item }) {
                                         className: "w-3 h-3 text-accent"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/ui/showroom/GearCard.tsx",
-                                        lineNumber: 149,
+                                        lineNumber: 152,
                                         columnNumber: 29
                                     }, this),
                                     spec
                                 ]
                             }, idx, true, {
                                 fileName: "[project]/src/components/ui/showroom/GearCard.tsx",
-                                lineNumber: 148,
+                                lineNumber: 151,
                                 columnNumber: 25
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/src/components/ui/showroom/GearCard.tsx",
-                        lineNumber: 146,
+                        lineNumber: 149,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -1501,7 +1501,7 @@ function GearCard({ item }) {
                                 className: "w-3 h-3 transition-transform group-hover/btn:-translate-y-0.5"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/ui/showroom/GearCard.tsx",
-                                lineNumber: 162,
+                                lineNumber: 165,
                                 columnNumber: 21
                             }, this),
                             "View on Amazon",
@@ -1509,36 +1509,36 @@ function GearCard({ item }) {
                                 className: "w-3 h-3 opacity-30"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/ui/showroom/GearCard.tsx",
-                                lineNumber: 164,
+                                lineNumber: 167,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/ui/showroom/GearCard.tsx",
-                        lineNumber: 156,
+                        lineNumber: 159,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/ui/showroom/GearCard.tsx",
-                lineNumber: 135,
+                lineNumber: 138,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute -bottom-1/2 -left-1/4 w-full h-full bg-accent/5 blur-[100px] pointer-events-none -z-10 opacity-0 group-hover:opacity-100 transition-opacity"
             }, void 0, false, {
                 fileName: "[project]/src/components/ui/showroom/GearCard.tsx",
-                lineNumber: 169,
+                lineNumber: 172,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/ui/showroom/GearCard.tsx",
-        lineNumber: 72,
+        lineNumber: 75,
         columnNumber: 9
     }, this);
 }
-_s(GearCard, "yc61MKOkVJcDPeFBTpooSSyN520=");
+_s(GearCard, "Yoe4X4J8v91+BNwE2xdJw8mv0zI=");
 _c = GearCard;
 var _c;
 __turbopack_context__.k.register(_c, "GearCard");
