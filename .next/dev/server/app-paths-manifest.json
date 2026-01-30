@@ -1,6 +1,5 @@
 {
   "/api/amazon/product/route": "app/api/amazon/product/route.js",
   "/page": "app/page.js",
-  "/podcasting/page": "app/podcasting/page.js",
   "/showroom/page": "app/showroom/page.js"
 }
