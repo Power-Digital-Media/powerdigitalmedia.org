@@ -10,20 +10,32 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingBag, ChevronRight } from "lucide-react";
 
 export default function ShowroomPage() {
-    const categories = ["All", "Audio", "PC", "Visual", "Monitors", "Lighting", "Build Kits"];
+    const categories = ["All", "Audio", "PC", "Visual", "Monitors", "Lighting", "Build Kits", "Essentials"];
     const levels = ["All", "Elite", "Pro", "Entry"];
     const useCases = ["All", "Streaming", "Editing", "Podcasting", "Gaming"];
 
     const [activeCategory, setActiveCategory] = useState("All");
+    const [activeSubCategory, setActiveSubCategory] = useState("All");
     const [activeLevel, setActiveLevel] = useState("All");
     const [activeUseCase, setActiveUseCase] = useState("All");
 
+    // Get unique subcategories for the active category
+    const availableSubCategories = ["All", ...Array.from(new Set(
+        GEAR_COLLECTION
+            .filter(item => activeCategory === "All" || item.category === activeCategory)
+            .map(item => item.subCategory)
+            .filter((sub): sub is string => !!sub)
+    ))];
+
+
     const filteredGear = GEAR_COLLECTION.filter(item => {
         const categoryMatch = activeCategory === "All" || item.category === activeCategory;
+        const subCategoryMatch = activeSubCategory === "All" || item.subCategory === activeSubCategory;
         const levelMatch = activeLevel === "All" || item.level === activeLevel;
         const useCaseMatch = activeUseCase === "All" || item.useCase === activeUseCase;
-        return categoryMatch && levelMatch && useCaseMatch;
+        return categoryMatch && subCategoryMatch && levelMatch && useCaseMatch;
     });
+
 
     return (
         <main className="min-h-screen bg-background text-foreground selection:bg-accent selection:text-slate-900">
@@ -74,9 +86,40 @@ export default function ShowroomPage() {
                         <CategoryFilter
                             categories={categories}
                             activeCategory={activeCategory}
-                            onCategoryChange={setActiveCategory}
+                            onCategoryChange={(cat) => {
+                                setActiveCategory(cat);
+                                setActiveSubCategory("All"); // Reset subcategory on main category change
+                            }}
                         />
                     </div>
+
+                    {/* Sub-Category Protocol */}
+                    <AnimatePresence>
+                        {activeCategory !== "All" && availableSubCategories.length > 1 && (
+                            <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className="mb-12 overflow-hidden"
+                            >
+                                <div className="flex flex-wrap justify-center gap-2">
+                                    {availableSubCategories.map(sub => (
+                                        <button
+                                            key={sub}
+                                            onClick={() => setActiveSubCategory(sub)}
+                                            className={`px-4 py-2 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] transition-all border ${activeSubCategory === sub
+                                                ? 'bg-accent border-accent text-slate-950'
+                                                : 'bg-white/5 border-white/10 text-white/40 hover:bg-white/10 hover:border-white/20'
+                                                }`}
+                                        >
+                                            {sub}
+                                        </button>
+                                    ))}
+                                </div>
+                                <div className="mt-4 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent w-full" />
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
 
                     {/* Secondary Filters Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">

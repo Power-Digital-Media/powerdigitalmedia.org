@@ -3,7 +3,7 @@ export interface GearItem {
     asin?: string;
     name: string;
     brand: string;
-    category: 'Audio' | 'PC' | 'Visual' | 'Lighting' | 'Build Kits' | 'Monitors';
+    category: 'Audio' | 'PC' | 'Visual' | 'Lighting' | 'Build Kits' | 'Monitors' | 'Essentials';
     useCase?: 'Streaming' | 'Editing' | 'Podcasting' | 'All-in-One' | 'Gaming';
     level?: 'Entry' | 'Pro' | 'Elite';
     description: string;
@@ -11,6 +11,7 @@ export interface GearItem {
     priceRange: string;
     image: string;
     amazonLink: string;
+    subCategory?: string;
     isFeatured?: boolean;
 }
 
@@ -28,7 +29,8 @@ export const GEAR_COLLECTION: GearItem[] = [
         technicalSpecs: ['Dynamic Cardioid', 'Flat frequency response', 'Air suspension shock isolation'],
         priceRange: '$$$',
         image: '/images/gear/shure_sm7b.png',
-        amazonLink: 'https://amzn.to/3Z6q3Lq',
+        amazonLink: 'https://amzn.to/3MfyVKk',
+        subCategory: 'Microphones',
         isFeatured: true
     },
     {
@@ -43,8 +45,185 @@ export const GEAR_COLLECTION: GearItem[] = [
         technicalSpecs: ['9 assignable channels', 'Revolution Preamps', 'Direct-to-USB recording'],
         priceRange: '$$$$',
         image: '/images/gear/rodecaster_pro_2.png',
-        amazonLink: 'https://amzn.to/3V5Uj1v',
+        amazonLink: 'https://amzn.to/4asMG0z',
+        subCategory: 'Mixers',
         isFeatured: true
+    },
+    {
+        id: 'shure-mv7-plus',
+        asin: 'B0CWRW843T',
+        name: 'MV7+ Podcast Microphone',
+        brand: 'Shure',
+        category: 'Audio',
+        useCase: 'Podcasting',
+        level: 'Pro',
+        description: 'The digital evolution of a legend. Integrated DSP, Real-time Denoiser, and dual XLR/USB connectivity.',
+        technicalSpecs: ['Dynamic Cardioid', 'DSP Auto-Level Mode', 'Touch-to-Mute Protocol'],
+        priceRange: '$$',
+        image: '/images/gear/shure_mv7_plus.png',
+        amazonLink: 'https://amzn.to/3LTvkBD',
+        subCategory: 'Microphones',
+        isFeatured: false
+    },
+    {
+        id: 'rode-procaster',
+        asin: 'B001IPUJJI',
+        name: 'Procaster Broadcast Mic',
+        brand: 'Røde',
+        category: 'Audio',
+        useCase: 'Podcasting',
+        level: 'Pro',
+        description: 'Professional high-output dynamic microphone for broadcast radio and voiceover application.',
+        technicalSpecs: ['Broadcast quality sound', 'Internal pop-filter', 'Heavy-duty construction'],
+        priceRange: '$$',
+        image: '/images/gear/rode_procaster.png',
+        amazonLink: 'https://amzn.to/4rpCYTj',
+        subCategory: 'Microphones',
+        isFeatured: false
+    },
+    {
+        id: 'rode-caster-duo',
+        asin: 'B0C77D59H7',
+        name: 'Rødecaster Duo',
+        brand: 'Røde',
+        category: 'Audio',
+        useCase: 'Podcasting',
+        level: 'Pro',
+        description: 'The compact professional audio solution. Two high-quality Revolution Preamps and advanced DSP in a smaller footprint.',
+        technicalSpecs: ['2 XLR/TRS inputs', 'Wireless receiver built-in', 'Customizable pads'],
+        priceRange: '$$$',
+        image: '/images/gear/rodecaster_duo.png',
+        amazonLink: 'https://amzn.to/46mp3oO',
+        subCategory: 'Mixers',
+        isFeatured: false
+    },
+    {
+        id: 'rode-streamer-x',
+        asin: 'B0C4W8V6ZD',
+        name: 'Røde Streamer X',
+        brand: 'Røde',
+        category: 'Audio',
+        useCase: 'Streaming',
+        level: 'Entry',
+        description: 'The ultimate compact workstation. Part professional audio interface, part 4K video capture card.',
+        technicalSpecs: ['4K60 Video Passthrough', 'Revolution Preamp', 'Two USB-C interfaces'],
+        priceRange: '$$',
+        image: '/images/gear/rode_streamer_x.png',
+        amazonLink: 'https://amzn.to/4bYkIfd',
+        subCategory: 'Mixers',
+        isFeatured: false
+    },
+    {
+        id: 'elgato-stream-deck-plus',
+        asin: 'B0BKMM2SGB',
+        name: 'Stream Deck +',
+        brand: 'Elgato',
+        category: 'Audio',
+        useCase: 'Streaming',
+        level: 'Pro',
+        description: 'The ultimate tactile workstation. Deep control with LCD keys, touch strip, and four high-resolution dials for seamless audio/video mixing.',
+        technicalSpecs: ['8 LCD Keys', '4 Touch Dials', 'Dynamic Touch Strip Protocol'],
+        priceRange: '$$$',
+        image: '/images/gear/elgato_stream_deck_plus.png',
+        amazonLink: 'https://amzn.to/4c29jer',
+        subCategory: 'Mixers',
+        isFeatured: true
+    },
+    {
+        id: 'focusrite-scarlett-2i2',
+        asin: 'B0C6Y9S6V7',
+        name: 'Scarlett 2i2 (4th Gen)',
+        brand: 'Focusrite',
+        category: 'Audio',
+        useCase: 'Editing',
+        level: 'Pro',
+        description: 'The studio standard interface for creators and musicians. Re-engineered preamps and industrial-grade converters.',
+        technicalSpecs: ['120dB Dynamic Range', 'Auto Gain & Clip Safe', 'Air Mode Protocol'],
+        priceRange: '$$',
+        image: '/images/gear/focusrite_2i2.png',
+        amazonLink: 'https://amzn.to/4qSNBye',
+        subCategory: 'Mixers',
+        isFeatured: false
+    },
+    {
+        id: 'rode-caster-pro-2-bundle-zoom',
+        asin: 'B0BZT3FRL4',
+        name: 'RCP2 Zoom Production Bundle',
+        brand: 'Røde / Kellards',
+        category: 'Audio',
+        useCase: 'Podcasting',
+        level: 'Pro',
+        description: 'The complete 4-person production kit. Featuring the Rødecaster Pro II and 4x Zoom ZDM-1 dynamic mic packs.',
+        technicalSpecs: ['Rødecaster Pro II', '4x Zoom ZDM-1 Mics', '4x Over-Ear Headphones', '32GB MicroSD'],
+        priceRange: '$$$$',
+        image: '/images/gear/rode_bundle_zoom.png',
+        amazonLink: 'https://amzn.to/4bsFCDa',
+        subCategory: 'Bundles',
+        isFeatured: false
+    },
+    {
+        id: 'rode-caster-pro-2-bundle-nt1',
+        asin: 'B0B1S9H5W3',
+        name: 'RCP2 NT1 5th Gen Bundle',
+        brand: 'Røde / Elite',
+        category: 'Audio',
+        useCase: 'Podcasting',
+        level: 'Elite',
+        description: 'The ultimate studio transformation. Rødecaster Pro II meets 4x NT1 5th Gen Condenser Mics for pristine audio.',
+        technicalSpecs: ['Rødecaster Pro II', '4x NT1 5th Gen Mics', '4x Studio Headphones', '64GB MicroSD', '4x Boom Arms'],
+        priceRange: '$$$$$',
+        image: '/images/gear/rode_bundle_nt1.png',
+        amazonLink: 'https://amzn.to/3NGpZOG',
+        subCategory: 'Bundles',
+        isFeatured: true
+    },
+    {
+        id: 'rode-caster-pro-2-bundle-multi',
+        asin: 'B0BNP7Z3F1',
+        name: 'RCP2 Multi-Mic Bundle',
+        brand: 'Røde / Pro',
+        category: 'Audio',
+        useCase: 'Podcasting',
+        level: 'Pro',
+        description: 'Professional multi-guest podcasting kit for high-fidelity broadcast and recording.',
+        technicalSpecs: ['Rødecaster Pro II', '4x Professional Mics', '4x Headphones', '64GB MicroSD'],
+        priceRange: '$$$$',
+        image: '/images/gear/rode_bundle_pro.png',
+        amazonLink: 'https://amzn.to/4qPNDXB',
+        subCategory: 'Bundles',
+        isFeatured: false
+    },
+    {
+        id: 'rode-caster-pro-2-personal-bundle',
+        asin: 'B0C6Y9S6V7',
+        name: 'The Founder\'s Bundle',
+        brand: 'Røde / Power Digital',
+        category: 'Audio',
+        useCase: 'Podcasting',
+        level: 'Elite',
+        description: 'The exact workstation we use. The Rødecaster Pro II paired with 4x PodMics and the legendary PSA1+ boom arms.',
+        technicalSpecs: ['Rødecaster Pro II', '4x Røde PodMics', '4x PSA1+ Boom Arms', 'Premium Studio Monitoring'],
+        priceRange: '$$$$$',
+        image: '/images/gear/rode_founder_bundle.png',
+        amazonLink: 'https://amzn.to/45DTF50',
+        subCategory: 'Bundles',
+        isFeatured: true
+    },
+    {
+        id: 'rode-caster-pro-2-podmic-bundle',
+        asin: 'B0BNP7Z3F1',
+        name: 'RCP2 PodMic Studio Kit',
+        brand: 'Røde / Studio',
+        category: 'Audio',
+        useCase: 'Podcasting',
+        level: 'Pro',
+        description: 'Professional high-fidelity kit featuring the Rødecaster Pro II, 4x PodMics, and TAPH500 headphones.',
+        technicalSpecs: ['Rødecaster Pro II', '4x PodMics', '4x TAPH500 Headphones', 'Broadcast Cables'],
+        priceRange: '$$$$',
+        image: '/images/gear/rode_podmic_studio_bundle.png',
+        amazonLink: 'https://amzn.to/4t8dXhb',
+        subCategory: 'Bundles',
+        isFeatured: false
     },
 
     // --- PC COMPONENTS PROTOCOL ---
@@ -61,6 +240,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         priceRange: '$$$$$',
         image: '/images/gear/msi_rtx_4090.png',
         amazonLink: 'https://amzn.to/3X6W7Xq',
+        subCategory: 'GPUs',
         isFeatured: true
     },
     {
@@ -76,6 +256,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         priceRange: '$$$',
         image: '/images/gear/corsair_dominator.png',
         amazonLink: 'https://amzn.to/4fL6G7r',
+        subCategory: 'RAM',
         isFeatured: false
     },
     {
@@ -91,6 +272,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         priceRange: '$$',
         image: '/images/gear/msi_liquid_cooler.png',
         amazonLink: 'https://amzn.to/3V9FmYy',
+        subCategory: 'Cooling',
         isFeatured: false
     },
 
@@ -108,6 +290,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         priceRange: '$$$$$',
         image: '/images/gear/sony_a7siii.png',
         amazonLink: 'https://amzn.to/40H6Y4b',
+        subCategory: 'Cameras',
         isFeatured: true
     },
     {
@@ -123,6 +306,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         priceRange: '$$',
         image: '/images/gear/obsbot_tiny_2.png',
         amazonLink: 'https://amzn.to/3YVfE4X',
+        subCategory: 'Webcams',
         isFeatured: false
     },
 
@@ -140,6 +324,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         priceRange: '$$$$',
         image: '/images/gear/samsung_odyssey_g9.png',
         amazonLink: 'https://amzn.to/4hK9M2z',
+        subCategory: 'Professional',
         isFeatured: true
     },
     {
@@ -155,6 +340,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         priceRange: '$$',
         image: '/images/gear/msi_mag_monitor.png',
         amazonLink: 'https://amzn.to/3Z9q9Lp',
+        subCategory: 'Gaming',
         isFeatured: false
     },
 
@@ -172,6 +358,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         priceRange: '$',
         image: '/images/gear/msi_motherboard.png',
         amazonLink: 'https://amzn.to/3Z8q9Lp',
+        subCategory: 'Motherboards',
         isFeatured: false
     },
     {
@@ -201,8 +388,25 @@ export const GEAR_COLLECTION: GearItem[] = [
         technicalSpecs: ['Cardioid Condenser', '24-bit / 96kHz', 'Wave Link Software'],
         priceRange: '$',
         image: '/images/gear/elgato_wave_3.png',
-        amazonLink: 'https://amzn.to/3CdW6rL',
+        amazonLink: 'https://amzn.to/4btsD4e',
+        subCategory: 'Microphones',
         isFeatured: false
+    },
+    {
+        id: 'rode-podmic',
+        asin: 'B07MSCRCVK',
+        name: 'PodMic Podcast Microhpone',
+        brand: 'Røde',
+        category: 'Audio',
+        useCase: 'Podcasting',
+        level: 'Entry',
+        description: 'The ultimate entry-level podcast microphone. Built-in pop filter and rich, broadcast-ready sound.',
+        technicalSpecs: ['Dynamic Cardioid', 'All-metal construction', 'XLR termination'],
+        priceRange: '$',
+        image: '/images/gear/rode_podmic.png', // Fallback will trigger if not found
+        amazonLink: 'https://amzn.to/4rnbkGn',
+        subCategory: 'Microphones',
+        isFeatured: true
     },
     {
         id: 'msi-katana-15',
@@ -217,6 +421,104 @@ export const GEAR_COLLECTION: GearItem[] = [
         priceRange: '$$',
         image: '/images/gear/msi_katana_15.png',
         amazonLink: 'https://amzn.to/4fL6G7r',
+        subCategory: 'Laptops',
+        isFeatured: false
+    },
+    // --- ESSENTIALS PROTOCOL ---
+    {
+        id: 'beyerdynamic-dt-1990-pro',
+        asin: 'B01KM9EJ7I',
+        name: 'DT 1990 Pro Headphones',
+        brand: 'Beyerdynamic',
+        category: 'Essentials',
+        useCase: 'Editing',
+        level: 'Elite',
+        description: 'Open-back studio reference headphones for mixing and mastering. Handcrafted in Germany with Tesla drivers.',
+        technicalSpecs: ['Open-back Design', '250 Ohms Impedance', 'Tesla Transducer Protocol'],
+        priceRange: '$$$$',
+        image: '/images/gear/beyer_dt1990.png',
+        amazonLink: 'https://amzn.to/4a9WOLv',
+        subCategory: 'Headphones',
+        isFeatured: true
+    },
+    {
+        id: 'sennheiser-hd25',
+        asin: 'B01CRI3UOU',
+        name: 'HD 25 Monitoring Headphones',
+        brand: 'Sennheiser',
+        category: 'Essentials',
+        useCase: 'Podcasting',
+        level: 'Pro',
+        description: 'Great for high-noise environments and field recording. Rugged, detachable cable, and industry-standard sound.',
+        technicalSpecs: ['High SPL capability', 'Split headband design', 'Replaceable components'],
+        priceRange: '$$',
+        image: '/images/gear/sennheiser_hd25.png',
+        amazonLink: 'https://amzn.to/3LUSXd5',
+        subCategory: 'Headphones',
+        isFeatured: false
+    },
+    {
+        id: 'ath-m40x',
+        asin: 'B00HVLUR54',
+        name: 'ATH-M40x Headphones',
+        brand: 'Audio-Technica',
+        category: 'Essentials',
+        useCase: 'Podcasting',
+        level: 'Entry',
+        description: 'Professional monitoring headphones with a flat frequency response for accurate tracking.',
+        technicalSpecs: ['40mm drivers', 'Collapsible design', 'Two detachable cables'],
+        priceRange: '$',
+        image: '/images/gear/ath_m40x.png',
+        amazonLink: 'https://amzn.to/4btz6My',
+        subCategory: 'Headphones',
+        isFeatured: false
+    },
+    {
+        id: 'rode-psa1-plus',
+        asin: 'B09L7W5LDM',
+        name: 'PSA1+ Professional Boom Arm',
+        brand: 'Røde',
+        category: 'Essentials',
+        useCase: 'Podcasting',
+        level: 'Elite',
+        description: 'The ultimate studio boom arm. Completely silent operation, professional look, and enormous reach.',
+        technicalSpecs: ['Integrated cable management', 'Silent spring design', '360-degree rotation'],
+        priceRange: '$$',
+        image: '/images/gear/rode_psa1_plus.png',
+        amazonLink: 'https://amzn.to/4btlHE2',
+        subCategory: 'Boom Arms',
+        isFeatured: true
+    },
+    {
+        id: 'elgato-wave-arm-lp',
+        asin: 'B097376LKF',
+        name: 'Wave Mic Arm LP',
+        brand: 'Elgato',
+        category: 'Essentials',
+        useCase: 'Streaming',
+        level: 'Pro',
+        description: 'Professional low-profile boom arm that stays below the eye line for a clean camera shot.',
+        technicalSpecs: ['All-metal construction', 'Cable channels', '360-degree rotation'],
+        priceRange: '$$',
+        image: '/images/gear/elgato_wave_lp.png',
+        amazonLink: 'https://amzn.to/4rnp83S',
+        subCategory: 'Boom Arms',
+        isFeatured: false
+    },
+    {
+        id: 'gator-frameworks-stand',
+        asin: 'B00BPELU68',
+        name: 'Desktop Mic Stand',
+        brand: 'Gator',
+        category: 'Essentials',
+        useCase: 'Podcasting',
+        level: 'Entry',
+        description: 'Solid heavy-duty desktop mic stand for creators who prefer a stable desk mount.',
+        technicalSpecs: ['Weighted base', 'Adjustable height', 'All-metal construction'],
+        priceRange: '$',
+        image: '/images/gear/gator_mic_stand.png',
+        amazonLink: 'https://amzn.to/3Z8S0ko',
+        subCategory: 'Stands',
         isFeatured: false
     },
     // --- BUNDLE PROTOCOLS ---
@@ -232,7 +534,8 @@ export const GEAR_COLLECTION: GearItem[] = [
         technicalSpecs: ['Shure SM7B Mic', 'Rødecaster Pro II Mixer', 'Cloudlifter CL-1', 'Premium Boom Arm'],
         priceRange: '$$$$$',
         image: '/images/gear/elite_bundle.png',
-        amazonLink: 'https://amzn.to/3Z6q3Lq',
+        amazonLink: 'https://amzn.to/3MfyVKk',
+        subCategory: 'Bundles',
         isFeatured: true
     },
     {
@@ -248,6 +551,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         priceRange: '$$$',
         image: '/images/gear/sony_a7siii.png',
         amazonLink: 'https://amzn.to/3V5Uj1v',
+        subCategory: 'Bundles',
         isFeatured: false
     },
     {
@@ -262,7 +566,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         technicalSpecs: ['Elgato Wave:3', 'Internal Pop Filter', 'Wave Link Digital Mixer'],
         priceRange: '$$',
         image: '/images/gear/elgato_wave_3.png',
-        amazonLink: 'https://amzn.to/3CdW6rL',
+        amazonLink: 'https://amzn.to/4btsD4e',
         isFeatured: false
     }
 ];

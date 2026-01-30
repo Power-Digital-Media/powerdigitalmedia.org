@@ -4,3 +4,47 @@
 [00:00:33.424] Browser WARN    Image with src "/portfolio/simmons-memorial-real.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
 [00:00:33.424] Browser WARN    Image with src "/portfolio/corner-pharmacy-real.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
 [00:00:33.424] Browser WARN    Image with src "/portfolio/growth-engine-real.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:11:00.704] Browser WARN    Image with src "/images/growth-data-overlay.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:34:02.216] Server  LOG       Reload env: .env.local
+[00:34:02.420] Server  LOG     ✓ Compiled in 34ms
+[00:35:52.693] Server  ERROR   AI Protocol Breach: Error: 500 Internal server error
+[00:35:52.800] Browser ERROR   Growth Intelligence Protocol Breach: {}
+[00:40:38.828] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:42:03.467] Server  LOG     ✓ Compiled in 79ms
+[00:48:43.082] Server  LOG     ✓ Compiled in 75ms
+[00:49:01.963] Server  LOG     ✓ Compiled in 78ms
+[00:53:13.352] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:56:09.245] Server  LOG     ✓ Compiled in 79ms
+[00:59:47.076] Server  LOG     ✓ Compiled in 68ms
+[01:02:54.865] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:05:59.968] Server  LOG     ✓ Compiled in 98ms
+[01:07:29.583] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:17:42.567] Server  LOG     ✓ Compiled in 65ms
+[01:18:33.634] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:21:12.634] Server  LOG     ✓ Compiled in 82ms
+[01:23:53.803] Server  LOG     ✓ Compiled in 71ms
+[01:27:02.990] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:28:32.678] Server  LOG     ✓ Compiled in 81ms
+[01:31:09.328] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:36:01.222] Server  LOG     ✓ Compiled in 41ms
+[01:40:02.432] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:41:34.285] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:49:18.397] Server  LOG     ✓ Compiled in 48ms
+[01:49:32.460] Server  LOG     ✓ Compiled in 78ms
+[01:52:05.185] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:54:43.912] Server  LOG     ✓ Compiled in 100ms
+[01:58:38.396] Server  LOG     ✓ Compiled in 80ms
+[01:58:39.816] Browser WARN    Image with src "/images/growth-data-overlay.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[02:07:09.433] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:07:57.743] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:09:21.604] Server  LOG     ✓ Compiled in 47ms
+[02:10:11.359] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:14:37.823] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:24:56.729] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:26:46.958] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:27:21.854] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:28:29.904] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:28:57.393] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:30:28.603] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:31:48.970] Server  LOG     ✓ Compiled in 79ms
+[02:45:39.444] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
