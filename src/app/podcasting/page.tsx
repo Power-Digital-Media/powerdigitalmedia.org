@@ -8,42 +8,42 @@ import Footer from "@/components/layout/Footer";
 
 const tiers = [
     {
-        name: "Basic Tier",
-        price: "65",
-        description: "Essential studio recording for creators starting their journey.",
+        name: "Pilot Plan",
+        price: "500",
+        description: "The essential foundation for high-fidelity audio messaging.",
         features: [
-            "Podcast audio recording",
-            "Video recording included",
-            "Live streaming (1 platform)",
-            "Studio-quality audio chain",
-            "Standard studio lighting"
+            "4 Episodes (1 Session/mo)",
+            "Studio-Grade Audio Chain",
+            "Professional Engineering",
+            "Essential Post-Production",
+            "Worldwide Distribution"
         ],
         accent: "blue"
     },
     {
-        name: "Advanced Tier",
-        price: "75",
-        description: "The sweet spot for growing shows and ministry highlights.",
+        name: "Velocity Plan",
+        price: "1,200",
+        description: "High-velocity 4K video production for digital dominance.",
         features: [
-            "All Basic Tier features",
-            "Live streaming (3 platforms)",
-            "Custom overlays & graphics",
-            "Post-production editing",
-            "Multi-cam DSLR setup"
+            "4 Episodes (4K Video)",
+            "8 Viral Social Clips",
+            "Single-Cam 4K Setup",
+            "Post-Production & SEO",
+            "YouTube Optimization"
         ],
         accent: "blue",
         popular: true
     },
     {
-        name: "Premium Tier",
-        price: "100",
-        description: "The full production experience for elite brands and ministries.",
+        name: "Elite Protocol",
+        price: "2,500",
+        description: "Cinematic multi-cam production for total industry authority.",
         features: [
-            "All Advanced Tier features",
-            "Personalized branding package",
-            "Full promotional support",
-            "Dedicated tech assistant",
-            "Priority distribution"
+            "4 Episodes (Multi-Cam 4K)",
+            "Unlimited Viral Clips",
+            "Social Distribution Engine",
+            "Dedicated Show Manager",
+            "VIP Strategy Consulting"
         ],
         accent: "blue"
     }
@@ -66,16 +66,16 @@ export default function PodcastingPage() {
                         className="max-w-3xl mx-auto"
                     >
                         <h1 className="text-sm font-bold tracking-[0.3em] text-accent uppercase mb-6">
-                            Studio Production
+                            Production Architecture
                         </h1>
                         <h2 className="text-5xl font-bold tracking-tight md:text-7xl mb-8">
-                            Take Podcasting <br />
+                            Engineered for <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400 text-glow">
-                                To The Next Level.
+                                High-Velocity Growth.
                             </span>
                         </h2>
-                        <p className="text-lg text-muted-foreground leading-relaxed mb-10 text-balance">
-                            Your vision, our expertise. From professional recording to multi-platform streaming, we build the digital foundation your message deserves.
+                        <p className="text-lg text-muted-foreground leading-relaxed mb-10 text-balance font-light">
+                            Your message, our infrastructure. We deploy studio-grade production and viral distribution engines designed to scale your brand with recurring precision.
                         </p>
                         <div className="flex flex-wrap justify-center gap-4">
                             <Link href="/contact" className="px-8 py-4 font-bold text-white bg-accent rounded-full border-glow hover:bg-accent/90 transition-all">
@@ -112,7 +112,7 @@ export default function PodcastingPage() {
                                     <h3 className="text-xl font-bold mb-2">{tier.name}</h3>
                                     <div className="flex items-baseline gap-1 mb-4">
                                         <span className="text-4xl font-bold">${tier.price}</span>
-                                        <span className="text-muted-foreground text-sm">/hour</span>
+                                        <span className="text-muted-foreground text-sm">/month</span>
                                     </div>
                                     <p className="text-sm text-muted-foreground mb-8 leading-relaxed">
                                         {tier.description}
