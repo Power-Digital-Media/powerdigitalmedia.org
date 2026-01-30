@@ -6,6 +6,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { useState } from "react";
 import BookingModal from "@/components/ui/BookingModal";
+import Link from "next/link";
 
 const values = [
     {
