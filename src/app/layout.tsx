@@ -15,8 +15,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Power Digital Media | Premium Podcast & Content Studio",
-  description: "High-end podcasting, video production, and digital marketing strategy based in Jackson, MS. Your message deserves a studio that feels big.",
+  title: "Power Digital Media | Podcast, Video & Web Design in Jackson, MS",
+  description: "Power Digital Media is a Jackson, Mississippi digital media studio offering podcast production, video marketing, website design, and AI-powered branding services for businesses, creators, and ministries.",
 };
 
 export default function RootLayout({
@@ -32,6 +32,30 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <AnalyticsEngine />
         </Suspense>
+        {/* Organization Schema.org (GEO Optimization) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Power Digital Media LLC",
+              "url": "https://powerdigitalmedia.org",
+              "logo": "https://powerdigitalmedia.org/images/logo.png",
+              "sameAs": [
+                "https://www.youtube.com/@PowerDigitalMedia",
+                "https://www.instagram.com/PowerDigitalMedia"
+              ],
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Jackson",
+                "addressRegion": "MS",
+                "addressCountry": "US"
+              },
+              "description": "Power Digital Media is a Jackson, Mississippi digital media studio offering podcast production, video marketing, website design, and AI-powered branding services for businesses, creators, and ministries."
+            })
+          }}
+        />
         {children}
       </body>
     </html>

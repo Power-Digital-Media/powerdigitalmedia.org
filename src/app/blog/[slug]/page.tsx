@@ -30,6 +30,38 @@ export default function BlogPostDetail() {
         <main className="relative min-h-screen bg-background text-foreground">
             <Navbar />
 
+            {/* BlogPosting Schema.org (GEO Optimization) */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "BlogPosting",
+                        "headline": post.title,
+                        "description": post.excerpt,
+                        "image": post.image,
+                        "datePublished": new Date(post.date).toISOString(),
+                        "author": {
+                            "@type": "Person",
+                            "name": post.author.name,
+                            "jobTitle": post.author.role
+                        },
+                        "publisher": {
+                            "@type": "Organization",
+                            "name": "Power Digital Media",
+                            "logo": {
+                                "@type": "ImageObject",
+                                "url": "https://powerdigitalmedia.org/images/logo.png"
+                            }
+                        },
+                        "mainEntityOfPage": {
+                            "@type": "WebPage",
+                            "@id": `https://powerdigitalmedia.org/blog/${post.slug}`
+                        }
+                    })
+                }}
+            />
+
             <article className="pt-32 pb-24 overflow-hidden">
                 {/* Post Header */}
                 <section className="container px-4 mx-auto mb-16">
