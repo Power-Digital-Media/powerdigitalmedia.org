@@ -9,21 +9,21 @@ const productions = [
     {
         title: "All Things New Podcast",
         category: "Ministry & Growth",
-        thumbnail: "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?q=80&w=2070&auto=format&fit=crop",
+        thumbnail: "https://i.ytimg.com/vi/j9yMH9Yxcxw/hqdefault.jpg",
         link: "https://youtube.com/playlist?list=PLhZ7JXj1xJmTFftL8GVjM0v5aXdJAOaI3",
         stats: "4K RAW EDIT"
     },
     {
         title: "A Fool N His Folly",
         category: "Urban Culture",
-        thumbnail: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop",
+        thumbnail: "https://i.ytimg.com/vi/rS5QkPtAfzU/hqdefault.jpg",
         link: "https://youtube.com/playlist?list=PLhZ7JXj1xJmQlSNvqmaq2h8o9XqhAY3Pr",
         stats: "HDR CINEMATIC"
     },
     {
         title: "HSP PodCast",
         category: "Business & Strategy",
-        thumbnail: "https://images.unsplash.com/photo-1559223607-1601d9333550?q=80&w=2070&auto=format&fit=crop",
+        thumbnail: "https://i.ytimg.com/vi/OatX6k6U6as/hqdefault.jpg",
         link: "https://www.youtube.com/@HSP-PodCast",
         stats: "MULTI-CAM ARRAY"
     }
