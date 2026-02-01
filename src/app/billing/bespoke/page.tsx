@@ -38,9 +38,9 @@ export default function BespokeBillingPage() {
                                 title="Project: Full Estate Architecture"
                                 subtitle="Bespoke website build paired with managed growth engineering. Authorized for private partner deployment."
                                 installmentPrice={250}
-                                installmentPriceId="price_installment_placeholder"
+                                installmentPriceId={process.env.NEXT_PUBLIC_STRIPE_PRICE_INSTALLMENT_BESPOKE || "price_installment_placeholder"}
                                 recurringPrice={250}
-                                recurringPriceId="price_recurring_placeholder"
+                                recurringPriceId={process.env.NEXT_PUBLIC_STRIPE_PRICE_RECURRING_BESPOKE || "price_recurring_placeholder"}
                                 installmentsCount={4}
                                 features={[
                                     "Advanced 3D Architecture",

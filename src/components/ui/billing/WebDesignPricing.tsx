@@ -20,7 +20,7 @@ const tiers: Tier[] = [
         id: "identity",
         name: "Identity Protocol",
         price: 1500,
-        priceId: "price_web_identity_placeholder", // Match Billing Hub catalog
+        priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_WEB_IDENTITY || "price_web_identity_placeholder", // Match Billing Hub catalog
         description: "Bespoke high-prestige flagship presence for solo creators and brands.",
         features: ["Custom UI/UX Architecture", "Next.js Core Performance", "SEO Foundation Layer", "Cinematic Media Support"],
         accent: "border-blue-500/30",
@@ -30,7 +30,7 @@ const tiers: Tier[] = [
         id: "growth",
         name: "Growth Architecture",
         price: 3000,
-        priceId: "price_web_growth_placeholder", // Match Billing Hub catalog
+        priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_WEB_GROWTH || "price_web_growth_placeholder", // Match Billing Hub catalog
         description: "Engineered for scale. Full integration between studio and engine.",
         features: ["Ecosystem Synchronization", "High-Velocity Funnels", "Automated Lead Capture", "Priority Support Sync"],
         accent: "border-cyan-400/50",
@@ -40,7 +40,7 @@ const tiers: Tier[] = [
         id: "enterprise",
         name: "Enterprise Hub",
         price: 5000,
-        priceId: "price_web_enterprise_placeholder", // Match Billing Hub catalog
+        priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_WEB_ENTERPRISE || "price_web_enterprise_placeholder", // Match Billing Hub catalog
         description: "Multi-site ecosystem for organizations managing massive traffic.",
         features: ["Multi-Brand Architecture", "Custom Engineering Support", "Dedicated Data Layer", "Global Edge Distribution"],
         accent: "border-indigo-500/30",
@@ -49,7 +49,7 @@ const tiers: Tier[] = [
 ];
 
 const MANAGEMENT_PRICE = 500;
-const MANAGEMENT_PRICE_ID = "price_management_placeholder"; // Match Billing Hub catalog
+const MANAGEMENT_PRICE_ID = process.env.NEXT_PUBLIC_STRIPE_PRICE_MANAGEMENT || "price_management_placeholder"; // Match Billing Hub catalog
 
 export default function WebDesignPricing() {
     const [selectedTier, setSelectedTier] = useState<string | null>(null);
@@ -62,6 +62,15 @@ export default function WebDesignPricing() {
         setIsProcessing(true);
         const tier = tiers.find(t => t.id === selectedTier);
         if (!tier) return;
+
+        // Safety check for placeholder IDs
+        const hasPlaceholders = tier.priceId.includes('placeholder') || (wantsManagement && MANAGEMENT_PRICE_ID.includes('placeholder'));
+
+        if (hasPlaceholders) {
+            alert(`⚠️ Stripe Not Configured\n\nOne or more selected tiers are using placeholder IDs. Please ensure the real Stripe Price IDs are added to the environment variables.`);
+            setIsProcessing(false);
+            return;
+        }
 
         const items = [
             { price: tier.priceId, quantity: 1 }
@@ -86,10 +95,13 @@ export default function WebDesignPricing() {
             const data = await response.json();
             if (data.url) {
                 window.location.href = data.url;
+            } else {
+                console.error("Stripe Error Details:", data);
+                alert(`❌ Checkout Failed: ${data.error || "Unknown error"}\n\nThis is usually due to an incorrect Price ID or missing Stripe Keys in the environment.`);
             }
         } catch (error) {
             console.error("Initialization Failed:", error);
-            alert("Technical handshake failed. Secure pipe connection interrupted.");
+            alert("Technical handshake failed. Secure pipe connection interrupted. Check console for details.");
         } finally {
             setIsProcessing(false);
         }

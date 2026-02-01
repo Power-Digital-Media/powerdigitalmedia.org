@@ -29,6 +29,14 @@ export default function LifecycleCard({
 
     const handleHybridCheckout = async () => {
         setLoading(true);
+
+        // Safety check for placeholder IDs
+        if (installmentPriceId.includes('placeholder') || recurringPriceId.includes('placeholder')) {
+            alert(`⚠️ Stripe Not Configured\n\nThis bespoke project is currently using placeholder IDs. Please ensure the real Stripe Price IDs for both installments and recurring management are added to the environment variables.`);
+            setLoading(false);
+            return;
+        }
+
         try {
             const response = await fetch("/api/checkout", {
                 method: "POST",
@@ -47,10 +55,13 @@ export default function LifecycleCard({
             const data = await response.json();
             if (data.url) {
                 window.location.href = data.url;
+            } else {
+                console.error("Stripe Error Details:", data);
+                alert(`❌ Checkout Failed: ${data.error || "Unknown error"}\n\nThis is usually due to an incorrect Price ID or missing Stripe Keys in the environment.`);
             }
         } catch (error) {
             console.error("Hybrid Checkout Error:", error);
-            alert("Technical handshake failed. Security protocol engaged.");
+            alert("Technical handshake failed. Secure pipe connection interrupted. Check console for details.");
         } finally {
             setLoading(false);
         }

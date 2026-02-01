@@ -15,7 +15,7 @@ const tiers = [
     {
         id: "social_micro",
         name: "Micro-Growth",
-        priceId: "price_social_micro_placeholder",
+        priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_SOCIAL_MICRO || "price_social_micro_placeholder",
         price: "250",
         description: "The tactical entry for creators. Precision thumbnail engineering and high-authority video SEO.",
         features: [
@@ -30,7 +30,7 @@ const tiers = [
     {
         id: "social_velocity",
         name: "Social Velocity",
-        priceId: "price_social_velocity_placeholder",
+        priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_SOCIAL_VELOCITY || "price_social_velocity_placeholder",
         price: "750",
         description: "The complete monthly growth protocol. Continuous thumbnail design and strategic SEO dominance.",
         features: [
@@ -47,7 +47,7 @@ const tiers = [
     {
         id: "social_growth_strategy",
         name: "Growth Strategy",
-        priceId: "price_growth_strategy_placeholder",
+        priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_GROWTH_STRATEGY || "price_growth_strategy_placeholder",
         price: "1,500",
         description: "The ultimate brand partnership. High-level strategy, automated outreach, and full social takeover.",
         features: [
@@ -67,6 +67,14 @@ export default function MarketingPage() {
 
     const handleCheckout = async (tier: any) => {
         setIsProcessing(tier.id);
+
+        // Safety check for placeholder IDs
+        if (tier.priceId.includes('placeholder')) {
+            alert(`⚠️ Stripe Not Configured\n\nThis tier is currently using a placeholder ID (${tier.id}). Please ensure the real Stripe Price ID is added to the environment variables.`);
+            setIsProcessing(null);
+            return;
+        }
+
         try {
             const response = await fetch("/api/checkout", {
                 method: "POST",
@@ -82,10 +90,13 @@ export default function MarketingPage() {
             const data = await response.json();
             if (data.url) {
                 window.location.href = data.url;
+            } else {
+                console.error("Stripe Error Details:", data);
+                alert(`❌ Checkout Failed: ${data.error || "Unknown error"}\n\nThis is usually due to an incorrect Price ID or missing Stripe Keys in the environment.`);
             }
         } catch (error) {
             console.error("Technical handshake failed:", error);
-            alert("Secure pipe connection interrupted.");
+            alert("Secure pipe connection interrupted. Check console for details.");
         } finally {
             setIsProcessing(null);
         }

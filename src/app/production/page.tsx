@@ -15,7 +15,7 @@ const tiers = [
     {
         id: "prod_field_acquisition",
         name: "Field Acquisition",
-        priceId: "price_field_placeholder",
+        priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_PROD_FIELD || "price_field_placeholder",
         price: "500",
         description: "Professional on-location capture. We secure the high-fidelity raw assets for your library.",
         features: [
@@ -30,7 +30,7 @@ const tiers = [
     {
         id: "prod_live_stream",
         name: "Live Broadcast",
-        priceId: "price_prod_live_placeholder",
+        priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_PROD_LIVE || "price_prod_live_placeholder",
         price: "750",
         description: "Zero-latency event streaming. Real-time engagement for your global audience.",
         features: [
@@ -46,7 +46,7 @@ const tiers = [
     {
         id: "prod_protocol",
         name: "Production Protocol",
-        priceId: "price_prod_protocol_placeholder",
+        priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_PROD_PROTOCOL || "price_prod_protocol_placeholder",
         price: "1,000",
         description: "The complete content engine. From capture to a cinematic final cut ready for delivery.",
         features: [
@@ -62,7 +62,7 @@ const tiers = [
     {
         id: "prod_authority",
         name: "Authority Package",
-        priceId: "price_prod_authority_placeholder",
+        priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_PROD_AUTHORITY || "price_prod_authority_placeholder",
         price: "1,500",
         description: "The ultimate digital footprint. A cinematic masterpiece plus a month's worth of viral social assets.",
         features: [
@@ -82,6 +82,14 @@ export default function ProductionPage() {
 
     const handleCheckout = async (tier: any) => {
         setIsProcessing(tier.id);
+
+        // Safety check for placeholder IDs
+        if (tier.priceId.includes('placeholder')) {
+            alert(`⚠️ Stripe Not Configured\n\nThis tier is currently using a placeholder ID (${tier.id}). Please ensure the real Stripe Price ID is added to the environment variables.`);
+            setIsProcessing(null);
+            return;
+        }
+
         try {
             const response = await fetch("/api/checkout", {
                 method: "POST",
@@ -97,10 +105,13 @@ export default function ProductionPage() {
             const data = await response.json();
             if (data.url) {
                 window.location.href = data.url;
+            } else {
+                console.error("Stripe Error Details:", data);
+                alert(`❌ Checkout Failed: ${data.error || "Unknown error"}\n\nThis is usually due to an incorrect Price ID or missing Stripe Keys in the environment.`);
             }
         } catch (error) {
             console.error("Technical handshake failed:", error);
-            alert("Secure pipe connection interrupted.");
+            alert("Secure pipe connection interrupted. Check console for details.");
         } finally {
             setIsProcessing(null);
         }

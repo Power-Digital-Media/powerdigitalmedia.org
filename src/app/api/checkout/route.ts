@@ -30,9 +30,21 @@ export async function POST(req: Request) {
             }
         });
 
+        if (!session.url) {
+            throw new Error('Stripe session created but URL is missing');
+        }
+
         return NextResponse.json({ url: session.url });
     } catch (error: any) {
-        console.error('Stripe Checkout Error:', error);
-        return NextResponse.json({ error: error.message }, { status: 500 });
+        console.error('❌ Stripe Checkout Error:', {
+            message: error.message,
+            stack: error.stack,
+            raw: error
+        });
+
+        return NextResponse.json({
+            error: error.message || 'Internal Server Error',
+            details: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        }, { status: 500 });
     }
 }
