@@ -66,8 +66,8 @@ export default function GearCard({ item }: GearCardProps) {
 
     // Handle image errors with a fallback to the brand's primary mic image
     const handleImageError = () => {
-        if (imgSrc !== '/images/gear/shure_sm7b.png') {
-            setImgSrc('/images/gear/shure_sm7b.png');
+        if (imgSrc !== '/images/gear/shure_sm7b.webp') {
+            setImgSrc('/images/gear/shure_sm7b.webp');
         }
     };
 

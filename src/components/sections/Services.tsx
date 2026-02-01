@@ -84,7 +84,7 @@ export default function Services() {
                             className="order-2 md:order-1 relative aspect-video rounded-[2.5rem] overflow-hidden border border-white/10"
                         >
                             <Image
-                                src="/images/captures/live-event-gimbal.png"
+                                src="/images/captures/live-event-gimbal.webp"
                                 alt="Event Production"
                                 fill
                                 sizes="(max-width: 768px) 100vw, 50vw"

@@ -11,7 +11,7 @@ export default function Hero() {
             {/* Background Image with Overlay */}
             <div className="absolute inset-0 z-0">
                 <Image
-                    src="/hero-bg.png"
+                    src="/hero-bg.webp"
                     alt="Power Digital Media Studio"
                     fill
                     className="object-cover opacity-60 scale-100"

@@ -103,7 +103,7 @@ export default function PodcastingPage() {
                 {/* Darkened Studio Base with Vertical Fade */}
                 <div className="absolute inset-0 mask-gradient-v opacity-30 md:opacity-100">
                     <Image
-                        src="/images/studio-mood-bg.png"
+                        src="/images/studio-mood-bg.webp"
                         alt="Studio Environment"
                         fill
                         className="object-cover opacity-20 scale-105"
@@ -113,7 +113,7 @@ export default function PodcastingPage() {
                 {/* Growth Graphs Overlay - Top Right with Radial Fade */}
                 <div className="absolute top-12 -right-32 md:top-24 md:-right-24 w-[300px] h-[300px] md:w-[600px] md:h-[600px] opacity-10 md:opacity-20 blur-[2px] md:blur-[1px] mask-gradient-radial">
                     <Image
-                        src="/images/growth-data-overlay.png"
+                        src="/images/growth-data-overlay.webp"
                         alt="Growth Metrics"
                         fill
                         className="object-contain"
@@ -123,7 +123,7 @@ export default function PodcastingPage() {
                 {/* Growth Graphs Overlay - Bottom Left with Radial Fade */}
                 <div className="absolute -bottom-24 -left-32 md:-bottom-48 md:-left-24 w-[400px] h-[400px] md:w-[800px] md:h-[800px] opacity-10 blur-[4px] rotate-12 mask-gradient-radial">
                     <Image
-                        src="/images/growth-data-overlay.png"
+                        src="/images/growth-data-overlay.webp"
                         alt="Audience Dynamics"
                         fill
                         className="object-contain"
@@ -140,7 +140,7 @@ export default function PodcastingPage() {
                 {/* Cinematic Background Image */}
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/images/podcast-hero-cinematic.png"
+                        src="/images/podcast-hero-cinematic.webp"
                         alt="High-end Podcast Studio"
                         fill
                         className="object-cover opacity-30 scale-110"

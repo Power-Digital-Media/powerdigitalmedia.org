@@ -28,7 +28,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'The industry standard for broadcast and podcasting. Smooth, flat, wide-range frequency response.',
         technicalSpecs: ['Dynamic Cardioid', 'Flat frequency response', 'Air suspension shock isolation'],
         priceRange: '$$$',
-        image: '/images/gear/shure_sm7b.png',
+        image: '/images/gear/shure_sm7b.webp',
         amazonLink: 'https://amzn.to/3MfyVKk',
         subCategory: 'Microphones',
         isFeatured: true
@@ -44,7 +44,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'The ultimate audio production solution for streamers, podcasters, and musicians.',
         technicalSpecs: ['9 assignable channels', 'Revolution Preamps', 'Direct-to-USB recording'],
         priceRange: '$$$$',
-        image: '/images/gear/rodecaster_pro_2.png',
+        image: '/images/gear/rodecaster_pro_2.webp',
         amazonLink: 'https://amzn.to/4asMG0z',
         subCategory: 'Mixers',
         isFeatured: true
@@ -60,7 +60,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'The digital evolution of a legend. Integrated DSP, Real-time Denoiser, and dual XLR/USB connectivity.',
         technicalSpecs: ['Dynamic Cardioid', 'DSP Auto-Level Mode', 'Touch-to-Mute Protocol'],
         priceRange: '$$',
-        image: '/images/gear/shure_mv7_plus.png',
+        image: '/images/gear/shure_mv7_plus.webp',
         amazonLink: 'https://amzn.to/3LTvkBD',
         subCategory: 'Microphones',
         isFeatured: false
@@ -76,7 +76,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'Professional high-output dynamic microphone for broadcast radio and voiceover application.',
         technicalSpecs: ['Broadcast quality sound', 'Internal pop-filter', 'Heavy-duty construction'],
         priceRange: '$$',
-        image: '/images/gear/rode_procaster.png',
+        image: '/images/gear/rode_procaster.webp',
         amazonLink: 'https://amzn.to/4rpCYTj',
         subCategory: 'Microphones',
         isFeatured: false
@@ -92,7 +92,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'The compact professional audio solution. Two high-quality Revolution Preamps and advanced DSP in a smaller footprint.',
         technicalSpecs: ['2 XLR/TRS inputs', 'Wireless receiver built-in', 'Customizable pads'],
         priceRange: '$$$',
-        image: '/images/gear/rodecaster_duo.png',
+        image: '/images/gear/rodecaster_duo.webp',
         amazonLink: 'https://amzn.to/46mp3oO',
         subCategory: 'Mixers',
         isFeatured: false
@@ -108,7 +108,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'The ultimate compact workstation. Part professional audio interface, part 4K video capture card.',
         technicalSpecs: ['4K60 Video Passthrough', 'Revolution Preamp', 'Two USB-C interfaces'],
         priceRange: '$$',
-        image: '/images/gear/rode_streamer_x.png',
+        image: '/images/gear/rode_streamer_x.webp',
         amazonLink: 'https://amzn.to/4bYkIfd',
         subCategory: 'Mixers',
         isFeatured: false
@@ -124,7 +124,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'The ultimate tactile workstation. Deep control with LCD keys, touch strip, and four high-resolution dials for seamless audio/video mixing.',
         technicalSpecs: ['8 LCD Keys', '4 Touch Dials', 'Dynamic Touch Strip Protocol'],
         priceRange: '$$$',
-        image: '/images/gear/elgato_stream_deck_plus.png',
+        image: '/images/gear/elgato_stream_deck_plus.webp',
         amazonLink: 'https://amzn.to/4c29jer',
         subCategory: 'Mixers',
         isFeatured: true
@@ -140,7 +140,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'The studio standard interface for creators and musicians. Re-engineered preamps and industrial-grade converters.',
         technicalSpecs: ['120dB Dynamic Range', 'Auto Gain & Clip Safe', 'Air Mode Protocol'],
         priceRange: '$$',
-        image: '/images/gear/focusrite_2i2.png',
+        image: '/images/gear/focusrite_2i2.webp',
         amazonLink: 'https://amzn.to/4qSNBye',
         subCategory: 'Mixers',
         isFeatured: false
@@ -156,7 +156,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'The complete 4-person production kit. Featuring the Rødecaster Pro II and 4x Zoom ZDM-1 dynamic mic packs.',
         technicalSpecs: ['Rødecaster Pro II', '4x Zoom ZDM-1 Mics', '4x Over-Ear Headphones', '32GB MicroSD'],
         priceRange: '$$$$',
-        image: '/images/gear/rode_bundle_zoom.png',
+        image: '/images/gear/rode_bundle_zoom.webp',
         amazonLink: 'https://amzn.to/4bsFCDa',
         subCategory: 'Bundles',
         isFeatured: false
@@ -172,7 +172,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'The ultimate studio transformation. Rødecaster Pro II meets 4x NT1 5th Gen Condenser Mics for pristine audio.',
         technicalSpecs: ['Rødecaster Pro II', '4x NT1 5th Gen Mics', '4x Studio Headphones', '64GB MicroSD', '4x Boom Arms'],
         priceRange: '$$$$$',
-        image: '/images/gear/rode_bundle_nt1.png',
+        image: '/images/gear/rode_bundle_nt1.webp',
         amazonLink: 'https://amzn.to/3NGpZOG',
         subCategory: 'Bundles',
         isFeatured: true
@@ -188,7 +188,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'Professional multi-guest podcasting kit for high-fidelity broadcast and recording.',
         technicalSpecs: ['Rødecaster Pro II', '4x Professional Mics', '4x Headphones', '64GB MicroSD'],
         priceRange: '$$$$',
-        image: '/images/gear/rode_bundle_pro.png',
+        image: '/images/gear/rode_bundle_pro.webp',
         amazonLink: 'https://amzn.to/4qPNDXB',
         subCategory: 'Bundles',
         isFeatured: false
@@ -204,7 +204,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'The exact workstation we use. The Rødecaster Pro II paired with 4x PodMics and the legendary PSA1+ boom arms.',
         technicalSpecs: ['Rødecaster Pro II', '4x Røde PodMics', '4x PSA1+ Boom Arms', 'Premium Studio Monitoring'],
         priceRange: '$$$$$',
-        image: '/images/gear/rode_founder_bundle.png',
+        image: '/images/gear/rode_founder_bundle.webp',
         amazonLink: 'https://amzn.to/45DTF50',
         subCategory: 'Bundles',
         isFeatured: true
@@ -220,7 +220,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'Professional high-fidelity kit featuring the Rødecaster Pro II, 4x PodMics, and TAPH500 headphones.',
         technicalSpecs: ['Rødecaster Pro II', '4x PodMics', '4x TAPH500 Headphones', 'Broadcast Cables'],
         priceRange: '$$$$',
-        image: '/images/gear/rode_podmic_studio_bundle.png',
+        image: '/images/gear/rode_podmic_studio_bundle.webp',
         amazonLink: 'https://amzn.to/4t8dXhb',
         subCategory: 'Bundles',
         isFeatured: false
@@ -238,7 +238,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'The peak of graphics processing power for 8K rendering and AI-assisted workflows.',
         technicalSpecs: ['24GB GDDR6X', 'DLSS 3.0 Support', 'TORX Fan 5.0 Cooling'],
         priceRange: '$$$$$',
-        image: '/images/gear/msi_rtx_4090.png',
+        image: '/images/gear/msi_rtx_4090.webp',
         amazonLink: 'https://amzn.to/3X6W7Xq',
         subCategory: 'GPUs',
         isFeatured: true
@@ -254,7 +254,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'Ultra-high frequency DDR5 memory optimized for heavy multitasking and video rendering.',
         technicalSpecs: ['DDR5 6600MHz', 'Patented DHX Cooling', 'Customizable RGB'],
         priceRange: '$$$',
-        image: '/images/gear/corsair_dominator.png',
+        image: '/images/gear/corsair_dominator.webp',
         amazonLink: 'https://amzn.to/4fL6G7r',
         subCategory: 'RAM',
         isFeatured: false
@@ -270,7 +270,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'Elite AIO liquid cooler with a built-in IPS display for real-time monitoring.',
         technicalSpecs: ['360mm Radiator', '2.4" IPS Display', 'Silence Fan Protocol'],
         priceRange: '$$',
-        image: '/images/gear/msi_liquid_cooler.png',
+        image: '/images/gear/msi_liquid_cooler.webp',
         amazonLink: 'https://amzn.to/3V9FmYy',
         subCategory: 'Cooling',
         isFeatured: false
@@ -288,7 +288,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'The industry-leading sensor for low-light performance and 4K creator workflows.',
         technicalSpecs: ['12.1MP Exmor R', '4K 120p Video', '15+ Stops Dynamic Range'],
         priceRange: '$$$$$',
-        image: '/images/gear/sony_a7siii.png',
+        image: '/images/gear/sony_a7siii.webp',
         amazonLink: 'https://amzn.to/40H6Y4b',
         subCategory: 'Cameras',
         isFeatured: true
@@ -304,7 +304,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'AI-powered 4K tracking camera. Gesture controls and high-velocity focus.',
         technicalSpecs: ['4K UHD', 'AI Auto-Tracking', 'Voice Control'],
         priceRange: '$$',
-        image: '/images/gear/obsbot_tiny_2.png',
+        image: '/images/gear/obsbot_tiny_2.webp',
         amazonLink: 'https://amzn.to/3YVfE4X',
         subCategory: 'Webcams',
         isFeatured: false
@@ -322,7 +322,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'Ultra-wide 49-inch curved monitor for maximum editing real estate and immersive workflows.',
         technicalSpecs: ['DQHD Resolution', '240Hz Refresh', '1000R Curvature'],
         priceRange: '$$$$',
-        image: '/images/gear/samsung_odyssey_g9.png',
+        image: '/images/gear/samsung_odyssey_g9.webp',
         amazonLink: 'https://amzn.to/4hK9M2z',
         subCategory: 'Professional',
         isFeatured: true
@@ -338,7 +338,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'Rapid IPS 4K monitor designed for high-refresh gaming and accurate color grading.',
         technicalSpecs: ['4K UHD Resolution', '144Hz Refresh', 'Rapid IPS Panel'],
         priceRange: '$$',
-        image: '/images/gear/msi_mag_monitor.png',
+        image: '/images/gear/msi_mag_monitor.webp',
         amazonLink: 'https://amzn.to/3Z9q9Lp',
         subCategory: 'Gaming',
         isFeatured: false
@@ -356,7 +356,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'The foundation for a solid entry-level creator build. Rock-solid power delivery and thermal design.',
         technicalSpecs: ['LGA 1700 Support', 'Wi-Fi 6E', 'DDR5 Ready'],
         priceRange: '$',
-        image: '/images/gear/msi_motherboard.png',
+        image: '/images/gear/msi_motherboard.webp',
         amazonLink: 'https://amzn.to/3Z8q9Lp',
         subCategory: 'Motherboards',
         isFeatured: false
@@ -372,7 +372,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'Reliable high-speed DDR5 memory with integrated RGB for the modern creator aesthetic.',
         technicalSpecs: ['32GB DDR5', '6000MHz CL36', 'iCUE Compatible'],
         priceRange: '$',
-        image: '/images/gear/corsair_dominator.png',
+        image: '/images/gear/corsair_dominator.webp',
         amazonLink: 'https://amzn.to/3V8Uj1x',
         isFeatured: false
     },
@@ -387,7 +387,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'Professional grade USB microphone with internal clip guard and digital mixer.',
         technicalSpecs: ['Cardioid Condenser', '24-bit / 96kHz', 'Wave Link Software'],
         priceRange: '$',
-        image: '/images/gear/elgato_wave_3.png',
+        image: '/images/gear/elgato_wave_3.webp',
         amazonLink: 'https://amzn.to/4btsD4e',
         subCategory: 'Microphones',
         isFeatured: false
@@ -403,7 +403,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'The ultimate entry-level podcast microphone. Built-in pop filter and rich, broadcast-ready sound.',
         technicalSpecs: ['Dynamic Cardioid', 'All-metal construction', 'XLR termination'],
         priceRange: '$',
-        image: '/images/gear/rode_podmic.png', // Fallback will trigger if not found
+        image: '/images/gear/rode_podmic.webp', // Fallback will trigger if not found
         amazonLink: 'https://amzn.to/4rnbkGn',
         subCategory: 'Microphones',
         isFeatured: true
@@ -419,7 +419,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'A portable editing and streaming powerhouse for creators on the go.',
         technicalSpecs: ['RTX 4050 GPU', 'Intel i7-13620H', '144Hz Display'],
         priceRange: '$$',
-        image: '/images/gear/msi_katana_15.png',
+        image: '/images/gear/msi_katana_15.webp',
         amazonLink: 'https://amzn.to/4fL6G7r',
         subCategory: 'Laptops',
         isFeatured: false
@@ -436,7 +436,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'Open-back studio reference headphones for mixing and mastering. Handcrafted in Germany with Tesla drivers.',
         technicalSpecs: ['Open-back Design', '250 Ohms Impedance', 'Tesla Transducer Protocol'],
         priceRange: '$$$$',
-        image: '/images/gear/beyer_dt1990.png',
+        image: '/images/gear/beyer_dt1990.webp',
         amazonLink: 'https://amzn.to/4a9WOLv',
         subCategory: 'Headphones',
         isFeatured: true
@@ -452,7 +452,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'Great for high-noise environments and field recording. Rugged, detachable cable, and industry-standard sound.',
         technicalSpecs: ['High SPL capability', 'Split headband design', 'Replaceable components'],
         priceRange: '$$',
-        image: '/images/gear/sennheiser_hd25.png',
+        image: '/images/gear/sennheiser_hd25.webp',
         amazonLink: 'https://amzn.to/3LUSXd5',
         subCategory: 'Headphones',
         isFeatured: false
@@ -468,7 +468,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'Professional monitoring headphones with a flat frequency response for accurate tracking.',
         technicalSpecs: ['40mm drivers', 'Collapsible design', 'Two detachable cables'],
         priceRange: '$',
-        image: '/images/gear/ath_m40x.png',
+        image: '/images/gear/ath_m40x.webp',
         amazonLink: 'https://amzn.to/4btz6My',
         subCategory: 'Headphones',
         isFeatured: false
@@ -484,7 +484,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'The ultimate studio boom arm. Completely silent operation, professional look, and enormous reach.',
         technicalSpecs: ['Integrated cable management', 'Silent spring design', '360-degree rotation'],
         priceRange: '$$',
-        image: '/images/gear/rode_psa1_plus.png',
+        image: '/images/gear/rode_psa1_plus.webp',
         amazonLink: 'https://amzn.to/4btlHE2',
         subCategory: 'Boom Arms',
         isFeatured: true
@@ -500,7 +500,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'Professional low-profile boom arm that stays below the eye line for a clean camera shot.',
         technicalSpecs: ['All-metal construction', 'Cable channels', '360-degree rotation'],
         priceRange: '$$',
-        image: '/images/gear/elgato_wave_lp.png',
+        image: '/images/gear/elgato_wave_lp.webp',
         amazonLink: 'https://amzn.to/4rnp83S',
         subCategory: 'Boom Arms',
         isFeatured: false
@@ -516,7 +516,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'Solid heavy-duty desktop mic stand for creators who prefer a stable desk mount.',
         technicalSpecs: ['Weighted base', 'Adjustable height', 'All-metal construction'],
         priceRange: '$',
-        image: '/images/gear/gator_mic_stand.png',
+        image: '/images/gear/gator_mic_stand.webp',
         amazonLink: 'https://amzn.to/3Z8S0ko',
         subCategory: 'Stands',
         isFeatured: false
@@ -533,7 +533,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'The exact workstation we use for high-velocity broadcast. Shure SM7B meets the Rødecaster Pro II.',
         technicalSpecs: ['Shure SM7B Mic', 'Rødecaster Pro II Mixer', 'Cloudlifter CL-1', 'Premium Boom Arm'],
         priceRange: '$$$$$',
-        image: '/images/gear/elite_bundle.png',
+        image: '/images/gear/elite_bundle.webp',
         amazonLink: 'https://amzn.to/3MfyVKk',
         subCategory: 'Bundles',
         isFeatured: true
@@ -549,7 +549,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'Professional high-fidelity kit for creators transitioning to premium audio.',
         technicalSpecs: ['Sony A7S III', 'Video Capture Protocol', 'Pro Lighting Kit'],
         priceRange: '$$$',
-        image: '/images/gear/sony_a7siii.png',
+        image: '/images/gear/sony_a7siii.webp',
         amazonLink: 'https://amzn.to/3V5Uj1v',
         subCategory: 'Bundles',
         isFeatured: false
@@ -565,7 +565,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         description: 'The foundation for professional streaming and podcasting. Plug and play excellence.',
         technicalSpecs: ['Elgato Wave:3', 'Internal Pop Filter', 'Wave Link Digital Mixer'],
         priceRange: '$$',
-        image: '/images/gear/elgato_wave_3.png',
+        image: '/images/gear/elgato_wave_3.webp',
         amazonLink: 'https://amzn.to/4btsD4e',
         isFeatured: false
     }

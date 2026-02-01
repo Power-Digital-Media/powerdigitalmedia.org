@@ -23,8 +23,8 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
             {/* --- Hero Background Layer --- */}
             <div className="absolute inset-0 z-0">
                 <Image
-                    src="/hero-bg.png"
-                    alt="Power Digital Media Studio"
+                    src="/hero-bg.webp"
+                    alt="Production Background"
                     fill
                     priority
                     sizes="(max-width: 768px) 100vw, 100vw"
