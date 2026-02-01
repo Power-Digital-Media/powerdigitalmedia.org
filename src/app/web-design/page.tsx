@@ -9,6 +9,8 @@ import Footer from "@/components/layout/Footer";
 import Image from "next/image";
 import Portfolio from "@/components/sections/Portfolio";
 import BookingModal from "@/components/ui/BookingModal";
+import WebDesignPricing from "@/components/ui/billing/WebDesignPricing";
+
 
 interface Protocol {
     title: string;
@@ -260,44 +262,13 @@ export default function WebDesignPage() {
                         </p>
                     </div>
 
-                    <div className="grid gap-8 lg:grid-cols-3">
-                        {tiers.map((tier, index) => (
-                            <motion.div
-                                key={tier.name}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8, delay: index * 0.1 }}
-                                className={`relative group p-12 rounded-[3.5rem] glass-card bg-white/[0.01] border ${tier.accent} flex flex-col items-center text-center transition-all duration-700 hover:bg-white/[0.03]`}
-                            >
-                                {tier.featured && (
-                                    <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-cyan-500 text-slate-950 px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em]">
-                                        Highly Recommended
-                                    </div>
-                                )}
-                                <h3 className="text-2xl font-bold mb-2 uppercase tracking-widest leading-none">{tier.name}</h3>
-                                <div className="text-4xl font-black text-white mb-6 tracking-tighter">
-                                    {tier.investment}
-                                </div>
-                                <p className="text-foreground/60 mb-10 leading-relaxed font-light text-sm">
-                                    {tier.description}
-                                </p>
-                                <div className="w-full space-y-4 mb-12">
-                                    {tier.features.map((feature) => (
-                                        <div key={feature} className="text-[10px] uppercase tracking-widest font-bold text-foreground/40 pb-4 border-b border-white/5 last:border-0">
-                                            {feature}
-                                        </div>
-                                    ))}
-                                </div>
-                                <button
-                                    onClick={() => setIsBookingOpen(true)}
-                                    className={`mt-auto w-full py-5 rounded-full font-black uppercase tracking-widest text-[10px] transition-all duration-300 ${tier.featured ? "bg-cyan-500 text-slate-950 hover:bg-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.2)]" : "bg-white/5 text-white hover:bg-white/10 border border-white/10"}`}
-                                >
-                                    {tier.cta}
-                                </button>
-                            </motion.div>
-                        ))}
+                    <div className="grid gap-8 lg:grid-cols-3 mb-20">
+                        {/* Interactive Pricing Hub */}
+                        <div className="col-span-full">
+                            <WebDesignPricing />
+                        </div>
                     </div>
+
 
                     <div className="mt-20 text-center">
                         <p className="text-[10px] text-foreground/20 uppercase tracking-[0.3em] font-medium">
