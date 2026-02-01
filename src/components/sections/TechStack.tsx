@@ -54,6 +54,7 @@ export default function TechStack() {
                                     src={item.image}
                                     alt={item.name}
                                     fill
+                                    sizes="(max-width: 768px) 100vw, 50vw"
                                     className="object-cover opacity-80"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />

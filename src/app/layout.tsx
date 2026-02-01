@@ -27,6 +27,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preload" href="/hero-bg.png" as="image" type="image/png" />
+        <link rel="preload" href="/portfolio/all-things-new-real.png" as="image" type="image/png" />
+      </head>
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
       >
@@ -43,7 +47,6 @@ export default function RootLayout({
                 "@type": "Organization",
                 "name": "Power Digital Media LLC",
                 "url": "https://powerdigitalmedia.org",
-                "logo": "https://powerdigitalmedia.org/images/logo.png",
                 "sameAs": [
                   "https://www.youtube.com/@PowerDigitalMedia",
                   "https://www.instagram.com/PowerDigitalMedia"

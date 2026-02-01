@@ -1,9 +1,11 @@
+import dynamic from "next/dynamic";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import Services from "@/components/sections/Services";
 import Portfolio from "@/components/sections/Portfolio";
-import TechStack from "@/components/sections/TechStack";
-import Contact from "@/components/sections/Contact";
+
+const Services = dynamic(() => import("@/components/sections/Services"));
+const TechStack = dynamic(() => import("@/components/sections/TechStack"));
+const Contact = dynamic(() => import("@/components/sections/Contact"));
 
 export default function Home() {
   return (

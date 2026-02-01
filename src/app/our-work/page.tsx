@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import Portfolio from "@/components/sections/Portfolio";
 import BookingModal from "@/components/ui/BookingModal";
 
 const workCategories = [
@@ -132,6 +133,8 @@ export default function OurWorkPage() {
                     </button>
                 </div>
             </section>
+
+            <Portfolio titleAs="h2" />
 
             <Footer />
 

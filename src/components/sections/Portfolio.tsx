@@ -15,7 +15,7 @@ import BookingModal from "../ui/BookingModal";
 
 import { projects } from "@/data/projects";
 
-export default function Portfolio() {
+export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | "h2" }) {
     const [isBookingOpen, setIsBookingOpen] = useState(false);
 
     return (
@@ -44,12 +44,12 @@ export default function Portfolio() {
                     className="max-w-4xl mx-auto mb-6 md:mb-10"
                 >
                     <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[8px] md:text-[9px] mb-4 md:mb-6 block">Premium Digital Infrastructure</span>
-                    <h2 className="text-4xl md:text-8xl font-black mb-6 md:mb-8 tracking-tighter leading-[0.85] uppercase">
+                    <Title className="text-4xl md:text-8xl font-black mb-6 md:mb-8 tracking-tighter leading-[0.85] uppercase">
                         Digital <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-500 text-glow-cyan text-glow">
                             Architecture.
                         </span>
-                    </h2>
+                    </Title>
                     <p className="text-base md:text-xl text-foreground font-medium tracking-tight opacity-70 max-w-2xl mx-auto text-balance font-light px-6">
                         We don&apos;t build websites. We deploy <span className="text-white font-medium">high-velocity digital engines</span> engineered for prestige and engineered for dominance.
                     </p>

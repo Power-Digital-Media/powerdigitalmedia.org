@@ -132,6 +132,7 @@ export default function ThreeDCarousel() {
                                         src={project.image}
                                         alt={project.title}
                                         fill
+                                        sizes="(max-width: 768px) 100vw, 400px"
                                         className="object-cover object-top hover:scale-110 transition-transform duration-[8000ms]"
                                         priority={index === 0}
                                     />

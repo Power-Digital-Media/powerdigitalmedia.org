@@ -5,6 +5,7 @@ import { TrendingUp, Zap, CheckCircle2, ArrowRight, Star, Youtube, Image as Imag
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import Portfolio from "@/components/sections/Portfolio";
 import ProductionPipeline from "@/components/ui/ProductionPipeline";
 import BookingModal from "@/components/ui/BookingModal";
 import { useState } from "react";
@@ -241,6 +242,8 @@ export default function MarketingPage() {
                     </div>
                 </div>
             </section>
+
+            <Portfolio titleAs="h2" />
 
             <Footer />
 

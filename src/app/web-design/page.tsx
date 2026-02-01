@@ -190,7 +190,7 @@ export default function WebDesignPage() {
             </section>
 
             {/* --- Integration: 3D Proof of Work --- */}
-            <Portfolio />
+            <Portfolio titleAs="h2" />
 
             {/* --- Section 2: Technical Specifications --- */}
             <section className="viewport-section relative bg-background border-t border-white/5">

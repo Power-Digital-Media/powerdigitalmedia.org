@@ -5,6 +5,7 @@ import { Camera, Video, Zap, CheckCircle2, ArrowRight, Star, MapPin, Film, Share
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import Portfolio from "@/components/sections/Portfolio";
 import ProductionPipeline from "@/components/ui/ProductionPipeline";
 import BookingModal from "@/components/ui/BookingModal";
 import { useState } from "react";
@@ -221,6 +222,8 @@ export default function ProductionPage() {
             </section>
 
             <ProductionPipeline />
+
+            <Portfolio titleAs="h2" />
 
             <Footer />
 

@@ -19,7 +19,7 @@ export default function Services() {
                         src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=2070&auto=format&fit=crop"
                         alt="Professional Podcasting Studio"
                         fill
-                        priority
+                        sizes="(max-width: 768px) 100vw, 50vw"
                         className="object-cover object-top opacity-40 scale-110 md:scale-100 transition-transform duration-[20s]"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background/40" />
@@ -87,7 +87,7 @@ export default function Services() {
                                 src="/images/captures/live-event-gimbal.png"
                                 alt="Event Production"
                                 fill
-                                priority
+                                sizes="(max-width: 768px) 100vw, 50vw"
                                 className="object-cover group-hover:scale-110 transition-transform duration-700"
                             />
                             <div className="absolute inset-0 bg-accent/20 mix-blend-overlay" />
