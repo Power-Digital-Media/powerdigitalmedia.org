@@ -2,11 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Mic2 } from "lucide-react";
+import { Menu, X, Mic2, LayoutDashboard, LogIn, Terminal } from "lucide-react";
 import Link from "next/link";
 import BookingModal from "../ui/BookingModal";
+import { useAuth } from "@/context/AuthContext";
+import { isAdmin } from "@/lib/auth-constants";
 
 export default function Navbar() {
+    const { user } = useAuth();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -20,14 +23,15 @@ export default function Navbar() {
     }, []);
 
     const navLinks = [
-        { name: "Design", href: "/web-design" },
-        { name: "Podcasting", href: "/podcasting" },
-        { name: "Marketing", href: "https://powerdigitalgrowth.org", external: true },
-        { name: "Portfolio", href: "/our-work" },
-        { name: "Showroom", href: "/showroom" },
-        { name: "Blog", href: "/blog" },
-        { name: "Billing", href: "/billing" },
-        { name: "About", href: "/about" },
+        { name: "Design", href: "/web-design", external: false },
+        { name: "Podcasting", href: "/podcasting", external: false },
+        { name: "Production", href: "/production", external: false },
+        { name: "Marketing", href: "/marketing", external: false },
+        { name: "Portfolio", href: "/our-work", external: false },
+        { name: "Showroom", href: "/showroom", external: false },
+        { name: "Blog", href: "/blog", external: false },
+        { name: "Billing", href: "/billing", external: false },
+        { name: "About", href: "/about", external: false },
     ];
 
     return (
@@ -71,6 +75,32 @@ export default function Navbar() {
                                 {link.name}
                             </Link>
                         ))}
+
+                        {isAdmin(user?.email) && (
+                            <Link
+                                href="/admin"
+                                className="flex items-center gap-2 px-5 py-2 text-sm font-black text-accent glass-card border-accent/40 hover:bg-accent/10 transition-all rounded-full"
+                            >
+                                <Terminal className="w-4 h-4" />
+                                Nexus HUD
+                            </Link>
+                        )}
+                        <Link
+                            href={user ? "/dashboard" : "/login"}
+                            className="flex items-center gap-2 px-5 py-2 text-sm font-bold text-white glass-card border-accent/20 hover:bg-accent/10 transition-all rounded-full"
+                        >
+                            {user ? (
+                                <>
+                                    <LayoutDashboard className="w-4 h-4 text-accent" />
+                                    Dashboard
+                                </>
+                            ) : (
+                                <>
+                                    <LogIn className="w-4 h-4 text-accent" />
+                                    Client Portal
+                                </>
+                            )}
+                        </Link>
                         <button
                             onClick={() => setIsBookingOpen(true)}
                             className="px-5 py-2 text-sm font-bold text-white bg-accent rounded-full hover:bg-accent/90 transition-all border-glow"
@@ -111,6 +141,34 @@ export default function Navbar() {
                                     {link.name}
                                 </Link>
                             ))}
+                            <Link
+                                href={user ? "/dashboard" : "/login"}
+                                className="w-full py-4 text-center font-bold text-white glass-card border-accent/20 rounded-2xl flex items-center justify-center gap-2"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                {user ? (
+                                    <>
+                                        <LayoutDashboard className="w-4 h-4 text-accent" />
+                                        Dashboard
+                                    </>
+                                ) : (
+                                    <>
+                                        <LogIn className="w-4 h-4 text-accent" />
+                                        Client Portal
+                                    </>
+                                )}
+                            </Link>
+
+                            {isAdmin(user?.email) && (
+                                <Link
+                                    href="/admin"
+                                    className="w-full py-4 text-center font-black text-accent glass-card border-accent/40 rounded-2xl flex items-center justify-center gap-2"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                    <Terminal className="w-4 h-4" />
+                                    Nexus HUD
+                                </Link>
+                            )}
                             <button
                                 onClick={() => {
                                     setIsMobileMenuOpen(false);

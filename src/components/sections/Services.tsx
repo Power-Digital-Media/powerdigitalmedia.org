@@ -63,7 +63,63 @@ export default function Services() {
                 </div>
             </section>
 
-            {/* Section 2: The Reach */}
+            {/* Section: The Capture (On-Location) */}
+            <section className="relative flex flex-col justify-start pt-8 pb-12 md:pt-40 md:pb-32 overflow-hidden border-t border-white/5">
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src="https://images.unsplash.com/photo-1512418490979-92798ccc13a0?q=80&w=2070&auto=format&fit=crop"
+                        alt="On-Location Cinematography"
+                        fill
+                        className="object-cover object-center opacity-25 scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background/40" />
+                </div>
+
+                <div className="container relative z-10 px-6 mx-auto">
+                    <div className="grid md:grid-cols-2 items-center gap-16">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            className="order-2 md:order-1 relative aspect-video rounded-[2.5rem] overflow-hidden border border-white/10"
+                        >
+                            <Image
+                                src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop"
+                                alt="Event Production"
+                                fill
+                                className="object-cover group-hover:scale-110 transition-transform duration-700"
+                            />
+                            <div className="absolute inset-0 bg-accent/20 mix-blend-overlay" />
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, x: 30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1 }}
+                            className="order-1 md:order-2"
+                        >
+                            <span className="text-blue-400 font-bold tracking-[0.4em] uppercase text-[9px] md:text-xs mb-4 block">Field Acquisition</span>
+                            <h2 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight uppercase leading-none">The Capture.</h2>
+                            <p className="text-base md:text-xl text-foreground/70 mb-8 max-w-md leading-relaxed font-light">
+                                We go where you are. Cinematic event coverage, brand documentaries, and high-fidelity live streaming from any location.
+                            </p>
+                            <div className="grid grid-cols-2 gap-4 mb-10">
+                                {["Footage Mastery", "YouTube Ready Edits", "Viral Social Snippets", "Live Event Streams"].map((f) => (
+                                    <div key={f} className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-black text-white/40">
+                                        <CheckCircle2 className="w-3 h-3 text-blue-400" />
+                                        {f}
+                                    </div>
+                                ))}
+                            </div>
+                            <Link href="/production" className="inline-flex items-center gap-4 px-10 py-5 bg-white text-slate-950 font-black rounded-full hover:bg-blue-400 hover:text-white transition-all uppercase tracking-widest text-[10px]">
+                                Explore Production Tiers <ArrowRight className="w-4 h-4" />
+                            </Link>
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
+
             <section className="relative flex flex-col justify-start pt-8 pb-12 md:pt-40 md:pb-32 overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image

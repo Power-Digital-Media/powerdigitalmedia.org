@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mic2, Radio, Camera, Video, Zap, CheckCircle2, ArrowRight, Star } from "lucide-react";
+import { Mic2, Radio, Camera, Video, Zap, CheckCircle2, ArrowRight, Star, Loader2 } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -17,7 +17,9 @@ import Image from "next/image";
 
 const tiers = [
     {
+        id: "pod_broadcaster",
         name: "Broadcaster Entry",
+        priceId: "price_pod_broadcaster_placeholder",
         price: "500",
         description: "High-frequency weekly presence on the Power Digital Network. Perfect for building immediate authority.",
         features: [
@@ -30,12 +32,14 @@ const tiers = [
         accent: "blue"
     },
     {
+        id: "pod_growth",
         name: "Growth Engine",
+        priceId: "price_pod_growth_placeholder",
         price: "1,000",
         description: "The viral choice for personal brands. Full multi-cam production plus high-velocity social extractions.",
         features: [
             "4 Studio Sessions/mo (Weekly)",
-            "Everything in 'Broadcaster'",
+            "Stream to 2 Client Platforms",
             "4 Viral Social Clips (1/wk)",
             "Automated Distribution Suite",
             "SEO & GEO Optimization"
@@ -44,12 +48,14 @@ const tiers = [
         popular: true
     },
     {
+        id: "pod_syndication",
         name: "Syndication Suite",
+        priceId: "price_pod_syndication_placeholder",
         price: "1,500",
         description: "The total agency production takeover. Maximum reach and hands-off executive management.",
         features: [
             "4 Studio Sessions/mo (Weekly)",
-            "Everything in 'Growth'",
+            "Stream to 4 Client Platforms",
             "12 Viral Social Clips (3/wk)",
             "Dedicated Show Manager",
             "SEO Blog Show Notes Sync"
@@ -60,6 +66,33 @@ const tiers = [
 
 export default function PodcastingPage() {
     const [isBookingOpen, setIsBookingOpen] = useState(false);
+    const [isProcessing, setIsProcessing] = useState<string | null>(null);
+
+    const handleCheckout = async (tier: any) => {
+        setIsProcessing(tier.id);
+        try {
+            const response = await fetch("/api/checkout", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    items: [{ price: tier.priceId, quantity: 1 }],
+                    mode: 'subscription',
+                    successUrl: window.location.origin + "/podcasting?success=true",
+                    cancelUrl: window.location.origin + "/podcasting?canceled=true",
+                }),
+            });
+
+            const data = await response.json();
+            if (data.url) {
+                window.location.href = data.url;
+            }
+        } catch (error) {
+            console.error("Technical handshake failed:", error);
+            alert("Secure pipe connection interrupted.");
+        } finally {
+            setIsProcessing(null);
+        }
+    };
 
     return (
         <main className="relative min-h-screen bg-background overflow-x-hidden">
@@ -213,10 +246,15 @@ export default function PodcastingPage() {
                                     </div>
 
                                     <button
-                                        onClick={() => setIsBookingOpen(true)}
-                                        className={`w-full py-4 flex items-center justify-center font-bold rounded-2xl transition-all ${tier.popular ? "bg-accent text-white border-glow" : "glass-card hover:bg-accent hover:text-white"}`}
+                                        onClick={() => handleCheckout(tier)}
+                                        disabled={isProcessing !== null}
+                                        className={`w-full py-4 flex items-center justify-center font-bold rounded-2xl transition-all ${tier.popular ? "bg-accent text-white border-glow" : "glass-card hover:bg-accent hover:text-white"} ${isProcessing === tier.id ? "opacity-50 cursor-not-allowed" : ""}`}
                                     >
-                                        Inquire / Book
+                                        {isProcessing === tier.id ? (
+                                            <Loader2 className="w-5 h-5 animate-spin" />
+                                        ) : (
+                                            "Apply Now"
+                                        )}
                                     </button>
                                 </div>
                             </motion.div>

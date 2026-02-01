@@ -1,32 +1,38 @@
-# Strategic Protocol: Tax Resiliency & Compliance
+# 🛡️ Power Reserve Protocol: Financial Solvency Guide
 
-Designed for Power Digital Media to ensure 100% financial security and regulatory compliance during rapid agency expansion.
+This document outlines the high-authority strategy for managing the **Power Digital Media LLC** tax reserve. Following this protocol ensures that your agency remains 100% solvent and protected against unexpected IRS liabilities. 💎🚀
 
-## 🛡️ Protocol 1: Stripe Tax Automation
-The platform is now engineered with `automatic_tax: { enabled: true }`. To activate this:
+## 🧪 The 30% Benchmark
+Based on standard LLC tax requirements (incorporating Federal Income Tax and SE Tax), we have set your **Power Reserve** to **30%** of gross inbound revenue.
 
-1.  **Dashboard Activation:** Go to [dashboard.stripe.com/tax](https://dashboard.stripe.com/tax).
-2.  **Define Thresholds:** Set your business location (Nexus). Stripe will automatically calculate the correct sales tax for every client based on their billing address.
-3.  **Revenue Reporting:** Use the "Tax Reports" tab for 10-second data exports during tax season.
+### 📊 Allocation Breakdown (Estimated)
+- **Federal Income Tax**: ~15-18%
+- **Self-Employment Tax**: ~12-15%
+- **State Tax (MS)**: ~3-5% (Adjusted based on total annual bracket)
 
-## 🛡️ Protocol 2: The "Tax Reserve" Mechanism
-To ensure you always have funds for IRS/Quarterly payments, follow this high-authority payout structure:
+## 🏗️ Operational Workflow
 
-### The 25% Reserve Rule
-Every dollar that enters your account should be split immediately. 
+### 1. The Payout Handshake
+Every Friday, or after a major project payout hits your bank account from Stripe:
+1. Check your **Power Digital Dashboard**.
+2. Note the total **Power Reserve** amount.
+3. Manually transfer that *exact* amount into a dedicated **High-Yield Savings Account** (HYS) labeled "TAX RESERVE."
 
-1.  **Step 1:** In Stripe Dashboard, go to **Settings -> External Accounts**.
-2.  **Step 2:** Add a second bank account (specifically a **Business Savings** or **Tax account**).
-3.  **Step 3 (Manual/Automation):** 
-    - **Option A (Manual):** Every Friday, look at your "Total Vol" and transfer 25% to your Reserve account.
-    - **Option B (Advanced):** Use a service like **Carry** or **Found** that integrates with Stripe to auto-split tax percentages into a sub-account.
+### 2. Quarterly Rhythms 
+The IRS expects estimated payments on the following schedule:
+- **April 15** (Q1)
+- **June 15** (Q2)
+- **September 15** (Q3)
+- **January 15** (Q4)
 
-## 🛡️ Protocol 3: Record Keeping for Revenue
-Stripe's **Automated Invoicing** (which we just enabled) is your primary defense. 
+Use your accumulated **Power Reserve Vault** to pay these directly.
 
-- **Every Session:** Generates a unique PDF invoice.
-- **Client Access:** Clients can download their own invoices via the `/billing` portal, reducing your administrative load.
-- **Audit Ready:** All transactions are logged with metadata (e.g., "Full Estate Architecture - Installment 1 of 4").
+## 🛡️ Business Resiliency Tips
+- **Never Dip into the Reserve**: Treat the tax reserve as "money that isn't yours." It belongs to the business entity's future compliance.
+- **Interest Arbitrage**: By keeping your reserve in a High-Yield Savings account (like Marcus by Goldman Sachs or Wealthfront), you earn 4-5% interest on the government's money before you pay it. This becomes "Bonus Revenue" for the agency.
+- **Write-Off Sync**: As you invest in new gear (mics, cameras, servers), your actual tax liability will drop. Your dashboard shows the *maximum* safe reserve. Any surplus remaining at the end of the year is your "Tax Refund" to reinvest in the agency.
 
 ---
-**🛡️ Financial Status:** STABILIZED. 🛡️🏦✨
+**Status:** Protocol Active
+**Authority Level:** Level 5 Financial Compliance
+🛡️⚡💎🚀

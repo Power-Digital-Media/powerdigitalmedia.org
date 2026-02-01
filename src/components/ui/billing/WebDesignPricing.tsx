@@ -20,7 +20,7 @@ const tiers: Tier[] = [
         id: "identity",
         name: "Identity Protocol",
         price: 1500,
-        priceId: "price_identity_placeholder", // Replace with real Stripe Price ID
+        priceId: "price_web_identity_placeholder", // Match Billing Hub catalog
         description: "Bespoke high-prestige flagship presence for solo creators and brands.",
         features: ["Custom UI/UX Architecture", "Next.js Core Performance", "SEO Foundation Layer", "Cinematic Media Support"],
         accent: "border-blue-500/30",
@@ -30,7 +30,7 @@ const tiers: Tier[] = [
         id: "growth",
         name: "Growth Architecture",
         price: 3000,
-        priceId: "price_growth_placeholder", // Replace with real Stripe Price ID
+        priceId: "price_web_growth_placeholder", // Match Billing Hub catalog
         description: "Engineered for scale. Full integration between studio and engine.",
         features: ["Ecosystem Synchronization", "High-Velocity Funnels", "Automated Lead Capture", "Priority Support Sync"],
         accent: "border-cyan-400/50",
@@ -40,7 +40,7 @@ const tiers: Tier[] = [
         id: "enterprise",
         name: "Enterprise Hub",
         price: 5000,
-        priceId: "price_enterprise_placeholder", // Replace with real Stripe Price ID
+        priceId: "price_web_enterprise_placeholder", // Match Billing Hub catalog
         description: "Multi-site ecosystem for organizations managing massive traffic.",
         features: ["Multi-Brand Architecture", "Custom Engineering Support", "Dedicated Data Layer", "Global Edge Distribution"],
         accent: "border-indigo-500/30",
@@ -49,7 +49,7 @@ const tiers: Tier[] = [
 ];
 
 const MANAGEMENT_PRICE = 500;
-const MANAGEMENT_PRICE_ID = "price_management_placeholder"; // Replace with real Stripe Price ID
+const MANAGEMENT_PRICE_ID = "price_management_placeholder"; // Match Billing Hub catalog
 
 export default function WebDesignPricing() {
     const [selectedTier, setSelectedTier] = useState<string | null>(null);
