@@ -5,7 +5,12 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import ThreeDCarousel from "../ui/ThreeDCarousel";
+import dynamic from "next/dynamic";
+
+const ThreeDCarousel = dynamic(() => import("../ui/ThreeDCarousel"), {
+    ssr: false,
+    loading: () => <div className="h-[380px] md:h-[480px] bg-white/5 animate-pulse rounded-[3rem]" />
+});
 import BookingModal from "../ui/BookingModal";
 
 import { projects } from "@/data/projects";
@@ -21,6 +26,8 @@ export default function Portfolio() {
                     src="/hero-bg.png"
                     alt="Power Digital Media Studio"
                     fill
+                    priority
+                    sizes="(max-width: 768px) 100vw, 100vw"
                     className="object-cover opacity-40 scale-105 transition-transform duration-[20s]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-background via-background/20 to-background" />
@@ -37,12 +44,12 @@ export default function Portfolio() {
                     className="max-w-4xl mx-auto mb-6 md:mb-10"
                 >
                     <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[8px] md:text-[9px] mb-4 md:mb-6 block">Premium Digital Infrastructure</span>
-                    <h1 className="text-4xl md:text-8xl font-black mb-6 md:mb-8 tracking-tighter leading-[0.85] uppercase">
+                    <h2 className="text-4xl md:text-8xl font-black mb-6 md:mb-8 tracking-tighter leading-[0.85] uppercase">
                         Digital <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-500 text-glow-cyan text-glow">
                             Architecture.
                         </span>
-                    </h1>
+                    </h2>
                     <p className="text-base md:text-xl text-foreground font-medium tracking-tight opacity-70 max-w-2xl mx-auto text-balance font-light px-6">
                         We don&apos;t build websites. We deploy <span className="text-white font-medium">high-velocity digital engines</span> engineered for prestige and engineered for dominance.
                     </p>

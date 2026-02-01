@@ -34,16 +34,16 @@ export default function Footer() {
                             Premium podcasting, video production, and digital systems built for those who have a message that deserves more than the default.
                         </p>
                         <div className="flex items-center gap-4">
-                            <a href="#" className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-muted-foreground hover:text-accent hover:border-accent/40 transition-all">
+                            <a href="https://instagram.com/powerdigitalmedia" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram" className="w-12 h-12 rounded-full glass-card flex items-center justify-center text-muted-foreground hover:text-accent hover:border-accent/40 transition-all">
                                 <Instagram className="w-5 h-5" />
                             </a>
-                            <a href="#" className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-muted-foreground hover:text-accent hover:border-accent/40 transition-all">
+                            <a href="https://youtube.com/@powerdigitalmedia" target="_blank" rel="noopener noreferrer" aria-label="Subscribe to our YouTube channel" className="w-12 h-12 rounded-full glass-card flex items-center justify-center text-muted-foreground hover:text-accent hover:border-accent/40 transition-all">
                                 <Youtube className="w-5 h-5" />
                             </a>
-                            <a href="#" className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-muted-foreground hover:text-accent hover:border-accent/40 transition-all">
+                            <a href="https://twitter.com/powerdigitalms" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Twitter" className="w-12 h-12 rounded-full glass-card flex items-center justify-center text-muted-foreground hover:text-accent hover:border-accent/40 transition-all">
                                 <Twitter className="w-5 h-5" />
                             </a>
-                            <a href="mailto:info@powerdigitalmedia.org" className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-muted-foreground hover:text-accent hover:border-accent/40 transition-all">
+                            <a href="mailto:info@powerdigitalmedia.org" aria-label="Send us an email" className="w-12 h-12 rounded-full glass-card flex items-center justify-center text-muted-foreground hover:text-accent hover:border-accent/40 transition-all">
                                 <Mail className="w-5 h-5" />
                             </a>
                         </div>

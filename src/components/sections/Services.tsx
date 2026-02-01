@@ -84,9 +84,10 @@ export default function Services() {
                             className="order-2 md:order-1 relative aspect-video rounded-[2.5rem] overflow-hidden border border-white/10"
                         >
                             <Image
-                                src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop"
+                                src="/images/captures/live-event-gimbal.png"
                                 alt="Event Production"
                                 fill
+                                priority
                                 className="object-cover group-hover:scale-110 transition-transform duration-700"
                             />
                             <div className="absolute inset-0 bg-accent/20 mix-blend-overlay" />

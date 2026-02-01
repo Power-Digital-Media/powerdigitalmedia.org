@@ -185,6 +185,7 @@ export default function ThreeDCarousel() {
             <div className="absolute -bottom-12 md:-bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-8 md:gap-16 z-50">
                 <button
                     onClick={handlePrev}
+                    aria-label="Previous project"
                     className="group w-14 h-14 md:w-20 md:h-20 rounded-full border border-white/10 flex items-center justify-center hover:border-cyan-400/50 hover:bg-cyan-400/5 transition-all active:scale-90"
                 >
                     <ArrowLeft className="w-5 h-5 md:w-8 md:h-8 group-hover:-translate-x-2 transition-transform" />
@@ -194,6 +195,7 @@ export default function ThreeDCarousel() {
                     {projects.map((_, i) => (
                         <button
                             key={i}
+                            aria-label={`Go to project ${i + 1}`}
                             onClick={() => {
                                 setIsAutoSpin(false);
                                 // Find shortest path for manual navigation
@@ -203,13 +205,16 @@ export default function ThreeDCarousel() {
                                 setRotation(rotation - diff * rotateStep);
                                 setActiveIndex(i);
                             }}
-                            className={`h-1 md:h-1.5 rounded-full transition-all duration-1000 ${activeIndex === i ? 'w-12 md:w-24 bg-cyan-400 shadow-[0_0_25px_rgba(34,211,238,0.6)]' : 'w-3 md:w-6 bg-white/10 hover:bg-white/40'}`}
-                        />
+                            className="group p-4" // Increasing hit area
+                        >
+                            <div className={`h-1 md:h-1.5 rounded-full transition-all duration-1000 ${activeIndex === i ? 'w-12 md:w-24 bg-cyan-400 shadow-[0_0_25px_rgba(34,211,238,0.6)]' : 'w-3 md:w-6 bg-white/10 group-hover:bg-white/40'}`} />
+                        </button>
                     ))}
                 </div>
 
                 <button
                     onClick={handleNext}
+                    aria-label="Next project"
                     className="group w-14 h-14 md:w-20 md:h-20 rounded-full border border-white/10 flex items-center justify-center hover:border-cyan-400/50 hover:bg-cyan-400/5 transition-all active:scale-90"
                 >
                     <ArrowRight className="w-5 h-5 md:w-8 md:h-8 group-hover:translate-x-2 transition-transform" />
