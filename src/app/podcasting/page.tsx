@@ -17,42 +17,42 @@ import Image from "next/image";
 
 const tiers = [
     {
-        name: "Foundational Broadcast",
+        name: "Broadcaster Entry",
         price: "500",
-        description: "Your proven entry-level protocol. High-fidelity audio messaging with cinematic single-cam capture.",
+        description: "High-frequency weekly presence on the Power Digital Network. Perfect for building immediate authority.",
         features: [
-            "4 Episodes (1 Session/mo)",
-            "Up to 4 In-Studio Guests",
-            "Quad RØDE PodMic Array",
-            "Professional Engineering",
-            "YouTube/FB/Twitch Sync"
+            "4 Studio Sessions/mo (Weekly)",
+            "Live Stream to PD Platforms*",
+            "YouTube, FB, Kick, Rumble",
+            "Raw 4K Video + Audio Files",
+            "Professional Studio Engineer"
         ],
         accent: "blue"
     },
     {
         name: "Growth Engine",
         price: "1,000",
-        description: "The sweet spot for brand authority. Multi-cam 4K production + high-velocity viral clipping.",
+        description: "The viral choice for personal brands. Full multi-cam production plus high-velocity social extractions.",
         features: [
-            "4 Episodes (4K Video)",
-            "Quad-Platform Live Stream",
-            "4 Viral Social Clips",
-            "Multi-Mic + Dual-Cam AI",
-            "Post-Production & SEO"
+            "4 Studio Sessions/mo (Weekly)",
+            "Everything in 'Broadcaster'",
+            "4 Viral Social Clips (1/wk)",
+            "Automated Distribution Suite",
+            "SEO & GEO Optimization"
         ],
         accent: "blue",
         popular: true
     },
     {
-        name: "Authority Suite",
+        name: "Syndication Suite",
         price: "1,500",
-        description: "The total production takeover. Cinematic multi-cam, viral synchronization, and global distribution.",
+        description: "The total agency production takeover. Maximum reach and hands-off executive management.",
         features: [
-            "4 Episodes (Multi-Cam 4K)",
-            "Quad-Platform Live Stream",
-            "8 Viral Social Clips",
-            "Full Quad-Cam AI Array",
-            "Dedicated Show Manager"
+            "4 Studio Sessions/mo (Weekly)",
+            "Everything in 'Growth'",
+            "12 Viral Social Clips (3/wk)",
+            "Dedicated Show Manager",
+            "SEO Blog Show Notes Sync"
         ],
         accent: "blue"
     }
@@ -222,8 +222,14 @@ export default function PodcastingPage() {
                             </motion.div>
                         ))}
                     </div>
+                    <div className="mt-16 text-center">
+                        <p className="text-[10px] text-foreground/30 uppercase tracking-[0.3em] font-medium max-w-2xl mx-auto">
+                            * Broadcaster Entry sessions are streamed to PD Media channels (FB, YT, Kick, Rumble). RAW recordings are delivered to the client for personal/external use.
+                        </p>
+                    </div>
                 </div>
             </section>
+
 
             {/* Technical Schematic Overlay */}
             <TechSchematic />
