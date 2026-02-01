@@ -1,0 +1,38 @@
+name: ClaudeBot Autonomous Intelligence
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Run at 00:00 UTC every day
+  workflow_dispatch: # Allow manual triggering from GitHub UI
+
+jobs:
+  research-and-inject:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Execute ClaudeBot Intelligence Loop
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+        run: npm run claudebot
+
+      - name: Commit and Push Evolution
+        run: |
+          git config --global user.name "ClaudeBot [Bot]"
+          git config --global user.email "claudebot@powerdigitalmedia.org"
+          git add src/data/blogPosts.ts
+          git diff --quiet && git diff --staged --quiet || (git commit -m "feat(agent): autonomous intelligence update - $(date +'%Y-%m-%d')" && git push)

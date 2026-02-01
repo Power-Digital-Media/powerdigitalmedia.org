@@ -70,7 +70,16 @@ export default function BlogPage() {
                                                 fill
                                                 className="object-cover transition-transform duration-700 group-hover:scale-110"
                                             />
-                                            <div className="absolute top-6 left-6 px-4 py-1.5 rounded-full bg-background/80 backdrop-blur-md text-xs font-bold text-accent border border-white/5">
+                                            <div className={`absolute top-6 left-6 px-4 py-1.5 rounded-full backdrop-blur-md text-[10px] font-black uppercase tracking-[0.2em] border flex items-center gap-2 ${post.category === "Daily Intel"
+                                                    ? "bg-accent/20 border-accent/40 text-accent"
+                                                    : "bg-background/80 border-white/5 text-muted-foreground"
+                                                }`}>
+                                                {post.category === "Daily Intel" && (
+                                                    <span className="relative flex h-2 w-2">
+                                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-accent shadow-[0_0_8px_rgba(59,130,246,0.8)]"></span>
+                                                    </span>
+                                                )}
                                                 {post.category}
                                             </div>
                                         </div>

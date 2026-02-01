@@ -135,16 +135,34 @@ export default function BlogPostDetail() {
                                     h2: ({ ...props }) => <h2 className="text-4xl font-bold mt-20 mb-8 tracking-tight" {...props} />,
                                     h3: ({ ...props }) => <h3 className="text-2xl font-bold mt-12 mb-6 tracking-tight" {...props} />,
                                     p: ({ ...props }) => <p className="text-xl text-foreground/80 leading-[1.8] mb-10" {...props} />,
-                                    ul: ({ ...props }) => <ul className="space-y-6 mb-12 list-none !pl-0" {...props} />,
-                                    li: ({ ...props }) => (
-                                        <li className="flex items-start gap-4 text-xl text-foreground/70" {...props}>
-                                            <div className="w-2 h-2 rounded-full bg-accent mt-3.5 shrink-0" />
-                                            <span>{props.children}</span>
-                                        </li>
-                                    ),
+                                    ul: ({ ...props }) => <ul className="list-disc pl-8 mb-10 space-y-4 text-xl text-foreground/70" {...props} />,
+                                    li: ({ ...props }) => <li className="pl-2" {...props} />,
                                     em: ({ ...props }) => <em className="text-accent italic font-medium" {...props} />,
                                     blockquote: ({ ...props }) => (
-                                        <blockquote className="border-l-4 border-accent pl-8 py-4 my-12 text-2xl font-medium text-foreground italic leading-relaxed" {...props} />
+                                        <blockquote className="border-l-4 border-accent bg-accent/5 p-8 my-12 rounded-2xl italic text-2xl" {...props} />
+                                    ),
+                                    a: ({ ...props }) => (
+                                        <Link
+                                            href={props.href || "#"}
+                                            target={props.href?.startsWith("http") ? "_blank" : undefined}
+                                            rel={props.href?.startsWith("http") ? "noopener noreferrer" : undefined}
+                                            className="text-accent hover:text-white underline decoration-accent/30 hover:decoration-white transition-all underline-offset-4 font-bold"
+                                            {...props}
+                                        />
+                                    ),
+                                    img: ({ ...props }) => (
+                                        <div className="my-16 relative">
+                                            <div className="absolute -inset-4 bg-accent/5 blur-3xl rounded-[3rem] -z-10" />
+                                            <img
+                                                className="w-full rounded-[2.5rem] border border-white/10 shadow-2xl hover:border-accent/30 transition-all duration-500"
+                                                {...props}
+                                            />
+                                            {props.alt && (
+                                                <p className="text-center text-sm text-muted-foreground mt-4 font-medium tracking-wide">
+                                                    {props.alt}
+                                                </p>
+                                            )}
+                                        </div>
                                     ),
                                 }}
                             >
