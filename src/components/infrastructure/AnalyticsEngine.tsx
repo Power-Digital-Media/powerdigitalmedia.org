@@ -29,7 +29,7 @@ export default function AnalyticsEngine() {
                 <>
                     <Script
                         id="fb-pixel"
-                        strategy="lazyOnload"
+                        strategy="worker"
                         dangerouslySetInnerHTML={{
                             __html: `
                                 !function(f,b,e,v,n,t,s)
