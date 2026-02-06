@@ -3,7 +3,7 @@ export interface GearItem {
     asin?: string;
     name: string;
     brand: string;
-    category: 'Audio' | 'PC' | 'Visual' | 'Lighting' | 'Build Kits' | 'Monitors' | 'Essentials';
+    category: 'Audio' | 'PC' | 'Visual' | 'Lighting' | 'Build Kits' | 'Monitors' | 'Essentials' | 'Chassis' | 'Computing' | 'Storage' | 'Power' | 'Cooling';
     useCase?: 'Streaming' | 'Editing' | 'Podcasting' | 'All-in-One' | 'Gaming';
     level?: 'Entry' | 'Pro' | 'Elite';
     description: string;
@@ -568,5 +568,256 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/elgato_wave_3.webp',
         amazonLink: 'https://amzn.to/4btsD4e',
         isFeatured: false
+    },
+    // --- CHASSIS PROTOCOL ---
+    {
+        id: 'hyte-y70-touch',
+        asin: 'B0C88T4X2Y',
+        name: 'Hyte Y70 Touch',
+        brand: 'Hyte',
+        category: 'Chassis',
+        useCase: 'All-in-One',
+        level: 'Elite',
+        description: 'The viral dual-screen sensation. A massive 14.1-inch 4K multi-touch screen integrated into the corner glass.',
+        technicalSpecs: ['Integrated 4K Touchscreen', 'Dual Chamber Design', 'Vertical GPU Mount Included'],
+        priceRange: '$$$$',
+        image: '/images/gear/hyte_y70.webp',
+        amazonLink: 'https://amzn.to/3UEp8tF',
+        subCategory: 'Mid-Tower',
+        isFeatured: true
+    },
+    {
+        id: 'lian-li-o11-evo-xl',
+        asin: 'B0CC3515L6',
+        name: 'O11 Dynamic EVO XL',
+        brand: 'Lian Li',
+        category: 'Chassis',
+        useCase: 'All-in-One',
+        level: 'Pro',
+        description: 'The ultimate showcase chassis. Reversible modes, seamless glass panels, and room for three 420mm radiators.',
+        technicalSpecs: ['Reversible Orientation', 'Seamless Tempered Glass', 'E-ATX Support'],
+        priceRange: '$$$',
+        image: '/images/gear/lian_li_o11_xl.webp',
+        amazonLink: 'https://amzn.to/3UiOJKN',
+        subCategory: 'Full-Tower',
+        isFeatured: false
+    },
+    {
+        id: 'nzxt-h6-flow',
+        asin: 'B0C89F1V5S',
+        name: 'H6 Flow RGB',
+        brand: 'NZXT',
+        category: 'Chassis',
+        useCase: 'Gaming',
+        level: 'Entry',
+        description: 'A compact dual-chamber masterpiece optimized for airflow with angled front fans.',
+        technicalSpecs: ['Dual Chamber', '3x 120mm RGB Fans', 'High Airflow Panels'],
+        priceRange: '$$',
+        image: '/images/gear/nzxt_h6_flow.webp',
+        amazonLink: 'https://amzn.to/3Uip5Hq',
+        subCategory: 'Mid-Tower',
+        isFeatured: false
+    },
+
+    // --- COMPUTING CORE (CPU) PROTOCOL ---
+    {
+        id: 'intel-i9-14900ks',
+        asin: 'B0D1DPBH6Z',
+        name: 'Core i9-14900KS',
+        brand: 'Intel',
+        category: 'Computing',
+        useCase: 'Editing',
+        level: 'Elite',
+        description: 'The world\'s fastest desktop processor. 6.2GHz max clock speed for unparalleled rendering and gaming.',
+        technicalSpecs: ['24 Cores (8P + 16E)', '6.2 GHz Max Turbo', '150W Base Power'],
+        priceRange: '$$$$$',
+        image: '/images/gear/intel_i9_14900ks.webp',
+        amazonLink: 'https://amzn.to/3UjM7vD',
+        subCategory: 'Processors',
+        isFeatured: true
+    },
+    {
+        id: 'intel-i7-14700k',
+        asin: 'B0CGRQZWNS',
+        name: 'Core i7-14700K',
+        brand: 'Intel',
+        category: 'Computing',
+        useCase: 'Streaming',
+        level: 'Pro',
+        description: 'The sweet spot for high-end creators. Increased E-cores make it a multitasking monster.',
+        technicalSpecs: ['20 Cores (8P + 12E)', '5.6 GHz Max Turbo', 'Intel UHD 770'],
+        priceRange: '$$$',
+        image: '/images/gear/intel_i7_14700k.webp',
+        amazonLink: 'https://amzn.to/3JCKu5s',
+        subCategory: 'Processors',
+        isFeatured: false
+    },
+    {
+        id: 'intel-i5-13600k',
+        asin: 'B0BCDR9M33',
+        name: 'Core i5-13600K',
+        brand: 'Intel',
+        category: 'Computing',
+        useCase: 'Gaming',
+        level: 'Entry',
+        description: 'The efficiency king. Enough power for 4K gaming and light editing without breaking the bank.',
+        technicalSpecs: ['14 Cores (6P + 8E)', '5.1 GHz Max Turbo', 'Overclockable'],
+        priceRange: '$$',
+        image: '/images/gear/intel_i5.webp',
+        amazonLink: 'https://amzn.to/3JzVp1M',
+        subCategory: 'Processors',
+        isFeatured: false
+    },
+
+    // --- STORAGE PROTOCOL ---
+    {
+        id: 'samsung-990-pro-4tb',
+        asin: 'B0C8Z6J333',
+        name: '990 PRO 4TB NVMe',
+        brand: 'Samsung',
+        category: 'Storage',
+        useCase: 'Editing',
+        level: 'Elite',
+        description: 'Massive capacity meets blistering speed. The ultimate drive for 8K footage libraries.',
+        technicalSpecs: ['7,450 MB/s Read', '4TB Capacity', 'Heatsink Included'],
+        priceRange: '$$$',
+        image: '/images/gear/samsung_990_pro.webp',
+        amazonLink: 'https://amzn.to/3xO6oNM',
+        subCategory: 'NVMe SSD',
+        isFeatured: true
+    },
+    {
+        id: 'wd-black-sn850x',
+        asin: 'B0B7CMZ3QH',
+        name: 'SN850X 2TB NVMe',
+        brand: 'WD_BLACK',
+        category: 'Storage',
+        useCase: 'Gaming',
+        level: 'Pro',
+        description: 'Optimized for top-tier gaming with predictive loading technology.',
+        technicalSpecs: ['7,300 MB/s Read', 'Game Mode 2.0', 'RGB Heatsink Option'],
+        priceRange: '$$',
+        image: '/images/gear/wd_black_sn850x.webp',
+        amazonLink: 'https://amzn.to/49Kty4r',
+        subCategory: 'NVMe SSD',
+        isFeatured: false
+    },
+    {
+        id: 'crucial-p3-plus',
+        asin: 'B0B25NXWC7',
+        name: 'P3 Plus 1TB NVMe',
+        brand: 'Crucial',
+        category: 'Storage',
+        useCase: 'All-in-One',
+        level: 'Entry',
+        description: 'Gen4 speed at a Gen3 price. The perfect boot drive for budget-conscious builds.',
+        technicalSpecs: ['5,000 MB/s Read', 'Gen4 x4 M.2', 'Micron 3D NAND'],
+        priceRange: '$',
+        image: '/images/gear/crucial_p3_plus.webp',
+        amazonLink: 'https://amzn.to/3xDd8pL',
+        subCategory: 'NVMe SSD',
+        isFeatured: false
+    },
+
+    // --- POWER PROTOCOL ---
+    {
+        id: 'msi-meg-ai1300p',
+        asin: 'B0B4345YV7',
+        name: 'MEG Ai1300P PCIE5',
+        brand: 'MSI',
+        category: 'Power',
+        useCase: 'Editing',
+        level: 'Elite',
+        description: 'Software-controlled power monitoring. Check wattage and efficiency in real-time.',
+        technicalSpecs: ['1300W Platinum', 'ATX 3.0 Native', 'MSI Center Support'],
+        priceRange: '$$$',
+        image: '/images/gear/msi_ai1300p.webp',
+        amazonLink: 'https://amzn.to/3W0iV4s',
+        subCategory: 'Power Supply',
+        isFeatured: true
+    },
+    {
+        id: 'corsair-rm1000x-shift',
+        asin: 'B0BP8B6M7Y',
+        name: 'RM1000x Shift',
+        brand: 'Corsair',
+        category: 'Power',
+        useCase: 'All-in-One',
+        level: 'Pro',
+        description: 'Revolutionary design with side-mounted connectors for the easiest cable management ever.',
+        technicalSpecs: ['1000W Gold', 'Side-Mounted Interface', 'ATX 3.0 Compliant'],
+        priceRange: '$$',
+        image: '/images/gear/corsair_shift_psu.webp',
+        amazonLink: 'https://amzn.to/3Joq4qL',
+        subCategory: 'Power Supply',
+        isFeatured: false
+    },
+    {
+        id: 'corsair-rm750e',
+        asin: 'B0BYR1BXC6',
+        name: 'RM750e Fully Modular',
+        brand: 'Corsair',
+        category: 'Power',
+        useCase: 'Entry',
+        level: 'Entry',
+        description: 'Low-noise, compact, and fully modular. The gold standard for mid-range builds.',
+        technicalSpecs: ['750W Gold', 'Low-Noise Operation', 'Compact 140mm Size'],
+        priceRange: '$',
+        image: '/images/gear/corsair_rm750e.webp',
+        amazonLink: 'https://amzn.to/4bf8w1M',
+        subCategory: 'Power Supply',
+        isFeatured: false
+    },
+
+    // --- COOLING PROTOCOL (Expansion) ---
+    {
+        id: 'corsair-icue-link-h150i',
+        asin: 'B0C6B37L5H',
+        name: 'iCUE Link H150i LCD',
+        brand: 'Corsair',
+        category: 'Cooling',
+        useCase: 'Editing',
+        level: 'Elite',
+        description: 'The smartest AIO ever. Single-cable daisy chaining and a gorgeous IPS LCD screen.',
+        technicalSpecs: ['360mm Radiator', 'iCUE Link System', 'IPS LCD Screen'],
+        priceRange: '$$$',
+        image: '/images/gear/corsair_link_aio.webp',
+        amazonLink: 'https://amzn.to/3xN9M5L',
+        subCategory: 'Liquid Cooling',
+        isFeatured: true
+    },
+    {
+        id: 'deepcool-ak620-digital',
+        asin: 'B0CC23126W',
+        name: 'AK620 Digital',
+        brand: 'Deepcool',
+        category: 'Cooling',
+        useCase: 'Gaming',
+        level: 'Entry',
+        description: 'High-performance air cooling with a sleek digital temperature display on top.',
+        technicalSpecs: ['Dual Tower Layout', 'Real-time Temp Display', '260W TDP'],
+        priceRange: '$',
+        image: '/images/gear/deepcool_ak620.webp',
+        amazonLink: 'https://amzn.to/3vXYx4B',
+        subCategory: 'Air Cooling',
+        isFeatured: false
+    },
+
+    // --- GPU EXPANSION ---
+    {
+        id: 'asus-proart-4080-super',
+        asin: 'B0CSZ54L3S',
+        name: 'ProArt RTX 4080 Super',
+        brand: 'ASUS',
+        category: 'PC',
+        useCase: 'Editing',
+        level: 'Pro',
+        description: 'Elegant, minimalist design optimized for creative workflows. No RGB, just raw power.',
+        technicalSpecs: ['16GB GDDR6X', '2.5-Slot Design', '0dB Technology'],
+        priceRange: '$$$$',
+        image: '/images/gear/asus_proart_4080.webp',
+        amazonLink: 'https://amzn.to/3UjN3dM',
+        subCategory: 'GPUs',
+        isFeatured: true
     }
 ];

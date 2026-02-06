@@ -35,4 +35,4 @@ jobs:
           git config --global user.name "ClaudeBot [Bot]"
           git config --global user.email "claudebot@powerdigitalmedia.org"
           git add src/data/blogPosts.ts
-          git diff --quiet && git diff --staged --quiet || (git commit -m "feat(agent): autonomous intelligence update - $(date +'%Y-%m-%d')" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "feat(agent): autonomous intelligence update - $(date +'%Y-%m-%d') [skip ci]" && git push)

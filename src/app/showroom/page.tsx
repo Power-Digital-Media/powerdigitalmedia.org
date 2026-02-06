@@ -10,7 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingBag, ChevronRight } from "lucide-react";
 
 export default function ShowroomPage() {
-    const categories = ["All", "Audio", "PC", "Visual", "Monitors", "Lighting", "Build Kits", "Essentials"];
+    const categories = ["All", "Audio", "PC", "Visual", "Monitors", "Chassis", "Computing", "Storage", "Power", "Cooling", "Lighting", "Build Kits", "Essentials"];
     const levels = ["All", "Elite", "Pro", "Entry"];
     const useCases = ["All", "Streaming", "Editing", "Podcasting", "Gaming"];
 
