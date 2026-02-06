@@ -68,8 +68,10 @@ async function runResearch(vertical: any) {
     - Authoritative: Use industry terminology and specific technical specifications.
 
     CRITICAL REQUIREMENTS:
-    1. OUTBOUND AUTHORITY LINKS: You MUST include 2-3 "do-follow" style hyperlinks to external authoritative sources (e.g., The Verge, TechCrunch, Manufacturer Press Releases) that verify your claims.
-    2. INTERNAL SHOWROOM SYNERGY: You have access to the "Internal Showroom Inventory" provided in the prompt. You MUST scan this list. If you discuss a product category (e.g. microphones, cameras, GPUs), you MUST explicitly mention our specific product and link to it using the exact internal path provided. THIS IS MANDATORY FOR CONVERSION.
+    1. SHOWROOM CONVERSION PROTOCOL (TOP PRIORITY): You have access to the "Internal Showroom Inventory" below. If you mention ANY product type (e.g. microphones, cameras, GPUs) that matches our inventory, you MUST explicitly mention our specific product and link to it using the exact internal path provided (e.g., [Shure SM7B](/showroom/audio/shure-sm7b)). 
+       - RULE: DO NOT link to external manufacturer sites (shure.com, rode.com) if we carry the item. Link to US.
+       - RULE: Only use external links for citations or products we do NOT carry.
+    2. OUTBOUND AUTHORITY LINKS: Include 2-3 "do-follow" links to authoritative news sources (The Verge, TechCrunch) ONLY for verification of news/specs, NOT for buying products.
 
     Structure: Single H2 title on first line, then H3 subsections. Bold products and brands. End with a horizontal rule and "🛡️ Deploy the Protocol" section.`;
 
