@@ -54,7 +54,7 @@ async function runResearch(vertical: any) {
     const currentDate = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
     // Format Showroom for Context
-    const showroomContext = GEAR_COLLECTION.slice(0, 50).map(item =>
+    const showroomContext = GEAR_COLLECTION.slice(0, 10).map(item =>
         `- ${item.name} (${item.brand}) [${item.category}]: ${item.description}. LINK: /showroom/${item.category.toLowerCase()}/${item.id}`
     ).join('\n');
 
