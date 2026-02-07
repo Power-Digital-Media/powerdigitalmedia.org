@@ -10,6 +10,11 @@ import { blogPosts } from "@/data/blogPosts";
 import Link from "next/link";
 
 export default function BlogPage() {
+    // Sort posts by date (newest first)
+    const sortedPosts = [...blogPosts].sort((a, b) =>
+        new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+
     return (
         <main className="relative min-h-screen bg-background text-foreground">
             <Navbar />
@@ -52,7 +57,7 @@ export default function BlogPage() {
             <section className="py-24 relative z-10">
                 <div className="container px-4 mx-auto">
                     <div className="grid gap-12 lg:grid-cols-3">
-                        {blogPosts.map((post, index) => (
+                        {sortedPosts.map((post, index) => (
                             <motion.article
                                 key={post.slug}
                                 initial={{ opacity: 0, y: 20 }}
@@ -71,8 +76,8 @@ export default function BlogPage() {
                                                 className="object-cover transition-transform duration-700 group-hover:scale-110"
                                             />
                                             <div className={`absolute top-6 left-6 px-4 py-1.5 rounded-full backdrop-blur-md text-[10px] font-black uppercase tracking-[0.2em] border flex items-center gap-2 ${post.category === "Daily Intel"
-                                                    ? "bg-accent/20 border-accent/40 text-accent"
-                                                    : "bg-background/80 border-white/5 text-muted-foreground"
+                                                ? "bg-accent/20 border-accent/40 text-accent"
+                                                : "bg-background/80 border-white/5 text-muted-foreground"
                                                 }`}>
                                                 {post.category === "Daily Intel" && (
                                                     <span className="relative flex h-2 w-2">
