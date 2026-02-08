@@ -16,14 +16,38 @@ dotenv.config();
 
 const VERTICALS = [
     { id: 'gear', name: 'Studio Tech', category: 'Daily Intel', searchQuery: 'latest studio hardware releases Jan Feb 2026' },
-    { id: 'software', name: 'Editing Protocols', category: 'Software', searchQuery: 'DaVinci Resolve 19 Premiere Pro 2026 software news' },
-    { id: 'ai', name: 'AI Intelligence', category: 'AI Tech', searchQuery: 'latest AI production tools early 2026' },
-    { id: 'design', name: 'Design Strategy', category: 'Web Design', searchQuery: 'modern high-end web design trends 2026' }
+    { id: 'compute', name: 'Compute Core', category: 'Hardware', searchQuery: 'NVIDIA 50-series RTX AMD Ryzen 9000 Intel Arrow Lake news 2026' },
+    { id: 'creative', name: 'Software Ecosystem', category: 'Software', searchQuery: 'DaVinci Resolve 19.5 Premiere Pro 2026 AI plugins software news' },
+    { id: 'ai', name: 'AI Intelligence', category: 'AI Tech', searchQuery: 'latest LLM agents OpenAI Google DeepMind early 2026' },
+    { id: 'workflow', name: 'Creative Velocity', category: 'Strategy', searchQuery: 'modern productivity workflows for digital media 2026' }
 ];
 
 // Initialize Providers
 const openai = process.env.OPENAI_API_KEY ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY }) : null;
 const genAI = process.env.GOOGLE_AI_KEY ? new GoogleGenerativeAI(process.env.GOOGLE_AI_KEY) : null;
+
+async function generateImage(title: string, vertical: string) {
+    if (!openai) return "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop";
+
+    try {
+        console.log(`   🎨 Visuals: Generating high-prestige asset for "${title}"...`);
+        const response = await openai.images.generate({
+            model: "dall-e-3",
+            prompt: `Cinematic top-down photography, dark moody studio lighting with cyan and deep blue accents, 
+            shallow depth of field, professional tech-noir aesthetic of ${title} related to ${vertical}. 
+            The image must feel like a native part of a high-end hardware showroom environment. 
+            8k resolution, photorealistic, technological excellence.`,
+            n: 1,
+            size: "1024x1024",
+            quality: "hd"
+        });
+
+        return response.data[0].url || "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop";
+    } catch (error: any) {
+        console.warn(`   ⚠️ Visuals: Generation failed (${error.message}). Reverting to default.`);
+        return "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop";
+    }
+}
 
 async function runResearch(vertical: any) {
     console.log(`📡 [${vertical.name.toUpperCase()}] Initiating Research...`);
@@ -64,14 +88,15 @@ async function runResearch(vertical: any) {
 
     TONE & DEPTH:
     - High-velocity, technical, and premium.
-    - Deep Research Mode: Aim for comprehensive depth (min 600-800 words).
-    - Authoritative: Use industry terminology and specific technical specifications.
+    - Authority Persona: You are a lead engineer/analyst. Use industry jargon, technical specs (TFLOPS, IPC, Bitrates), and benchmark data.
+    - Deep Research Mode: Aim for comprehensive depth (min 700-900 words).
 
     CRITICAL REQUIREMENTS:
-    1. SHOWROOM CONVERSION PROTOCOL (TOP PRIORITY): You have access to the "Internal Showroom Inventory" below. If you mention ANY product type (e.g. microphones, cameras, GPUs) that matches our inventory, you MUST explicitly mention our specific product and link to it using the exact internal path provided (e.g., [Shure SM7B](/showroom/audio/shure-sm7b)). 
+    1. SHOWROOM CONVERSION PROTOCOL (TOP PRIORITY): You have access to the "Internal Showroom Inventory" below. If you mention ANY product type (e.g. microphones, cameras, GPUs, CPUs) that matches our inventory, you MUST explicitly mention our specific product and link to it using the exact internal path provided (e.g., [Shure SM7B](/showroom/audio/shure-sm7b)). 
        - RULE: DO NOT link to external manufacturer sites (shure.com, rode.com) if we carry the item. Link to US.
        - RULE: Only use external links for citations or products we do NOT carry.
-    2. OUTBOUND AUTHORITY LINKS: Include 2-3 "do-follow" links to authoritative news sources (The Verge, TechCrunch) ONLY for verification of news/specs, NOT for buying products.
+    2. OUTBOUND AUTHORITY LINKS: Include 2-3 "do-follow" links to authoritative news sources (The Verge, TechCrunch, AnandTech, GamersNexus) ONLY for verification of news/specs, NOT for buying products.
+    3. SOCIAL PROOF & AUTHORITY INTEGRATION: You MUST find and include 1-2 reputable quotes from industry experts, lead engineers, or authoritative reviewers (e.g., The Verge, MacRumors, CNET, GamersNexus). These quotes must be properly attributed to the individual and source (e.g., "As Nilay Patel from The Verge noted...").
 
     Structure: Single H2 title on first line, then H3 subsections. Bold products and brands. End with a horizontal rule and "🛡️ Deploy the Protocol" section.`;
 
@@ -138,12 +163,15 @@ async function runResearch(vertical: any) {
     const title = firstLine.replace(/#{1,3}\s?/, '').replace(/\*/g, '').trim() || `Daily Intel: ${vertical.name}`;
     const slug = title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]/g, '').replace(/-+/g, '-');
 
+    // Phase 3: Visuals (DALL-E)
+    const imageUrl = await generateImage(title, vertical.name);
+
     return {
         slug, title,
         excerpt: content.split('\n').find(l => l.length > 40 && !l.startsWith('#'))?.slice(0, 180).replace(/\*/g, '').trim() + "...",
         date: new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
         category: vertical.category,
-        image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop",
+        image: imageUrl,
         author: { name: "ClaudeBot", role: "Autonomous Intelligence" },
         content: content.replace(firstLine, '').trim()
     };
