@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, CheckCircle2, ShoppingCart, Loader2 } from "lucide-react";
+import { ExternalLink, CheckCircle2, ShoppingCart, Loader2, ChevronRight } from "lucide-react";
+import Link from "next/link";
 import { GearItem } from "@/data/gear";
 
 interface GearCardProps {
@@ -82,13 +83,15 @@ export default function GearCard({ item }: GearCardProps) {
         >
             {/* Image Section */}
             <div className="relative aspect-[4/5] overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10 opacity-60" />
-                <img
-                    src={imgSrc}
-                    alt={item.name}
-                    onError={handleImageError}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
+                <Link href={`/showroom/${item.category.toLowerCase()}/${item.id}`}>
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10 opacity-60" />
+                    <img
+                        src={imgSrc}
+                        alt={item.name}
+                        onError={handleImageError}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-alias"
+                    />
+                </Link>
 
                 {/* Tags Section */}
                 <div className="absolute top-6 left-6 z-20 flex flex-col gap-2">
@@ -137,9 +140,11 @@ export default function GearCard({ item }: GearCardProps) {
             {/* Content Section */}
             <div className="p-8 flex flex-col flex-grow">
                 <div className="mb-4">
-                    <h3 className="text-2xl font-black tracking-tighter uppercase leading-none mb-2">
-                        {item.name}
-                    </h3>
+                    <Link href={`/showroom/${item.category.toLowerCase()}/${item.id}`}>
+                        <h3 className="text-2xl font-black tracking-tighter uppercase leading-none mb-2 hover:text-accent transition-colors cursor-pointer">
+                            {item.name}
+                        </h3>
+                    </Link>
                     <p className="text-foreground/40 text-xs font-light leading-relaxed">
                         {item.description}
                     </p>
@@ -155,17 +160,27 @@ export default function GearCard({ item }: GearCardProps) {
                     ))}
                 </div>
 
-                {/* Action */}
-                <a
-                    href={finalLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-4 bg-white text-slate-950 rounded-2xl font-black uppercase tracking-[0.2em] text-[10px] flex items-center justify-center gap-2 transition-all hover:bg-accent hover:scale-[1.02] active:scale-[0.98] border-glow shadow-xl group/btn cursor-pointer z-50"
-                >
-                    <ShoppingCart className="w-3 h-3 transition-transform group-hover/btn:-translate-y-0.5" />
-                    View on Amazon
-                    <ExternalLink className="w-3 h-3 opacity-30" />
-                </a>
+                {/* Actions */}
+                <div className="flex flex-col gap-3">
+                    <a
+                        href={finalLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full py-4 bg-white text-slate-950 rounded-2xl font-black uppercase tracking-[0.2em] text-[10px] flex items-center justify-center gap-2 transition-all hover:bg-accent hover:scale-[1.02] active:scale-[0.98] border-glow shadow-xl group/btn cursor-pointer"
+                    >
+                        <ShoppingCart className="w-3 h-3 transition-transform group-hover/btn:-translate-y-0.5" />
+                        Acquire on Amazon
+                        <ExternalLink className="w-3 h-3 opacity-30" />
+                    </a>
+
+                    <Link
+                        href={`/showroom/${item.category.toLowerCase()}/${item.id}`}
+                        className="w-full py-3 bg-white/5 text-white/60 rounded-xl font-bold uppercase tracking-[0.2em] text-[9px] flex items-center justify-center gap-2 border border-white/10 transition-all hover:bg-white/10 hover:text-white hover:border-white/20"
+                    >
+                        Learn More
+                        <ChevronRight className="w-3 h-3" />
+                    </Link>
+                </div>
             </div>
 
             {/* Ambient Glow */}

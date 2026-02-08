@@ -18,6 +18,9 @@ export interface GearItem {
     whatIsInTheBox?: string[];
     ourTake?: string;
     seoTags?: string[];
+    pros?: string[];
+    cons?: string[];
+    deploymentScenario?: string;
 }
 
 export const GEAR_COLLECTION: GearItem[] = [
@@ -52,7 +55,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         amazonLink: 'https://amzn.to/3MfyVKk',
         subCategory: 'Microphones',
         isFeatured: true,
-        seoTags: ['Shure SM7B', 'Podcast Microphone', 'Broadcast Audio', 'Vocal Mic', 'Best Mic for Streaming', 'Shure Microphone']
+        seoTags: ['Shure SM7B', 'Podcast Microphone', 'Broadcast Audio', 'Vocal Mic', 'Best Mic for Streaming', 'Shure Microphone'],
+        pros: [
+            'Iconic broadcast tone that defines the professional podcast sound',
+            'Superior rejection of background noise and room reflections',
+            'Built-in electromagnetic shielding against computer hum',
+            'Includes both high-frequency boost and low-cut filters'
+        ],
+        cons: [
+            'Requires a high-gain preamp or Cloudlifter to shine',
+            'Large physical footprint may block the screen in some setups'
+        ],
+        deploymentScenario: "The SM7B is the standard-issue vocal protocol for all Power Digital principal hosts. We deploy it in environments ranging from professional sound booths to untreated offices, relying on its dynamic capsule to deliver a rich, intimate broadcast voice regardless of the acoustic surroundings."
     },
     {
         id: 'rode-caster-pro-2',
@@ -85,7 +99,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         amazonLink: 'https://amzn.to/4asMG0z',
         subCategory: 'Mixers',
         isFeatured: true,
-        seoTags: ['Rodecaster Pro II', 'Audio Interface', 'Podcast Mixer', 'Streaming Mixer', 'Rode', 'XLR Interface']
+        seoTags: ['Rodecaster Pro II', 'Audio Interface', 'Podcast Mixer', 'Streaming Mixer', 'Rode', 'XLR Interface'],
+        pros: [
+            'Best-in-class Revolution Preamps drive even the quietest mics with zero hiss',
+            'Full APHEX processing suite gives your voice instance radio prominence',
+            'Dual USB-C interfaces allow for complex dual-PC or console/PC routing',
+            'Shatter-proof Gorilla Glass display and industrial-build tactile sliders'
+        ],
+        cons: [
+            'Significant desk footprint compared to compact interfaces',
+            'Advanced features may present a learning curve for complete beginners'
+        ],
+        deploymentScenario: "The Rødecaster Pro II is the 'Nerve Center' of the Power Digital flagship studio protocol. We deploy it as the primary audio routing engine for all multi-guest podcasts and high-velocity live streams where real-time mixing and onboard processing are mission-critical."
     },
     {
         id: 'shure-mv7-plus',
@@ -117,7 +142,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         amazonLink: 'https://amzn.to/3LTvkBD',
         subCategory: 'Microphones',
         isFeatured: false,
-        seoTags: ['Shure MV7+', 'USB Podcast Mic', 'Hybrid Microphone', 'Streaming Mic', 'Shure Audio']
+        seoTags: ['Shure MV7+', 'USB Podcast Mic', 'Hybrid Microphone', 'Streaming Mic', 'Shure Audio'],
+        pros: [
+            'Hybrid XLR/USB-C connectivity offers elite future-proofing',
+            'Built-in real-time denoiser effectively kills fan and AC noise',
+            'Auto-Level Mode ensures high-velocity creators never clip their audio',
+            'Tactile LED touch panel provides silent, latency-free muting'
+        ],
+        cons: [
+            'Requires the Shure MOTIV app for full protocol customization',
+            'Physical pop filter can be improved with an SM7B-style replacement'
+        ],
+        deploymentScenario: "We deploy the MV7+ as the primary 'Solo Creator' protocol. It is our standard recommendation for remote freelancers and home offices where an XLR interface is too complex, but broadcast-grade clarity is a non-negotiable requirement."
     },
     {
         id: 'rode-procaster',
@@ -133,7 +169,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/rode_procaster.webp',
         amazonLink: 'https://amzn.to/4rpCYTj',
         subCategory: 'Microphones',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            'Tailored frequency response for professional voice projection',
+            'Internal pop filter reduces plosives without a bulky external screen',
+            'Heavy-duty all-metal construction built for 24/7 broadcast use',
+            'Tight cardioid pattern rejects side and rear noise with surgical accuracy'
+        ],
+        cons: [
+            'Considerably heavy; requires a robust studio boom arm',
+            'Slightly brighter tone than the SM7B (may not suit all voices)'
+        ],
+        deploymentScenario: "We deploy the Procaster as our 'High-Value' broadcast protocol. It is the perfect middle-ground for creators who want the SM7B aesthetic and sound quality but are working with a 'Pro' rather than 'Elite' tier budget strategy."
     },
     {
         id: 'rode-caster-duo',
@@ -164,7 +211,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         amazonLink: 'https://amzn.to/46mp3oO',
         subCategory: 'Mixers',
         isFeatured: false,
-        seoTags: ['Rodecaster Duo', 'Compact Mixer', 'Podcast Interface', 'Streaming Audio', 'Rode Wireless']
+        seoTags: ['Rodecaster Duo', 'Compact Mixer', 'Podcast Interface', 'Streaming Audio', 'Rode Wireless'],
+        pros: [
+            'Same elite preamps and processing core as the full flagship RCPII',
+            'Compact form factor is ideal for solo creator desks',
+            'Integrated wireless receiver simplifies gear-rich setups',
+            'Dual USB-C connectivity remains standard for elite routing'
+        ],
+        cons: [
+            'Only two XLR inputs; limits future expansion for group pods',
+            'Less physical faders than the flagship model'
+        ],
+        deploymentScenario: "The Rødecaster Duo is the 'Special Ops' workstation in our showroom. We specify this protocol for solo YouTubers and two-person remote recording setups where space is limited but audio quality is a primary directive."
     },
     {
         id: 'rode-streamer-x',
@@ -195,7 +253,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         amazonLink: 'https://amzn.to/4bYkIfd',
         subCategory: 'Mixers',
         isFeatured: false,
-        seoTags: ['Rode Streamer X', 'Streaming Interface', 'Video Capture Card', '4K Streaming', 'Rode Audio']
+        seoTags: ['Rode Streamer X', 'Streaming Interface', 'Video Capture Card', '4K Streaming', 'Rode Audio'],
+        pros: [
+            'Consolidates high-end XLR audio and 4K video into one footprint',
+            'No-compromise Revolution Preamp drives pro mics with ease',
+            'Supports 4K60 HDR passthrough for elite console performance',
+            'Customizable SMART pads for high-velocity scene switching'
+        ],
+        cons: [
+            'Only one XLR input; strictly for solo creator protocols',
+            'Requires the Røde Central software for advanced logic configuration'
+        ],
+        deploymentScenario: "The Streamer X is the ultimate 'High-Velocity' bridge. We deploy it as the primary interface for our console gaming clients who need to merge 4K visuals with broadcast-grade audio without the clutter of discrete cards."
     },
     {
         id: 'elgato-stream-deck-plus',
@@ -226,7 +295,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         amazonLink: 'https://amzn.to/4c29jer',
         subCategory: 'Mixers',
         isFeatured: true,
-        seoTags: ['Elgato Stream Deck+', 'Streaming Controller', 'Audio Mixer', 'Tactile Interface', 'Production Tools']
+        seoTags: ['Elgato Stream Deck+', 'Streaming Controller', 'Audio Mixer', 'Tactile Interface', 'Production Tools'],
+        pros: [
+            'High-resolution dials provide surgical control over audio mixing',
+            'Dynamic touch strip adds a new layer of gesture-based control',
+            'Fully integrated with Wave Link for software-side audio routing',
+            'Infinite customization through the Elgato marketplace'
+        ],
+        cons: [
+            'LCD keys are fewer than the Stream Deck MK.2',
+            "Requires a 'Tactile First' mindset to fully utilize dials"
+        ],
+        deploymentScenario: "The Stream Deck + is the 'Command & Control' layer of every Power Digital workstation. We deploy it as the tactile dashboard for mixing mic inputs, lighting protocols, and camera focus in a single high-velocity interface."
     },
     {
         id: 'focusrite-scarlett-2i2',
@@ -257,7 +337,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         amazonLink: 'https://amzn.to/4qSNBye',
         subCategory: 'Mixers',
         isFeatured: false,
-        seoTags: ['Focusrite Scarlett 2i2', 'Audio Interface', '4th Gen Scarlett', 'USB Interface', 'XLR to USB']
+        seoTags: ['Focusrite Scarlett 2i2', 'Audio Interface', '4th Gen Scarlett', 'USB Interface', 'XLR to USB'],
+        pros: [
+            'Best-in-class 69dB gain range for power-hungry dynamic mics',
+            'Auto Gain setting for perfect levels in one click',
+            'Industrial-grade converters with 120dB dynamic range',
+            'Clip Safe protection is a lifesaver for high-energy recording'
+        ],
+        cons: [
+            'Requires USB-C power for full phantom power performance',
+            'No physical faders (tactile users may prefer Rodecaster)'
+        ],
+        deploymentScenario: "In the Power Digital ecosystem, the 2i2 is the primary choice for guest voiceover booths and entry-level home recording studios. We deploy this protocol whenever space and simplicity are prioritized without sacrificing the 'Elite' signal chain required for broadcast-ready audio."
     },
     {
         id: 'rode-caster-pro-2-bundle-zoom',
@@ -273,7 +364,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/rode_bundle_zoom.webp',
         amazonLink: 'https://amzn.to/4bsFCDa',
         subCategory: 'Bundles',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            'Turn-key protocol for immediate 4-person podcast deployment',
+            'Zoom ZDM-1 mics offer surprising broadcast clarity for the price',
+            'Includes all necessary cabling and monitoring hardware',
+            'Reliable high-output gain from the integrated RCP2 engine'
+        ],
+        cons: [
+            "Mics are less 'Elite' than higher-end Shure or Røde options",
+            'Desktop stands included are fixed-height (non-boom)'
+        ],
+        deploymentScenario: "This bundle is our 'Squad Protocol'. We deploy it for startup podcast teams who need to scale to four guests immediately without the high-velocity cost of individual high-end mic chains."
     },
     {
         id: 'rode-caster-pro-2-bundle-nt1',
@@ -306,7 +408,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         amazonLink: 'https://amzn.to/3NGpZOG',
         subCategory: 'Bundles',
         isFeatured: true,
-        seoTags: ['Rode NT1 Bundle', 'Podcast Studio Kit', 'Elite Audio Setup', 'Studio Microphone Bundle', 'Professional Podcasting']
+        seoTags: ['Rode NT1 Bundle', 'Podcast Studio Kit', 'Elite Audio Setup', 'Studio Microphone Bundle', 'Professional Podcasting'],
+        pros: [
+            'NT1 5th Gen mics deliver unparalleled studio-grade clarity',
+            'Revolution Preamps ensure 32-bit float recording is pristine',
+            'Professional boom arms provide elite cable management',
+            'Ultimate versatility for both speech and musical performance'
+        ],
+        cons: [
+            'Condenser mics require a more sound-treated environment',
+            'Significant setup time for four individual boom arms'
+        ],
+        deploymentScenario: "The NT1 Bundle is the 'Master Protocol' for our high-fidelity clients. We deploy this in professionally treated studios where the primary objective is capturing the most detailed, high-velocity audio possible for broadcast or music production."
     },
     {
         id: 'rode-caster-pro-2-bundle-multi',
@@ -322,7 +435,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/rode_bundle_pro.webp',
         amazonLink: 'https://amzn.to/4qPNDXB',
         subCategory: 'Bundles',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            'Balanced price-to-performance ratio for mid-tier studios',
+            'Includes high-fidelity over-ear monitoring for all guests',
+            'RCP2 core allows for future expansion and high-end routing',
+            'Industrial-grade SD card included for redundant recording'
+        ],
+        cons: [
+            "Mics may lack the signature tone of 'Elite' tier alternatives",
+            'Standard XLR cables included are basic (non-braided)'
+        ],
+        deploymentScenario: "We deploy the Multi-Mic Bundle as a 'Reliable Baseline' for corporate podcast suites. It provides 100% of the functional protocol required for professional recording without the 'Elite' price tag of the Founder's setup."
     },
     {
         id: 'rode-caster-pro-2-personal-bundle',
@@ -355,7 +479,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         amazonLink: 'https://amzn.to/45DTF50',
         subCategory: 'Bundles',
         isFeatured: true,
-        seoTags: ['Founders Podcast Bundle', 'Power Digital Gear', 'Rodecaster Studio Kit', 'Professional Podcast Setup', 'Best Mid-Range Studio']
+        seoTags: ['Founders Podcast Bundle', 'Power Digital Gear', 'Rodecaster Studio Kit', 'Professional Podcast Setup', 'Best Mid-Range Studio'],
+        pros: [
+            'Turn-key professional setup with zero compatibility issues',
+            'PSA1+ arms ensure a silent, ergonomic workspace',
+            'PodMics are virtually indestructible and sound great on any voice',
+            'Saves significant time in configuration and cable management'
+        ],
+        cons: [
+            'Requires a large desk footprint to mount four boom arms',
+            'High initial investment (though cheaper than buying separate components)'
+        ],
+        deploymentScenario: "This bundle is the foundation of the Power Digital 'High-Velocity' podcast protocol. We deploy the Founder's Bundle in mid-sized studios where we need four-person capacity and broadcast-grade presence without the complexity of discrete rack hardware."
     },
     {
         id: 'rode-caster-pro-2-podmic-bundle',
@@ -371,7 +506,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/rode_podmic_studio_bundle.webp',
         amazonLink: 'https://amzn.to/4t8dXhb',
         subCategory: 'Bundles',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            'PodMics offer the most robust durability in the showroom',
+            'TAPH500 headphones provide exceptional isolation in loud rooms',
+            'Integrated RCP2 DSP is perfectly tuned for the PodMic protocol',
+            'Best-in-class broadcast tone for aggressive vocal styles'
+        ],
+        cons: [
+            'Fixed-mount mics require a boom arm for optimal proximity',
+            'Heavier weight can cause sagging on budget mic arms'
+        ],
+        deploymentScenario: "The PodMic Studio Kit is our 'Indestructible Protocol' for education environments and high-traffic studios. We deploy this whenever gear longevity and consistent broadcast presence are the top-level directives."
     },
 
     // --- PC COMPONENTS PROTOCOL ---
@@ -405,7 +551,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         amazonLink: 'https://amzn.to/3X6W7Xq',
         subCategory: 'GPUs',
         isFeatured: true,
-        seoTags: ['RTX 4090', 'MSI Suprim X', 'Best GPU for Editing', 'NVIDIA 4090', '8K Video Editing GPU']
+        seoTags: ['RTX 4090', 'MSI Suprim X', 'Best GPU for Editing', 'NVIDIA 4090', '8K Video Editing GPU'],
+        pros: [
+            'Undisputed power for 8K video exports and real-time 3D rendering',
+            '24GB GDDR6X memory is essential for training local AI models',
+            'NVIDIA DLSS 3.0 provides staggering performance jumps in creative apps',
+            'Thermal protocol is oversized and remarkably silent under load'
+        ],
+        cons: [
+            'Generates massive heat—requires a well-ventilated chassis',
+            'Premium price point is a barrier for non-industrial workflows'
+        ],
+        deploymentScenario: "In the Power Digital production protocol, the RTX 4090 is reserved for 'Elite' tier editing workstations. It is the primary engine for high-velocity 8K color grading and local LLM fine-tuning, ensuring our creative pipeline remains devoid of computational bottlenecks."
     },
     {
         id: 'corsair-dominator-titanium',
@@ -421,7 +578,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/corsair_dominator.webp',
         amazonLink: 'https://amzn.to/4fL6G7r',
         subCategory: 'RAM',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            'DDR5 6600MHz frequency eliminates high-velocity rendering bottlenecks',
+            'Patented DHX cooling protocol ensures performance in high-heat scenarios',
+            'Forged aluminum construction for extreme industrial durability',
+            'Intricate RGB integration with the iCUE production ecosystem'
+        ],
+        cons: [
+            'High-profile height may interfere with some air cooler deployments',
+            'Premium pricing compared to standard-bandwidth DDR5 kits'
+        ],
+        deploymentScenario: "Dominator Titanium is the 'Reliability Layer' for our editing workstations. We deploy 64GB or 128GB configs specifically for 4K/8K timeline management where RAM-cached playback is the primary efficiency directive."
     },
     {
         id: 'msi-meg-pro-liquid',
@@ -437,7 +605,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/msi_liquid_cooler.webp',
         amazonLink: 'https://amzn.to/3V9FmYy',
         subCategory: 'Cooling',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            'Industrial-grade cooling protocol for over-clocked flagship CPUs',
+            'IPS display provides real-time telemetry capture and visualization',
+            'MEG Silent Gale fans offer a near-silent acoustic profile',
+            'Rotatable screen allows for modular mounting in any chassis orientation'
+        ],
+        cons: [
+            'Requires significant internal cable management for the hub',
+            'IPS display software adds a layer of background resource usage'
+        ],
+        deploymentScenario: "The S360 is the 'Thermal Protocol' for all Power Digital flagship PC builds. We deploy it as the mission-critical cooling layer for i9 and Threadripper systems where thermal throttling is not an acceptable outcome."
     },
 
     {
@@ -475,7 +654,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         amazonLink: 'https://amzn.to/40H6Y4b',
         subCategory: 'Cameras',
         isFeatured: true,
-        seoTags: ['Sony A7S III', 'Cinematic Camera', '4K 120p', 'Sony Alpha Video', 'Best Streaming Camera', 'Professional Video']
+        seoTags: ['Sony A7S III', 'Cinematic Camera', '4K 120p', 'Sony Alpha Video', 'Best Streaming Camera', 'Professional Video'],
+        pros: [
+            'Industry-leading low-light performance for moody studio sessions',
+            'Internal 10-bit 4:2:2 recording provides elite color grading flexibility',
+            'Highly reliable autofocus system ensures you never lose the shot',
+            'Full-size HDMI and dual card slots are essential for professional reliability'
+        ],
+        cons: [
+            'The 12MP resolution is lower than hybrid cameras for high-res photography',
+            'Requires expensive CFexpress Type A cards for the highest frame rates'
+        ],
+        deploymentScenario: "The A7S III is the primary capture protocol for the Power Digital principal studio. We deploy it as the main angle for high-stakes podcast recordings and cinematic brand storytelling, relying on its S-Cinetone color science to deliver a look that matches our 'Elite' production standard."
     },
     {
         id: 'obsbot-tiny-2',
@@ -508,7 +698,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         amazonLink: 'https://amzn.to/3YVfE4X',
         subCategory: 'Webcams',
         isFeatured: false,
-        seoTags: ['OBSBOT Tiny 2', '4K AI Webcam', 'Tracking Camera', 'Best Streaming Webcam', 'OBSBOT Camera']
+        seoTags: ['OBSBOT Tiny 2', '4K AI Webcam', 'Tracking Camera', 'Best Streaming Webcam', 'OBSBOT Camera'],
+        pros: [
+            'AI-powered auto-tracking maintains focus with high-velocity precision',
+            'Voice and gesture protocols allow for hands-free camera operation',
+            '1/1.5-inch CMOS sensor delivers best-in-class low-light webcam performance',
+            'Sleek dual-axis gimbal design provides professional-grade stabilization'
+        ],
+        cons: [
+            'Tracking logic occasionally focuses on background objects in busy rooms',
+            '4K capture at 30fps (60fps is reserved for 1080p resolution)'
+        ],
+        deploymentScenario: "The Tiny 2 is our 'Pro' webcam protocol. We deploy it for high-stakes remote presentations and 'Just Chatting' streams where the creator needs to move naturally without losing their visual framing."
     },
 
     // --- MONITOR PROTOCOL ---
@@ -543,7 +744,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         amazonLink: 'https://amzn.to/4hK9M2z',
         subCategory: 'Professional',
         isFeatured: true,
-        seoTags: ['Samsung Odyssey G9', 'Ultrawide Monitor', '49 inch Curved Monitor', 'Editing Monitor', 'Dual QHD']
+        seoTags: ['Samsung Odyssey G9', 'Ultrawide Monitor', '49 inch Curved Monitor', 'Editing Monitor', 'Dual QHD'],
+        pros: [
+            '49-inch curved landscape eliminates the distraction of multiple monitor bezels',
+            '1000R curvature reduces eye strain during 12-hour high-velocity editing sessions',
+            '240Hz refresh rate makes every scroll and timeline scrub feel liquid-smooth',
+            'Replacing two screens with one saves significant cable management overhead'
+        ],
+        cons: [
+            'Massive desk footprint requires a high-prestige, heavy-duty workspace',
+            'Curve is highly aggressive—may not be ideal for general office productivity'
+        ],
+        deploymentScenario: "In the Power Digital ecosystem, the G9 is the standard-issue monitor for 'Elite' tier editors. We deploy this unit whenever the workflow involves complex timelines in Premiere Pro or DaVinci Resolve, as the horizontal real estate allows for a much more intuitive understanding of content progression."
     },
     {
         id: 'msi-mag-274upf',
@@ -559,7 +771,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/msi_mag_monitor.webp',
         amazonLink: 'https://amzn.to/3Z9q9Lp',
         subCategory: 'Gaming',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            '4K UHD resolution provides surgical clarity for pixel-perfect editing',
+            'Rapid IPS panel offers elite 1ms response times for gaming protocols',
+            'Wide color gamut coverage ensures accurate grading for social media content',
+            'USB-C connectivity with power delivery simplifies laptop-based workflows'
+        ],
+        cons: [
+            'Contrast levels are standard for IPS (not OLED-tier blacks)',
+            'Maximum brightness may be lower than HDR1000 certified monitors'
+        ],
+        deploymentScenario: "We deploy the MAG 274UPF as the 'High-Value' 4K baseline. It is the perfect secondary monitor for an Elite setup or a primary command center for creators transitioning from 1080p to UHD protocols."
     },
 
     // --- BUDGET / ENTRY PROTOCOL ---
@@ -577,7 +800,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/msi_motherboard.webp',
         amazonLink: 'https://amzn.to/3Z8q9Lp',
         subCategory: 'Motherboards',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            'Industrial-strength power delivery for stable high-load computing',
+            'Extensive thermal protocol with enlarged heatsinks for VRMs and M.2',
+            'Integrated Wi-Fi 6E and 2.5G LAN for high-velocity data transfer',
+            'DDR5 ready for the next generation of creative bandwidth'
+        ],
+        cons: [
+            'Lacks the extreme overclocking headroom of Z790 series chipsets',
+            'Limited PCIe 5.0 support compared to higher-tier Elite motherboards'
+        ],
+        deploymentScenario: "The B760 Tomahawk is our 'Foundational Protocol'. We deploy it in entry-to-mid level builds where rock-solid reliability is the priority over aggressive overclocking requirements."
     },
     {
         id: 'corsair-vengeance-32',
@@ -592,7 +826,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         priceRange: '$',
         image: '/images/gear/corsair_dominator.webp',
         amazonLink: 'https://amzn.to/3V8Uj1x',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            'High-bandwidth DDR5 performance at a competitive price point',
+            'Low-profile design ensures compatibility with large air cooling units',
+            'Full iCUE suite integration for synchronized visual protocols',
+            'Lifetime warranty provides industrial-grade peace of mind'
+        ],
+        cons: [
+            'Lacks the premium forged aluminum build of the Titanium series',
+            'Lower maximum frequency ceilings than Elite-tier memory kits'
+        ],
+        deploymentScenario: "Vengeance RGB is our 'Standard Issue' memory protocol. We deploy 32GB kits as the baseline for all entry-level streaming builds to ensure fluid multitasking and reliable system timing."
     },
     {
         id: 'elgato-wave-3',
@@ -608,7 +853,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/elgato_wave_3.webp',
         amazonLink: 'https://amzn.to/4btsD4e',
         subCategory: 'Microphones',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            'Proprietary ClipGuard technology prevents digital clipping automatically',
+            'Seamless integration with Wave Link for advanced software-side mixing',
+            'Tactile mute sensor with LED indicator for silent stream management',
+            'High-resolution 24-bit / 96kHz analog-to-digital conversion'
+        ],
+        cons: [
+            'Condenser capsule captures more room noise than dynamic alternatives',
+            "Requires the Elgato ecosystem to unlock its full 'Elite' potential"
+        ],
+        deploymentScenario: "The Wave:3 is our 'Plug-and-Play' protocol for streamers. We deploy it as the baseline for gaming setups where the user needs a high-quality mic and a digital mixer without the complexity of XLR cables."
     },
     {
         id: 'rode-podmic',
@@ -624,7 +880,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/rode_podmic.webp', // Fallback will trigger if not found
         amazonLink: 'https://amzn.to/4rnbkGn',
         subCategory: 'Microphones',
-        isFeatured: true
+        isFeatured: true,
+        pros: [
+            'Tailored for voice applications with a rich, broadcast-ready tone',
+            'Industrial-grade all-metal construction is virtually indestructible',
+            'Integrated swing mount allows for flexible, high-velocity positioning',
+            'Internal pop filter reduces plosives while maintaining vocal presence'
+        ],
+        cons: [
+            'Requires a high-gain interface or Cloudlifter for optimal signal-to-noise',
+            'Heavier than average; requires a sturdy mic arm protocol'
+        ],
+        deploymentScenario: "We deploy the PodMic as the 'Industrial Standard' for multi-guest podcast studios. Its ability to take a beating while delivering consistent broadcast audio makes it the mission-critical choice for high-traffic environments."
     },
     {
         id: 'msi-katana-15',
@@ -640,7 +907,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/msi_katana_15.webp',
         amazonLink: 'https://amzn.to/4fL6G7r',
         subCategory: 'Laptops',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            'High-velocity entry point for mobile editing and 4K recording',
+            'Dedicated RTX 4050 GPU accelerates video encoding and AI tasks',
+            '144Hz high-refresh display ensures fluid visual feedback during edits',
+            'Cooler Boost 5 thermal protocol maintains performance under heavy loads'
+        ],
+        cons: [
+            'Battery life is limited during intensive high-load creative sessions',
+            "Chassis is more utilitarian than our higher-tier 'Elite' workstation options"
+        ],
+        deploymentScenario: "The Katana 15 is our 'Mobile Field' protocol. We deploy it for creators who need a portable editing station that can handle high-velocity creative work on the go without the price tag of a full desktop flagship."
     },
     // --- ESSENTIALS PROTOCOL ---
     {
@@ -691,7 +969,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/sennheiser_hd25.webp',
         amazonLink: 'https://amzn.to/3LUSXd5',
         subCategory: 'Headphones',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            'Legendary industrial durability with fully replaceable components',
+            'Extremely high SPL capability for monitoring in loud environments',
+            'Lightweight split-headband design ensures comfort during long sessions',
+            'Punchy, authoritative bass response ideal for beat-matching and tracking'
+        ],
+        cons: [
+            'On-ear design may cause discomfort after several hours compared to over-ear',
+            'Reference tuning is skewed toward isolation rather than analytical flat response'
+        ],
+        deploymentScenario: "The HD 25 is our 'Field Protocol' for remote recording. We deploy them for guests and field engineers who need reliable, high-isolation monitoring that can survive the rigors of high-velocity travel."
     },
     {
         id: 'ath-m40x',
@@ -707,7 +996,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/ath_m40x.webp',
         amazonLink: 'https://amzn.to/4btz6My',
         subCategory: 'Headphones',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            'Flat frequency response provides an accurate analytical baseline',
+            'Circumaural design provides excellent passive noise isolation',
+            '90-degree swiveling earcups for convenient one-ear monitoring',
+            'Includes both straight and coiled cables for modular connectivity'
+        ],
+        cons: [
+            'Plastic hinges are robust but not industrial-grade metal',
+            "Soundstage is narrower than our 'Elite' open-back alternatives"
+        ],
+        deploymentScenario: "The M40x is our 'Foundational Monitoring' protocol. We deploy them as the standard-issue headphone for multi-camera streams and guest podcast positions where accuracy and isolation are the primary directives."
     },
     {
         id: 'rode-psa1-plus',
@@ -755,7 +1055,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/elgato_wave_lp.webp',
         amazonLink: 'https://amzn.to/4rnp83S',
         subCategory: 'Boom Arms',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            'Low-profile design keeps the mic below the camera line for elite visuals',
+            'Full all-metal construction with magnetic cable covers',
+            '360-degree horizontal rotation with a heavy-duty ball head',
+            'Extremely modular—supports almost any broadcast microphone protocol'
+        ],
+        cons: [
+            "Doesn't provide the vertical 'Reach' of high-rise boom arms",
+            'Tension adjustments are required for very light or very heavy mics'
+        ],
+        deploymentScenario: "The Wave LP is our 'Clean Frame' protocol. We deploy it for streamers and executives who want a high-end mic on their desk but need the visual space between their face and the camera to remain completely unobstructed."
     },
     {
         id: 'gator-frameworks-stand',
@@ -771,7 +1082,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/gator_mic_stand.webp',
         amazonLink: 'https://amzn.to/3Z8S0ko',
         subCategory: 'Stands',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            'Weighted industrial base provides absolute stability on any surface',
+            'Compact footprint is ideal for tight guest positions or minimal setups',
+            'All-metal construction ensures a high-prestige, durable aesthetic',
+            'Simplified height adjustment requires zero high-velocity maintenance'
+        ],
+        cons: [
+            'Lacks the directional flexibility and range of a boom arm protocol',
+            'Transfers more desk vibration than a suspended shockmount system'
+        ],
+        deploymentScenario: "The Gator Stand is our 'Stable Baseline' protocol. We deploy it in guest positions where we want back-to-basics reliability and don't need the articulated movement of a boom arm."
     },
     // --- BUNDLE PROTOCOLS ---
     {
@@ -788,7 +1110,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/elite_bundle.webp',
         amazonLink: 'https://amzn.to/3MfyVKk',
         subCategory: 'Bundles',
-        isFeatured: true
+        isFeatured: true,
+        pros: [
+            'The industry-standard vocal chain used by Power Digital principals',
+            'Rødecaster Pro II offers unparalleled high-velocity mixing control',
+            'Cloudlifter CL-1 ensures pristine gain for the demanding SM7B capsule',
+            'Elite boom arm provides surgical positioning and cable management'
+        ],
+        cons: [
+            'High-prestige price entry for new content creators',
+            'Requires significant desk real estate for the full workstation protocol'
+        ],
+        deploymentScenario: "This is the 'Executive Protocol'. We deploy this exact setup for our flagship podcasts where broadcast authority and technical reliability are the absolute top-level directives."
     },
     {
         id: 'pro-podcasting-bundle',
@@ -804,7 +1137,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/sony_a7siii.webp',
         amazonLink: 'https://amzn.to/3V5Uj1v',
         subCategory: 'Bundles',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            'Cinematic 4K visual capture protocol with 10-bit color depth',
+            'Elite lighting kit ensures professional-grade subject illumination',
+            'Hyper-reliable autofocus ensures you never lose visual focus on-air',
+            'Pro-grade audio capture included for a complete studio solution'
+        ],
+        cons: [
+            'Significant learning curve for cinematic color science protocols',
+            'Requires a high-velocity PC for 4K video editing workflows'
+        ],
+        deploymentScenario: "The Pro Bundle is our 'Visual Authority' kit. We deploy it for creators who need to match the look of high-end YouTube productions while maintaining a streamlined workstation setup."
     },
     {
         id: 'entry-podcasting-bundle',
@@ -819,7 +1163,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         priceRange: '$$',
         image: '/images/gear/elgato_wave_3.webp',
         amazonLink: 'https://amzn.to/4btsD4e',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            'Ultra-simplified USB protocol for immediate 1080p stream deployment',
+            'Integrated software mixing prevents digital audio clipping automatically',
+            'Compact footprint is ideal for modular, high-velocity workspaces',
+            'Professional aesthetics that look "Elite" on any desktop setup'
+        ],
+        cons: [
+            'Limited expansion options compared to XLR-based studio protocols',
+            'Relies heavily on Elgato software for advanced mixing directives'
+        ],
+        deploymentScenario: "Our Entry Bundle is the 'Speed-to-Broadcast' protocol. We deploy it for new streamers who need immediate high-quality audio and visuals with zero technical friction."
     },
     // --- CHASSIS PROTOCOL ---
     {
@@ -853,7 +1208,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         amazonLink: 'https://amzn.to/3UEp8tF',
         subCategory: 'Mid-Tower',
         isFeatured: true,
-        seoTags: ['Hyte Y70 Touch', 'Chassis with Screen', 'Case with LCD', 'PC Showcase Case', 'Hyte Corner Glass Case']
+        seoTags: ['Hyte Y70 Touch', 'Chassis with Screen', 'Case with LCD', 'PC Showcase Case', 'Hyte Corner Glass Case'],
+        pros: [
+            'Integrated 4K touchscreen is a game-changer for monitoring and control',
+            'Panoramic glass provides an "Elite" showcase for internal hardware',
+            'Exceptional airflow and radiator support for flagship cooling',
+            'Vertical GPU mount included as part of the visual protocol'
+        ],
+        cons: [
+            'Still requires a robust cooling protocol to avoid thermal throttling',
+            "Lacks the raw 'Elite' frequency of the flagship KS variant"
+        ],
+        deploymentScenario: "The Y70 Touch is the visual centerpiece of our 'Elite' build protocol. We deploy this chassis whenever we want to combine high-stakes performance with a high-prestige aesthetic, using the integrated screen as a dedicated dashboard for real-time OBS tracking or hardware metrics."
     },
     {
         id: 'lian-li-o11-evo-xl',
@@ -869,7 +1235,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/lian_li_o11_xl.webp',
         amazonLink: 'https://amzn.to/3UiOJKN',
         subCategory: 'Full-Tower',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            'Industry-leading modularity allows for high-velocity hardware swaps',
+            'Supports triple 420mm radiator protocols for extreme liquid cooling',
+            'Reversible chassis design offers elite flexibility for any desk orientation',
+            'Seamless tempered glass provides a 270-degree hardware showcase'
+        ],
+        cons: [
+            'Requires a significant number of case fans to populate the high-volume chassis',
+            'Physically dominant presence may overwhelm smaller workstation environments'
+        ],
+        deploymentScenario: "The O11 EVO XL is our 'Flagship Protocol' for custom liquid cooling. We deploy it as the mission-critical foundation for systems where thermal overhead and visual prestige are the primary directives."
     },
     {
         id: 'nzxt-h6-flow',
@@ -885,7 +1262,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/nzxt_h6_flow.webp',
         amazonLink: 'https://amzn.to/3Uip5Hq',
         subCategory: 'Mid-Tower',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            'Innovative angled front fan protocol accelerates thermal dissipation',
+            'Compact dual-chamber design maximizes space efficiency for streamers',
+            'Panoramic glass showcase matches the "Elite" showroom aesthetic',
+            'Tool-less entry allows for high-velocity hardware adjustments'
+        ],
+        cons: [
+            'Limited support for 420mm radiators compared to "Pro" or "Elite" chassis',
+            'Integrated fans may lack the silent acoustic profile of premium alternatives'
+        ],
+        deploymentScenario: "The H6 Flow is our 'High-Velocity Airflow' protocol. We deploy it for high-end builds where a clean, panoramic aesthetic is required but thermal performance cannot be compromised."
     },
 
     // --- COMPUTING CORE (CPU) PROTOCOL ---
@@ -918,7 +1306,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         amazonLink: 'https://amzn.to/3UjM7vD',
         subCategory: 'Processors',
         isFeatured: true,
-        seoTags: ['Intel i9-14900KS', 'Fastest Gaming CPU', 'Best Processor for Rendering', 'Intel 14th Gen', 'Overclocking CPU']
+        seoTags: ['Intel i9-14900KS', 'Fastest Gaming CPU', 'Best Processor for Rendering', 'Intel 14th Gen', 'Overclocking CPU'],
+        pros: [
+            "World's fastest desktop frequency at 6.2GHz for high-stakes workloads",
+            '24 cores provide massive parallel processing power for 8K video',
+            'Integrated Thermal Velocity Boost protocol optimizes clock speeds',
+            'Elite single-core performance ensures zero throughput bottlenecks'
+        ],
+        cons: [
+            'Extremely high thermal output—requires flagship 360mm+ cooling',
+            'Requires a high-prestige power supply to maintain stable voltage'
+        ],
+        deploymentScenario: "The 14900KS is the 'Velocity Core' for all Elite builds. We deploy it as the primary computing engine for lead edit suites where every second saved in rendering is a mission-critical objective."
     },
     {
         id: 'intel-i7-14700k',
@@ -934,7 +1333,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/intel_i7_14700k.webp',
         amazonLink: 'https://amzn.to/3JCKu5s',
         subCategory: 'Processors',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            '20% increase in efficiency cores provides elite multitasking bandwidth',
+            'Authoritative performance in both gaming and creative protocols',
+            'Supports both DDR4 and DDR5 memory for modular build flexibility',
+            'Exceptional value-to-performance ratio for mid-to-high tier setups'
+        ],
+        cons: [
+            'Still requires a robust cooling protocol to avoid thermal throttling',
+            "Lacks the raw 'Elite' frequency of the flagship KS variant"
+        ],
+        deploymentScenario: "The 14700K is our 'Strategic Protocol'. We deploy it for creators who need high-velocity multitasking—streaming, recording, and browser-based research simultaneously—without the thermal overhead of the i9."
     },
     {
         id: 'intel-i5-13600k',
@@ -950,7 +1360,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/intel_i5.webp',
         amazonLink: 'https://amzn.to/3JzVp1M',
         subCategory: 'Processors',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            'Exceptional high-velocity gaming performance for entry-level builds',
+            'Efficient power protocol requires less aggressive cooling solutions',
+            'DDR5 support offers a modern computing foundation for years to come',
+            'Authoritative multitasking for 1080p content creation workflows'
+        ],
+        cons: [
+            'May hit bottlenecks in high-load 4K or 8K rendering scenarios',
+            'Lower E-core count than its Pro and Elite tier counterparts'
+        ],
+        deploymentScenario: "The 13600K is our 'Efficiency Protocol'. We deploy it as the mission-critical core for dedicated gaming rigs and budget-conscious stream PCs where thermal management is a key directive."
     },
 
     // --- STORAGE PROTOCOL ---
@@ -968,7 +1389,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/samsung_990_pro.webp',
         amazonLink: 'https://amzn.to/3xO6oNM',
         subCategory: 'NVMe SSD',
-        isFeatured: true
+        isFeatured: true,
+        pros: [
+            'Sequential read/write speeds that saturate the Gen4 bandwidth protocol',
+            '4TB capacity provides massive storage for 8K video libraries',
+            'Proven industrial reliability for consistent high-velocity data access',
+            'Integrated heatsink maintains thermal stability during sustained transfers'
+        ],
+        cons: [
+            'Premium price-per-GB compared to entry-level Gen4 storage',
+            'Requires an M.2 slot with sufficient clearance for the heatsink'
+        ],
+        deploymentScenario: "The 990 PRO is our 'Data Protocol' for lead editors. We deploy the 4TB variant as the primary workspace drive to ensure that timeline scrubs and file exports remain completely devoid of storage latency."
     },
     {
         id: 'wd-black-sn850x',
@@ -984,7 +1416,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/wd_black_sn850x.webp',
         amazonLink: 'https://amzn.to/49Kty4r',
         subCategory: 'NVMe SSD',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            "Proprietary WD Game Mode 2.0 optimizes high-velocity asset loading",
+            'Extremely low latency protocol for snappy application responsiveness',
+            'Authoritative thermal management prevents performance degradation',
+            'Industrial reliability backed by WD_BLACK reputation'
+        ],
+        cons: [
+            'Lower sequential write performance than the 990 PRO in heavy workloads',
+            'Heatsink version may not fit in all laptop or SFF chassis protocols'
+        ],
+        deploymentScenario: "We deploy the SN850X as our 'Interaction Protocol'. It is the primary drive for high-velocity gaming and application boot scenarios where raw responsiveness is the top-level directive."
     },
     {
         id: 'crucial-p3-plus',
@@ -1000,7 +1443,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/crucial_p3_plus.webp',
         amazonLink: 'https://amzn.to/3xDd8pL',
         subCategory: 'NVMe SSD',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            'High-velocity Gen4 throughput at a high-value price point',
+            'Proven Micron 3D NAND protocol for long-term data integrity',
+            'Compact M.2 design fits into any modern creator motherboard',
+            'Reliable boot-up and application load times for entry-level builds'
+        ],
+        cons: [
+            'Lacks an integrated heatsink for sustained high-heat transfers',
+            'Lower endurance rating than our Elite-tier storage protocols'
+        ],
+        deploymentScenario: "The P3 Plus is our 'Expansion Protocol'. We deploy it as secondary high-speed storage for game libraries and scratch disks where price-per-GB is the primary directive."
     },
 
     // --- POWER PROTOCOL ---
@@ -1018,7 +1472,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/msi_ai1300p.webp',
         amazonLink: 'https://amzn.to/3W0iV4s',
         subCategory: 'Power Supply',
-        isFeatured: true
+        isFeatured: true,
+        pros: [
+            'Native ATX 3.0 support with dedicated 12VHPWR high-velocity cable',
+            'Software-integrated monitoring for real-time efficiency capture',
+            'Platinum-rated efficiency reduces waste heat in the studio environment',
+            'Industrial-grade Japanese capacitors afford elite longevity'
+        ],
+        cons: [
+            'Premium price-point for features only utilized in flagship builds',
+            'Requires USB header connection for telemetry software protocol'
+        ],
+        deploymentScenario: "The Ai1300P is our 'Energy Control' protocol. We deploy it in all RTX 4090 workstations to ensure that the power delivery layer is as intelligent as the computing core it supports."
     },
     {
         id: 'corsair-rm1000x-shift',
@@ -1034,7 +1499,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/corsair_shift_psu.webp',
         amazonLink: 'https://amzn.to/3Joq4qL',
         subCategory: 'Power Supply',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            'Revolutionary side-mounted cable protocol for surgical management',
+            '1000W Gold efficiency provides ample headroom for high-spec GPUs',
+            'Low-noise cooling fan maintains a silent studio acoustic profile',
+            'ATX 3.0 compliant with a native PCIe 5.0 high-velocity cable'
+        ],
+        cons: [
+            'Requires a chassis with specific side-clearance for cable headers',
+            'Side-mount design may not be compatible with all O11 variants'
+        ],
+        deploymentScenario: "The RM1000x Shift is our 'Optimization Protocol'. We deploy it in dual-chamber chassis like the H6 Flow to make internal cable management as fast and clean as possible."
     },
     {
         id: 'corsair-rm750e',
@@ -1050,7 +1526,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/corsair_rm750e.webp',
         amazonLink: 'https://amzn.to/4bf8w1M',
         subCategory: 'Power Supply',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            'Compact 140mm footprint fits into almost any available chassis',
+            'Fully modular design allows for a clean, zero-clutter internal build',
+            'Cybenetics Platinum/Gold acoustic rating for near-silent operation',
+            'Authoritative 105°C-rated capacitors for long-term stability'
+        ],
+        cons: [
+            '750W capacity limits the expansion protocol for future RTX flagships',
+            'No integrated software monitoring for real-time power capture'
+        ],
+        deploymentScenario: "The RM750e is our 'Standard-Issue' power protocol. We deploy it as the reliability layer for all entry-to-mid tier streaming builds where space and silence are the primary directives."
     },
 
     // --- COOLING PROTOCOL (Expansion) ---
@@ -1068,7 +1555,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/corsair_link_aio.webp',
         amazonLink: 'https://amzn.to/3xN9M5L',
         subCategory: 'Liquid Cooling',
-        isFeatured: true
+        isFeatured: true,
+        pros: [
+            'Single-cable iCUE Link protocol eliminates massive clutter',
+            'Integrated IPS LCD provides high-fidelity visual telemetry',
+            'High-velocity pump design ensures elite thermal dissipation',
+            "Sleek industrial design matches the modern 'Technical Baseline' aesthetic"
+        ],
+        cons: [
+            'Requires the iCUE Link ecosystem for full functional protocol',
+            'High-prestige pricing compared to standard 360mm AIO solutions'
+        ],
+        deploymentScenario: "The H150i LCD is our 'Showcase Thermal' protocol. We deploy it in builds where internal aesthetic and hardware monitoring are as critical as the actual CPU temperature control."
     },
     {
         id: 'deepcool-ak620-digital',
@@ -1084,7 +1582,18 @@ export const GEAR_COLLECTION: GearItem[] = [
         image: '/images/gear/deepcool_ak620.webp',
         amazonLink: 'https://amzn.to/3vXYx4B',
         subCategory: 'Air Cooling',
-        isFeatured: false
+        isFeatured: false,
+        pros: [
+            'Dual-tower air cooling delivers liquid-tier thermal dissipation',
+            'Real-time digital protocol monitors CPU temperature and usage',
+            'Industrial metal build provides a high-prestige, robust aesthetic',
+            'Precision-engineered fans maintain elite acoustics at high RPMs'
+        ],
+        cons: [
+            'Large physical footprint requires high-velocity RAM clearance',
+            'Requires an internal USB header for the digital display protocol'
+        ],
+        deploymentScenario: "The AK620 Digital is our 'Air Cooling Standard'. We deploy it for creators who want high-stakes thermal performance without the complexity of a liquid-based cooling protocol."
     },
 
     // --- GPU EXPANSION ---

@@ -6,7 +6,8 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ShareProtocol from "@/components/ui/showroom/ShareProtocol";
 import { Metadata } from "next";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Info, Check, X, Terminal, Workflow } from "lucide-react";
+import * as motion from "framer-motion/client";
 
 // Force static generation for known paths
 export function generateStaticParams() {
@@ -66,45 +67,285 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
         <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-accent selection:text-white">
             <Navbar />
 
-            <main className="relative pt-32 pb-20 px-6 max-w-7xl mx-auto">
-                <Link
-                    href="/showroom"
-                    className="inline-flex items-center gap-2 text-white/50 hover:text-accent transition-colors mb-12 text-sm uppercase tracking-widest font-bold group"
-                >
-                    <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                    Back to Showroom
-                </Link>
+            {/* Ambient Background Protocol */}
+            <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+                <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] blur-[120px] opacity-20 rounded-full bg-gradient-to-b ${product.level === 'Elite' ? 'from-white/40' : product.level === 'Pro' ? 'from-cyan-500/40' : 'from-green-500/40'} to-transparent`} />
+                <div className="absolute inset-0 cyber-grid opacity-10" />
+            </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-                    {/* Visual Protocol: Image Side */}
-                    <div className="flex flex-col gap-6 sticky top-32">
-                        <div className={`relative aspect-square rounded-[3rem] overflow-hidden border border-white/10 bg-gradient-to-br ${getLevelGradient(product.level)} shadow-2xl group transition-all duration-700`}>
-                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10 opacity-60" />
+            <main className="relative z-10 pt-32 pb-20 px-6 max-w-7xl mx-auto">
+                {/* Navigation Protocol */}
+                <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8 }}
+                >
+                    <Link
+                        href="/showroom"
+                        className="inline-flex items-center gap-2 text-white/50 hover:text-accent transition-colors mb-12 text-sm uppercase tracking-widest font-bold group"
+                    >
+                        <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                        Back to Showroom
+                    </Link>
+                </motion.div>
+
+                {/* --- HERO SECTION --- */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start mb-32">
+                    {/* Visual Capture Protocol (Left/Top) */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1.2, ease: "easeOut" }}
+                        className="lg:col-span-7 relative group"
+                    >
+                        {/* Ambient Glow Aura */}
+                        <div className={`absolute -inset-4 bg-gradient-to-br ${product.level === 'Elite' ? 'from-white/20' : product.level === 'Pro' ? 'from-cyan-500/20' : 'from-green-500/20'} to-transparent blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000`} />
+
+                        <div className={`relative aspect-video lg:aspect-[16/10] rounded-[3rem] overflow-hidden border border-white/10 bg-gradient-to-br ${getLevelGradient(product.level)} shadow-2xl transition-all duration-700`}>
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent z-10 opacity-80" />
                             <img
                                 src={product.image}
                                 alt={product.name}
                                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                             />
 
-                            {/* Protocol Badge */}
-                            <div className="absolute top-8 left-8 z-20">
-                                <div className={`px-4 py-2 rounded-full border backdrop-blur-md text-[10px] font-black uppercase tracking-[0.2em] shadow-lg ${product.level === 'Elite' ? 'bg-white/10 border-white/20 text-white' :
-                                    product.level === 'Pro' ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400' :
-                                        'bg-green-500/10 border-green-500/20 text-green-400'
-                                    }`}>
+                            {/* Protocol Badge Overlay */}
+                            <div className="absolute top-10 left-10 z-20">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.5, duration: 0.8 }}
+                                    className={`px-6 py-3 rounded-full border backdrop-blur-xl text-[12px] font-black uppercase tracking-[0.3em] shadow-2xl ${product.level === 'Elite' ? 'bg-white/10 border-white/20 text-white' :
+                                        product.level === 'Pro' ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400' :
+                                            'bg-green-500/10 border-green-500/20 text-green-400'
+                                        }`}
+                                >
                                     {product.level} Protocol
+                                </motion.div>
+                            </div>
+                        </div>
+
+                        {/* --- RELOCATED CTA ROW (Fills gap under image) --- */}
+                        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                            {/* Technical Meta Block */}
+                            <div className="p-8 rounded-[2.5rem] bg-white/5 border border-white/10 backdrop-blur-md group/meta relative overflow-hidden flex flex-col justify-between">
+                                <div className="absolute top-0 right-0 p-4 opacity-5 group-hover/meta:opacity-20 transition-opacity">
+                                    <Terminal className="w-16 h-16" />
                                 </div>
+                                <div className="relative z-10">
+                                    <div className="text-accent font-black text-[9px] uppercase tracking-[0.3em] mb-8 flex items-center gap-2">
+                                        <div className="w-1 h-1 rounded-full bg-accent" /> Core Directives
+                                    </div>
+                                    <div className="space-y-4">
+                                        {product.technicalSpecs.slice(0, 3).map((spec, i) => (
+                                            <div key={i} className="flex items-center justify-between border-b border-white/5 pb-2">
+                                                <div className="text-[8px] text-white/20 font-bold uppercase tracking-widest">Protocol.{i}</div>
+                                                <div className="text-[10px] font-bold text-white/80">{spec}</div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className="mt-8 text-[8px] font-mono text-white/20 uppercase tracking-widest relative z-10">SYS_ID // {product.id.substring(0, 8).toUpperCase()}</div>
+                            </div>
+
+                            {/* Acquire Action Block */}
+                            <div className="p-8 rounded-[2.5rem] bg-accent/10 border border-accent/20 shadow-2xl backdrop-blur-xl relative overflow-hidden group/acquire flex flex-col justify-between">
+                                <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent opacity-0 group-hover/acquire:opacity-100 transition-opacity duration-1000" />
+
+                                <div className="relative z-10">
+                                    <div className="flex items-end justify-between mb-8">
+                                        <div>
+                                            <div className="text-white/40 text-[9px] font-black uppercase tracking-[0.3em] mb-2">Investment</div>
+                                            <div className="text-5xl font-black text-white">{product.priceRange}</div>
+                                        </div>
+                                        <div className="text-green-400 font-bold text-[8px] flex items-center gap-2 bg-green-400/10 px-4 py-2 rounded-full border border-green-400/20 uppercase tracking-widest shadow-xl shadow-green-400/10">
+                                            <CheckCircle2 className="w-3 h-3" /> VERIFIED
+                                        </div>
+                                    </div>
+
+                                    <a
+                                        href={smartStaticLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-full py-6 bg-accent text-white rounded-2xl font-black uppercase tracking-[0.25em] text-[10px] flex items-center justify-center gap-4 transition-all hover:bg-white hover:text-slate-950 hover:scale-[1.02] active:scale-[0.98] shadow-2xl shadow-accent/40 group/btn"
+                                    >
+                                        <ShoppingCart className="w-4 h-4 transition-transform group-hover/btn:rotate-12" />
+                                        Acquire Equipment
+                                    </a>
+                                </div>
+                                <p className="text-center text-[8px] text-white/30 uppercase tracking-[0.3em] mt-6 relative z-10">Amazon Associates Protocol</p>
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    {/* Data Intel Protocol (Right/Top) */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, delay: 0.2 }}
+                        className="lg:col-span-5 flex flex-col gap-10"
+                    >
+                        <div>
+                            <div className="flex items-center justify-between mb-8">
+                                <div className="text-accent font-black tracking-[0.4em] uppercase text-[10px] flex items-center gap-2 group/brand">
+                                    <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                                    {product.brand} // {product.category}
+                                </div>
+                                <ShareProtocol />
+                            </div>
+                            <h1 className="text-3xl md:text-4xl font-black tracking-tighter uppercase leading-[1.1] mb-8 bg-gradient-to-b from-white to-white/40 bg-clip-text text-transparent">
+                                {product.name}
+                            </h1>
+                            <div className="flex flex-wrap gap-4 mb-8">
+                                {product.technicalSpecs.slice(0, 3).map((spec, i) => (
+                                    <div key={i} className="px-3 py-1.5 rounded-lg border border-white/5 bg-white/5 text-[8px] font-mono text-white/30 uppercase tracking-[0.2em]">
+                                        DATA_SPEC.{i + 1} // {spec}
+                                    </div>
+                                ))}
+                            </div>
+                            <p className="text-base text-white/40 font-medium leading-relaxed max-w-xl">
+                                {product.description}
+                            </p>
+                        </div>
+
+                        {/* Hardware Support Protocol (Fills space on the right) */}
+                        <div className="mt-auto pt-10 border-t border-white/5">
+                            <div className="p-8 rounded-3xl bg-white/5 border border-white/5 backdrop-blur-sm">
+                                <div className="flex items-center gap-4 mb-4">
+                                    <ShieldCheck className="w-6 h-6 text-accent" />
+                                    <div className="text-[10px] font-black uppercase tracking-[0.3em] text-white/50">Elite Security Protocol</div>
+                                </div>
+                                <p className="text-[10px] text-white/30 leading-relaxed uppercase tracking-widest font-bold">PD_PROTO_AUTO_VETTING // ACTIVE</p>
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
+
+                {/* --- DETAILED DATA INFRASTRUCTURE --- */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-40">
+                    {/* Left Column: Deep Context */}
+                    <div className="lg:col-span-8 flex flex-col gap-24">
+
+                        {/* The Intel: Long Description */}
+                        <motion.section
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1 }}
+                        >
+                            <h3 className="text-xs font-black uppercase tracking-[0.4em] text-white/30 mb-12 flex items-center gap-6">
+                                <Info className="w-4 h-4" />
+                                <span className="h-px flex-1 bg-white/10" />
+                                Hardware Intelligence
+                            </h3>
+                            <div className="prose prose-invert prose-2xl max-w-none text-white/80 font-light leading-relaxed">
+                                <p className="text-balance">
+                                    {product.longDescription || product.description}
+                                </p>
+                            </div>
+                        </motion.section>
+
+                        {/* The Verdict Section */}
+                        {product.ourTake && (
+                            <motion.section
+                                initial={{ opacity: 0, x: -40 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 1 }}
+                                className="relative p-12 rounded-[3rem] bg-accent/5 border border-accent/20 overflow-hidden"
+                            >
+                                <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 blur-[100px] -z-10" />
+                                <div className="absolute top-8 left-12 bg-accent text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-2">
+                                    <ShieldCheck className="w-4 h-4" />
+                                    Power Digital Verdict
+                                </div>
+                                <blockquote className="text-3xl font-bold text-white/90 leading-tight mt-8">
+                                    "{product.ourTake}"
+                                </blockquote>
+                            </motion.section>
+                        )}
+
+                        {/* Pros & Cons Protocol */}
+                        {(product.pros || product.cons) && (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                {product.pros && (
+                                    <div className="p-10 rounded-[2.5rem] bg-green-500/5 border border-green-500/10">
+                                        <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-green-400 mb-8 flex items-center gap-3">
+                                            <Check className="w-4 h-4" /> Optimized Pros
+                                        </h4>
+                                        <ul className="space-y-4">
+                                            {product.pros.map((pro, i) => (
+                                                <li key={i} className="flex gap-4 text-white/70 leading-relaxed text-sm italic">
+                                                    <span className="text-green-500 font-black tracking-widest">+</span>
+                                                    {pro}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
+                                {product.cons && (
+                                    <div className="p-10 rounded-[2.5rem] bg-red-500/5 border border-red-500/10">
+                                        <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-red-400 mb-8 flex items-center gap-3">
+                                            <X className="w-4 h-4" /> Protocol Limits
+                                        </h4>
+                                        <ul className="space-y-4">
+                                            {product.cons.map((con, i) => (
+                                                <li key={i} className="flex gap-4 text-white/70 leading-relaxed text-sm italic">
+                                                    <span className="text-red-500 font-black tracking-widest">-</span>
+                                                    {con}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
+                        {/* Creative Deployment Scenario */}
+                        {product.deploymentScenario && (
+                            <motion.section
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 1 }}
+                                className="p-12 rounded-[3rem] bg-white/5 border border-white/10"
+                            >
+                                <h3 className="text-xs font-black uppercase tracking-[0.4em] text-white/30 mb-8 flex items-center gap-4">
+                                    <Workflow className="w-4 h-4" /> Creative Deployment Scenario
+                                </h3>
+                                <p className="text-xl text-white/70 font-light leading-relaxed italic border-l-2 border-accent/30 pl-8">
+                                    {product.deploymentScenario}
+                                </p>
+                            </motion.section>
+                        )}
+                    </div>
+
+                    {/* Right Column: Technical Specs & Contents */}
+                    <div className="lg:col-span-4 flex flex-col gap-12 sticky top-32">
+
+                        {/* The Blueprint: Specs */}
+                        <div className="p-10 rounded-[2.5rem] bg-slate-900/50 border border-white/10 backdrop-blur-xl">
+                            <h3 className="text-xs font-black uppercase tracking-[0.4em] text-white/30 mb-10 flex items-center gap-3">
+                                <Terminal className="w-4 h-4" /> Technical Blueprint
+                            </h3>
+                            <div className="space-y-6">
+                                {product.technicalSpecs.map((spec, idx) => (
+                                    <div key={idx} className="flex flex-col gap-2 border-b border-white/5 pb-4 group">
+                                        <div className="text-[9px] uppercase tracking-widest text-white/20 font-bold group-hover:text-accent transition-colors">OS_LAYER_SPEC_{idx + 1}</div>
+                                        <div className="text-md font-bold text-white tracking-tight">{spec}</div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
 
                         {/* In The Box Section */}
                         {product.whatIsInTheBox && (
-                            <div className="p-8 rounded-3xl bg-white/5 border border-white/5">
-                                <h3 className="text-xs font-bold uppercase tracking-widest text-white/40 mb-6">In The Box</h3>
-                                <ul className="space-y-3">
+                            <div className="p-10 rounded-[2.5rem] bg-white/5 border border-white/5">
+                                <h3 className="text-xs font-black uppercase tracking-[0.4em] text-white/30 mb-8">Included components</h3>
+                                <ul className="space-y-4">
                                     {product.whatIsInTheBox.map((item, i) => (
-                                        <li key={i} className="flex items-center gap-3 text-sm text-white/80">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+                                        <li key={i} className="flex items-center gap-3 text-sm text-white/60 font-medium">
+                                            <div className="w-1 h-1 rounded-full bg-accent/40" />
                                             {item}
                                         </li>
                                     ))}
@@ -112,118 +353,15 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                             </div>
                         )}
                     </div>
-
-                    {/* Data Protocol: Info Side */}
-                    <div className="flex flex-col gap-10 opacity-0 animate-in fade-in slide-in-from-right-8 duration-1000 fill-mode-forwards" style={{ animationDelay: '0.2s' }}>
-                        <div>
-                            <div className="flex items-center justify-between mb-4">
-                                <div className="text-accent font-bold tracking-widest uppercase text-xs flex items-center gap-2">
-                                    <Zap className="w-3 h-3" />
-                                    {product.brand} / {product.category}
-                                </div>
-                                <ShareProtocol />
-                            </div>
-                            <h1 className="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9] mb-8">
-                                {product.name}
-                            </h1>
-
-                            {/* "Our Take" Highlight */}
-                            {product.ourTake && (
-                                <div className="mb-8 p-6 rounded-l-2xl border-l-4 border-accent bg-accent/5 italic text-white/90 leading-relaxed relative overflow-hidden">
-                                    <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 blur-3xl -z-10" />
-                                    <div className="absolute -top-3 left-4 bg-slate-950 px-2 text-[10px] font-bold uppercase tracking-widest text-accent flex items-center gap-2">
-                                        <ShieldCheck className="w-3 h-3" />
-                                        Power Digital Verdict
-                                    </div>
-                                    "{product.ourTake}"
-                                </div>
-                            )}
-
-                            {/* Long Description (The Intel) */}
-                            <div className="prose prose-invert prose-lg max-w-none text-white/70 font-light leading-relaxed mb-8">
-                                <p className="first-letter:text-5xl first-letter:font-black first-letter:text-accent first-letter:float-left first-letter:mr-3 first-letter:mt-1">
-                                    {product.longDescription || product.description}
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* Conversion Action */}
-                        <div className="flex flex-col gap-4 p-8 rounded-3xl bg-white/5 border border-white/10 shadow-xl relative overflow-hidden group/card">
-                            <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-700" />
-                            <div className="flex items-end justify-between mb-2 relative z-10">
-                                <div>
-                                    <div className="text-white/40 text-[10px] font-bold uppercase tracking-widest mb-1">Investment Class</div>
-                                    <div className="text-4xl font-black text-white">{product.priceRange}</div>
-                                </div>
-                                <div className="text-green-400 font-bold text-sm flex items-center gap-1 justify-end">
-                                    <CheckCircle2 className="w-3 h-3" /> In Stock
-                                </div>
-                            </div>
-
-                            <a
-                                href={smartStaticLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-full py-5 bg-white text-slate-950 rounded-xl font-black uppercase tracking-[0.2em] text-sm flex items-center justify-center gap-3 transition-all hover:bg-accent hover:text-white hover:scale-[1.01] active:scale-[0.99] shadow-lg hover:shadow-accent/40 relative z-10"
-                            >
-                                <ShoppingCart className="w-5 h-5 transition-transform group-hover:rotate-12" />
-                                Acquire Equipment
-                            </a>
-                            <p className="text-center text-[10px] text-white/30 uppercase tracking-widest relative z-10">Secured via Amazon Associates Protocol</p>
-                        </div>
-
-
-                        {/* Features Grid */}
-                        {product.features && (
-                            <div>
-                                <h3 className="text-xs font-bold uppercase tracking-widest text-white/40 mb-6 flex items-center gap-4">
-                                    <span className="h-px flex-1 bg-white/10" />
-                                    Protocol Specifications
-                                    <span className="h-px flex-1 bg-white/10" />
-                                </h3>
-                                <div className="grid grid-cols-1 gap-3">
-                                    {product.features.map((spec, idx) => (
-                                        <div key={idx} className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-accent/30 transition-colors group">
-                                            <div className="mt-1 w-1.5 h-1.5 rounded-full bg-accent/50 group-hover:bg-accent transition-colors" />
-                                            <span className="text-sm font-medium text-white/80 leading-snug">{spec}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-
-                        {/* Technical Specs Compact */}
-                        <div className="mt-4 pt-8 border-t border-white/10">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
-                                {product.technicalSpecs.map((spec, idx) => (
-                                    <div key={idx} className="flex items-center justify-between border-b border-white/5 pb-2 hover:border-accent/30 transition-colors">
-                                        <div className="text-[10px] uppercase tracking-widest text-white/30 font-bold">Protocol {idx + 1}</div>
-                                        <div className="text-xs font-bold text-white tracking-wide">{spec}</div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Use Case Badge */}
-                        {product.useCase && (
-                            <div className="flex justify-center mt-4">
-                                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest">
-                                    <ShieldCheck className="w-3 h-3" />
-                                    Verified for {product.useCase}
-                                </div>
-                            </div>
-                        )}
-
-                    </div>
                 </div>
 
                 {/* Related Protocol Section */}
                 {relatedItems.length > 0 && (
-                    <div className="mt-40 pt-20 border-t border-white/10 animate-in fade-in slide-in-from-bottom-8 duration-1000 fill-mode-forwards" style={{ animationDelay: '0.4s' }}>
+                    <div className="mt-40 pt-20 border-t border-white/10">
                         <div className="flex items-center justify-between mb-12">
                             <div>
                                 <h3 className="text-white/40 text-[10px] font-black uppercase tracking-[0.3em] mb-2">Discovery Protocol</h3>
-                                <h2 className="text-4xl font-black tracking-tighter uppercase leading-none">Related {product.category}</h2>
+                                <h2 className="text-5xl font-black tracking-tighter uppercase leading-none">Related {product.category}</h2>
                             </div>
                             <Link
                                 href="/showroom"
