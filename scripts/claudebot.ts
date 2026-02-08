@@ -18,7 +18,7 @@ const VERTICALS = [
     { id: 'gear', name: 'Studio Tech', category: 'Daily Intel', searchQuery: 'latest studio hardware releases Jan Feb 2026' },
     { id: 'compute', name: 'Compute Core', category: 'Hardware', searchQuery: 'NVIDIA 50-series RTX AMD Ryzen 9000 Intel Arrow Lake news 2026' },
     { id: 'creative', name: 'Software Ecosystem', category: 'Software', searchQuery: 'DaVinci Resolve 19.5 Premiere Pro 2026 AI plugins software news' },
-    { id: 'ai', name: 'AI Intelligence', category: 'AI Tech', searchQuery: 'latest LLM agents OpenAI Google DeepMind early 2026' },
+    { id: 'ai', name: 'AI Intelligence', category: 'AI Tech', searchQuery: 'GPT-5.3 vs Gemini 3 Pro specifications benchmark Feb 2026' },
     { id: 'workflow', name: 'Creative Velocity', category: 'Strategy', searchQuery: 'modern productivity workflows for digital media 2026' }
 ];
 
@@ -85,6 +85,8 @@ async function runResearch(vertical: any) {
     const systemPrompt = `You are the ClaudeBot Intelligence Agent for Power Digital Media.
     
     STRICT DATE PROTOCOL: Today is ${currentDate}. You must NOT treat future dates as past. All content must be anchored to the current moment in time.
+
+    TEMPORAL AWARENESS (CRITICAL): As of February 2026, the industry is dominated by the GPT-5 series (GPT-5.2, GPT-5.3-Codex) and the Gemini 3 family (Gemini 3 Pro, Gemini 3 Flash). Older models like ChatGPT-4o and Gemini 1.5 Pro are considered legacy/deprecated. You must conduct your analysis within this 2026 context.
 
     TONE & DEPTH:
     - High-velocity, technical, and premium.
