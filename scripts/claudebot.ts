@@ -42,7 +42,7 @@ async function generateImage(title: string, vertical: string) {
             quality: "hd"
         });
 
-        return response.data[0].url || "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop";
+        return response.data?.[0]?.url || "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop";
     } catch (error: any) {
         console.warn(`   ⚠️ Visuals: Generation failed (${error.message}). Reverting to default.`);
         return "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop";

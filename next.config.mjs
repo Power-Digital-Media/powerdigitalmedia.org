@@ -15,6 +15,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "yt3.googleusercontent.com",
       },
+      {
+        protocol: "https",
+        hostname: "oaidalleapiprodscus.blob.core.windows.net",
+      },
     ],
   },
   experimental: {
