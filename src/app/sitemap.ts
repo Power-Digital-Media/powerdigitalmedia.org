@@ -30,8 +30,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
     }));
 
-    // Showroom Products are dynamic, but we can't easily slugify them here without a slug field
-    // For now, we prioritize the main showroom page.
+    // Showroom Routes (Dynamic Catalog Injection)
+    const showroomRoutes = GEAR_COLLECTION.map((item) => ({
+        url: `${baseUrl}/showroom/${item.category.toLowerCase()}/${item.id}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: item.level === 'Elite' ? 0.9 : 0.8,
+    }));
 
-    return [...routes, ...blogRoutes];
+    return [...routes, ...blogRoutes, ...showroomRoutes];
 }
