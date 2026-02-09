@@ -26,7 +26,7 @@ const VERTICALS = [
 const openai = process.env.OPENAI_API_KEY ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY }) : null;
 const genAI = process.env.GOOGLE_AI_KEY ? new GoogleGenerativeAI(process.env.GOOGLE_AI_KEY) : null;
 
-async function generateImage(title: string, vertical: string) {
+async function generateImage(title: string, vertical: string, slug: string) {
     if (!openai) return "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop";
 
     try {
@@ -42,9 +42,35 @@ async function generateImage(title: string, vertical: string) {
             quality: "hd"
         });
 
-        return response.data?.[0]?.url || "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop";
+        const dalleUrl = response.data?.[0]?.url;
+        if (!dalleUrl) {
+            console.warn(`   ⚠️ Visuals: No URL returned. Reverting to default.`);
+            return "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop";
+        }
+
+        // Download the image
+        console.log(`   📥 Visuals: Downloading image for permanent storage...`);
+        const imageResponse = await fetch(dalleUrl);
+        const arrayBuffer = await imageResponse.arrayBuffer();
+        const buffer = Buffer.from(arrayBuffer);
+
+        // Create blog-images directory if it doesn't exist
+        const blogImagesDir = path.join(process.cwd(), 'public', 'blog-images');
+        if (!fs.existsSync(blogImagesDir)) {
+            fs.mkdirSync(blogImagesDir, { recursive: true });
+        }
+
+        // Save with unique filename
+        const filename = `${slug}-${Date.now()}.png`;
+        const filepath = path.join(blogImagesDir, filename);
+        fs.writeFileSync(filepath, buffer);
+
+        console.log(`   ✅ Visuals: Image saved permanently to /blog-images/${filename}`);
+
+        // Return permanent URL
+        return `/blog-images/${filename}`;
     } catch (error: any) {
-        console.warn(`   ⚠️ Visuals: Generation failed (${error.message}). Reverting to default.`);
+        console.warn(`   ⚠️ Visuals: Generation or download failed (${error.message}). Reverting to default.`);
         return "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop";
     }
 }
@@ -225,7 +251,7 @@ ${showroomContext}
     const slug = title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]/g, '').replace(/-+/g, '-');
 
     // Phase 3: Visuals (DALL-E)
-    const imageUrl = await generateImage(title, vertical.name);
+    const imageUrl = await generateImage(title, vertical.name, slug);
 
     return {
         slug, title,

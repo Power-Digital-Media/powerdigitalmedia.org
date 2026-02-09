@@ -1,0 +1,4 @@
+# Ignore generated blog images (optional - remove if you want to track them)
+# *.png
+# *.jpg
+# *.jpeg
