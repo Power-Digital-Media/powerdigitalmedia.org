@@ -73,6 +73,7 @@ export default function BlogPage() {
                                                 src={post.image}
                                                 alt={post.title}
                                                 fill
+                                                unoptimized={post.image.includes('oaidalleapiprodscus')}
                                                 className="object-cover transition-transform duration-700 group-hover:scale-110"
                                             />
                                             <div className={`absolute top-6 left-6 px-4 py-1.5 rounded-full backdrop-blur-md text-[10px] font-black uppercase tracking-[0.2em] border flex items-center gap-2 ${post.category === "Daily Intel"
