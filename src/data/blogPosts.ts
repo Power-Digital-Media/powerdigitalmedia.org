@@ -388,7 +388,7 @@ Master the 2026 intelligence layer. View our curated configurations in the **[El
         excerpt: "The studio tech landscape in 2026 is characterized by remarkable advancements driven by top-tier audio and video production technologies. As the industry continues to evolve, new p...",
         date: "Feb 09, 2026",
         category: "Daily Intel",
-        image: "https://oaidalleapiprodscus.blob.core.windows.net/private/org-qQmhjJRVSxPxQOHyXia8FQ9T/user-FwO3LVlAuyUpmGGssKwdiYAp/img-FgQfeI6Q7fU8G9oazxqTNN1M.png?st=2026-02-09T13%3A21%3A03Z&se=2026-02-09T15%3A21%3A03Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=0e2a3d55-e963-40c9-9c89-2a1aa28cb3ac&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-08T23%3A40%3A18Z&ske=2026-02-09T23%3A40%3A18Z&sks=b&skv=2026-02-06&sig=EL5a603jtms0UqlSWNCbGnxk/WBkNj9fSyiKLbLWk9k%3D",
+        image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1200&auto=format&fit=crop",
         author: { name: "Power Digital Media", role: "Autonomous Intelligence" },
         content: `
 The studio tech landscape in 2026 is characterized by remarkable advancements driven by top-tier audio and video production technologies. As the industry continues to evolve, new products are emerging, offering enhanced capabilities for content creators, musicians, and broadcasters. This brief explores the latest innovations and trends shaping the studio tech sector, with a focus on high-performance equipment that is redefining production standards.
@@ -436,7 +436,7 @@ In conclusion, the studio tech landscape in 2026 is marked by groundbreaking adv
         excerpt: "The current landscape of the GPU market in 2026 is marked by strategic pauses and future anticipation. As reported by Tom's Hardware, NVIDIA is not expected to release any new...",
         date: "Feb 09, 2026",
         category: "Hardware",
-        image: "https://oaidalleapiprodscus.blob.core.windows.net/private/org-qQmhjJRVSxPxQOHyXia8FQ9T/user-FwO3LVlAuyUpmGGssKwdiYAp/img-K4bx1lkviqd6mFerhbZ401Ej.png?st=2026-02-09T13%3A21%3A41Z&se=2026-02-09T15%3A21%3A41Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=8eb2c87c-0531-4dab-acb3-b5e2adddce6c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-09T05%3A34%3A14Z&ske=2026-02-10T05%3A34%3A14Z&sks=b&skv=2026-02-06&sig=6bu0O2S3QHyBb4QS4%2BpNcNgYJtaSJLfS%2BIc6r1K5NfY%3D",
+        image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=1200&auto=format&fit=crop",
         author: { name: "Power Digital Media", role: "Autonomous Intelligence" },
         content: `
 ### GPU Market Dynamics and Upcoming Trends
@@ -484,7 +484,7 @@ For content creators and audio professionals, the availability of advanced audio
         excerpt: "In 2026, the software ecosystem for video editing has seen transformative changes, driven by advancements in AI technology. Leading the charge are Adobe's Premiere Pro and Af...",
         date: "Feb 09, 2026",
         category: "Software",
-        image: "https://oaidalleapiprodscus.blob.core.windows.net/private/org-qQmhjJRVSxPxQOHyXia8FQ9T/user-FwO3LVlAuyUpmGGssKwdiYAp/img-iJ1XJxfwfYYGRWCHIfyYKnhm.png?st=2026-02-09T13%3A22%3A18Z&se=2026-02-09T15%3A22%3A18Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=b2c0e1c0-cf97-4e19-8986-8073905d5723&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-09T03%3A49%3A02Z&ske=2026-02-10T03%3A49%3A02Z&sks=b&skv=2026-02-06&sig=tt/aJ/KhF10%2BpAVyikB5ngyPbZO0MBO7Y5y4wmFH9ZM%3D",
+        image: "https://images.unsplash.com/photo-1535223289827-42f1e9919769?q=80&w=1200&auto=format&fit=crop",
         author: { name: "Power Digital Media", role: "Autonomous Intelligence" },
         content: `
 ### The Current Landscape of AI in Video Editing
@@ -536,7 +536,7 @@ For creators looking to elevate their audio production, the **Rødecaster Pro II
         excerpt: "In the rapidly evolving landscape of AI intelligence, the current year of 2026 presents a fascinating rivalry between two technological behemoths: GPT-5.3 Codex and Gemini 3...",
         date: "Feb 09, 2026",
         category: "AI Tech",
-        image: "https://oaidalleapiprodscus.blob.core.windows.net/private/org-qQmhjJRVSxPxQOHyXia8FQ9T/user-FwO3LVlAuyUpmGGssKwdiYAp/img-exDxngARjVBIZigZkRqwVAzx.png?st=2026-02-09T13%3A22%3A55Z&se=2026-02-09T15%3A22%3A55Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=32836cae-d25f-4fe9-827b-1c8c59c442cc&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-09T03%3A31%3A28Z&ske=2026-02-10T03%3A31%3A28Z&sks=b&skv=2026-02-06&sig=jCLjwg60IS3Bd//yGfnxwJ38spgHpEpQksWptUDC8MI%3D",
+        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop",
         author: { name: "Power Digital Media", role: "Autonomous Intelligence" },
         content: `
 In the rapidly evolving landscape of AI intelligence, the current year of 2026 presents a fascinating rivalry between two technological behemoths: **GPT-5.3 Codex** and **Gemini 3 Pro**. These models represent the pinnacle of machine learning capabilities, pushing the boundaries of what AI can achieve in terms of natural language processing, computational efficiency, and real-world applications. This analysis will dissect their specifications, performance metrics, and potential impact on the industry.
@@ -582,7 +582,7 @@ For audio professionals looking to complement their AI-driven workflows with top
         excerpt: "In the ever-evolving landscape of creative industries, managing workflows effectively has become imperative for boosting productivity and maintaining competitive edges. As we delve...",
         date: "Feb 09, 2026",
         category: "Strategy",
-        image: "https://oaidalleapiprodscus.blob.core.windows.net/private/org-qQmhjJRVSxPxQOHyXia8FQ9T/user-FwO3LVlAuyUpmGGssKwdiYAp/img-qgZH6C0LdCVWNYNbOiwF71Fx.png?st=2026-02-09T13%3A23%3A32Z&se=2026-02-09T15%3A23%3A32Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=8eb2c87c-0531-4dab-acb3-b5e2adddce6c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-09T02%3A03%3A39Z&ske=2026-02-10T02%3A03%3A39Z&sks=b&skv=2026-02-06&sig=mqLKW6vnwhtcJbY0Q8aSNf%2BBNPcDwktIdXMvoPuyaps%3D",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop",
         author: { name: "Power Digital Media", role: "Autonomous Intelligence" },
         content: `
 In the ever-evolving landscape of creative industries, managing workflows effectively has become imperative for boosting productivity and maintaining competitive edges. As we delve into 2026, the integration of advanced tools and methodologies is reshaping how creative processes are managed, enhancing both individual and team productivity. This analysis explores the cutting-edge tools and strategies that are driving creative velocity today.
