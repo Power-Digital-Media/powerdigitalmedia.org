@@ -1,63 +1,53 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
 
 export default function AnalyticsEngine() {
     const pathname = usePathname();
-    const [analyticsLoaded, setAnalyticsLoaded] = useState(false);
 
     const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
     const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
     const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 
-    // Defer analytics loading until after page is interactive
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setAnalyticsLoaded(true);
-        }, 2000); // Load analytics 2 seconds after page load
-
-        return () => clearTimeout(timer);
-    }, []);
-
     useEffect(() => {
         if (PIXEL_ID && window.fbq) {
             window.fbq('track', 'PageView');
         }
-        if (analyticsLoaded && window.gtag) {
+        if (window.gtag) {
             window.gtag('event', 'page_view', {
                 page_path: pathname,
             });
         }
-    }, [pathname, PIXEL_ID, analyticsLoaded]);
-
-    if (!analyticsLoaded) return null;
+    }, [pathname, PIXEL_ID]);
 
     return (
         <>
-            {/* Google Analytics - Deferred */}
+            {/* Google Analytics - Async, non-blocking */}
             {GA_ID && (
                 <>
                     <Script
                         src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-                        strategy="lazyOnload"
+                        strategy="afterInteractive"
                     />
-                    <Script id="google-analytics" strategy="lazyOnload">
+                    <Script id="google-analytics" strategy="afterInteractive">
                         {`
                             window.dataLayer = window.dataLayer || [];
                             function gtag(){dataLayer.push(arguments);}
                             gtag('js', new Date());
-                            gtag('config', '${GA_ID}');
+                            gtag('config', '${GA_ID}', {
+                                page_path: window.location.pathname,
+                            });
                         `}
                     </Script>
                 </>
             )}
 
-            {/* Google Tag Manager - Deferred */}
+            {/* Google Tag Manager - Async, non-blocking */}
             {GTM_ID && (
                 <>
-                    <Script id="gtm-script" strategy="lazyOnload">
+                    <Script id="gtm-script" strategy="afterInteractive">
                         {`
                             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -77,12 +67,12 @@ export default function AnalyticsEngine() {
                 </>
             )}
 
-            {/* Meta Pixel - Deferred */}
+            {/* Meta Pixel - Async, non-blocking */}
             {PIXEL_ID && (
                 <>
                     <Script
                         id="fb-pixel"
-                        strategy="lazyOnload"
+                        strategy="afterInteractive"
                         dangerouslySetInnerHTML={{
                             __html: `
                                 !function(f,b,e,v,n,t,s)
