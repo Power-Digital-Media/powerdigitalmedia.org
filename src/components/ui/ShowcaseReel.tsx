@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "@/components/providers/MotionProvider";
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { Play } from "lucide-react";

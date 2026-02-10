@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "@/components/providers/MotionProvider";
 import { Users, Target, Rocket, Shield, Heart, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";

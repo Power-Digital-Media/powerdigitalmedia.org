@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "@/components/providers/MotionProvider";
 import { Menu, X, LayoutDashboard, LogIn, Terminal } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";

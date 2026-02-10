@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "@/components/providers/MotionProvider";
 import { Settings, Lock, Bell, User, Shield } from "lucide-react";
 
 export default function DashboardSettingsPage() {

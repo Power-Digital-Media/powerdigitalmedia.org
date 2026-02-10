@@ -6,7 +6,7 @@ import Footer from "@/components/layout/Footer";
 import { GEAR_COLLECTION } from "@/data/gear";
 import GearCard from "@/components/ui/showroom/GearCard";
 import CategoryFilter from "@/components/ui/showroom/CategoryFilter";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "@/components/providers/MotionProvider";
 import { ShoppingBag, ChevronRight } from "lucide-react";
 
 export default function ShowroomPage() {

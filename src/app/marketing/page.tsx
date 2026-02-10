@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "@/components/providers/MotionProvider";
 import { TrendingUp, Zap, CheckCircle2, ArrowRight, Star, Youtube, Image as ImageIcon, Search, BarChart3 } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "@/components/providers/MotionProvider";
 import { Mic, Share2, TrendingUp, Zap } from "lucide-react";
 
 const addons = [

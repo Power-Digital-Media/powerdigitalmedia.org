@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "@/components/providers/MotionProvider";
 import { Film, TrendingUp, CheckCircle2, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";

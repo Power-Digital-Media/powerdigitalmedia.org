@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "@/components/providers/MotionProvider";
 import { ShieldAlert, TrendingUp, Landmark, Calculator } from "lucide-react";
 
 interface TaxReserveCardProps {

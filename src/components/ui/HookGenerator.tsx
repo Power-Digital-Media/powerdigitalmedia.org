@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "@/components/providers/MotionProvider";
 import { Wand2, Send, Sparkles, Lock, ArrowRight, RefreshCcw, AlertTriangle } from "lucide-react";
 
 export default function HookGenerator() {

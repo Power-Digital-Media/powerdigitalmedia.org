@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Share2, Check } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "@/components/providers/MotionProvider";
 
 export default function ShareProtocol() {
     const [copied, setCopied] = useState(false);

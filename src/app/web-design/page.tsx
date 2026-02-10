@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion } from "@/components/providers/MotionProvider";
 import { Globe, Cpu, Zap, Shield, Search, ArrowRight, BarChart3, Layers } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
