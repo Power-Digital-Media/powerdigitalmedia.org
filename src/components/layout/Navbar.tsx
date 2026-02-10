@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Mic2, LayoutDashboard, LogIn, Terminal } from "lucide-react";
+import { Menu, X, LayoutDashboard, LogIn, Terminal } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import BookingModal from "../ui/BookingModal";
 import { useAuth } from "@/context/AuthContext";
 import { isAdmin } from "@/lib/auth-constants";
@@ -48,9 +49,8 @@ export default function Navbar() {
                 >
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2 group">
-                        <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-accent group-hover:bg-accent/90 transition-colors">
-                            <Mic2 className="w-6 h-6 text-white" />
-                            <div className="absolute inset-0 rounded-xl bg-accent animate-pulse opacity-20 -z-10" />
+                        <div className="relative flex items-center justify-center w-12 h-12">
+                            <Image src="/power-logo.png" alt="Power Digital Media" width={40} height={40} className="object-contain group-hover:scale-110 transition-transform" />
                         </div>
                         <div className="flex flex-col">
                             <span className="text-xl font-bold tracking-tighter leading-none">

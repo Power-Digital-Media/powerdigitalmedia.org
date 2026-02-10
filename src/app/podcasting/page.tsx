@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mic2, Radio, Camera, Video, Zap, CheckCircle2, ArrowRight, Star, Loader2 } from "lucide-react";
+import { Radio, Camera, Video, Zap, CheckCircle2, ArrowRight, Star, Loader2 } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";

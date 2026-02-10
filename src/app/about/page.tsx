@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Users, Target, Rocket, Shield, Heart, ArrowRight, Mic2 } from "lucide-react";
+import { Users, Target, Rocket, Shield, Heart, ArrowRight } from "lucide-react";
+import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { useState } from "react";
@@ -22,7 +23,7 @@ const values = [
     {
         title: "Broadcast Quality",
         description: "Whether it's audio or web, we maintain broadcast-grade standards in everything we build.",
-        icon: Mic2
+        icon: "logo"
     },
     {
         title: "Trusted Security",
@@ -158,7 +159,11 @@ export default function AboutPage() {
                                 className="p-8 rounded-[2rem] glass-card border-white/5 hover:border-accent/40 bg-white/5 transition-all group"
                             >
                                 <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                    <value.icon className="w-6 h-6 text-accent" />
+                                    {value.icon === "logo" ? (
+                                        <Image src="/power-logo.png" alt="" width={24} height={24} className="object-contain" />
+                                    ) : (
+                                        <value.icon className="w-6 h-6 text-accent" />
+                                    )}
                                 </div>
                                 <h4 className="font-bold text-xl mb-3">{value.title}</h4>
                                 <p className="text-sm text-muted-foreground leading-relaxed">{value.description}</p>

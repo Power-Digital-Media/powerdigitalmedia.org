@@ -1,14 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mic2, Camera, Settings, Cpu } from "lucide-react";
+import { Camera, Settings, Cpu } from "lucide-react";
+import Image from "next/image";
 
 const gear = [
     {
         title: "Quad PodMic Array",
         meta: "4-PERSON BROADCAST CHAIN",
         description: "Four RØDE PodMics mounted on a PSA1+ professional arm array. Balanced frequency response for high-impact multi-guest vocal clarity.",
-        icon: Mic2
+        icon: "logo"
     },
     {
         title: "RØDECaster Pro II",
@@ -56,7 +57,11 @@ export default function TechSchematic() {
                                     className="p-6 rounded-3xl glass-card border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all group"
                                 >
                                     <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                                        <item.icon className="w-5 h-5 text-cyan-400" />
+                                        {item.icon === "logo" ? (
+                                            <Image src="/power-logo.png" alt="" width={20} height={20} className="object-contain" />
+                                        ) : (
+                                            <item.icon className="w-5 h-5 text-cyan-400" />
+                                        )}
                                     </div>
                                     <h4 className="text-lg font-bold mb-1 uppercase tracking-tight">{item.title}</h4>
                                     <span className="text-[9px] font-bold text-cyan-500/50 uppercase tracking-widest block mb-3">{item.meta}</span>
@@ -83,7 +88,7 @@ export default function TechSchematic() {
                                         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                                         className="absolute inset-0 bg-cyan-500/20 blur-[60px] rounded-full"
                                     />
-                                    <Mic2 className="w-32 h-32 text-cyan-500/30 relative z-10" />
+                                    <Image src="/power-logo.png" alt="Power Digital Media" width={128} height={128} className="object-contain opacity-30 relative z-10" />
 
                                     {/* Orbital Data Rings */}
                                     <motion.div

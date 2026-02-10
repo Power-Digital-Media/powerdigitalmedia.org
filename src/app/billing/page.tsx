@@ -3,9 +3,10 @@
 import { motion, AnimatePresence } from "framer-motion";
 import {
     CreditCard, Receipt, ShieldCheck, Zap, ArrowRight,
-    CheckCircle2, Loader2, DollarSign, Layout, Mic2,
+    CheckCircle2, Loader2, DollarSign, Layout,
     Camera, TrendingUp, Search, Briefcase, Globe
 } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -280,7 +281,7 @@ export default function BillingPage() {
                             {[
                                 { id: 'all', label: 'All Services', icon: Globe },
                                 { id: 'design', label: 'Design', icon: Layout },
-                                { id: 'podcasting', label: 'Podcast', icon: Mic2 },
+                                { id: 'podcasting', label: 'Podcast', icon: "logo" },
                                 { id: 'production', label: 'Production', icon: Camera },
                                 { id: 'growth', label: 'Growth', icon: TrendingUp }
                             ].map((cat) => (
@@ -292,7 +293,11 @@ export default function BillingPage() {
                                         : "text-white/40 hover:text-white hover:bg-white/5 border border-transparent"
                                         }`}
                                 >
-                                    <cat.icon className="w-3 h-3" />
+                                    {cat.icon === "logo" ? (
+                                        <Image src="/power-logo.png" alt="" width={12} height={12} className="object-contain" />
+                                    ) : (
+                                        <cat.icon className="w-3 h-3" />
+                                    )}
                                     {cat.label}
                                 </button>
                             ))}
@@ -325,7 +330,7 @@ export default function BillingPage() {
                                                 <h3 className="text-[10px] font-bold tracking-[0.2em] uppercase text-accent">{tier.name}</h3>
                                                 <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-white/20 group-hover:text-accent transition-colors">
                                                     {tier.category === 'design' && <Layout className="w-4 h-4" />}
-                                                    {tier.category === 'podcasting' && <Mic2 className="w-4 h-4" />}
+                                                    {tier.category === 'podcasting' && <Image src="/power-logo.png" alt="" width={16} height={16} className="object-contain" />}
                                                     {tier.category === 'production' && <Camera className="w-4 h-4" />}
                                                     {tier.category === 'growth' && <TrendingUp className="w-4 h-4" />}
                                                 </div>

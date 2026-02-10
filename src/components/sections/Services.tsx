@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mic2, Film, TrendingUp, CheckCircle2, ArrowRight } from "lucide-react";
+import { Film, TrendingUp, CheckCircle2, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
