@@ -3,7 +3,6 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Suspense } from "react";
 import AnalyticsEngine from "@/components/infrastructure/AnalyticsEngine";
-import { AuthProvider } from "@/context/AuthContext";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -34,35 +33,33 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
       >
-        <AuthProvider>
-          <Suspense fallback={null}>
-            <AnalyticsEngine />
-          </Suspense>
-          {/* Organization Schema.org (GEO Optimization) */}
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "Organization",
-                "name": "Power Digital Media LLC",
-                "url": "https://powerdigitalmedia.org",
-                "sameAs": [
-                  "https://www.youtube.com/@PowerDigitalMedia",
-                  "https://www.instagram.com/PowerDigitalMedia"
-                ],
-                "address": {
-                  "@type": "PostalAddress",
-                  "addressLocality": "Jackson",
-                  "addressRegion": "MS",
-                  "addressCountry": "US"
-                },
-                "description": "Power Digital Media is a Jackson, Mississippi digital media studio offering podcast production, video marketing, website design, and AI-powered branding services for businesses, creators, and ministries."
-              })
-            }}
-          />
-          {children}
-        </AuthProvider>
+        <Suspense fallback={null}>
+          <AnalyticsEngine />
+        </Suspense>
+        {/* Organization Schema.org (GEO Optimization) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Power Digital Media LLC",
+              "url": "https://powerdigitalmedia.org",
+              "sameAs": [
+                "https://www.youtube.com/@PowerDigitalMedia",
+                "https://www.instagram.com/PowerDigitalMedia"
+              ],
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Jackson",
+                "addressRegion": "MS",
+                "addressCountry": "US"
+              },
+              "description": "Power Digital Media is a Jackson, Mississippi digital media studio offering podcast production, video marketing, website design, and AI-powered branding services for businesses, creators, and ministries."
+            })
+          }}
+        />
+        {children}
       </body>
     </html>
   );
