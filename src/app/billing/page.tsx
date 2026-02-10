@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "@/components/providers/MotionProvider";
+import { motion, AnimatePresence } from "framer-motion";
 import {
     CreditCard, Receipt, ShieldCheck, Zap, ArrowRight,
     CheckCircle2, Loader2, DollarSign, Layout,

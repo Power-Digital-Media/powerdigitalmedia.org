@@ -5,7 +5,7 @@ import { isAdmin } from "@/lib/auth-constants";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Loader2, ShieldAlert } from "lucide-react";
-import { motion } from "@/components/providers/MotionProvider";
+import { motion } from "framer-motion";
 
 export default function AdminGuard({ children }: { children: React.ReactNode }) {
     const { user, loading } = useAuth();

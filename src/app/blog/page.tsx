@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "@/components/providers/MotionProvider";
+import { motion } from "framer-motion";
 import { BookOpen, Calendar, ArrowRight, Book, Share2, Search } from "lucide-react";
 import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";

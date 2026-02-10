@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "@/components/providers/MotionProvider";
+import { motion } from "framer-motion";
 import { Briefcase, CheckCircle2, Circle, Clock, MoreVertical, LayoutGrid, List } from "lucide-react";
 import { useState } from "react";
 

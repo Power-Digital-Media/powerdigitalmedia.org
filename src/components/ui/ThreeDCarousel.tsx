@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { motion } from "@/components/providers/MotionProvider";
+import { motion } from "framer-motion";
 import { projects } from "@/data/projects";
 import Image from "next/image";
 import Link from "next/link";

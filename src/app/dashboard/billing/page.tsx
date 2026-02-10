@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "@/components/providers/MotionProvider";
+import { motion } from "framer-motion";
 import { CreditCard, ExternalLink, ShieldCheck, History, Download, Zap } from "lucide-react";
 
 export default function DashboardBillingPage() {

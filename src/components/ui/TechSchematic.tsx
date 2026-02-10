@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "@/components/providers/MotionProvider";
+import { motion } from "framer-motion";
 import { Camera, Settings, Cpu } from "lucide-react";
 import Image from "next/image";
 

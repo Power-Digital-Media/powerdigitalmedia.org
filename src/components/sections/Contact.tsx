@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "@/components/providers/MotionProvider";
+import { motion } from "framer-motion";
 import { Send, Calendar, MessageSquare, Phone, ArrowRight, X } from "lucide-react";
 import { useState } from "react";
 import BookingModal from "@/components/ui/BookingModal";

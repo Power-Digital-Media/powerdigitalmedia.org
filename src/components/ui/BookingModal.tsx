@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "@/components/providers/MotionProvider";
+import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { useEffect } from "react";
 

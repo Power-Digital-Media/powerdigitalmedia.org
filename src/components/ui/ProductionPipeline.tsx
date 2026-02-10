@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "@/components/providers/MotionProvider";
+import { motion } from "framer-motion";
 import { Search, Camera, Cpu, Zap, Globe } from "lucide-react";
 
 const protocols = [

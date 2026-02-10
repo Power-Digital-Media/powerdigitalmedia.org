@@ -1,7 +1,7 @@
 "use client";
 
 import { useAuth } from "@/context/AuthContext";
-import { motion } from "@/components/providers/MotionProvider";
+import { motion } from "framer-motion";
 import { Zap, Clock, Package, ArrowUpRight, Plus } from "lucide-react";
 import TaxReserveCard from "@/components/ui/dashboard/TaxReserveCard";
 

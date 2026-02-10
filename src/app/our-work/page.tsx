@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "@/components/providers/MotionProvider";
+import { motion } from "framer-motion";
 import { Play, ExternalLink, Globe, Film, Share2, MousePointer2, Megaphone, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";

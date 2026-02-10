@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "@/components/providers/MotionProvider";
+import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, Zap, Shield, ArrowRight, Loader2, Sparkles, Building, Rocket, Globe } from "lucide-react";
 
 interface Tier {

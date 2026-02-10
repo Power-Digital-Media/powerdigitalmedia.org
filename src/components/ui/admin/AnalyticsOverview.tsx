@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "@/components/providers/MotionProvider";
+import { motion } from "framer-motion";
 import { Activity, Users, MousePointer2, TrendingUp } from "lucide-react";
 
 export default function AnalyticsOverview() {

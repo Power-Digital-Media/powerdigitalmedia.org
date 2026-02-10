@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "@/components/providers/MotionProvider";
+import { motion } from "framer-motion";
 import { Camera, Video, Zap, CheckCircle2, ArrowRight, Star, MapPin, Film, Share2 } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";

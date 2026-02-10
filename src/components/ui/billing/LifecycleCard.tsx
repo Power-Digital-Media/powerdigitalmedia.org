@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "@/components/providers/MotionProvider";
+import { motion } from "framer-motion";
 import { Calendar, RefreshCw, Star, ArrowRight, ShieldCheck, Loader2, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 
