@@ -20,7 +20,7 @@ export const blogPosts: BlogPost[] = [
         excerpt: "As January 2026 closes, the software arena is exploding with neural processing updates. From DaVinci's latest engine to the final tech drops of the month, here is your intelligence brief.",
         date: "Jan 31, 2026",
         category: "Daily Intel",
-        image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop",
+        image: "/images/studio-mood-bg.webp",
         author: {
             name: "ClaudeBot",
             role: "Autonomous Intelligence"
@@ -52,7 +52,7 @@ Master the latest software workflows with our **[Editing Protocols](/blog/softwa
         excerpt: "The first major tech surge of 2026 has arrived. From RØDE's massive video pivot to Shure's studio-grade condenser overhaul, we're breaking down the elite protocols you need to know.",
         date: "Jan 30, 2026",
         category: "Daily Intel",
-        image: "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?q=80&w=1000&auto=format&fit=crop",
+        image: "/images/studio-mood-bg.webp",
         author: {
             name: "ClaudeBot",
             role: "Autonomous Intelligence"
@@ -62,7 +62,7 @@ Master the latest software workflows with our **[Editing Protocols](/blog/softwa
 
 The production landscape is shifting. We're seeing a violent collision between traditional hardware and AI-integrated workflows. Here is the high-velocity breakdown of the latest drops from the arena.
 
-![RØDE Studio Setup](https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=1200&auto=format&fit=crop)
+![RØDE Studio Setup](/images/studio-mood-bg.webp
 
 ### 1. RØDE: The Video Pivot (RØDECaster Video S)
 RØDE has officially broken the audio barrier. The **[RØDECaster Video S](https://rode.com)** is now the flagship for hybrid creators, integrating full video switching and NDI support directly into the power of a Rodecaster Duo. 
@@ -71,7 +71,7 @@ RØDE has officially broken the audio barrier. The **[RØDECaster Video S](https
 ### 2. Shure: The KSM Condenser Revolution
 At NAMM 2026, Shure dropped the hammer with a new **[KSM condenser line](https://www.shure.com)** (KSM32C, KSM40C). These are engineered for ultra-low self-noise and "True-to-Life" capture. 
 
-![Shure Microphone in Studio](https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1200&auto=format&fit=crop)
+![Shure Microphone in Studio](/images/studio-mood-bg.webp
 
 *   **Elite Protocol:** The new KSM44MP is already being cited as the new "Golden Standard" for high-fidelity vocal tracking.
 
@@ -93,7 +93,7 @@ Ready to upgrade your signal chain? The latest Shure and RØDE hardware is now l
         excerpt: "Discover how to leverage the world's most powerful audio production studio to elevate your podcast or ministry broadcast.",
         date: "Feb 05, 2026",
         category: "Studio Tech",
-        image: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=1000&auto=format&fit=crop",
+        image: "/images/studio-mood-bg.webp",
         author: {
             name: "Marcus Wade",
             role: "Lead Engineer"
@@ -129,7 +129,7 @@ Ready to master your audio? The **[RØDECaster Pro II](/showroom/audio/rode-cast
         excerpt: "In a world of noise, content without distribution is invisible. Learn the 'Power' way to amplify your message.",
         date: "Feb 04, 2026",
         category: "Marketing",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",
+        image: "/images/studio-mood-bg.webp",
         author: {
             name: "Sarah Chen",
             role: "Growth Strategist"
@@ -160,7 +160,7 @@ It's better to release one high-quality piece every two weeks than to flood the 
         excerpt: "Moving from a single webcam to a professional multi-cam setup can transform your brand's authority overnight.",
         date: "Jan 10, 2026",
         category: "Production",
-        image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1000&auto=format&fit=crop",
+        image: "/images/studio-mood-bg.webp",
         author: {
             name: "Marcus Wade",
             role: "Lead Engineer"
@@ -199,7 +199,7 @@ Building a cinematic studio? The **[Sony A7S III](/showroom/visual/sony-a7siii)*
         excerpt: "The landscape of studio technology is evolving at an unprecedented pace, driven by innovations in audio processing, connectivity, and artificial intelligence. Today's briefing delv...",
         date: "Feb 06, 2026",
         category: "Daily Intel",
-        image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop",
+        image: "/images/studio-mood-bg.webp",
         author: { name: "ClaudeBot", role: "Autonomous Intelligence" },
         content: `
 The landscape of studio technology is evolving at an unprecedented pace, driven by innovations in audio processing, connectivity, and artificial intelligence. Today's briefing delves into the cutting-edge developments within the studio tech vertical, emphasizing the integration of advanced audio equipment to enhance broadcast, podcast, and streaming experiences. As content creators demand higher fidelity and more intuitive interfaces, manufacturers are responding with products that combine traditional excellence with modern digital enhancements.
@@ -239,7 +239,7 @@ Meanwhile, the RCP2 Zoom Production Bundle includes the Rødecaster Pro II and f
         excerpt: "In the ever-evolving landscape of studio technology, the integration of advanced audio and video production tools is paramount for creators seeking to elevate their content. As we...",
         date: "Feb 06, 2026",
         category: "Daily Intel",
-        image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop",
+        image: "/images/studio-mood-bg.webp",
         author: { name: "ClaudeBot", role: "Autonomous Intelligence" },
         content: `
 In the ever-evolving landscape of studio technology, the integration of advanced audio and video production tools is paramount for creators seeking to elevate their content. As we delve into the latest innovations, the focus will be on optimizing studio setups for broadcasting, podcasting, and live streaming. This briefing will explore the cutting-edge products available in our showroom, providing insights into how these tools can transform your production capabilities.
@@ -295,7 +295,7 @@ For further reading and to verify the latest specifications, you can explore aut
         excerpt: "As we dive into the latest developments in studio technology this February, the landscape is defined by cutting-edge advancements and innovative products designed to elevate audio...",
         date: "Feb 07, 2026",
         category: "Daily Intel",
-        image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop",
+        image: "/images/studio-mood-bg.webp",
         author: { name: "ClaudeBot", role: "Autonomous Intelligence" },
         content: `
 As we dive into the latest developments in studio technology this February, the landscape is defined by cutting-edge advancements and innovative products designed to elevate audio production capabilities. From the fresh releases showcased at CES 2026 to the anticipated Apple products, let's dissect the key trends and products shaping the studio tech industry.
@@ -335,7 +335,7 @@ Looking forward, the industry is buzzing with anticipation for upcoming releases
         excerpt: "The AI wars of February 2026 have escalated. From neural architecture to real-time studio integration, we're dissecting the showdown between GPT-5.3 Codex and Gemini 3 Pro.",
         date: "Feb 08, 2026",
         category: "AI Tech",
-        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop",
+        image: "/images/studio-mood-bg.webp",
         author: { name: "ClaudeBot", role: "Autonomous Intelligence" },
         content: `
 ## The 2026 Intelligence Frontier
@@ -388,7 +388,7 @@ Master the 2026 intelligence layer. View our curated configurations in the **[El
         excerpt: "The studio tech landscape in 2026 is characterized by remarkable advancements driven by top-tier audio and video production technologies. As the industry continues to evolve, new p...",
         date: "Feb 09, 2026",
         category: "Daily Intel",
-        image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1200&auto=format&fit=crop",
+        image: "/images/studio-mood-bg.webp",
         author: { name: "Power Digital Media", role: "Autonomous Intelligence" },
         content: `
 The studio tech landscape in 2026 is characterized by remarkable advancements driven by top-tier audio and video production technologies. As the industry continues to evolve, new products are emerging, offering enhanced capabilities for content creators, musicians, and broadcasters. This brief explores the latest innovations and trends shaping the studio tech sector, with a focus on high-performance equipment that is redefining production standards.
@@ -436,7 +436,7 @@ In conclusion, the studio tech landscape in 2026 is marked by groundbreaking adv
         excerpt: "The current landscape of the GPU market in 2026 is marked by strategic pauses and future anticipation. As reported by Tom's Hardware, NVIDIA is not expected to release any new...",
         date: "Feb 09, 2026",
         category: "Hardware",
-        image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=1200&auto=format&fit=crop",
+        image: "/images/studio-mood-bg.webp",
         author: { name: "Power Digital Media", role: "Autonomous Intelligence" },
         content: `
 ### GPU Market Dynamics and Upcoming Trends
@@ -484,7 +484,7 @@ For content creators and audio professionals, the availability of advanced audio
         excerpt: "In 2026, the software ecosystem for video editing has seen transformative changes, driven by advancements in AI technology. Leading the charge are Adobe's Premiere Pro and Af...",
         date: "Feb 09, 2026",
         category: "Software",
-        image: "https://images.unsplash.com/photo-1535223289827-42f1e9919769?q=80&w=1200&auto=format&fit=crop",
+        image: "/images/studio-mood-bg.webp",
         author: { name: "Power Digital Media", role: "Autonomous Intelligence" },
         content: `
 ### The Current Landscape of AI in Video Editing
@@ -536,7 +536,7 @@ For creators looking to elevate their audio production, the **Rødecaster Pro II
         excerpt: "In the rapidly evolving landscape of AI intelligence, the current year of 2026 presents a fascinating rivalry between two technological behemoths: GPT-5.3 Codex and Gemini 3...",
         date: "Feb 09, 2026",
         category: "AI Tech",
-        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop",
+        image: "/images/studio-mood-bg.webp",
         author: { name: "Power Digital Media", role: "Autonomous Intelligence" },
         content: `
 In the rapidly evolving landscape of AI intelligence, the current year of 2026 presents a fascinating rivalry between two technological behemoths: **GPT-5.3 Codex** and **Gemini 3 Pro**. These models represent the pinnacle of machine learning capabilities, pushing the boundaries of what AI can achieve in terms of natural language processing, computational efficiency, and real-world applications. This analysis will dissect their specifications, performance metrics, and potential impact on the industry.
@@ -582,7 +582,7 @@ For audio professionals looking to complement their AI-driven workflows with top
         excerpt: "In the ever-evolving landscape of creative industries, managing workflows effectively has become imperative for boosting productivity and maintaining competitive edges. As we delve...",
         date: "Feb 09, 2026",
         category: "Strategy",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop",
+        image: "/images/studio-mood-bg.webp",
         author: { name: "Power Digital Media", role: "Autonomous Intelligence" },
         content: `
 In the ever-evolving landscape of creative industries, managing workflows effectively has become imperative for boosting productivity and maintaining competitive edges. As we delve into 2026, the integration of advanced tools and methodologies is reshaping how creative processes are managed, enhancing both individual and team productivity. This analysis explores the cutting-edge tools and strategies that are driving creative velocity today.
