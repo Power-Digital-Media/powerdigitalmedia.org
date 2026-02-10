@@ -1,7 +1,3 @@
-"use client";
-
-import { useParams } from "next/navigation";
-import { motion } from "framer-motion";
 import { blogPosts } from "@/data/blogPosts";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -9,11 +5,10 @@ import Image from "next/image";
 import { Calendar, User, ArrowLeft, Share2 } from "lucide-react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
+import { notFound } from "next/navigation";
 
-export default function BlogPostDetail() {
-    const params = useParams();
-    const slug = params.slug as string;
-    const post = blogPosts.find((p) => p.slug === slug);
+export default function BlogPostDetail({ params }: { params: { slug: string } }) {
+    const post = blogPosts.find((p) => p.slug === params.slug);
 
     if (!post) {
         return (
@@ -65,11 +60,7 @@ export default function BlogPostDetail() {
             <article className="pt-32 pb-24 overflow-hidden">
                 {/* Post Header */}
                 <section className="container px-4 mx-auto mb-16">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="max-w-4xl mx-auto"
-                    >
+                    <div className="max-w-4xl mx-auto">
                         <Link
                             href="/blog"
                             className="inline-flex items-center gap-2 text-sm font-bold text-accent uppercase tracking-widest mb-8 hover:translate-x-[-4px] transition-transform"
@@ -104,17 +95,12 @@ export default function BlogPostDetail() {
                                 <Share2 className="w-6 h-6 group-hover:scale-110 transition-transform" />
                             </button>
                         </div>
-                    </motion.div>
+                    </div>
                 </section>
 
                 {/* Hero Image */}
                 <section className="container px-4 mx-auto mb-24">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 1.02 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                        className="relative aspect-[21/9] rounded-[40px] overflow-hidden shadow-2xl"
-                    >
+                    <div className="relative aspect-[21/9] rounded-[40px] overflow-hidden shadow-2xl">
                         <Image
                             src={post.image}
                             alt={post.title}
@@ -123,7 +109,7 @@ export default function BlogPostDetail() {
                             priority
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-                    </motion.div>
+                    </div>
                 </section>
 
                 {/* Content Body */}

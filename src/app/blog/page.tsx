@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { BookOpen, Calendar, ArrowRight, Book, Share2, Search } from "lucide-react";
 import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
@@ -23,12 +20,7 @@ export default function BlogPage() {
             <section className="relative pt-32 pb-20 overflow-hidden">
                 <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
                 <div className="container px-4 mx-auto text-center">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="max-w-3xl mx-auto"
-                    >
+                    <div className="max-w-3xl mx-auto">
                         <h1 className="text-sm font-bold tracking-[0.3em] text-accent uppercase mb-6 flex items-center justify-center gap-2">
                             <BookOpen className="w-4 h-4" /> Your Go-To Resource
                         </h1>
@@ -49,7 +41,7 @@ export default function BlogPage() {
                             />
                             <Search className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                         </div>
-                    </motion.div>
+                    </div>
                 </div>
             </section>
 
@@ -58,12 +50,8 @@ export default function BlogPage() {
                 <div className="container px-4 mx-auto">
                     <div className="grid gap-12 lg:grid-cols-3">
                         {sortedPosts.map((post, index) => (
-                            <motion.article
+                            <article
                                 key={post.slug}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
                                 className="group cursor-pointer"
                             >
                                 <Link href={`/blog/${post.slug}`} className="block">
@@ -107,7 +95,7 @@ export default function BlogPage() {
                                         </div>
                                     </div>
                                 </Link>
-                            </motion.article>
+                            </article>
                         ))}
                     </div>
                 </div>
