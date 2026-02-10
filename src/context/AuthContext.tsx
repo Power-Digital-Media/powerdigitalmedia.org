@@ -1,8 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { onAuthStateChanged, User } from 'firebase/auth';
-import { auth } from '@/lib/firebase';
+import type { User } from 'firebase/auth';
 
 interface AuthContextType {
     user: User | null;
@@ -16,12 +15,29 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            setUser(user);
-            setLoading(false);
-        });
+        // Lazy load Firebase only when AuthProvider mounts
+        let unsubscribe: (() => void) | undefined;
 
-        return () => unsubscribe();
+        const initAuth = async () => {
+            try {
+                const { auth } = await import('@/lib/firebase');
+                const { onAuthStateChanged } = await import('firebase/auth');
+
+                unsubscribe = onAuthStateChanged(auth, (user) => {
+                    setUser(user);
+                    setLoading(false);
+                });
+            } catch (error) {
+                console.error('Failed to initialize auth:', error);
+                setLoading(false);
+            }
+        };
+
+        initAuth();
+
+        return () => {
+            if (unsubscribe) unsubscribe();
+        };
     }, []);
 
     return (

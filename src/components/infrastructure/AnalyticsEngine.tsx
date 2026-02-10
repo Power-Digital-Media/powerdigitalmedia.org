@@ -1,6 +1,5 @@
 "use client";
 
-import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import Script from "next/script";
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
@@ -20,16 +19,42 @@ export default function AnalyticsEngine() {
 
     return (
         <>
-            {/* Google Stack */}
-            {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
-            {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
+            {/* Google Stack - Deferred for performance */}
+            {GA_ID && (
+                <Script
+                    id="google-analytics"
+                    strategy="afterInteractive"
+                    src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+                />
+            )}
+            {GA_ID && (
+                <Script id="ga-init" strategy="afterInteractive">
+                    {`
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', '${GA_ID}');
+                    `}
+                </Script>
+            )}
+            {GTM_ID && (
+                <Script id="gtm-init" strategy="afterInteractive">
+                    {`
+                        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                        })(window,document,'script','dataLayer','${GTM_ID}');
+                    `}
+                </Script>
+            )}
 
             {/* Meta Pixel */}
             {PIXEL_ID && (
                 <>
                     <Script
                         id="fb-pixel"
-                        strategy="worker"
+                        strategy="afterInteractive"
                         dangerouslySetInnerHTML={{
                             __html: `
                                 !function(f,b,e,v,n,t,s)
