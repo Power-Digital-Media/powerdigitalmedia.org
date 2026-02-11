@@ -8,8 +8,10 @@ import Link from "next/link";
 import { ArrowLeft, Cpu, Globe, Zap, Shield, BarChart3, X } from "lucide-react";
 import React from 'react';
 
-export default function ProjectShowcase({ params }: { params: { slug: string } }) {
-    const project = projects.find((p) => p.id === params.slug);
+export default function ProjectShowcase({ params }: { params: Promise<{ slug: string }> }) {
+    const resolvedParams = React.use(params);
+    const slug = resolvedParams.slug;
+    const project = projects.find((p) => p.id === slug);
     const router = useRouter();
 
     if (!project) notFound();
