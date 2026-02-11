@@ -76,7 +76,7 @@ export default function ThreeDCarousel() {
         return () => clearInterval(interval);
     }, [isAutoSpin, rotateStep, projectCount]);
 
-    if (!mounted) return <div className="h-[500px] md:h-[650px]" />;
+    if (!mounted) return <div className="h-[380px] md:h-[480px]" />;
 
     return (
         <motion.div
