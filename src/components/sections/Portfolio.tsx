@@ -9,7 +9,7 @@ import dynamic from "next/dynamic";
 
 const ThreeDCarousel = dynamic(() => import("../ui/ThreeDCarousel"), {
     ssr: false,
-    loading: () => <div className="h-[380px] md:h-[480px] bg-white/5 animate-pulse rounded-[3rem]" />
+    loading: () => <div className="h-[380px] md:h-[480px]" />
 });
 import BookingModal from "../ui/BookingModal";
 
