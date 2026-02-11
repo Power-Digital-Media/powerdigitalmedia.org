@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import dotenv from 'dotenv';
 import { GEAR_COLLECTION } from '../src/data/gear';
+import { blogPosts } from '../src/data/blogPosts';
 
 // 🛡️ Ignite Authority Protocols
 dotenv.config({ path: path.join(process.cwd(), '.env.local') });
@@ -130,9 +131,18 @@ async function generatePost(vertical: any, context: string) {
         `- ${item.name} (${item.brand}) [${item.category}]: ${item.description}. LINK: /showroom/${item.category.toLowerCase()}/${item.id}`
     ).join('\n');
 
+    // Anti-Duplication Protocol: Get last 20 post titles
+    const recentTitles = blogPosts.slice(0, 20).map(p => `- ${p.title}`).join('\n');
+
     const systemPrompt = `You are the Lead Content Strategist at Power Digital Media, a premium production studio in Jackson, Mississippi.
     
     STRICT DATE PROTOCOL: Today is ${currentDate}. You must NOT treat future dates as past. All content must be anchored to the current moment in time.
+
+    === ANTI-DUPLICATION PROTOCOL ===
+    You must NOT generate content that overlaps significantly with these recent headlines:
+${recentTitles}
+    
+    If the research topic suggests a duplicate, you MUST pivot to a different angle (e.g., "The Engineering Behind X" instead of just "X Announced").
 
     TEMPORAL AWARENESS (CRITICAL): As of February 2026, the AI industry is dominated by GPT-5.3 Codex (OpenAI), Gemini 3 Pro (Google), and Claude 3.5 Opus (Anthropic). Legacy models like ChatGPT-4o and Gemini 1.5 Pro are deprecated. All analysis must reflect this 2026 landscape.
 
@@ -144,6 +154,15 @@ async function generatePost(vertical: any, context: string) {
     5. HEADINGS: Use question-based H3s optimized for featured snippets.
     6. E-E-A-T: Cite sources, use real names, cross-reference 2026 specs.
     7. CHECKLIST: Ensure 900+ words of deep technical analysis.
+    8. FORMATTING: The very first line of your response MUST be the title, starting with a single #.
+
+    REQUIRED OUTPUT FORMAT:
+    # [Short, Punchy Title (Max 10 Words)]
+    
+    ## Quick Take
+    [Your summary here...]
+    
+    ## [Next Section]...
 
     INTERNAL SHOWROOM INVENTORY (for reference):
 ${showroomContext}
@@ -170,9 +189,10 @@ ${showroomContext}
     if (!content) throw new Error("Content generation failed");
 
     const lines = content.split('\n');
-    const firstLine = lines.find(l => l.trim().length > 0 && !l.startsWith('#')) || `Daily Intel: ${vertical.name}`;
-    const title = firstLine.replace(/#{1,3}\s?/, '').replace(/\*/g, '').trim();
-    const slug = title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]/g, '').replace(/-+/g, '-');
+    // Find the title line (starts with #) or fallback to first non-empty line
+    const titleLine = lines.find(l => l.trim().startsWith('# ')) || lines.find(l => l.trim().length > 0 && l.trim().length < 100) || `Daily Intel: ${vertical.name}`;
+    const title = titleLine.replace(/^#+\s*/, '').replace(/\*/g, '').trim();
+    const slug = title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]/g, '').replace(/-+/g, '-').slice(0, 100);
 
     const imageUrl = await generateImage(title, vertical.name, slug);
 
@@ -221,10 +241,16 @@ async function main() {
         const fileContent = fs.readFileSync(postsFile, 'utf-8');
 
         // Find insertion point (start of array)
-        const arrayStart = fileContent.indexOf('export const blogPosts: BlogPost[] = [');
-        if (arrayStart === -1) throw new Error("Could not find blogPosts array");
 
-        const insertionPoint = fileContent.indexOf('[', arrayStart) + 1;
+        const match = fileContent.match(/export const blogPosts:\s*BlogPost\[\]\s*=\s*\[/);
+        if (!match) {
+            console.error("❌ CRITICAL ERROR: Could not find 'blogPosts' array definition.");
+            console.error("   File start check:", fileContent.slice(0, 200));
+            throw new Error("Could not find blogPosts array");
+        }
+        const arrayStart = match.index!;
+
+        const insertionPoint = match.index! + match[0].length;
 
         // Format new posts
         const newPostsString = newPosts.map(post => `
@@ -244,6 +270,7 @@ ${post.content.replace(/`/g, '\\`')}
         \`
     },`).join('');
 
+        // Write back
         // Write back
         const newContent = fileContent.slice(0, insertionPoint) + newPostsString + fileContent.slice(insertionPoint);
         fs.writeFileSync(postsFile, newContent);

@@ -78,7 +78,7 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ slu
                             </div>
                         </div>
 
-                        <h1 className="text-4xl font-bold tracking-tight md:text-7xl mb-12 leading-[1.1]">
+                        <h1 className="text-3xl font-bold tracking-tight md:text-5xl mb-12 leading-[1.2]">
                             {post.title}
                         </h1>
 
@@ -119,7 +119,7 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ slu
                         <div className="prose prose-invert prose-blue max-w-none">
                             <ReactMarkdown
                                 components={{
-                                    h2: ({ ...props }) => <h2 className="text-4xl font-bold mt-20 mb-8 tracking-tight" {...props} />,
+                                    h2: ({ ...props }) => <h2 className="text-3xl font-bold mt-20 mb-8 tracking-tight" {...props} />,
                                     h3: ({ ...props }) => <h3 className="text-2xl font-bold mt-12 mb-6 tracking-tight" {...props} />,
                                     p: ({ ...props }) => <p className="text-xl text-foreground/80 leading-[1.8] mb-10" {...props} />,
                                     ul: ({ ...props }) => <ul className="list-disc pl-8 mb-10 space-y-4 text-xl text-foreground/70" {...props} />,
@@ -159,7 +159,7 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ slu
 
                         <div className="mt-40 pt-24 border-t border-white/5 text-center">
                             <span className="text-accent font-bold tracking-[0.4em] uppercase text-[10px] mb-6 block">Ready to grow?</span>
-                            <h4 className="text-4xl md:text-7xl font-bold mb-10 tracking-tight">Begin Your Digital Legacy.</h4>
+                            <h4 className="text-3xl md:text-5xl font-bold mb-10 tracking-tight">Begin Your Digital Legacy.</h4>
                             <p className="text-xl md:text-2xl text-foreground/70 mb-16 max-w-2xl mx-auto leading-relaxed">Our team is ready to help you implement these strategies and build a brand that lasts.</p>
                             <Link
                                 href="/contact"
