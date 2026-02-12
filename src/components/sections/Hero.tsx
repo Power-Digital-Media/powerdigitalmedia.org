@@ -16,6 +16,8 @@ export default function Hero() {
                     fill
                     className="object-cover opacity-60 scale-100"
                     priority
+                    fetchPriority="high"
+                    quality={65}
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background" />
             </div>
