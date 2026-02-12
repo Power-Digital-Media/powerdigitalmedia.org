@@ -127,8 +127,8 @@ async function runResearch(vertical: any) {
 async function generatePost(vertical: any, context: string) {
     const currentDate = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
-    const showroomContext = GEAR_COLLECTION.slice(0, 10).map(item =>
-        `- ${item.name} (${item.brand}) [${item.category}]: ${item.description}. LINK: /showroom/${item.category.toLowerCase()}/${item.id}`
+    const showroomContext = GEAR_COLLECTION.map(item =>
+        `- ${item.name} (${item.brand}) Category: ${item.category}, Sub: ${item.subCategory}. Desc: ${item.description}. URL: /showroom/${item.category.toLowerCase()}/${item.id}`
     ).join('\n');
 
     // Anti-Duplication Protocol: Get last 20 post titles

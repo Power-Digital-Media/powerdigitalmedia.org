@@ -18,6 +18,27 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "Power Digital Media | Podcast, Video & Web Design in Jackson, MS",
   description: "Power Digital Media is a Jackson, Mississippi digital media studio offering podcast production, video marketing, website design, and AI-powered branding services for businesses, creators, and ministries.",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://powerdigitalmedia.org",
+    siteName: "Power Digital Media",
+    images: [
+      {
+        url: "/hero-bg.webp",
+        width: 1200,
+        height: 630,
+        alt: "Power Digital Media Studio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Power Digital Media | Premier Digital Production",
+    description: "Podcast production, video marketing, and web design in Jackson, MS.",
+    images: ["/hero-bg.webp"],
+  },
+  metadataBase: new URL("https://powerdigitalmedia.org"),
 };
 
 export default function RootLayout({

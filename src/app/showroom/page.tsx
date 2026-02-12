@@ -3,6 +3,17 @@ import Footer from "@/components/layout/Footer";
 import { GEAR_COLLECTION } from "@/data/gear";
 import { ShoppingBag, ChevronRight } from "lucide-react";
 import ShowroomClient from "@/components/ui/showroom/ShowroomClient";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "The Elite Showroom | Power Digital Media",
+    description: "Secure the exact hardware we use to engineer high-velocity content. Curated for professionals who demand technical excellence.",
+    openGraph: {
+        title: "The Elite Showroom | Power Digital Media",
+        description: "Secure the exact hardware we use to engineer high-velocity content. Curated for professionals who demand technical excellence.",
+        images: ["/hero-bg.webp"], // Fallback to hero for now as it's high quality
+    },
+};
 
 export default function ShowroomPage() {
     return (

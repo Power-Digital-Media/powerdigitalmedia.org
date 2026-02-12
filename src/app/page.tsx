@@ -7,6 +7,16 @@ const Services = dynamic(() => import("@/components/sections/Services"));
 const TechStack = dynamic(() => import("@/components/sections/TechStack"));
 const Contact = dynamic(() => import("@/components/sections/Contact"));
 
+export const metadata = {
+  title: "Power Digital Media | Premier Digital Production Studio",
+  description: "Transforming brands with high-velocity content, expert web design, and cinematic video production in Jackson, MS.",
+  openGraph: {
+    title: "Power Digital Media | Premier Digital Production Studio",
+    description: "Transforming brands with high-velocity content, expert web design, and cinematic video production in Jackson, MS.",
+    images: ["/hero-bg.webp"],
+  },
+};
+
 export default function Home() {
   return (
     <main className="relative flex flex-col min-h-screen">

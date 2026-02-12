@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { blogPosts } from "@/data/blogPosts";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -6,6 +7,43 @@ import { Calendar, User, ArrowLeft, Share2 } from "lucide-react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import { notFound } from "next/navigation";
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const { slug } = await params;
+    const post = blogPosts.find((p) => p.slug === slug);
+
+    if (!post) {
+        return {
+            title: "Post Not Found | Power Digital Media",
+        };
+    }
+
+    return {
+        title: `${post.title} | Power Digital Media`,
+        description: post.excerpt,
+        openGraph: {
+            title: post.title,
+            description: post.excerpt,
+            type: "article",
+            publishedTime: new Date(post.date).toISOString(),
+            authors: [post.author.name],
+            images: [
+                {
+                    url: post.image,
+                    width: 1200,
+                    height: 630,
+                    alt: post.title,
+                },
+            ],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: post.title,
+            description: post.excerpt,
+            images: [post.image],
+        },
+    };
+}
 
 export default async function BlogPostDetail({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
