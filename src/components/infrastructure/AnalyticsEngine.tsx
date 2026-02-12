@@ -2,21 +2,33 @@
 
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import Script from "next/script";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 export default function AnalyticsEngine() {
     const pathname = usePathname();
+    const [shouldLoadAnalytics, setShouldLoadAnalytics] = useState(false);
 
     const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
     const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
     const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 
     useEffect(() => {
-        if (PIXEL_ID && window.fbq) {
+        // High-velocity deferral: Wait for 2s to clear the critical rendering path on mobile
+        const timer = setTimeout(() => {
+            setShouldLoadAnalytics(true);
+        }, 3000);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    useEffect(() => {
+        if (shouldLoadAnalytics && PIXEL_ID && window.fbq) {
             window.fbq('track', 'PageView');
         }
-    }, [pathname, PIXEL_ID]);
+    }, [pathname, PIXEL_ID, shouldLoadAnalytics]);
+
+    if (!shouldLoadAnalytics) return null;
 
     return (
         <>
@@ -29,7 +41,7 @@ export default function AnalyticsEngine() {
                 <>
                     <Script
                         id="fb-pixel"
-                        strategy="afterInteractive"
+                        strategy="lazyOnload"
                         dangerouslySetInnerHTML={{
                             __html: `
                                 !function(f,b,e,v,n,t,s)

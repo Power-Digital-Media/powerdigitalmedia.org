@@ -28,7 +28,7 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
                     fill
                     priority
                     sizes="(max-width: 768px) 100vw, 100vw"
-                    className="object-cover opacity-40 scale-105 transition-transform duration-[20s]"
+                    className="object-cover opacity-40 transition-transform duration-[20s]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-background via-background/20 to-background" />
                 <div className="absolute inset-0 cyber-grid opacity-20" />
@@ -40,7 +40,7 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                     className="max-w-4xl mx-auto mb-6 md:mb-10"
                 >
                     <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[8px] md:text-[9px] mb-4 md:mb-6 block">Premium Digital Infrastructure</span>
