@@ -119,7 +119,7 @@ export default function ShowcaseReel() {
                             alt={show.title}
                             fill
                             className="object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[20%] group-hover:grayscale-0"
-                            unoptimized
+                            priority={index === 0}
                         />
 
                         {/* Production Overlay */}

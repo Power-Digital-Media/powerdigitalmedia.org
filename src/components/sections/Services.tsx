@@ -16,7 +16,7 @@ export default function Services() {
             <section className="relative flex flex-col justify-start pt-16 pb-12 md:pt-48 md:pb-32 overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=2070&auto=format&fit=crop"
+                        src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=1600&auto=format&fit=crop"
                         alt="Professional Podcasting Studio"
                         fill
                         sizes="(max-width: 768px) 100vw, 50vw"
@@ -124,7 +124,7 @@ export default function Services() {
             <section className="relative flex flex-col justify-start pt-8 pb-12 md:pt-40 md:pb-32 overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
+                        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1600&auto=format&fit=crop"
                         alt="Content Distribution"
                         fill
                         className="object-cover object-right-top md:object-center opacity-30 scale-[1.3] md:scale-110 -translate-y-[10%] md:translate-y-0 transition-transform duration-[20s]"
@@ -167,7 +167,7 @@ export default function Services() {
             <section id="portfolio" className="relative min-h-[90vh] md:min-h-screen flex flex-col items-center justify-center pt-12 pb-0 md:pt-16 md:pb-0 overflow-hidden bg-background">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop"
+                        src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1600&auto=format&fit=crop"
                         alt="Digital Systems"
                         fill
                         className="object-cover opacity-10"
