@@ -61,11 +61,11 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                    {/* Contact */}
+                    {/* Contact - Jackson MS Area Focus */}
                     <div>
-                        <h4 className="font-bold mb-6 uppercase tracking-wider text-xs text-accent">Contact</h4>
+                        <h4 className="font-bold mb-6 uppercase tracking-wider text-xs text-accent">Service Area</h4>
                         <ul className="space-y-4 text-sm text-muted-foreground">
-                            <li>Jackson, Mississippi</li>
+                            <li>Jackson • Madison • Brandon, MS</li>
                             <li>info@powerdigitalmedia.org</li>
                             <li>601-446-2393</li>
                             <li>
@@ -73,7 +73,7 @@ export default function Footer() {
                                     onClick={() => setIsBookingOpen(true)}
                                     className="text-accent font-bold hover:underline"
                                 >
-                                    Book Strategy Call
+                                    Book Local Strategy
                                 </button>
                             </li>
                         </ul>

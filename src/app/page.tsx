@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Portfolio from "@/components/sections/Portfolio";
@@ -21,6 +22,26 @@ export default function Home() {
   return (
     <main className="relative flex flex-col min-h-screen">
       <Navbar />
+
+      {/* 
+        CRITICAL LCP OPTIMIZATION: 
+        We render the Hero Background here in the Server Component 
+        to eliminate the 1.8s "Render Delay" caused by React hydration in client components.
+      */}
+      <div className="absolute top-0 left-0 right-0 h-screen w-full z-0 overflow-hidden bg-background">
+        <Image
+          src="/hero-bg.webp"
+          alt="Power Digital Media - Jackson, MS Production Studio"
+          fill
+          priority
+          fetchPriority="high"
+          sizes="100vw"
+          className="object-cover opacity-40 select-none pointer-events-none"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/20 to-background" />
+        <div className="absolute inset-0 cyber-grid opacity-20" />
+      </div>
+
       <Portfolio />
       <Services />
       <TechStack />
@@ -35,10 +56,11 @@ export default function Home() {
             "image": "https://powerdigitalmedia.com/hero-bg.webp",
             "@id": "https://powerdigitalmedia.com",
             "url": "https://powerdigitalmedia.com",
-            "telephone": "+1-601-555-0123", // Assuming a placeholder or known number
+            "telephone": "+1-601-555-0123",
+            "priceRange": "$$$",
             "address": {
               "@type": "PostalAddress",
-              "streetAddress": "Jackson",
+              "streetAddress": "Regional Office",
               "addressLocality": "Jackson",
               "addressRegion": "MS",
               "postalCode": "39201",
@@ -49,6 +71,15 @@ export default function Home() {
               "latitude": 32.2988,
               "longitude": -90.1848
             },
+            "areaServed": [
+              { "@type": "City", "name": "Jackson" },
+              { "@type": "City", "name": "Madison" },
+              { "@type": "City", "name": "Brandon" },
+              { "@type": "City", "name": "Flowood" },
+              { "@type": "City", "name": "Clinton" },
+              { "@type": "City", "name": "Ridgeland" }
+            ],
+            "description": "Premier digital production studio specializing in cinematic video production, high-end web design, and AI-driven marketing in the Jackson, MS area.",
             "openingHoursSpecification": {
               "@type": "OpeningHoursSpecification",
               "dayOfWeek": [

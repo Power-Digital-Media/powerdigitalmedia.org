@@ -182,7 +182,7 @@ Master the latest software workflows with our **[Editing Protocols](/blog/softwa
 
 The production landscape is shifting. We're seeing a violent collision between traditional hardware and AI-integrated workflows. Here is the high-velocity breakdown of the latest drops from the arena.
 
-![RÃ˜DE Studio Setup](/images/studio-mood-bg.webp
+![RÃ˜DE Studio Setup](/images/studio-mood-bg.webp)
 
 ### 1. RÃ˜DE: The Video Pivot (RÃ˜DECaster Video S)
 RÃ˜DE has officially broken the audio barrier. The **[RÃ˜DECaster Video S](https://rode.com)** is now the flagship for hybrid creators, integrating full video switching and NDI support directly into the power of a Rodecaster Duo. 
@@ -191,7 +191,7 @@ RÃ˜DE has officially broken the audio barrier. The **[RÃ˜DECaster Video S](h
 ### 2. Shure: The KSM Condenser Revolution
 At NAMM 2026, Shure dropped the hammer with a new **[KSM condenser line](https://www.shure.com)** (KSM32C, KSM40C). These are engineered for ultra-low self-noise and "True-to-Life" capture. 
 
-![Shure Microphone in Studio](/images/studio-mood-bg.webp
+![Shure Microphone in Studio](/images/studio-mood-bg.webp)
 
 *   **Elite Protocol:** The new KSM44MP is already being cited as the new "Golden Standard" for high-fidelity vocal tracking.
 
