@@ -5,6 +5,15 @@ import Footer from "@/components/layout/Footer";
 
 import { blogPosts } from "@/data/blogPosts";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Insights & Intel | Power Digital Media Blog",
+    description: "Explore the latest trends in digital media, podcasting technology, and content strategy from the experts at Power Digital Media.",
+    alternates: {
+        canonical: './',
+    }
+};
 
 export default function BlogPage() {
     // Sort posts by date (newest first)

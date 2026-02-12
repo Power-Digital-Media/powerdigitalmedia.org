@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL("https://powerdigitalmedia.org"),
   alternates: {
-    canonical: '/',
+    canonical: './',
   },
 };
 

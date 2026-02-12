@@ -87,8 +87,8 @@ export default function Footer() {
                         <p className="text-[10px] opacity-50 uppercase tracking-widest">As an Amazon Associate I earn from qualifying purchases.</p>
                     </div>
                     <div className="flex items-center gap-8">
-                        <Link href="#" className="hover:text-accent transition-colors">Privacy Policy</Link>
-                        <Link href="#" className="hover:text-accent transition-colors">Terms of Service</Link>
+                        <Link href="/privacy" className="hover:text-accent transition-colors">Privacy Policy</Link>
+                        <Link href="/terms" className="hover:text-accent transition-colors">Terms of Service</Link>
                     </div>
                 </div>
             </div>
