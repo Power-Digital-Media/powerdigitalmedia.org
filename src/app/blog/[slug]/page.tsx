@@ -85,7 +85,7 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ slu
                             "name": "Power Digital Media",
                             "logo": {
                                 "@type": "ImageObject",
-                                "url": "https://powerdigitalmedia.org/images/logo.png"
+                                "url": "https://powerdigitalmedia.org/power-logo.png"
                             }
                         },
                         "mainEntityOfPage": {
