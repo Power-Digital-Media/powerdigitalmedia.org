@@ -1,14 +1,13 @@
 import { AuthProvider } from "@/context/AuthProvider";
-import DashboardLayoutClient from "./DashboardLayoutClient";
 
-export default function DashboardLayout({
+export default function LoginLayout({
     children,
 }: {
     children: React.ReactNode;
 }) {
     return (
         <AuthProvider>
-            <DashboardLayoutClient>{children}</DashboardLayoutClient>
+            {children}
         </AuthProvider>
     );
 }

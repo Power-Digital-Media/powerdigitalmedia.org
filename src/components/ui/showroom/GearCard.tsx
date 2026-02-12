@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { ExternalLink, CheckCircle2, ShoppingCart, Loader2, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { GearItem } from "@/data/gear";
@@ -73,7 +73,7 @@ export default function GearCard({ item }: GearCardProps) {
     };
 
     return (
-        <motion.div
+        <m.div
             layout
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -119,7 +119,7 @@ export default function GearCard({ item }: GearCardProps) {
 
                 {/* Price Indicator */}
                 <div className="absolute top-6 right-6 z-20">
-                    <motion.div
+                    <m.div
                         initial={false}
                         animate={isLoading ? { opacity: [0.5, 1, 0.5] } : { opacity: 1 }}
                         transition={isLoading ? { repeat: Infinity, duration: 1.5 } : {}}
@@ -133,7 +133,7 @@ export default function GearCard({ item }: GearCardProps) {
                         ) : (
                             item.priceRange
                         )}
-                    </motion.div>
+                    </m.div>
                 </div>
             </div>
 
@@ -185,6 +185,6 @@ export default function GearCard({ item }: GearCardProps) {
 
             {/* Ambient Glow */}
             <div className="absolute -bottom-1/2 -left-1/4 w-full h-full bg-accent/5 blur-[100px] pointer-events-none -z-10 opacity-0 group-hover:opacity-100 transition-opacity" />
-        </motion.div>
+        </m.div>
     );
 }

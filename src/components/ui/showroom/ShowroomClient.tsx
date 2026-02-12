@@ -5,7 +5,7 @@ import { GEAR_COLLECTION } from "@/data/gear";
 import type { GearItem } from "@/data/gear";
 import GearCard from "@/components/ui/showroom/GearCard";
 import CategoryFilter from "@/components/ui/showroom/CategoryFilter";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 
 interface ShowroomClientProps {
     initialGear: GearItem[];
@@ -57,7 +57,7 @@ export default function ShowroomClient({ initialGear }: ShowroomClientProps) {
                 {/* Sub-Category Protocol */}
                 <AnimatePresence>
                     {activeCategory !== "All" && availableSubCategories.length > 1 && (
-                        <motion.div
+                        <m.div
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: "auto" }}
                             exit={{ opacity: 0, height: 0 }}
@@ -78,7 +78,7 @@ export default function ShowroomClient({ initialGear }: ShowroomClientProps) {
                                 ))}
                             </div>
                             <div className="mt-4 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent w-full" />
-                        </motion.div>
+                        </m.div>
                     )}
                 </AnimatePresence>
 
@@ -122,7 +122,7 @@ export default function ShowroomClient({ initialGear }: ShowroomClientProps) {
                         As an Amazon Associate I earn from qualifying purchases.
                     </p>
                 </div>
-                <motion.div
+                <m.div
                     layout
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                 >
@@ -131,11 +131,11 @@ export default function ShowroomClient({ initialGear }: ShowroomClientProps) {
                             <GearCard key={item.id} item={item} />
                         ))}
                     </AnimatePresence>
-                </motion.div>
+                </m.div>
 
                 {/* Empty State */}
                 {filteredGear.length === 0 && (
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         className="py-32 text-center rounded-[3rem] border border-dashed border-white/10"
@@ -143,7 +143,7 @@ export default function ShowroomClient({ initialGear }: ShowroomClientProps) {
                         <p className="text-foreground/40 font-bold uppercase tracking-widest text-xs">
                             No hardware detected in this protocol.
                         </p>
-                    </motion.div>
+                    </m.div>
                 )}
             </div>
         </section>

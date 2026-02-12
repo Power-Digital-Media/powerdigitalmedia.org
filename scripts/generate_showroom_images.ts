@@ -51,6 +51,10 @@ async function generateProductImage(product: Product) {
             quality: "hd"
         });
 
+        if (!response.data || response.data.length === 0) {
+            throw new Error("Invalid response structure from OpenAI");
+        }
+
         const url = response.data[0].url;
         if (!url) throw new Error("No URL returned");
 

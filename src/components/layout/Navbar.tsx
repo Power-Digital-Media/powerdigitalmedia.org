@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { Menu, X, LayoutDashboard, LogIn, Terminal } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -124,7 +124,7 @@ export default function Navbar() {
             {/* Mobile Menu */}
             <AnimatePresence>
                 {isMobileMenuOpen && (
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
@@ -181,7 +181,7 @@ export default function Navbar() {
                                 Book Studio
                             </button>
                         </div>
-                    </motion.div>
+                    </m.div>
                 )}
             </AnimatePresence>
             <BookingModal

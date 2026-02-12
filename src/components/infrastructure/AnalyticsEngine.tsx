@@ -50,6 +50,7 @@ export default function AnalyticsEngine() {
                             height="1"
                             width="1"
                             style={{ display: "none" }}
+                            alt=""
                             src={`https://www.facebook.com/tr?id=${PIXEL_ID}&ev=PageView&noscript=1`}
                         />
                     </noscript>

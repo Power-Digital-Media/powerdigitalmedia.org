@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -36,7 +36,7 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
 
             <div className="container relative z-10 px-4 mx-auto text-center">
                 {/* --- Headline Merger --- */}
-                <motion.div
+                <m.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -53,7 +53,7 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
                     <p className="text-base md:text-xl text-foreground font-medium tracking-tight opacity-70 max-w-2xl mx-auto text-balance font-light px-6">
                         We don&apos;t build websites. We deploy <span className="text-white font-medium">high-velocity digital engines</span> engineered for prestige and engineered for dominance.
                     </p>
-                </motion.div>
+                </m.div>
 
                 {/* --- The Showpiece --- */}
                 <div className="relative z-10 -my-2 md:my-4">
@@ -61,7 +61,7 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
                 </div>
 
                 {/* --- Hero CTAs Merger --- */}
-                <motion.div
+                <m.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -77,7 +77,7 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
                     <Link href="#services" className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 md:px-12 md:py-5 border border-white/10 rounded-full font-black uppercase tracking-widest text-[9px] hover:bg-white/5 hover:border-white/20 transition-all group active:scale-95">
                         View Protocols <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </Link>
-                </motion.div>
+                </m.div>
             </div>
 
             {/* Global Decorative Lights */}

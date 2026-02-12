@@ -198,7 +198,7 @@ export default function HookGenerator() {
                                             </div>
                                             <img
                                                 src={thumbnailUrl}
-                                                alt="AI Mockup"
+                                                alt={`AI Generated podcast thumbnail mockup for ${topic}`}
                                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                             />
                                         </div>
