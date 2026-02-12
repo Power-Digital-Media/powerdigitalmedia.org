@@ -51,10 +51,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preload" href="/hero-bg.webp" as="image" type="image/webp" />
-        <link rel="preload" href="/portfolio/all-things-new-real.webp" as="image" type="image/webp" />
-      </head>
+      <head />
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
       >

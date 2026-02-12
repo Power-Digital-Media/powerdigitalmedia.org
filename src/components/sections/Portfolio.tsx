@@ -27,8 +27,9 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
                     alt="Production Background"
                     fill
                     priority
+                    fetchPriority="high"
                     sizes="(max-width: 768px) 100vw, 100vw"
-                    className="object-cover opacity-40 transition-transform duration-[20s]"
+                    className="object-cover opacity-40 select-none pointer-events-none transition-opacity duration-1000"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-background via-background/20 to-background" />
                 <div className="absolute inset-0 cyber-grid opacity-20" />
@@ -81,8 +82,9 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
             </div>
 
             {/* Global Decorative Lights */}
-            <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
-            <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[140px] pointer-events-none" />
+            {/* Global Decorative Lights - Hidden on mobile for GPU optimization */}
+            <div className="hidden md:block absolute top-1/4 -left-20 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
+            <div className="hidden md:block absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[140px] pointer-events-none" />
 
             <BookingModal
                 isOpen={isBookingOpen}
