@@ -107,7 +107,7 @@ export default function AboutPage() {
                                 className="relative rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl aspect-[4/5]"
                             >
                                 <img
-                                    src="/images/gear/cinematic_studio_setup.webp"
+                                    src="/images/gear/rode_podmic_studio_bundle.webp"
                                     alt="Power Digital Media podcast and video production studio in Jackson Mississippi"
                                     className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                                 />

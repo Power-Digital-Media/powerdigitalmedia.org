@@ -32,9 +32,33 @@ export default function AnalyticsEngine() {
 
     return (
         <>
-            {/* Google Stack */}
-            {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
-            {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
+            {/* 
+              OFFLOAD TO WEB WORKERS (Partytown):
+              We move the heavy JS execution off the main thread to prevent 
+              interference with the Hero rendering and animations.
+            */}
+            {GA_ID && (
+                <Script
+                    id="ga-worker"
+                    strategy="worker"
+                    src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+                />
+            )}
+            {GTM_ID && (
+                <Script
+                    id="gtm-worker"
+                    strategy="worker"
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                            })(window,document,'script','dataLayer','${GTM_ID}');
+                        `,
+                    }}
+                />
+            )}
 
             {/* Meta Pixel */}
             {PIXEL_ID && (
@@ -58,6 +82,7 @@ export default function AnalyticsEngine() {
                         }}
                     />
                     <noscript>
+                        {/* The original pixel tracking image, kept for its intended purpose */}
                         <img
                             height="1"
                             width="1"

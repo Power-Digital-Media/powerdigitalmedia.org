@@ -35,6 +35,7 @@ export default function Home() {
           fill
           priority
           fetchPriority="high"
+          quality={65}
           sizes="100vw"
           className="object-cover opacity-40 select-none pointer-events-none"
         />
@@ -53,10 +54,9 @@ export default function Home() {
             "@context": "https://schema.org",
             "@type": "ProfessionalService",
             "name": "Power Digital Media",
-            "image": "https://powerdigitalmedia.com/hero-bg.webp",
-            "@id": "https://powerdigitalmedia.com",
-            "url": "https://powerdigitalmedia.com",
-            "telephone": "+1-601-555-0123",
+            "image": "https://powerdigitalmedia.org/hero-bg.webp",
+            "url": "https://powerdigitalmedia.org",
+            "telephone": "+1-601-446-2393",
             "priceRange": "$$$",
             "address": {
               "@type": "PostalAddress",
