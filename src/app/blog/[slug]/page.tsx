@@ -3,10 +3,11 @@ import { blogPosts } from "@/data/blogPosts";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Image from "next/image";
-import { Calendar, User, ArrowLeft, Share2 } from "lucide-react";
+import { Calendar, User, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import { notFound } from "next/navigation";
+import ShareButtons from "@/components/blog/ShareButtons";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
@@ -130,10 +131,11 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ slu
                                     <p className="text-sm text-muted-foreground tracking-wide font-medium">{post.author.role}</p>
                                 </div>
                             </div>
-                            <button className="p-4 rounded-full glass-card border-white/5 hover:border-accent/40 text-muted-foreground hover:text-accent transition-all group">
-                                <Share2 className="w-6 h-6 group-hover:scale-110 transition-transform" />
-                            </button>
                         </div>
+
+                        {/* Social Share Buttons */}
+                        <ShareButtons title={post.title} slug={post.slug} category={post.category} />
+
                     </div>
                 </section>
 

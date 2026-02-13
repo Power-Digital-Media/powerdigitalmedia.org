@@ -15,13 +15,12 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
     {
-
         slug: "amds-2026-innovations-unpacking-the-future-of-compute",
         title: "AMD's 2026 Innovations: Unpacking the Future of Compute",
         excerpt: "AMD is poised to redefine computing in 2026 with its upcoming Ryzen 9 9950X3D2 CPU and Medusa Halo APUs, which could leverage LPDDR6 RAM for enhanced performance. These development...",
         date: "Feb 13, 2026",
         category: "Hardware",
-        image: "/blog-images/amds-2026-innovations-unpacking-the-future-of-compute-1770965874769.png",
+        image: "/blog-images/intel-compute-core-2026.png",
         author: {
             name: "Power Digital Media",
             role: "Editorial Intelligence"
@@ -137,7 +136,7 @@ At Power Digital Media, we updated our entire facility to 20.3.2 last night. Her
         excerpt: "In February 2026, studio technology is witnessing remarkable advancements, especially in audio processing and creative automation. With the integration of AI into studio workflows,...",
         date: "Feb 13, 2026",
         category: "Daily Intel",
-        image: "/blog-images/studio-tech-advancements-february-2026-insights-1770965907652.png",
+        image: "/blog-images/evolution-studio-tech-2026.png",
         author: {
             name: "Power Digital Media",
             role: "Editorial Intelligence"
