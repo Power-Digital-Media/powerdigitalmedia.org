@@ -1,6 +1,6 @@
 "use client";
 
-import { Instagram, Twitter, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import { Instagram, Twitter, Youtube, Mail, Phone, MapPin, Facebook } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import BookingModal from "../ui/BookingModal";
@@ -42,6 +42,9 @@ export default function Footer() {
                             </a>
                             <a href="https://twitter.com/powerdigitalms" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Twitter" className="w-12 h-12 rounded-full glass-card flex items-center justify-center text-muted-foreground hover:text-accent hover:border-accent/40 transition-all">
                                 <Twitter className="w-5 h-5" />
+                            </a>
+                            <a href="https://facebook.com/powerdigitalmedia" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook" className="w-12 h-12 rounded-full glass-card flex items-center justify-center text-muted-foreground hover:text-accent hover:border-accent/40 transition-all">
+                                <Facebook className="w-5 h-5" />
                             </a>
                             <a href="mailto:info@powerdigitalmedia.org" aria-label="Send us an email" className="w-12 h-12 rounded-full glass-card flex items-center justify-center text-muted-foreground hover:text-accent hover:border-accent/40 transition-all">
                                 <Mail className="w-5 h-5" />
