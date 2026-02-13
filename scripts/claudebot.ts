@@ -33,7 +33,7 @@ function getDynamicQuery(vertical: any): string {
     const month = date.toLocaleDateString('en-US', { month: 'long' });
     const year = date.getFullYear();
     const randomKeyword = vertical.keywords[Math.floor(Math.random() * vertical.keywords.length)];
-    return `new features released ${month} ${year} ${vertical.name} ${randomKeyword}`;
+    return `latest breaking news ${month} ${year} ${vertical.name} ${randomKeyword} announcement`;
 }
 
 async function generateImage(title: string, vertical: string, slug: string) {
@@ -140,6 +140,15 @@ async function generatePost(vertical: any, context: string) {
     const systemPrompt = `You are the Lead Content Strategist at Power Digital Media, a premium production studio in Jackson, Mississippi.
 
     STRICT DATE PROTOCOL: Today is ${currentDate}. You must NOT treat future dates as past. All content must be anchored to the current moment in time.
+
+    === SEARCH SUPREMACY PROTOCOL (CRITICAL) ===
+    The Search Context provided below is the ABSOLUTE TRUTH for current events.
+    1. If Search Context says "X released today", it is true, strictly prioritize it over your internal training data.
+    2. If Search Context contradicts your internal knowledge, the Search Context WINS.
+    3. Use internal knowledge ONLY for:
+       - Historical context (e.g., "This builds upon the 2024 architecture...")
+       - General technical explanations (e.g., "Ray tracing works by...")
+    4. If Search Context is empty or generic, acknowledge the lack of specific breaking news and focus on EVERGREEN principles. DO NOT HALLUCINATE UPDATES.
 
     === CORE CONTENT PILLARS ===
     Your content must now rotate between or combine these three pillars:
