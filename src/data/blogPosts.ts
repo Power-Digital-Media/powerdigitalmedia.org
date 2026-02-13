@@ -15,7 +15,7 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
     {
-<<<<<<< HEAD
+
         slug: "amds-2026-innovations-unpacking-the-future-of-compute",
         title: "AMD's 2026 Innovations: Unpacking the Future of Compute",
         excerpt: "AMD is poised to redefine computing in 2026 with its upcoming Ryzen 9 9950X3D2 CPU and Medusa Halo APUs, which could leverage LPDDR6 RAM for enhanced performance. These development...",
