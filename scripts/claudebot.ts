@@ -33,7 +33,7 @@ function getDynamicQuery(vertical: any): string {
     const month = date.toLocaleDateString('en-US', { month: 'long' });
     const year = date.getFullYear();
     const randomKeyword = vertical.keywords[Math.floor(Math.random() * vertical.keywords.length)];
-    return `latest news ${vertical.name} ${randomKeyword} ${dayOfWeek} ${month} ${year}`;
+    return `new features released ${month} ${year} ${vertical.name} ${randomKeyword}`;
 }
 
 async function generateImage(title: string, vertical: string, slug: string) {
@@ -157,6 +157,16 @@ ${recentTitles}
     If a topic suggests a duplicate, pivot to the technical implementation (e.g., "Optimizing Next.js Runtimes on the i9-14900KS" instead of just "Next.js Update").
 
     TEMPORAL AWARENESS (2026): GPT-5.3 Codex, Gemini 3 Pro, and Claude 3.5 Opus are the standard. React 19/20 and Next.js 16 are the baseline for "cutting edge."
+
+    === LEGACY TECH PROTOCOL (STRICT) ===
+    You must treat the following technologies as "Previous Generation" or "Legacy". refer to them ONLY for comparison:
+    - GPT-4 / GPT-4o (Two years old)
+    - RTX 3090 / 4090 (Previous Gen)
+    - Ryzen 7000 / 8000 (Old Architecture)
+    - Midjourney v6 (We are on v7/v8)
+    - DaVinci Resolve 18/19 (We are on 20.3.2)
+    
+    If your search context mentions these as "new", you must contextualize them as "the foundation for the current [2026 Tech]". Do NOT hype them as cutting edge.
 
     === ENHANCED EDITORIAL PROTOCOL ===
     1. ANSWER BLOCK (MANDATORY): Start with a 40-60 word "Quick Take" summary answering the core question.
