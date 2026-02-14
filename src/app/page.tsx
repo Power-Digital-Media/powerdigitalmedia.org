@@ -6,6 +6,7 @@ import Portfolio from "@/components/sections/Portfolio";
 
 const Services = dynamic(() => import("@/components/sections/Services"));
 const TechStack = dynamic(() => import("@/components/sections/TechStack"));
+const LatestInsights = dynamic(() => import("@/components/sections/LatestInsights"));
 const Contact = dynamic(() => import("@/components/sections/Contact"));
 
 export const metadata = {
@@ -46,6 +47,7 @@ export default function Home() {
       <Portfolio />
       <Services />
       <TechStack />
+      <LatestInsights />
       <Contact />
       <script
         type="application/ld+json"
