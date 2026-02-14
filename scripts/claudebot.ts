@@ -39,11 +39,11 @@ function getDynamicQuery(vertical: any): string {
 async function generateImage(title: string, vertical: string, slug: string) {
     // Fallback images by category
     const fallbacks: Record<string, string> = {
-        'Studio Tech': "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1200&q=80",
-        'Compute Core': "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=1200&q=80",
-        'Software Ecosystem': "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1200&q=80",
-        'AI Intelligence': "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80",
-        'Creative Velocity': "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80"
+        'Studio Tech': "/images/studio-mood-bg.webp",
+        'Compute Core': "/images/studio-mood-bg.webp",
+        'Software Ecosystem': "/images/studio-mood-bg.webp",
+        'AI Intelligence': "/images/studio-mood-bg.webp",
+        'Creative Velocity': "/images/studio-mood-bg.webp"
     };
 
     const fallbackUrl = fallbacks[vertical] || fallbacks['Creative Velocity'];
@@ -86,6 +86,13 @@ async function generateImage(title: string, vertical: string, slug: string) {
         fs.writeFileSync(filepath, buffer);
 
         console.log(`   ✅ Visuals: Image saved permanently to /blog-images/${filename}`);
+
+        // VERIFICATION: Check if file exists and has size
+        const stats = fs.statSync(filepath);
+        if (stats.size < 1000) {
+            throw new Error("Generated image file is too small (corruption suspect). Reverting to fallback.");
+        }
+
         return `/blog-images/${filename}`;
 
     } catch (error: any) {

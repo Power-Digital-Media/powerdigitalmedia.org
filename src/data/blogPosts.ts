@@ -11,6 +11,7 @@ export interface BlogPost {
         role: string;
         avatar?: string;
     };
+    audioUrl?: string; // New: AI Podcast Integration
 }
 
 export const blogPosts: BlogPost[] = [
@@ -20,7 +21,8 @@ export const blogPosts: BlogPost[] = [
         excerpt: "As of February 2026, studio technology is evolving rapidly with innovations emphasizing AI integration, advanced hardware setups, and modern web frameworks. Today's focus includes...",
         date: "Feb 14, 2026",
         category: "Daily Intel",
-        image: "/blog-images/february-2026-studio-tech-daily-intel-brief-1771051317659.png",
+        image: "/images/studio-mood-bg.webp", // Fixed: Fallback for missing generated image
+        audioUrl: "/audio/demo-podcast.mp3", // Mockup Data
         author: {
             name: "Power Digital Media",
             role: "Editorial Intelligence"
@@ -65,7 +67,7 @@ In conclusion, February 2026 marks a significant period of innovation in studio 
         excerpt: "Today's software ecosystem is defined by rapid updates and integrations, with DaVinci Resolve 20.3.2 leading the charge by refining its Neural Engine capabilities. This update high...",
         date: "Feb 14, 2026",
         category: "Software",
-        image: "/blog-images/navigating-the-software-ecosystem-february-2026-insights-1771051341864.png",
+        image: "/images/studio-mood-bg.webp", // Fixed: Fallback for missing generated image
         author: {
             name: "Power Digital Media",
             role: "Editorial Intelligence"

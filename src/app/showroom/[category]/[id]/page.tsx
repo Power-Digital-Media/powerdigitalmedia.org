@@ -28,6 +28,10 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
         title: `${product.name} | ${product.level} Protocol`,
         description: product.description,
         openGraph: {
+            title: product.name,
+            description: product.description,
+            type: "website",
+            url: `https://powerdigitalmedia.org/showroom/${params.category}/${params.id}`,
             images: [product.image],
         },
     };

@@ -37,6 +37,19 @@ export const metadata: Metadata = {
     title: "Power Digital Media | Premier Digital Production",
     description: "Podcast production, video marketing, and web design in Jackson, MS.",
     images: ["/hero-bg.webp"],
+    creator: "@PowerDigitalMS",
+    site: "@PowerDigitalMS",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   metadataBase: new URL("https://powerdigitalmedia.org"),
   alternates: {

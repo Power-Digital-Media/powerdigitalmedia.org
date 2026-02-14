@@ -9,6 +9,7 @@ import ReactMarkdown from "react-markdown";
 import { notFound } from "next/navigation";
 import ShareButtons from "@/components/blog/ShareButtons";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import PodcastPlayer from "@/components/blog/PodcastPlayer";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
@@ -27,6 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             title: post.title,
             description: post.excerpt,
             type: "article",
+            url: `https://powerdigitalmedia.org/blog/${post.slug}`,
             publishedTime: new Date(post.date).toISOString(),
             authors: [post.author.name],
             images: [
@@ -143,6 +145,13 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ slu
 
                         {/* Social Share Buttons */}
                         <ShareButtons title={post.title} slug={post.slug} category={post.category} />
+
+                        {/* AI Podcast Player (Mockup) */}
+                        {post.audioUrl && (
+                            <div className="mt-12">
+                                <PodcastPlayer audioUrl={post.audioUrl} title={post.title} />
+                            </div>
+                        )}
 
                     </div>
                 </section>
