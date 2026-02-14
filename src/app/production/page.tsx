@@ -10,6 +10,7 @@ import ProductionPipeline from "@/components/ui/ProductionPipeline";
 import BookingModal from "@/components/ui/BookingModal";
 import { useState } from "react";
 import Image from "next/image";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 const tiers = [
     {
@@ -117,8 +118,14 @@ export default function ProductionPage() {
         }
     };
 
+    const breadcrumbItems = [
+        { name: "Services", path: "/#services" },
+        { name: "Production", path: "/production" }
+    ];
+
     return (
         <main className="relative min-h-screen bg-background overflow-x-hidden">
+            <BreadcrumbSchema items={breadcrumbItems} />
             <Navbar />
 
             {/* Hero Section */}

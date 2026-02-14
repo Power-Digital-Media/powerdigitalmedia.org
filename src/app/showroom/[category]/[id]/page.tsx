@@ -8,6 +8,7 @@ import ShareProtocol from "@/components/ui/showroom/ShareProtocol";
 import { Metadata } from "next";
 import { ArrowRight, Info, Check, X, Terminal, Workflow } from "lucide-react";
 import * as motion from "framer-motion/client";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 // Force static generation for known paths
 export function generateStaticParams() {
@@ -63,8 +64,15 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
         }
     };
 
+    const breadcrumbItems = [
+        { name: "Showroom", path: "/showroom" },
+        { name: product.category, path: `/showroom?category=${product.category.toLowerCase()}` },
+        { name: product.name, path: `/showroom/${product.category.toLowerCase()}/${product.id}` }
+    ];
+
     return (
         <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-accent selection:text-white">
+            <BreadcrumbSchema items={breadcrumbItems} />
             <Navbar />
 
             {/* Ambient Background Protocol */}

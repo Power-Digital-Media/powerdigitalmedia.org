@@ -14,6 +14,7 @@ import AddOnProtocols from "@/components/ui/AddOnProtocols";
 import HookGenerator from "@/components/ui/HookGenerator";
 import { useState } from "react";
 import Image from "next/image";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 const tiers = [
     {
@@ -105,8 +106,14 @@ export default function PodcastingPage() {
         }
     };
 
+    const breadcrumbItems = [
+        { name: "Services", path: "/#services" },
+        { name: "Podcasting", path: "/podcasting" }
+    ];
+
     return (
         <main className="relative min-h-screen bg-background overflow-x-hidden">
+            <BreadcrumbSchema items={breadcrumbItems} />
             <Navbar />
 
             {/* Cinematic Background Layers (Global for Landing Page) */}

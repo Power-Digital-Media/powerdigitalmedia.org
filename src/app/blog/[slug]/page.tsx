@@ -8,6 +8,7 @@ import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import { notFound } from "next/navigation";
 import ShareButtons from "@/components/blog/ShareButtons";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
@@ -61,8 +62,15 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ slu
         );
     }
 
+    const breadcrumbItems = [
+        { name: "Blog", path: "/blog" },
+        { name: post.category, path: `/blog?category=${post.category.toLowerCase()}` },
+        { name: post.title, path: `/blog/${post.slug}` }
+    ];
+
     return (
         <main className="relative min-h-screen bg-background text-foreground">
+            <BreadcrumbSchema items={breadcrumbItems} />
             <Navbar />
 
             {/* BlogPosting Schema.org (GEO Optimization) */}

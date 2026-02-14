@@ -10,6 +10,7 @@ import Image from "next/image";
 import Portfolio from "@/components/sections/Portfolio";
 import BookingModal from "@/components/ui/BookingModal";
 import WebDesignPricing from "@/components/ui/billing/WebDesignPricing";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 
 interface Protocol {
@@ -93,8 +94,14 @@ const tiers: Tier[] = [
 export default function WebDesignPage() {
     const [isBookingOpen, setIsBookingOpen] = useState(false);
 
+    const breadcrumbItems = [
+        { name: "Services", path: "/#services" },
+        { name: "Web Design", path: "/web-design" }
+    ];
+
     return (
         <main className="relative min-h-screen bg-background text-foreground overflow-x-hidden">
+            <BreadcrumbSchema items={breadcrumbItems} />
             <Navbar />
 
             {/* --- Hero: The Architecture --- */}
