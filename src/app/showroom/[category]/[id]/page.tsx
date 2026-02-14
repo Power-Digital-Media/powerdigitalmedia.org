@@ -19,8 +19,8 @@ export function generateStaticParams() {
 }
 
 // SEO Metadata
-export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
-    const { id } = await params;
+export async function generateMetadata({ params }: { params: Promise<{ category: string; id: string }> }): Promise<Metadata> {
+    const { category, id } = await params;
     const product = GEAR_COLLECTION.find((item) => item.id === id);
     if (!product) return { title: "Product Not Found" };
 
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
             title: product.name,
             description: product.description,
             type: "website",
-            url: `https://powerdigitalmedia.org/showroom/${params.category}/${params.id}`,
+            url: `https://powerdigitalmedia.org/showroom/${category}/${id}`,
             images: [product.image],
         },
     };
