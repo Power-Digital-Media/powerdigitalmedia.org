@@ -149,12 +149,7 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ slu
                         {/* Social Share Buttons */}
                         <ShareButtons title={post.title} slug={post.slug} category={post.category} />
 
-                        {/* AI Podcast Player (Mockup) */}
-                        {post.audioUrl && (
-                            <div className="mt-12">
-                                <PodcastPlayer audioUrl={post.audioUrl} title={post.title} />
-                            </div>
-                        )}
+
 
 
 
@@ -178,6 +173,13 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ slu
                 {/* Content Body */}
                 <section className="container px-4 mx-auto">
                     <div className="max-w-3xl mx-auto">
+                        {/* AI Podcast Player */}
+                        {post.audioUrl && (
+                            <div className="mb-12">
+                                <PodcastPlayer audioUrl={post.audioUrl} title={post.title} />
+                            </div>
+                        )}
+
                         <div className="prose prose-invert prose-blue max-w-none">
                             <ReactMarkdown
                                 components={{
