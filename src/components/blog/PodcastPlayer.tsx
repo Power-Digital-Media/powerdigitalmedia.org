@@ -52,7 +52,7 @@ export default function PodcastPlayer({ audioUrl, title }: PodcastPlayerProps) {
                         <Disc className={`w-10 h-10 text-accent ${isPlaying ? 'animate-spin' : ''}`} style={{ animationDuration: '3s' }} />
                     </div>
                     <div className="absolute -bottom-2 -right-2 bg-black/50 backdrop-blur-md text-[8px] font-black uppercase tracking-widest text-white px-2 py-1 rounded-full border border-white/10">
-                        AI Audio
+                        Studio Brief
                     </div>
                 </div>
 
@@ -60,7 +60,7 @@ export default function PodcastPlayer({ audioUrl, title }: PodcastPlayerProps) {
                 <div className="flex-1 w-full">
                     <div className="flex items-center justify-between mb-4">
                         <div>
-                            <h4 className="text-xs font-black uppercase tracking-[0.2em] text-accent mb-1">Listen to this article</h4>
+                            <h4 className="text-xs font-black uppercase tracking-[0.2em] text-accent mb-1">Listen to the Deep Dive</h4>
                             <h3 className="text-sm font-bold text-white line-clamp-1">{title}</h3>
                         </div>
                         {/* Download Button */}
