@@ -17,8 +17,8 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
     {
         slug: "the-benchmark-war-core-ultra-9-285k-vs-ryzen-9-9950x3d",
-        title: "The Benchmark War: Core Ultra 9 285K vs. Ryzen 9 9950X3D",
-        excerpt: "**The Core Ultra 9 285K stands as the ROI champion, while the Ryzen 9 9950X3D edges out in raw gaming performance.** In 2026, choosing between these two powerhouses depends on your...",
+        title: "Core Ultra 9 285K vs Ryzen 9 9950X3D: 2026 Benchmark War",
+        excerpt: "The Core Ultra 9 285K wins on efficiency, while the Ryzen 9 9950X3D dominates gaming. We analyze ROI, thermal performance, and 2026 value.",
         date: "Feb 15, 2026",
         category: "Hardware",
         image: "/blog-images/the-benchmark-war-core-ultra-9-285k-vs-ryzen-9-9950x3d-1771161127681.png",
@@ -28,7 +28,6 @@ export const blogPosts: BlogPost[] = [
         },
         audioUrl: "/audio/Intel_285K_Workhorse_or_Ryzen_9950X3D_Gaming.m4a",
         content: `
-# The Benchmark War: Core Ultra 9 285K vs. Ryzen 9 9950X3D
 
 ## Quick Take
 **The Core Ultra 9 285K stands as the ROI champion, while the Ryzen 9 9950X3D edges out in raw gaming performance.** In 2026, choosing between these two powerhouses depends on your application needs—Intel offers efficiency, AMD delivers gaming prowess.
@@ -65,7 +64,7 @@ For further reading on these processors, consider these resources:
     {
         slug: "the-sennheiser-ew-100-g3-outdated-or-opportunity",
         title: "The Sennheiser EW 100 G3: Outdated or Opportunity?",
-        excerpt: "The Sennheiser EW 100 G3 might seem outdated in 2026, but it remains a viable option for budget-conscious audio enthusiasts. While newer models offer advanced features, the G3 prov...",
+        excerpt: "The Sennheiser EW 100 G3 remains a viable 2026 option for budget audio. We analyze its relevance against modern digital systems.",
         date: "Feb 15, 2026",
         category: "Daily Intel",
         image: "/blog-images/the-sennheiser-ew-100-g3-outdated-or-opportunity-1771161164604.png",
@@ -74,7 +73,6 @@ For further reading on these processors, consider these resources:
             role: "Power Digital Media"
         },
         content: `
-# The Sennheiser EW 100 G3: Outdated or Opportunity?
 
 ## Quick Take
 The Sennheiser EW 100 G3 might seem outdated in 2026, but it remains a viable option for budget-conscious audio enthusiasts. While newer models offer advanced features, the G3 provides a reliable and cost-effective solution in specific use cases.

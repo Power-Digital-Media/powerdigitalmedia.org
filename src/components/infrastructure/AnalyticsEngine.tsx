@@ -39,8 +39,8 @@ export default function AnalyticsEngine() {
             */}
             {GA_ID && (
                 <Script
-                    id="ga-worker"
-                    strategy="worker"
+                    id="ga-main"
+                    strategy="afterInteractive"
                     src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
                 />
             )}

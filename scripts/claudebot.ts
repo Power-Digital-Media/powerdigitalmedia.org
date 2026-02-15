@@ -263,7 +263,7 @@ ${recentTitles}
     If your search context mentions these as "new", you must contextualize them as "the foundation for the current [2026 Tech]". Do NOT hype them as cutting edge.
 
     === ENHANCED EDITORIAL PROTOCOL ===
-    1. ANSWER BLOCK (MANDATORY): Start with a 40-60 word "Quick Take" summary answering the core question. Use the mandatory opener.
+    1. ANSWER BLOCK (MANDATORY): Start with a "Quick Take" summary (Max 150 characters) answering the core question. Use the mandatory opener.
     2. LEAD WITH DATA: Start with specific metrics (TTFB, LCP, TFLOPS, IPC), no generic openers.
     3. STUDIO PERSPECTIVE: Write as Power Digital Media in Jackson, MS. Emphasize that we don't just write about tech; we build the systems that run it.
     4. DEVELOPER-HARDWARE SYNERGY: When discussing web design (Next.js/Node.js), mention the hardware required for local LLM integration, fast builds, and containerization.
@@ -277,7 +277,7 @@ ${recentTitles}
     10. FORMATTING: The very first line of your response MUST be the title, starting with a single #.
 
     REQUIRED OUTPUT FORMAT:
-    # [Short, Punchy Title (Max 10 Words)]
+    # [SEO Title (Max 60 chars)]
 
     ## Quick Take
     [Your summary here...]
@@ -327,7 +327,7 @@ ${showroomContext}
         category: vertical.category,
         image: imageUrl,
         author: { name: persona.role, role: "Power Digital Media" },
-        content
+        content: content.split('\n').filter(line => !line.trim().startsWith('# ')).join('\n').trim()
     };
 }
 
