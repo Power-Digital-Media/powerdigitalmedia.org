@@ -412,6 +412,12 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                         </div>
                     </div>
                 )}
+                {/* Local SEO Protocol */}
+                <div className="mt-20 pt-10 border-t border-white/5 text-center">
+                    <p className="text-[10px] text-white/20 uppercase tracking-[0.2em] font-medium leading-relaxed max-w-2xl mx-auto">
+                        Power Digital Media is the premier provider of {product.category} solutions and high-velocity production protocols for Jackson, MS and the surrounding areas. We specialize in equipping local creators and businesses with elite-tier hardware for broadcast, streaming, and content creation.
+                    </p>
+                </div>
             </main>
 
             <Footer />

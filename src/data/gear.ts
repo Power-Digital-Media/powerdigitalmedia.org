@@ -522,6 +522,89 @@ export const GEAR_COLLECTION: GearItem[] = [
 
     // --- PC COMPONENTS PROTOCOL ---
     {
+        id: 'nvidia-rtx-5090',
+        asin: 'B0TESTBQ5090',
+        name: 'NVIDIA GeForce RTX 5090',
+        brand: 'NVIDIA',
+        category: 'PC',
+        useCase: 'Editing',
+        level: 'Elite',
+        description: 'The new global benchmark for 8K rendering and AI creative velocity. 32GB VRAM.',
+        longDescription: "The NVIDIA GeForce RTX 5090 is the apex predator of computational graphics. Engineered for the post-2025 creative landscape, it shatters all previous benchmarks for 8K REDCODE RAW playback and local AI model training. With a massive 32GB of GDDR7 memory and 5th Gen Tensor Cores, the 5090 eliminates the 'VRAM Bottleneck' that plagued complex 3D scenes. Whether you are generating neural radiance fields or color grading a feature film, this card provides the absolute authority required to execute without hesitation.",
+        features: [
+            '32GB GDDR7 Memory for uncompromised 8K/12K workflows',
+            '5th Gen Tensor Cores for 2x faster local AI training',
+            'DLSS 4.0 with Frame Generation and Ray Reconstruction',
+            'PCIe 5.0 Interface for maximum bandwidth throughput',
+            'Titan-Class cooling vapor chamber for sustained loads'
+        ],
+        whatIsInTheBox: [
+            'NVIDIA GeForce RTX 5090 Founders Edition',
+            'PCIe 5.0 Power Adapter',
+            'Support Guide'
+        ],
+        ourTake: "This is not just a graphics card; it is a local supercomputer. We deploy the 5090 in our 'Master' nodes because it handles local LLMs and Stable Diffusion generation while simultaneously rendering 8K timeline previews. If time is money, this card pays for itself in under a month.",
+        technicalSpecs: ['32GB GDDR7', '5th Gen Tensor Cores', 'DLSS 4.0 Support', 'PCIe 5.0'],
+        priceRange: '$$$$$',
+        image: '/images/gear/rtx_5090.png',
+        amazonLink: 'https://amzn.to/4rdGvEB',
+        subCategory: 'GPUs',
+        isFeatured: true,
+        seoTags: ['RTX 5090', 'NVIDIA 50 Series', 'Best GPU for AI', '8K Video Editing Card', '32GB VRAM GPU'],
+        pros: [
+            '32GB VRAM ceiling enables training large language models locally',
+            'GDDR7 memory bandwidth is a quantum leap over the 40-series',
+            'DLSS 4.0 makes 8K ray-traced gaming and rendering viable',
+            'Unrivaled CUDA core count for Adobe Creative Cloud acceleration'
+        ],
+        cons: [
+            'Requires a 1200W+ ATX 3.1 power supply',
+            'Physical dimensions require a full-tower or open-frame chassis'
+        ],
+        deploymentScenario: "The RTX 5090 is the 'Nuclear Option'. We deploy it exclusively in workstations tasked with heavy machine learning inference and multi-cam 8K editing, where the cost of downtime far exceeds the investment in hardware."
+    },
+    {
+        id: 'amd-rx-9070-xt',
+        asin: 'B0TESTRX9070',
+        name: 'AMD Radeon RX 9070 XT',
+        brand: 'AMD',
+        category: 'PC',
+        useCase: 'Gaming',
+        level: 'Pro',
+        description: 'The most well-rounded enthusiast card of 2026. Massive raw performance for the price.',
+        longDescription: "The AMD Radeon RX 9070 XT is the 'Smart Weapon' of the 2026 GPU market. While NVIDIA chases AI dominance, AMD has optimized the 9070 XT for pure rasterization and improved FSR 4.0 upscaling. It offers 20GB of high-speed memory and a compute architecture that rivals the flagship cards of the previous generation at a fraction of the cost. For editors using DaVinci Resolve (which loves VRAM) and gamers who reject the 'Green Tax', the 9070 XT is the undeniable value champion.",
+        features: [
+            '20GB GDDR6 Memory for seamless 4K editing and gaming',
+            'DNA 4 Architecture with improved Ray Accelerators',
+            'FSR 4.0 AI-based upscaling technology',
+            'DisplayPort 2.1 support for next-gen 8K monitors',
+            'High-efficiency power draw relative to performance'
+        ],
+        whatIsInTheBox: [
+            'AMD Radeon RX 9070 XT',
+            'Quick Start Guide'
+        ],
+        ourTake: "We love this card for our 'Pro' tier builds. It gives you 90% of the gaming performance of a flagship for 60% of the price. The 20GB VRAM buffer is a massive win for DaVinci Resolve users who need to manage complex timelines without hitting a memory wall.",
+        technicalSpecs: ['20GB GDDR6', 'RDNA 4 Arch', 'DisplayPort 2.1', 'AV1 Encoding'],
+        priceRange: '$$$',
+        image: '/images/gear/rx_9070_xt.webp',
+        amazonLink: 'https://amzn.to/3VBk9tD',
+        subCategory: 'GPUs',
+        isFeatured: false,
+        seoTags: ['RX 9070 XT', 'AMD Radeon', 'Best Value GPU 2026', 'DaVinci Resolve GPU', '20GB Graphics Card'],
+        pros: [
+            '20GB VRAM is significantly more generous than competing NVIDIA mid-tier cards',
+            'RDNA 4 architecture delivers exceptional rasterization performance',
+            'DisplayPort 2.1 ready for future high-refresh 8K displays',
+            'Excellent price-to-performance ratio for hybrid creators'
+        ],
+        cons: [
+            'Ray tracing performance still trails NVIDIA equivalents',
+            'Lacks CUDA cores (crucial for some specific 3D render engines)'
+        ],
+        deploymentScenario: "The RX 9070 XT is our 'High-Value' recommendation. We deploy it for video editors who primarily use DaVinci Resolve and gamers who want high-refresh 1440p/4K capability without paying the premium for top-tier AI features they may not use."
+    },
+    {
         id: 'msi-rtx-4090',
         asin: 'B0BG939TRX',
         name: 'MSI Suprim X RTX 4090',
@@ -590,6 +673,60 @@ export const GEAR_COLLECTION: GearItem[] = [
             'Premium pricing compared to standard-bandwidth DDR5 kits'
         ],
         deploymentScenario: "Dominator Titanium is the 'Reliability Layer' for our editing workstations. We deploy 64GB or 128GB configs specifically for 4K/8K timeline management where RAM-cached playback is the primary efficiency directive."
+    },
+    {
+        id: 'corsair-dominator-titanium-2026',
+        asin: 'B0TESTDOMTITAN',
+        name: 'Dominator Titanium DDR5 (2026)',
+        brand: 'Corsair',
+        category: 'PC',
+        useCase: 'Editing',
+        level: 'Elite',
+        description: 'Updated with 8000MHz XMP profiles and swappable top bars. The gold standard for memory.',
+        technicalSpecs: ['64GB (2x32GB)', 'DDR5-8000', 'CAS 36', 'Swappable RGB'],
+        priceRange: '$$$$',
+        image: '/images/gear/corsair_dominator_titanium.webp',
+        amazonLink: 'https://amzn.to/4cqlG8j',
+        subCategory: 'RAM',
+        isFeatured: true,
+        pros: [
+            'Hand-screened ICs ensure stability at extreme 8000MHz frequencies',
+            'Swappable top bars allow for physical customization of the visual protocol',
+            'DHX cooling technology keeps modules cool under heavy render loads',
+            'iCUE integration provides the most advanced lighting control on the market'
+        ],
+        cons: [
+            'Requires a high-end motherboard (Z890) to run stable at rated speeds',
+            'Significantly more expensive than standard "Vengeance" kits'
+        ],
+        deploymentScenario: "This is the 'High-Bandwidth' protocol. We deploy these kits in 64GB or 96GB configurations for our Ultra 9 workstations to ensure the CPU is never waiting for data."
+    },
+    {
+        id: 'gskill-trident-z5-neo',
+        asin: 'B0TESTZ5NEO',
+        name: 'Trident Z5 Neo RGB',
+        brand: 'G.Skill',
+        category: 'PC',
+        useCase: 'Gaming',
+        level: 'Pro',
+        description: 'Optimized specifically for AMD Ryzen 9000 series. EXPO profiles for one-click performance.',
+        technicalSpecs: ['32GB (2x16GB)', 'DDR5-6400', 'AMD EXPO', 'CL30'],
+        priceRange: '$$',
+        image: '/images/gear/trident_z5_neo.webp',
+        amazonLink: 'https://amzn.to/3IJW3kL',
+        subCategory: 'RAM',
+        isFeatured: false,
+        pros: [
+            'AMD EXPO certification ensures instant compatibility with Ryzen 9000',
+            'Aggressive styling matches the aggressive performance of the 9950X3D',
+            'Tight CL30 timings reduce latency for high-framerate gaming',
+            'Reliable Hynix A-die chips allow for manual tuning headroom'
+        ],
+        cons: [
+            'RGB diffusion is not as uniform as the Corsair Capellix LEDs',
+            'Tall heatspreaders may conflict with some large air coolers'
+        ],
+        deploymentScenario: "The Z5 Neo is our 'Ryzen Protocol'. We deploy it exclusively with AMD builds to leverage the EXPO profiles for instant, stable memory overclocking."
     },
     {
         id: 'msi-meg-pro-liquid',
@@ -783,6 +920,51 @@ export const GEAR_COLLECTION: GearItem[] = [
             'Maximum brightness may be lower than HDR1000 certified monitors'
         ],
         deploymentScenario: "We deploy the MAG 274UPF as the 'High-Value' 4K baseline. It is the perfect secondary monitor for an Elite setup or a primary command center for creators transitioning from 1080p to UHD protocols."
+    },
+
+    // --- MOTHERBOARD PROTOCOL ---
+    {
+        id: 'asrock-z890-taichi',
+        asin: 'B0TESTZ890TAICHI',
+        name: 'ASRock Z890 Taichi',
+        brand: 'ASRock',
+        category: 'PC',
+        useCase: 'Editing',
+        level: 'Elite',
+        description: 'The gear-driven masterpiece. Native Thunderbolt 5 and massive VRM for the Ultra 9.',
+        longDescription: "The ASRock Z890 Taichi is the mechanical heart of our 2026 Elite workstations. Designed specifically to tame the power requirements of the Core Ultra 9, it features a massive 24+1+2 phase power design and server-grade PCB construction. The signature 'gear' aesthetic is now fully animated with kinetic lighting, but the real story is connectivity: native Thunderbolt 5 ports, Wi-Fi 7, and enough M.2 slots to run a raid array of NVMe drives without an expansion card.",
+        features: [
+            '24+1+2 Power Phase Design for infinite stability',
+            'Native Thunderbolt 5 (80Gbps) dual ports',
+            'PCIe 5.0 for both GPU and NVMe protocols',
+            'DDR5-8000+ MHz overclocking support',
+            'Kinetic "Gear" lighting aesthetic'
+        ],
+        whatIsInTheBox: [
+            'ASRock Z890 Taichi Motherboard',
+            'Wi-Fi 7 Antenna',
+            'Thunderbolt 4 Cable',
+            'M.2 Heatsink Kit'
+        ],
+        ourTake: "We chose the Taichi for one reason: Thunderbolt 5. For studios moving terabytes of footage to external RAIDs, the 80Gbps bandwidth is non-negotiable. The board is also built like a tank—you could probably stand on it and it would still post. It is the perfect foundation for an Ultra 9 build.",
+        technicalSpecs: ['E-ATX Form Factor', 'LGA1851', 'Thunderbolt 5', 'DDR5 8000+'],
+        priceRange: '$$$$',
+        image: '/images/gear/asrock_z890_taichi.webp',
+        amazonLink: 'https://amzn.to/3TJU8f2',
+        subCategory: 'Motherboards',
+        isFeatured: true, // It's a new Elite item
+        seoTags: ['ASRock Z890 Taichi', 'Thunderbolt 5 Motherboard', 'LGA1851 Board', 'Best Intel Motherboard', 'Z890 E-ATX'],
+        pros: [
+            'Thunderbolt 5 native support doubles external transfer speeds',
+            'Massive VRM heatsinks keep the Ultra 9 running at full boost',
+            'Aesthetic design is unique and visually stunning for glass cases',
+            'DDR5 signal integrity is top-tier for high-frequency kits'
+        ],
+        cons: [
+            'E-ATX form factor requires a large chassis like the O11 XL',
+            'Premium pricing places it out of reach for "gaming-only" builds'
+        ],
+        deploymentScenario: "The Taichi is our 'Connectivity Hub'. We deploy it in edit bays where high-speed external storage and network connectivity are the primary bottlenecks. It eliminates them both."
     },
 
     // --- BUDGET / ENTRY PROTOCOL ---
@@ -1278,6 +1460,90 @@ export const GEAR_COLLECTION: GearItem[] = [
 
     // --- COMPUTING CORE (CPU) PROTOCOL ---
     {
+        id: 'intel-core-ultra-9-285k',
+        asin: 'B0TESTU9285K',
+        name: 'Core Ultra 9 285K',
+        brand: 'Intel',
+        category: 'PC',
+        useCase: 'Editing',
+        level: 'Elite',
+        description: 'The Arrow Lake flagship. Tile-based architecture for maximum efficient throughput.',
+        longDescription: "The Intel Core Ultra 9 285K represents the biggest shift in trusted computing since the introduction of hybrid architecture. Built on the new 'Arrow Lake' process, it utilizes a disaggregated tile-based design to separate compute, graphics, and I/O for unprecedented thermal efficiency. With higher sustained clocks and a massive NPU (Neural Processing Unit) for local AI acceleration, the 285K is the brain of the future-proof studio. It runs cooler, works harder, and renders faster than any chip before it.",
+        features: [
+            'Arrow Lake Tile Architecture for thermal efficiency',
+            'Integrated NPU for hardware-level AI acceleration',
+            'Thunderbolt 5 native support for 80Gbps transfer speeds',
+            'Wi-Fi 7 integrated protocol for wireless bandwidth',
+            '24 Cores with improved IPC (Instructions Per Clock)'
+        ],
+        whatIsInTheBox: [
+            'Intel Core Ultra 9 285K Processor',
+            'Installation Guide',
+            'Elite Series Branding Card'
+        ],
+        ourTake: "Intel has finally solved the heat equation. The 285K delivers flagship performance without requiring a chiller. The addition of the NPU is a game-changer for Adobe Sensei tools, allowing us to run background tasks like 'Scene Edit Detection' without bogging down the main edit. It is the smartest CPU we have ever tested.",
+        technicalSpecs: ['24 Cores', '5.7 GHz Boost', 'Integrated NPU', 'LGA1851 Socket'],
+        priceRange: '$$$$$',
+        image: '/images/gear/intel_ultra_9.webp',
+        amazonLink: 'https://amzn.to/3IKq3j2',
+        subCategory: 'Processors',
+        isFeatured: true,
+        seoTags: ['Intel Core Ultra 9', 'Arrow Lake CPU', 'Best CPU for Video Editing', 'LGA1851', 'AI Processor'],
+        pros: [
+            'Integrated NPU offloads AI tasks from the GPU/CPU for smoother workflow',
+            'Tile-based architecture significantly reduces thermal throttle capability',
+            'Native Thunderbolt 5 support opens up massive external storage bandwidth',
+            'Future-proof LGA1851 socket ensures compatibility with next-gen boards'
+        ],
+        cons: [
+            'Requires a new LGA1851 motherboard (no backward compatibility)',
+            'Windows 12 optimization required for full NPU utilization'
+        ],
+        deploymentScenario: "The Core Ultra 9 is our 'AI Workstation' core. We deploy it in builds specifically targeted at next-gen workflows that utilize local AI models for noise reduction, upscaling, and generative fill."
+    },
+    {
+        id: 'amd-ryzen-9-9950x3d',
+        asin: 'B0TEST9950X3D',
+        name: 'Ryzen 9 9950X3D',
+        brand: 'AMD',
+        category: 'PC',
+        useCase: 'Gaming',
+        level: 'Elite',
+        description: 'The gaming king returns. 3D V-Cache technology meets Zen 5 architecture.',
+        longDescription: "The AMD Ryzen 9 9950X3D is the undisputed monarch of high-framerate gaming. By stacking massive amounts of L3 cache directly onto the Zen 5 compute die, AMD has eliminated memory latency for gaming workloads. But unlike previous generations, the 9950X3D retains full clock speeds on its productivity cores, making it a true 'Dual-Threat' processor. It creates frames faster than your monitor can display them, while still crushing 4K video exports in record time.",
+        features: [
+            'Second-Gen 3D V-Cache for zero-latency gaming performance',
+            'Zen 5 Architecture limits power draw while maximizing IPC',
+            '16 Cores / 32 Threads for massive multi-threaded rendering',
+            'AM5 Platform longevity ensures drop-in upgrades',
+            'PCIe 5.0 native support for next-gen GPUs'
+        ],
+        whatIsInTheBox: [
+            'AMD Ryzen 9 9950X3D Processor',
+            'Installation Guide',
+            'Ryzen Elite Sticker'
+        ],
+        ourTake: "For the 'Gamer-Creator', there is no other choice. If you stream at 1440p or 4K and want to ensure that your OBS encoding never impacts your in-game framerate, this is the chip. It is efficient, incredibly fast, and runs on the stable AM5 platform. It is the gold standard for high-performance streaming rigs.",
+        technicalSpecs: ['16 Cores / 32 Threads', '3D V-Cache', 'Zen 5 Arch', 'AM5 Socket'],
+        priceRange: '$$$$$',
+        image: '/images/gear/ryzen_9_9950x3d.webp',
+        amazonLink: 'https://amzn.to/3TJt2l1',
+        subCategory: 'Processors',
+        isFeatured: true,
+        seoTags: ['Ryzen 9 9950X3D', 'Zen 5', 'Best Gaming CPU', '3D V-Cache', 'AM5 Processor'],
+        pros: [
+            '3D V-Cache provides an unfair advantage in gaming FPS',
+            'Retains high clock speeds for productivity tasks (unlike 7000 series)',
+            'AM5 socket support means you do not need to buy a new motherboard',
+            'Incredible power efficiency compared to Intel counterparts'
+        ],
+        cons: [
+            'Productivity performance still trails the Core Ultra 9 in raw multicore speed',
+            'Premium pricing due to the complexity of 3D stacking technology'
+        ],
+        deploymentScenario: "The 9950X3D is our 'Stream Command' core. We deploy it in single-PC streaming setups where the system must handle a high-fidelity game and a high-quality broadcast stream simultaneously without dropping a single frame."
+    },
+    {
         id: 'intel-i9-14900ks',
         asin: 'B0D1DPBH6Z',
         name: 'Core i9-14900KS',
@@ -1567,6 +1833,60 @@ export const GEAR_COLLECTION: GearItem[] = [
             'High-prestige pricing compared to standard 360mm AIO solutions'
         ],
         deploymentScenario: "The H150i LCD is our 'Showcase Thermal' protocol. We deploy it in builds where internal aesthetic and hardware monitoring are as critical as the actual CPU temperature control."
+    },
+    {
+        id: 'arctic-liquid-freezer-iii-pro',
+        asin: 'B0TESTLF3PRO',
+        name: 'Liquid Freezer III Pro 420',
+        brand: 'Arctic',
+        category: 'PC',
+        useCase: 'Editing',
+        level: 'Elite',
+        description: 'The best price-to-performance cooler on the market. Now with a dedicated VRM fan.',
+        technicalSpecs: ['420mm Radiator', 'VRM Fan', 'Offset Mount', 'Pre-applied MX-6'],
+        priceRange: '$$',
+        image: '/images/gear/arctic_lf3_420.webp',
+        amazonLink: 'https://amzn.to/43rC7J5',
+        subCategory: 'Liquid Cooling',
+        isFeatured: false,
+        pros: [
+            'Thicker radiator matrix provides significantly more thermal mass than competitors',
+            'Dedicated VRM fan actively cools the motherboard power delivery area',
+            'Offset mounting mechanism is optimized specifically for Ryzen chiplet hotspots',
+            'Unbeatable value proposition for flagship-tier thermal performance'
+        ],
+        cons: [
+            'Utilitarian aesthetic lacks the LCD screens of more expensive models',
+            'Massive 420mm size limits chassis compatibility to Super-Towers'
+        ],
+        deploymentScenario: "The Liquid Freezer III is our 'Function-Over-Form' protocol. We deploy it in render farms and non-showcase builds where raw thermal capacity is the only metric that matters."
+    },
+    {
+        id: 'nzxt-kraken-elite-360-2026',
+        asin: 'B0TESTKRAKEN26',
+        name: 'Kraken Elite 360 (2026)',
+        brand: 'NZXT',
+        category: 'PC',
+        useCase: 'Gaming',
+        level: 'Pro',
+        description: 'The updated classic. Faster pump, brighter screen, and single-connector fans.',
+        technicalSpecs: ['360mm Radiator', '2.36" LCD', 'High-Static Pressure Fans'],
+        priceRange: '$$$',
+        image: '/images/gear/nzxt_kraken_elite_2026.webp',
+        amazonLink: 'https://amzn.to/4ctU9Sj',
+        subCategory: 'Liquid Cooling',
+        isFeatured: false,
+        pros: [
+            'The brightest, highest-refresh rate LCD screen in the industry',
+            'Single-frame fan design eliminates cable clutter on the radiator',
+            'CAM software provides the most intuitive UI for GIF and system monitoring',
+            'Asetek 8th Gen pump is silent and reliable for long-term deployment'
+        ],
+        cons: [
+            'CAM software is required to run in the background at all times',
+            'Price-to-performance ratio is lower than the Arctic Liquid Freezer'
+        ],
+        deploymentScenario: "The Kraken Elite is our 'Visual Standard'. We deploy it in glass-heavy builds (like the Y70 or H9) where the CPU block is the visual focal point of the system."
     },
     {
         id: 'deepcool-ak620-digital',

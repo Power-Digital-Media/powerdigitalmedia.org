@@ -1,14 +1,14 @@
 import https from 'https';
+import { GEAR_COLLECTION } from '../src/data/gear';
 
 const SITEMAP_URL = 'https://powerdigitalmedia.org/sitemap.xml';
 const HOST = 'powerdigitalmedia.org';
 const KEY = process.env.INDEXNOW_KEY || '4f29e2030638421b8c2576b251211756'; // Fallback or Env
 const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 
-// List of URLs to submit (Dynamic in production, but we start with key pages)
-// In a real scenario, you'd parse sitemap.xml to get new URLs.
-// For now, we ping the home and blog root.
-const URL_LIST = [
+// List of URLs to submit
+// We combine static core pages with dynamic showroom items
+const STATIC_URLS = [
     `https://${HOST}/`,
     `https://${HOST}/blog`,
     `https://${HOST}/showroom`,
@@ -16,6 +16,10 @@ const URL_LIST = [
     `https://${HOST}/podcasting`,
     `https://${HOST}/production`
 ];
+
+const DYNAMIC_URLS = GEAR_COLLECTION.map(item => `https://${HOST}/showroom/${item.category.toLowerCase()}/${item.id}`);
+
+const URL_LIST = [...STATIC_URLS, ...DYNAMIC_URLS];
 
 function pingGoogle() {
     console.log('🌐 Pinging Google...');

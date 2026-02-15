@@ -20,20 +20,63 @@ const VERTICALS = [
     { id: 'compute', name: 'Compute Core', category: 'Hardware', keywords: ['NVIDIA RTX 50-series', 'AMD Ryzen 9000', 'Intel Arrow Lake', 'GPU benchmarks', 'CPU architecture'] },
     { id: 'creative', name: 'Software Ecosystem', category: 'Software', keywords: ['DaVinci Resolve update', 'Adobe Premiere Pro features', 'Final Cut Pro AI', 'logic pro updates', 'video editing software'] },
     { id: 'ai', name: 'AI Intelligence', category: 'AI Tech', keywords: ['GPT-5.3 Codex', 'Gemini 3 Pro', 'Claude 3.5 Opus', 'LLM benchmarks', 'AI video generation tools'] },
-    { id: 'workflow', name: 'Creative Velocity', category: 'Strategy', keywords: ['production workflow 2026', 'digital asset management', 'studio storage solutions', 'rendering pipeline optimization'] }
+    { id: 'workflow', name: 'Creative Velocity', category: 'Strategy', keywords: ['production workflow 2026', 'digital asset management', 'studio storage solutions', 'rendering pipeline optimization'] },
+    // Phase 22 Expansion
+    { id: 'tutorials', name: 'Engineering Labs', category: 'Tutorials', keywords: ['Next.js 16 server components', 'React 19 hooks guide', 'Tailwind CSS v4 tricks', 'Stripe integration tutorial', 'Firebase auth flow', 'PostgreSQL optimization', 'TypeScript strict mode'] },
+    { id: 'showcase', name: 'Client Spotlight', category: 'Showcase', keywords: ['e-commerce redesign case study', 'high-performance landing page', 'SaaS dashboard UI', 'medical practice website design', 'law firm SEO strategy'] },
+    { id: 'analysis', name: 'Industry Pulse', category: 'Analysis', keywords: ['AI agency trends 2026', 'web design pricing models', 'remote work culture', 'client acquisition strategy', 'software capitalization rules'] },
+    // Phase 23 2026 Expansion
+    { id: 'sovereign', name: 'Sovereign Cloud', category: 'Infrastructure', keywords: ['local LLM hosting', 'private cloud architecture', 'data sovereignty 2026', 'Ubuntu server AI', 'self-hosted RAG pipelines'] },
+    { id: 'orchestration', name: 'Multiagent Orchestration', category: 'AI Intelligence', keywords: ['Gemini 3 Pro agents', 'LangGraph patterns', 'AI swarm intelligence', 'multi-model routing', 'autonomous coding agents'] },
+    { id: 'physical', name: 'Physical AI', category: 'Studio Tech', keywords: ['Rodecaster Pro II AI features', 'Blackmagic Neural Engine', 'NVIDIA Jetson projects', 'smart studio automation', 'robotics in creative production'] }
+];
+
+const PERSONAS = [
+    {
+        id: 'strategist',
+        role: "Lead Content Strategist",
+        tone: "Strategic, High-Level, Business-Focused. You care about ROI, efficiency, and market positioning.",
+        opener: "In the high-stakes world of digital production, precision is the only metric that matters."
+    },
+    {
+        id: 'engineer',
+        role: "Senior Principal Engineer",
+        tone: "Technical, Cynical, Code-Base Obsessed. You care about performance metrics (TTFB, LCP), clean architecture, and avoiding technical debt. You hate marketing fluff.",
+        opener: "Let's cut the marketing noise and look at the actual benchmarks."
+    },
+    {
+        id: 'director',
+        role: "Executive Creative Director",
+        tone: "Visionary, Abstract, Design-First. You care about user experience (UX), emotional resonance, typography, and brand storytelling. You criticize bad kerning.",
+        opener: "Design is not just how it looks; it's how it feels to the human on the other side of the glass."
+    }
 ];
 
 // Initialize Providers
 const openai = process.env.OPENAI_API_KEY ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY }) : null;
 // const genAI = process.env.GOOGLE_AI_KEY ? new GoogleGenerativeAI(process.env.GOOGLE_AI_KEY) : null; // Unused for now
 
-function getDynamicQuery(vertical: any): string {
+const MISSIONS = [
+    { id: 'deep_scrape', name: 'The Deep Scrape', prompt: 'Find a specific quote from a developer on a Reddit thread or forum regarding [KEYWORD] and build the post around reacting to that quote.' },
+    { id: 'benchmark_war', name: 'The Benchmark War', prompt: 'Find two competing pieces of hardware or software related to [KEYWORD] and write a "Real-World Performance" report based on latest 2026 data.' },
+    { id: 'futurist', name: 'The Futurist', prompt: 'Look at [KEYWORD] today and write about what will replace it by 2028.' },
+    { id: 'news', name: 'Standard Intel', prompt: 'Find the latest breaking news about [KEYWORD].' }
+];
+
+function getDynamicQuery(vertical: any): { query: string, mission: any } {
     const date = new Date();
-    const dayOfWeek = date.toLocaleDateString('en-US', { weekday: 'long' });
     const month = date.toLocaleDateString('en-US', { month: 'long' });
     const year = date.getFullYear();
     const randomKeyword = vertical.keywords[Math.floor(Math.random() * vertical.keywords.length)];
-    return `latest breaking news ${month} ${year} ${vertical.name} ${randomKeyword} announcement`;
+    const mission = MISSIONS[Math.floor(Math.random() * MISSIONS.length)];
+
+    let query = `latest breaking news ${month} ${year} ${vertical.name} ${randomKeyword}`;
+
+    if (mission.id === 'deep_scrape') query = `site:reddit.com OR site:hackernews.com "${randomKeyword}" 2026 discussion`;
+    if (mission.id === 'benchmark_war') query = `${randomKeyword} vs competitor benchmark 2026 review`;
+    if (mission.id === 'futurist') query = `future of ${randomKeyword} predictions 2028`;
+
+    return { query, mission };
 }
 
 async function generateImage(title: string, vertical: string, slug: string) {
@@ -102,8 +145,8 @@ async function generateImage(title: string, vertical: string, slug: string) {
 }
 
 async function runResearch(vertical: any) {
-    const dynamicQuery = getDynamicQuery(vertical);
-    console.log(`📡 [${vertical.name.toUpperCase()}] Researching: "${dynamicQuery}"...`);
+    const { query, mission } = getDynamicQuery(vertical);
+    console.log(`📡 [${vertical.name.toUpperCase()}] Mission: "${mission.name}" | Query: "${query}"`);
 
     let context = "";
     let score = 5; // Base score
@@ -114,7 +157,7 @@ async function runResearch(vertical: any) {
             const resp = await fetch('https://api.firecrawl.dev/v1/search', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${fcKey}` },
-                body: JSON.stringify({ query: dynamicQuery, limit: 3 }),
+                body: JSON.stringify({ query: query, limit: 3 }),
                 signal: AbortSignal.timeout(15000)
             });
             const data = await resp.json() as any;
@@ -131,11 +174,15 @@ async function runResearch(vertical: any) {
         }
     }
 
-    return { context, score };
+    return { context, score, mission };
 }
 
-async function generatePost(vertical: any, context: string) {
+async function generatePost(vertical: any, context: string, mission: any) {
     const currentDate = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+    // Select Persona (Randomly or Specific)
+    const persona = PERSONAS[Math.floor(Math.random() * PERSONAS.length)];
+    console.log(`   🎭 Persona Selected: ${persona.role} (${persona.id})`);
 
     const showroomContext = GEAR_COLLECTION.map(item =>
         `- ${item.name} (${item.brand}) Category: ${item.category}, Sub: ${item.subCategory}. Desc: ${item.description}. URL: /showroom/${item.category.toLowerCase()}/${item.id}`
@@ -144,9 +191,40 @@ async function generatePost(vertical: any, context: string) {
     // Anti-Duplication Protocol: Get last 20 post titles
     const recentTitles = blogPosts.slice(0, 20).map(p => `- ${p.title}`).join('\n');
 
-    const systemPrompt = `You are the Lead Content Strategist at Power Digital Media, a premium production studio in Jackson, Mississippi.
+    const systemPrompt = `You are the ${persona.role} at Power Digital Media, a premium production studio in Jackson, Mississippi.
+    
+    TONE & STYLE: ${persona.tone}
+    MANDATORY OPENER: Do NOT use a generic welcome. Start immediately with a BOLD CLAIM about the topic.
+    Examples:
+    - "The RTX 5090 is overkill for 90% of you."
+    - "React has finally become the problem it was meant to solve."
+
+    MISSION OBJECTIVE: ${mission.prompt}
+
+    === PERSONA CONFLICT PROTOCOL ===
+    You must TAKE A SIDE based on your persona:
+    - Strategist: Argue for ROI, Efficiency, and "Must-Buy".
+    - Engineer: Find the "Fatal Flaw", technical debt, or bloat.
+    - Creative Director: Argue about "Soul", UX, or how it affects the feeling of the work.
+    
+    Rule: If the topic is positive, find the risk. If negative, find the opportunity. Be opinionated.
 
     STRICT DATE PROTOCOL: Today is ${currentDate}. You must NOT treat future dates as past. All content must be anchored to the current moment in time.
+
+    === BANNED VOCABULARY (THE FOOTPRINT KILLER) ===
+    You are strictly FORBIDDEN from using these "AI-ism" words/phrases. If you use them, you FAIL.
+    - "In the rapidly evolving landscape"
+    - "Delve"
+    - "Tapestry"
+    - "Navigate the ecosystem"
+    - "Unlock the potential"
+    - "Mastering"
+    - "It is important to note"
+    - "Game-changer" (cliché)
+    - "Paradigm shift" (cliché)
+    
+    Instead of "In the fast-paced world of AI...", say "Things are moving too fast."
+    Keep it punchy. Keep it human.
 
     === SEARCH SUPREMACY PROTOCOL (CRITICAL) ===
     The Search Context provided below is the ABSOLUTE TRUTH for current events.
@@ -185,15 +263,18 @@ ${recentTitles}
     If your search context mentions these as "new", you must contextualize them as "the foundation for the current [2026 Tech]". Do NOT hype them as cutting edge.
 
     === ENHANCED EDITORIAL PROTOCOL ===
-    1. ANSWER BLOCK (MANDATORY): Start with a 40-60 word "Quick Take" summary answering the core question.
+    1. ANSWER BLOCK (MANDATORY): Start with a 40-60 word "Quick Take" summary answering the core question. Use the mandatory opener.
     2. LEAD WITH DATA: Start with specific metrics (TTFB, LCP, TFLOPS, IPC), no generic openers.
     3. STUDIO PERSPECTIVE: Write as Power Digital Media in Jackson, MS. Emphasize that we don't just write about tech; we build the systems that run it.
     4. DEVELOPER-HARDWARE SYNERGY: When discussing web design (Next.js/Node.js), mention the hardware required for local LLM integration, fast builds, and containerization.
-    5. INTERNAL LINKING: Link to /showroom products (3-5 links minimum). New Requirement: Link hardware to dev use-cases (e.g., "The Samsung 990 Pro is essential for rapid npm install cycles and heavy Node_Modules management").
+    5. INTERNAL LINKING: Link to /showroom products ONLY if they are directly relevant. Do NOT force links. 
+       - If the topic is about new gear we don't have, treat it as a "Market Watch" item.
+       - Your goal is DISCOVERY. If you find high-value gear we should carry, highlight it as "The Next Standard".
     6. HEADINGS: Use question-based H3s optimized for featured snippets.
-    7. E-E-A-T & CITATIONS (CRITICAL): Include at least 3 outbound do-follow links to reputable industry sources (e.g., Vercel Blog, Node.js Foundation, Wired) to validate your claims. Hyperlink the specific data points or quotes.
-    8. CHECKLIST: Ensure 900+ words of deep technical analysis.
-    9. FORMATTING: The very first line of your response MUST be the title, starting with a single #.
+    7. E-E-A-T & CITATIONS (CRITICAL): Include at least 3 outbound do-follow links to reputable industry sources.
+    8. VISUAL/SOURCE ANCHORING (NEW): You MUST reference and link to one specific "anchor" found in the mission (e.g., a specific GitHub repo, a YouTube timestamp, or a price listing). Do not just speak in generalities; point to the real-world artifact.
+    9. CHECKLIST: Ensure 900+ words of deep technical analysis.
+    10. FORMATTING: The very first line of your response MUST be the title, starting with a single #.
 
     REQUIRED OUTPUT FORMAT:
     # [Short, Punchy Title (Max 10 Words)]
@@ -210,9 +291,9 @@ ${recentTitles}
     INTERNAL SHOWROOM INVENTORY (for reference):
 ${showroomContext}
 
-    Based on the research context below, write a comprehensive, technically authoritative blog post.`;
+    Based on the research context below, write a comprehensive blog post in the voice of a ${persona.role}.`;
 
-    const userPrompt = `Vertical: ${vertical.name}\n\nSearch Context:\n${context}\n\nTask: Draft a deep-dive daily intel brief.`;
+    const userPrompt = `Vertical: ${vertical.name}\nMission: ${mission.name}\n\nSearch Context:\n${context}\n\nTask: Draft a deep-dive daily intel brief.`;
 
     let content = "";
     if (openai) {
@@ -245,7 +326,7 @@ ${showroomContext}
         date: new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
         category: vertical.category,
         image: imageUrl,
-        author: { name: "Power Digital Media", role: "Editorial Intelligence" },
+        author: { name: persona.role, role: "Power Digital Media" },
         content
     };
 }
@@ -256,8 +337,8 @@ async function main() {
     // 1. Research Phase
     const candidates = [];
     for (const vertical of VERTICALS) {
-        const { context, score } = await runResearch(vertical);
-        candidates.push({ vertical, context, score });
+        const { context, score, mission } = await runResearch(vertical);
+        candidates.push({ vertical, context, score, mission });
     }
 
     // 2. Selection Phase (Top 2)
@@ -271,7 +352,7 @@ async function main() {
     const newPosts = [];
     for (const story of topStories) {
         try {
-            const post = await generatePost(story.vertical, story.context);
+            const post = await generatePost(story.vertical, story.context, story.mission);
             if (post) newPosts.push(post);
         } catch (e) {
             console.error(`Failed to generate post for ${story.vertical.name}:`, e);
