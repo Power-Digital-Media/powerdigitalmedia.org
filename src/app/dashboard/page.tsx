@@ -60,8 +60,10 @@ export default function DashboardPage() {
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    className="p-10 rounded-[2.5rem] glass-card border-white/5 bg-gradient-to-br from-white/[0.02] to-transparent"
+                    className="p-10 rounded-[2.5rem] glass-card border-white/10 bg-gradient-to-br from-slate-900/50 to-slate-950/50 shadow-2xl shadow-black/50 relative overflow-hidden group"
                 >
+                    <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5" />
+                    <div className="absolute -right-20 -top-20 w-64 h-64 bg-accent/5 rounded-full blur-[80px] group-hover:bg-accent/10 transition-colors duration-700" />
                     <div className="flex items-center justify-between mb-10">
                         <h2 className="text-xl font-black uppercase tracking-tighter">Active <span className="text-accent">Protocols</span></h2>
                         <button className="text-[10px] font-bold text-white/20 hover:text-white uppercase tracking-widest flex items-center gap-2">
@@ -93,9 +95,11 @@ export default function DashboardPage() {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="p-10 rounded-[2.5rem] glass-card border-white/5 bg-gradient-to-br from-white/[0.02] to-transparent lg:col-span-2"
+                    className="p-10 rounded-[2.5rem] glass-card border-white/10 bg-gradient-to-br from-slate-900/50 to-slate-950/50 lg:col-span-2 relative overflow-hidden group"
                 >
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+                    <div className="absolute -left-20 -bottom-20 w-64 h-64 bg-blue-500/5 rounded-full blur-[80px] group-hover:bg-blue-500/10 transition-colors duration-700" />
+
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left relative z-10">
                         <div>
                             <h2 className="text-xl font-black uppercase tracking-tighter mb-4">Financial <span className="text-blue-400">Ledger</span></h2>
                             <p className="text-white/40 text-xs font-medium max-w-md">

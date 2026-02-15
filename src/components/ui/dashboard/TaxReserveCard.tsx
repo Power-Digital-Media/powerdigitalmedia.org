@@ -19,8 +19,9 @@ export default function TaxReserveCard({
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="p-10 rounded-[2.5rem] glass-card border-accent/20 bg-gradient-to-br from-accent/[0.05] to-transparent relative overflow-hidden group"
+            className="p-10 rounded-[2.5rem] glass-card border-accent/30 bg-gradient-to-br from-slate-900/80 via-slate-950/80 to-slate-900/80 shadow-[0_0_50px_-20px_rgba(59,130,246,0.3)] relative overflow-hidden group"
         >
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(59,130,246,0.1),transparent_70%)] opacity-50" />
             {/* Background Icon Watermark */}
             <Calculator className="absolute -right-8 -bottom-8 w-40 h-40 text-accent/5 -rotate-12 group-hover:rotate-0 transition-transform duration-700" />
 

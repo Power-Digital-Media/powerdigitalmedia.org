@@ -41,7 +41,7 @@ export default function OurWorkPage() {
     const [isBookingOpen, setIsBookingOpen] = useState(false);
 
     return (
-        <main className="relative min-h-screen bg-background">
+        <main className="relative min-h-screen">
             <Navbar />
 
             {/* Hero */}
@@ -59,7 +59,7 @@ export default function OurWorkPage() {
                         </h1>
                         <h2 className="text-5xl font-bold tracking-tight md:text-7xl mb-8 leading-[1.1]">
                             Marketing That <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400 text-glow">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-blue-400 to-accent text-glow-blue animate-gradient-x">
                                 Gets Results.
                             </span>
                         </h2>
@@ -83,7 +83,7 @@ export default function OurWorkPage() {
                                 transition={{ duration: 0.6, delay: index * 0.1 }}
                                 className="group relative"
                             >
-                                <div className="relative aspect-video rounded-[2.5rem] overflow-hidden glass-card border-white/5 group-hover:border-accent/30 transition-all duration-700">
+                                <div className="relative aspect-video rounded-[2.5rem] overflow-hidden glass-card border-white/10 group-hover:border-accent/40 bg-slate-950/30 group-hover:shadow-[0_0_40px_-10px_rgba(59,130,246,0.2)] transition-all duration-700">
                                     <Image
                                         src={cat.image}
                                         alt={cat.title}
