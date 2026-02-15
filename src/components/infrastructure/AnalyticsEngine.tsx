@@ -34,31 +34,11 @@ export default function AnalyticsEngine() {
         <>
             {/* 
               OFFLOAD TO WEB WORKERS (Partytown):
-              We move the heavy JS execution off the main thread to prevent 
-              interference with the Hero rendering and animations.
+              We now use the official @next/third-parties library which automatically 
+              handles the strategy and initialization scripts correctly.
             */}
-            {GA_ID && (
-                <Script
-                    id="ga-main"
-                    strategy="afterInteractive"
-                    src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-                />
-            )}
-            {GTM_ID && (
-                <Script
-                    id="gtm-worker"
-                    strategy="worker"
-                    dangerouslySetInnerHTML={{
-                        __html: `
-                            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                            })(window,document,'script','dataLayer','${GTM_ID}');
-                        `,
-                    }}
-                />
-            )}
+            {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
+            {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
 
             {/* Meta Pixel */}
             {PIXEL_ID && (
