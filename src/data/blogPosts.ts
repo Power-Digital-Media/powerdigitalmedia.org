@@ -26,6 +26,7 @@ export const blogPosts: BlogPost[] = [
             name: "Lead Content Strategist",
             role: "Power Digital Media"
         },
+        audioUrl: "/audio/Intel_285K_Workhorse_or_Ryzen_9950X3D_Gaming.m4a",
         content: `
 # The Benchmark War: Core Ultra 9 285K vs. Ryzen 9 9950X3D
 

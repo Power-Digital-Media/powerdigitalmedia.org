@@ -8,6 +8,7 @@ import ShareProtocol from "@/components/ui/showroom/ShareProtocol";
 import { Metadata } from "next";
 import { ArrowRight, Info, Check, X, Terminal, Workflow } from "lucide-react";
 import * as motion from "framer-motion/client";
+import ReactMarkdown from "react-markdown";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 // Force static generation for known paths
@@ -366,6 +367,43 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                         )}
                     </div>
                 </div>
+
+                {/* --- TECHNICAL INTELLIGENCE DOSSIER --- */}
+                {product.technicalDossier && (
+                    <motion.section
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1 }}
+                        className="mb-40"
+                    >
+                        <div className="p-12 rounded-[3rem] bg-slate-900 border border-white/10 relative overflow-hidden group/dossier">
+                            {/* Cyber Grid Background */}
+                            <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
+                            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2" />
+
+                            <div className="relative z-10 max-w-5xl mx-auto">
+                                <div className="flex items-center gap-4 mb-16 border-b border-white/10 pb-8">
+                                    <div className="w-3 h-3 bg-accent animate-pulse rounded-sm" />
+                                    <h2 className="text-sm font-black uppercase tracking-[0.4em] text-accent">
+                                        Sentinel Intelligence Protocol // Authorized Access Only
+                                    </h2>
+                                </div>
+
+                                <div className="prose prose-invert prose-lg max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:tracking-widest prose-h2:text-2xl prose-h2:text-white prose-h2:mb-8 prose-h2:mt-16 prose-h2:border-l-4 prose-h2:border-accent prose-h2:pl-6 prose-h3:text-sm prose-h3:text-accent prose-h3:mb-4 prose-p:text-white/70 prose-p:leading-relaxed prose-strong:text-white prose-strong:font-bold">
+                                    <ReactMarkdown>
+                                        {product.technicalDossier}
+                                    </ReactMarkdown>
+                                </div>
+
+                                <div className="mt-16 pt-8 border-t border-white/10 flex justify-between items-center text-[9px] uppercase tracking-widest text-white/20 font-mono">
+                                    <div>Doc_ID: {product.id.toUpperCase()}_INTEL</div>
+                                    <div>Clearance: Level 5 (Elite)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.section>
+                )}
 
                 {/* Related Protocol Section */}
                 {relatedItems.length > 0 && (
