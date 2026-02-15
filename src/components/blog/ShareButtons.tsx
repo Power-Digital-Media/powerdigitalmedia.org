@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import {
     Twitter,
     Linkedin,
@@ -88,7 +88,7 @@ export default function ShareButtons({ title, slug, category }: ShareButtonsProp
                 >
                     <AnimatePresence mode='wait'>
                         {copied ? (
-                            <motion.div
+                            <m.div
                                 key="check"
                                 initial={{ scale: 0, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 1 }}
@@ -96,9 +96,9 @@ export default function ShareButtons({ title, slug, category }: ShareButtonsProp
                                 transition={{ duration: 0.2 }}
                             >
                                 <Check className="w-5 h-5" />
-                            </motion.div>
+                            </m.div>
                         ) : (
-                            <motion.div
+                            <m.div
                                 key="link"
                                 initial={{ scale: 0, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 1 }}
@@ -106,21 +106,21 @@ export default function ShareButtons({ title, slug, category }: ShareButtonsProp
                                 transition={{ duration: 0.2 }}
                             >
                                 <Link className="w-5 h-5" />
-                            </motion.div>
+                            </m.div>
                         )}
                     </AnimatePresence>
                 </button>
             </div>
 
             {copied && (
-                <motion.span
+                <m.span
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0 }}
                     className="text-xs text-green-400 font-medium"
                 >
                     Copied to clipboard
-                </motion.span>
+                </m.span>
             )}
         </div>
     );

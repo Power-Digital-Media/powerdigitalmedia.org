@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Send, Calendar, MessageSquare, Phone, ArrowRight, X } from "lucide-react";
 import { useState } from "react";
 import BookingModal from "@/components/ui/BookingModal";
@@ -26,7 +26,7 @@ export default function Contact() {
                     <div className="grid gap-20 lg:grid-cols-5">
 
                         {/* Left Side: Info */}
-                        <motion.div
+                        <m.div
                             initial={{ opacity: 0, x: -50 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
@@ -73,10 +73,10 @@ export default function Contact() {
                                     Broadcast-grade production available on-site or via secure remote systems.
                                 </p>
                             </div>
-                        </motion.div>
+                        </m.div>
 
                         {/* Right Side: Form */}
-                        <motion.div
+                        <m.div
                             initial={{ opacity: 0, x: 50 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
@@ -128,7 +128,7 @@ export default function Contact() {
                                     </button>
                                 </form>
                             </div>
-                        </motion.div>
+                        </m.div>
 
                     </div>
                 </div>

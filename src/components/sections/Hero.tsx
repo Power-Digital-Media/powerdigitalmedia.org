@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,7 +23,7 @@ export default function Hero() {
             </div>
 
             <div className="container relative z-10 px-4 mx-auto text-center mt-auto">
-                <motion.div
+                <m.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
@@ -48,11 +48,11 @@ export default function Hero() {
                             Watch Showreel
                         </Link>
                     </div>
-                </motion.div>
+                </m.div>
             </div>
 
             {/* Scroll Indicator */}
-            <motion.div
+            <m.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 2, duration: 1 }}
@@ -60,7 +60,7 @@ export default function Hero() {
             >
                 <span className="text-[10px] uppercase tracking-[0.4em] font-bold">Discover Excellence</span>
                 <div className="w-px h-24 bg-gradient-to-b from-accent to-transparent" />
-            </motion.div>
+            </m.div>
 
             {/* Decorative Lights */}
             <div className="absolute top-1/4 -left-20 w-96 h-96 bg-accent/20 rounded-full blur-[160px] pointer-events-none opacity-50" />

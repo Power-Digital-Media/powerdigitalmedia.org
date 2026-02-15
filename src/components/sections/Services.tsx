@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Film, TrendingUp, CheckCircle2, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -28,7 +28,7 @@ export default function Services() {
 
                 <div className="container relative z-10 px-6 mx-auto">
                     <div className="max-w-xl">
-                        <motion.div
+                        <m.div
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
@@ -58,7 +58,7 @@ export default function Services() {
                                     Watch Showreel <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                                 </Link>
                             </div>
-                        </motion.div>
+                        </m.div>
                     </div>
                 </div>
             </section>
@@ -77,7 +77,7 @@ export default function Services() {
 
                 <div className="container relative z-10 px-6 mx-auto">
                     <div className="grid md:grid-cols-2 items-center gap-16">
-                        <motion.div
+                        <m.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
@@ -91,9 +91,9 @@ export default function Services() {
                                 className="object-cover group-hover:scale-110 transition-transform duration-700"
                             />
                             <div className="absolute inset-0 bg-accent/20 mix-blend-overlay" />
-                        </motion.div>
+                        </m.div>
 
-                        <motion.div
+                        <m.div
                             initial={{ opacity: 0, x: 30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
@@ -116,7 +116,7 @@ export default function Services() {
                             <Link href="/production" className="inline-flex items-center gap-4 px-10 py-5 bg-white text-slate-950 font-black rounded-full hover:bg-blue-400 hover:text-white transition-all uppercase tracking-widest text-[10px]">
                                 Explore Production Tiers <ArrowRight className="w-4 h-4" />
                             </Link>
-                        </motion.div>
+                        </m.div>
                     </div>
                 </div>
             </section>
@@ -135,7 +135,7 @@ export default function Services() {
 
                 <div className="container relative z-10 px-2 md:px-6 mx-auto">
                     <div className="flex justify-end">
-                        <motion.div
+                        <m.div
                             initial={{ opacity: 0, x: 30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
@@ -158,7 +158,7 @@ export default function Services() {
                             <Link href="/our-work" className="inline-flex items-center gap-2 px-8 py-4 border border-white/10 rounded-full hover:bg-white/5 transition-all font-bold uppercase tracking-widest text-[10px] active:scale-95">
                                 View Showreel <ArrowRight className="w-3 h-3" />
                             </Link>
-                        </motion.div>
+                        </m.div>
                     </div>
                 </div>
             </section>
@@ -178,7 +178,7 @@ export default function Services() {
                 </div>
 
                 <div className="container relative z-10 px-6 mx-auto text-center">
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -203,7 +203,7 @@ export default function Services() {
                                 Get A Consultation
                             </button>
                         </div>
-                    </motion.div>
+                    </m.div>
                 </div>
             </section>
 

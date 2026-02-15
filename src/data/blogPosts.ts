@@ -17,19 +17,17 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
     {
         slug: "february-2026-studio-tech-daily-intel-brief",
-        title: "February 2026 Studio Tech Daily Intel Brief",
-        excerpt: "As of February 2026, studio technology is evolving rapidly with innovations emphasizing AI integration, advanced hardware setups, and modern web frameworks. Today's focus includes...",
+        title: "Studio Tech: February 2026 Intel Brief",
+        excerpt: "Feb 2026 Studio Tech Update: key insights on AI integration, RTX 5090 hardware, and Next.js 16 architectures redefining creative workflows.",
         date: "Feb 14, 2026",
         category: "Daily Intel",
         image: "/images/studio-mood-bg.webp", // Fixed: Fallback for missing generated image
-        audioUrl: "/audio/demo-podcast.mp3", // Mockup Data
+        audioUrl: "/audio/The_2026_AI_Studio_Tech_Stack.m4a", // User provided audio file
         author: {
             name: "Power Digital Media",
             role: "Editorial Intelligence"
         },
         content: `
-# February 2026 Studio Tech Daily Intel Brief
-
 ## Quick Take
 As of February 2026, studio technology is evolving rapidly with innovations emphasizing AI integration, advanced hardware setups, and modern web frameworks. Today's focus includes the latest in AI-driven creative automation, cutting-edge hardware for studio environments, and advancements in web architecture.
 

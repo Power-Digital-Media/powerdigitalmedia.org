@@ -11,6 +11,7 @@ import ShareButtons from "@/components/blog/ShareButtons";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import PodcastPlayer from "@/components/blog/PodcastPlayer";
 
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
     const post = blogPosts.find((p) => p.slug === slug);
@@ -30,6 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             type: "article",
             url: `https://powerdigitalmedia.org/blog/${post.slug}`,
             publishedTime: new Date(post.date).toISOString(),
+            modifiedTime: new Date(post.date).toISOString(), // Default to publish date if no update time
             authors: [post.author.name],
             images: [
                 {
@@ -86,6 +88,7 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ slu
                         "description": post.excerpt,
                         "image": post.image,
                         "datePublished": new Date(post.date).toISOString(),
+                        "dateModified": new Date(post.date).toISOString(), // Default to publish date
                         "author": {
                             "@type": "Person",
                             "name": post.author.name,
@@ -152,6 +155,8 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ slu
                                 <PodcastPlayer audioUrl={post.audioUrl} title={post.title} />
                             </div>
                         )}
+
+
 
                     </div>
                 </section>

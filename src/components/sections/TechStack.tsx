@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Zap, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -26,7 +26,7 @@ export default function TechStack() {
     return (
         <section id="studio" className="relative py-28 md:py-48 overflow-hidden bg-background">
             <div className="container relative z-10 px-6 mx-auto">
-                <motion.div
+                <m.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -37,11 +37,11 @@ export default function TechStack() {
                     <p className="text-base md:text-2xl text-foreground/70 leading-relaxed text-balance font-light">
                         We don&apos;t just hit record. We use world-class signal chains and broadcast-grade equipment to ensure your message is felt, not just heard.
                     </p>
-                </motion.div>
+                </m.div>
 
                 <div className="space-y-40">
                     {mainGear.map((item, index) => (
-                        <motion.div
+                        <m.div
                             key={item.name}
                             initial={{ opacity: 0, y: 40 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -73,7 +73,7 @@ export default function TechStack() {
                                     ))}
                                 </ul>
                             </div>
-                        </motion.div>
+                        </m.div>
                     ))}
                 </div>
 
@@ -96,4 +96,3 @@ export default function TechStack() {
         </section>
     );
 }
-
