@@ -21,14 +21,7 @@ const DYNAMIC_URLS = GEAR_COLLECTION.map(item => `https://${HOST}/showroom/${ite
 
 const URL_LIST = [...STATIC_URLS, ...DYNAMIC_URLS];
 
-function pingGoogle() {
-    console.log('🌐 Pinging Google...');
-    https.get(`https://www.google.com/ping?sitemap=${SITEMAP_URL}`, (res) => {
-        console.log(`✅ Google Response: ${res.statusCode}`);
-    }).on('error', (e) => {
-        console.error(`❌ Google Ping Failed: ${e.message}`);
-    });
-}
+
 
 function pingIndexNow() {
     console.log('🌐 Pinging IndexNow (Bing/Yandex)...');
@@ -68,5 +61,5 @@ function pingIndexNow() {
 
 // Execute
 console.log('🚀 Starting SEO Ping Sequence...');
-pingGoogle();
+// Google Sitemap Ping is deprecated (404). We rely on GSC and robots.txt now.
 pingIndexNow();
