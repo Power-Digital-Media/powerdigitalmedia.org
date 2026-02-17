@@ -194,7 +194,7 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ slu
                                         <blockquote className="border-l-4 border-accent bg-accent/5 p-8 my-12 rounded-2xl italic text-2xl" {...props} />
                                     ),
                                     a: ({ ...props }) => (
-                                        <Link
+                                        <a
                                             href={props.href || "#"}
                                             target={props.href?.startsWith("http") ? "_blank" : undefined}
                                             rel={props.href?.startsWith("http") ? "noopener noreferrer" : undefined}
@@ -259,7 +259,7 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ slu
                                     const item = GEAR_COLLECTION.find(g => g.id === id);
                                     if (!item) return null;
                                     return (
-                                        <Link
+                                        <a
                                             key={item.id}
                                             href={`/showroom/${item.category.toLowerCase()}/${item.id}`}
                                             className="group relative flex flex-col p-6 rounded-3xl bg-white/5 border border-white/10 hover:border-accent/40 transition-all duration-500 hover:bg-white/10 hover:-translate-y-1 block"
@@ -280,7 +280,7 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ slu
                                             <h4 className="text-sm font-black text-white uppercase tracking-tight group-hover:text-accent transition-colors leading-tight line-clamp-2">
                                                 {item.name}
                                             </h4>
-                                        </Link>
+                                        </a>
                                     );
                                 })}
                             </div>
