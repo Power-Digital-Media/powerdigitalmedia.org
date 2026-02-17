@@ -27,6 +27,7 @@ export const blogPosts: BlogPost[] = [
             name: "Technical Director",
             role: "Power Digital Media"
         },
+        audioUrl: "/audio/Next.m4a",
         relatedGearIds: ["rode-caster-pro-2", "shure-sm7b", "shure-mv7-plus", "rode-procaster"],
         content: `
 **Short Answer:** Next.js dominates SEO and long-term scalability, while React + Vite wins for speed of development and lightweight apps.
