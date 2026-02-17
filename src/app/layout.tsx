@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   },
 };
 
-import { GoogleTagManager } from "@next/third-parties/google";
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || "GTM-52WQVB8N";
 
 export default function RootLayout({
   children,
@@ -66,8 +66,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID || "GTM-52WQVB8N"} />
       <head>
+        {/* Google Site Verification (HTML Tag Method) */}
+        <meta name="google-site-verification" content="3gJZWrSWWnZtSbDZgQzznQeNdzOgHuUcC8C-H2LzenA" />
+
+        {/* Google Tag Manager (Manual Implementation for Verification) */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${GTM_ID}');
+            `,
+          }}
+        />
+
         <link
           rel="preload"
           href="/hero-bg.webp"
@@ -110,6 +125,16 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
       >
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
+
         <Suspense fallback={null}>
           <AnalyticsEngine />
         </Suspense>

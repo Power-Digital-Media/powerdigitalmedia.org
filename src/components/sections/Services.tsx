@@ -87,7 +87,7 @@ export default function Services() {
                                 src="/images/captures/live-event-gimbal.webp"
                                 alt="Event Production"
                                 fill
-                                sizes="(max-width: 768px) 100vw, 50vw"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
                                 className="object-cover group-hover:scale-110 transition-transform duration-700"
                             />
                             <div className="absolute inset-0 bg-accent/20 mix-blend-overlay" />
