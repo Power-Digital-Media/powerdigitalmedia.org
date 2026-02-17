@@ -12,9 +12,9 @@ dotenv.config();
 const openai = process.env.OPENAI_API_KEY ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY }) : null;
 
 // --- CONFIGURATION ---
-const TOPIC = "DaVinci Resolve Studio 2026 Update";
-const SEARCH_QUERY = "DaVinci Resolve update February 2026 new features specs benchmarks";
-const VERTICAL = { name: "Software Ecosystem", category: "Software" };
+const TOPIC = "Next.js & Node.js vs React + Vite: The 2026 Architectural Guide";
+const SEARCH_QUERY = "Next.js 16 Node.js 24 vs React 20 Vite 6 benchmarks performance SEO 2026";
+const VERTICAL = { name: "Web Architecture", category: "Development" };
 
 async function getResearch() {
     console.log(`📡 [SPECIAL] Researching: "${SEARCH_QUERY}"...`);
@@ -26,8 +26,8 @@ async function getResearch() {
             const resp = await fetch('https://api.firecrawl.dev/v1/search', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${fcKey}` },
-                body: JSON.stringify({ query: SEARCH_QUERY, limit: 4 }),
-                signal: AbortSignal.timeout(20000)
+                body: JSON.stringify({ query: SEARCH_QUERY, limit: 5 }),
+                signal: AbortSignal.timeout(25000)
             });
             const data = await resp.json() as any;
             if (data.success && data.data) {
@@ -42,16 +42,16 @@ async function getResearch() {
 }
 
 async function generateImage(title: string, vertical: string, slug: string) {
-    if (!openai) return "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04";
+    if (!openai) return "https://images.unsplash.com/photo-1627398242454-45a1465c2479";
 
     try {
         console.log(`   🎨 Visuals: Generating SPECIAL asset for "${title}"...`);
         const response = await openai.images.generate({
             model: "dall-e-3",
-            prompt: `Cinematic editorial photography of a high-end color grading suite running DaVinci Resolve 2026. 
-            Dark environment, moody lighting with signature Blackmagic Design orange and teal accents. 
-            Focus on the software interface on a reference monitor and a DaVinci resolve advanced panel.
-            Photorealistic, 8k, tech-noir aesthetic, no text.`,
+            prompt: `High-end tech-noir cinematic photography of a dual-monitor developer workstation. 
+            One screen shows a complex Next.js server component architecture, the other shows a terminal with fast build metrics. 
+            Neon cyan and deep purple accents, moody lighting, professional production studio atmosphere in Jackson MS. 
+            Photorealistic, 8k, no text.`,
             n: 1,
             size: "1024x1024",
             quality: "hd"
@@ -76,56 +76,89 @@ async function generateImage(title: string, vertical: string, slug: string) {
 
     } catch (error: any) {
         console.warn(`   ⚠️ Visuals failed: ${error.message}`);
-        return "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04";
+        return "https://images.unsplash.com/photo-1627398242454-45a1465c2479";
     }
 }
 
 async function generatePost(context: string) {
-    console.log(`   ✍️ Writing: Engaging OpenAI for Special Dispatch...`);
+    console.log(`   ✍️ Writing: Engaging OpenAI for Reinforced Authority Special Dispatch...`);
 
     const currentDate = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
     const showroomContext = GEAR_COLLECTION.map(item =>
         `- ${item.name} (${item.brand}) Category: ${item.category}. Desc: ${item.description}. URL: /showroom/${item.category.toLowerCase()}/${item.id}`
     ).join('\n');
 
-    const systemPrompt = `You are the Lead Content Strategist at Power Digital Media in Jackson, MS.
-    Today is ${currentDate}.
+    const recentTitles = blogPosts.slice(0, 10).map(p => `- ${p.title}`).join('\n');
 
-    TASK: Write a "Special Edition" Deep Dive on the latest DaVinci Resolve update (Feb 2026).
-    
-    CRITICAL REQUIREMENTS:
-    1. **The Update**: Analyze the new features in DaVinci Resolve (likely version 20 or 19.5 update). Focus on AI Color, Cloud Workflows, or Neural Engine improvements.
-    2. **Historical Context**: Briefly explain DaVinci's dominance from hardware-only systems to the full software suite (Edit, Color, VFX, Audio).
-    3. **Hardware Synergy**: Explain EXACTLY what hardware is needed to run this efficiently. Mention "Threadripper PRO", "RTX 5090", "Fast NVMe Storage".
-    4. **Studio Perspective**: We use this daily. It's the industry standard.
-    
-    ESSENTIALS:
-    - **Citations**: Include 3+ outbound do-follow links to Blackmagic Design, Puja, Editors Guild, or reputable tech sites.
-    - **Internal Links**: Link to 3-5 specific showroom items (GPUs, Storage, Monitors).
-    - **Length**: 1200+ words. Comprehensive guide.
+    const systemPrompt = `
+ROLE: Senior Technical Architect at Power Digital Media in Jackson, MS.
+Tone: Opinionated, data-driven, authoritative, non-generic.
 
-    FORMAT:
-    # [Title]
-    ## Quick Take
-    [Summary]
-    ## [Sections...]
-    
-    INTERNAL INVENTORY:
-    ${showroomContext}
-    
-    CONTEXT from Search:
-    ${context}
-    `;
+MISSION: Produce a deep, ranking-optimized technical intelligence article on ${TOPIC}.
+
+AUTHORITY REINFORCEMENT LAYER (MANDATORY)
+1. DATA AUTHORITY RULE: Include measurable data (e.g., LCP, FID, CLS, build times, TTFB, Node.js event pool latency, V8 heap usage).
+2. DEPTH REQUIREMENT: Explain WHY the move to Server Components (Next.js) or SPA (Vite) matters for specific business ROI. 1200+ words.
+3. E-E-A-T AUTHORITY SIGNAL: Include 3+ natural outbound references to credible sources (Vercel, React Dev, Node working groups).
+4. SYSTEM SYNERGY RULE: Connect software performance to hardware (e.g., why a dual-socket Threadripper workstation drastically changes local build cycles for larger monorepos).
+
+FOOTPRINT KILLER LOGIC (CRITICAL)
+Variable Openers: Start with a shocking stat or a controversial opinion. NO GENERIC INTROS.
+
+CTR OPTIMIZATION RULE
+Titles must be click-optimized. Goal: High CTR from Search Console.
+
+ANSWER BLOCK (MANDATORY)
+Provide a <150 character Quick Take for Featured Snippets.
+
+CORE CONTENT REQUIREMENTS
+1. Persona Conflict (MANDATORY): Include disagreement between a Strategist (ROI), an Engineer (Debt/Perf), and a Creative Director (UX).
+2. Internal Authority Mesh: 
+   - Link to ONE showroom item: ${showroomContext.slice(0, 1000)}...
+   - Link to ONE related blog post: ${recentTitles.slice(0, 500)}...
+
+BANNED PHRASES: delve, tapestry, landscape, navigate, unlock the potential, game-changer, paradigm shift, important to note, in summary, in conclusion.
+
+SEARCH SUPREMACY: Use the context below as absolute truth for 2026 tech standards.
+CONTEXT FROM SEARCH:
+${context}
+`;
 
     const response = await openai!.chat.completions.create({
         model: "gpt-4o",
-        messages: [{ role: "system", content: systemPrompt }, { role: "user", content: `Write the DaVinci Resolve Feature Post.` }],
-        temperature: 0.5
+        messages: [{ role: "system", content: systemPrompt }, { role: "user", content: `Write the definitive 2026 guide for ${TOPIC}.` }],
+        temperature: 0.7
     });
 
-    const content = response.choices[0].message.content || "";
+    let content = response.choices[0].message.content || "";
+
+    // --- AI FIREWALL SANITIZATION LAYER ---
+    const bannedPhrases = [/delve/i, /tapestry/i, /landscape/i, /navigate/i, /unlock the potential/i, /game-changer/i, /paradigm shift/i, /important to note/i, /in summary/i, /in conclusion/i];
+
+    // 1. Scrub banned phrases
+    bannedPhrases.forEach(regex => {
+        content = content.replace(regex, (match) => {
+            console.warn(`🔥 AI Firewall: Scrubbed banned phrase "${match}"`);
+            return "critical innovation";
+        });
+    });
+
     const lines = content.split('\n');
-    const titleLine = lines.find(l => l.trim().startsWith('# ')) || `Deep Dive: DaVinci Resolve 2026 Update`;
+
+    // 2. Enforce Quick Take Length (< 150 chars)
+    let quickTakeLine = lines.find(l => l.includes("Quick Take:"));
+    if (quickTakeLine) {
+        const originalQT = quickTakeLine.replace(/\*\*Quick Take:\*\*/, '').replace(/Quick Take:/, '').trim();
+        if (originalQT.length > 150) {
+            console.warn(`📏 AI Firewall: Truncating Quick Take (${originalQT.length} chars)`);
+            const truncatedQT = originalQT.slice(0, 147) + "...";
+            content = content.replace(originalQT, truncatedQT);
+        }
+    }
+    // --- END SANITIZATION ---
+
+    const processedLines = content.split('\n');
+    const titleLine = processedLines.find(l => l.trim().startsWith('# ')) || `# ${TOPIC}`;
     const title = titleLine.replace(/^#+\s*/, '').replace(/\*/g, '').trim();
     const slug = title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]/g, '').replace(/-+/g, '-').slice(0, 100);
 
@@ -137,8 +170,8 @@ async function generatePost(context: string) {
         date: new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
         category: VERTICAL.category,
         image: imageUrl,
-        author: { name: "Power Digital Media", role: "Senior Editor" },
-        content
+        author: { name: "Technical Director", role: "Power Digital Media" },
+        content: content.split('\n').filter(line => !line.trim().startsWith('# ')).join('\n').trim()
     };
 }
 

@@ -245,7 +245,7 @@ LONG-TAIL SEARCH INTENT PROTOCOL (MANDATORY)
 Incorporate real user search phrasing (Question queries, Version updates, Comparison intent). Use variations and semantic equivalents naturally.
 
 BANNED PHRASES (AI FIREWALL)
-Do NOT use: delve, tapestry, landscape, navigate, unlock the potential, game-changer, paradigm shift, important to note.
+Do NOT use: delve, tapestry, landscape, navigate, unlock the potential, game-changer, paradigm shift, important to note, in summary, in conclusion.
 Avoid generic AI tone.
 
 SEARCH SUPREMACY: If real-time Search Context contradicts internal knowledge, Search Context ALWAYS WINS.
@@ -271,9 +271,34 @@ Based on the research context below, write a comprehensive article.`;
 
     if (!content) throw new Error("Content generation failed");
 
+    // --- AI FIREWALL SANITIZATION LAYER ---
+    const bannedPhrases = [/delve/i, /tapestry/i, /landscape/i, /navigate/i, /unlock the potential/i, /game-changer/i, /paradigm shift/i, /important to note/i, /in summary/i, /in conclusion/i];
+
+    // 1. Scrub banned phrases
+    bannedPhrases.forEach(regex => {
+        content = content.replace(regex, (match) => {
+            console.warn(`🔥 AI Firewall: Scrubbed banned phrase "${match}"`);
+            return "critical innovation"; // Context-aware fallback/filler or just remove
+        });
+    });
+
     const lines = content.split('\n');
-    // Find the title line (starts with #) or fallback to first non-empty line
-    const titleLine = lines.find(l => l.trim().startsWith('# ')) || lines.find(l => l.trim().length > 0 && l.trim().length < 100) || `Daily Intel: ${vertical.name}`;
+
+    // 2. Enforce Quick Take Length (< 150 chars)
+    let quickTakeLine = lines.find(l => l.includes("Quick Take:"));
+    if (quickTakeLine) {
+        const originalQT = quickTakeLine.replace(/\*\*Quick Take:\*\*/, '').replace(/Quick Take:/, '').trim();
+        if (originalQT.length > 150) {
+            console.warn(`📏 AI Firewall: Truncating Quick Take (${originalQT.length} chars)`);
+            const truncatedQT = originalQT.slice(0, 147) + "...";
+            content = content.replace(originalQT, truncatedQT);
+        }
+    }
+
+    // --- END SANITIZATION ---
+
+    const processedLines = content.split('\n');
+    const titleLine = processedLines.find(l => l.trim().startsWith('# ')) || processedLines.find(l => l.trim().length > 0 && l.trim().length < 100) || `Daily Intel: ${vertical.name}`;
     const title = titleLine.replace(/^#+\s*/, '').replace(/\*/g, '').trim();
     const slug = title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]/g, '').replace(/-+/g, '-').slice(0, 100);
 
