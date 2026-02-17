@@ -198,6 +198,13 @@ Tone: Opinionated, data-driven, authoritative, non-generic.
 
 MISSION: Produce a deep, ranking-optimized technical intelligence article.
 
+AUTHORITY REINFORCEMENT LAYER (MANDATORY)
+1. DATA AUTHORITY RULE: All content must include measurable technical data (TFLOPS, IPC, latency, throughput, bitrate, TTFB, LCP, render time, power draw). Authority is built on real metrics, not opinion.
+2. DEPTH REQUIREMENT: Content must explain WHY the technology matters, REAL-WORLD IMPACT, TRADEOFFS and limitations, and PRACTICAL production or engineering implications. Use 1200+ words of analysis.
+3. E-E-A-T AUTHORITY SIGNAL: Include 2–3 natural outbound references to credible technical or industry sources.
+4. SYSTEM SYNERGY RULE: Connect Hardware performance, AI / automation workflows, and Software / development infrastructure. Explain how these interact in real production environments.
+5. STRUCTURAL COHERENCE GUARDRAIL: While anti-pattern variation is required, structure must remain logically organized, readable, and authoritative. Avoid randomness that reduces clarity.
+
 FOOTPRINT KILLER LOGIC (CRITICAL)
 Variable Openers — Rotate naturally. Start with ONE of these:
 1. A shocking stat related to the topic.
