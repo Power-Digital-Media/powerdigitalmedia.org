@@ -57,6 +57,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { GoogleTagManager } from "@next/third-parties/google";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -64,6 +66,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID || "GTM-52WQVB8N"} />
       <head>
         <link
           rel="preload"

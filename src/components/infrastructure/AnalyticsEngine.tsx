@@ -1,6 +1,6 @@
 "use client";
 
-import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
@@ -11,7 +11,6 @@ export default function AnalyticsEngine() {
 
     const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
     const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
-    const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 
     useEffect(() => {
         // High-velocity deferral: Wait for 2s to clear the critical rendering path on mobile
@@ -38,7 +37,6 @@ export default function AnalyticsEngine() {
               handles the strategy and initialization scripts correctly.
             */}
             {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
-            {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
 
             {/* Meta Pixel */}
             {PIXEL_ID && (
