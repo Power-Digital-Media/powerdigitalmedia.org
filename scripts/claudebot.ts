@@ -213,15 +213,27 @@ Variable Openers — Rotate naturally. Start with ONE of these:
 Never use a generic intro like "In today's fast-paced world...".
 
 CTR OPTIMIZATION RULE
-Titles must be click-optimized but accurate, using:
-- Version numbers (DaVinci Resolve 20.x, GPT-5.3, etc.).
-- "The Truth About...".
-- Specific outcomes / comparisons.
-- Real user intent language.
-Goal: Improve click-through from Search Console impressions.
+Titles must be click-maximized. Use Curiosity, Comparison Intent, or "The Truth About..." patterns.
+Examples: 
+- "Next.js vs React + Vite (2026): Which Architecture Actually Wins?"
+- "The Truth About Next.js vs React + Vite (2026 Performance Battle)"
+Goal: High CTR from curiosity and comparison build queries.
 
-ANSWER BLOCK (MANDATORY)
-Provide a <150 character Quick Take designed to capture Google Featured Snippets.
+ANSWER BLOCK / SNIPPET CAPTURE (MANDATORY)
+Provide a < 150 character "Short Answer" block immediately following the main heading. Use descriptive, search-intent focused language. 
+Example: "Next.js dominates SEO and long-term scalability, while React + Vite wins for speed of development and lightweight apps."
+
+PEOPLE ALSO ASK (PAA) BLOCK (MANDATORY)
+Include exactly 3 high-value question-based H3 headings naturally within the content.
+Examples:
+- "Is Next.js still better for SEO than React in 2026?"
+- "When should you choose Vite instead of Next.js?"
+- "Does server-side rendering still improve rankings?"
+Capture these snippets for ranking supremacy.
+
+INTERNAL AUTHORITY ANCHORS (MANDATORY)
+Never use "click here" or "see more". Use descriptive, high-weight anchors.
+Example: "explore the Power Digital Media Elite Showroom hardware stack" or "read the Core Ultra vs Ryzen 2026 Benchmark War performance analysis".
 
 CORE CONTENT REQUIREMENTS
 1. Persona Conflict Protocol (MANDATORY): Personas must disagree inside the article:
@@ -249,6 +261,10 @@ Do NOT use: delve, tapestry, landscape, navigate, unlock the potential, game-cha
 Avoid generic AI tone.
 
 SEARCH SUPREMACY: If real-time Search Context contradicts internal knowledge, Search Context ALWAYS WINS.
+
+RELATED GEAR SELECTION (MANDATORY)
+At the very end of your response, provide exactly 4 Gear IDs from the provided list that are most relevant to the article content.
+Format: RELATED_GEAR_IDS: [id1, id2, id3, id4]
 
 Based on the research context below, write a comprehensive article.`;
 
@@ -311,7 +327,10 @@ Based on the research context below, write a comprehensive article.`;
         category: vertical.category,
         image: imageUrl,
         author: { name: persona.role, role: "Power Digital Media" },
-        content: content.split('\n').filter(line => !line.trim().startsWith('# ')).join('\n').trim()
+        relatedGearIds: content.match(/RELATED_GEAR_IDS:\s*\[(.*?)\]/)?.[1].split(',').map(s => s.trim().replace(/["']/g, '')) || [],
+        content: content.split('\n')
+            .filter(line => !line.trim().startsWith('# ') && !line.includes('RELATED_GEAR_IDS:'))
+            .join('\n').trim()
     };
 }
 
@@ -373,6 +392,7 @@ async function main() {
             name: "${post.author.name}",
             role: "${post.author.role}"
         },
+        relatedGearIds: ${JSON.stringify(post.relatedGearIds)},
         content: \`
 ${post.content.replace(/`/g, '\\`')}
         \`

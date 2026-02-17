@@ -7,7 +7,7 @@ import Footer from "@/components/layout/Footer";
 import ShareProtocol from "@/components/ui/showroom/ShareProtocol";
 import { Metadata } from "next";
 import { ArrowRight, Info, Check, X, Terminal, Workflow } from "lucide-react";
-import * as motion from "framer-motion/client";
+
 import ReactMarkdown from "react-markdown";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
@@ -88,11 +88,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
 
             <main className="relative z-10 pt-32 pb-20 px-6 max-w-7xl mx-auto">
                 {/* Navigation Protocol */}
-                <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
-                >
+                <div className="animate-fade-in-left">
                     <Link
                         href="/showroom"
                         className="inline-flex items-center gap-2 text-white/50 hover:text-accent transition-colors mb-12 text-sm uppercase tracking-widest font-bold group"
@@ -100,15 +96,12 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                         <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                         Back to Showroom
                     </Link>
-                </motion.div>
+                </div>
 
                 {/* --- HERO SECTION --- */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start mb-32">
                     {/* Visual Capture Protocol (Left/Top) */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1.2, ease: "easeOut" }}
+                    <div
                         className="lg:col-span-7 relative group"
                     >
                         {/* Ambient Glow Aura */}
@@ -124,17 +117,14 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
 
                             {/* Protocol Badge Overlay */}
                             <div className="absolute top-10 left-10 z-20">
-                                <motion.div
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.5, duration: 0.8 }}
+                                <div
                                     className={`px-6 py-3 rounded-full border backdrop-blur-xl text-[12px] font-black uppercase tracking-[0.3em] shadow-2xl ${product.level === 'Elite' ? 'bg-white/10 border-white/20 text-white' :
                                         product.level === 'Pro' ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400' :
                                             'bg-green-500/10 border-green-500/20 text-green-400'
                                         }`}
                                 >
                                     {product.level} Protocol
-                                </motion.div>
+                                </div>
                             </div>
                         </div>
 
@@ -189,13 +179,10 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                                 <p className="text-center text-[8px] text-white/30 uppercase tracking-[0.3em] mt-6 relative z-10">Amazon Associates Protocol</p>
                             </div>
                         </div>
-                    </motion.div>
+                    </div>
 
                     {/* Data Intel Protocol (Right/Top) */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1, delay: 0.2 }}
+                    <div
                         className="lg:col-span-5 flex flex-col gap-10"
                     >
                         <div>
@@ -231,7 +218,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                                 <p className="text-[10px] text-white/30 leading-relaxed uppercase tracking-widest font-bold">PD_PROTO_AUTO_VETTING // ACTIVE</p>
                             </div>
                         </div>
-                    </motion.div>
+                    </div>
                 </div>
 
                 {/* --- DETAILED DATA INFRASTRUCTURE --- */}
@@ -240,12 +227,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                     <div className="lg:col-span-8 flex flex-col gap-24">
 
                         {/* The Intel: Long Description */}
-                        <motion.section
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1 }}
-                        >
+                        <section>
                             <h3 className="text-xs font-black uppercase tracking-[0.4em] text-white/30 mb-12 flex items-center gap-6">
                                 <Info className="w-4 h-4" />
                                 <span className="h-px flex-1 bg-white/10" />
@@ -256,15 +238,11 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                                     {product.longDescription || product.description}
                                 </p>
                             </div>
-                        </motion.section>
+                        </section>
 
                         {/* The Verdict Section */}
                         {product.ourTake && (
-                            <motion.section
-                                initial={{ opacity: 0, x: -40 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 1 }}
+                            <section
                                 className="relative p-12 rounded-[3rem] bg-accent/5 border border-accent/20 overflow-hidden"
                             >
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 blur-[100px] -z-10" />
@@ -275,7 +253,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                                 <blockquote className="text-3xl font-bold text-white/90 leading-tight mt-8">
                                     "{product.ourTake}"
                                 </blockquote>
-                            </motion.section>
+                            </section>
                         )}
 
                         {/* Pros & Cons Protocol */}
@@ -316,11 +294,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
 
                         {/* Creative Deployment Scenario */}
                         {product.deploymentScenario && (
-                            <motion.section
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 1 }}
+                            <section
                                 className="p-12 rounded-[3rem] bg-white/5 border border-white/10"
                             >
                                 <h3 className="text-xs font-black uppercase tracking-[0.4em] text-white/30 mb-8 flex items-center gap-4">
@@ -329,7 +303,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                                 <p className="text-xl text-white/70 font-light leading-relaxed italic border-l-2 border-accent/30 pl-8">
                                     {product.deploymentScenario}
                                 </p>
-                            </motion.section>
+                            </section>
                         )}
                     </div>
 
@@ -370,11 +344,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
 
                 {/* --- TECHNICAL INTELLIGENCE DOSSIER --- */}
                 {product.technicalDossier && (
-                    <motion.section
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1 }}
+                    <section
                         className="mb-40"
                     >
                         <div className="p-12 rounded-[3rem] bg-slate-900 border border-white/10 relative overflow-hidden group/dossier">
@@ -402,7 +372,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                                 </div>
                             </div>
                         </div>
-                    </motion.section>
+                    </section>
                 )}
 
                 {/* Related Protocol Section */}

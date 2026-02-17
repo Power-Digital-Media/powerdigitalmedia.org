@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { blogPosts } from "@/data/blogPosts";
+import { GEAR_COLLECTION } from "@/data/gear";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Image from "next/image";
@@ -234,6 +235,58 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ slu
                         </div>
                     </div>
                 </section>
+
+                {/* Related Equipment Protocol */}
+                {post.relatedGearIds && post.relatedGearIds.length > 0 && (
+                    <section className="container px-4 mx-auto mt-40 pt-20 border-t border-white/5">
+                        <div className="max-w-6xl mx-auto">
+                            <div className="flex items-center justify-between mb-12">
+                                <div>
+                                    <h3 className="text-accent/40 text-[10px] font-black uppercase tracking-[0.3em] mb-2">Discovery Protocol</h3>
+                                    <h2 className="text-4xl md:text-5xl font-black tracking-tighter uppercase leading-none text-white">Related Equipment</h2>
+                                </div>
+                                <Link
+                                    href="/showroom"
+                                    className="group flex items-center gap-3 text-white/50 hover:text-accent font-bold uppercase tracking-widest text-[10px] transition-colors"
+                                >
+                                    Expansion Protocol
+                                    <ArrowLeft className="w-4 h-4 rotate-180 group-hover:translate-x-1 transition-transform" />
+                                </Link>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                                {post.relatedGearIds.map((id) => {
+                                    const item = GEAR_COLLECTION.find(g => g.id === id);
+                                    if (!item) return null;
+                                    return (
+                                        <Link
+                                            key={item.id}
+                                            href={`/showroom/${item.category.toLowerCase()}/${item.id}`}
+                                            className="group relative flex flex-col p-6 rounded-3xl bg-white/5 border border-white/10 hover:border-accent/40 transition-all duration-500 hover:bg-white/10 hover:-translate-y-1 block"
+                                        >
+                                            <div className="relative aspect-square rounded-2xl overflow-hidden mb-6 bg-slate-900 border border-white/5">
+                                                <img
+                                                    src={item.image}
+                                                    alt={item.name}
+                                                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                                                />
+                                                <div className="absolute top-4 left-4">
+                                                    <div className={`px-2 py-1 rounded-md border text-[8px] font-black uppercase tracking-widest ${item.level === 'Elite' ? 'bg-white/10 border-white/20' : 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400'}`}>
+                                                        {item.level}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="text-[9px] font-bold text-accent uppercase tracking-widest mb-1">{item.brand}</div>
+                                            <h4 className="text-sm font-black text-white uppercase tracking-tight group-hover:text-accent transition-colors leading-tight line-clamp-2">
+                                                {item.name}
+                                            </h4>
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    </section>
+                )}
             </article>
 
             <Footer />

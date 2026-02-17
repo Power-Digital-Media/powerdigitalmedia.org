@@ -106,10 +106,27 @@ FOOTPRINT KILLER LOGIC (CRITICAL)
 Variable Openers: Start with a shocking stat or a controversial opinion. NO GENERIC INTROS.
 
 CTR OPTIMIZATION RULE
-Titles must be click-optimized. Goal: High CTR from Search Console.
+Titles must be click-maximized. Use Curiosity, Comparison Intent, or "The Truth About..." patterns.
+Examples: 
+- "Next.js vs React + Vite (2026): Which Architecture Actually Wins?"
+- "The Truth About Next.js vs React + Vite (2026 Performance Battle)"
+Goal: High CTR from curiosity and comparison build queries.
 
-ANSWER BLOCK (MANDATORY)
-Provide a <150 character Quick Take for Featured Snippets.
+ANSWER BLOCK / SNIPPET CAPTURE (MANDATORY)
+Provide a < 150 character "Short Answer" block immediately following the main heading. Use descriptive, search-intent focused language. 
+Example: "Next.js dominates SEO and long-term scalability, while React + Vite wins for speed of development and lightweight apps."
+
+PEOPLE ALSO ASK (PAA) BLOCK (MANDATORY)
+Include exactly 3 high-value question-based H3 headings naturally within the content.
+Examples:
+- "Is Next.js still better for SEO than React in 2026?"
+- "When should you choose Vite instead of Next.js?"
+- "Does server-side rendering still improve rankings?"
+Capture these snippets for ranking supremacy.
+
+INTERNAL AUTHORITY ANCHORS (MANDATORY)
+Never use "click here" or "see more". Use descriptive, high-weight anchors.
+Example: "explore the Power Digital Media Elite Showroom hardware stack" or "read the Core Ultra vs Ryzen 2026 Benchmark War performance analysis".
 
 CORE CONTENT REQUIREMENTS
 1. Persona Conflict (MANDATORY): Include disagreement between a Strategist (ROI), an Engineer (Debt/Perf), and a Creative Director (UX).
@@ -120,6 +137,11 @@ CORE CONTENT REQUIREMENTS
 BANNED PHRASES: delve, tapestry, landscape, navigate, unlock the potential, game-changer, paradigm shift, important to note, in summary, in conclusion.
 
 SEARCH SUPREMACY: Use the context below as absolute truth for 2026 tech standards.
+
+RELATED GEAR SELECTION (MANDATORY)
+At the very end of your response, provide exactly 4 Gear IDs from the provided list that are most relevant to the article content.
+Format: RELATED_GEAR_IDS: [id1, id2, id3, id4]
+
 CONTEXT FROM SEARCH:
 ${context}
 `;
@@ -171,7 +193,10 @@ ${context}
         category: VERTICAL.category,
         image: imageUrl,
         author: { name: "Technical Director", role: "Power Digital Media" },
-        content: content.split('\n').filter(line => !line.trim().startsWith('# ')).join('\n').trim()
+        relatedGearIds: content.match(/RELATED_GEAR_IDS:\s*\[(.*?)\]/)?.[1].split(',').map(s => s.trim().replace(/["']/g, '')) || [],
+        content: content.split('\n')
+            .filter(line => !line.trim().startsWith('# ') && !line.includes('RELATED_GEAR_IDS:'))
+            .join('\n').trim()
     };
 }
 
@@ -201,10 +226,11 @@ async function main() {
             name: "${post.author.name}",
             role: "${post.author.role}"
         },
-        content: \`
+            relatedGearIds: ${JSON.stringify(post.relatedGearIds)},
+            content: \`
 ${post.content.replace(/`/g, '\\`')}
-        \`
-    },`;
+            \`
+        },`;
             const newContent = fileContent.slice(0, insertionPoint) + newPostString + fileContent.slice(insertionPoint);
             fs.writeFileSync(postsFile, newContent);
             console.log(`✅ Special Feature Published: "${post.title}"`);
