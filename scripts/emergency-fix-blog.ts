@@ -19,7 +19,7 @@ function fixIndentation() {
         matchCount++;
         // Fix the body
         const lines = body.split('\n');
-        const fixedLines = lines.map(line => {
+        const fixedLines = lines.map((line: string) => {
             // Preserve code block fences but strip indentation
             if (line.trim().startsWith('```')) {
                 return line.trim();
