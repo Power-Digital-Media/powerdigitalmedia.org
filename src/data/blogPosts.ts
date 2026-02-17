@@ -24,8 +24,8 @@ export const blogPosts: BlogPost[] = [
     {
         slug: "gpt-vs-gemini-multi-model-ai-architecture-2026",
         title: "GPT-5 vs Gemini in 2026: The Real Architecture Behind Multi-Model AI Workflows",
-        seoTitle: "GPT vs Gemini in 2026: The Real Multi-Model AI Architecture Explained",
-        metaDescription: "Discover how GPT and Gemini work together in modern AI systems. Learn the real architecture behind multi-model orchestration, reasoning vs context intelligence, and how advanced teams build scalable AI workflows in 2026.",
+        seoTitle: "GPT vs Gemini 2026: Multi-Model AI Architecture Explained",
+        metaDescription: "Discover how GPT and Gemini orchestrate in 2026. Learn the multi-model architecture behind reasoning vs context intelligence for scalable workflows.",
         keywords: [
             "GPT vs Gemini 2026",
             "Multi-model AI architecture",

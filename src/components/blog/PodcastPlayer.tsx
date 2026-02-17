@@ -61,7 +61,7 @@ export default function PodcastPlayer({ audioUrl, title }: PodcastPlayerProps) {
                     <div className="flex items-center justify-between mb-4">
                         <div>
                             <h4 className="text-xs font-black uppercase tracking-[0.2em] text-accent mb-1">Listen to the Deep Dive</h4>
-                            <h3 className="text-sm font-bold text-white line-clamp-1">{title}</h3>
+                            <p className="text-sm font-bold text-white line-clamp-1">{title}</p>
                         </div>
                         {/* Download Button */}
                         <a href={audioUrl} download className="p-2 rounded-full hover:bg-white/5 text-white/40 hover:text-white transition-colors">
