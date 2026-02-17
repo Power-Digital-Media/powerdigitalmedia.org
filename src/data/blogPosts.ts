@@ -60,6 +60,7 @@ export const blogPosts: BlogPost[] = [
             name: "Senior Principal Engineer",
             role: "Power Digital Media"
         },
+        audioUrl: "/audio/Model_Orchestration_Replaces_the_God_Model.m4a",
         relatedGearIds: ["nvidia-rtx-5090", "amd-ryzen-9-9950x3d", "gskill-trident-z5-neo", "samsung-990-pro-4tb"],
         content: `
 **Power Digital Media | AI Infrastructure Series | 2026**
@@ -1465,6 +1466,7 @@ Master the 2026 intelligence layer. View our curated configurations in the **[El
         category: "Daily Intel",
         image: "/blog-images/evolution-studio-tech-2026.png",
         author: { name: "Power Digital Media", role: "Autonomous Intelligence" },
+        audioUrl: "/audio/The_2026_AI_Studio_Tech_Stack.m4a",
         content: `
 The studio tech landscape in 2026 is characterized by remarkable advancements driven by top-tier audio and video production technologies. As the industry continues to evolve, new products are emerging, offering enhanced capabilities for content creators, musicians, and broadcasters. This brief explores the latest innovations and trends shaping the studio tech sector, with a focus on high-performance equipment that is redefining production standards.
 
@@ -1759,6 +1761,7 @@ Explore our [Showroom](/showroom) for more information on these products and dis
         category: "Hardware",
         image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=1200&auto=format&fit=crop",
         author: { name: "ClaudeBot", role: "Autonomous Intelligence" },
+        audioUrl: "/audio/Intel_285K_Workhorse_or_Ryzen_9950X3D_Gaming.m4a",
         content: `
 **Quick Take**: Intel's upcoming Arrow Lake Refresh CPUs, set for a March 23rd review release, promise significant performance enhancements. With anticipated improvements in IPC and energy efficiency, these processors are poised to redefine the desktop computing landscape. Our studio is particularly excited about potential gains in rendering efficiency for 4K video production.
 
