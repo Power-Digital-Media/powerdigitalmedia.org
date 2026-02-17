@@ -23,16 +23,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         };
     }
 
+    const title = post.seoTitle || `${post.title} | Power Digital Media`;
+    const description = post.metaDescription || post.excerpt;
+
     return {
-        title: `${post.title} | Power Digital Media`,
-        description: post.excerpt,
+        title: title,
+        description: description,
+        keywords: post.keywords?.join(", "),
         openGraph: {
-            title: post.title,
-            description: post.excerpt,
+            title: title,
+            description: description,
             type: "article",
             url: `https://powerdigitalmedia.org/blog/${post.slug}`,
             publishedTime: new Date(post.date).toISOString(),
-            modifiedTime: new Date(post.date).toISOString(), // Default to publish date if no update time
+            modifiedTime: new Date(post.date).toISOString(),
             authors: [post.author.name],
             images: [
                 {
@@ -45,8 +49,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         },
         twitter: {
             card: "summary_large_image",
-            title: post.title,
-            description: post.excerpt,
+            title: title,
+            description: description,
             images: [post.image],
         },
     };
@@ -73,41 +77,43 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ slu
         { name: post.title, path: `/blog/${post.slug}` }
     ];
 
+    const defaultSchema = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": post.title,
+        "description": post.excerpt,
+        "image": post.image,
+        "datePublished": new Date(post.date).toISOString(),
+        "dateModified": new Date(post.date).toISOString(),
+        "author": {
+            "@type": "Person",
+            "name": post.author.name,
+            "jobTitle": post.author.role
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Power Digital Media",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://powerdigitalmedia.org/power-logo.png"
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `https://powerdigitalmedia.org/blog/${post.slug}`
+        }
+    };
+
     return (
         <main className="relative min-h-screen bg-background text-foreground">
             <BreadcrumbSchema items={breadcrumbItems} />
             <Navbar />
 
-            {/* BlogPosting Schema.org (GEO Optimization) */}
+            {/* Structured Data (GEO & SEO Optimization) */}
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "BlogPosting",
-                        "headline": post.title,
-                        "description": post.excerpt,
-                        "image": post.image,
-                        "datePublished": new Date(post.date).toISOString(),
-                        "dateModified": new Date(post.date).toISOString(), // Default to publish date
-                        "author": {
-                            "@type": "Person",
-                            "name": post.author.name,
-                            "jobTitle": post.author.role
-                        },
-                        "publisher": {
-                            "@type": "Organization",
-                            "name": "Power Digital Media",
-                            "logo": {
-                                "@type": "ImageObject",
-                                "url": "https://powerdigitalmedia.org/power-logo.png"
-                            }
-                        },
-                        "mainEntityOfPage": {
-                            "@type": "WebPage",
-                            "@id": `https://powerdigitalmedia.org/blog/${post.slug}`
-                        }
-                    })
+                    __html: JSON.stringify(post.structuredData || defaultSchema)
                 }}
             />
 
