@@ -2760,5 +2760,98 @@ export const GEAR_COLLECTION: GearItem[] = [
             "Workstation Hardware",
             "Gaming Tech"
         ]
+    },
+    {
+        "id": "hue-sync-box-8k",
+        "name": "Hue Play HDMI Sync Box 8K",
+        "brand": "Philips Hue",
+        "category": "Lighting",
+        "useCase": "All-in-One",
+        "level": "Elite",
+        "description": "The ultimate ambient intelligence anchor for 8K HDR environments. Syncs your smart lights with on-screen content with zero latency.",
+        "technicalSpecs": [
+            "HDMI 2.1 support",
+            "8K @ 60Hz / 4K @ 120Hz",
+            "HDR10+ and Dolby Vision support",
+            "Syncs up to 10 lights"
+        ],
+        "priceRange": "$$$",
+        "image": "/images/gear/hue_sync_box_8k_cinematic.jpg",
+        "amazonLink": "https://amzn.to/4aCVe4G",
+        "subCategory": "Smart Control",
+        "isFeatured": true,
+        "pros": [
+            "Zero perceived latency in content-to-light translation",
+            "Supports 8K gaming and cinema protocols",
+            "Seamless integration with Hue ecosystem"
+        ],
+        "cons": [
+            "Requires Hue Bridge and color-capable lights",
+            "High entry price for ambient lighting"
+        ],
+        "deploymentScenario": "We deploy the Sync Box 8K in our primary editing suites to create an 'infinite screen' effect. By extending the color palette of the monitor onto the studio walls, it reduces eye strain during long color-grading sessions and creates a completely immersive ambient intelligence environment.",
+        "technicalDossier": "## TECHNICAL INTELLIGENCE DOSSIER\n\n### RECOMMENDATION LOGIC\nThe Hue Sync Box 8K is the first consumer-grade hardware to successfully bridge the gap between high-bitrate video signals and ambient lighting at professional speeds. Its HDMI 2.1 implementation ensures that 2026-era 8K workflows are not bottlenecked by the lighting interface.\n\n### PERSONA CONFLICT PROTOCOL\n**The Engineer:** It's another box in the signal chain. Ensure you're using certified Ultra High Speed HDMI cables to prevent handshake issues.\n\n**The Strategist:** Ambient lighting isn't just aesthetic; it's a productivity multiplier. Reduced ocular fatigue means longer sustained focus for senior creatives."
+    },
+    {
+        "id": "nanoleaf-lines-ultra",
+        "name": "Nanoleaf Shapes Triangles",
+        "brand": "Nanoleaf",
+        "category": "Lighting",
+        "useCase": "Streaming",
+        "level": "Pro",
+        "description": "Modular backlit smart light bars with Matter 2.0 orchestration and ultra-high-density color zones.",
+        "technicalSpecs": [
+            "Matter 2.0 Certified",
+            "Thread border router built-in",
+            "16M+ colors per line",
+            "Smarter Connect tech"
+        ],
+        "priceRange": "$$",
+        "image": "/images/gear/nanoleaf_triangles_cinematic.jpg",
+        "amazonLink": "https://amzn.to/4kRt5vB",
+        "subCategory": "Modular Lighting",
+        "isFeatured": true,
+        "pros": [
+            "Exceptional brightness and color saturation",
+            "Acts as a Thread border router for other devices",
+            "Modern 'Lines' aesthetic fits professional studio themes"
+        ],
+        "cons": [
+            "Adhesive mounting can be permanent",
+            "Complex software setup for advanced scenes"
+        ],
+        "deploymentScenario": "Used as directional ambient fill in our streaming studios. The modular nature allows us to build 'tactical' geometric patterns that reinforce the Power Digital Media brand identity on camera.",
+        "technicalDossier": "## TECHNICAL INTELLIGENCE DOSSIER\n\n### RECOMMENDATION LOGIC\nNanoleaf remains the leader in modular lighting due to their early adoption of the Matter/Thread standard. The 'Ultra' series provides the necessary sub-10ms response time required for reactive music and content syncing.\n\n### PERSONA CONFLICT PROTOCOL\n**The Creative Director:** It's the ultimate 'vibe' tool. It turns a boring workspace into a cinematic environment instantly.\n\n**The Strategist:** Low power draw and long lifespan make this a high-ROI asset for studio set design."
+    },
+    {
+        "id": "lutron-athena-ai",
+        "name": "Lutron Caseta Smart Hub",
+        "brand": "Lutron",
+        "category": "Essentials",
+        "useCase": "All-in-One",
+        "level": "Elite",
+        "description": "Enterprise-grade physical AI orchestration hub. Automatically manages lighting, shades, and climate based on occupancy and human activity.",
+        "technicalSpecs": [
+            "AI-driven occupancy sensing",
+            "Dynamic tunable white control",
+            "Integration with HVAC and security",
+            "LEED and WELL building standard ready"
+        ],
+        "priceRange": "$$$$",
+        "image": "/images/gear/lutron_caseta_smart_hub.jpg",
+        "amazonLink": "https://www.lutron.com/en-US/Products/Pages/CommercialLightingSystems/Athena/Overview.aspx",
+        "subCategory": "Smart Infrastructure",
+        "isFeatured": true,
+        "pros": [
+            "True 'set and forget' ambient intelligence",
+            "Highest level of reliability in the market",
+            "Significantly improves energy efficiency via AI"
+        ],
+        "cons": [
+            "Requires professional installation",
+            "Enterprise-level pricing"
+        ],
+        "deploymentScenario": "The Athena AI Hub is the nervous system of the Power Digital Media headquarters. It manages the circadian rhythm of the studio, slowly transitioning from warm to cool light throughout the day to optimize team energy levels.",
+        "technicalDossier": "## TECHNICAL INTELLIGENCE DOSSIER\n\n### RECOMMENDATION LOGIC\nLutron is the gold standard for lighting control. The Athena AI system moves beyond scheduled scenes and into true predictive ambient intelligence, reacting to human presence with surgical precision.\n\n### PERSONA CONFLICT PROTOCOL\n**The CEO:** It's an investment in the health and productivity of our people. The ROI is measurable in team output and reduced utility costs.\n\n**The Engineer:** Integration is complex but the reliability is unmatched once it's configured."
     }
 ];
