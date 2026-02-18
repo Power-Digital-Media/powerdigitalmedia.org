@@ -2839,7 +2839,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         ],
         "priceRange": "$$$$",
         "image": "/images/gear/lutron_caseta_smart_hub.jpg",
-        "amazonLink": "https://www.lutron.com/en-US/Products/Pages/CommercialLightingSystems/Athena/Overview.aspx",
+        "amazonLink": "https://amzn.to/3W0E8rX",
         "subCategory": "Smart Infrastructure",
         "isFeatured": true,
         "pros": [
