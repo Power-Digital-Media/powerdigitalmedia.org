@@ -1603,7 +1603,7 @@ Master the 2026 intelligence layer. View our curated configurations in the **[El
         category: "Daily Intel",
         image: "/blog-images/evolution-studio-tech-2026.png",
         author: { name: "Power Digital Media", role: "Autonomous Intelligence" },
-        audioUrl: "/audio/The_2026_AI_Studio_Tech_Stack.m4a",
+        audioUrl: "/audio/Expensive_Gear_Won_t_Fix_Audio_Latency.m4a",
         relatedGearIds: ["rode-caster-pro-2", "shure-sm7b", "rode-streamer-x", "elgato-stream-deck-plus"],
         structuredData: {
             "@context": "https://schema.org",
