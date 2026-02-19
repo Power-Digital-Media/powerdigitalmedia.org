@@ -249,24 +249,12 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ slu
                                 {post.content}
                             </ReactMarkdown>
                         </div>
-
-                        <div className="mt-40 pt-24 border-t border-white/5 text-center">
-                            <span className="text-accent font-bold tracking-[0.4em] uppercase text-[10px] mb-6 block">Ready to grow?</span>
-                            <h4 className="text-3xl md:text-5xl font-bold mb-10 tracking-tight">Begin Your Digital Legacy.</h4>
-                            <p className="text-xl md:text-2xl text-foreground/70 mb-16 max-w-2xl mx-auto leading-relaxed">Our team is ready to help you implement these strategies and build a brand that lasts.</p>
-                            <Link
-                                href="/contact"
-                                className="inline-flex items-center gap-3 px-14 py-6 bg-accent text-white font-bold rounded-full border-glow hover:bg-accent/90 transition-all hover:scale-105 active:scale-95 text-lg"
-                            >
-                                Schedule A Free Consultation
-                            </Link>
-                        </div>
                     </div>
                 </section>
 
-                {/* Related Equipment Protocol */}
+                {/* Related Equipment Protocol — Before CTA */}
                 {post.relatedGearIds && post.relatedGearIds.length > 0 && (
-                    <section className="container px-4 mx-auto mt-40 pt-20 border-t border-white/5">
+                    <section className="container px-4 mx-auto mt-24 pt-20 border-t border-white/5">
                         <div className="max-w-6xl mx-auto">
                             <div className="flex items-center justify-between mb-12">
                                 <div>
@@ -315,6 +303,23 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ slu
                         </div>
                     </section>
                 )}
+
+                {/* CTA Section */}
+                <section className="container px-4 mx-auto">
+                    <div className="max-w-3xl mx-auto">
+                        <div className="mt-40 pt-24 border-t border-white/5 text-center">
+                            <span className="text-accent font-bold tracking-[0.4em] uppercase text-[10px] mb-6 block">Ready to grow?</span>
+                            <h4 className="text-3xl md:text-5xl font-bold mb-10 tracking-tight">Begin Your Digital Legacy.</h4>
+                            <p className="text-xl md:text-2xl text-foreground/70 mb-16 max-w-2xl mx-auto leading-relaxed">Our team is ready to help you implement these strategies and build a brand that lasts.</p>
+                            <Link
+                                href="/contact"
+                                className="inline-flex items-center gap-3 px-14 py-6 bg-accent text-white font-bold rounded-full border-glow hover:bg-accent/90 transition-all hover:scale-105 active:scale-95 text-lg"
+                            >
+                                Schedule A Free Consultation
+                            </Link>
+                        </div>
+                    </div>
+                </section>
             </article>
 
             <Footer />

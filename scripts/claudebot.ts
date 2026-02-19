@@ -151,30 +151,40 @@ async function runResearch(vertical: any) {
     let context = "";
     let score = 5; // Base score
     const fcKey = process.env.FIRECRAWL_API_KEY;
+    const sources: string[] = [];
 
     if (fcKey && fcKey.startsWith('fc-')) {
         try {
             const resp = await fetch('https://api.firecrawl.dev/v1/search', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${fcKey}` },
-                body: JSON.stringify({ query: query, limit: 3 }),
-                signal: AbortSignal.timeout(15000)
+                body: JSON.stringify({
+                    query: query,
+                    limit: 4, // Increased limit to find more data
+                    scrapeOptions: { formats: ['markdown'] }
+                }),
+                signal: AbortSignal.timeout(20000) // Increased timeout
             });
+
             const data = await resp.json() as any;
+
             if (data.success && data.data) {
-                context = data.data.map((d: any) => `Source: ${d.url}\n${d.markdown?.slice(0, 1000)}`).join("\n\n---\n\n");
+                context = data.data.map((d: any, i: number) => {
+                    sources.push(d.url);
+                    return `SOURCE [${i + 1}]: ${d.url}\nTITLE: ${d.title || 'Unknown'}\nCONTENT:\n${d.markdown?.slice(0, 1500)}...`;
+                }).join("\n\n---\n\n");
 
                 // Scoring Logic
                 if (context.toLowerCase().includes('announce') || context.toLowerCase().includes('launch')) score += 2;
                 if (context.toLowerCase().includes('benchmark') || context.toLowerCase().includes('spec')) score += 1;
-                console.log(`   ✅ Research Complete. Relevance Score: ${score}/10`);
+                console.log(`   ✅ Research Complete. Found ${sources.length} sources. Relevance Score: ${score}/10`);
             }
         } catch (e) {
-            console.warn(`   ⚠️ Research interrupted. Score: ${score}/10`);
+            console.warn(`   ⚠️ Research interrupted. Score: ${score}/10`, e);
         }
     }
 
-    return { context, score, mission };
+    return { context, score, mission, sources };
 }
 
 async function generatePost(vertical: any, context: string, mission: any) {
@@ -191,84 +201,94 @@ async function generatePost(vertical: any, context: string, mission: any) {
     // Anti-Duplication Protocol: Get last 20 post titles
     const recentTitles = blogPosts.slice(0, 20).map(p => `- ${p.title}`).join('\n');
 
-    const systemPrompt = `
+    const systemPrompt = `MASTER SYSTEM PROMPT V2.3 FOR ANTIGRAVITY
+Power Digital Media — Unified Research + Writing Execution Engine
+
 ROLE
-You are ${persona.role} at Power Digital Media, a premium production and engineering studio in Jackson, Mississippi.
-Tone: Opinionated, data-driven, authoritative, non-generic.
+You are the fully autonomous dual-agent content engine for Power Digital Media, combining:
+1) Gemini Research Protocol (Data Intelligence Unit)
+2) GPT Writing Protocol (Narrative Execution Unit)
 
-MISSION: Produce a deep, ranking-optimized technical intelligence article.
+Your mission: Produce the highest-quality, most authoritative, wealth-generating content that requires ZERO rewriting.
 
-AUTHORITY REINFORCEMENT LAYER (MANDATORY)
-1. DATA AUTHORITY RULE: All content must include measurable technical data (TFLOPS, IPC, latency, throughput, bitrate, TTFB, LCP, render time, power draw). Authority is built on real metrics, not opinion.
-2. DEPTH REQUIREMENT: Content must explain WHY the technology matters, REAL-WORLD IMPACT, TRADEOFFS and limitations, and PRACTICAL production or engineering implications. Use 1200+ words of analysis.
-3. E-E-A-T AUTHORITY SIGNAL: Include 2–3 natural outbound references to credible technical or industry sources.
-4. SYSTEM SYNERGY RULE: Connect Hardware performance, AI / automation workflows, and Software / development infrastructure. Explain how these interact in real production environments.
-5. STRUCTURAL COHERENCE GUARDRAIL: While anti-pattern variation is required, structure must remain logically organized, readable, and authoritative. Avoid randomness that reduces clarity.
-
-FOOTPRINT KILLER LOGIC (CRITICAL)
-Variable Openers — Rotate naturally. Start with ONE of these:
-1. A shocking stat related to the topic.
-2. A direct answer to a real query.
-3. A controversial technical opinion.
-Never use a generic intro like "In today's fast-paced world...".
-
-CTR OPTIMIZATION RULE
-Titles must be click-maximized. Use Curiosity, Comparison Intent, or "The Truth About..." patterns.
-Examples: 
-- "Next.js vs React + Vite (2026): Which Architecture Actually Wins?"
-- "The Truth About Next.js vs React + Vite (2026 Performance Battle)"
-Goal: High CTR from curiosity and comparison build queries.
-
-ANSWER BLOCK / SNIPPET CAPTURE (MANDATORY)
-Provide a < 150 character "Short Answer" block immediately following the main heading. Use descriptive, search-intent focused language. 
-Example: "Next.js dominates SEO and long-term scalability, while React + Vite wins for speed of development and lightweight apps."
-
-PEOPLE ALSO ASK (PAA) BLOCK (MANDATORY)
-Include exactly 3 high-value question-based H3 headings naturally within the content.
-Examples:
-- "Is Next.js still better for SEO than React in 2026?"
-- "When should you choose Vite instead of Next.js?"
-- "Does server-side rendering still improve rankings?"
-Capture these snippets for ranking supremacy.
-
-INTERNAL AUTHORITY ANCHORS (MANDATORY)
-Never use "click here" or "see more". Use descriptive, high-weight anchors.
-Example: "explore the Power Digital Media Elite Showroom hardware stack" or "read the Core Ultra vs Ryzen 2026 Benchmark War performance analysis".
-
-CORE CONTENT REQUIREMENTS
-1. Persona Conflict Protocol (MANDATORY): Personas must disagree inside the article:
-   - Strategist → ROI / efficiency / opportunity.
-   - Engineer → risk / flaw / technical debt.
-   - Creative Director → UX / workflow / emotional impact.
-   Rule: If topic is positive → expose risk. If topic is negative → expose opportunity. No neutral tone.
-2. Internal Authority Mesh: 
-   - Link to ONE relevant showroom product: ${showroomContext.slice(0, 1000)}...
-   - Link to ONE related blog post from the last 10: ${recentTitles}.
-   - Strengthen internal topic clusters.
-3. Hardware-Software Synergy: Always connect hardware performance to real production workloads (AI/automation/dev infra).
-4. Dynamic Structure Rule: Avoid template repetition. Vary paragraph length, mix lists/tables/prose, and use question-based H3 headings for "People Also Ask".
-
-E-E-A-T REQUIREMENTS
-- Real metrics (TTFB, LCP, TFLOPS, latency, IPC).
-- Real-world implications from a Jackson, MS studio perspective.
-- At least 2 natural outbound citations to authoritative external sources.
-
-LONG-TAIL SEARCH INTENT PROTOCOL (MANDATORY)
-Incorporate real user search phrasing (Question queries, Version updates, Comparison intent). Use variations and semantic equivalents naturally.
-
-BANNED PHRASES (AI FIREWALL)
-Do NOT use: delve, tapestry, landscape, navigate, unlock the potential, game-changer, paradigm shift, important to note, in summary, in conclusion.
-Avoid generic AI tone.
-
-SEARCH SUPREMACY: If real-time Search Context contradicts internal knowledge, Search Context ALWAYS WINS.
-
+-----------------------------------------
 RELATED GEAR SELECTION (MANDATORY)
-At the very end of your response, provide exactly 4 Gear IDs from the provided list that are most relevant to the article content.
-Format: RELATED_GEAR_IDS: [id1, id2, id3, id4]
+-----------------------------------------
+At the very end of your response, provide exactly 4 Gear IDs from the provided "Showroom Gear Context" list that are most relevant to the article content.
+Format: RELATED_GEAR_IDS: ["id1", "id2", "id3", "id4"]
+IMPORTANT: Use ONLY the IDs provided in the context. Do not invent IDs.
 
-Based on the research context below, write a comprehensive article.`;
+-----------------------------------------
+GLOBAL OBJECTIVES
+-----------------------------------------
+• Create the BEST resource on the internet for the target keyword.
+• Wealth Generation: Content must focus on ROI, competitive leverage, and business growth.
+• Use long-tail keywords naturally (No keyword stuffing).
+• Visual Value: Include at least one Markdown Table or data chart per post.
+• External Utility: Link to specific 3rd-party tools (calculators, checkers) that provide real value.
 
-    const userPrompt = `Vertical: ${vertical.name}\nMission: ${mission.name}\n\nSearch Context:\n${context}\n\nTask: Draft a deep-dive daily intel brief.`;
+-----------------------------------------
+STRICT SEO & FOOTPRINT CONSTRAINTS
+-----------------------------------------
+• SEO Title: 50–60 characters ONLY.
+• Meta Description: 150–160 characters ONLY.
+• Footprint Killer: Start with a shocking stat, direct answer, or controversial stance. NO generic AI intros.
+• Banned Phrases: delve, tapestry, landscape, navigate, unlock, game-changer, in conclusion.
+
+-----------------------------------------
+PERSONA CONFLICT FRAMEWORK (MANDATORY)
+-----------------------------------------
+Merge three distinct voices without "neutralizing" them:
+1. THE STRATEGIST: Focus on ROI, money, and market dominance.
+2. THE ENGINEER: Focus on specs, latency, security, and "the catch."
+3. THE CREATIVE: Focus on user experience and human narrative.
+Visible conflict is required (e.g., "The Strategist sees profit, but the Engineer warns of technical debt").
+
+-----------------------------------------
+CITATION & HYPERLINK PROTOCOL (CRITICAL)
+-----------------------------------------
+• INLINE ONLY: You MUST hyperlink the source name directly within the sentence (e.g., [Gartner](URL) reports...).
+• NO LISTS: Do not create a "References" section or put links at the end of paragraphs.
+• FRESHNESS: Use sources from the last 6-12 months.
+• UTILITY LINKS: Link to actual tools like [Qualys SSL Labs](https://www.ssllabs.com/) or [AWS Calculators](https://calculator.aws/).
+
+-----------------------------------------
+LOCAL AUTHORITY SIGNAL
+-----------------------------------------
+Integrate the perspective of a high-end production studio based in Jackson, Mississippi. Reference real-world studio implications (e.g., network reliability, local production workflows, or regional business scaling).
+
+-----------------------------------------
+JSON-LD STRUCTURED DATA
+-----------------------------------------
+At the end of every post, generate a valid <script type="application/ld+json"> block including:
+• Article Schema
+• FAQ Schema (based on the 3 PAA questions)
+• Product Schema (if gear is mentioned)
+
+-----------------------------------------
+INTERNAL QUALITY CONTROL CHECKLIST (MANDATORY)
+-----------------------------------------
+Before outputting, verify:
+1. [ ] Title & Meta within character limits?
+2. [ ] First citation hyperlinked INLINE?
+3. [ ] NO "References" list at the bottom?
+4. [ ] At least one Markdown Table included?
+5. [ ] Jackson, MS perspective integrated?
+6. [ ] 3 PAA H3 Headings present?
+7. [ ] "Short Answer" block present?
+8. [ ] Persona conflict visible?
+9. [ ] 4 Gear IDs included?
+10. [ ] JSON-LD script included?
+11. [ ] Banned phrases avoided?
+12. [ ] Long-tail keywords integrated naturally?
+
+FINAL OUTPUT FORMAT:
+1. SEO Title/Meta
+2. HTML Body (with Inline Links & Table)
+3. RELATED_GEAR_IDS
+4. JSON-LD Block`;
+
+    const userPrompt = `Vertical: ${vertical.name}\nMission: ${mission.name}\n\nSearch Context:\n${context}\n\nShowroom Gear Context (Use these IDs for Related Gear):\n${showroomContext}\n\nTask: Draft a deep-dive daily intel brief.`;
 
     let content = "";
     if (openai) {
@@ -287,8 +307,65 @@ Based on the research context below, write a comprehensive article.`;
 
     if (!content) throw new Error("Content generation failed");
 
+    // --- METADATA EXTRACTION LAYER ---
+    let seoTitle = "";
+    let metaDescription = "";
+    const cleanLines: string[] = [];
+
+    content.split('\n').forEach(line => {
+        const trimmed = line.trim();
+        // Regex handles: "SEO Title:", "**SEO Title:**", "## SEO Title:", "### **SEO Title:**"
+        if (trimmed.match(/^[\#\*]*\s*SEO Title:?[\*]*\s*/i)) {
+            seoTitle = trimmed.replace(/^[\#\*]*\s*SEO Title:?[\*]*\s*/i, '').trim();
+        } else if (trimmed.match(/^[\#\*]*\s*Meta Description:?[\*]*\s*/i)) {
+            metaDescription = trimmed.replace(/^[\#\*]*\s*Meta Description:?[\*]*\s*/i, '').trim();
+        } else {
+            cleanLines.push(line);
+        }
+    });
+    content = cleanLines.join('\n').trim();
+
+    // --- JSON-LD EXTRACTION LAYER ---
+    let structuredData = null;
+
+    // Strategy 1: Look for <script> tags (Preferred)
+    let jsonLdMatch = content.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+
+    // Strategy 2: Look for markdown code blocks containing schema.org
+    if (!jsonLdMatch) {
+        const codeBlockMatch = content.match(/```json\s*(\{[\s\S]*?"@context"\s*:\s*"https?:\/\/schema\.org"[\s\S]*?\})\s*```/);
+        if (codeBlockMatch) {
+            jsonLdMatch = codeBlockMatch; // structuredData is in group 1
+        }
+    }
+
+    if (jsonLdMatch) {
+        try {
+            structuredData = JSON.parse(jsonLdMatch[1]);
+            console.log(`   🧩 JSON-LD Extracted successfully.`);
+            content = content.replace(jsonLdMatch[0], '').trim();
+        } catch (e) {
+            console.warn(`   ⚠️ JSON-LD Parse Failed:`, e);
+        }
+    }
+
     // --- AI FIREWALL SANITIZATION LAYER ---
-    const bannedPhrases = [/delve/i, /tapestry/i, /landscape/i, /navigate/i, /unlock the potential/i, /game-changer/i, /paradigm shift/i, /important to note/i, /in summary/i, /in conclusion/i];
+    const bannedPhrases = [
+        /in today's fast-paced world/i,
+        /in conclusion/i,
+        /ultimately/i,
+        /delve/i,
+        /unlock/i,
+        /game(?:-| )changer/i,
+        /leverage/i,
+        /whether you're a beginner or expert/i,
+        /tapestry/i,
+        /landscape/i,
+        /navigate/i,
+        /paradigm shift/i,
+        /important to note/i,
+        /in summary/i
+    ];
 
     // 1. Scrub banned phrases
     bannedPhrases.forEach(regex => {
@@ -314,20 +391,29 @@ Based on the research context below, write a comprehensive article.`;
     // --- END SANITIZATION ---
 
     const processedLines = content.split('\n');
-    const titleLine = processedLines.find(l => l.trim().startsWith('# ')) || processedLines.find(l => l.trim().length > 0 && l.trim().length < 100) || `Daily Intel: ${vertical.name}`;
-    const title = titleLine.replace(/^#+\s*/, '').replace(/\*/g, '').trim();
+    let titleLine = processedLines.find(l => l.trim().startsWith('# '));
+    let title = titleLine ? titleLine.replace(/^#+\s*/, '').replace(/\*/g, '').trim() : seoTitle;
+
+    if (!title) {
+        titleLine = processedLines.find(l => l.trim().length > 5 && l.trim().length < 100) || `Daily Intel: ${vertical.name}`;
+        title = titleLine ? titleLine.replace(/^#+\s*/, '').replace(/\*/g, '').trim() : `Daily Intel: ${vertical.name}`;
+    }
+
     const slug = title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]/g, '').replace(/-+/g, '-').slice(0, 100);
 
     const imageUrl = await generateImage(title, vertical.name, slug);
 
     return {
-        slug, title,
+        slug, title: title || seoTitle,
+        seoTitle,
+        metaDescription,
+        structuredData,
         excerpt: content.split('\n').find(l => l.length > 50 && !l.startsWith('#'))?.slice(0, 180).trim() + "...",
         date: new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
         category: vertical.category,
         image: imageUrl,
         author: { name: persona.role, role: "Power Digital Media" },
-        relatedGearIds: content.match(/RELATED_GEAR_IDS:\s*\[(.*?)\]/)?.[1].split(',').map(s => s.trim().replace(/["']/g, '')) || [],
+        relatedGearIds: content.match(/RELATED_GEAR_IDS:\s*\[(.*?)\]/)?.[1].split(',').map(s => s.trim().replace(/['"]+/g, '')) || [],
         content: content.split('\n')
             .filter(line => !line.trim().startsWith('# ') && !line.includes('RELATED_GEAR_IDS:'))
             .join('\n').trim()
@@ -384,6 +470,8 @@ async function main() {
     {
         slug: "${post.slug}",
         title: "${post.title.replace(/"/g, '\\"')}",
+        seoTitle: "${(post.seoTitle || post.title).replace(/"/g, '\\"')}",
+        metaDescription: "${(post.metaDescription || '').replace(/"/g, '\\"')}",
         excerpt: "${post.excerpt.replace(/"/g, '\\"')}",
         date: "${post.date}",
         category: "${post.category}",
@@ -393,6 +481,7 @@ async function main() {
             role: "${post.author.role}"
         },
         relatedGearIds: ${JSON.stringify(post.relatedGearIds)},
+        structuredData: ${JSON.stringify(post.structuredData)},
         content: \`
 ${post.content.replace(/`/g, '\\`')}
         \`
