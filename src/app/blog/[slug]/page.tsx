@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Calendar, User, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { notFound } from "next/navigation";
 import ShareButtons from "@/components/blog/ShareButtons";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
@@ -222,7 +223,28 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ slu
                                             )}
                                         </div>
                                     ),
+                                    table: ({ ...props }) => (
+                                        <div className="overflow-x-auto my-12 rounded-xl border border-white/10 bg-white/5 shadow-2xl">
+                                            <table className="w-full text-left border-collapse" {...props} />
+                                        </div>
+                                    ),
+                                    thead: ({ ...props }) => (
+                                        <thead className="bg-white/10 text-accent font-bold uppercase tracking-wider text-xs border-b border-white/10" {...props} />
+                                    ),
+                                    tbody: ({ ...props }) => (
+                                        <tbody className="text-sm font-medium text-foreground/80 divide-y divide-white/5" {...props} />
+                                    ),
+                                    tr: ({ ...props }) => (
+                                        <tr className="hover:bg-white/5 transition-colors duration-200" {...props} />
+                                    ),
+                                    th: ({ ...props }) => (
+                                        <th className="px-6 py-4 border-r border-white/5 last:border-r-0" {...props} />
+                                    ),
+                                    td: ({ ...props }) => (
+                                        <td className="px-6 py-4 border-r border-white/5 last:border-r-0 font-mono text-xs tracking-tight" {...props} />
+                                    ),
                                 }}
+                                remarkPlugins={[remarkGfm]}
                             >
                                 {post.content}
                             </ReactMarkdown>

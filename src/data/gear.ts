@@ -726,7 +726,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         ],
         "priceRange": "$$$$$",
         "image": "/images/gear/rtx_5090.png",
-        "amazonLink": "https://www.amazon.com/dp/B0DS2WQZ2M?tag=powerdigital-20",
+        "amazonLink": "https://www.amazon.com/dp/B0DS2WQZ2M?tag=powerdigital1-20",
         "subCategory": "GPUs",
         "isFeatured": true,
         "seoTags": [
@@ -779,7 +779,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         ],
         "priceRange": "$$$",
         "image": "/images/gear/amd_rx_9070_xt.png",
-        "amazonLink": "https://www.amazon.com/dp/B0DRRMZDH6?tag=powerdigital-20",
+        "amazonLink": "https://www.amazon.com/dp/B0DRRMZDH6?tag=powerdigital1-20",
         "subCategory": "GPUs",
         "isFeatured": false,
         "seoTags": [
@@ -913,8 +913,8 @@ export const GEAR_COLLECTION: GearItem[] = [
             "Swappable RGB"
         ],
         "priceRange": "$$$$",
-        "image": "/images/gear/corsair_dominator_titanium_2026.png",
-        "amazonLink": "https://www.amazon.com/dp/B0CHSJGCJ2?tag=powerdigital-20",
+        "image": "/images/gear/corsair_dominator_titanium_2026.png?v=2",
+        "amazonLink": "https://www.amazon.com/dp/B0CHSJGCJ2?tag=powerdigital1-20",
         "subCategory": "RAM",
         "isFeatured": true,
         "pros": [
@@ -959,7 +959,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         ],
         "priceRange": "$$",
         "image": "/images/gear/gskill_trident_z5_neo.png",
-        "amazonLink": "https://www.amazon.com/dp/B0BF8FVLSL?tag=powerdigital-20",
+        "amazonLink": "https://www.amazon.com/dp/B0BF8FVLSL?tag=powerdigital1-20",
         "subCategory": "RAM",
         "isFeatured": false,
         "pros": [
@@ -1277,7 +1277,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         ],
         "priceRange": "$$$$",
         "image": "/images/gear/asrock_z890_taichi.png",
-        "amazonLink": "https://www.amazon.com/dp/B0DJRNZWGN?tag=powerdigital-20",
+        "amazonLink": "https://www.amazon.com/dp/B0DJRNZWGN?tag=powerdigital1-20",
         "subCategory": "Motherboards",
         "isFeatured": true,
         "seoTags": [
@@ -2068,7 +2068,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         ],
         "priceRange": "$$$$$",
         "image": "/images/gear/intel_ultra_9_285k.png",
-        "amazonLink": "https://www.amazon.com/dp/B0DFKC99VL?tag=powerdigital-20",
+        "amazonLink": "https://www.amazon.com/dp/B0DFKC99VL?tag=powerdigital1-20",
         "subCategory": "Processors",
         "isFeatured": true,
         "seoTags": [
@@ -2122,7 +2122,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         ],
         "priceRange": "$$$$$",
         "image": "/images/gear/amd_ryzen_9_9950x3d.png",
-        "amazonLink": "https://www.amazon.com/dp/B0DVZSG8D5?tag=powerdigital-20",
+        "amazonLink": "https://www.amazon.com/dp/B0DVZSG8D5?tag=powerdigital1-20",
         "subCategory": "Processors",
         "isFeatured": true,
         "seoTags": [
@@ -2612,7 +2612,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         ],
         "priceRange": "$$",
         "image": "/images/gear/arctic_lf3_420.png",
-        "amazonLink": "https://www.amazon.com/dp/B0DPHQ1353?tag=powerdigital-20",
+        "amazonLink": "https://www.amazon.com/dp/B0DPHQ1353?tag=powerdigital1-20",
         "subCategory": "Liquid Cooling",
         "isFeatured": false,
         "pros": [
@@ -2656,7 +2656,7 @@ export const GEAR_COLLECTION: GearItem[] = [
         ],
         "priceRange": "$$$",
         "image": "/images/gear/nzxt_kraken_elite_2026.png",
-        "amazonLink": "https://www.amazon.com/dp/B0D9GWDTHZ?tag=powerdigital-20",
+        "amazonLink": "https://www.amazon.com/dp/B0D9GWDTHZ?tag=powerdigital1-20",
         "subCategory": "Liquid Cooling",
         "isFeatured": false,
         "pros": [
@@ -2853,5 +2853,110 @@ export const GEAR_COLLECTION: GearItem[] = [
         ],
         "deploymentScenario": "The Athena AI Hub is the nervous system of the Power Digital Media headquarters. It manages the circadian rhythm of the studio, slowly transitioning from warm to cool light throughout the day to optimize team energy levels.",
         "technicalDossier": "## TECHNICAL INTELLIGENCE DOSSIER\n\n### RECOMMENDATION LOGIC\nLutron is the gold standard for lighting control. The Athena AI system moves beyond scheduled scenes and into true predictive ambient intelligence, reacting to human presence with surgical precision.\n\n### PERSONA CONFLICT PROTOCOL\n**The CEO:** It's an investment in the health and productivity of our people. The ROI is measurable in team output and reduced utility costs.\n\n**The Engineer:** Integration is complex but the reliability is unmatched once it's configured."
+    },
+    {
+        "id": "amd-ryzen-9-9950x3d",
+        "name": "AMD Ryzen 9 9950X3D",
+        "brand": "AMD",
+        "category": "PC",
+        "useCase": "Editing",
+        "level": "Elite",
+        "description": "The multi-threaded king of 2026. 16 cores, 32 threads, and massive 3D V-Cache for rendering.",
+        "longDescription": "The Ryzen 9 9950X3D is the processor that ended the 'latency wars'. By stacking 128MB of L3 cache directly on the die, AMD has created a chip that handles real-time rendering and compilation tasks with virtually zero micro-stutter. For Unreal Engine 5 developers and DaVinci Resolve colorists, this CPU offers the highest multi-core efficiency in its class, all while drawing significantly less power than its competitors.",
+        "features": [
+            "16 Cores / 32 Threads for massive multitasking capability",
+            "128MB 3D V-Cache Technology for reduced latency",
+            "5.7GHz Boost Clock for single-threaded snap",
+            "PCIe 5.0 Support for next-gen storage and GPUs",
+            "Zen 5 Architecture on 3nm process"
+        ],
+        "whatIsInTheBox": [
+            "AMD Ryzen 9 9950X3D Processor",
+            "Installation Guide",
+            "AMD Case Badge"
+        ],
+        "ourTake": "If your workflow involves rendering, compiling, or simulcasting, this is the chip we recommend. The V-Cache makes a noticeable difference in timeline scrubbing and real-time playback. It runs cooler than the Intel alternative, meaning you can get away with a 360mm AIO instead of a custom loop.",
+        "technicalSpecs": [
+            "16 Cores / 32 Threads",
+            "128MB L3 3D V-Cache",
+            "AM5 Socket",
+            "170W TDP"
+        ],
+        "priceRange": "$$$$",
+        "image": "/images/gear/amd_ryzen_9_9950x3d.png",
+        "amazonLink": "https://amzn.to/4c4dWon",
+        "subCategory": "CPUs",
+        "isFeatured": true,
+        "seoTags": [
+            "AMD Ryzen 9 9950X3D",
+            "Best CPU for Rendering",
+            "Ryzen 9000 Series",
+            "3D V-Cache",
+            "Workstation CPU"
+        ],
+        "pros": [
+            "Unmatched multi-core efficiency for creative apps",
+            "3D V-Cache drastically reduces frame time variance",
+            "AM5 platform offers long-term upgradeability",
+            "Lower power consumption under full load"
+        ],
+        "cons": [
+            "Lower single-core frequency than Intel Core Ultra 9",
+            "Requires fast DDR5 memory (6000MHz+) for sweet spot"
+        ],
+        "deploymentScenario": "The 9950X3D is the brain of our ' Render Node' clusters. We use it for every machine that needs to chew through ProRes 422 footage or compile large codebases in the background.",
+        "technicalDossier": "## TECHNICAL INTELLIGENCE DOSSIER\n\n### RECOMMENDATION LOGIC\nThe Ryzen 9 9950X3D is the clear choice for parallelized workloads. Its unique cache architecture allows it to hold more data 'close to the metal', reducing the need to fetch from RAM. In our internal benchmarks, this resulted in a 15% reduction in shader compilation times compared to the non-3D version.\n\n### COMMUNITY INTEL\nUsers on r/amd and r/buildapc consistently rate this as the 'end-game' CPU for hybrid creators who game and work on the same machine."
+    },
+    {
+        "id": "intel-core-ultra-9-285k",
+        "name": "Intel Core Ultra 9 285K",
+        "brand": "Intel",
+        "category": "PC",
+        "useCase": "Gaming",
+        "level": "Elite",
+        "description": "The frequency leader. Blistering single-core speeds for gaming and Adobe Creative Cloud.",
+        "longDescription": "The Intel Core Ultra 9 285K (Arrow Lake) is a brute-force marvel. optimizing for raw clock speed and single-threaded dominance. If your workflow lives in After Effects or Photoshop—software that still relies heavily on 'main thread' performance—this CPU is unbeatable. It features a new tile-based architecture that separates compute, graphics, and I/O for better thermal management, though it still demands a robust cooling solution.",
+        "features": [
+            "24 Cores (8 P-Cores + 16 E-Cores)",
+            "Up to 6.2GHz Thermal Velocity Boost",
+            "Intel Thread Director for Windows 12 optimization",
+            "Integrated NPU for local AI acceleration",
+            "DDR5 and PCIe 5.0 support"
+        ],
+        "whatIsInTheBox": [
+            "Intel Core Ultra 9 285K Processor",
+            "Installation Guide"
+        ],
+        "ourTake": "We deploy the 285K in our 'Design' workstations. Adobe apps love high frequency, and this chip delivers it in spades. The integrated NPU is a nice bonus for future-proofing local AI tasks, even if it's not a full GPU replacement.",
+        "technicalSpecs": [
+            "24 Cores / 32 Threads",
+            "6.2GHz Max Turbo",
+            "LGA 1851 Socket",
+            "125W Base / 253W Turbo"
+        ],
+        "priceRange": "$$$$",
+        "image": "/images/gear/intel_core_ultra_9_285k.png",
+        "amazonLink": "https://amzn.to/4aYXeWk",
+        "subCategory": "CPUs",
+        "isFeatured": true,
+        "seoTags": [
+            "Intel Core Ultra 9 285K",
+            "Arrow Lake CPU",
+            "Best CPU for Adobe",
+            "Intel 15th Gen",
+            "Gaming CPU"
+        ],
+        "pros": [
+            "Fastest single-core performance on the market",
+            "Excellent stability in Adobe Creative Suite",
+            "Integrated NPU for AI offloading",
+            "Strong memory controller for high-speed DDR5"
+        ],
+        "cons": [
+            "Higher power draw requires 360mm+ cooling",
+            "Dead-end socket (LGA 1851) likely has limited upgrade path compared to AM5"
+        ],
+        "deploymentScenario": "The 285K is assigned to our 'Adobe Specialist' desks. For Photoshop, Illustrator, and After Effects, the raw frequency advantage translates to a smoother, snappier UI experience.",
+        "technicalDossier": "## TECHNICAL INTELLIGENCE DOSSIER\n\n### RECOMMENDATION LOGIC\nIntel's aggressive boosting behavior makes the 285K ideal for bursty workloads typical of graphic design and photo editing. The 'E-cores' handle background OS tasks effectively, leaving the 'P-cores' free to crush the active application."
     }
 ];
