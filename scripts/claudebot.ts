@@ -297,7 +297,8 @@ FINAL OUTPUT FORMAT:
             const response = await openai.chat.completions.create({
                 model: "gpt-4o",
                 messages: [{ role: "system", content: systemPrompt }, { role: "user", content: userPrompt }],
-                temperature: 0.6
+                temperature: 0.6,
+                max_tokens: 3500
             });
             content = response.choices[0].message.content || "";
         } catch (error: any) {
@@ -367,12 +368,11 @@ FINAL OUTPUT FORMAT:
         /in summary/i
     ];
 
-    // 1. Scrub banned phrases
+    // 1. Scrub banned phrases - just warn, don't replace with nonsense
     bannedPhrases.forEach(regex => {
-        content = content.replace(regex, (match) => {
-            console.warn(`🔥 AI Firewall: Scrubbed banned phrase "${match}"`);
-            return "critical innovation"; // Context-aware fallback/filler or just remove
-        });
+        if (regex.test(content)) {
+            console.warn(`🔥 AI Firewall: Banned phrase detected matching ${regex}`);
+        }
     });
 
     const lines = content.split('\n');
