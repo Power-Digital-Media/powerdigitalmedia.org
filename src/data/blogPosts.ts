@@ -34,7 +34,7 @@ export const blogPosts: BlogPost[] = [
             name: "Senior Principal Engineer",
             role: "Power Digital Media"
         },
-        relatedGearIds: ['amd-ryzen-9-9950x', 'nvidia-rtx-5090', 'gskill-trident-z5', 'samsung-990-pro'],
+        relatedGearIds: ['amd-ryzen-9-9950x3d', 'nvidia-rtx-5090', 'gskill-trident-z5-neo', 'samsung-990-pro-4tb'],
         structuredData: { "@context": "https://schema.org", "@type": "Article", "headline": "The Benchmark War: Google Gemini 3 vs. OpenAI GPT-5.2", "description": "Discover the AI benchmark rivalry between Google Gemini 3 and OpenAI GPT-5.2. Explore their performance, market impact, and what it means for your business.", "author": { "@type": "Organization", "name": "Power Digital Media" }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.powerdigitalmedia.com/articles/benchmark-war-google-gemini-3-vs-openai-gpt-5-2" }, "datePublished": "2026-02-20", "dateModified": "2026-02-20", "publisher": { "@type": "Organization", "name": "Power Digital Media", "logo": { "@type": "ImageObject", "url": "https://www.powerdigitalmedia.com/logo.png" } }, "articleBody": "The battle between Google Gemini 3 Pro and OpenAI GPT-5.2 is more than a tech showdown; it's a strategic decision point for businesses aiming for market dominance...", "potentialAction": { "@type": "SearchAction", "target": "https://www.powerdigitalmedia.com/search?query={search_term_string}", "query-input": "required name=search_term_string" } },
         content: `
 ---
@@ -88,7 +88,7 @@ The battle between Google Gemini 3 Pro and OpenAI GPT-5.2 is more than a tech sh
             name: "Lead Content Strategist",
             role: "Power Digital Media"
         },
-        relatedGearIds: ['lg-ultrafine-5k', 'herman-miller-aeron', 'rode-caster-pro-2', 'shure-sm7b'],
+        relatedGearIds: ['shure-sm7b', 'rode-caster-pro-2', 'shure-mv7-plus', 'rode-procaster'],
         structuredData: { "@context": "https://schema.org", "@type": "Article", "headline": "The Benchmark War: Landing Pages vs. BenchmarkONE in 2026", "description": "Discover how landing pages and BenchmarkONE compete in 2026. Uncover strategies for conversion rates, ROI, and user experience.", "author": { "@type": "Person", "name": "Power Digital Media" }, "publisher": { "@type": "Organization", "name": "Power Digital Media", "logo": { "@type": "ImageObject", "url": "https://www.example.com/logo.png" } }, "mainEntityOfPage": "https://www.example.com/the-benchmark-war-landing-pages-vs-benchmarkone", "datePublished": "2026-10-12", "dateModified": "2026-10-12", "faq": [{ "@type": "Question", "name": "Why Are Landing Pages Still Relevant?", "acceptedAnswer": { "@type": "Answer", "text": "Landing pages remain relevant due to their high conversion rates and quick setup time, making them ideal for immediate conversions." } }, { "@type": "Question", "name": "Can BenchmarkONE Outperform Landing Pages?", "acceptedAnswer": { "@type": "Answer", "text": "BenchmarkONE can outperform landing pages with its comprehensive CRM capabilities, but its complexity may introduce latency." } }, { "@type": "Question", "name": "What Are the Cost Implications?", "acceptedAnswer": { "@type": "Answer", "text": "Landing pages are generally more affordable, whereas BenchmarkONE's subscription model offers long-term gains through improved CRM functionalities." } }] },
         content: `
 ---
