@@ -164,17 +164,17 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ slu
                     </div>
                 </section>
 
-                {/* Hero Image */}
-                <section className="container px-4 mx-auto mb-24">
-                    <div className="relative aspect-[21/9] rounded-[40px] overflow-hidden shadow-2xl">
+                {/* Hero Image Section */}
+                <section className="container px-4 mx-auto mb-24 lg:px-8">
+                    <div className="relative w-full max-w-5xl mx-auto rounded-[24px] md:rounded-[40px] overflow-hidden shadow-2xl ring-1 ring-white/10 bg-white/5">
                         <Image
                             src={post.image}
                             alt={post.title}
-                            fill
-                            className="object-cover opacity-90"
+                            width={1920}
+                            height={1080}
+                            className="w-full h-auto object-cover"
                             priority
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
                     </div>
                 </section>
 
