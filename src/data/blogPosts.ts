@@ -29,7 +29,7 @@ export const blogPosts: BlogPost[] = [
         excerpt: "Modern web design in Jackson MS using Next.js delivers faster speed, stronger SEO, and scalable performance. Rebuild your site without losing content.",
         date: "Feb 20, 2026",
         category: "Web Design",
-        image: "/blog-images/modern-web-design-jackson-ms-nextjs-edge-v2.jpg",
+        image: "/blog-images/modern-web-design-jackson-ms-nextjs-edge-v3.png",
         author: {
             name: "Power Digital Media",
             role: "Agency"
