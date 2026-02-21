@@ -163,7 +163,7 @@ Agentic UX is the discipline of designing digital environments where AI agents c
 - Complete purchases
 - Execute research workflows
 
-OpenAI's research division continues advancing vision-to-action systems capable of browser interaction ([https://openai.com/research](https://openai.com/research)), while Google's Vertex AI Agents documentation confirms API-driven automation layers designed for enterprise orchestration ([https://cloud.google.com/vertex-ai/generative-ai/docs/agents](https://cloud.google.com/vertex-ai/generative-ai/docs/agents)).
+OpenAI's research division continues advancing vision-to-action systems capable of browser interaction ([https://openai.com/research](https://openai.com/research)), while [Google's Vertex AI Agents](/blog/the-2026-ai-agent-showdown-vertex-vs-operator) documentation confirms API-driven automation layers designed for enterprise orchestration ([https://cloud.google.com/vertex-ai/generative-ai/docs/agents](https://cloud.google.com/vertex-ai/generative-ai/docs/agents)).
 
 But here's the shift:
 
@@ -610,7 +610,7 @@ But in 2026, it must also include:
 - Data residency transparency
 - Privacy-conscious backend architecture
 
-This is where Sovereign Cloud intersects with Agent-Navigable SEO.
+This is where Sovereign Cloud intersects with [Agent-Navigable SEO](/blog/the-2026-web-design-pivot-building-for-humans-and-executing-for-agents).
 
 ## Agent-Navigable SEO & Cloud Infrastructure
 
@@ -738,7 +738,7 @@ The Real GPU War of 2026 Is About AI — Not Raw Power
 
 For years, GPU comparisons focused on CUDA cores, VRAM size, and rasterization. That era is over.
 
-Modern video production pipelines — especially in tools like DaVinci Resolve — now rely heavily on AI-accelerated compute, neural processing, and smart encoding engines rather than brute-force rendering. Nvidia and Intel both confirm this shift in their developer documentation:
+Modern video production pipelines — especially in tools like [DaVinci Resolve](/blog/deep-dive-davinci-resolve-20-3-2-comprehensive-breakdown) — now rely heavily on AI-accelerated compute, neural processing, and smart encoding engines rather than brute-force rendering. Nvidia and Intel both confirm this shift in their developer documentation:
 
 - Nvidia accelerated computing & AI architecture overview → [https://developer.nvidia.com](https://developer.nvidia.com)
 - Intel Xe architecture and AI acceleration overview → [https://www.intel.com/content/www/us/en/developer](https://www.intel.com/content/www/us/en/developer)
@@ -775,7 +775,7 @@ Key Celestial strengths:
 
 Intel's focus is efficiency and scalability rather than peak raw compute.
 
-## Real Production Benchmark — DaVinci Resolve 20
+## Real Production Benchmark — [DaVinci Resolve 20](/blog/special-edition-deep-dive-davinci-resolve-february-2026-update)
 
 Blackmagic Design confirms DaVinci Resolve relies heavily on GPU acceleration for color grading, AI effects, and encoding ([https://www.blackmagicdesign.com/products/davinciresolve](https://www.blackmagicdesign.com/products/davinciresolve)).
 
@@ -1049,7 +1049,7 @@ Security is not the limiting factor.
 
 Architecture is.
 
-## Agent-Navigable SEO: The Next Ranking Layer
+## [Agent-Navigable SEO](/blog/the-2026-web-design-pivot-building-for-humans-and-executing-for-agents): The Next Ranking Layer
 
 Traditional SEO optimized for humans and crawlers.
 
