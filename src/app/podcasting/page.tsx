@@ -187,6 +187,10 @@ export default function PodcastingPage() {
                             </span>
                         </h1>
 
+                        <Link href="#pricing" className="inline-flex items-center gap-2 text-accent hover:text-white transition-colors text-sm font-bold uppercase tracking-widest mb-6">
+                            ↓ Jump to Pricing Tiers
+                        </Link>
+
                         <p className="text-xl md:text-2xl text-foreground/70 leading-relaxed mb-12 max-w-2xl mx-auto font-light tracking-tight">
                             We don&apos;t just record episodes. We engineer <span className="text-white font-medium italic">high-velocity digital assets</span> designed for total industry dominance.
                         </p>
@@ -222,7 +226,7 @@ export default function PodcastingPage() {
             <AudioComparison />
 
             {/* Pricing Section */}
-            <section id="tiers" className="py-24 relative z-10 bg-slate-950/20 backdrop-blur-sm">
+            <section id="pricing" className="py-24 relative z-10 bg-slate-950/20 backdrop-blur-sm">
                 <div className="container px-4 mx-auto">
                     <div className="text-center mb-20">
                         <span className="text-accent font-bold tracking-[0.4em] uppercase text-[10px] mb-4 block">Engineered Tiers</span>

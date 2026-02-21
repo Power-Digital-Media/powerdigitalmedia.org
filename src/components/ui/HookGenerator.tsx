@@ -133,7 +133,7 @@ export default function HookGenerator() {
                                         type="submit"
                                         className="w-full py-5 bg-accent text-slate-950 font-black uppercase tracking-widest rounded-2xl border-glow flex items-center justify-center gap-2 group hover:scale-[1.01] active:scale-[0.98] transition-all"
                                     >
-                                        Engineer Strategy <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                        Get Your Custom Growth Blueprint <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                     </button>
                                 </motion.form>
                             )}

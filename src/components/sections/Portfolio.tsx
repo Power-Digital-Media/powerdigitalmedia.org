@@ -39,8 +39,8 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
                             Architecture.
                         </span>
                     </Title>
-                    <p className="text-xs md:text-sm text-white/50 max-w-2xl mx-auto uppercase tracking-widest leading-relaxed">
-                        Engineering cinematic legacies for Brandon, Madison, and Jackson's elite brands through technical superiority and multi-model growth.
+                    <p className="text-foreground/60 max-w-2xl mx-auto text-lg leading-relaxed">
+                        We build the high-performance media infrastructure and marketing systems that scale your brand's authority.
                     </p>
                 </m.div>
 

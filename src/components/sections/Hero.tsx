@@ -42,7 +42,7 @@ export default function Hero() {
 
                     <div className="flex flex-col items-center justify-center gap-6 sm:flex-row mb-12">
                         <Link href="/contact" className="group px-12 py-5 font-bold text-white transition-all bg-accent rounded-full border-glow hover:bg-accent/90 hover:scale-105 active:scale-95">
-                            Start My Show
+                            Initialize Your Build
                         </Link>
                         <Link href="/our-work" className="px-12 py-5 font-bold transition-all border border-white/20 rounded-full backdrop-blur-md hover:bg-white/10 hover:border-white/40 active:scale-95">
                             Watch Showreel
