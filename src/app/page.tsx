@@ -5,8 +5,10 @@ import Footer from "@/components/layout/Footer";
 import Portfolio from "@/components/sections/Portfolio";
 
 const Services = dynamic(() => import("@/components/sections/Services"));
+const LocalWebDesign = dynamic(() => import("@/components/sections/LocalWebDesign"));
 const TechStack = dynamic(() => import("@/components/sections/TechStack"));
 const LatestInsights = dynamic(() => import("@/components/sections/LatestInsights"));
+const LeadArchitect = dynamic(() => import("@/components/sections/LeadArchitect"));
 const Contact = dynamic(() => import("@/components/sections/Contact"));
 
 export const metadata = {
@@ -45,9 +47,11 @@ export default function Home() {
       </div>
 
       <Portfolio />
+      <LocalWebDesign />
       <Services />
       <TechStack />
       <LatestInsights />
+      <LeadArchitect />
       <Contact />
       <script
         type="application/ld+json"
