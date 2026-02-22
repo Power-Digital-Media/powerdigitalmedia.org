@@ -28,7 +28,7 @@ export async function getLatestVideosFromPlaylist(playlistId: string, limit = 5)
             id: item.contentDetails?.videoId,
             title: item.snippet?.title,
             description: item.snippet?.description,
-            thumbnail: item.snippet?.thumbnails?.high?.url || item.snippet?.thumbnails?.default?.url,
+            thumbnail: (item.snippet?.thumbnails?.high?.url || item.snippet?.thumbnails?.default?.url)?.replace('img.youtube.com', 'i.ytimg.com'),
             publishedAt: item.snippet?.publishedAt,
         })) || [];
     } catch (error) {
@@ -55,7 +55,7 @@ export async function getLatestVideosFromChannel(channelId: string, limit = 5) {
         return response.data.items?.map(item => ({
             id: item.id?.videoId,
             title: item.snippet?.title,
-            thumbnail: item.snippet?.thumbnails?.high?.url,
+            thumbnail: item.snippet?.thumbnails?.high?.url?.replace('img.youtube.com', 'i.ytimg.com'),
             publishedAt: item.snippet?.publishedAt,
         })) || [];
     } catch (error) {

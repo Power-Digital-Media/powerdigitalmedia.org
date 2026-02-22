@@ -13,36 +13,38 @@ export default function Services() {
     return (
         <div id="services">
             {/* Section 1: The Studio */}
-            <section className="relative flex flex-col justify-start pt-16 pb-12 md:pt-48 md:pb-32 overflow-hidden">
+            <section className="relative flex flex-col justify-start pt-16 pb-12 md:pt-40 md:pb-32 overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=1600&auto=format&fit=crop"
-                        alt="Professional Podcasting Studio"
+                        src="/images/studio-session.png"
+                        alt="Professional Podcasting Studio Background"
                         fill
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        className="object-cover object-top opacity-40 scale-110 md:scale-100 transition-transform duration-[20s]"
+                        sizes="100vw"
+                        className="object-cover object-center opacity-10 blur-sm scale-110"
+                        title="Studio Background" aria-description="An official Power Digital Media structured image asset." data-caption="Power Digital Media Portfolio & Assets"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background/40" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-background via-background/40 to-transparent" />
+                    <div className="absolute inset-0 bg-slate-950/80" />
+                    <div className="absolute inset-0 cyber-grid opacity-10" />
                 </div>
 
                 <div className="container relative z-10 px-6 mx-auto">
-                    <div className="max-w-xl">
+                    <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
                         <m.div
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                            className="max-w-xl"
                         >
                             <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[9px] md:text-xs mb-4 block">The Core</span>
                             <h2 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight uppercase leading-none">The Studio.</h2>
-                            <p className="text-base md:text-xl text-foreground/70 mb-8 max-w-md leading-relaxed text-balance font-light">
+                            <p className="text-base md:text-xl text-foreground/70 mb-8 leading-relaxed font-light">
                                 Complete studio-grade podcasting. From show concept and branding to full RØDECaster-powered production in JACKSON, MS.
                             </p>
                             <ul className="space-y-4 mb-10">
                                 {["Show Naming & Format Strategy", "Broadcast-Quality Audio Chain", "Editing & Mastering"].map((f) => (
-                                    <li key={f} className="flex items-center gap-3 text-sm md:text-lg font-medium text-white/50">
-                                        <div className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.5)]" />
+                                    <li key={f} className="flex items-center gap-3 text-sm md:text-lg font-medium text-white/60">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.5)]" />
                                         {f}
                                     </li>
                                 ))}
@@ -59,6 +61,38 @@ export default function Services() {
                                 </Link>
                             </div>
                         </m.div>
+
+                        <m.div
+                            initial={{ opacity: 0, scale: 0.95, x: 30 }}
+                            whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                            className="relative aspect-square md:aspect-[4/3] rounded-[2rem] overflow-hidden border border-white/10 group shadow-2xl"
+                        >
+                            <Image
+                                src="/images/rodecaster-studio-neon.jpg"
+                                alt="Power Digital Studio Hardware - Rodecaster Pro Neon"
+                                fill
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                className="object-cover group-hover:scale-105 transition-transform duration-[1.5s] ease-out"
+                                title="Studio Session Detail" aria-description="An official Power Digital Media structured image asset." data-caption="Power Digital Media Portfolio & Assets"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 to-transparent mix-blend-overlay" />
+
+                            {/* HUD Recording Indicator */}
+                            <div className="absolute top-6 right-6 flex items-center gap-2 px-3 py-1.5 bg-black/60 backdrop-blur-md rounded-sm border border-white/10">
+                                <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.8)]" />
+                                <span className="text-[10px] font-bold tracking-widest uppercase text-white/90">REC</span>
+                            </div>
+
+                            {/* Tech Overlay */}
+                            <div className="absolute bottom-6 left-6 px-4 py-2 bg-black/60 backdrop-blur-md rounded-sm border border-white/10">
+                                <div className="flex flex-col gap-1">
+                                    <span className="text-[8px] text-cyan-400 uppercase tracking-widest">Active Node</span>
+                                    <span className="text-xs font-mono text-white/90">RØDECaster Pro II</span>
+                                </div>
+                            </div>
+                        </m.div>
                     </div>
                 </div>
             </section>
@@ -67,10 +101,11 @@ export default function Services() {
             <section className="relative flex flex-col justify-start pt-8 pb-12 md:pt-40 md:pb-32 overflow-hidden border-t border-white/5">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="https://images.unsplash.com/photo-1512418490979-92798ccc13a0?q=80&w=2070&auto=format&fit=crop"
+                        src="/images/podcast-hero-cinematic.webp"
                         alt="On-Location Cinematography"
                         fill
                         className="object-cover object-center opacity-25 scale-110"
+                        title="Podcast Hero Cinematic" aria-description="An official Power Digital Media structured image asset." data-caption="Power Digital Media Portfolio & Assets"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background/40" />
                 </div>
