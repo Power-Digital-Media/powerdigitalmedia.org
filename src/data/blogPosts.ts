@@ -290,49 +290,14 @@ AKQA's style is often subtler than the boutiques, but it's not "less advanced." 
 
 Their positioning is consistently framed as design + innovation, not just execution.
 
-<div className="overflow-x-auto my-8">
-  <table className="w-full text-sm text-left border border-white/10 rounded-xl overflow-hidden shadow-2xl">
-    <thead className="bg-[#5c1c81] text-white font-medium">
-      <tr>
-        <th className="px-6 py-4 border-b border-white/10 uppercase tracking-widest text-xs">Dimension</th>
-        <th className="px-6 py-4 border-b border-white/10 uppercase tracking-widest text-xs">Boutique Innovators</th>
-        <th className="px-6 py-4 border-b border-white/10 uppercase tracking-widest text-xs">Enterprise Titans</th>
-      </tr>
-    </thead>
-    <tbody className="divide-y divide-white/10">
-      <tr className="hover:bg-white/5 transition-colors">
-        <td className="px-6 py-4 font-semibold text-white">Primary goal</td>
-        <td className="px-6 py-4 text-white/70">Memorability + authority through craft</td>
-        <td className="px-6 py-4 text-white/70">Conversion + scale through systems</td>
-      </tr>
-      <tr className="hover:bg-white/5 transition-colors">
-        <td className="px-6 py-4 font-semibold text-white">UX style</td>
-        <td className="px-6 py-4 text-white/70">Immersive, cinematic, "crafted"</td>
-        <td className="px-6 py-4 text-white/70">Modular, frictionless, measured</td>
-      </tr>
-      <tr className="hover:bg-white/5 transition-colors">
-        <td className="px-6 py-4 font-semibold text-white">Navigation</td>
-        <td className="px-6 py-4 text-white/70">Often hidden/minimal</td>
-        <td className="px-6 py-4 text-white/70">Clear, optimized, accessible</td>
-      </tr>
-      <tr className="hover:bg-white/5 transition-colors">
-        <td className="px-6 py-4 font-semibold text-white">Tech emphasis</td>
-        <td className="px-6 py-4 text-white/70">WebGL/3D, motion choreography</td>
-        <td className="px-6 py-4 text-white/70">Design systems, personalization, analytics</td>
-      </tr>
-       <tr className="hover:bg-white/5 transition-colors">
-        <td className="px-6 py-4 font-semibold text-white">Risk</td>
-        <td className="px-6 py-4 text-white/70">Performance + accessibility pitfalls</td>
-        <td className="px-6 py-4 text-white/70">Feels "safe" if not creatively led</td>
-      </tr>
-      <tr className="hover:bg-white/5 transition-colors">
-        <td className="px-6 py-4 font-semibold text-white">Best use</td>
-        <td className="px-6 py-4 text-white/70">Premium perception + high-end lead gen</td>
-        <td className="px-6 py-4 text-white/70">High-volume conversion + global consistency</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+| Dimension | Boutique Innovators | Enterprise Titans |
+| --- | --- | --- |
+| **Primary goal** | Memorability + authority through craft | Conversion + scale through systems |
+| **UX style** | Immersive, cinematic, "crafted" | Modular, frictionless, measured |
+| **Navigation** | Often hidden/minimal | Clear, optimized, accessible |
+| **Tech emphasis** | WebGL/3D, motion choreography | Design systems, personalization, analytics |
+| **Risk** | Performance + accessibility pitfalls | Feels "safe" if not creatively led |
+| **Best use** | Premium perception + high-end lead gen | High-volume conversion + global consistency |
 
 ## The 2026 Domination Playbook
 
@@ -395,49 +360,14 @@ Tools that help (real-world, not theory):
 - **VWO** (experimentation): [https://vwo.com/](https://vwo.com/)
 
 
-<div className="overflow-x-auto my-8">
-  <table className="w-full text-sm text-left border border-white/10 rounded-xl overflow-hidden shadow-2xl">
-    <thead className="bg-[#5c1c81] text-white font-medium">
-      <tr>
-        <th className="px-6 py-4 border-b border-white/10 uppercase tracking-widest text-xs">Pattern</th>
-        <th className="px-6 py-4 border-b border-white/10 uppercase tracking-widest text-xs">Copy This ✔️</th>
-        <th className="px-6 py-4 border-b border-white/10 uppercase tracking-widest text-xs">Avoid This ❌</th>
-      </tr>
-    </thead>
-    <tbody className="divide-y divide-white/10">
-      <tr className="hover:bg-white/5 transition-colors">
-        <td className="px-6 py-4 font-semibold text-white">Motion design</td>
-        <td className="px-6 py-4 text-emerald-400">Meaningful micro-interactions + scroll-linked story</td>
-        <td className="px-6 py-4 text-rose-400">"Motion everywhere" that tanks speed</td>
-      </tr>
-      <tr className="hover:bg-white/5 transition-colors">
-        <td className="px-6 py-4 font-semibold text-white">WebGL/3D</td>
-        <td className="px-6 py-4 text-emerald-400">Limited scenes that support the narrative</td>
-        <td className="px-6 py-4 text-rose-400">Full-site 3D that breaks mobile UX</td>
-      </tr>
-      <tr className="hover:bg-white/5 transition-colors">
-        <td className="px-6 py-4 font-semibold text-white">Navigation</td>
-        <td className="px-6 py-4 text-emerald-400">Minimal UI with clarity</td>
-        <td className="px-6 py-4 text-rose-400">Hidden nav with no cues</td>
-      </tr>
-      <tr className="hover:bg-white/5 transition-colors">
-        <td className="px-6 py-4 font-semibold text-white">Proof</td>
-        <td className="px-6 py-4 text-emerald-400">Backstage/lab/process transparency</td>
-        <td className="px-6 py-4 text-rose-400">Empty "award flex" with no substance</td>
-      </tr>
-      <tr className="hover:bg-white/5 transition-colors">
-        <td className="px-6 py-4 font-semibold text-white">Conversion</td>
-        <td className="px-6 py-4 text-emerald-400">Premium diagnostic CTA</td>
-        <td className="px-6 py-4 text-rose-400">Basic "contact form" with no framing</td>
-      </tr>
-      <tr className="hover:bg-white/5 transition-colors">
-        <td className="px-6 py-4 font-semibold text-white">Systems</td>
-        <td className="px-6 py-4 text-emerald-400">Modular components + CRO loops</td>
-        <td className="px-6 py-4 text-rose-400">Static pages that never improve</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+| Pattern | Copy This ✔️ | Avoid This ❌ |
+| --- | --- | --- |
+| **Motion design** | Meaningful micro-interactions + scroll-linked story | "Motion everywhere" that tanks speed |
+| **WebGL/3D** | Limited scenes that support the narrative | Full-site 3D that breaks mobile UX |
+| **Navigation** | Minimal UI with clarity | Hidden nav with no cues |
+| **Proof** | Backstage/lab/process transparency | Empty "award flex" with no substance |
+| **Conversion** | Premium diagnostic CTA | Basic "contact form" with no framing |
+| **Systems** | Modular components + CRO loops | Static pages that never improve |
 
 ## Conclusion: In 2026, the Medium Is Still the Message—But Now It's Measured
 
