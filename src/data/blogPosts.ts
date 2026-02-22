@@ -34,7 +34,7 @@ export const blogPosts: BlogPost[] = [
             name: "Power Digital Media",
             role: "Agency"
         },
-        relatedGearIds: ['nvidia-rtx-5090', 'amd-ryzen-9-9950x3d', 'samsung-990-pro-4tb'],
+        relatedGearIds: ['nvidia-rtx-5090', 'amd-ryzen-9-9950x3d', 'samsung-990-pro-4tb', 'gskill-trident-z5-neo'],
         structuredData: [
             {
                 "@context": "https://schema.org",

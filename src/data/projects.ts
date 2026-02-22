@@ -15,19 +15,6 @@ export interface Project {
 
 export const projects: Project[] = [
     {
-        id: "studio-session-live",
-        title: "Live Broadcast Architecture",
-        description: "Multi-camera, broadcast-quality infrastructure engineered for high-authority podcasts and executive briefings.",
-        image: "/images/studio-session.png",
-        tags: ["Studio", "Broadcast", "Infrastructure"],
-        client: "Power Digital Media",
-        year: "2026",
-        objective: "Deploy a zero-latency, cinematic production environment for high-end digital media.",
-        engineering: ["Multi-Cam Cinematic Switching", "Studio-Grade Acoustic Treatment", "Broadcast Lighting Protocol"],
-        protocol: ["High-Fidelity Audio Sync", "Real-Time 4K Rendering", "Executive Presence Framing"],
-        netlifyUrl: "/podcasting"
-    },
-    {
         id: "all-things-new",
         title: "All Things New",
         description: "Restoration Begins Here. A cinematic faith-based ecosystem building a legacy of restoration in Central Mississippi.",
