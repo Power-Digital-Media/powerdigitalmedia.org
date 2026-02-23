@@ -1,0 +1,15 @@
+# llms.txt
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://powerdigitalmedia.com/sitemap.xml
+
+# Curated AI Pages
+https://powerdigitalmedia.com/blog/the-2026-ai-power-shift-is-breaking-seo-and-video
+https://powerdigitalmedia.com/agent-readiness-audit
+
+Disallow: /checkout/
+Disallow: /wp-admin/
