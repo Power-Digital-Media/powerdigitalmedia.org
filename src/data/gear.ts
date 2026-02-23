@@ -2958,5 +2958,57 @@ export const GEAR_COLLECTION: GearItem[] = [
         ],
         "deploymentScenario": "The 285K is assigned to our 'Adobe Specialist' desks. For Photoshop, Illustrator, and After Effects, the raw frequency advantage translates to a smoother, snappier UI experience.",
         "technicalDossier": "## TECHNICAL INTELLIGENCE DOSSIER\n\n### RECOMMENDATION LOGIC\nIntel's aggressive boosting behavior makes the 285K ideal for bursty workloads typical of graphic design and photo editing. The 'E-cores' handle background OS tasks effectively, leaving the 'P-cores' free to crush the active application."
+    },
+    {
+        "id": "insta360-luna",
+        "name": "Insta360 Luna (Coming Soon)",
+        "brand": "Insta360",
+        "category": "Visual",
+        "useCase": "Streaming",
+        "level": "Pro",
+        "description": "Compact dual-lens vlogging camera with wide-angle and 3x optical zoom for high-velocity production.",
+        "longDescription": "The Insta360 Luna is an unreleased, highly anticipated dual-lens vlogging camera engineered for high-velocity content creators. Rumored to feature an impossibly lightweight chassis, advanced AI tracking, and native 4K HDR recording across both ultra-wide and optical zoom focal lengths, it is poised to redefine solo production. While the exact release date is classified, the Luna is expected to integrate seamlessly with OS-level AI orchestrators for instant, browserless publishing.",
+        "features": [
+            "Dual-lens system (Ultra-wide & 3x Optical Zoom)",
+            "Native 4K HDR broadcast-quality recording",
+            "Next-gen invisible selfie stick processing",
+            "OS-level AI Orchestration compatibility",
+            "Ruggedized, waterproof housing"
+        ],
+        "whatIsInTheBox": [
+            "Insta360 Luna Body",
+            "Magnetic Charging Mount",
+            "TBA Accessories"
+        ],
+        "ourTake": "The Luna represents the future of untethered visual capture. It is the perfect sidearm for the 'Studio in a Backpack' creator who demands cinema-grade optics without the rig. Currently listed as 'Coming Soon'—stay tuned for our full technical breakdown upon release.",
+        "technicalSpecs": [
+            "Dual-Lens Array",
+            "Native 4K HDR",
+            "AI Subject Tracking",
+            "Coming Late 2026"
+        ],
+        "priceRange": "TBA",
+        "image": "/images/gear/insta360_luna.png",
+        "amazonLink": "#",
+        "subCategory": "Cameras",
+        "isFeatured": false,
+        "seoTags": [
+            "Insta360 Luna",
+            "Luna Vlogging Camera",
+            "Best Vlogging Camera 2026",
+            "Insta360 Dual Lens",
+            "Content Creator Camera"
+        ],
+        "pros": [
+            "Predicted to offer unparalleled form-factor to performance ratio",
+            "Dual optical paths eliminate the need to carry two cameras",
+            "Anticipated AI features will drastically reduce post-production time"
+        ],
+        "cons": [
+            "Currently unreleased; final specs and pricing unconfirmed",
+            "Availability may be constrained at launch"
+        ],
+        "deploymentScenario": "We anticipate the Luna will become the default 'Run and Gun' protocol for our remote field agents, bridging the gap between high-end action cameras and dedicated mirrorless setups without the added mass.",
+        "technicalDossier": "## TECHNICAL INTELLIGENCE DOSSIER\n\n### RECOMMENDATION LOGIC\nThe Insta360 Luna is currently under strict embargo. Preliminary intelligence suggests it will deploy a revolutionary dual-lens system capable of simultaneous ultra-wide and 3x optical zoom streaming. While not yet available for ROI calculation, its predicted capability to interface directly with next-gen AI orchestrators (like Galaxy AI) makes it a critical watch-list item for an agile production suite.\n\n### COMMUNITY INTEL\nLeaks point to exceptional low-light performance and an 'Invisible Drone' feature set, though these remain unverified. Pro-users are already designing rigs to mount the Luna onto FPV drones, anticipating a disruptive entry into the action camera vertical.\n\n### PERSONA CONFLICT PROTOCOL\n**The Senior Engineer:** It's vaporware until it's on my desk. I don't build infrastructure around unreleased specs. Let's see if the thermal management can handle dual 4K streams before we tear up our current rigs.\n\n**The Strategist:** The Luna is a horizon threat. If it delivers on its promises, it will commoditize a massive portion of mid-tier camera work. We need to reserve capital for its launch window to ensure we are among the first to integrate it into our high-velocity workflows."
     }
 ];

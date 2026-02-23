@@ -158,6 +158,7 @@ export const blogPosts: BlogPost[] = [
                 "@context": "https://schema.org",
                 "@type": "Product",
                 "name": "Insta360 Luna",
+                "image": "https://powerdigitalmedia.org/images/gear/insta360_luna.png",
                 "brand": {
                     "@type": "Brand",
                     "name": "Insta360"
@@ -166,7 +167,10 @@ export const blogPosts: BlogPost[] = [
                 "description": "Compact dual-lens vlogging camera with wide-angle and 3x optical zoom for high-velocity production.",
                 "offers": {
                     "@type": "Offer",
-                    "availability": "https://schema.org/InStock"
+                    "priceCurrency": "USD",
+                    "price": "0.00",
+                    "availability": "https://schema.org/PreOrder",
+                    "url": "https://powerdigitalmedia.org/showroom/visual/insta360-luna"
                 }
             }
         ],
