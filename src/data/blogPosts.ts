@@ -38,76 +38,75 @@ export const blogPosts: BlogPost[] = [
         structuredData: [
             {
                 "@context": "https://schema.org",
-                "@graph": [
+                "@type": "WebSite",
+                "@id": "https://powerdigitalmedia.com/#website",
+                "url": "https://powerdigitalmedia.com/",
+                "name": "Power Digital Media LLC",
+                "description": "Power Digital Media LLC is a 2026 tech and media authority specializing in agent-navigable websites, AI-citation SEO, and premium cinematic production.",
+                "inLanguage": "en-US",
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Power Digital Media LLC",
+                    "url": "https://powerdigitalmedia.com/",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://powerdigitalmedia.com/logo.png"
+                    }
+                },
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://powerdigitalmedia.com/?s={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                }
+            },
+            {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "@id": "https://powerdigitalmedia.com/2026-ai-power-shift#breadcrumb",
+                "itemListElement": [
                     {
-                        "@type": "Organization",
-                        "@id": "https://powerdigitalmedia.org/#organization",
-                        "name": "Power Digital Media",
-                        "url": "https://powerdigitalmedia.org/"
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://powerdigitalmedia.com/"
                     },
                     {
-                        "@type": "WebSite",
-                        "@id": "https://powerdigitalmedia.org/#website",
-                        "url": "https://powerdigitalmedia.org/",
-                        "name": "Power Digital Media",
-                        "publisher": {
-                            "@id": "https://powerdigitalmedia.org/#organization"
-                        }
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Blog",
+                        "item": "https://powerdigitalmedia.com/blog/"
                     },
                     {
-                        "@type": "BreadcrumbList",
-                        "itemListElement": [
-                            {
-                                "@type": "ListItem",
-                                "position": 1,
-                                "name": "Home",
-                                "item": "https://powerdigitalmedia.org"
-                            },
-                            {
-                                "@type": "ListItem",
-                                "position": 2,
-                                "name": "Blog",
-                                "item": "https://powerdigitalmedia.org/blog"
-                            },
-                            {
-                                "@type": "ListItem",
-                                "position": 3,
-                                "name": "The 2026 AI Power Shift",
-                                "item": "https://powerdigitalmedia.org/blog/the-2026-ai-power-shift-is-breaking-seo-and-video"
-                            }
-                        ]
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": "The 2026 AI Power Shift Is Breaking SEO and Video",
+                        "item": "https://powerdigitalmedia.com/2026-ai-power-shift"
                     }
                 ]
             },
             {
                 "@context": "https://schema.org",
-                "@type": "HowTo",
-                "name": "The Agent-Readiness Audit Framework",
-                "step": [
-                    {
-                        "@type": "HowToStep",
-                        "name": "Structural Layer",
-                        "text": "Clear H1, H2, H3 hierarchy. No hidden key definitions. Direct answer blocks under 60 words."
-                    },
-                    {
-                        "@type": "HowToStep",
-                        "name": "Schema Layer",
-                        "text": "Add Article, FAQPage, Organization, Breadcrumb, and Product schemas."
-                    },
-                    {
-                        "@type": "HowToStep",
-                        "name": "Machine Guidance Layer",
-                        "text": "Provide a clean sitemap.xml and root-level llms.txt. Disallow critical info from being trapped in PDFs."
+                "@type": "BlogPosting",
+                "headline": "The 2026 AI Power Shift Is Breaking SEO and Video",
+                "description": "AI assistants, AI video, and data-center memory are rewriting marketing in 2026. Here’s how to build agent-ready sites and premium media.",
+                "datePublished": "2026-02-22",
+                "dateModified": "2026-02-22",
+                "author": {
+                    "@type": "Organization",
+                    "name": "Power Digital Media LLC"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Power Digital Media LLC",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://powerdigitalmedia.com/logo.png"
                     }
-                ]
-            },
-            {
-                "@context": "https://schema.org",
-                "@type": "SpeakableSpecification",
-                "xpath": [
-                    "/html/head/title",
-                    "/html/head/meta[@name='description']/@content"
-                ]
+                },
+                "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "@id": "https://powerdigitalmedia.com/2026-ai-power-shift"
+                }
             },
             {
                 "@context": "https://schema.org",
@@ -118,113 +117,152 @@ export const blogPosts: BlogPost[] = [
                         "name": "What is the 2026 AI Power Shift?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "It is the shift from browser-based search to OS-level AI orchestration combined with AI-generated media commoditization and enterprise hardware prioritization."
+                            "text": "The 2026 AI Power Shift is the transition from browser-based search to OS-level AI orchestration combined with AI-generated media commoditization and enterprise hardware consolidation."
                         }
                     },
                     {
                         "@type": "Question",
-                        "name": "What does “orchestrator” mean in Galaxy AI?",
+                        "name": "What is Answer Engine Optimization (AEO)?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "It means the OS dynamically routes user prompts to appropriate AI agents and synthesizes results without traditional browsing."
+                            "text": "Answer Engine Optimization is structuring content to be cited and extracted by AI systems rather than simply ranked in traditional search results."
                         }
                     },
                     {
                         "@type": "Question",
-                        "name": "Is SEO obsolete?",
+                        "name": "How do I make my website agent-navigable?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "No. Intent mapping still matters. But citation authority and semantic clarity now outweigh keyword density."
+                            "text": "Use semantic HTML structure, implement JSON-LD schema, provide direct definitions, publish FAQ sections, and guide AI crawlers using files such as llms.txt."
                         }
                     },
                     {
                         "@type": "Question",
-                        "name": "Should creators move to cloud GPUs?",
+                        "name": "How does Seedance 2.0 change marketing budgets?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "For heavy exports and rendering, hybrid workflows reduce hardware exposure and increase scalability."
+                            "text": "It automates low-to-mid-tier ad production, allowing brands to reallocate budget toward authority-building content, premium production, and reliable live broadcast architecture."
                         }
                     },
                     {
                         "@type": "Question",
-                        "name": "How do I implement Answer Engine Optimization?",
+                        "name": "Why does Micron’s pivot matter to creators?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Use structured data, direct answers, semantic hierarchy, entity-rich content, and machine guidance files such as llms.txt."
+                            "text": "Enterprise AI demand can tighten supply and increase volatility for high-performance consumer components, making hybrid cloud GPU workflows more attractive for heavy exports and rendering."
                         }
                     }
                 ]
+            },
+            {
+                "@context": "https://schema.org",
+                "@type": "Product",
+                "name": "Insta360 Luna",
+                "brand": {
+                    "@type": "Brand",
+                    "name": "Insta360"
+                },
+                "category": "Camera",
+                "description": "Compact dual-lens vlogging camera with wide-angle and 3x optical zoom for high-velocity production.",
+                "offers": {
+                    "@type": "Offer",
+                    "availability": "https://schema.org/InStock"
+                }
             }
         ],
         content: `
 ## TL;DR — The Direct Answer
 
-The 2026 Power Shift is the transition from browser-based search to OS-level AI orchestration, combined with AI-generated media commoditization and enterprise hardware consolidation.
+**The 2026 Power Shift is the transition from browser-based search to OS-level AI orchestration, combined with AI-generated media commoditization and enterprise hardware consolidation.**
 
 Websites are no longer competing for clicks.
+
 They are competing for citations inside AI systems.
 
 Production agencies are no longer competing on "average."
+
 They are competing above automation.
 
-## Part I — The OS Orchestrator Era
+---
 
-### Samsung + Perplexity + Galaxy AI
+## The OS Orchestrator Era Has Begun
 
-Samsung's deeper integration of Perplexity into Galaxy AI reframes the device as a multi-agent orchestrator rather than a passive interface ([The Verge coverage](https://www.theverge.com/tech/882921/samsung-is-adding-perplexity-to-galaxy-ai)).
+Samsung’s deeper integration of Perplexity into Galaxy AI reframes the smartphone as a **multi-agent orchestrator**, not just a device with apps (reported by *The Verge*: https://www.theverge.com/tech/882921/samsung-is-adding-perplexity-to-galaxy-ai).
 
-That word is strategic.
-**Orchestrator** means the OS routes user intent to models and services dynamically.
+That word matters.
+
+**Orchestrator** means the operating system dynamically routes user intent to the most appropriate AI model and synthesizes the result directly inside the device layer.
 
 The user does not browse.  
 They prompt.  
 The system selects.  
-The AI answers.  
+The AI answers.
 
 This bypasses:
-- SERP competition
-- Blue link hierarchy
-- Traditional click funnels
 
-*If your content is not extractable, it is not eligible.*
+- Traditional SERP competition  
+- Blue-link hierarchy  
+- Click funnels  
+- “Page 1” obsession  
 
-### SEO &rarr; AEO (Answer Engine Optimization)
+If your content is not extractable, it is not eligible.
+
+---
+
+## From SEO to AEO (Answer Engine Optimization)
+
+Search Engine Optimization is evolving into Answer Engine Optimization.
 
 | Dimension | SEO Era | AEO Era |
-| :--- | :--- | :--- |
-| **Discovery** | Search page | AI orchestration |
-| **Goal** | Rank #1 | Earn citation |
-| **Metric** | CTR | Model confidence |
-| **Structure** | Blog narrative | Structured knowledge |
-| **Signals** | Backlinks | Entity authority |
+|---|---|---|
+| Discovery | Search results page | AI orchestration layer |
+| Goal | Rank #1 | Earn citation |
+| Metric | Click-through rate | Model confidence |
+| Structure | Narrative blog | Structured knowledge |
+| Signals | Backlinks | Entity authority |
 
-**Helpful resources:**
+Helpful tools for this transition:
+
 - [Google Search Console](https://search.google.com/search-console)
-- [Rank Math Pro](https://rankmath.com)
-- [Schema validation](https://validator.schema.org)
+- [Rank Math (Schema automation)](https://rankmath.com)
+- [Schema Validator](https://validator.schema.org)
+- [PageSpeed Insights](https://pagespeed.web.dev)
 
-## Part II — The Agent-Readiness Audit Framework
+The shift is not about abandoning SEO.  
+It is about building content AI systems can confidently extract and cite.
 
-If you want citation eligibility, audit your site using this checklist:
+---
 
-**Structural Layer**
-- Clear H1, H2, H3 hierarchy
-- No hidden key definitions
-- Direct answer blocks under 60 words
+## The Agent-Readiness Audit Framework
 
-**Schema Layer**
+If your site is not structured for machine parsing, it will not surface inside AI-generated answers.
+
+Here is the Power Digital Media audit checklist:
+
+### Structural Layer
+- Clear H1–H3 hierarchy
+- Direct definitions within 60 words
+- No key insights buried in design-heavy blocks
+- Clean semantic HTML
+
+### Schema Layer
 - Article schema
 - FAQPage schema
 - Organization schema
 - Breadcrumb schema
-- Product schema (when monetizing)
+- Product schema (when monetizing gear)
 
-**Machine Guidance Layer**
+### Machine Guidance Layer
 - Clean \`sitemap.xml\`
 - Root-level \`llms.txt\`
-- No critical info trapped in PDFs
+- No critical content locked inside PDFs
+- Crawlable public pages
 
-### Power Digital Approved llms.txt Template
+---
+
+## Power Digital Approved llms.txt Template
+
+Place this file in your root directory:
 
 \`\`\`txt
 # llms.txt
@@ -244,65 +282,89 @@ Disallow: /checkout/
 Disallow: /wp-admin/
 \`\`\`
 
-*Early adoption advantage compounds.*
+Early adoption advantage compounds.
 
-## Part III — Seedance 2.0 and the Collapse of the Middle
+---
+
+## Seedance 2.0 and the Collapse of the Middle
 
 [Official launch of Seedance 2.0](https://seed.bytedance.com/en/blog/official-launch-of-seedance-2-0)
 
-Seedance 2.0 introduced synchronized audio-video generation with realistic physics modeling.
+ByteDance’s Seedance 2.0 introduced synchronized audio-video generation with realistic physics modeling.
 
-**Impact:**
-- Ad prototyping time drops dramatically
-- Low-tier production is automated
-- Content volume increases exponentially
+For $9/month, businesses can generate 1080p marketing ads with synchronized lip movement and simulated lighting realism.
 
-But here's the dividing line:
-**AI can replicate aesthetic. It cannot replicate presence.**
+The implication is clear:
 
-### Workflow Comparison: AI Prototype vs Premium Production
+Low-to-mid-tier production is automated.
+
+But here’s the dividing line:
+
+AI can replicate aesthetic.
+It cannot replicate presence.
+
+### AI Prototype vs Premium Production
 
 | Step | AI Prototype | Premium Studio |
-| :--- | :--- | :--- |
+|---|---|---|
 | **Script** | AI-assisted | Strategist-led |
 | **Visuals** | Generated | Cinematographer-controlled |
 | **Lighting** | Simulated | Physically sculpted |
 | **Audio** | Modeled | Captured |
 | **Authority Signal** | Moderate | High |
 
-**Strategic move:** Use AI for volume. Use humans for authority.
+The strategic move is not to fight automation.
 
-## Part IV — The Hardware Wall (Micron + HBM4)
+It is to move above it.
 
-Micron confirmed its exit from consumer memory to prioritize AI data center growth ([Micron IR](https://investors.micron.com/news-releases/news-release-details/micron-announces-exit-crucial-consumer-business)).
+Use AI for speed.
+Use humans for trust.
 
-**The deeper layer:**
-HBM4 (High Bandwidth Memory Gen 4) is optimized for AI accelerators such as Nvidia’s data center GPUs.
-Enterprise demand consumes allocation.
+---
 
-**Creators must anticipate:**
+## The $200B Hardware Wall: Micron and HBM4
+
+Micron confirmed its exit from the Crucial consumer memory segment to prioritize AI data center growth ([Micron Investor Relations](https://investors.micron.com/news-releases/news-release-details/micron-announces-exit-crucial-consumer-business)).
+
+The deeper signal is infrastructure allocation.
+
+HBM4 (High Bandwidth Memory Gen 4) is optimized for AI accelerators, particularly Nvidia data center GPUs.
+
+Enterprise demand consumes supply first.
+
+Creators should anticipate:
+
 - Component volatility
 - GPU availability shifts
 - Memory pricing pressure
 
-*Benchmark resource:* [Puget Systems Creator Reports](https://www.pugetsystems.com)
+Hardware benchmarking resource:
+[Puget Systems Creator Reports](https://www.pugetsystems.com)
 
-### Hybrid Workflow Model
+---
+
+## Hybrid Workflow Strategy
+
+Instead of overinvesting in local hardware:
 
 | Local | Cloud GPU |
-| :--- | :--- |
-| Edit timeline | 8K exports |
+|---|---|
+| Timeline edits | 8K exports |
 | Sound design | Heavy VFX |
-| Rough grading | 3D rendering |
+| Rough color grading | 3D rendering |
 
-**Cloud options:**
-- AWS EC2 GPU instances
+Cloud GPU providers:
+- AWS EC2 GPU Instances
 - Google Cloud GPU
 - Paperspace
 
-*Hybrid reduces capital lock-in.*
+Hybrid reduces capital lock-in and protects velocity.
 
-## Part V — The 2026 Production Edge (Monetization Layer)
+---
+
+## The 2026 Production Edge
+
+To compete above automation, authority matters.
 
 **Camera**
 - [Insta360 Luna](https://www.insta360.com)
@@ -317,31 +379,58 @@ Enterprise demand consumes allocation.
 - [RØDECaster Pro II](https://rode.com)
 
 When paired with Product schema, AI agents can:
-1. Surface purchase links
-2. Compare availability
-3. Inject buying paths directly into chat
 
-*This is monetization architecture.*
+- Surface purchase links
+- Compare availability
+- Inject buying paths directly into chat
 
-## The Strategic Summary
+This is monetization architecture.
 
-**Automation** handles the average.  
-**Orchestration** handles discovery.  
-**Enterprise** absorbs hardware.  
-**Authority** becomes scarce.  
-**Scarcity** increases value.  
+---
 
-***
+## The Strategic Reality
 
-## Internal Expansion Map
+Automation handles the average.
 
-**Next Articles:**
-- Deep Dive: Building an Agent-Navigable Website for the Galaxy S26 Era
-- Technical Breakdown: HBM4 vs DDR5 — What Creators Need to Know
-- Case Study: Reducing Ad Prototyping Time with Seedance 2.0
-- 2026 Creator Workstation Buying Guide
+Orchestration handles discovery.
 
-*Each links back here. This becomes the pillar.*
+Enterprise absorbs hardware supply.
+
+Authority becomes scarce.
+
+Scarcity increases value.
+
+Brands that win in 2026:
+
+- Build agent-navigable websites
+- Produce media AI cannot fake
+- Structure infrastructure strategically
+- Design for citation, not just clicks
+
+This is not a trend.
+
+It is a structural shift.
+
+---
+
+## Internal Anchor Map
+
+### Money/Service pages
+- [agent-navigable websites](https://powerdigitalmedia.com/services/agent-navigable-websites/)
+- [AI citation SEO (AEO)](https://powerdigitalmedia.com/services/ai-citation-seo-aeo/)
+- [Live Broadcast Architecture](https://powerdigitalmedia.com/services/live-broadcast-architecture/)
+- [Showroom gear picks](https://powerdigitalmedia.com/showroom/)
+
+### Spoke articles
+- [How to Build an Agent-Navigable Website (Galaxy AI Era)](https://powerdigitalmedia.com/agent-navigable-website-galaxy-ai/)
+- [Seedance 2.0 Workflow: Prototype Ads 10x Faster](https://powerdigitalmedia.com/seedance-2-workflow-ad-prototyping/)
+- [HBM4 vs DDR5: What Creators Need to Know in 2026](https://powerdigitalmedia.com/hbm4-vs-ddr5-creators-2026/)
+- [2026 Creator Workstation Buying Guide (Resolve/Premiere)](https://powerdigitalmedia.com/creator-workstation-buying-guide-2026/)
+
+### Utility/linkable assets
+- [Agent-Readiness Audit Checklist](https://powerdigitalmedia.com/agent-readiness-audit/)
+- [llms.txt template (copy/paste)](https://powerdigitalmedia.com/llms-txt-template/)
+- [Schema stack templates (Article + FAQ + Product)](https://powerdigitalmedia.com/schema-templates/)
 `
     },
     {
