@@ -4999,7 +4999,7 @@ For those looking to transform their creative processes, explore our [showroom](
         seoTitle: "Immersive Spatial UX: When 3D Becomes Required",
         metaDescription: "Immersive spatial UX is now baseline. Learn how 3D product previews, scroll-driven motion, and kinetic typography improve usability and conversions.",
         keywords: ["immersive spatial UX", "3D product previews", "scroll-driven animation", "kinetic typography UX", "web design Jackson MS"],
-        relatedGearIds: [],
+        relatedGearIds: ["samsung-odyssey-g9", "msi-mag-274upf", "nvidia-rtx-5090", "asus-proart-4080-super"],
         structuredData: [
             {
                 "@context": "https://schema.org",
