@@ -72,10 +72,12 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ slu
         );
     }
 
+    const baseUrl = "https://powerdigitalmedia.org";
     const breadcrumbItems = [
-        { name: "Blog", path: "/blog" },
-        { name: post.category, path: `/blog?category=${post.category.toLowerCase()}` },
-        { name: post.title, path: `/blog/${post.slug}` }
+        { name: "Home", url: `${baseUrl}/` },
+        { name: "Blog", url: `${baseUrl}/blog` },
+        { name: post.category, url: `${baseUrl}/blog?category=${post.category.toLowerCase()}` },
+        { name: post.title, url: `${baseUrl}/blog/${post.slug}` }
     ];
 
     const defaultSchema = {
