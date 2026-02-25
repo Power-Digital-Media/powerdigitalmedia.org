@@ -106,9 +106,10 @@ export default function PodcastingPage() {
         }
     };
 
+    const baseUrl = "https://powerdigitalmedia.org";
     const breadcrumbItems = [
-        { name: "Services", path: "/#services" },
-        { name: "Podcasting", path: "/podcasting" }
+        { name: "Services", url: `${baseUrl}/#services` },
+        { name: "Podcasting", url: `${baseUrl}/podcasting` }
     ];
 
     return (

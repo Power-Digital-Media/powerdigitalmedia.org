@@ -94,9 +94,10 @@ const tiers: Tier[] = [
 export default function WebDesignPage() {
     const [isBookingOpen, setIsBookingOpen] = useState(false);
 
+    const baseUrl = "https://powerdigitalmedia.org";
     const breadcrumbItems = [
-        { name: "Services", path: "/#services" },
-        { name: "Web Design", path: "/web-design" }
+        { name: "Services", url: `${baseUrl}/#services` },
+        { name: "Web Design", url: `${baseUrl}/web-design` }
     ];
 
     return (

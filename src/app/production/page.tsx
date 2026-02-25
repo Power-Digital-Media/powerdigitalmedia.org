@@ -118,9 +118,10 @@ export default function ProductionPage() {
         }
     };
 
+    const baseUrl = "https://powerdigitalmedia.org";
     const breadcrumbItems = [
-        { name: "Services", path: "/#services" },
-        { name: "Production", path: "/production" }
+        { name: "Services", url: `${baseUrl}/#services` },
+        { name: "Production", url: `${baseUrl}/production` }
     ];
 
     return (
