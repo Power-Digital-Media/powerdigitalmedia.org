@@ -6,14 +6,52 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import BookingModal from "@/components/ui/BookingModal";
+import DashboardProof from "@/components/ui/DashboardProof";
 
 export default function Services() {
     const [isBookingOpen, setIsBookingOpen] = useState(false);
 
     return (
         <div id="services">
+            {/* Section: The Reach (Dashboard Proof) */}
+            <section className="relative flex flex-col justify-start pt-16 pb-12 md:pt-40 md:pb-32 overflow-hidden min-h-[800px]">
+                <div className="absolute inset-0 z-0">
+                    <DashboardProof />
+                    <div className="absolute inset-0 pointer-events-none md:w-[60%] md:right-0 bg-gradient-to-t md:bg-gradient-to-l from-background md:from-background via-background/80 to-transparent z-10" />
+                </div>
+
+                <div className="container relative z-10 px-2 md:px-6 mx-auto">
+                    <div className="flex justify-end">
+                        <m.div
+                            initial={{ opacity: 0, x: 30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                            className="max-w-xl text-right flex flex-col items-end"
+                        >
+                            <span className="text-accent font-bold tracking-[0.4em] uppercase text-[9px] md:text-xs mb-4 block hover:text-white transition-colors">Undeniable Metrics</span>
+                            <h2 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight uppercase leading-none text-white">The Reach.</h2>
+                            <p className="text-base md:text-xl text-foreground/80 mb-8 max-w-md leading-relaxed text-balance font-light">
+                                Real, raw data. <strong className="text-white">35M 12S average engagement time</strong> and <strong className="text-accent">+3,095% event tracking growth.</strong> We engineer digital infrastructure that commands absolute attention and converts raw traffic into captured audiences.
+                            </p>
+                            <ul className="space-y-4 mb-10 flex flex-col md:items-end">
+                                {["Data-Driven SEO Protocol", "Page-One Search Placement", "High-Converting Organic Traffic"].map((f) => (
+                                    <li key={f} className="flex items-center md:flex-row-reverse gap-3 text-sm md:text-lg font-medium text-white/50">
+                                        <div className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-purple-400 shadow-[0_0_10px_rgba(168,85,247,0.5)]" />
+                                        {f}
+                                    </li>
+                                ))}
+                            </ul>
+                            <Link href="/marketing" className="inline-flex items-center gap-2 px-8 py-4 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/20 text-purple-400 shadow-[0_0_15px_rgba(168,85,247,0.1)] rounded-full transition-all font-bold uppercase tracking-widest text-[10px] active:scale-95 group">
+                                Analyze Our Methodology <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                        </m.div>
+                    </div>
+                </div>
+            </section>
+
             {/* Section 1: The Studio */}
-            <section className="relative flex flex-col justify-start pt-16 pb-12 md:pt-40 md:pb-32 overflow-hidden">
+            <section className="relative flex flex-col justify-start pt-8 pb-12 md:pt-40 md:pb-32 overflow-hidden border-t border-white/5">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="/images/studio-session.png"
@@ -150,48 +188,6 @@ export default function Services() {
                             </div>
                             <Link href="/production" className="inline-flex items-center gap-4 px-10 py-5 bg-white text-slate-950 font-black rounded-full hover:bg-blue-400 hover:text-white transition-all uppercase tracking-widest text-[10px]">
                                 Explore Production Tiers <ArrowRight className="w-4 h-4" />
-                            </Link>
-                        </m.div>
-                    </div>
-                </div>
-            </section>
-
-            <section className="relative flex flex-col justify-start pt-8 pb-12 md:pt-40 md:pb-32 overflow-hidden">
-                <div className="absolute inset-0 z-0">
-                    <Image
-                        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1600&auto=format&fit=crop"
-                        alt="Content Distribution"
-                        fill
-                        className="object-cover object-right-top md:object-center opacity-30 scale-[1.3] md:scale-110 -translate-y-[10%] md:translate-y-0 transition-transform duration-[20s]"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background/40" />
-                    <div className="absolute inset-0 bg-gradient-to-l from-background via-background/40 to-transparent" />
-                </div>
-
-                <div className="container relative z-10 px-2 md:px-6 mx-auto">
-                    <div className="flex justify-end">
-                        <m.div
-                            initial={{ opacity: 0, x: 30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                            className="max-w-xl text-right flex flex-col items-end"
-                        >
-                            <span className="text-blue-400 font-bold tracking-[0.4em] uppercase text-[9px] md:text-xs mb-4 block">The Velocity</span>
-                            <h2 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight uppercase leading-none">The Reach.</h2>
-                            <p className="text-base md:text-xl text-foreground/70 mb-8 max-w-md leading-relaxed text-balance font-light">
-                                Turn one session into weeks of high-impact content. Cinematic 4K recording and viral-ready social media distribution.
-                            </p>
-                            <ul className="space-y-4 mb-10 flex flex-col md:items-end">
-                                {["BMPCC 4K Multi-Cam Setups", "Shorts, Reels & TikTok Edits", "Content Distribution Systems"].map((f) => (
-                                    <li key={f} className="flex items-center md:flex-row-reverse gap-3 text-sm md:text-lg font-medium text-white/50">
-                                        <div className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
-                                        {f}
-                                    </li>
-                                ))}
-                            </ul>
-                            <Link href="/our-work" className="inline-flex items-center gap-2 px-8 py-4 border border-white/10 rounded-full hover:bg-white/5 transition-all font-bold uppercase tracking-widest text-[10px] active:scale-95">
-                                View Showreel <ArrowRight className="w-3 h-3" />
                             </Link>
                         </m.div>
                     </div>

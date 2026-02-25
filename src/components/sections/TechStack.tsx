@@ -10,15 +10,17 @@ const mainGear = [
         name: "RØDECaster Pro II",
         type: "The Heart",
         description: "Studio-Grade Audio Chain. Revolutionary audio production studio with ultra-low-noise Revolution Preamps™ and world-class APHEX® processing.",
-        image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop",
-        specs: ["Dual USB-C interfaces", "Advanced APHEX processing", "Individually customizable pads"]
+        image: "/images/gear/rodecaster_pro_2.webp",
+        specs: ["Dual USB-C interfaces", "Advanced APHEX processing", "Individually customizable pads"],
+        showroomLink: "/showroom/audio/rode-caster-pro-2"
     },
     {
-        name: "Blackmagic Design",
-        type: "The Eye",
-        description: "Cinematic Visual Integrity. Blackmagic Pocket Cinema Cameras paired with high-end glass to ensure that 'Big Studio' aesthetic in every frame.",
-        image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop",
-        specs: ["4K DCI Recording", "13 Stops of Dynamic Range", "Multi-Cam Color Matching"]
+        name: "OBSBOT Tiny 2 Lite PTZ",
+        type: "Autonomous Eye",
+        description: "Next-generation 4K visual capture. A high-performance PTZ camera featuring an elite AI tracking algorithm and rapid-response gimbal to maintain focus on the subject with high-velocity precision.",
+        image: "/images/gear/obsbot_tiny_2.webp",
+        specs: ["4K UHD Resolution", "AI Subject Tracking", "PTZ Functionality"],
+        showroomLink: "/showroom/visual/obsbot-tiny-2"
     }
 ];
 
@@ -65,13 +67,19 @@ export default function TechStack() {
                                 <p className="text-lg text-foreground/80 mb-8 leading-relaxed">
                                     {item.description}
                                 </p>
-                                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                                     {item.specs.map((spec) => (
                                         <li key={spec} className="flex items-center gap-2 text-sm font-medium text-foreground/60 border-l border-accent/30 pl-4 py-1">
                                             {spec}
                                         </li>
                                     ))}
                                 </ul>
+                                <Link
+                                    href={item.showroomLink}
+                                    className="inline-flex items-center gap-2 px-6 py-3 bg-accent/10 hover:bg-accent/20 border border-accent/20 rounded-full text-accent font-bold transition-all group w-fit text-sm"
+                                >
+                                    View in Showroom <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                </Link>
                             </div>
                         </m.div>
                     ))}

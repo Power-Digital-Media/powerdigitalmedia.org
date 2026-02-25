@@ -12,7 +12,7 @@ interface Tier {
     description: string;
     features: string[];
     accent: string;
-    icon: React.ElementType;
+    icon: React.ElementType | any;
 }
 
 const tiers: Tier[] = [

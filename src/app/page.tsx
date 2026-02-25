@@ -31,7 +31,7 @@ export default function Home() {
         We render the Hero Background here in the Server Component 
         to eliminate the 1.8s "Render Delay" caused by React hydration in client components.
       */}
-      <div className="absolute top-0 left-0 right-0 h-screen w-full z-0 overflow-hidden bg-background">
+      <div className="absolute top-0 left-0 right-0 h-[140vh] w-full z-0 overflow-hidden bg-background pointer-events-none">
         <Image
           src="/hero-bg.webp"
           alt="Power Digital Media - Jackson, MS Production Studio"

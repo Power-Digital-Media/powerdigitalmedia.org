@@ -4,6 +4,7 @@ import "./globals.css";
 import { Suspense } from "react";
 import AnalyticsEngine from "@/components/infrastructure/AnalyticsEngine";
 import MotionProvider from "@/components/infrastructure/MotionProvider";
+import SmoothScrollProvider from "@/components/infrastructure/SmoothScrollProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -65,7 +66,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* Google Site Verification (HTML Tag Method) */}
         <meta name="google-site-verification" content="3gJZWrSWWnZtSbDZgQzznQeNdzOgHuUcC8C-H2LzenA" />
@@ -74,12 +75,15 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','${GTM_ID}');
-            `,
+  (function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+      'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+  })(window, document, 'script', 'dataLayer', '${GTM_ID}');
+`,
           }}
         />
 
@@ -92,35 +96,35 @@ export default function RootLayout({
         <style dangerouslySetInnerHTML={{
           __html: `
           :root {
-            --background: #020617;
-            --foreground: #f8fafc;
-            --primary: #3b82f6;
-            --accent: #3b82f6;
-            --font-sans: var(--font-inter);
-            --font-heading: var(--font-space-grotesk);
-          }
+  --background: #020617;
+  --foreground: #f8fafc;
+  --primary: #3b82f6;
+  --accent: #3b82f6;
+  --font - sans: var(--font - inter);
+  --font - heading: var(--font - space - grotesk);
+}
           body {
-            background: var(--background);
-            color: var(--foreground);
-            font-family: var(--font-sans);
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-            margin: 0;
-          }
-          body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            z-index: -2;
-            background: radial-gradient(circle at 50% 50%, #020617 0%, #020617 100%);
-          }
-          h1, h2, h3 { font-family: var(--font-heading); letter-spacing: -0.02em; font-weight: 700; }
-          .cyber-grid {
-            background-image: linear-gradient(to right, rgba(34, 211, 238, 0.05) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(34, 211, 238, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
-          }
-        `}} />
+  background: var(--background);
+  color: var(--foreground);
+  font - family: var(--font - sans);
+  -webkit - font - smoothing: antialiased;
+  overflow - x: hidden;
+  margin: 0;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z - index: -2;
+  background: radial - gradient(circle at 50 % 50 %, #020617 0 %, #020617 100 %);
+}
+h1, h2, h3 { font - family: var(--font - heading); letter - spacing: -0.02em; font - weight: 700; }
+          .cyber - grid {
+  background - image: linear - gradient(to right, rgba(34, 211, 238, 0.05) 1px, transparent 1px),
+    linear - gradient(to bottom, rgba(34, 211, 238, 0.05) 1px, transparent 1px);
+  background - size: 40px 40px;
+}
+`}} />
       </head>
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
@@ -133,7 +137,7 @@ export default function RootLayout({
             width="0"
             style={{ display: "none", visibility: "hidden" }}
           />
-        </noscript>
+        </noscript >
 
         <Suspense fallback={null}>
           <AnalyticsEngine />
@@ -162,9 +166,11 @@ export default function RootLayout({
           }}
         />
         <MotionProvider>
-          {children}
+          <SmoothScrollProvider>
+            {children}
+          </SmoothScrollProvider>
         </MotionProvider>
-      </body>
-    </html>
+      </body >
+    </html >
   );
 }

@@ -18,7 +18,7 @@ interface Protocol {
     subtitle: string;
     description: string;
     features: string[];
-    icon: React.ElementType; // Lucide icon
+    icon: React.ElementType | any; // Lucide icon
     color: string;
     bg: string;
 }
