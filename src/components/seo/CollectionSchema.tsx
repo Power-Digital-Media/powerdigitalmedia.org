@@ -20,12 +20,7 @@ export default function CollectionSchema({ items, name = "The Elite Showroom", d
         itemListElement: items.map((item, index) => ({
             '@type': 'ListItem',
             position: index + 1,
-            item: {
-                '@type': 'Product',
-                name: item.name,
-                url: `${baseUrl}/showroom/${item.category.replace(/\\s+/g, '-').toLowerCase()}/${item.id}`,
-                image: item.image.startsWith('http') ? item.image : `${baseUrl}${item.image}`,
-            }
+            url: `${baseUrl}/showroom/${item.category.replace(/\\s+/g, '-').toLowerCase()}/${item.id}`
         }))
     };
 
