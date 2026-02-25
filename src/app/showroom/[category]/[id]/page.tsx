@@ -10,6 +10,7 @@ import { ArrowRight, Info, Check, X, Terminal, Workflow } from "lucide-react";
 
 import ReactMarkdown from "react-markdown";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import ProductSchema from "@/components/seo/ProductSchema";
 
 // Force static generation for known paths
 export function generateStaticParams() {
@@ -78,6 +79,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
     return (
         <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-accent selection:text-white">
             <BreadcrumbSchema items={breadcrumbItems} />
+            <ProductSchema product={product} />
             <Navbar />
 
             {/* Ambient Background Protocol */}

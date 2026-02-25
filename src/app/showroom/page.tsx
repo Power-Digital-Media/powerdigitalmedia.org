@@ -3,14 +3,15 @@ import Footer from "@/components/layout/Footer";
 import { GEAR_COLLECTION } from "@/data/gear";
 import { ShoppingBag, ChevronRight } from "lucide-react";
 import ShowroomClient from "@/components/ui/showroom/ShowroomClient";
+import CollectionSchema from "@/components/seo/CollectionSchema";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "The Elite Showroom | Power Digital Media",
-    description: "Secure the exact hardware we use to engineer high-velocity content. Curated for professionals who demand technical excellence.",
+    description: "Secure the exact hardware we recommend to engineer high-velocity content. Curated for professionals who demand technical excellence.",
     openGraph: {
         title: "The Elite Showroom | Power Digital Media",
-        description: "Secure the exact hardware we use to engineer high-velocity content. Curated for professionals who demand technical excellence.",
+        description: "Secure the exact hardware we recommend to engineer high-velocity content. Curated for professionals who demand technical excellence.",
         images: ["/hero-bg.webp"], // Fallback to hero for now as it's high quality
     },
 };
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
 export default function ShowroomPage() {
     return (
         <main className="min-h-screen bg-background text-foreground selection:bg-accent selection:text-slate-900">
+            <CollectionSchema items={GEAR_COLLECTION} />
             <Navbar />
 
             {/* Hero Section */}
@@ -32,7 +34,7 @@ export default function ShowroomPage() {
                             <span className="text-white/40 italic">Gear Gallery.</span>
                         </h1>
                         <p className="text-lg md:text-xl text-foreground/60 font-light max-w-2xl leading-relaxed">
-                            Secure the exact hardware we use to engineer high-velocity content. Curated for professionals who demand technical excellence.
+                            Secure the exact hardware we recommend to engineer high-velocity content. Curated for professionals who demand technical excellence.
                         </p>
                     </div>
                 </div>
