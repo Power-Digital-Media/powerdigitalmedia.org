@@ -8,19 +8,7 @@ import Link from "next/link";
 export default function Hero() {
     return (
         <section className="relative min-h-screen flex flex-col items-center justify-between py-24 overflow-hidden">
-            {/* Background Image with Overlay */}
-            <div className="absolute inset-0 z-0">
-                <Image
-                    src="/hero-bg.webp"
-                    alt="Power Digital Media Studio"
-                    fill
-                    className="object-cover opacity-60 scale-100"
-                    priority
-                    fetchPriority="high"
-                    quality={65}
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background" />
-            </div>
+            {/* Background Image is handled by page.tsx to clear render blocking */}
 
             <div className="container relative z-10 px-4 mx-auto text-center mt-auto">
                 <m.div

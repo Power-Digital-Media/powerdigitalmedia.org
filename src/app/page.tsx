@@ -1,10 +1,11 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import Portfolio from "@/components/sections/Portfolio";
+
+const Footer = dynamic(() => import("@/components/layout/Footer"));
 
 const Services = dynamic(() => import("@/components/sections/Services"));
+const Portfolio = dynamic(() => import("@/components/sections/Portfolio"));
 const LocalWebDesign = dynamic(() => import("@/components/sections/LocalWebDesign"));
 const TechStack = dynamic(() => import("@/components/sections/TechStack"));
 const LatestInsights = dynamic(() => import("@/components/sections/LatestInsights"));
@@ -38,7 +39,7 @@ export default function Home() {
           fill
           priority
           fetchPriority="high"
-          quality={65}
+          quality={50}
           sizes="100vw"
           className="object-cover opacity-40 select-none pointer-events-none"
         />

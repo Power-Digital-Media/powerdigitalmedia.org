@@ -4,16 +4,19 @@ import "./globals.css";
 import { Suspense } from "react";
 import AnalyticsEngine from "@/components/infrastructure/AnalyticsEngine";
 import MotionProvider from "@/components/infrastructure/MotionProvider";
+import { GoogleTagManager } from "@next/third-parties/google";
 import SmoothScrollProvider from "@/components/infrastructure/SmoothScrollProvider";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -71,28 +74,7 @@ export default function RootLayout({
         {/* Google Site Verification (HTML Tag Method) */}
         <meta name="google-site-verification" content="3gJZWrSWWnZtSbDZgQzznQeNdzOgHuUcC8C-H2LzenA" />
 
-        {/* Google Tag Manager (Manual Implementation for Verification) */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-  (function (w, d, s, l, i) {
-    w[l] = w[l] || []; w[l].push({
-      'gtm.start':
-        new Date().getTime(), event: 'gtm.js'
-    }); var f = d.getElementsByTagName(s)[0],
-      j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-  })(window, document, 'script', 'dataLayer', '${GTM_ID}');
-`,
-          }}
-        />
 
-        <link
-          rel="preload"
-          href="/hero-bg.webp"
-          as="image"
-          fetchPriority="high"
-        />
         <style dangerouslySetInnerHTML={{
           __html: `
           :root {
@@ -129,15 +111,7 @@ h1, h2, h3 { font - family: var(--font - heading); letter - spacing: -0.02em; fo
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
       >
-        {/* Google Tag Manager (noscript) */}
-        <noscript>
-          <iframe
-            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript >
+        {/* Google Tag Manager is now injected via @next/third-parties below if needed, or we just rely on the component. Actually the component usually injects noscript too, let's just add the component. */}
 
         <Suspense fallback={null}>
           <AnalyticsEngine />
@@ -170,6 +144,7 @@ h1, h2, h3 { font - family: var(--font - heading); letter - spacing: -0.02em; fo
             {children}
           </SmoothScrollProvider>
         </MotionProvider>
+        <GoogleTagManager gtmId={GTM_ID} />
       </body >
     </html >
   );
