@@ -1,11 +1,11 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
+import Portfolio from "@/components/sections/Portfolio";
 
 const Footer = dynamic(() => import("@/components/layout/Footer"));
 
 const Services = dynamic(() => import("@/components/sections/Services"));
-const Portfolio = dynamic(() => import("@/components/sections/Portfolio"));
 const LocalWebDesign = dynamic(() => import("@/components/sections/LocalWebDesign"));
 const TechStack = dynamic(() => import("@/components/sections/TechStack"));
 const LatestInsights = dynamic(() => import("@/components/sections/LatestInsights"));

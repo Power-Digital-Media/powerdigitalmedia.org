@@ -24,7 +24,7 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
             <div className="container relative z-10 px-4 mx-auto text-center">
                 {/* --- Headline Merger --- */}
                 <m.div
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 1, y: 0 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
