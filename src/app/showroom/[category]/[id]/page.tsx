@@ -70,10 +70,15 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
         }
     };
 
+    const baseUrl = "https://powerdigitalmedia.org";
+    const categorySlug = product.category.replace(/\s+/g, '-').toLowerCase();
+    const categoryName = product.category; // Uses the original capitalized category name
+
     const breadcrumbItems = [
-        { name: "Showroom", path: "/showroom" },
-        { name: product.category, path: `/showroom?category=${product.category.toLowerCase()}` },
-        { name: product.name, path: `/showroom/${product.category.toLowerCase()}/${product.id}` }
+        { name: "Home", url: `${baseUrl}/` },
+        { name: "Showroom", url: `${baseUrl}/showroom` },
+        { name: categoryName, url: `${baseUrl}/showroom/${categorySlug}` },
+        { name: product.name, url: `${baseUrl}/showroom/${categorySlug}/${product.id}` }
     ];
 
     return (

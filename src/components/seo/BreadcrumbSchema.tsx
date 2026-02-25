@@ -1,43 +1,29 @@
-import React from 'react';
+import React from "react";
 
-interface BreadcrumbItem {
+type BreadcrumbItem = {
     name: string;
-    path: string;
-}
+    url: string; // absolute URL
+};
 
-interface BreadcrumbSchemaProps {
-    items: BreadcrumbItem[];
-}
+export default function BreadcrumbSchema({ items }: { items: BreadcrumbItem[] }) {
+    // Guard: Google expects at least 2 items for breadcrumbs to be useful
+    if (!items || items.length < 2) return null;
 
-export default function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
-    // Base URL is required for valid JSON-LD
-    const baseUrl = 'https://powerdigitalmedia.org';
-
-    const breadcrumbList = {
-        '@context': 'https://schema.org',
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-            // Always include Home as the first item
-            {
-                '@type': 'ListItem',
-                position: 1,
-                name: 'Home',
-                item: baseUrl,
-            },
-            // Map the rest of the items
-            ...items.map((item, index) => ({
-                '@type': 'ListItem',
-                position: index + 2,
-                name: item.name,
-                item: `${baseUrl}${item.path}`,
-            })),
-        ],
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: items.map((it, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            name: it.name,
+            item: it.url,
+        })),
     };
 
     return (
         <script
             type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbList) }}
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
     );
 }
