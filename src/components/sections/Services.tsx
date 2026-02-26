@@ -17,9 +17,7 @@ export default function Services() {
             <section className="relative flex flex-col justify-start pt-24 pb-12 md:pt-40 md:pb-32 overflow-hidden min-h-[700px] md:min-h-[800px]">
                 {/* Background Layer */}
                 <div className="absolute inset-0 z-0">
-                    <div className="hidden md:block absolute inset-0">
-                        <DashboardProof />
-                    </div>
+                    <DashboardProof />
                     {/* Desktop gradient overlay */}
                     <div className="hidden md:block absolute inset-0 pointer-events-none w-[60%] right-0 bg-gradient-to-l from-background via-background/80 to-transparent z-10" />
                     {/* Mobile dark overlay to ensure readability */}

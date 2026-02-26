@@ -19,7 +19,7 @@ export default function DashboardProof() {
     const rotateY = useTransform(scrollYProgress, [0, 1], [-10, 10]);
 
     return (
-        <div ref={containerRef} className="absolute inset-0 w-full h-full flex items-center justify-start overflow-hidden perspective-1000">
+        <div ref={containerRef} className="hidden md:flex absolute inset-0 w-full h-full items-center justify-start overflow-hidden perspective-1000">
             {/* Background Ambient Glow */}
             <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/20 rounded-full blur-[120px] pointer-events-none" />
             <div className="absolute top-1/2 left-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-blue-500/20 rounded-full blur-[100px] pointer-events-none" />
