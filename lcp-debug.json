@@ -1,0 +1,16 @@
+{
+  "lcp": {
+    "id": "largest-contentful-paint",
+    "title": "Largest Contentful Paint",
+    "description": "Largest Contentful Paint marks the time at which the largest text or image is painted. [Learn more about the Largest Contentful Paint metric](https://developer.chrome.com/docs/lighthouse/performance/lighthouse-largest-contentful-paint/)",
+    "score": 0.09,
+    "scoreDisplayMode": "numeric",
+    "numericValue": 6413.832499999997,
+    "numericUnit": "millisecond",
+    "displayValue": "6.4 s",
+    "scoringOptions": {
+      "p10": 2500,
+      "median": 4000
+    }
+  }
+}

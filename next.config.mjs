@@ -30,39 +30,18 @@ const nextConfig = {
   },
   compress: true,
   poweredByHeader: false,
+  // Target modern browsers only (no legacy JavaScript polyfills per PageSpeed Insights)
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
   experimental: {
     nextScriptWorkers: true,
     optimizeCss: true,
-  },
-  // Cache static assets for 1 year
-  async headers() {
-    return [
-      {
-        source: '/:all*(svg|jpg|jpeg|png|webp|avif|gif|ico)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        source: '/_next/static/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-    ];
-  },
-  // Target modern browsers only (no legacy JavaScript)
-  compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
+    cssChunking: 'strict',
+    // Force modern build to drop legacy JS
+    legacyBrowsers: false,
   },
   // Use modern browserslist
 };
 
 export default nextConfig;
-
