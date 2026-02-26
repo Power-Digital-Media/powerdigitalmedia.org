@@ -1,49 +1,54 @@
 "use client";
 
-import { GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 export default function AnalyticsEngine() {
     const pathname = usePathname();
-    const [shouldLoadAnalytics, setShouldLoadAnalytics] = useState(false);
-
     const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
     const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
+    // Trigger Facebook Pixel page views on route changes
     useEffect(() => {
-        // High-velocity deferral: Wait for 2s to clear the critical rendering path on mobile
-        const timer = setTimeout(() => {
-            setShouldLoadAnalytics(true);
-        }, 3000);
-
-        return () => clearTimeout(timer);
-    }, []);
-
-    useEffect(() => {
-        if (shouldLoadAnalytics && PIXEL_ID && window.fbq) {
+        if (PIXEL_ID && window.fbq) {
             window.fbq('track', 'PageView');
         }
-    }, [pathname, PIXEL_ID, shouldLoadAnalytics]);
-
-    if (!shouldLoadAnalytics) return null;
+    }, [pathname, PIXEL_ID]);
 
     return (
         <>
-            {/* 
-              OFFLOAD TO WEB WORKERS (Partytown):
-              We now use the official @next/third-parties library which automatically 
-              handles the strategy and initialization scripts correctly.
-            */}
-            {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
+            {/* Google Analytics 4 (Deferred) */}
+            {GA_ID && (
+                <Script
+                    id="ga-script"
+                    strategy="lazyOnload"
+                    src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+                />
+            )}
+            {GA_ID && (
+                <Script
+                    id="ga-init"
+                    strategy="lazyOnload"
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                            window.dataLayer = window.dataLayer || [];
+                            function gtag(){dataLayer.push(arguments);}
+                            gtag('js', new Date());
+                            gtag('config', '${GA_ID}', {
+                                page_path: window.location.pathname,
+                            });
+                        `
+                    }}
+                />
+            )}
 
-            {/* Meta Pixel */}
+            {/* Meta Pixel (Deferred) */}
             {PIXEL_ID && (
                 <>
                     <Script
                         id="fb-pixel"
-                        strategy="afterInteractive"
+                        strategy="lazyOnload"
                         dangerouslySetInnerHTML={{
                             __html: `
                                 !function(f,b,e,v,n,t,s)
@@ -60,7 +65,6 @@ export default function AnalyticsEngine() {
                         }}
                     />
                     <noscript>
-                        {/* The original pixel tracking image, kept for its intended purpose */}
                         <img
                             height="1"
                             width="1"

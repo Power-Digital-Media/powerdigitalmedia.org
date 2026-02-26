@@ -40,7 +40,7 @@ export default function Home() {
           fill
           priority
           fetchPriority="high"
-          quality={50}
+          quality={30}
           sizes="100vw"
           className="object-cover opacity-40 select-none pointer-events-none"
         />

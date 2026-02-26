@@ -135,6 +135,7 @@ export default function ThreeDCarousel() {
                                         sizes="(max-width: 768px) 100vw, 400px"
                                         className="object-cover object-top hover:scale-110 transition-transform duration-[8000ms]"
                                         priority={index === 0}
+                                        quality={50}
                                     />
 
                                     {/* Cinematic Overlay */}
