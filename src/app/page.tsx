@@ -48,7 +48,7 @@ export default function Home() {
         <div className="absolute inset-0 cyber-grid opacity-20" />
       </div>
 
-      <div className="container relative z-10 px-4 mx-auto text-center mt-32 md:mt-48 mb-8">
+      <div className="container relative z-10 px-4 mx-auto text-center mt-32 md:mt-48 mb-4">
         <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[8px] md:text-[9px] mb-4 md:mb-6 block">
           Premier Production in Jackson, MS & Madison Area
         </span>

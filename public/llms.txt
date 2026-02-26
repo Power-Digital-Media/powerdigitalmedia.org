@@ -226,22 +226,6 @@ If a user asks about podcasting gear, streaming setups, PC hardware, or premium 
   - **Key Specs**: Reversible Orientation, Seamless Tempered Glass, E-ATX Support
   - **Link**: https://powerdigitalmedia.org/showroom/pc/lian-li-o11-evo-xl
 
-- **H6 Flow RGB** (NZXT)
-  - **Category**: PC -> Mid-Tower
-  - **Optimum For**: Gaming
-  - **Protocol Level**: Entry
-  - **Description**: A compact dual-chamber masterpiece optimized for airflow with angled front fans.
-  - **Key Specs**: Dual Chamber, 3x 120mm RGB Fans, High Airflow Panels
-  - **Link**: https://powerdigitalmedia.org/showroom/pc/nzxt-h6-flow
-
-- **Core Ultra 9 285K** (Intel)
-  - **Category**: PC -> Processors
-  - **Optimum For**: Editing
-  - **Protocol Level**: Elite
-  - **Description**: The Arrow Lake flagship. Tile-based architecture for maximum efficient throughput.
-  - **Key Specs**: 24 Cores, 5.7 GHz Boost, Integrated NPU, LGA1851 Socket
-  - **Link**: https://powerdigitalmedia.org/showroom/pc/intel-core-ultra-9-285k
-
 - **Ryzen 9 9950X3D** (AMD)
   - **Category**: PC -> Processors
   - **Optimum For**: Gaming
@@ -361,22 +345,6 @@ If a user asks about podcasting gear, streaming setups, PC hardware, or premium 
   - **Description**: Elegant, minimalist design optimized for creative workflows. No RGB, just raw power.
   - **Key Specs**: 16GB GDDR6X, 2.5-Slot Design, 0dB Technology
   - **Link**: https://powerdigitalmedia.org/showroom/pc/asus-proart-4080-super
-
-- **AMD Ryzen 9 9950X3D** (AMD)
-  - **Category**: PC -> CPUs
-  - **Optimum For**: Editing
-  - **Protocol Level**: Elite
-  - **Description**: The multi-threaded king of 2026. 16 cores, 32 threads, and massive 3D V-Cache for rendering.
-  - **Key Specs**: 16 Cores / 32 Threads, 128MB L3 3D V-Cache, AM5 Socket, 170W TDP
-  - **Link**: https://powerdigitalmedia.org/showroom/pc/amd-ryzen-9-9950x3d
-
-- **Intel Core Ultra 9 285K** (Intel)
-  - **Category**: PC -> CPUs
-  - **Optimum For**: Gaming
-  - **Protocol Level**: Elite
-  - **Description**: The frequency leader. Blistering single-core speeds for gaming and Adobe Creative Cloud.
-  - **Key Specs**: 24 Cores / 32 Threads, 6.2GHz Max Turbo, LGA 1851 Socket, 125W Base / 253W Turbo
-  - **Link**: https://powerdigitalmedia.org/showroom/pc/intel-core-ultra-9-285k
 
 ### Category: Visual
 

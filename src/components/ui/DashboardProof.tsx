@@ -24,21 +24,22 @@ export default function DashboardProof() {
             <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/20 rounded-full blur-[120px] pointer-events-none" />
             <div className="absolute top-1/2 left-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-blue-500/20 rounded-full blur-[100px] pointer-events-none" />
 
+            {/* --- DESKTOP 3D PARALLAX SHOWCASE --- */}
             <m.div
                 style={{ rotateX, rotateY }}
-                className="relative w-full h-full min-w-[1200px] -ml-60 md:-ml-20 transform-style-3d flex items-center"
+                className="hidden md:flex relative w-full h-full min-w-[1200px] -ml-20 transform-style-3d items-center"
             >
                 {/* Layer 1: Deep Background (GSC visual noise) */}
                 <m.div
                     style={{ y: y3, z: -150 }}
-                    className="absolute top-[5%] -left-[5%] w-[350px] md:w-[500px] aspect-video rounded-xl overflow-hidden shadow-2xl border border-white/10 opacity-60 glass-card"
+                    className="absolute top-[5%] -left-[5%] w-[500px] aspect-video rounded-xl overflow-hidden shadow-2xl border border-white/10 opacity-60 glass-card"
                 >
                     <Image src="/images/proof/Growth Proof/1.png" alt="Google Search Console Overview" fill className="object-cover" />
                 </m.div>
 
                 <m.div
                     style={{ y: y3, z: -200 }}
-                    className="absolute bottom-[5%] left-[40%] w-[350px] md:w-[450px] aspect-video rounded-xl overflow-hidden shadow-2xl border border-white/10 opacity-40 glass-card"
+                    className="absolute bottom-[5%] left-[40%] w-[450px] aspect-video rounded-xl overflow-hidden shadow-2xl border border-white/10 opacity-40 glass-card"
                 >
                     <Image src="/images/proof/Growth Proof/2.png" alt="Google Search Console Insights" fill className="object-cover" />
                 </m.div>
@@ -46,7 +47,7 @@ export default function DashboardProof() {
                 {/* Layer 2: Midground (GA4 Home & Growth) */}
                 <m.div
                     style={{ y: y1, z: -50 }}
-                    className="absolute top-[15%] left-[20%] w-[450px] md:w-[600px] aspect-video rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(59,130,246,0.15)] border border-blue-500/20 opacity-80 glass-card"
+                    className="absolute top-[15%] left-[20%] w-[600px] aspect-video rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(59,130,246,0.15)] border border-blue-500/20 opacity-80 glass-card"
                 >
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-cyan-400 z-20" />
                     <Image src="/images/proof/Growth Proof/3.png" alt="Google Analytics Dashboard" fill className="object-cover" />
@@ -59,7 +60,7 @@ export default function DashboardProof() {
                     transition={{ duration: 1, delay: 0.2 }}
                     viewport={{ once: true, margin: "-100px" }}
                     style={{ y: y2, z: 50 }}
-                    className="absolute top-[35%] -left-[10%] w-[450px] md:w-[650px] aspect-video rounded-2xl overflow-hidden shadow-[0_0_80px_rgba(168,85,247,0.3)] border border-purple-500/30 glass-card"
+                    className="absolute top-[35%] -left-[10%] w-[650px] aspect-video rounded-2xl overflow-hidden shadow-[0_0_80px_rgba(168,85,247,0.3)] border border-purple-500/30 glass-card"
                 >
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-fuchsia-400 z-20" />
                     <Image src="/images/proof/Growth Proof/4.png" alt="Google Search Console Performance 6.7K" fill className="object-cover" />
@@ -71,7 +72,7 @@ export default function DashboardProof() {
                     transition={{ duration: 1, delay: 0.4 }}
                     viewport={{ once: true, margin: "-100px" }}
                     style={{ y: y2, z: 100 }}
-                    className="absolute bottom-[5%] left-[10%] w-[550px] md:w-[800px] aspect-video rounded-2xl overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.9)] border border-accent/40 glass-card group"
+                    className="absolute bottom-[5%] left-[10%] w-[800px] aspect-video rounded-2xl overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.9)] border border-accent/40 glass-card group"
                 >
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent to-blue-500 z-20" />
                     <Image src="/images/proof/Growth Proof/5.png" alt="Google Analytics Engagement 35m" fill className="object-cover group-hover:scale-105 transition-transform duration-1000" />
@@ -81,7 +82,6 @@ export default function DashboardProof() {
                         35m 12s Avg. Engagement
                     </div>
                 </m.div>
-
             </m.div>
         </div>
     );

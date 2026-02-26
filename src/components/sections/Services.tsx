@@ -14,38 +14,123 @@ export default function Services() {
     return (
         <div id="services">
             {/* Section: The Reach (Dashboard Proof) */}
-            <section className="relative flex flex-col justify-start pt-16 pb-12 md:pt-40 md:pb-32 overflow-hidden min-h-[800px]">
+            <section className="relative flex flex-col justify-start pt-24 pb-12 md:pt-40 md:pb-32 overflow-hidden min-h-[700px] md:min-h-[800px]">
+                {/* Background Layer */}
                 <div className="absolute inset-0 z-0">
-                    <DashboardProof />
-                    <div className="absolute inset-0 pointer-events-none md:w-[60%] md:right-0 bg-gradient-to-t md:bg-gradient-to-l from-background md:from-background via-background/80 to-transparent z-10" />
+                    <div className="hidden md:block absolute inset-0">
+                        <DashboardProof />
+                    </div>
+                    {/* Desktop gradient overlay */}
+                    <div className="hidden md:block absolute inset-0 pointer-events-none w-[60%] right-0 bg-gradient-to-l from-background via-background/80 to-transparent z-10" />
+                    {/* Mobile dark overlay to ensure readability */}
+                    <div className="md:hidden absolute inset-0 bg-gradient-to-b from-background via-background/95 to-slate-950 pointer-events-none z-10" />
                 </div>
 
-                <div className="container relative z-10 px-2 md:px-6 mx-auto">
-                    <div className="flex justify-end">
-                        <m.div
-                            initial={{ opacity: 0, x: 30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                            className="max-w-xl text-right flex flex-col items-end"
-                        >
-                            <span className="text-accent font-bold tracking-[0.4em] uppercase text-[9px] md:text-xs mb-4 block hover:text-white transition-colors">Undeniable Metrics</span>
-                            <h2 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight uppercase leading-none text-white">The Reach.</h2>
-                            <p className="text-base md:text-xl text-foreground/80 mb-8 max-w-md leading-relaxed text-balance font-light">
-                                Real, raw data. <strong className="text-white">35M 12S average engagement time</strong> and <strong className="text-accent">+3,095% event tracking growth.</strong> We engineer digital infrastructure that commands absolute attention and converts raw traffic into captured audiences.
-                            </p>
-                            <ul className="space-y-4 mb-10 flex flex-col md:items-end">
-                                {["Data-Driven SEO Protocol", "Page-One Search Placement", "High-Converting Organic Traffic"].map((f) => (
-                                    <li key={f} className="flex items-center md:flex-row-reverse gap-3 text-sm md:text-lg font-medium text-white/50">
-                                        <div className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-purple-400 shadow-[0_0_10px_rgba(168,85,247,0.5)]" />
-                                        {f}
-                                    </li>
-                                ))}
-                            </ul>
-                            <Link href="/marketing" className="inline-flex items-center gap-2 px-8 py-4 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/20 text-purple-400 shadow-[0_0_15px_rgba(168,85,247,0.1)] rounded-full transition-all font-bold uppercase tracking-widest text-[10px] active:scale-95 group">
-                                Analyze Our Methodology <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                            </Link>
-                        </m.div>
+                {/* Content Layer with strict gap spacing */}
+                <div className="relative z-20 flex flex-col gap-16 md:gap-0 w-full mt-4 md:mt-0">
+
+                    {/* Text Container */}
+                    <div className="container px-6 md:px-6 mx-auto">
+                        <div className="flex justify-start md:justify-end">
+                            <m.div
+                                initial={{ opacity: 0, x: 30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                                className="max-w-xl text-left md:text-right flex flex-col items-start md:items-end"
+                            >
+                                <span className="text-accent font-bold tracking-[0.4em] uppercase text-[9px] md:text-xs mb-4 block hover:text-white transition-colors">Undeniable Metrics</span>
+                                <h2 className="text-4xl md:text-7xl font-bold mb-6 md:mb-8 tracking-tight uppercase leading-none text-white">The Reach.</h2>
+                                <p className="text-base md:text-xl text-foreground/80 mb-8 max-w-md leading-relaxed text-balance font-light">
+                                    Real, raw data. <strong className="text-white">35M 12S average engagement time</strong> and <strong className="text-accent">+3,095% event tracking growth.</strong> We engineer digital infrastructure that commands absolute attention and converts raw traffic into captured audiences.
+                                </p>
+                                <ul className="space-y-4 mb-10 flex flex-col items-start md:items-end w-full">
+                                    {["Data-Driven SEO Protocol", "Page-One Search Placement", "High-Converting Organic Traffic"].map((f) => (
+                                        <li key={f} className="flex items-center flex-row-reverse md:flex-row-reverse gap-3 text-sm md:text-lg font-medium text-white/50 w-full justify-end md:justify-start">
+                                            <div className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-purple-400 flex-shrink-0 shadow-[0_0_10px_rgba(168,85,247,0.5)]" />
+                                            <span className="text-right md:text-left">{f}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                                <Link href="/marketing" className="inline-flex items-center gap-2 px-8 py-4 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/20 text-purple-400 shadow-[0_0_15px_rgba(168,85,247,0.1)] rounded-full transition-all font-bold uppercase tracking-widest text-[10px] active:scale-95 group">
+                                    Analyze Our Methodology <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                                </Link>
+                            </m.div>
+                        </div>
+                    </div>
+
+                    {/* --- MOBILE OPTIMIZED 2D PRESENTATION (CAROUSEL) IN DOCUMENT FLOW --- */}
+                    <div className="flex md:hidden w-full flex-col pb-4">
+                        <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory px-6 pb-8 touch-pan-x [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+
+                            {/* Card 1: Engagement Time Container */}
+                            <m.div
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="relative w-[300px] sm:w-[350px] shrink-0 snap-center aspect-video rounded-2xl overflow-hidden shadow-2xl border border-accent/40 glass-card"
+                            >
+                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent to-blue-500 z-20" />
+                                <Image src="/images/proof/Growth Proof/5.png" alt="Google Analytics Engagement 35m" fill className="object-cover" />
+
+                                <div className="absolute bottom-4 left-4 right-4 bg-slate-950/95 backdrop-blur-xl border border-accent/50 text-accent px-4 py-3 rounded-xl text-center shadow-[0_0_20px_rgba(34,211,238,0.2)] z-30">
+                                    <span className="text-[11px] font-black tracking-widest uppercase block mb-0.5">Verified GA4 Data</span>
+                                    <span className="text-sm font-bold opacity-90 text-white">35m 12s Avg. Engagement</span>
+                                </div>
+                            </m.div>
+
+                            {/* Card 2: Performance Graph */}
+                            <m.div
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.1 }}
+                                className="relative w-[300px] sm:w-[350px] shrink-0 snap-center aspect-video rounded-2xl overflow-hidden shadow-2xl border border-purple-500/40 glass-card"
+                            >
+                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-fuchsia-400 z-20" />
+                                <Image src="/images/proof/Growth Proof/4.png" alt="Google Search Console Performance" fill className="object-cover" />
+
+                                <div className="absolute bottom-4 left-4 right-4 bg-slate-950/95 backdrop-blur-xl border border-purple-500/50 text-purple-400 px-4 py-3 rounded-xl text-center shadow-[0_0_20px_rgba(168,85,247,0.2)] z-30">
+                                    <span className="text-[11px] font-black tracking-widest uppercase block mb-0.5">Event Tracking</span>
+                                    <span className="text-sm font-bold opacity-90 text-white">+3,095% Performance Growth</span>
+                                </div>
+                            </m.div>
+
+                            {/* Card 3: Dashboard Traffic */}
+                            <m.div
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.2 }}
+                                className="relative w-[300px] sm:w-[350px] shrink-0 snap-center aspect-video rounded-2xl overflow-hidden shadow-2xl border border-blue-500/40 glass-card"
+                            >
+                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-cyan-400 z-20" />
+                                <Image src="/images/proof/Growth Proof/3.png" alt="Google Analytics Home Data" fill className="object-cover" />
+
+                                <div className="absolute bottom-4 left-4 right-4 bg-slate-950/95 backdrop-blur-xl border border-blue-500/50 text-blue-400 px-4 py-3 rounded-xl text-center shadow-[0_0_20px_rgba(59,130,246,0.2)] z-30">
+                                    <span className="text-[11px] font-black tracking-widest uppercase block mb-0.5">High-Volume Capture</span>
+                                    <span className="text-sm font-bold opacity-90 text-white">Dominant Traffic Pipelines</span>
+                                </div>
+                            </m.div>
+
+                            {/* Card 4: Search Console Baseline */}
+                            <m.div
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.3 }}
+                                className="relative w-[300px] sm:w-[350px] shrink-0 snap-center aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20 glass-card opacity-90"
+                            >
+                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-white/40 to-white/10 z-20" />
+                                <Image src="/images/proof/Growth Proof/1.png" alt="Google Search Console Data" fill className="object-cover" />
+
+                                <div className="absolute bottom-4 left-4 right-4 bg-slate-950/95 backdrop-blur-xl border border-white/20 text-white/80 px-4 py-3 rounded-xl text-center z-30">
+                                    <span className="text-[11px] font-black tracking-widest uppercase block mb-0.5">Baseline Indexing</span>
+                                    <span className="text-sm font-bold opacity-90 text-white">Total Search Authority</span>
+                                </div>
+                            </m.div>
+
+                        </div>
                     </div>
                 </div>
             </section>

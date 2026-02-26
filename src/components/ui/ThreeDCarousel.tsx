@@ -82,7 +82,7 @@ export default function ThreeDCarousel() {
         <motion.div
             initial={{ opacity: 0, y: 300, rotateX: 45, rotateY: -720 }}
             whileInView={{ opacity: 1, y: 0, rotateX: 0, rotateY: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "0px 0px -250px 0px" }}
             transition={{
                 duration: 2.5,
                 ease: [0.16, 1, 0.3, 1]

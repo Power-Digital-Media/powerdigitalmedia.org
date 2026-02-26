@@ -17,7 +17,7 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
     const [isBookingOpen, setIsBookingOpen] = useState(false);
 
     return (
-        <section id="portfolio" className="relative min-h-screen flex flex-col items-center justify-center pt-12 pb-8 md:pt-16 md:pb-12 overflow-hidden bg-transparent">
+        <section id="portfolio" className="relative flex flex-col items-center justify-center pt-8 pb-4 md:pt-12 md:pb-8 overflow-hidden bg-transparent">
 
             <div className="container relative z-10 px-4 mx-auto text-center">
                 {/* --- The Showpiece --- */}
