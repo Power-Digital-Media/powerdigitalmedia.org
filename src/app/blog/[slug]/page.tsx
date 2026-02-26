@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             authors: [post.author.name],
             images: [
                 {
-                    url: post.image,
+                    url: post.ogImage || post.image,
                     width: 1200,
                     height: 630,
                     alt: post.title,
@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             card: "summary_large_image",
             title: title,
             description: description,
-            images: [post.image],
+            images: [post.ogImage || post.image],
         },
     };
 }

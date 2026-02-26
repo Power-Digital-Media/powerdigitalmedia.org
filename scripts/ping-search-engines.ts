@@ -59,7 +59,22 @@ function pingIndexNow() {
     req.end();
 }
 
+function pingGoogle() {
+    console.log('🌐 Pinging Google...');
+    const url = `https://www.google.com/ping?sitemap=${encodeURIComponent(SITEMAP_URL)}`;
+
+    https.get(url, (res) => {
+        if (res.statusCode === 200) {
+            console.log('✅ Google Ping Successful');
+        } else {
+            console.error(`❌ Google Ping Failed: ${res.statusCode}`);
+        }
+    }).on('error', (e) => {
+        console.error(`❌ Google Ping Error: ${e.message}`);
+    });
+}
+
 // Execute
 console.log('🚀 Starting SEO Ping Sequence...');
-// Google Sitemap Ping is deprecated (404). We rely on GSC and robots.txt now.
+pingGoogle();
 pingIndexNow();
