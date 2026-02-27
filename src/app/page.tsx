@@ -40,16 +40,7 @@ export default function Home() {
           WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)'
         }}
       >
-        <Image
-          src="/hero-bg.webp"
-          alt="Power Digital Media - Jackson, MS Production Studio"
-          fill
-          priority
-          fetchPriority="high"
-          quality={30}
-          sizes="100vw"
-          className="object-cover opacity-40 select-none pointer-events-none"
-        />
+
         <div className="absolute inset-0 bg-background/20" />
         <div className="absolute inset-0 cyber-grid opacity-20" />
       </div>
