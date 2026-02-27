@@ -69,7 +69,7 @@ export default function Services() {
                                 className="relative w-[300px] sm:w-[350px] shrink-0 snap-center aspect-video rounded-2xl overflow-hidden shadow-2xl border border-accent/40 glass-card"
                             >
                                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent to-blue-500 z-20" />
-                                <Image src="/images/proof/Growth Proof/5.webp" alt="Google Analytics Engagement 35m" fill className="object-cover" />
+                                <Image src="/images/proof/Growth_Proof/5.webp" alt="Google Analytics Engagement 35m" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
 
                                 <div className="absolute bottom-4 left-4 right-4 bg-slate-950/95 backdrop-blur-xl border border-accent/50 text-accent px-4 py-3 rounded-xl text-center shadow-[0_0_20px_rgba(34,211,238,0.2)] z-30">
                                     <span className="text-[11px] font-black tracking-widest uppercase block mb-0.5">Verified GA4 Data</span>
@@ -86,7 +86,7 @@ export default function Services() {
                                 className="relative w-[300px] sm:w-[350px] shrink-0 snap-center aspect-video rounded-2xl overflow-hidden shadow-2xl border border-purple-500/40 glass-card"
                             >
                                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-fuchsia-400 z-20" />
-                                <Image src="/images/proof/Growth Proof/4.webp" alt="Google Search Console Performance" fill className="object-cover" />
+                                <Image src="/images/proof/Growth_Proof/4.webp" alt="Google Search Console Performance" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
 
                                 <div className="absolute bottom-4 left-4 right-4 bg-slate-950/95 backdrop-blur-xl border border-purple-500/50 text-purple-400 px-4 py-3 rounded-xl text-center shadow-[0_0_20px_rgba(168,85,247,0.2)] z-30">
                                     <span className="text-[11px] font-black tracking-widest uppercase block mb-0.5">Event Tracking</span>
@@ -103,7 +103,7 @@ export default function Services() {
                                 className="relative w-[300px] sm:w-[350px] shrink-0 snap-center aspect-video rounded-2xl overflow-hidden shadow-2xl border border-blue-500/40 glass-card"
                             >
                                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-cyan-400 z-20" />
-                                <Image src="/images/proof/Growth Proof/3.webp" alt="Google Analytics Home Data" fill className="object-cover" />
+                                <Image src="/images/proof/Growth_Proof/3.webp" alt="Google Analytics Home Data" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
 
                                 <div className="absolute bottom-4 left-4 right-4 bg-slate-950/95 backdrop-blur-xl border border-blue-500/50 text-blue-400 px-4 py-3 rounded-xl text-center shadow-[0_0_20px_rgba(59,130,246,0.2)] z-30">
                                     <span className="text-[11px] font-black tracking-widest uppercase block mb-0.5">High-Volume Capture</span>
@@ -120,7 +120,7 @@ export default function Services() {
                                 className="relative w-[300px] sm:w-[350px] shrink-0 snap-center aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20 glass-card opacity-90"
                             >
                                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-white/40 to-white/10 z-20" />
-                                <Image src="/images/proof/Growth Proof/1.webp" alt="Google Search Console Data" fill className="object-cover" />
+                                <Image src="/images/proof/Growth_Proof/1.webp" alt="Google Search Console Data" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
 
                                 <div className="absolute bottom-4 left-4 right-4 bg-slate-950/95 backdrop-blur-xl border border-white/20 text-white/80 px-4 py-3 rounded-xl text-center z-30">
                                     <span className="text-[11px] font-black tracking-widest uppercase block mb-0.5">Baseline Indexing</span>
@@ -225,6 +225,7 @@ export default function Services() {
                         src="/images/podcast-hero-cinematic.webp"
                         alt="On-Location Cinematography"
                         fill
+                        sizes="100vw"
                         className="object-cover object-center opacity-25 scale-110"
                         title="Podcast Hero Cinematic" aria-description="An official Power Digital Media structured image asset." data-caption="Power Digital Media Portfolio & Assets"
                     />
@@ -278,12 +279,13 @@ export default function Services() {
             </section>
 
             {/* Section 3: The System -> Ecosystem Bridge */}
-            <section id="portfolio" className="relative min-h-[90vh] md:min-h-screen flex flex-col items-center justify-center pt-12 pb-0 md:pt-16 md:pb-0 overflow-hidden">
+            <section id="the-system" className="relative min-h-[90vh] md:min-h-screen flex flex-col items-center justify-center pt-12 pb-0 md:pt-16 md:pb-0 overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1600&auto=format&fit=crop"
                         alt="Digital Systems"
                         fill
+                        sizes="100vw"
                         className="object-cover opacity-10"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />

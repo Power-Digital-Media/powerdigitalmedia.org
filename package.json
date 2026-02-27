@@ -3,7 +3,13 @@
   "version": "0.1.1",
   "private": true,
   "browserslist": [
-    "> 0.5%, last 2 versions, not dead, not ie 11, not ie_mob 11"
+    "> 1%",
+    "edge >= 18",
+    "firefox >= 79",
+    "chrome >= 79",
+    "safari >= 14",
+    "ios >= 14",
+    "not dead"
   ],
   "scripts": {
     "dev": "next dev",

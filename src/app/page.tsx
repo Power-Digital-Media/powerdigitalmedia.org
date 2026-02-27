@@ -45,7 +45,6 @@ export default function Home() {
           alt="Power Digital Media - Jackson, MS Production Studio"
           fill
           priority
-          unoptimized
           fetchPriority="high"
           quality={30}
           sizes="100vw"

@@ -33,7 +33,6 @@ export default function LeadArchitect() {
                                 fill
                                 sizes="(max-width: 768px) 100vw, 50vw"
                                 className="object-cover object-center scale-105 transition-transform duration-1000 group-hover:scale-100"
-                                quality={90}
                             />
 
                             {/* Cyber Overlay Gradients */}

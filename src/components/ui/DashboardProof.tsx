@@ -34,14 +34,14 @@ export default function DashboardProof() {
                     style={{ y: y3, z: -150 }}
                     className="absolute top-[5%] -left-[5%] w-[500px] aspect-video rounded-xl overflow-hidden shadow-2xl border border-white/10 opacity-60 glass-card"
                 >
-                    <Image src="/images/proof/Growth Proof/1.webp" alt="Google Search Console Overview" fill unoptimized className="object-cover" />
+                    <Image src="/images/proof/Growth_Proof/1.webp" alt="Google Search Console Overview" fill sizes="100vw" className="object-cover" />
                 </m.div>
 
                 <m.div
                     style={{ y: y3, z: -200 }}
                     className="absolute bottom-[5%] left-[40%] w-[450px] aspect-video rounded-xl overflow-hidden shadow-2xl border border-white/10 opacity-40 glass-card"
                 >
-                    <Image src="/images/proof/Growth Proof/2.webp" alt="Google Search Console Insights" fill unoptimized className="object-cover" />
+                    <Image src="/images/proof/Growth_Proof/2.webp" alt="Google Search Console Insights" fill sizes="100vw" className="object-cover" />
                 </m.div>
 
                 {/* Layer 2: Midground (GA4 Home & Growth) */}
@@ -50,7 +50,7 @@ export default function DashboardProof() {
                     className="absolute top-[15%] left-[20%] w-[600px] aspect-video rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(59,130,246,0.15)] border border-blue-500/20 opacity-80 glass-card"
                 >
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-cyan-400 z-20" />
-                    <Image src="/images/proof/Growth Proof/3.webp" alt="Google Analytics Dashboard" fill unoptimized className="object-cover" />
+                    <Image src="/images/proof/Growth_Proof/3.webp" alt="Google Analytics Dashboard" fill sizes="100vw" className="object-cover" />
                 </m.div>
 
                 {/* Layer 3: Foreground Main Stars (GSC Performance Graph & GA4 Snapshot w/ 35m engagement) */}
@@ -63,7 +63,7 @@ export default function DashboardProof() {
                     className="absolute top-[35%] -left-[10%] w-[650px] aspect-video rounded-2xl overflow-hidden shadow-[0_0_80px_rgba(168,85,247,0.3)] border border-purple-500/30 glass-card"
                 >
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-fuchsia-400 z-20" />
-                    <Image src="/images/proof/Growth Proof/4.webp" alt="Google Search Console Performance 6.7K" fill unoptimized className="object-cover" />
+                    <Image src="/images/proof/Growth_Proof/4.webp" alt="Google Search Console Performance 6.7K" fill sizes="100vw" className="object-cover" />
                 </m.div>
 
                 <m.div
@@ -75,7 +75,7 @@ export default function DashboardProof() {
                     className="absolute bottom-[5%] left-[10%] w-[800px] aspect-video rounded-2xl overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.9)] border border-accent/40 glass-card group"
                 >
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent to-blue-500 z-20" />
-                    <Image src="/images/proof/Growth Proof/5.webp" alt="Google Analytics Engagement 35m" fill unoptimized className="object-cover group-hover:scale-105 transition-transform duration-1000" />
+                    <Image src="/images/proof/Growth_Proof/5.webp" alt="Google Analytics Engagement 35m" fill sizes="100vw" className="object-cover group-hover:scale-105 transition-transform duration-1000" />
 
                     {/* Floating callout for the insane engagement time */}
                     <div className="absolute -right-4 -top-4 bg-slate-950/90 backdrop-blur-md border border-accent text-accent px-6 py-3 rounded-xl text-sm md:text-md font-black tracking-widest uppercase shadow-[0_0_40px_rgba(34,211,238,0.4)] z-30 animate-pulse">
