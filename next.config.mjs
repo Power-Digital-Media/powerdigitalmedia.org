@@ -38,8 +38,6 @@ const nextConfig = {
     nextScriptWorkers: true,
     optimizeCss: true,
     cssChunking: 'strict',
-    // Force modern build to drop legacy JS
-    legacyBrowsers: false,
   },
   // Use modern browserslist
 };

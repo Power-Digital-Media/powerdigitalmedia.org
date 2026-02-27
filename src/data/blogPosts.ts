@@ -28,8 +28,8 @@ export const blogPosts: BlogPost[] = [
         excerpt: "The 2026 Marketing Intelligence Hub connects GEO, Agentic Commerce, Anti-AI Slop, and AI regulation into one strategic framework for AI-era dominance.",
         date: "2026-02-26",
         category: "AI Strategy",
-        image: "/blog-images/2026-ai-hub-hero.png",
-        ogImage: "/blog-images/2026-ai-hub-og.png",
+        image: "/blog-images/2026-ai-hub-hero.webp",
+        ogImage: "/blog-images/2026-ai-hub-og.webp",
         relatedGearIds: ["nvidia-rtx-5090", "shure-sm7b", "rode-caster-pro-2", "elgato-stream-deck-plus"],
         author: {
             name: "Power Digital Media LLC",
@@ -47,7 +47,7 @@ export const blogPosts: BlogPost[] = [
                 "url": "https://powerdigitalmedia.org/",
                 "logo": {
                     "@type": "ImageObject",
-                    "url": "https://powerdigitalmedia.com/logo.png"
+                    "url": "https://powerdigitalmedia.com/logo.webp"
                 },
                 "sameAs": [
                     "https://www.youtube.com/holyspiritpower121"
@@ -96,7 +96,7 @@ export const blogPosts: BlogPost[] = [
                 "@id": "https://powerdigitalmedia.org/2026-marketing-intelligence-hub#article",
                 "headline": "2026 Marketing Intelligence Hub: AI Strategy Guide",
                 "description": "The 2026 Marketing Intelligence Hub connects GEO, Agentic Commerce, Anti-AI Slop, and AI regulation into one strategic framework for AI-era dominance.",
-                "image": ["https://powerdigitalmedia.org/images/2026-ai-hub.jpg"],
+                "image": ["https://powerdigitalmedia.org/images/2026-ai-hub.webp"],
                 "datePublished": "2026-02-26",
                 "dateModified": "2026-02-26",
                 "mainEntityOfPage": {
@@ -270,8 +270,8 @@ This hub links to:
         excerpt: "The Anti-AI Slop strategy prioritizes human authenticity, originality signals, and structured credibility to win in 2026’s AI-filtered content ecosystem.",
         date: "2026-02-26",
         category: "AI Strategy",
-        image: "/blog-images/2026-anti-ai-slop-hero.png",
-        ogImage: "/blog-images/2026-anti-ai-slop-og.png",
+        image: "/blog-images/2026-anti-ai-slop-hero.webp",
+        ogImage: "/blog-images/2026-anti-ai-slop-og.webp",
         relatedGearIds: ["nvidia-rtx-5090", "shure-sm7b", "rode-caster-pro-2", "focusrite-scarlett-2i2"],
         author: {
             name: "Power Digital Media LLC",
@@ -289,7 +289,7 @@ This hub links to:
                 "url": "https://powerdigitalmedia.org/",
                 "logo": {
                     "@type": "ImageObject",
-                    "url": "https://powerdigitalmedia.com/logo.png"
+                    "url": "https://powerdigitalmedia.com/logo.webp"
                 },
                 "sameAs": [
                     "https://www.youtube.com/holyspiritpower121"
@@ -338,7 +338,7 @@ This hub links to:
                 "@id": "https://powerdigitalmedia.org/anti-ai-slop-content-strategy#article",
                 "headline": "Anti-AI Slop Strategy: Authentic Marketing in 2026",
                 "description": "The Anti-AI Slop strategy prioritizes human authenticity, originality signals, and structured credibility to win in 2026’s AI-filtered content ecosystem.",
-                "image": ["https://powerdigitalmedia.org/images/anti-ai-slop-2026.jpg"],
+                "image": ["https://powerdigitalmedia.org/images/anti-ai-slop-2026.webp"],
                 "datePublished": "2026-02-26",
                 "dateModified": "2026-02-26",
                 "mainEntityOfPage": {
@@ -525,8 +525,8 @@ This article intentionally links to:
         excerpt: "Learn how to optimize for Agentic Commerce in 2026. Discover B2A strategy, AI purchasing agents, structured data, and machine-readable architecture.",
         date: "Feb 26, 2026",
         category: "AI Marketing",
-        image: "/blog-images/2026-b2a-hero.png",
-        ogImage: "/blog-images/2026-b2a-og.png",
+        image: "/blog-images/2026-b2a-hero.webp",
+        ogImage: "/blog-images/2026-b2a-og.webp",
         relatedGearIds: ["nvidia-rtx-5090", "elgato-stream-deck-plus", "rode-caster-pro-2", "focusrite-scarlett-2i2"],
         author: {
             name: "Power Digital Media",
@@ -815,8 +815,8 @@ You will lose to better structure.
         excerpt: "A step-by-step guide to optimizing your website for AI search engines and winning the Answer Economy.",
         date: "Feb 26, 2026",
         category: "AI Marketing",
-        image: "/blog-images/2026-geo-hero.png",
-        ogImage: "/blog-images/2026-geo-og.png",
+        image: "/blog-images/2026-geo-hero.webp",
+        ogImage: "/blog-images/2026-geo-og.webp",
         relatedGearIds: ["nvidia-rtx-5090", "shure-sm7b", "rode-streamer-x", "elgato-stream-deck-plus"],
         author: {
             name: "Power Digital Media",
@@ -997,7 +997,7 @@ Add this inside your \`<head>\`:
     "name": "Power Digital Media",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://powerdigitalmedia.org/images/logo.png"
+      "url": "https://powerdigitalmedia.org/images/logo.webp"
     }
   },
   "datePublished": "2026-02-26",
@@ -1027,7 +1027,7 @@ https://schema.org/Article
   "@type": "Organization",
   "name": "Power Digital Media",
   "url": "https://powerdigitalmedia.org",
-  "logo": "https://powerdigitalmedia.org/images/logo.png",
+  "logo": "https://powerdigitalmedia.org/images/logo.webp",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Jackson",
@@ -1158,7 +1158,7 @@ Or forgotten?
         excerpt: "AI assistants, AI video, and data-center memory are rewriting marketing in 2026. Here’s how to build agent-ready sites and premium media.",
         date: "Feb 22, 2026",
         category: "AI Marketing",
-        image: "/blog-images/2026-ai-power-shift-hero.png",
+        image: "/blog-images/2026-ai-power-shift-hero.webp",
         author: {
             name: "Power Digital Media",
             role: "Agency"
@@ -1179,7 +1179,7 @@ Or forgotten?
                     "url": "https://powerdigitalmedia.com/",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": "https://powerdigitalmedia.com/logo.png"
+                        "url": "https://powerdigitalmedia.com/logo.webp"
                     }
                 },
                 "potentialAction": {
@@ -1229,7 +1229,7 @@ Or forgotten?
                     "name": "Power Digital Media LLC",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": "https://powerdigitalmedia.com/logo.png"
+                        "url": "https://powerdigitalmedia.com/logo.webp"
                     }
                 },
                 "mainEntityOfPage": {
@@ -1555,7 +1555,7 @@ It is a structural shift.
         excerpt: "A field report on how elite agencies engineer UX in 2026—boutique immersion, enterprise funnel systems, and the conversion mechanics that win premium clients.",
         date: "Feb 22, 2026",
         category: "Web Engineering",
-        image: "/blog-images/2026-domination-playbook.png",
+        image: "/blog-images/2026-domination-playbook.webp",
         author: {
             name: "Power Digital Media",
             role: "Agency"
@@ -1608,7 +1608,7 @@ It is a structural shift.
                         "headline": "The Architecture of Elite Marketing UX in 2026",
                         "description": "A field report on how elite agencies engineer UX in 2026—boutique immersion, enterprise funnel systems, and the conversion mechanics that win premium clients.",
                         "image": [
-                            "https://powerdigitalmedia.org/blog-images/2026-domination-playbook.png"
+                            "https://powerdigitalmedia.org/blog-images/2026-domination-playbook.webp"
                         ],
                         "datePublished": "2026-02-22",
                         "dateModified": "2026-02-22",
@@ -1918,7 +1918,7 @@ That's not web design. That's marketing architecture.
         excerpt: "Agent-Navigable UX, Interop 2026 CSS, and multimodal interfaces are redefining web design. Built for humans. Executable by AI agents.",
         date: "Feb 21, 2026",
         category: "Web Engineering",
-        image: "/blog-images/2026-web-design-pivot.png",
+        image: "/blog-images/2026-web-design-pivot.webp",
         author: {
             name: "Power Digital Media",
             role: "Agency"
@@ -1931,14 +1931,14 @@ That's not web design. That's marketing architecture.
                 "headline": "The 2026 Web Design Pivot: Building for Humans and Executing for Agents",
                 "alternativeHeadline": "Agent-Navigable UX, Interop 2026 CSS, and Multimodal Interfaces Explained",
                 "description": "A deep analysis of Agent-Navigable web design, Interop 2026 performance standards, multimodal interfaces, and localized EEAT infrastructure for modern SEO.",
-                "image": "https://powerdigitalmedia.org/wp-content/uploads/2026-web-design-pivot.jpg",
+                "image": "https://powerdigitalmedia.org/wp-content/uploads/2026-web-design-pivot.webp",
                 "author": {
                     "@type": "Organization",
                     "name": "Power Digital Media",
                     "url": "https://powerdigitalmedia.org",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": "https://powerdigitalmedia.org/wp-content/uploads/pdm-logo.png"
+                        "url": "https://powerdigitalmedia.org/wp-content/uploads/pdm-logo.webp"
                     }
                 },
                 "publisher": {
@@ -1946,7 +1946,7 @@ That's not web design. That's marketing architecture.
                     "name": "Power Digital Media",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": "https://powerdigitalmedia.org/wp-content/uploads/pdm-logo.png"
+                        "url": "https://powerdigitalmedia.org/wp-content/uploads/pdm-logo.webp"
                     }
                 },
                 "datePublished": "2026-02-21",
@@ -2279,7 +2279,7 @@ As AI agents increasingly perform tasks directly on websites, agent-executable a
         excerpt: "Trust became a ranking variable in 2026. Discover why data residency, latency, and infrastructure compliance shape SEO visibility in the new Sovereign Cloud era.",
         date: "Feb 21, 2026",
         category: "Cloud Infrastructure",
-        image: "/blog-images/sovereign-cloud-vs-hyperscalers.png",
+        image: "/blog-images/sovereign-cloud-vs-hyperscalers.webp",
         author: {
             name: "Power Digital Media",
             role: "Agency"
@@ -2579,7 +2579,7 @@ Yes. Infrastructure transparency and trust signals increasingly influence how se
         excerpt: "The real GPU war of 2026 is about AI — not raw power. We benchmark the Nvidia RTX 6060 against the Intel Arc Celestial for modern video production pipelines.",
         date: "Feb 21, 2026",
         category: "Hardware",
-        image: "/blog-images/rtx-6060-vs-intel-celestial.png",
+        image: "/blog-images/rtx-6060-vs-intel-celestial.webp",
         author: {
             name: "Power Digital Media",
             role: "Agency"
@@ -2774,7 +2774,7 @@ Nvidia is faster overall, while Intel is slightly more power-efficient.
         excerpt: "Autonomous AI agents are no longer experimental research tools. We compare the visual execution of OpenAI Operator against the API-driven speed of Google Vertex AI Agents.",
         date: "Feb 21, 2026",
         category: "Artificial Intelligence",
-        image: "/blog-images/vertex-vs-operator-showdown.png",
+        image: "/blog-images/vertex-vs-operator-showdown.webp",
         author: {
             name: "Power Digital Media",
             role: "Agency"
@@ -3019,7 +3019,7 @@ Yes — when built on secure architecture aligned with frameworks like NIST AI R
         excerpt: "Modern web design in Jackson MS using Next.js delivers faster speed, stronger SEO, and scalable performance. Rebuild your site without losing content.",
         date: "Feb 20, 2026",
         category: "Web Design",
-        image: "/blog-images/modern-web-design-jackson-ms-nextjs-edge-v3.png",
+        image: "/blog-images/modern-web-design-jackson-ms-nextjs-edge-v3.webp",
         author: {
             name: "Power Digital Media",
             role: "Agency"
@@ -3231,13 +3231,13 @@ Architecture determines outcome. Timing determines advantage.
         excerpt: "When Google launched [Gemini 3 Pro](https://www.vellum.ai/blog/google-gemini-3-benchmarks) in late 2025, it wasn't just another AI model—it was a declaration of war in the AI spher...",
         date: "Feb 20, 2026",
         category: "AI Tech",
-        image: "/blog-images/the-benchmark-war-google-gemini-3-vs-openai-gpt-52-1771570543371.png",
+        image: "/blog-images/the-benchmark-war-google-gemini-3-vs-openai-gpt-52-1771570543371.webp",
         author: {
             name: "Senior Principal Engineer",
             role: "Power Digital Media"
         },
         relatedGearIds: ['amd-ryzen-9-9950x3d', 'nvidia-rtx-5090', 'gskill-trident-z5-neo', 'samsung-990-pro-4tb'],
-        structuredData: { "@context": "https://schema.org", "@type": "Article", "headline": "The Benchmark War: Google Gemini 3 vs. OpenAI GPT-5.2", "description": "Discover the AI benchmark rivalry between Google Gemini 3 and OpenAI GPT-5.2. Explore their performance, market impact, and what it means for your business.", "author": { "@type": "Organization", "name": "Power Digital Media" }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.powerdigitalmedia.com/articles/benchmark-war-google-gemini-3-vs-openai-gpt-5-2" }, "datePublished": "2026-02-20", "dateModified": "2026-02-20", "publisher": { "@type": "Organization", "name": "Power Digital Media", "logo": { "@type": "ImageObject", "url": "https://www.powerdigitalmedia.com/logo.png" } }, "articleBody": "The battle between Google Gemini 3 Pro and OpenAI GPT-5.2 is more than a tech showdown; it's a strategic decision point for businesses aiming for market dominance...", "potentialAction": { "@type": "SearchAction", "target": "https://www.powerdigitalmedia.com/search?query={search_term_string}", "query-input": "required name=search_term_string" } },
+        structuredData: { "@context": "https://schema.org", "@type": "Article", "headline": "The Benchmark War: Google Gemini 3 vs. OpenAI GPT-5.2", "description": "Discover the AI benchmark rivalry between Google Gemini 3 and OpenAI GPT-5.2. Explore their performance, market impact, and what it means for your business.", "author": { "@type": "Organization", "name": "Power Digital Media" }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.powerdigitalmedia.com/articles/benchmark-war-google-gemini-3-vs-openai-gpt-5-2" }, "datePublished": "2026-02-20", "dateModified": "2026-02-20", "publisher": { "@type": "Organization", "name": "Power Digital Media", "logo": { "@type": "ImageObject", "url": "https://www.powerdigitalmedia.com/logo.webp" } }, "articleBody": "The battle between Google Gemini 3 Pro and OpenAI GPT-5.2 is more than a tech showdown; it's a strategic decision point for businesses aiming for market dominance...", "potentialAction": { "@type": "SearchAction", "target": "https://www.powerdigitalmedia.com/search?query={search_term_string}", "query-input": "required name=search_term_string" } },
         content: `
 ---
 
@@ -3291,7 +3291,7 @@ The battle between Google Gemini 3 Pro and OpenAI GPT-5.2 is more than a tech sh
             role: "Power Digital Media"
         },
         relatedGearIds: ['shure-sm7b', 'rode-caster-pro-2', 'shure-mv7-plus', 'rode-procaster'],
-        structuredData: { "@context": "https://schema.org", "@type": "Article", "headline": "The Benchmark War: Landing Pages vs. BenchmarkONE in 2026", "description": "Discover how landing pages and BenchmarkONE compete in 2026. Uncover strategies for conversion rates, ROI, and user experience.", "author": { "@type": "Person", "name": "Power Digital Media" }, "publisher": { "@type": "Organization", "name": "Power Digital Media", "logo": { "@type": "ImageObject", "url": "https://www.example.com/logo.png" } }, "mainEntityOfPage": "https://www.example.com/the-benchmark-war-landing-pages-vs-benchmarkone", "datePublished": "2026-10-12", "dateModified": "2026-10-12", "faq": [{ "@type": "Question", "name": "Why Are Landing Pages Still Relevant?", "acceptedAnswer": { "@type": "Answer", "text": "Landing pages remain relevant due to their high conversion rates and quick setup time, making them ideal for immediate conversions." } }, { "@type": "Question", "name": "Can BenchmarkONE Outperform Landing Pages?", "acceptedAnswer": { "@type": "Answer", "text": "BenchmarkONE can outperform landing pages with its comprehensive CRM capabilities, but its complexity may introduce latency." } }, { "@type": "Question", "name": "What Are the Cost Implications?", "acceptedAnswer": { "@type": "Answer", "text": "Landing pages are generally more affordable, whereas BenchmarkONE's subscription model offers long-term gains through improved CRM functionalities." } }] },
+        structuredData: { "@context": "https://schema.org", "@type": "Article", "headline": "The Benchmark War: Landing Pages vs. BenchmarkONE in 2026", "description": "Discover how landing pages and BenchmarkONE compete in 2026. Uncover strategies for conversion rates, ROI, and user experience.", "author": { "@type": "Person", "name": "Power Digital Media" }, "publisher": { "@type": "Organization", "name": "Power Digital Media", "logo": { "@type": "ImageObject", "url": "https://www.example.com/logo.webp" } }, "mainEntityOfPage": "https://www.example.com/the-benchmark-war-landing-pages-vs-benchmarkone", "datePublished": "2026-10-12", "dateModified": "2026-10-12", "faq": [{ "@type": "Question", "name": "Why Are Landing Pages Still Relevant?", "acceptedAnswer": { "@type": "Answer", "text": "Landing pages remain relevant due to their high conversion rates and quick setup time, making them ideal for immediate conversions." } }, { "@type": "Question", "name": "Can BenchmarkONE Outperform Landing Pages?", "acceptedAnswer": { "@type": "Answer", "text": "BenchmarkONE can outperform landing pages with its comprehensive CRM capabilities, but its complexity may introduce latency." } }, { "@type": "Question", "name": "What Are the Cost Implications?", "acceptedAnswer": { "@type": "Answer", "text": "Landing pages are generally more affordable, whereas BenchmarkONE's subscription model offers long-term gains through improved CRM functionalities." } }] },
         content: `
 ---
 
@@ -3336,13 +3336,13 @@ Ultimately, the choice between landing pages and BenchmarkONE depends on your bu
         excerpt: "In a startling revelation, the CBIZ Q1 2026 Mid-Market Pulse Report reveals that 84% of business leaders are zeroing in on cost management, talent acquisition, and tech strategy. T...",
         date: "Feb 19, 2026",
         category: "Analysis",
-        image: "/blog-images/mid-market-leaders-focus-on-cost-talent-tech-in-2026-1771516669431.png",
+        image: "/blog-images/mid-market-leaders-focus-on-cost-talent-tech-in-2026-1771516669431.webp",
         author: {
             name: "Senior Principal Engineer",
             role: "Power Digital Media"
         },
         relatedGearIds: ["shure-sm7b", "rode-caster-pro-2", "shure-mv7-plus", "rode-procaster"],
-        structuredData: { "@context": "https://schema.org", "@type": "Article", "headline": "Mid-Market Leaders Focus on Cost, Talent & Tech in 2026", "description": "84% of mid-market leaders prioritize cost management and tech strategy in 2026, shaping industry trends and growth potential.", "datePublished": "2026-02-19", "author": { "@type": "Organization", "name": "Power Digital Media" }, "publisher": { "@type": "Organization", "name": "Power Digital Media", "logo": { "@type": "ImageObject", "url": "https://example.com/logo.png" } }, "mainEntityOfPage": "https://ca.finance.yahoo.com/news/cbiz-releases-q1-2026-mid-140000299.html", "faqPage": { "@type": "FAQPage", "mainEntity": [{ "@type": "Question", "name": "How are mid-market leaders prioritizing strategies in 2026?", "acceptedAnswer": { "@type": "Answer", "text": "Mid-market leaders are focusing on cost management, talent acquisition, and tech strategy, as shown by 84% prioritizing cost optimization." } }, { "@type": "Question", "name": "What are the potential pitfalls of rapid tech integration?", "acceptedAnswer": { "@type": "Answer", "text": "Rapid tech integration can lead to technical debt and interoperability issues if cybersecurity and AI implementations are not carefully managed." } }, { "@type": "Question", "name": "How can businesses in Jackson, MS, leverage these insights?", "acceptedAnswer": { "@type": "Answer", "text": "Businesses in Jackson can adopt these strategies by focusing on cost-effective tech solutions and enhancing talent acquisition to stay competitive." } }] } },
+        structuredData: { "@context": "https://schema.org", "@type": "Article", "headline": "Mid-Market Leaders Focus on Cost, Talent & Tech in 2026", "description": "84% of mid-market leaders prioritize cost management and tech strategy in 2026, shaping industry trends and growth potential.", "datePublished": "2026-02-19", "author": { "@type": "Organization", "name": "Power Digital Media" }, "publisher": { "@type": "Organization", "name": "Power Digital Media", "logo": { "@type": "ImageObject", "url": "https://example.com/logo.webp" } }, "mainEntityOfPage": "https://ca.finance.yahoo.com/news/cbiz-releases-q1-2026-mid-140000299.html", "faqPage": { "@type": "FAQPage", "mainEntity": [{ "@type": "Question", "name": "How are mid-market leaders prioritizing strategies in 2026?", "acceptedAnswer": { "@type": "Answer", "text": "Mid-market leaders are focusing on cost management, talent acquisition, and tech strategy, as shown by 84% prioritizing cost optimization." } }, { "@type": "Question", "name": "What are the potential pitfalls of rapid tech integration?", "acceptedAnswer": { "@type": "Answer", "text": "Rapid tech integration can lead to technical debt and interoperability issues if cybersecurity and AI implementations are not carefully managed." } }, { "@type": "Question", "name": "How can businesses in Jackson, MS, leverage these insights?", "acceptedAnswer": { "@type": "Answer", "text": "Businesses in Jackson can adopt these strategies by focusing on cost-effective tech solutions and enhancing talent acquisition to stay competitive." } }] } },
         content: `
 ---
 
@@ -3401,7 +3401,7 @@ In 2026, 84% of mid-market leaders prioritize cost management, highlighting a st
         excerpt: "AI orchestration isn't just a buzzword anymore—it's the new reality. OpenAI and Anthropic are leading the charge with groundbreaking releases, transforming how we think about artif...",
         date: "Feb 19, 2026",
         category: "AI Intelligence",
-        image: "/blog-images/seo-title-multi-agent-orchestration-ais-next-frontier-1771516705369.png",
+        image: "/blog-images/seo-title-multi-agent-orchestration-ais-next-frontier-1771516705369.webp",
         author: {
             name: "Lead Content Strategist",
             role: "Power Digital Media"
@@ -3460,7 +3460,7 @@ For more on multi-agent orchestration, explore [Trew Knowledge](https://trewknow
         excerpt: "Landing pages are crucial for driving conversions and capturing leads effectively. With the evolution of landing page builders, creating impactful pages is now more accessible than...",
         date: "Feb 19, 2026",
         category: "Showcase",
-        image: "/blog-images/top-landing-page-builders-for-2026-1771515804946.png",
+        image: "/blog-images/top-landing-page-builders-for-2026-1771515804946.webp",
         author: {
             name: "Lead Content Strategist",
             role: "Power Digital Media"
@@ -3546,7 +3546,7 @@ As digital marketing evolves, the ability to create effective landing pages quic
         excerpt: "Intel's position in the CPU market is being challenged as AMD gains ground. Explore the impact of Intel's supply issues and AMD's strategic advancements....",
         date: "Feb 19, 2026",
         category: "Hardware",
-        image: "/blog-images/intels-market-dynamics-challenges-and-opportunities-1771515845472.png",
+        image: "/blog-images/intels-market-dynamics-challenges-and-opportunities-1771515845472.webp",
         author: {
             name: "Executive Creative Director",
             role: "Power Digital Media"
@@ -3610,7 +3610,7 @@ Intel's ability to overcome current challenges will determine its future market 
         excerpt: "Explore 2026 healthcare cybersecurity trends and essential website features, enhancing security and user experience in the digital health critical innovation.",
         date: "Feb 19, 2026",
         category: "Showcase",
-        image: "/blog-images/seo-title-healthcare-cybersecurity-website-features-2026-1771514271828.png",
+        image: "/blog-images/seo-title-healthcare-cybersecurity-website-features-2026-1771514271828.webp",
         author: {
             name: "Lead Content Strategist",
             role: "Power Digital Media"
@@ -3688,7 +3688,7 @@ By staying ahead of cybersecurity threats and optimizing digital interactions, h
         excerpt: "critical innovation insights on AI intelligence and LLM usage. Discover current trends, benchmarks, and future predictions in AI advancements.",
         date: "Feb 19, 2026",
         category: "AI Tech",
-        image: "/blog-images/seo-title-ai-intelligence-the-deep-scrape-explained-1771514309654.png",
+        image: "/blog-images/seo-title-ai-intelligence-the-deep-scrape-explained-1771514309654.webp",
         author: {
             name: "Senior Principal Engineer",
             role: "Power Digital Media"
@@ -3773,7 +3773,7 @@ The evolution of AI intelligence, particularly through LLMs, presents both oppor
         excerpt: "The 2026 benchmark war isn't just about cinebench scores. We break down the real-world production impact of the Ryzen 9 9950X3D vs the Intel Core Ultra 9 285K.",
         date: "Feb 19, 2026",
         category: "Daily Intel",
-        image: "/blog-images/the-truth-about-the-2026-benchmark-war-industry-pulse-1771484345683.png",
+        image: "/blog-images/the-truth-about-the-2026-benchmark-war-industry-pulse-1771484345683.webp",
         author: {
             name: "Lead Content Strategist",
             role: "Power Digital Media"
@@ -3859,7 +3859,7 @@ For a deeper look at the hardware powering these insights, visit the **[Power Di
         excerpt: "Sovereign cloud in 2026 balances data control, regulatory compliance, and performance. Explore latency tradeoffs, AI integration challenges, and hybrid strategies.",
         date: "Feb 19, 2026",
         category: "Infrastructure",
-        image: "/blog-images/the-truth-about-the-2026-benchmark-war-sovereign-clouds-role-1771484387733.png",
+        image: "/blog-images/the-truth-about-the-2026-benchmark-war-sovereign-clouds-role-1771484387733.webp",
         author: {
             name: "Senior Principal Engineer",
             role: "Power Digital Media"
@@ -3891,7 +3891,7 @@ For a deeper look at the hardware powering these insights, visit the **[Power Di
                 "name": "Power Digital Media",
                 "logo": {
                     "@type": "ImageObject",
-                    "url": "https://powerdigitalmedia.org/logo.png"
+                    "url": "https://powerdigitalmedia.org/logo.webp"
                 }
             },
             "description": "An in-depth analysis of sovereign cloud in 2026, exploring compliance requirements, latency tradeoffs, AI infrastructure challenges, and hybrid cloud strategy."
@@ -4047,7 +4047,7 @@ The future belongs to organizations that understand how to balance sovereignty, 
         excerpt: "**Short Answer:** Ambient Intelligence in 2026 is moving from reactive devices to context-aware environments that learn and respond to human presence...",
         date: "Feb 18, 2026",
         category: "Analysis",
-        image: "/blog-images/ambient_intelligence_2026_hero.png",
+        image: "/blog-images/ambient_intelligence_2026_hero.webp",
         author: {
             name: "Senior Principal Engineer",
             role: "Power Digital Media"
@@ -4060,7 +4060,7 @@ The future belongs to organizations that understand how to balance sovereignty, 
             "@context": "https://schema.org",
             "@type": "Article",
             "headline": "Ambient Intelligence in 2026: Real Uses, Risks, and Business Impact",
-            "image": "/blog-images/ambient_intelligence_2026_hero.png",
+            "image": "/blog-images/ambient_intelligence_2026_hero.webp",
             "author": {
                 "@type": "Person",
                 "name": "Senior Principal Engineer"
@@ -4070,7 +4070,7 @@ The future belongs to organizations that understand how to balance sovereignty, 
                 "name": "Power Digital Media",
                 "logo": {
                     "@type": "ImageObject",
-                    "url": "https://www.powerdigitalmedia.com/logo.png"
+                    "url": "https://www.powerdigitalmedia.com/logo.webp"
                 }
             },
             "datePublished": "2026-02-18",
@@ -4203,7 +4203,7 @@ The opportunity is significant, but so are the responsibilities. Organizations t
         excerpt: "The future of AI is not one model—it’s distributed intelligence frameworks. We break down the reasoning vs. context scale in modern production orchestration.",
         date: "Feb 17, 2026",
         category: "AI Infrastructure",
-        image: "/blog-images/gpt-vs-gemini-multi-model-ai-architecture-2026.jpg",
+        image: "/blog-images/gpt-vs-gemini-multi-model-ai-architecture-2026.webp",
         author: {
             name: "Senior Principal Engineer",
             role: "Power Digital Media"
@@ -4289,7 +4289,7 @@ These architectures reflect the industry shift from single-model intelligence to
         excerpt: "**Short Answer:** AI-driven LLMs are revolutionizing search with faster, context-aware results, but face challenges in scalability and real-world application....",
         date: "Feb 17, 2026",
         category: "AI Tech",
-        image: "/blog-images/ai-llm-forecasting-the-future-of-search-intelligence-2026-1771311448127.png",
+        image: "/blog-images/ai-llm-forecasting-the-future-of-search-intelligence-2026-1771311448127.webp",
         author: {
             name: "Executive Creative Director",
             role: "Power Digital Media"
@@ -4352,7 +4352,7 @@ For further insights on how Next.js and React + Vite compare in the current tech
         excerpt: "**Short Answer:** Next.js dominates SEO and long-term scalability, while React + Vite wins for speed of development and lightweight apps....",
         date: "Feb 16, 2026",
         category: "Development",
-        image: "/blog-images/nextjs-vs-react-vite-2026-which-architecture-actually-wins-1771300629799.png",
+        image: "/blog-images/nextjs-vs-react-vite-2026-which-architecture-actually-wins-1771300629799.webp",
         author: {
             name: "Technical Director",
             role: "Power Digital Media"
@@ -4413,7 +4413,7 @@ For a detailed analysis of hardware impacts, read our [Core Ultra vs Ryzen 2026 
         excerpt: "**Quick Take:** Next.js and React/Vite are the dual-monoliths of 2026, optimizing for either deep SEO authority or hyper-fast developer iterations.",
         date: "Feb 16, 2026",
         category: "Development",
-        image: "/blog-images/nextjs-nodejs-vs-react-vite-the-2026-architectural-guide-1771292976085.png",
+        image: "/blog-images/nextjs-nodejs-vs-react-vite-the-2026-architectural-guide-1771292976085.webp",
         author: {
             name: "Power Digital Media",
             role: "Technical Director"
@@ -4453,7 +4453,7 @@ For more on the hardware that fuels these builds, see our **[Full Studio Invento
         excerpt: "\"Benchmarks are the battlefield; precision is the victor in 2026.\"",
         date: "Feb 16, 2026",
         category: "Daily Intel",
-        image: "/blog-images/the-2026-benchmark-war-studio-techs-ultimate-showdown-1771225291596.png",
+        image: "/blog-images/the-2026-benchmark-war-studio-techs-ultimate-showdown-1771225291596.webp",
         author: {
             name: "Executive Creative Director",
             role: "Power Digital Media"
@@ -4495,7 +4495,7 @@ At Power Digital Media, Jackson, Mississippi, we're not just spectators in the b
         excerpt: "SEO is the long game with soul; PPC is the fast track with risk....",
         date: "Feb 16, 2026",
         category: "Showcase",
-        image: "/blog-images/the-benchmark-war-seo-vs-ppc-for-law-firms-in-2026-1771225329781.png",
+        image: "/blog-images/the-benchmark-war-seo-vs-ppc-for-law-firms-in-2026-1771225329781.webp",
         author: {
             name: "Executive Creative Director",
             role: "Power Digital Media"
@@ -4532,7 +4532,7 @@ In conclusion, the choice between SEO and PPC is not about picking sides but abo
         excerpt: "The Core Ultra 9 285K wins on efficiency, while the Ryzen 9 9950X3D dominates gaming. We analyze ROI, thermal performance, and 2026 value.",
         date: "Feb 15, 2026",
         category: "Hardware",
-        image: "/blog-images/the-benchmark-war-core-ultra-9-285k-vs-ryzen-9-9950x3d-1771161127681.png",
+        image: "/blog-images/the-benchmark-war-core-ultra-9-285k-vs-ryzen-9-9950x3d-1771161127681.webp",
         author: {
             name: "Lead Content Strategist",
             role: "Power Digital Media"
@@ -4578,7 +4578,7 @@ For further reading on these processors, consider these resources:
         excerpt: "The Sennheiser EW 100 G3 remains a viable 2026 option for budget audio. We analyze its relevance against modern digital systems.",
         date: "Feb 15, 2026",
         category: "Daily Intel",
-        image: "/blog-images/the-sennheiser-ew-100-g3-outdated-or-opportunity-1771161164604.png",
+        image: "/blog-images/the-sennheiser-ew-100-g3-outdated-or-opportunity-1771161164604.webp",
         author: {
             name: "Lead Content Strategist",
             role: "Power Digital Media"
@@ -4717,7 +4717,7 @@ In conclusion, DaVinci Resolve 20.3.2 is a prime example of how AI is revolution
         excerpt: "AMD is poised to redefine computing in 2026 with its upcoming Ryzen 9 9950X3D2 CPU and Medusa Halo APUs, which could leverage LPDDR6 RAM for enhanced performance. These development...",
         date: "Feb 13, 2026",
         category: "Hardware",
-        image: "/blog-images/intel-compute-core-2026.png",
+        image: "/blog-images/intel-compute-core-2026.webp",
         author: {
             name: "Power Digital Media",
             role: "Editorial Intelligence"
@@ -4761,7 +4761,7 @@ AMD's upcoming releases, including the Ryzen 9 9950X3D2 CPU and Medusa Halo APUs
         excerpt: "The February 2026 update of DaVinci Resolve (v20.3.2) is not just a patch; it's a paradigm shift. We break down the Neural Engine 3.0, the hardware required to run it, and why this version changes everything for post-production.",
         date: "Feb 12, 2026",
         category: "Software",
-        image: "/blog-images/special-edition-deep-dive-davinci-resolve-february-2026-update-1770956439907.png",
+        image: "/blog-images/special-edition-deep-dive-davinci-resolve-february-2026-update-1770956439907.webp",
         author: {
             name: "Power Digital Media",
             role: "Senior Editor"
@@ -4833,7 +4833,7 @@ At Power Digital Media, we updated our entire facility to 20.3.2 last night.Here
         excerpt: "In February 2026, studio technology is witnessing remarkable advancements, especially in audio processing and creative automation. With the integration of AI into studio workflows,...",
         date: "Feb 13, 2026",
         category: "Daily Intel",
-        image: "/blog-images/evolution-studio-tech-2026.png",
+        image: "/blog-images/evolution-studio-tech-2026.webp",
         author: {
             name: "Power Digital Media",
             role: "Editorial Intelligence"
@@ -4878,7 +4878,7 @@ By staying informed and equipped with the latest tools, studios can continue to 
         excerpt: "The February 2026 update of DaVinci Resolve (v20.3.2) has arrived. This critical patch stabilizes the Neural Engine 3.0 workflow and introduces the long-awaited...",
         date: "Feb 12, 2026",
         category: "Software",
-        image: "/blog-images/special-edition-deep-dive-davinci-resolve-february-2026-update-1770956439907.png",
+        image: "/blog-images/special-edition-deep-dive-davinci-resolve-february-2026-update-1770956439907.webp",
         author: {
             name: "Power Digital Media",
             role: "Senior Editor"
@@ -4951,7 +4951,7 @@ At Power Digital Media, we updated our entire facility to 20.3.2 last night.Here
         excerpt: "In 2026, studio technology is revolutionized by advanced AI integration, enhanced audio interfaces, and groundbreaking visual solutions. Key innovations include AI-driven audio pro...",
         date: "Feb 12, 2026",
         category: "Daily Intel",
-        image: "/blog-images/unveiling-the-future-cutting-edge-studio-tech-in-2026-1770879607947.png",
+        image: "/blog-images/unveiling-the-future-cutting-edge-studio-tech-in-2026-1770879607947.webp",
         author: {
             name: "Power Digital Media",
             role: "Editorial Intelligence"
@@ -4999,7 +4999,7 @@ Stay tuned for more updates as we continue to explore the cutting - edge develop
         excerpt: "Intel's entry into the GPU market in 2026 positions it as a formidable player against NVIDIA and AMD. With a focus on AI and gaming, Intel's new GPUs, boasting up to 30 TFLOPS and...",
         date: "Feb 12, 2026",
         category: "Hardware",
-        image: "/blog-images/intels-gpu-ambitions-in-2026-a-strategic-deep-dive-1770879652582.png",
+        image: "/blog-images/intels-gpu-ambitions-in-2026-a-strategic-deep-dive-1770879652582.webp",
         author: {
             name: "Power Digital Media",
             role: "Editorial Intelligence"
@@ -5063,7 +5063,7 @@ In conclusion, Intel's 2026 GPU launch represents a significant shift in the gra
         excerpt: "Recent reports highlight failures in AMD's Ryzen 9000 CPUs on ASRock's AM5 motherboards, prompting concerns over compatibility and performance. As Power Digital Media, we recommend...",
         date: "Feb 11, 2026",
         category: "Hardware",
-        image: "/blog-images/recent-reports-highlight-failures-in-amds-ryzen-9000-cpus-on-asrocks-am5-motherboards-prompting-conc-1770819049323.png",
+        image: "/blog-images/recent-reports-highlight-failures-in-amds-ryzen-9000-cpus-on-asrocks-am5-motherboards-prompting-conc-1770819049323.webp",
         author: {
             name: "Power Digital Media",
             role: "Editorial Intelligence"
@@ -5120,7 +5120,7 @@ By staying informed and utilizing the latest updates and technologies, users can
         excerpt: "In 2026, creative teams leveraging AI tools like GPT-5.3 Codex, Gemini 3 Pro, and Claude 3.5 Opus are achieving unprecedented creative velocity. This surge is driven by AI's abilit...",
         date: "Feb 11, 2026",
         category: "Strategy",
-        image: "/blog-images/in-2026-creative-teams-leveraging-ai-tools-like-gpt-53-codex-gemini-3-pro-and-claude-35-opus-are-ach-1770819101108.png",
+        image: "/blog-images/in-2026-creative-teams-leveraging-ai-tools-like-gpt-53-codex-gemini-3-pro-and-claude-35-opus-are-ach-1770819101108.webp",
         author: {
             name: "Power Digital Media",
             role: "Editorial Intelligence"
@@ -5183,7 +5183,7 @@ In conclusion, the integration of AI tools in 2026 is propelling creative teams 
         excerpt: "As January 2026 closes, the software arena is exploding with neural processing updates. From DaVinci's latest engine to the final tech drops of the month, here is your intelligence brief.",
         date: "Jan 31, 2026",
         category: "Daily Intel",
-        image: "/blog-images/daily-intel-january-31-software-surge-1770819872030.png",
+        image: "/blog-images/daily-intel-january-31-software-surge-1770819872030.webp",
         author: {
             name: "ClaudeBot",
             role: "Autonomous Intelligence"
@@ -5215,7 +5215,7 @@ Master the latest software workflows with our **[Editing Protocols](/blog/softwa
         excerpt: "The first major tech surge of 2026 has arrived. From RØDE's massive video pivot to Shure's studio-grade condenser overhaul, we're breaking down the elite protocols you need to know.",
         date: "Jan 30, 2026",
         category: "Daily Intel",
-        image: "/blog-images/daily-intel-january-2026-gear-drop-1770819890185.png",
+        image: "/blog-images/daily-intel-january-2026-gear-drop-1770819890185.webp",
         author: {
             name: "ClaudeBot",
             role: "Autonomous Intelligence"
@@ -5256,7 +5256,7 @@ Ready to upgrade your signal chain? The latest Shure and RØDE hardware is now l
         excerpt: "Discover how to leverage the world's most powerful audio production studio to elevate your podcast or ministry broadcast.",
         date: "Feb 05, 2026",
         category: "Studio Tech",
-        image: "/blog-images/mastering-rodecaster-pro-ii-1770819909934.png",
+        image: "/blog-images/mastering-rodecaster-pro-ii-1770819909934.webp",
         author: {
             name: "Marcus Wade",
             role: "Lead Engineer"
@@ -5292,7 +5292,7 @@ Ready to master your audio? The **[RØDECaster Pro II](/showroom/audio/rode-cast
         excerpt: "In a world of noise, content without distribution is invisible. Learn the 'Power' way to amplify your message.",
         date: "Feb 04, 2026",
         category: "Marketing",
-        image: "/blog-images/why-digital-strategy-matters-1770819934760.png",
+        image: "/blog-images/why-digital-strategy-matters-1770819934760.webp",
         author: {
             name: "Sarah Chen",
             role: "Growth Strategist"
@@ -5323,7 +5323,7 @@ It's better to release one high-quality piece every two weeks than to flood the 
         excerpt: "Moving from a single webcam to a professional multi-cam setup can transform your brand's authority overnight.",
         date: "Jan 10, 2026",
         category: "Production",
-        image: "/blog-images/multi-cam-podcasting-tips-1770819953618.png",
+        image: "/blog-images/multi-cam-podcasting-tips-1770819953618.webp",
         author: {
             name: "Marcus Wade",
             role: "Lead Engineer"
@@ -5362,7 +5362,7 @@ Building a cinematic studio? The **[Sony A7S III](/showroom/visual/sony-a7siii)*
         excerpt: "The landscape of studio technology is evolving at an unprecedented pace, driven by innovations in audio processing, connectivity, and artificial intelligence. Today's briefing delv...",
         date: "Feb 06, 2026",
         category: "Daily Intel",
-        image: "/blog-images/direct-neural-intelligence-briefing-studio-tech-innovations-and-integration-1770819976791.png",
+        image: "/blog-images/direct-neural-intelligence-briefing-studio-tech-innovations-and-integration-1770819976791.webp",
         author: { name: "ClaudeBot", role: "Autonomous Intelligence" },
         content: `
 The landscape of studio technology is evolving at an unprecedented pace, driven by innovations in audio processing, connectivity, and artificial intelligence. Today's briefing delves into the cutting-edge developments within the studio tech vertical, emphasizing the integration of advanced audio equipment to enhance broadcast, podcast, and streaming experiences. As content creators demand higher fidelity and more intuitive interfaces, manufacturers are responding with products that combine traditional excellence with modern digital enhancements.
@@ -5402,7 +5402,7 @@ Meanwhile, the RCP2 Zoom Production Bundle includes the Rødecaster Pro II and f
         excerpt: "In the ever-evolving landscape of studio technology, the integration of advanced audio and video production tools is paramount for creators seeking to elevate their content. As we...",
         date: "Feb 06, 2026",
         category: "Daily Intel",
-        image: "/blog-images/direct-neural-intelligence-briefing-studio-tech-innovations-1770819996600.png",
+        image: "/blog-images/direct-neural-intelligence-briefing-studio-tech-innovations-1770819996600.webp",
         author: { name: "ClaudeBot", role: "Autonomous Intelligence" },
         content: `
 In the ever-evolving landscape of studio technology, the integration of advanced audio and video production tools is paramount for creators seeking to elevate their content. As we delve into the latest innovations, the focus will be on optimizing studio setups for broadcasting, podcasting, and live streaming. This briefing will explore the cutting-edge products available in our showroom, providing insights into how these tools can transform your production capabilities.
@@ -5458,7 +5458,7 @@ For further reading and to verify the latest specifications, you can explore aut
         excerpt: "As we dive into the latest developments in studio technology this February, the landscape is defined by cutting-edge advancements and innovative products designed to elevate audio...",
         date: "Feb 07, 2026",
         category: "Daily Intel",
-        image: "/blog-images/studio-tech-trends-and-innovations-february-2026-1770820016036.png",
+        image: "/blog-images/studio-tech-trends-and-innovations-february-2026-1770820016036.webp",
         author: { name: "ClaudeBot", role: "Autonomous Intelligence" },
         content: `
 As we dive into the latest developments in studio technology this February, the landscape is defined by cutting-edge advancements and innovative products designed to elevate audio production capabilities. From the fresh releases showcased at CES 2026 to the anticipated Apple products, let's dissect the key trends and products shaping the studio tech industry.
@@ -5498,7 +5498,7 @@ Looking forward, the industry is buzzing with anticipation for upcoming releases
         excerpt: "The AI wars of February 2026 have escalated. From neural architecture to real-time studio integration, we're dissecting the showdown between GPT-5.3 Codex and Gemini 3 Pro.",
         date: "Feb 08, 2026",
         category: "AI Tech",
-        image: "/blog-images/ai-model-showdown-gpt-5-3-vs-gemini-3-2026-1770820033983.png",
+        image: "/blog-images/ai-model-showdown-gpt-5-3-vs-gemini-3-2026-1770820033983.webp",
         author: { name: "ClaudeBot", role: "Autonomous Intelligence" },
         content: `
 ## The 2026 Intelligence Frontier
@@ -5560,7 +5560,7 @@ Master the 2026 intelligence layer. View our curated configurations in the **[El
         ],
         date: "Feb 18, 2026",
         category: "Daily Intel",
-        image: "/blog-images/evolution-studio-tech-2026.png",
+        image: "/blog-images/evolution-studio-tech-2026.webp",
         author: { name: "Power Digital Media", role: "Autonomous Intelligence" },
         audioUrl: "/audio/Expensive_Gear_Won_t_Fix_Audio_Latency.m4a",
         relatedGearIds: ["rode-caster-pro-2", "shure-sm7b", "rode-streamer-x", "elgato-stream-deck-plus"],
@@ -5704,7 +5704,7 @@ Studios that combine solid engineering practices with selective automation gain 
         excerpt: "The current landscape of the GPU market in 2026 is marked by strategic pauses and future anticipation. As reported by Tom's Hardware, NVIDIA is not expected to release any new...",
         date: "Feb 09, 2026",
         category: "Hardware",
-        image: "/blog-images/intel-compute-core-2026.png",
+        image: "/blog-images/intel-compute-core-2026.webp",
         author: { name: "Power Digital Media", role: "Autonomous Intelligence" },
         content: `
 ### GPU Market Dynamics and Upcoming Trends
@@ -5752,7 +5752,7 @@ For content creators and audio professionals, the availability of advanced audio
         excerpt: "In 2026, the software ecosystem for video editing has seen transformative changes, driven by advancements in AI technology. Leading the charge are Adobe's Premiere Pro and Af...",
         date: "Feb 09, 2026",
         category: "Software",
-        image: "/blog-images/ai-video-editing-2026.png",
+        image: "/blog-images/ai-video-editing-2026.webp",
         author: { name: "Power Digital Media", role: "Autonomous Intelligence" },
         content: `
 ### The Current Landscape of AI in Video Editing
@@ -5804,7 +5804,7 @@ For creators looking to elevate their audio production, the **Rødecaster Pro II
         excerpt: "In the rapidly evolving landscape of AI intelligence, the current year of 2026 presents a fascinating rivalry between two technological behemoths: GPT-5.3 Codex and Gemini 3...",
         date: "Feb 09, 2026",
         category: "AI Tech",
-        image: "/blog-images/intel-compute-core-2026.png",
+        image: "/blog-images/intel-compute-core-2026.webp",
         author: { name: "Power Digital Media", role: "Autonomous Intelligence" },
         content: `
 In the rapidly evolving landscape of AI intelligence, the current year of 2026 presents a fascinating rivalry between two technological behemoths: **GPT-5.3 Codex** and **Gemini 3 Pro**. These models represent the pinnacle of machine learning capabilities, pushing the boundaries of what AI can achieve in terms of natural language processing, computational efficiency, and real-world applications. This analysis will dissect their specifications, performance metrics, and potential impact on the industry.
@@ -5850,7 +5850,7 @@ For audio professionals looking to complement their AI-driven workflows with top
         excerpt: "In the ever-evolving landscape of creative industries, managing workflows effectively has become imperative for boosting productivity and maintaining competitive edges. As we delve...",
         date: "Feb 09, 2026",
         category: "Strategy",
-        image: "/blog-images/evolution-studio-tech-2026.png",
+        image: "/blog-images/evolution-studio-tech-2026.webp",
         author: { name: "Power Digital Media", role: "Autonomous Intelligence" },
         content: `
 In the ever-evolving landscape of creative industries, managing workflows effectively has become imperative for boosting productivity and maintaining competitive edges. As we delve into 2026, the integration of advanced tools and methodologies is reshaping how creative processes are managed, enhancing both individual and team productivity. This analysis explores the cutting-edge tools and strategies that are driving creative velocity today.
@@ -6123,7 +6123,7 @@ For those looking to transform their creative processes, explore our [showroom](
         excerpt: "Immersive spatial UX is now baseline. Learn how 3D product previews, scroll-driven motion, and kinetic typography improve usability and conversions.",
         date: "Feb 24, 2026",
         category: "Web Design",
-        image: "/images/blog/immersive-spatial-ux-hero.png",
+        image: "/images/blog/immersive-spatial-ux-hero.webp",
         author: { name: "Power Digital Media", role: "Lead Architect" },
         seoTitle: "Immersive Spatial UX: When 3D Becomes Required",
         metaDescription: "Immersive spatial UX is now baseline. Learn how 3D product previews, scroll-driven motion, and kinetic typography improve usability and conversions.",
@@ -6144,7 +6144,7 @@ For those looking to transform their creative processes, explore our [showroom](
                     "name": "Power Digital Media",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": "https://powerdigitalmedia.org/assets/logo.png"
+                        "url": "https://powerdigitalmedia.org/assets/logo.webp"
                     }
                 },
                 "mainEntityOfPage": {
@@ -6325,7 +6325,7 @@ We combine immersive spatial UX, technical SEO, and disciplined architecture —
         excerpt: "Master Agentic SEO with UCP, llms.txt, and schema. The 2026 machine-readable infrastructure blueprint for AI citation dominance.",
         date: "Feb 25, 2026",
         category: "Growth Architecture",
-        image: "/images/blog/agentic-seo-hero.png",
+        image: "/images/blog/agentic-seo-hero.webp",
         author: { name: "Power Digital Media LLC", role: "Growth Architect" },
         seoTitle: "Agentic SEO & the Machine-Readable Web (2026)",
         metaDescription: "Master Agentic SEO with UCP, llms.txt, and schema. The 2026 machine-readable infrastructure blueprint for AI citation dominance.",
@@ -6374,7 +6374,7 @@ We combine immersive spatial UX, technical SEO, and disciplined architecture —
                     "name": "Power Digital Media LLC",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": "https://powerdigitalmedia.org/logo.png"
+                        "url": "https://powerdigitalmedia.org/logo.webp"
                     }
                 },
                 "mainEntityOfPage": {

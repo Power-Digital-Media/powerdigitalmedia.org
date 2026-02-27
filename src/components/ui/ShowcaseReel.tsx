@@ -17,21 +17,21 @@ const initialProductions: Production[] = [
     {
         title: "All Things New Podcast",
         category: "Ministry & Growth",
-        thumbnail: "https://i.ytimg.com/vi/8qHbfb0aKek/hqdefault.jpg",
+        thumbnail: "https://i.ytimg.com/vi/8qHbfb0aKek/hqdefault.webp",
         link: "https://youtube.com/playlist?list=PLhZ7JXj1xJmTFftL8GVjM0v5aXdJAOaI3",
         stats: "4K RAW EDIT"
     },
     {
         title: "A Fool N His Folly",
         category: "Urban Culture",
-        thumbnail: "https://i.ytimg.com/vi/rS5QkPtAfzU/hqdefault.jpg",
+        thumbnail: "https://i.ytimg.com/vi/rS5QkPtAfzU/hqdefault.webp",
         link: "https://youtube.com/playlist?list=PLhZ7JXj1xJmQlSNvqmaq2h8o9XqhAY3Pr",
         stats: "HDR CINEMATIC"
     },
     {
         title: "HSP PodCast",
         category: "Business & Strategy",
-        thumbnail: "https://img.youtube.com/vi/MhlTopnX68g/maxresdefault.jpg",
+        thumbnail: "https://img.youtube.com/vi/MhlTopnX68g/maxresdefault.webp",
         link: "https://youtu.be/MhlTopnX68g",
         stats: "MULTI-CAM ARRAY"
     }

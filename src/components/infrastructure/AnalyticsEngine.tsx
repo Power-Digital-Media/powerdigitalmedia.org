@@ -3,6 +3,7 @@
 import Script from "next/script";
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 export default function AnalyticsEngine() {
     const pathname = usePathname();
@@ -19,29 +20,7 @@ export default function AnalyticsEngine() {
     return (
         <>
             {/* Google Analytics 4 (Deferred) */}
-            {GA_ID && (
-                <Script
-                    id="ga-script"
-                    strategy="lazyOnload"
-                    src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-                />
-            )}
-            {GA_ID && (
-                <Script
-                    id="ga-init"
-                    strategy="lazyOnload"
-                    dangerouslySetInnerHTML={{
-                        __html: `
-                            window.dataLayer = window.dataLayer || [];
-                            function gtag(){dataLayer.push(arguments);}
-                            gtag('js', new Date());
-                            gtag('config', '${GA_ID}', {
-                                page_path: window.location.pathname,
-                            });
-                        `
-                    }}
-                />
-            )}
+            {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
 
             {/* Meta Pixel (Deferred) */}
             {PIXEL_ID && (

@@ -122,11 +122,11 @@ function Ghost({ text, color = "rgba(59,130,246,0.04)" }: { text: string; color?
 
 // ─── PROJECT CARD ─────────────────────────────────────────────────────────────
 const IMG_MAP: Record<string, string> = {
-    "all-things-new": "/portfolio/all-things-new-hero.png",
-    "corner-pharmacy": "/portfolio/corner-pharmacy-hero.png",
-    "simmons-memorial": "/portfolio/simmons-hero.png",
-    "growth-engine": "/portfolio/blacksheep-hero.png",
-    "black-sheep": "/portfolio/blacksheep-hero.png",
+    "all-things-new": "/portfolio/all-things-new-hero.webp",
+    "corner-pharmacy": "/portfolio/corner-pharmacy-hero.webp",
+    "simmons-memorial": "/portfolio/simmons-hero.webp",
+    "growth-engine": "/portfolio/blacksheep-hero.webp",
+    "black-sheep": "/portfolio/blacksheep-hero.webp",
 };
 
 function ProjectCard({ project, index, localP, total }: {
@@ -160,7 +160,7 @@ function ProjectCard({ project, index, localP, total }: {
                         </div>
                     </div>
                     <div className="relative w-full" style={{ height: "calc(100% - 44px)" }}>
-                        <Image src={IMG_MAP[project.id] ?? "/portfolio/blacksheep-hero.png"} alt={project.title} fill
+                        <Image src={IMG_MAP[project.id] ?? "/portfolio/blacksheep-hero.webp"} alt={project.title} fill
                             className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" sizes="82vw" />
                         <div className="absolute inset-0 flex flex-col items-center justify-center p-10 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                             style={{ background: "rgba(0,0,0,0.72)", backdropFilter: "blur(4px)" }}>
@@ -394,7 +394,7 @@ export default function OurWorkPage() {
 
             {/* ── PARALLAX BACKGROUND ── */}
             <div className="fixed inset-0 pointer-events-none" style={{ zIndex: -10 }}>
-                {["/images/spatial-bg-1.png", "/images/spatial-bg-2.png", "/images/spatial-bg-3.png"].map((src, bi) => {
+                {["/images/spatial-bg-1.webp", "/images/spatial-bg-2.webp", "/images/spatial-bg-3.webp"].map((src, bi) => {
                     const inAt = bi === 0 ? 0 : bi === 1 ? 0.25 : 0.60;
                     const outAt = bi === 0 ? 0.35 : bi === 1 ? 0.70 : 1.10;
                     const peakAt = (inAt + outAt) / 2;

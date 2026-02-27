@@ -294,7 +294,7 @@ export default function BillingPage() {
                                         }`}
                                 >
                                     {cat.icon === "logo" ? (
-                                        <Image src="/power-logo.png" alt="" width={12} height={12} className="object-contain" />
+                                        <Image src="/power-logo.webp" alt="" width={12} height={12} className="object-contain" />
                                     ) : (
                                         <cat.icon className="w-3 h-3" />
                                     )}
@@ -330,7 +330,7 @@ export default function BillingPage() {
                                                 <h3 className="text-[10px] font-bold tracking-[0.2em] uppercase text-accent">{tier.name}</h3>
                                                 <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-white/20 group-hover:text-accent transition-colors">
                                                     {tier.category === 'design' && <Layout className="w-4 h-4" />}
-                                                    {tier.category === 'podcasting' && <Image src="/power-logo.png" alt="" width={16} height={16} className="object-contain" />}
+                                                    {tier.category === 'podcasting' && <Image src="/power-logo.webp" alt="" width={16} height={16} className="object-contain" />}
                                                     {tier.category === 'production' && <Camera className="w-4 h-4" />}
                                                     {tier.category === 'growth' && <TrendingUp className="w-4 h-4" />}
                                                 </div>

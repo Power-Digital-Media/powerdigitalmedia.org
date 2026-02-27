@@ -9,7 +9,7 @@ export default function Contact() {
     const [isBookingOpen, setIsBookingOpen] = useState(false);
 
     return (
-        <section id="contact" className="relative pt-28 pb-20 md:py-48 overflow-hidden bg-background">
+        <section id="contact" className="relative pt-28 pb-20 md:py-48 overflow-hidden">
             {/* Ecosystem Grid Fade-In */}
             <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 

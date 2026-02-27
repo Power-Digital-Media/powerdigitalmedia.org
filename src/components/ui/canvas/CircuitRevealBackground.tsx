@@ -173,9 +173,9 @@ function DisplacementPlane({ textureUrl }: { textureUrl: string }) {
 export default function CircuitRevealBackground() {
     // Cycle through the 3 spatial background images
     const images = [
-        "/images/Spatial_background_ (1).png",
-        "/images/Spatial_background_ (2).png",
-        "/images/Spatial_background_ (3).png",
+        "/images/Spatial_background_ (1).webp",
+        "/images/Spatial_background_ (2).webp",
+        "/images/Spatial_background_ (3).webp",
     ];
     const [currentImage] = useState(0);
 

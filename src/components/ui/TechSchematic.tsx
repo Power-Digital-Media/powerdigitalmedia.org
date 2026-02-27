@@ -58,7 +58,7 @@ export default function TechSchematic() {
                                 >
                                     <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                                         {item.icon === "logo" ? (
-                                            <Image src="/power-logo.png" alt="" width={20} height={20} className="object-contain" />
+                                            <Image src="/power-logo.webp" alt="" width={20} height={20} className="object-contain" />
                                         ) : (
                                             <item.icon className="w-5 h-5 text-cyan-400" />
                                         )}
@@ -88,7 +88,7 @@ export default function TechSchematic() {
                                         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                                         className="absolute inset-0 bg-cyan-500/20 blur-[60px] rounded-full"
                                     />
-                                    <Image src="/power-logo.png" alt="Power Digital Media" width={128} height={128} className="object-contain opacity-30 relative z-10" />
+                                    <Image src="/power-logo.webp" alt="Power Digital Media" width={128} height={128} className="object-contain opacity-30 relative z-10" />
 
                                     {/* Orbital Data Rings */}
                                     <motion.div

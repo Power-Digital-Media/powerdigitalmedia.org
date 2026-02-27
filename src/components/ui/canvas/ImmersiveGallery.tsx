@@ -121,7 +121,7 @@ void main() {
 function ShaderBackground() {
     const meshRef = useRef<THREE.Mesh>(null);
     const { size, camera } = useThree();
-    const texture = useLoader(THREE.TextureLoader, "/images/Spatial_background_ (1).png");
+    const texture = useLoader(THREE.TextureLoader, "/images/Spatial_background_ (1).webp");
 
     const uniforms = useMemo(() => ({
         uTime: { value: 0 },

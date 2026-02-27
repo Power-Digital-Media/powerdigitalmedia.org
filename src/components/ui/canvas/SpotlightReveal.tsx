@@ -14,7 +14,7 @@ interface LiquidWakeProps {
  * No mouse interaction. No canvas compositing conflicts. Pure elegance.
  */
 export default function LiquidWake({
-    backgroundImage = "/images/Spatial_background_ (1).png"
+    backgroundImage = "/images/Spatial_background_ (1).webp"
 }: LiquidWakeProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 

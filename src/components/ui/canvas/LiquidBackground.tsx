@@ -12,7 +12,7 @@ interface SpotlightRevealProps {
  * revealing the spatial background image behind the dark overlay.
  */
 export default function SpotlightReveal({ // v3 — CSS mask, no canvas
-    backgroundImage = "/images/Spatial_background_ (1).png"
+    backgroundImage = "/images/Spatial_background_ (1).webp"
 }: SpotlightRevealProps) {
     const revealRef = useRef<HTMLDivElement>(null);
 

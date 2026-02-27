@@ -7,9 +7,10 @@ import Link from "next/link";
 
 export default function LeadArchitect() {
     return (
-        <section className="relative w-full py-24 overflow-hidden border-y border-cyan-500/20 bg-background/95 backdrop-blur-md z-20" id="architect">
+        <section className="relative w-full py-24 overflow-hidden z-20" id="architect">
 
-            {/* Background Glows */}
+            {/* Background Glows and Fade Gradients */}
+            <div className="absolute inset-0 pointer-events-none" />
             <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
             <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-indigo-500/10 rounded-full blur-[150px] pointer-events-none" />
 
@@ -27,7 +28,7 @@ export default function LeadArchitect() {
                         {/* Holographic scanning effect container */}
                         <div className="relative rounded-2xl overflow-hidden border border-cyan-500/30 bg-black/50 aspect-[4/3] shadow-[0_0_40px_rgba(6,182,212,0.15)]">
                             <Image
-                                src="/images/founder-booth.png"
+                                src="/images/founder-booth.webp"
                                 alt="Christopher Simmons - Lead Infrastructure Architect"
                                 fill
                                 sizes="(max-width: 768px) 100vw, 50vw"

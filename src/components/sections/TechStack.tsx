@@ -26,7 +26,7 @@ const mainGear = [
 
 export default function TechStack() {
     return (
-        <section id="studio" className="relative py-28 md:py-48 overflow-hidden bg-background">
+        <section id="studio" className="relative py-28 md:py-48 overflow-hidden">
             <div className="container relative z-10 px-6 mx-auto">
                 <m.div
                     initial={{ opacity: 0, y: 20 }}

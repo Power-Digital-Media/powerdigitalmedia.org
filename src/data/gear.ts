@@ -725,7 +725,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "PCIe 5.0"
         ],
         "priceRange": "$$$$$",
-        "image": "/images/gear/rtx_5090.png",
+        "image": "/images/gear/rtx_5090.webp",
         "amazonLink": "https://www.amazon.com/dp/B0DS2WQZ2M?tag=powerdigital1-20",
         "subCategory": "GPUs",
         "isFeatured": true,
@@ -778,7 +778,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "AV1 Encoding"
         ],
         "priceRange": "$$$",
-        "image": "/images/gear/amd_rx_9070_xt.png",
+        "image": "/images/gear/amd_rx_9070_xt.webp",
         "amazonLink": "https://www.amazon.com/dp/B0DRRMZDH6?tag=powerdigital1-20",
         "subCategory": "GPUs",
         "isFeatured": false,
@@ -913,7 +913,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "Swappable RGB"
         ],
         "priceRange": "$$$$",
-        "image": "/images/gear/corsair_dominator_titanium_2026.png?v=2",
+        "image": "/images/gear/corsair_dominator_titanium_2026.webp?v=2",
         "amazonLink": "https://www.amazon.com/dp/B0CHSJGCJ2?tag=powerdigital1-20",
         "subCategory": "RAM",
         "isFeatured": true,
@@ -958,7 +958,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "CL30"
         ],
         "priceRange": "$$",
-        "image": "/images/gear/gskill_trident_z5_neo.png",
+        "image": "/images/gear/gskill_trident_z5_neo.webp",
         "amazonLink": "https://www.amazon.com/dp/B0BF8FVLSL?tag=powerdigital1-20",
         "subCategory": "RAM",
         "isFeatured": false,
@@ -1276,7 +1276,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "DDR5 8000+"
         ],
         "priceRange": "$$$$",
-        "image": "/images/gear/asrock_z890_taichi.png",
+        "image": "/images/gear/asrock_z890_taichi.webp",
         "amazonLink": "https://www.amazon.com/dp/B0DJRNZWGN?tag=powerdigital1-20",
         "subCategory": "Motherboards",
         "isFeatured": true,
@@ -1925,7 +1925,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "E-ATX Support"
         ],
         "priceRange": "$$$$",
-        "image": "/images/gear/hyte_y70_touch.png",
+        "image": "/images/gear/hyte_y70_touch.webp",
         "amazonLink": "https://amzn.to/4qQn7N7",
         "subCategory": "Mid-Tower",
         "isFeatured": true,
@@ -1964,7 +1964,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "E-ATX Support"
         ],
         "priceRange": "$$$",
-        "image": "/images/gear/lian_li_o11_evo_xl.png",
+        "image": "/images/gear/lian_li_o11_evo_xl.webp",
         "amazonLink": "https://amzn.to/3Obolow",
         "subCategory": "Full-Tower",
         "isFeatured": false,
@@ -2023,7 +2023,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "AM5 Socket"
         ],
         "priceRange": "$$$$$",
-        "image": "/images/gear/amd_ryzen_9_9950x3d.png",
+        "image": "/images/gear/amd_ryzen_9_9950x3d.webp",
         "amazonLink": "https://www.amazon.com/dp/B0DVZSG8D5?tag=powerdigital1-20",
         "subCategory": "Processors",
         "isFeatured": true,
@@ -2077,7 +2077,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "LGA1700 Socket"
         ],
         "priceRange": "$$$$$",
-        "image": "/images/gear/intel_i9_14900ks.png",
+        "image": "/images/gear/intel_i9_14900ks.webp",
         "amazonLink": "https://amzn.to/3MEVEj8",
         "subCategory": "Processors",
         "isFeatured": true,
@@ -2116,7 +2116,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "Intel UHD 770"
         ],
         "priceRange": "$$$",
-        "image": "/images/gear/intel_i7_14700k.png",
+        "image": "/images/gear/intel_i7_14700k.webp",
         "amazonLink": "https://amzn.to/4txaF7k",
         "subCategory": "Processors",
         "isFeatured": false,
@@ -2160,7 +2160,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "Overclockable"
         ],
         "priceRange": "$$",
-        "image": "/images/gear/intel_i5_13600k.png",
+        "image": "/images/gear/intel_i5_13600k.webp",
         "amazonLink": "https://amzn.to/4addZNp",
         "subCategory": "Processors",
         "isFeatured": false,
@@ -2204,7 +2204,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "Heatsink Included"
         ],
         "priceRange": "$$$",
-        "image": "/images/gear/samsung_990_pro.png",
+        "image": "/images/gear/samsung_990_pro.webp",
         "amazonLink": "https://amzn.to/4kGETkf",
         "subCategory": "NVMe SSD",
         "isFeatured": true,
@@ -2248,7 +2248,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "RGB Heatsink Option"
         ],
         "priceRange": "$$",
-        "image": "/images/gear/wd_black_sn850x_2tb.png",
+        "image": "/images/gear/wd_black_sn850x_2tb.webp",
         "amazonLink": "https://amzn.to/3ZQZIA5",
         "subCategory": "NVMe SSD",
         "isFeatured": false,
@@ -2292,7 +2292,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "Micron 3D NAND"
         ],
         "priceRange": "$",
-        "image": "/images/gear/crucial_p3_plus.png",
+        "image": "/images/gear/crucial_p3_plus.webp",
         "amazonLink": "https://amzn.to/4rek4PK",
         "subCategory": "NVMe SSD",
         "isFeatured": false,
@@ -2336,7 +2336,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "MSI Center Support"
         ],
         "priceRange": "$$$",
-        "image": "/images/gear/msi_ai1300p.png",
+        "image": "/images/gear/msi_ai1300p.webp",
         "amazonLink": "https://amzn.to/46xQxYO",
         "subCategory": "Power Supply",
         "isFeatured": true,
@@ -2380,7 +2380,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "ATX 3.0 Compliant"
         ],
         "priceRange": "$$",
-        "image": "/images/gear/corsair_rm1000x_shift.png",
+        "image": "/images/gear/corsair_rm1000x_shift.webp",
         "amazonLink": "https://amzn.to/4ae65n0",
         "subCategory": "Power Supply",
         "isFeatured": false,
@@ -2424,7 +2424,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "Compact 140mm Size"
         ],
         "priceRange": "$",
-        "image": "/images/gear/corsair_rm750e.png",
+        "image": "/images/gear/corsair_rm750e.webp",
         "amazonLink": "https://amzn.to/4aqeYIS",
         "subCategory": "Power Supply",
         "isFeatured": false,
@@ -2468,7 +2468,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "IPS LCD Screen"
         ],
         "priceRange": "$$$",
-        "image": "/images/gear/corsair_h150i_lcd.png",
+        "image": "/images/gear/corsair_h150i_lcd.webp",
         "amazonLink": "https://amzn.to/4cqkNZj",
         "subCategory": "Liquid Cooling",
         "isFeatured": true,
@@ -2513,7 +2513,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "Pre-applied MX-6"
         ],
         "priceRange": "$$",
-        "image": "/images/gear/arctic_lf3_420.png",
+        "image": "/images/gear/arctic_lf3_420.webp",
         "amazonLink": "https://www.amazon.com/dp/B0DPHQ1353?tag=powerdigital1-20",
         "subCategory": "Liquid Cooling",
         "isFeatured": false,
@@ -2557,7 +2557,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "High-Static Pressure Fans"
         ],
         "priceRange": "$$$",
-        "image": "/images/gear/nzxt_kraken_elite_2026.png",
+        "image": "/images/gear/nzxt_kraken_elite_2026.webp",
         "amazonLink": "https://www.amazon.com/dp/B0D9GWDTHZ?tag=powerdigital1-20",
         "subCategory": "Liquid Cooling",
         "isFeatured": false,
@@ -2601,7 +2601,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "260W TDP"
         ],
         "priceRange": "$",
-        "image": "/images/gear/deepcool_ak620.png",
+        "image": "/images/gear/deepcool_ak620.webp",
         "amazonLink": "https://amzn.to/4qsoaCr",
         "subCategory": "Air Cooling",
         "isFeatured": false,
@@ -2645,7 +2645,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "0dB Technology"
         ],
         "priceRange": "$$$$",
-        "image": "/images/gear/asus_proart_4080.png",
+        "image": "/images/gear/asus_proart_4080.webp",
         "amazonLink": "https://amzn.to/3ODNrfC",
         "subCategory": "GPUs",
         "isFeatured": true,
@@ -2678,7 +2678,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "Syncs up to 10 lights"
         ],
         "priceRange": "$$$",
-        "image": "/images/gear/hue_sync_box_8k_cinematic.jpg",
+        "image": "/images/gear/hue_sync_box_8k_cinematic.webp",
         "amazonLink": "https://amzn.to/4aCVe4G",
         "subCategory": "Smart Control",
         "isFeatured": true,
@@ -2709,7 +2709,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "Smarter Connect tech"
         ],
         "priceRange": "$$",
-        "image": "/images/gear/nanoleaf_triangles_cinematic.jpg",
+        "image": "/images/gear/nanoleaf_triangles_cinematic.webp",
         "amazonLink": "https://amzn.to/4kRt5vB",
         "subCategory": "Modular Lighting",
         "isFeatured": true,
@@ -2740,7 +2740,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "LEED and WELL building standard ready"
         ],
         "priceRange": "$$$$",
-        "image": "/images/gear/lutron_caseta_smart_hub.jpg",
+        "image": "/images/gear/lutron_caseta_smart_hub.webp",
         "amazonLink": "https://amzn.to/3W0E8rX",
         "subCategory": "Smart Infrastructure",
         "isFeatured": true,
@@ -2785,7 +2785,7 @@ export const GEAR_COLLECTION: GearItem[] = [
             "Coming Late 2026"
         ],
         "priceRange": "TBA",
-        "image": "/images/gear/insta360_luna.png",
+        "image": "/images/gear/insta360_luna.webp",
         "amazonLink": "#",
         "subCategory": "Cameras",
         "isFeatured": false,

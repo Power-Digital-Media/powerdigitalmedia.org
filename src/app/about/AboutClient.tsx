@@ -160,7 +160,7 @@ export default function AboutClient() {
                             >
                                 <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                                     {value.icon === "logo" ? (
-                                        <Image src="/power-logo.png" alt="" width={24} height={24} className="object-contain" />
+                                        <Image src="/power-logo.webp" alt="" width={24} height={24} className="object-contain" />
                                     ) : (
                                         <value.icon className="w-6 h-6 text-accent" />
                                     )}

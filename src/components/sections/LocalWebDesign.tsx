@@ -24,7 +24,7 @@ const pillars = [
 
 export default function LocalWebDesign() {
     return (
-        <section className="relative py-24 md:py-32 overflow-hidden bg-background">
+        <section className="relative py-24 md:py-32 overflow-hidden">
             <div className="container relative z-10 px-6 mx-auto">
                 <div className="max-w-4xl mx-auto text-center mb-16 md:mb-24">
                     <m.span

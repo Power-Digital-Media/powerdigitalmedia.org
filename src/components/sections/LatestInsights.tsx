@@ -12,8 +12,9 @@ export default function LatestInsights() {
         .slice(0, 3);
 
     return (
-        <section className="py-24 bg-background border-t border-white/5 relative overflow-hidden">
-            {/* Background Ambience */}
+        <section className="py-24 relative overflow-hidden">
+            {/* Background Ambience & Gradient Fade */}
+            <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-background to-background pointer-events-none z-0" />
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
 
             <div className="container px-4 mx-auto relative z-10">
