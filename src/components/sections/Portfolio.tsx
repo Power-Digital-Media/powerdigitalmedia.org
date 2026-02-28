@@ -38,6 +38,9 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
             scrollTrigger: {
                 trigger: container,
                 pin: true,
+                anticipatePin: 1, // Look ahead to prevent jumping
+                pinSpacing: true, // Keep absolute track padding space
+                fastScrollEnd: true, // Ensure we don't skip unpin events
                 scrub: 1, // Smooth scrubbing
                 // Multiply length slightly to make it slower, but ensure we hit the absolute end
                 end: () => `+=${track.scrollWidth}`,
@@ -106,10 +109,10 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
         <section
             id="portfolio"
             ref={containerRef}
-            className="relative bg-[#020617] z-20 min-h-[100svh] md:min-h-screen w-full flex flex-col md:block"
+            className="relative bg-[#020617] z-20 h-[100svh] md:h-screen w-full block overflow-visible mt-0 bg-transparent"
         >
-            {/* Header Area (Pinned at top on Desktop, static on mobile) */}
-            <div className="md:absolute top-0 left-0 w-full z-20 pt-16 md:pt-24 px-4 md:px-12 pointer-events-none mb-4 md:mb-0 shrink-0">
+            {/* Header Area (Pinned Absolute Globally) */}
+            <div className="absolute top-0 left-0 w-full z-20 pt-16 md:pt-24 px-4 md:px-12 pointer-events-none shrink-0 flex flex-col justify-start">
                 <div className="max-w-[1400px] mx-auto flex justify-between items-end">
                     <div>
                         <div className="flex items-center gap-3 mb-4">
@@ -124,11 +127,10 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
             </div>
 
             {/* The Track Container */}
-            {/* The Track Container */}
             <div
-                className="relative flex min-h-[85svh] md:min-h-[85vh] md:h-full w-full items-center pl-4 md:px-0 flex-1 py-16 md:py-0 overflow-hidden"
+                className="relative flex h-[100svh] md:h-screen w-full items-center pl-4 md:px-0 py-0 overflow-hidden bg-[#020617]"
             >
-                <div ref={trackRef} className="relative flex gap-4 md:gap-16 w-max items-center h-full pt-16 md:pt-[150px] pb-16 md:pb-24 px-0 md:px-12">
+                <div ref={trackRef} className="relative flex gap-4 md:gap-16 w-max items-center h-full pt-20 md:pt-[150px] pb-16 md:pb-24 px-0 md:px-12">
                     {/* Add an empty div for initial desktop spacing so the first card isn't under the text */}
                     <div className="hidden md:block w-[10vw] shrink-0" />
 
