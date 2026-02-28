@@ -24,6 +24,9 @@ const pillars = [
 export default function LocalWebDesign() {
     return (
         <section className="relative py-24 md:py-32 overflow-hidden">
+            {/* Seamless transition from the dark portfolio section */}
+            <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#020617] to-transparent pointer-events-none z-0" />
+
             <div className="container relative z-10 px-6 mx-auto">
                 <div className="max-w-4xl mx-auto text-center mb-16 md:mb-24">
                     <span
@@ -48,7 +51,7 @@ export default function LocalWebDesign() {
                     {pillars.map((pillar, index) => (
                         <div
                             key={pillar.title}
-                            className="p-8 rounded-3xl glass-card border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors group"
+                            className="p-8 rounded-3xl glass-card border-none bg-white/[0.02] hover:bg-white/[0.04] transition-colors group"
                         >
                             <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                                 {pillar.icon}

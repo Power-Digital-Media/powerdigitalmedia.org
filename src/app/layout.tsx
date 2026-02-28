@@ -113,10 +113,9 @@ h1, h2, h3 { font - family: var(--font - heading); letter - spacing: -0.02em; fo
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
       >
-        {/* Google Tag Manager is now injected via @next/third-parties below if needed, or we just rely on the component. Actually the component usually injects noscript too, let's just add the component. */}
 
         <Suspense fallback={null}>
-          <AnalyticsEngine />
+          {/* <AnalyticsEngine /> - temporarily disabled for local dev due to Turbopack third-party bug */}
         </Suspense>
         {/* Organization Schema.org (GEO Optimization) */}
         <script

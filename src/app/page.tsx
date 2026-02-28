@@ -33,16 +33,9 @@ export default function Home() {
         We render the Hero Background here in the Server Component 
         to eliminate the 1.8s "Render Delay" caused by React hydration in client components.
       */}
-      <div
-        className="absolute top-0 left-0 right-0 h-[140vh] w-full z-0 overflow-hidden pointer-events-none"
-        style={{
-          maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
-          WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)'
-        }}
-      >
-
-        <div className="absolute inset-0 bg-background/20" />
-        <div className="absolute inset-0 cyber-grid opacity-20" />
+      <div className="fixed inset-0 w-full h-full z-0 pointer-events-none">
+        <div className="absolute inset-0 cyber-grid opacity-10" />
+        <div className="absolute top-0 w-full h-[60vh] bg-gradient-to-b from-blue-500/5 to-transparent" />
       </div>
 
       <div className="container relative z-10 px-4 mx-auto text-center mt-32 md:mt-48 mb-4">
