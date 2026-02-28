@@ -17,7 +17,7 @@ const pillars = [
     {
         icon: <Cpu className="w-6 h-6 text-indigo-400" />,
         title: "High-Performance CSS",
-        description: "No bloated themes. Just raw, hand-coded React architecture that scores 99/100 on PageSpeed Insights.",
+        description: "No bloated themes. Just raw, hand-coded React architecture that scores 90+/100 on PageSpeed Insights.",
     }
 ];
 
