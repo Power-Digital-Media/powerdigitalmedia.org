@@ -47,11 +47,13 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
         const scrollTween = gsap.to(track, {
             x: getScrollAmount,
             ease: "none",
+            force3D: true, // Force GPU acceleration to prevent mobile layer tearing
             scrollTrigger: {
                 trigger: section,
                 start: "top top",
                 end: "bottom bottom",
-                scrub: 1, // Smooth scrubbing
+                scrub: 1.5, // Smoothed scrubbing over 1.5 seconds instead of direct 1:1 mapping (prevents jerkiness)
+                fastScrollEnd: true,
                 invalidateOnRefresh: true, // Recalculate on resize
             }
         });
@@ -65,6 +67,7 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
                 gsap.to(img, {
                     x: "15%",
                     ease: "none",
+                    force3D: true, // Prevent jitter on parallax
                     scrollTrigger: {
                         trigger: card,
                         containerAnimation: scrollTween,
@@ -153,11 +156,20 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
                             return (
                                 <div
                                     key={project.id}
-                                    className="portfolio-card relative shrink-0 w-[85vw] max-w-[400px] md:max-w-none md:w-[70vw] lg:w-[60vw] aspect-[9/16] md:aspect-auto md:h-[65vh] max-h-[850px] snap-center flex items-center justify-center group animate-float"
-                                    style={{ animationDelay: `${index * 0.4}s` }}
+                                    className="portfolio-card relative shrink-0 w-[85vw] max-w-[400px] md:max-w-none md:w-[70vw] lg:w-[60vw] aspect-[9/16] md:aspect-auto md:h-[65vh] max-h-[850px] snap-center flex items-center justify-center group animate-float transform-gpu"
+                                    style={{
+                                        animationDelay: `${index * 0.4}s`,
+                                        WebkitBackfaceVisibility: 'hidden', // iOS Safari composite fix
+                                        backfaceVisibility: 'hidden',
+                                        WebkitTransformStyle: 'preserve-3d', // Force GPU layer
+                                        transformStyle: 'preserve-3d',
+                                        willChange: 'transform' // Pre-allocate VRAM
+                                    }}
                                 >
                                     {/* Main Structural Frame */}
-                                    <div className="relative w-full h-full rounded-[2.5rem] md:rounded-[4rem] overflow-hidden bg-black/50 backdrop-blur-sm border border-white/5 shadow-2xl flex flex-col justify-end">
+                                    <div className="relative w-full h-full rounded-[2.5rem] md:rounded-[4rem] overflow-hidden bg-black/50 backdrop-blur-sm border border-white/5 shadow-2xl flex flex-col justify-end transform-gpu"
+                                        style={{ backfaceVisibility: 'hidden' }}
+                                    >
 
                                         {/* Fallback Static Border (visible until center glow hits) */}
                                         <div
@@ -191,9 +203,11 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
                                                 src={project.mobileImage || project.image}
                                                 alt={`${project.title} Mobile View`}
                                                 fill
-                                                className="block md:hidden portfolio-img object-cover object-center opacity-80 group-hover:opacity-100 transition-opacity duration-1000"
+                                                className="block md:hidden portfolio-img object-cover object-center opacity-80 group-hover:opacity-100 transition-opacity duration-1000 transform-gpu"
+                                                style={{ backfaceVisibility: 'hidden' }}
                                                 sizes="100vw"
                                                 priority={index < 2}
+                                                loading={index < 2 ? "eager" : "lazy"} // Force eager load for above-fold cards to stop layout glitches
                                             />
 
                                             {/* Mobile Inner Screen Glow */}
