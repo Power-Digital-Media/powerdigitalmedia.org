@@ -115,7 +115,7 @@ h1, h2, h3 { font - family: var(--font - heading); letter - spacing: -0.02em; fo
       >
 
         <Suspense fallback={null}>
-          {/* <AnalyticsEngine /> - temporarily disabled for local dev due to Turbopack third-party bug */}
+          <AnalyticsEngine />
         </Suspense>
         {/* Organization Schema.org (GEO Optimization) */}
         <script

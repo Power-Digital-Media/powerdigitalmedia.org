@@ -8,9 +8,12 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Image from "next/image";
 import Portfolio from "@/components/sections/Portfolio";
+import ArchitectureCompare from "@/components/sections/ArchitectureCompare";
 import BookingModal from "@/components/ui/BookingModal";
 import WebDesignPricing from "@/components/ui/billing/WebDesignPricing";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import WireframeHeroBg from "@/components/ui/web-design/WireframeHeroBg";
+import TerminalWindow from "@/components/ui/web-design/TerminalWindow";
 
 
 interface Protocol {
@@ -106,17 +109,8 @@ export default function WebDesignPage() {
             <Navbar />
 
             {/* --- Hero: The Architecture --- */}
-            <section className="viewport-section relative">
-                <div className="absolute inset-0 z-0">
-                    <Image
-                        src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop"
-                        alt="High-End Digital Architecture"
-                        fill
-                        className="object-cover opacity-20"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
-                    <div className="absolute inset-0 cyber-grid opacity-20" />
-                </div>
+            <section className="viewport-section relative overflow-hidden">
+                <WireframeHeroBg />
 
                 <div className="container relative z-10 px-4 mx-auto text-center">
                     <motion.div
@@ -174,28 +168,45 @@ export default function WebDesignPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8, delay: index * 0.2 }}
-                                className="group p-10 rounded-[3rem] glass-card border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-700"
+                                className="group relative p-10 rounded-[3rem] glass-card border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-700 overflow-hidden"
                             >
-                                <div className={`w-16 h-16 rounded-2xl ${protocol.bg} flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-3 transition-all duration-700`}>
-                                    <protocol.icon className={`w-8 h-8 ${protocol.color}`} />
+                                {/* Animated Core Glow */}
+                                <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 blur-[60px] md:blur-[100px] pointer-events-none rounded-[3rem] ${protocol.bg.replace('/10', '/20')}`} />
+
+                                <div className="relative z-10">
+                                    <div className={`w-16 h-16 rounded-2xl ${protocol.bg} flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-6 transition-all duration-700 shadow-[0_0_0_rgba(255,255,255,0)] group-hover:shadow-[0_0_30px_var(--tw-shadow-color)]`} style={{ '--tw-shadow-color': protocol.color === 'text-cyan-400' ? 'rgba(34,211,238,0.2)' : protocol.color === 'text-blue-400' ? 'rgba(96,165,250,0.2)' : 'rgba(129,140,248,0.2)' } as any}>
+                                        <protocol.icon className={`w-8 h-8 ${protocol.color} group-hover:animate-pulse`} />
+                                    </div>
+                                    <span className={`${protocol.color} font-bold tracking-widest uppercase text-[10px] mb-3 block transform group-hover:translate-x-2 transition-transform duration-500`}>
+                                        {protocol.subtitle}
+                                    </span>
+                                    <h3 className="text-3xl font-bold mb-6 transform group-hover:translate-x-2 transition-transform duration-500 delay-75">
+                                        {protocol.title}
+                                    </h3>
+                                    <p className="text-foreground/70 mb-10 leading-relaxed text-lg font-light transform group-hover:translate-x-2 transition-transform duration-500 delay-100">
+                                        {protocol.description}
+                                    </p>
+                                    <ul className="space-y-4">
+                                        {protocol.features.map((feature, i) => (
+                                            <li
+                                                key={feature}
+                                                className={`flex items-center gap-3 text-sm font-medium text-foreground/50 border-l border-white/10 pl-4 transition-all duration-500 group-hover:text-foreground/80 transform group-hover:translate-x-4`}
+                                                style={{ transitionDelay: `${150 + i * 75}ms` }}
+                                            >
+                                                <div className={`w-1.5 h-1.5 rounded-full ${protocol.bg.replace('/10', '/50')} opacity-0 group-hover:opacity-100 transition-opacity absolute -left-[3px]`} style={{ transitionDelay: `${200 + i * 75}ms` }} />
+                                                <span className="relative">{feature}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </div>
-                                <span className={`${protocol.color} font-bold tracking-widest uppercase text-[10px] mb-3 block`}>{protocol.subtitle}</span>
-                                <h3 className="text-3xl font-bold mb-6">{protocol.title}</h3>
-                                <p className="text-foreground/70 mb-10 leading-relaxed text-lg font-light">
-                                    {protocol.description}
-                                </p>
-                                <ul className="space-y-4">
-                                    {protocol.features.map((feature) => (
-                                        <li key={feature} className="flex items-center gap-3 text-sm font-medium text-foreground/50 border-l border-white/10 pl-4">
-                                            {feature}
-                                        </li>
-                                    ))}
-                                </ul>
                             </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
+
+            {/* --- Interactive Architecture Comparison --- */}
+            <ArchitectureCompare />
 
             {/* --- Integration: 3D Proof of Work --- */}
             <Portfolio titleAs="h2" />
@@ -238,22 +249,8 @@ export default function WebDesignPage() {
                             </div>
                         </motion.div>
 
-                        <div className="flex-1 relative w-full aspect-square max-w-md mx-auto">
-                            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-[4rem] rotate-6 scale-95 blur-2xl opacity-50" />
-                            <div className="relative h-full w-full glass-card rounded-[4rem] flex flex-col items-center justify-center p-12 text-center border-white/10">
-                                <motion.div
-                                    animate={{
-                                        scale: [1, 1.05, 1],
-                                        rotate: [0, 5, -5, 0]
-                                    }}
-                                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                                    className="w-32 h-32 bg-background rounded-3xl border border-white/10 flex items-center justify-center mb-8 shadow-2xl"
-                                >
-                                    <Cpu className="w-16 h-16 text-cyan-400 animate-pulse" />
-                                </motion.div>
-                                <span className="text-4xl font-black text-white mb-2 tracking-tighter">100/100</span>
-                                <span className="text-xs uppercase tracking-widest text-cyan-400 font-bold">Lighthouse Core Web Vitals</span>
-                            </div>
+                        <div className="flex-1 w-full max-w-md mx-auto">
+                            <TerminalWindow />
                         </div>
                     </div>
                 </div>
