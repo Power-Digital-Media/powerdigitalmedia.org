@@ -290,8 +290,8 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
                                 </div>
                             )
                         })}
-                        {/* Trailing space block */}
-                        <div className="hidden md:block w-[10vw] shrink-0" />
+                        {/* Trailing space block (mirrors the initial pl-4 + 5vw left space) */}
+                        <div className="block w-[calc(5vw+1rem)] md:w-[10vw] shrink-0" />
                     </div>
                 </div>
             </div>
