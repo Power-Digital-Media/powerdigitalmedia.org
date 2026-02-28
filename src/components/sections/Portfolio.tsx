@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import BookingModal from "../ui/BookingModal";
 import { projects } from "@/data/projects";
 
@@ -23,13 +23,30 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
     const containerRef = useRef<HTMLDivElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
 
+    // CRITICAL: Ensure GSAP recalculates pin coordinates after custom fonts and layout shifts resolve
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            document.fonts.ready.then(() => {
+                ScrollTrigger.refresh();
+            });
+            // Fallback refresh loop just in case LCP image loaders shift the DOM later
+            const timer = setTimeout(() => ScrollTrigger.refresh(), 1000);
+            return () => clearTimeout(timer);
+        }
+    }, []);
+
     useGSAP(() => {
         const track = trackRef.current;
         const container = containerRef.current;
         if (!track || !container) return;
 
         // Calculate how far to move the track
-        const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
+        const getScrollAmount = () => {
+            const trackWidth = track.scrollWidth;
+            const viewportWidth = window.innerWidth;
+            // Provide a small buffer limit to prevent over-scrolling past the track edge
+            return -(trackWidth - viewportWidth);
+        };
 
         // Main horizontal scroll animation
         const scrollTween = gsap.to(track, {
@@ -37,13 +54,11 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
             ease: "none",
             scrollTrigger: {
                 trigger: container,
+                start: "top top",
+                end: () => `+=${track.scrollWidth}`, // Make it slightly longer so scroll feels smooth
                 pin: true,
-                anticipatePin: 1, // Look ahead to prevent jumping
-                pinSpacing: true, // Keep absolute track padding space
-                fastScrollEnd: true, // Ensure we don't skip unpin events
+                pinType: "fixed", // Force fixed behavior on mobile instead of inline transforms to prevent scrolling tear
                 scrub: 1, // Smooth scrubbing
-                // Multiply length slightly to make it slower, but ensure we hit the absolute end
-                end: () => `+=${track.scrollWidth}`,
                 invalidateOnRefresh: true, // Recalculate on resize
             }
         });
@@ -62,6 +77,7 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
                         start: "top top",
                         end: () => `+=${track.scrollWidth}`,
                         scrub: 1,
+                        invalidateOnRefresh: true,
                     }
                 });
             }
