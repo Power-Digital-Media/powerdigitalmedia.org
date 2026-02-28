@@ -117,10 +117,10 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
                     <div>
                         <div className="flex items-center gap-3 mb-4">
                             <div className="h-[1px] w-8 bg-cyan-400"></div>
-                            <span className="text-cyan-400 font-mono text-sm tracking-[0.2em] uppercase">Intelligence Briefing</span>
+                            <span className="text-cyan-400 font-mono text-sm tracking-[0.2em] uppercase">Our Portfolio</span>
                         </div>
                         <Title className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase text-glow-cyan leading-none">
-                            The Architecture<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Record</span>
+                            Beautiful & Responsive<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Websites</span>
                         </Title>
                     </div>
                 </div>
