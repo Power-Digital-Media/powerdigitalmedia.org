@@ -117,7 +117,7 @@ export default function LiveScanner() {
                             </div>
                         </div>
 
-                        <div className="p-6 md:p-8 min-h-[420px] font-mono text-sm relative">
+                        <div className="font-mono text-sm relative transition-all duration-500">
 
                             <AnimatePresence mode="wait">
                                 {scanState === "idle" && (
@@ -126,7 +126,7 @@ export default function LiveScanner() {
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
                                         exit={{ opacity: 0 }}
-                                        className="absolute inset-0 p-6 md:p-8 flex flex-col justify-center"
+                                        className="p-6 md:p-8 flex flex-col justify-center min-h-[400px]"
                                     >
                                         <div className="flex flex-col md:flex-row gap-4">
                                             <div className="relative flex-1">
@@ -160,7 +160,7 @@ export default function LiveScanner() {
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
                                         exit={{ opacity: 0 }}
-                                        className="absolute inset-0 p-6 md:p-8 overflow-hidden"
+                                        className="p-6 md:p-8 overflow-hidden min-h-[400px] flex flex-col justify-end"
                                     >
                                         <div className="space-y-2 mb-6">
                                             {logs.map((log, i) => (
@@ -187,7 +187,7 @@ export default function LiveScanner() {
                                         key="results"
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
-                                        className="absolute inset-0 p-6 md:p-8 flex flex-col justify-between space-y-6"
+                                        className="p-6 md:p-8 flex flex-col justify-between space-y-6 min-h-[400px]"
                                     >
                                         <h3 className="text-xl font-bold text-white mb-4 border-b border-white/10 pb-4 truncate">
                                             Analysis Target: <span className="text-cyan-400">{results.url}</span>
