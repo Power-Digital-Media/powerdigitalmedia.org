@@ -124,11 +124,11 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
             {/* The Track Container */}
             {/* The Track Container */}
             <div
-                className="flex min-h-screen md:h-full w-full items-center pl-4 md:px-0 flex-1 pb-8 md:pb-0 overflow-hidden"
+                className="relative flex min-h-[85vh] md:h-full w-full items-center pl-4 md:px-0 flex-1 py-16 md:py-0 overflow-hidden"
             >
-                <div ref={trackRef} className="flex gap-4 md:gap-16 w-max items-center h-full pt-16 md:pt-[150px] pb-16 md:pb-24 px-0 md:px-12">
+                <div ref={trackRef} className="relative flex gap-4 md:gap-16 w-max items-center h-full pt-16 md:pt-[150px] pb-16 md:pb-24 px-0 md:px-12">
                     {/* Add an empty div for initial desktop spacing so the first card isn't under the text */}
-                    <div className="hidden md:block w-4 shrink-0" />
+                    <div className="hidden md:block w-[10vw] shrink-0" />
 
                     {projects.map((project, index) => {
                         const glowRGB = project.glowColor || "34, 197, 94";
