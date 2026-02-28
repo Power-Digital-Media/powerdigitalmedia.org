@@ -14,6 +14,7 @@ import WebDesignPricing from "@/components/ui/billing/WebDesignPricing";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import WireframeHeroBg from "@/components/ui/web-design/WireframeHeroBg";
 import TerminalWindow from "@/components/ui/web-design/TerminalWindow";
+import LiveScanner from "@/components/ui/web-design/LiveScanner";
 
 
 interface Protocol {
@@ -104,7 +105,7 @@ export default function WebDesignPage() {
     ];
 
     return (
-        <main className="relative min-h-screen bg-background text-foreground overflow-x-hidden">
+        <main className="relative min-h-screen bg-background text-foreground overflow-x-clip">
             <BreadcrumbSchema items={breadcrumbItems} />
             <Navbar />
 
@@ -208,9 +209,6 @@ export default function WebDesignPage() {
             {/* --- Interactive Architecture Comparison --- */}
             <ArchitectureCompare />
 
-            {/* --- Integration: 3D Proof of Work --- */}
-            <Portfolio titleAs="h2" />
-
             {/* --- Section 2: Technical Specifications --- */}
             <section className="viewport-section relative bg-background border-t border-white/5">
                 <div className="absolute inset-0 z-0">
@@ -255,6 +253,14 @@ export default function WebDesignPage() {
                     </div>
                 </div>
             </section>
+
+            {/* --- Integration: 3D Proof of Work --- */}
+            <Portfolio titleAs="h2" />
+
+
+
+            {/* --- NEW: Live Scanner Lead Magnet --- */}
+            <LiveScanner />
 
             {/* --- Section 3: Investment Roadmap --- */}
             <section className="py-32 relative bg-background overflow-hidden">
@@ -311,6 +317,34 @@ export default function WebDesignPage() {
                 </div>
             </section>
 
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Service",
+                        "name": "High-Velocity Web Architecture & Design",
+                        "provider": {
+                            "@type": "ProfessionalService",
+                            "name": "Power Digital Media"
+                        },
+                        "serviceType": "Web Design",
+                        "description": "Premium digital infrastructure engineered for visual prestige, technical superiority, and conversion dominance. Hand-coded React and Next.js platforms.",
+                        "areaServed": {
+                            "@type": "City",
+                            "name": "Jackson",
+                            "addressRegion": "MS"
+                        },
+                        "offers": {
+                            "@type": "AggregateOffer",
+                            "priceCurrency": "USD",
+                            "lowPrice": "5500",
+                            "highPrice": "25000",
+                            "offerCount": 3
+                        }
+                    })
+                }}
+            />
             <Footer />
 
             <BookingModal

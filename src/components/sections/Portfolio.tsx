@@ -43,17 +43,17 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
         // Calculate how far to move the track
         const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
 
-        // Native CSS Sticky is handling the viewport lock. GSAP just handles horizontal translation matching scroll position!
+        // Use GSAP native pinning instead of CSS sticky to perfectly control document flow
         const scrollTween = gsap.to(track, {
             x: getScrollAmount,
             ease: "none",
-            force3D: true, // Force GPU acceleration to prevent mobile layer tearing
+            force3D: true, // Force GPU acceleration
             scrollTrigger: {
                 trigger: section,
+                pin: true,
                 start: "top top",
-                end: "bottom bottom",
-                scrub: 1.5, // Smoothed scrubbing over 1.5 seconds instead of direct 1:1 mapping (prevents jerkiness)
-                fastScrollEnd: true,
+                end: () => `+=${track.scrollWidth - window.innerWidth}`,
+                scrub: true, // strict 1:1 scrub prevents disjointed moving after pin releases
                 invalidateOnRefresh: true, // Recalculate on resize
             }
         });
@@ -122,12 +122,9 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
         <section
             id="portfolio"
             ref={sectionRef}
-            // Give the parent section massive physical height so we can scroll through it natively
-            // Setting `h-[500vh]` gives 5 blocks of vertical scroll space, keeping mobile perfectly native!
-            className="relative bg-[#020617] z-20 w-full h-[500vh]"
+            className="relative bg-[#020617] w-full overflow-hidden"
         >
-            {/* The Sticky Wrapper locking our Frame */}
-            <div className="sticky top-0 left-0 w-full h-[100svh] overflow-hidden flex flex-col justify-center">
+            <div className="relative w-full h-[100vh] flex flex-col justify-center">
 
                 {/* Header Area (Pinned Absolute Globally) */}
                 <div className="absolute top-0 left-0 w-full z-30 pt-16 md:pt-24 px-4 md:px-12 pointer-events-none shrink-0 flex flex-col justify-start">
@@ -181,7 +178,7 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
 
                                         {/* Mobile native clickable entire-card hit surface */}
                                         <Link
-                                            href={`/portfolio/project/${project.id}`}
+                                            href={`/portfolio/${project.id}`}
                                             className="absolute inset-0 z-40 md:hidden"
                                             aria-label={`View ${project.title} details`}
                                         />
@@ -240,7 +237,7 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
                                             {/* Desktop Actions */}
                                             <div className="hidden md:flex items-center gap-4 pointer-events-auto transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 pb-2">
                                                 <Link
-                                                    href={`/portfolio/project/${project.id}`}
+                                                    href={`/portfolio/${project.id}`}
                                                     className="flex items-center justify-center gap-2 px-8 py-4 bg-white text-black text-xs font-black uppercase tracking-widest rounded-xl hover:bg-cyan-400 hover:text-white transition-colors duration-300"
                                                     aria-label={`View full architecture for ${project.title}`}
                                                 >
@@ -300,6 +297,6 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
                 isOpen={isBookingOpen}
                 onClose={() => setIsBookingOpen(false)}
             />
-        </section>
+        </section >
     );
 }

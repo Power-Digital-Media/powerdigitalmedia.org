@@ -29,7 +29,7 @@ export default function TerminalWindow() {
     const [lines, setLines] = useState<{ text: string, type: string }[]>([]);
     const [isBooted, setIsBooted] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
-    const bottomRef = useRef<HTMLDivElement>(null);
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
     const inView = useInView(containerRef, { once: true, margin: "-100px" });
 
     // Boot Sequence
@@ -75,8 +75,8 @@ export default function TerminalWindow() {
 
     // Auto-scroll to bottom
     useEffect(() => {
-        if (bottomRef.current) {
-            bottomRef.current.scrollIntoView({ behavior: "smooth" });
+        if (scrollContainerRef.current) {
+            scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight;
         }
     }, [lines]);
 
@@ -102,7 +102,7 @@ export default function TerminalWindow() {
                 </div>
 
                 {/* Body Content */}
-                <div className="flex-1 p-5 overflow-y-auto hide-scrollbar text-[11px] sm:text-xs leading-relaxed space-y-1 relative">
+                <div ref={scrollContainerRef} className="flex-1 p-5 overflow-y-auto hide-scrollbar text-[11px] sm:text-xs leading-relaxed space-y-1 relative scroll-smooth">
 
                     {lines.map((line, i) => {
                         let colorClass = "text-white/70";
@@ -124,7 +124,6 @@ export default function TerminalWindow() {
                             </div>
                         );
                     })}
-                    <div ref={bottomRef} className="h-1 w-full" />
                 </div>
 
                 {/* Overlaid Lighthouse Score Badge */}

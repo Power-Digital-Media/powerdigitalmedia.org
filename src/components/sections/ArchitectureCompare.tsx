@@ -108,9 +108,9 @@ export default function ArchitectureCompare() {
                             </ul>
 
                             {/* Score Card */}
-                            <div className="mt-10 p-4 bg-red-950/50 rounded-xl border border-red-500/20 flex items-center justify-between">
+                            <div className="mt-10 p-4 bg-red-950/50 rounded-xl border border-red-500/20 flex items-center justify-start gap-8 md:gap-12">
                                 <span className="text-red-400 font-bold uppercase tracking-widest text-xs">Lighthouse Score</span>
-                                <span className="text-3xl font-black text-red-500">42/100</span>
+                                <span className="text-3xl md:text-4xl font-black text-red-500">42/100</span>
                             </div>
                         </div>
                     </div>
@@ -155,8 +155,8 @@ export default function ArchitectureCompare() {
                             </ul>
 
                             {/* Score Card */}
-                            <div className="mt-10 p-4 bg-cyan-950/50 rounded-xl border border-cyan-400/30 flex items-center justify-between shadow-[0_0_30px_rgba(34,211,238,0.2)]">
-                                <span className="text-3xl font-black text-cyan-400 drop-shadow-md">99/100</span>
+                            <div className="mt-10 p-4 bg-cyan-950/50 rounded-xl border border-cyan-400/30 flex items-center justify-end gap-8 md:gap-12 shadow-[0_0_30px_rgba(34,211,238,0.2)]">
+                                <span className="text-3xl md:text-4xl font-black text-cyan-400 drop-shadow-md">99/100</span>
                                 <span className="text-cyan-400 font-bold uppercase tracking-widest text-xs">Lighthouse Score</span>
                             </div>
                         </div>
