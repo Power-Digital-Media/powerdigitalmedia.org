@@ -110,20 +110,20 @@ export default function WebDesignPage() {
             <Navbar />
 
             {/* --- Hero: The Architecture --- */}
-            <section className="viewport-section relative overflow-hidden">
+            <section className="viewport-section relative overflow-hidden flex flex-col justify-center min-h-[90vh]">
                 <WireframeHeroBg />
 
-                <div className="container relative z-10 px-4 mx-auto text-center">
+                <div className="container relative z-10 px-4 mx-auto text-center mt-32 md:mt-16 mb-24">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                         className="max-w-5xl mx-auto"
                     >
-                        <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-xs mb-6 block">Premium Digital Infrastructure</span>
+                        <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[10px] md:text-xs mb-6 block">Premium Digital Infrastructure</span>
                         <h1 className="text-5xl md:text-9xl font-bold mb-10 tracking-tighter leading-tight">
                             Digital <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-500 text-glow-cyan">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-500 text-glow-cyan text-glow pb-2">
                                 Architecture.
                             </span>
                         </h1>
@@ -133,11 +133,11 @@ export default function WebDesignPage() {
                         <div className="flex flex-wrap justify-center gap-6">
                             <button
                                 onClick={() => setIsBookingOpen(true)}
-                                className="px-12 py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 hover:text-white transition-all uppercase tracking-widest text-sm shadow-[0_0_40px_rgba(255,255,255,0.2)]"
+                                className="w-full sm:w-auto px-12 py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 hover:text-white transition-all uppercase tracking-widest text-sm shadow-[0_0_40px_rgba(255,255,255,0.2)]"
                             >
                                 Initialize Build
                             </button>
-                            <Link href="#protocols" className="px-12 py-5 border border-white/20 rounded-full hover:bg-white/5 transition-all font-bold uppercase tracking-widest text-sm">
+                            <Link href="#protocols" className="w-full sm:w-auto flex items-center justify-center px-12 py-5 border border-white/20 rounded-full hover:bg-white/5 transition-all font-bold uppercase tracking-widest text-sm">
                                 View Protocols
                             </Link>
                         </div>
