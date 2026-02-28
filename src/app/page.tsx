@@ -59,7 +59,7 @@ export default function Home() {
           >
             Get a Free Architecture Audit
           </a>
-          <a href="#tech" className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 md:px-12 md:py-5 border border-white/10 rounded-full font-black uppercase tracking-widest text-[9px] hover:bg-white/5 hover:border-white/20 transition-all group active:scale-95 block">
+          <a href="#studio" className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 md:px-12 md:py-5 border border-white/10 rounded-full font-black uppercase tracking-widest text-[9px] hover:bg-white/5 hover:border-white/20 transition-all group active:scale-95 block">
             View The Tech Stack
           </a>
         </div>
