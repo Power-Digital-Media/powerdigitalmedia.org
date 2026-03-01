@@ -257,7 +257,11 @@ export default function PodcastingPage() {
             <HookGenerator />
 
             {/* Scroll-Hijack Disruption */}
-            <WakeUpCall />
+            <WakeUpCall
+                title="Your competitors are out-publishing you."
+                subtitle="Every day you wait is market share lost to inferior content. The algorithm favors volume and quality. You need both."
+                paragraph="Stop fighting algorithms. Start dictating them."
+            />
 
             {/* Pain Point Agitation vs Power Protocol */}
             <CostOfInaction />

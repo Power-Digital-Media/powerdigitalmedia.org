@@ -13,15 +13,15 @@ test('Podcast Page Preview', async ({ page }) => {
 
     // Desktop View
     await page.setViewportSize({ width: 1280, height: 800 });
-    await page.goto('http://localhost:3000/podcasting');
+    await page.goto('http://localhost:3000/production');
     await page.waitForLoadState('networkidle');
     await scrollPage();
-    await page.screenshot({ path: 'C:/Users/User/.gemini/antigravity/brain/ed245d3a-4456-4fa0-b780-e943e4ff2d47/podcast_desktop_preview.png', fullPage: true });
+    await page.screenshot({ path: 'C:/Users/User/.gemini/antigravity/brain/ed245d3a-4456-4fa0-b780-e943e4ff2d47/production_desktop_preview.png', fullPage: true });
 
     // Mobile View
     await page.setViewportSize({ width: 375, height: 667 });
-    await page.goto('http://localhost:3000/podcasting');
+    await page.goto('http://localhost:3000/production');
     await page.waitForLoadState('networkidle');
     await scrollPage();
-    await page.screenshot({ path: 'C:/Users/User/.gemini/antigravity/brain/ed245d3a-4456-4fa0-b780-e943e4ff2d47/podcast_mobile_preview.png', fullPage: true });
+    await page.screenshot({ path: 'C:/Users/User/.gemini/antigravity/brain/ed245d3a-4456-4fa0-b780-e943e4ff2d47/production_mobile_preview.png', fullPage: true });
 });

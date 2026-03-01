@@ -3,22 +3,28 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
-export default function WakeUpCall() {
+export default function WakeUpCall({ title, subtitle, paragraph }: { title: string, subtitle: string, paragraph: string }) {
     const containerRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
-        offset: ["start start", "end end"]
+        offset: ["start center", "end start"]
     });
 
-    const opacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]);
-    const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 1.2]);
-    const textOpacity1 = useTransform(scrollYProgress, [0.1, 0.25], [0, 1]);
-    const textOpacity2 = useTransform(scrollYProgress, [0.4, 0.55], [0, 1]);
-    const textOpacity3 = useTransform(scrollYProgress, [0.7, 0.85], [0, 1]);
+    const opacity = useTransform(scrollYProgress, [0, 0.1, 0.7, 0.9], [0, 1, 1, 0]);
+    const scale = useTransform(scrollYProgress, [0, 0.5, 0.9], [0.8, 1, 1.2]);
+    const textOpacity1 = useTransform(scrollYProgress, [0.05, 0.20], [0, 1]);
+    const textOpacity2 = useTransform(scrollYProgress, [0.25, 0.40], [0, 1]);
+    const textOpacity3 = useTransform(scrollYProgress, [0.45, 0.60], [0, 1]);
 
     // Glitch effect triggers
     const glitchX = useTransform(scrollYProgress, [0.2, 0.21, 0.22, 0.23], [0, -10, 10, 0]);
     const glitchY = useTransform(scrollYProgress, [0.4, 0.41, 0.42, 0.43], [0, 10, -10, 0]);
+
+    // Simple function to split title to recreate the "glitch word" effect dynamically if needed, 
+    // but a safer default is just rendering the string
+    const splitTitle = title.split(' ');
+    const firstHalf = splitTitle.slice(0, Math.ceil(splitTitle.length / 2)).join(' ');
+    const secondHalf = splitTitle.slice(Math.ceil(splitTitle.length / 2)).join(' ');
 
     return (
         <section ref={containerRef} className="relative h-[250vh] bg-background">
@@ -41,24 +47,23 @@ export default function WakeUpCall() {
                         <motion.div style={{ opacity: textOpacity1, x: glitchX }} className="mb-8">
                             <span className="text-[10px] md:text-sm font-black text-red-500 uppercase tracking-[0.5em] mb-4 block">System Warning</span>
                             <h2 className="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter leading-[0.85]">
-                                Your competitors are <br className="hidden md:block" />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-800">out-publishing you.</span>
+                                {firstHalf} <br className="hidden md:block" />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-800">{secondHalf}</span>
                             </h2>
                         </motion.div>
 
                         {/* Line 2 - The Agitation */}
                         <motion.div style={{ opacity: textOpacity2, y: glitchY }} className="mb-12">
                             <p className="text-xl md:text-4xl font-bold text-foreground/80 uppercase tracking-tight max-w-3xl mx-auto leading-tight">
-                                Every day you wait is market share lost to inferior content. The algorithm favors volume and quality. <span className="text-white">You need both.</span>
+                                {subtitle}
                             </p>
                         </motion.div>
 
                         {/* Line 3 - The Resolution */}
                         <motion.div style={{ opacity: textOpacity3 }} className="p-8 border border-cyan-500/30 glass-card bg-cyan-950/20 rounded-3xl relative overflow-hidden">
                             <div className="absolute inset-0 bg-cyan-500/10 blur-xl mix-blend-screen" />
-                            <p className="text-2xl md:text-5xl font-black text-cyan-400 uppercase tracking-tighter relative z-10 drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]">
-                                Stop fighting algorithms.<br />
-                                <span className="text-white">Start dictating them.</span>
+                            <p className="text-xl md:text-3xl font-black text-cyan-400 tracking-tighter relative z-10 drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]">
+                                {paragraph}
                             </p>
                         </motion.div>
                     </div>

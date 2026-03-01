@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Camera, Video, Zap, CheckCircle2, ArrowRight, Star, MapPin, Film, Share2 } from "lucide-react";
+import { CheckCircle2, ArrowRight, MapPin } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -11,6 +11,10 @@ import BookingModal from "@/components/ui/BookingModal";
 import { useState } from "react";
 import Image from "next/image";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import PodcastingCommandBar from "@/components/ui/PodcastingCommandBar";
+import WakeUpCall from "@/components/ui/WakeUpCall";
+import MultiCamArchitect from "@/components/ui/MultiCamArchitect";
+import RawVsGradedSlider from "@/components/ui/RawVsGradedSlider";
 
 const tiers = [
     {
@@ -129,53 +133,119 @@ export default function ProductionPage() {
             <BreadcrumbSchema items={breadcrumbItems} />
             <Navbar />
 
-            {/* Hero Section */}
-            <section className="relative min-h-[80vh] flex items-center pt-24 pb-20 overflow-hidden">
+            <PodcastingCommandBar />
+
+            {/* Cinematic Hero Section */}
+            <section className="relative min-h-[90vh] flex items-center pt-32 pb-20 overflow-hidden bg-[#020202]">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop"
-                        alt="On-Location Production"
+                        alt="On-Location Production Floor"
                         fill
-                        className="object-cover opacity-20 scale-105"
+                        className="object-cover opacity-10 mix-blend-luminosity scale-105 filter blur-sm"
                         priority
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#020202] via-[#020202]/80 to-background" />
+                    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-900/10 rounded-full blur-[120px]" />
+                    <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-900/10 rounded-full blur-[120px]" />
                 </div>
 
-                <div className="container px-4 mx-auto relative z-10 text-center">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1 }}
-                        className="max-w-4xl mx-auto"
-                    >
-                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-card border-cyan-400/20 text-cyan-400 text-[10px] font-black uppercase tracking-[0.4em] mb-10">
-                            <MapPin className="w-3 h-3 animate-pulse" />
-                            On-Location Production
-                        </div>
+                <div className="container px-4 mx-auto relative z-10">
+                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+                        <motion.div
+                            initial={{ opacity: 0, x: -30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 1, ease: "easeOut" }}
+                            className="max-w-2xl"
+                        >
+                            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-card border-red-500/20 text-red-500 text-[10px] font-black uppercase tracking-[0.4em] mb-8">
+                                <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                                Live Deployment: 1 Slot Left
+                            </div>
 
-                        <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-10 leading-[0.85] uppercase">
-                            Capture <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 text-glow-cyan">
-                                Anywhere.
-                            </span>
-                        </h1>
+                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[0.85] uppercase">
+                                Cinematic <br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 text-glow-cyan">
+                                    Firepower.
+                                </span>
+                            </h1>
 
-                        <p className="text-xl md:text-2xl text-foreground/70 leading-relaxed mb-12 max-w-2xl mx-auto font-light">
-                            We bring studio-grade cinema to your event, brand, or location. High-velocity production for high-authority players.
-                        </p>
+                            <p className="text-lg md:text-xl text-foreground/60 leading-relaxed mb-10 font-light border-l-2 border-cyan-400/50 pl-6">
+                                We bring studio-grade cinema directly to your event, brand, or location. We don't just point a camera. We architect a <span className="text-white font-bold">multi-angle narrative</span> built for conversion and high-authority distribution.
+                            </p>
 
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                            <button
-                                onClick={() => setIsBookingOpen(true)}
-                                className="px-12 py-6 bg-cyan-400 text-slate-950 rounded-full font-black uppercase tracking-widest text-xs hover:bg-white transition-all shadow-[0_0_40px_rgba(34,211,238,0.2)]"
-                            >
-                                Book A Shoot
-                            </button>
-                        </div>
-                    </motion.div>
+                            <div className="flex flex-col sm:flex-row items-center gap-6">
+                                <button
+                                    onClick={() => setIsBookingOpen(true)}
+                                    className="w-full sm:w-auto px-10 py-5 bg-cyan-400 text-slate-950 rounded-full font-black uppercase tracking-widest text-[10px] hover:bg-white transition-all shadow-[0_0_40px_rgba(34,211,238,0.2)] flex items-center justify-center gap-2 group"
+                                >
+                                    Claim Your Slot <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                </button>
+                                <span className="text-xs text-foreground/40 font-mono tracking-widest uppercase">
+                                    Fully Managed • Zero Tech Headaches
+                                </span>
+                            </div>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+                            className="relative lg:h-[600px] flex justify-center items-center"
+                        >
+                            <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 to-blue-500/5 rounded-3xl border border-white/5 backdrop-blur-sm overflow-hidden flex flex-col">
+                                {/* Faux Camera UI Header */}
+                                <div className="h-10 bg-black/40 border-b border-white/5 flex items-center justify-between px-4">
+                                    <div className="flex gap-2 items-center">
+                                        <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                                        <span className="text-[10px] font-mono text-red-500 font-bold uppercase tracking-widest">REC 00:14:23:09</span>
+                                    </div>
+                                    <div className="flex gap-3 text-[10px] font-mono text-white/50">
+                                        <span>120FPS</span>
+                                        <span>8K RAW</span>
+                                        <span>S-LOG 3</span>
+                                    </div>
+                                </div>
+                                <div className="flex-1 relative">
+                                    <Image
+                                        src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=80&w=2056&auto=format&fit=crop"
+                                        alt="Cinematic Target"
+                                        fill
+                                        className="object-cover"
+                                    />
+                                    {/* Rule of thirds crosshairs */}
+                                    <div className="absolute inset-0 grid grid-cols-3 grid-rows-3 pointer-events-none">
+                                        <div className="border-b border-r border-white/10" />
+                                        <div className="border-b border-r border-white/10" />
+                                        <div className="border-b border-white/10" />
+                                        <div className="border-b border-r border-white/10" />
+                                        <div className="border-b border-r border-white/10 relative">
+                                            {/* Center focus bracket */}
+                                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 border border-cyan-400/50 flex items-center justify-center">
+                                                <div className="w-1 h-1 bg-cyan-400/50" />
+                                            </div>
+                                        </div>
+                                        <div className="border-b border-white/10" />
+                                        <div className="border-r border-white/10" />
+                                        <div className="border-r border-white/10" />
+                                        <div className="" />
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
                 </div>
             </section>
+
+            <WakeUpCall
+                title="You spent $20,000 on the venue. But the video makes it look like it was shot on a security camera."
+                subtitle="Your event ROI shouldn't die the moment the doors close."
+                paragraph="You flew in the speakers. You rented the lighting. You packed the room. But if the final video output is flat, washed out, and boring—that's how the entire internet will perceive your brand forever. We don't do shaky cameras in the back of the room. We deploy full cinema cameras, heavy staging, and live-grading to ensure your brand looks like a blockbuster."
+            />
+
+            <MultiCamArchitect />
+
+            <RawVsGradedSlider />
 
             {/* Pricing Section */}
             <section id="tiers" className="py-24 relative z-10">
