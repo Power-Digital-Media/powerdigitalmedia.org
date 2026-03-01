@@ -126,7 +126,7 @@ export default function ShowcaseReel() {
                         <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
 
                         {/* Camera UI Elements */}
-                        <div className="absolute inset-0 p-8 flex flex-col justify-between border border-white/0 group-hover:border-white/10 transition-all duration-500 rounded-[2rem]">
+                        <div className="absolute inset-0 p-4 md:p-8 flex flex-col justify-between border border-white/0 group-hover:border-white/10 transition-all duration-500 rounded-[2rem]">
                             <div className="flex justify-between items-start opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <div className="flex items-center gap-2 text-[10px] font-mono tracking-widest text-white/50 bg-black/40 px-3 py-1.5 rounded-full backdrop-blur-md">
                                     <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
@@ -137,9 +137,9 @@ export default function ShowcaseReel() {
                                 </div>
                             </div>
 
-                            <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <div className="transform md:translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                                 <span className="text-cyan-400 font-bold tracking-[0.2em] uppercase text-[10px] mb-2 block">{show.category}</span>
-                                <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight mb-4">{show.title}</h3>
+                                <h3 className="text-2xl md:text-3xl font-bold text-white uppercase tracking-tight">{show.title}</h3>
                                 <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 group-hover:text-cyan-400 transition-colors">
                                     Watch Latest <Play className="w-3 h-3 fill-current" />
                                 </div>

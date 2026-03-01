@@ -12,6 +12,11 @@ import AudioComparison from "@/components/ui/AudioComparison";
 import TechSchematic from "@/components/ui/TechSchematic";
 import AddOnProtocols from "@/components/ui/AddOnProtocols";
 import HookGenerator from "@/components/ui/HookGenerator";
+import AuthorityMarquee from "@/components/ui/AuthorityMarquee";
+import PodcastingCommandBar from "@/components/ui/PodcastingCommandBar";
+import WakeUpCall from "@/components/ui/WakeUpCall";
+import CostOfInaction from "@/components/ui/CostOfInaction";
+import ROIEngine from "@/components/ui/ROIEngine";
 import { useState } from "react";
 import Image from "next/image";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
@@ -113,7 +118,7 @@ export default function PodcastingPage() {
     ];
 
     return (
-        <main className="relative min-h-screen bg-background overflow-x-hidden">
+        <main className="relative min-h-screen bg-background overflow-x-clip">
             <BreadcrumbSchema items={breadcrumbItems} />
             <Navbar />
 
@@ -155,7 +160,7 @@ export default function PodcastingPage() {
             </div>
 
             {/* Hero Section */}
-            <section className="relative min-h-[90vh] flex items-center pt-24 pb-20 overflow-hidden">
+            <section className="relative min-h-[90vh] flex items-center pt-32 pb-20 overflow-hidden">
                 {/* Cinematic Background Image */}
                 <div className="absolute inset-0 z-0">
                     <Image
@@ -167,6 +172,34 @@ export default function PodcastingPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
                     <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background opacity-60" />
+                </div>
+
+                {/* Audio Frequency Visual Layer */}
+                <div className="absolute inset-0 z-0 flex items-center justify-center opacity-10 pointer-events-none overflow-hidden mix-blend-screen">
+                    <div className="flex items-center gap-1 md:gap-2 w-[120%] h-[40vh] max-w-none opacity-50"
+                        style={{ maskImage: 'radial-gradient(ellipse at center, black 20%, transparent 70%)', WebkitMaskImage: 'radial-gradient(ellipse at center, black 20%, transparent 70%)' }}>
+                        {[...Array(60)].map((_, i) => {
+                            // Deterministic pseudo-random values for hydration-safe animations
+                            const baseHeight = Math.abs(Math.sin(i * 0.4) * 30 + Math.cos(i * 1.1) * 20 + 20);
+                            const duration = Math.abs(Math.sin(i * 0.7) * 2 + 2.5);
+                            const delay = Math.abs(Math.cos(i * 0.3) * 2);
+                            return (
+                                <motion.div
+                                    key={`wave-${i}`}
+                                    animate={{
+                                        height: [`${baseHeight}%`, `${baseHeight + 40}%`, `${baseHeight}%`]
+                                    }}
+                                    transition={{
+                                        duration: duration,
+                                        repeat: Infinity,
+                                        ease: "easeInOut",
+                                        delay: delay
+                                    }}
+                                    className="flex-1 bg-cyan-400 rounded-full shadow-[0_0_15px_rgba(34,211,238,0.8)]"
+                                />
+                            );
+                        })}
+                    </div>
                 </div>
 
                 <div className="container px-4 mx-auto relative z-10 text-center">
@@ -214,11 +247,23 @@ export default function PodcastingPage() {
                 <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-background to-transparent pointer-events-none" />
             </section>
 
+            {/* Authority Marquee */}
+            <AuthorityMarquee />
+
             {/* Showcase Section */}
             <ShowcaseReel />
 
             {/* AI Growth Intelligence (Primary Conversion Slot) */}
             <HookGenerator />
+
+            {/* Scroll-Hijack Disruption */}
+            <WakeUpCall />
+
+            {/* Pain Point Agitation vs Power Protocol */}
+            <CostOfInaction />
+
+            {/* Mathematical Advantage */}
+            <ROIEngine />
 
             {/* Power Protocol Pipeline */}
             <ProductionPipeline />
@@ -235,13 +280,10 @@ export default function PodcastingPage() {
                     </div>
                     <div className="grid gap-8 lg:grid-cols-3">
                         {tiers.map((tier, index) => (
-                            <motion.div
+                            <div
                                 key={tier.name}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="relative group"
+                                className="relative group animate-fade-in-up"
+                                style={{ animationDelay: `${index * 150}ms`, animationFillMode: "both" }}
                             >
                                 {tier.popular && (
                                     <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 px-4 py-1 rounded-full bg-accent text-[10px] font-bold uppercase tracking-widest text-white border-glow flex items-center gap-1">
@@ -249,38 +291,52 @@ export default function PodcastingPage() {
                                     </div>
                                 )}
 
-                                <div className={`h-full p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] glass-card transition-all duration-500 border-white/5 ${tier.popular ? "border-accent/40 bg-accent/5 lg:scale-105" : "hover:border-accent/30"}`}>
-                                    <h3 className="text-xl font-bold mb-2">{tier.name}</h3>
-                                    <div className="flex items-baseline gap-1 mb-4">
-                                        <span className="text-4xl font-bold">${tier.price}</span>
-                                        <span className="text-muted-foreground text-sm">/month</span>
-                                    </div>
-                                    <p className="text-sm text-muted-foreground mb-8 leading-relaxed">
-                                        {tier.description}
-                                    </p>
+                                <div
+                                    onMouseMove={(e) => {
+                                        const rect = e.currentTarget.getBoundingClientRect();
+                                        const x = e.clientX - rect.left;
+                                        const y = e.clientY - rect.top;
+                                        e.currentTarget.style.setProperty("--mouse-x", `${x}px`);
+                                        e.currentTarget.style.setProperty("--mouse-y", `${y}px`);
+                                    }}
+                                    className={`relative overflow-hidden h-full p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] glass-card transition-all duration-500 border-white/5 ${tier.popular ? "border-accent/40 bg-accent/5 lg:scale-105" : "hover:border-accent/30"}`}
+                                >
+                                    {/* Mouse Spotlight */}
+                                    <div className="absolute inset-0 z-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100 pointer-events-none" style={{ background: "radial-gradient(800px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(34,211,238,0.06), transparent 40%)" }} />
 
-                                    <div className="space-y-4 mb-10">
-                                        {tier.features.map((feature) => (
-                                            <div key={feature} className="flex items-center gap-3 text-sm">
-                                                <CheckCircle2 className="w-4 h-4 text-accent shrink-0" />
-                                                <span className="text-foreground/80">{feature}</span>
-                                            </div>
-                                        ))}
-                                    </div>
+                                    <div className="relative z-10">
+                                        <h3 className="text-xl font-bold mb-2">{tier.name}</h3>
+                                        <div className="flex items-baseline gap-1 mb-4">
+                                            <span className="text-4xl font-bold">${tier.price}</span>
+                                            <span className="text-muted-foreground text-sm">/month</span>
+                                        </div>
+                                        <p className="text-sm text-muted-foreground mb-8 leading-relaxed">
+                                            {tier.description}
+                                        </p>
 
-                                    <button
-                                        onClick={() => handleCheckout(tier)}
-                                        disabled={isProcessing !== null}
-                                        className={`w-full py-4 flex items-center justify-center font-bold rounded-2xl transition-all ${tier.popular ? "bg-accent text-white border-glow" : "glass-card hover:bg-accent hover:text-white"} ${isProcessing === tier.id ? "opacity-50 cursor-not-allowed" : ""}`}
-                                    >
-                                        {isProcessing === tier.id ? (
-                                            <Loader2 className="w-5 h-5 animate-spin" />
-                                        ) : (
-                                            "Apply Now"
-                                        )}
-                                    </button>
+                                        <div className="space-y-4 mb-10">
+                                            {tier.features.map((feature) => (
+                                                <div key={feature} className="flex items-center gap-3 text-sm">
+                                                    <CheckCircle2 className="w-4 h-4 text-accent shrink-0" />
+                                                    <span className="text-foreground/80">{feature}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        <button
+                                            onClick={() => handleCheckout(tier)}
+                                            disabled={isProcessing !== null}
+                                            className={`w-full py-4 flex items-center justify-center font-bold rounded-2xl transition-all ${tier.popular ? "bg-accent text-white border-glow shadow-[0_0_20px_rgba(34,211,238,0.2)]" : "glass-card hover:bg-accent hover:text-white hover:shadow-[0_0_20px_rgba(34,211,238,0.3)]"} ${isProcessing === tier.id ? "opacity-50 cursor-not-allowed" : ""}`}
+                                        >
+                                            {isProcessing === tier.id ? (
+                                                <Loader2 className="w-5 h-5 animate-spin" />
+                                            ) : (
+                                                "Apply Now"
+                                            )}
+                                        </button>
+                                    </div>
                                 </div>
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
                     <div className="mt-16 text-center">
@@ -306,6 +362,9 @@ export default function PodcastingPage() {
                 isOpen={isBookingOpen}
                 onClose={() => setIsBookingOpen(false)}
             />
+
+            {/* Fixed Call to Action Bar */}
+            <PodcastingCommandBar />
         </main>
     );
 }

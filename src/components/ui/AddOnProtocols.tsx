@@ -36,13 +36,9 @@ export default function AddOnProtocols() {
 
                 <div className="grid gap-6 md:grid-cols-3 max-w-6xl mx-auto">
                     {addons.map((addon, index) => (
-                        <motion.div
+                        <div
                             key={addon.title}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className="p-8 rounded-[2rem] glass-card border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all group relative overflow-hidden"
+                            className="p-8 rounded-[2rem] glass-card border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all group relative overflow-hidden animate-fade-in-up"
                         >
                             <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                                 <addon.icon className="w-5 h-5 text-cyan-400" />
@@ -58,7 +54,7 @@ export default function AddOnProtocols() {
 
                             {/* Ambient Glow */}
                             <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-cyan-500/5 blur-[80px] pointer-events-none" />
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
             </div>
