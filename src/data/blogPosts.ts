@@ -1283,8 +1283,8 @@ Here is exactly ** how to start a video podcast ** workflow shift this week to h
         excerpt: "AI-executable websites replace traditional SEO in 2026. Learn how structured, machine-readable infrastructure drives AI retrieval and recommendation authority.",
         date: "2026-02-27",
         category: "AI Strategy",
-        image: "/blog-images/2026-ai-executable-hero.png",
-        ogImage: "/blog-images/2026-ai-executable-og.png",
+        image: "/blog-images/2026-ai-executable-hero.webp",
+        ogImage: "/blog-images/2026-ai-executable-og.webp",
         relatedGearIds: ["nvidia-rtx-5090", "amd-ryzen-9-9950x3d", "samsung-990-pro-4tb", "elgato-stream-deck-plus"],
         author: {
             name: "Damein Wayne Donald",
@@ -8212,8 +8212,8 @@ Validate your schema, check your machine-readable files, and test conversational
         excerpt: "High-performance CSS and Interop 2026 are critical machine trust signals. Learn how CLS stability and layout shells build AI retrieval authority.",
         date: "2026-02-27",
         category: "AI Strategy",
-        image: "/blog-images/2026-css-interop-hero.png",
-        ogImage: "/blog-images/2026-css-interop-og.png",
+        image: "/blog-images/2026-css-interop-hero.webp",
+        ogImage: "/blog-images/2026-css-interop-og.webp",
         relatedGearIds: ["nvidia-rtx-5090", "amd-ryzen-9-9950x3d", "samsung-990-pro-4tb", "elgato-stream-deck-plus"],
         author: {
             name: "Power Digital Media LLC",
