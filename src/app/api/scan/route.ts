@@ -55,6 +55,8 @@ export async function POST(request: Request) {
 
                             if (Array.isArray(parsed)) {
                                 parsed.forEach(extractType);
+                            } else if (parsed && Array.isArray(parsed['@graph'])) {
+                                parsed['@graph'].forEach(extractType);
                             } else {
                                 extractType(parsed);
                             }
