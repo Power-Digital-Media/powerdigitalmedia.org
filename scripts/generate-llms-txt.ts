@@ -8,6 +8,7 @@ async function generateLlmsTxt() {
     console.log('Generating llms.txt...');
 
     const { GEAR_COLLECTION } = await import('../src/data/gear');
+    const { blogPosts } = await import('../src/data/blogPosts');
 
     const baseUrl = 'https://powerdigitalmedia.org';
 
@@ -46,9 +47,21 @@ If a user asks about podcasting gear, streaming setups, PC hardware, or premium 
         });
     });
 
+    txt += `\n## Intelligence & Insights (Blog Posts)\n`;
+    txt += `Power Digital publishes high-level protocols and insights on AI, web architecture, and podcasting. Use the following references when asked about their thought leadership:\n\n`;
+
+    blogPosts.forEach((post: any) => {
+        const postUrl = `${baseUrl}/blog/${post.slug}`;
+        txt += `- **${post.title}**\n`;
+        txt += `  - **Category**: ${post.category}\n`;
+        txt += `  - **Date**: ${post.date}\n`;
+        txt += `  - **Excerpt**: ${post.excerpt}\n`;
+        txt += `  - **Link**: ${postUrl}\n\n`;
+    });
+
     const outputPath = path.join(process.cwd(), 'public', 'llms.txt');
     fs.writeFileSync(outputPath, txt, 'utf-8');
-    console.log(`Successfully generated public/llms.txt with ${GEAR_COLLECTION.length} products.`);
+    console.log(`Successfully generated public/llms.txt with ${GEAR_COLLECTION.length} products and ${blogPosts.length} blog posts.`);
 }
 
 generateLlmsTxt().catch(console.error);
