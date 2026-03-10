@@ -33,20 +33,21 @@ const SCENES = [
     { id: "I", label: "IGNITION", cx: 0.0, cy: 0.0, travel: "↓", bgIdx: 0 },
     { id: "II", label: "ARCHITECTURE", cx: 0.0, cy: 1.0, travel: "→", bgIdx: 0 },
     { id: "III", label: "ARMORY", cx: 1.4, cy: 1.0, travel: "↓", bgIdx: 1 },
-    { id: "IV", label: "FREQUENCY", cx: 1.4, cy: 2.2, travel: "↓", bgIdx: 1 },
-    { id: "V", label: "VELOCITY", cx: 1.4, cy: 3.4, travel: "←", bgIdx: 1 },
-    { id: "VI", label: "INTEL", cx: 0.0, cy: 3.4, travel: "←", bgIdx: 2 },
-    { id: "VII", label: "VISION", cx: -1.2, cy: 3.4, travel: "↓", bgIdx: 2 },
-    { id: "VIII", label: "TERMINAL", cx: -1.2, cy: 4.6, travel: "·", bgIdx: 2 },
+    { id: "IV", label: "SYSTEM WARNING", cx: 1.4, cy: 1.6, travel: "↓", bgIdx: 1 },
+    { id: "V", label: "FREQUENCY", cx: 1.4, cy: 2.2, travel: "↓", bgIdx: 1 },
+    { id: "VI", label: "VELOCITY", cx: 1.4, cy: 3.4, travel: "←", bgIdx: 1 },
+    { id: "VII", label: "INTEL", cx: 0.0, cy: 3.4, travel: "←", bgIdx: 2 },
+    { id: "VIII", label: "VISION", cx: -1.2, cy: 3.4, travel: "↓", bgIdx: 2 },
+    { id: "IX", label: "TERMINAL", cx: -1.2, cy: 4.6, travel: "·", bgIdx: 2 },
 ];
 const N = SCENES.length;
 const SLOT = 1 / N;
 
 // ─── TOTAL PAGE HEIGHT ────────────────────────────────────────────────────────
-// 1600vh ÷ 8 scenes = 200vh per scene.
+// 1800vh ÷ 9 scenes = 200vh per scene.
 // First 65% (130vh) = content animation window.
 // Last 35% (70vh)   = camera travels to next scene — quick, not 5-minute marathon.
-const TOTAL_VH = 1600;
+const TOTAL_VH = 1800;
 
 // ─── CAMERA TARGET ────────────────────────────────────────────────────────────
 function getTargetCam(globalP: number): { x: number; y: number } {
@@ -55,10 +56,13 @@ function getTargetCam(globalP: number): { x: number; y: number } {
     const toI = Math.min(fromI + 1, N - 1);
     const localP = raw - fromI;
     // Scene I:   camera starts at 8%  — immediate animation feedback on first scroll.
-    // Scene IV:  camera starts at 78%  — the Frequency scene gets extra dwell time so
-    //            all 5 podcast cards can fully unfurl before the camera leaves.
+    // Scene V:   Frequency scene gets extra dwell time so all cards unfurl.
+    // Scene IV:  WakeUpCall scene gets extra dwell time.
     // All others: 62% (124vh content dwell, 76vh travel).
-    const startAt = fromI === 0 ? 0.08 : fromI === 3 ? 0.78 : 0.62;
+    let startAt = 0.62;
+    if (fromI === 0) startAt = 0.08;
+    if (fromI === 4) startAt = 0.78;
+    if (fromI === 3) startAt = 0.90;
     const moveP = Math.max(0, (localP - startAt) / (1 - startAt));
     const t = moveP * moveP * (3 - 2 * moveP); // smooth-step
     const from = SCENES[fromI];
@@ -296,12 +300,114 @@ export default function OurWorkPage() {
     const [progress, setProgress] = useState(0);
     const [isBookingOpen, setIsBookingOpen] = useState(false);
     const [cursorPos, setCursorPos] = useState({ x: -100, y: -100 });
+    const [isAutoScrolling, setIsAutoScrolling] = useState(false);
 
     const worldRef = useRef<HTMLDivElement>(null);
     const bgRef = useRef<HTMLDivElement>(null);
     const cursorDotRef = useRef<HTMLDivElement>(null);
     const camRef = useRef({ x: 0, y: 0 });
     const scrollPRef = useRef(0);
+    const droneRef = useRef<HTMLAudioElement | null>(null);
+    const powerUpRef = useRef<HTMLAudioElement | null>(null);
+    const braaamRef = useRef<HTMLAudioElement | null>(null);
+    const telemetryRef = useRef<HTMLAudioElement | null>(null);
+
+    // Audio setup
+    useEffect(() => {
+        droneRef.current = new Audio("/audio/Our_Work_Sounds/Scene 1/continuous_drone.mp3");
+        droneRef.current.loop = true;
+        droneRef.current.volume = 0.4;
+
+        powerUpRef.current = new Audio("/audio/Our_Work_Sounds/Scene 1/power_up.mp3");
+        powerUpRef.current.volume = 0.7;
+
+        braaamRef.current = new Audio("/audio/Our_Work_Sounds/Scene 1/epic_braaam.mp3");
+        braaamRef.current.volume = 0.8;
+
+        telemetryRef.current = new Audio("/audio/Our_Work_Sounds/Scene 1/telemetry.mp3");
+        telemetryRef.current.volume = 0.3;
+
+        return () => {
+            droneRef.current?.pause();
+            powerUpRef.current?.pause();
+            braaamRef.current?.pause();
+            telemetryRef.current?.pause();
+        };
+    }, []);
+
+    const startAutoScroll = () => {
+        setIsAutoScrolling(true);
+
+        const playSafe = (audio: HTMLAudioElement | null, delayMs = 0) => {
+            if (!audio) return;
+            audio.currentTime = 0; // reset for replay
+            if (delayMs > 0) {
+                setTimeout(() => {
+                    if (isAutoScrolling) audio.play().catch(e => console.log('Audio error:', e));
+                }, delayMs);
+            } else {
+                audio.play().catch(e => console.log('Audio error:', e));
+            }
+        };
+
+        playSafe(droneRef.current);
+        playSafe(powerUpRef.current);
+        playSafe(braaamRef.current, 600); // slight delay to layer with powerup
+        playSafe(telemetryRef.current, 900); // sweeps in during text reveal
+    };
+
+    useEffect(() => {
+        if (!isAutoScrolling) return;
+
+        let animationFrameId: number;
+
+        const autoScrollStep = () => {
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const globalP = Math.min(maxScroll > 0 ? window.scrollY / maxScroll : 0, 1);
+
+            const si = getActiveScene(globalP);
+            const lp = (globalP / SLOT) - si;
+
+            // Scroll slower while 'holding' on content to allow reading
+            const isHolding = lp > 0.15 && lp < 0.65;
+            const pxPerFrame = isHolding ? 1.5 : 8;
+
+            window.scrollBy(0, pxPerFrame);
+
+            if (window.scrollY >= maxScroll - 5) {
+                setIsAutoScrolling(false);
+                if (droneRef.current) droneRef.current.pause();
+                return;
+            }
+
+            animationFrameId = requestAnimationFrame(autoScrollStep);
+        };
+
+        animationFrameId = requestAnimationFrame(autoScrollStep);
+
+        const cancelAutoScroll = () => {
+            setIsAutoScrolling(false);
+            if (droneRef.current) droneRef.current.pause();
+            if (powerUpRef.current) powerUpRef.current.pause();
+            if (braaamRef.current) braaamRef.current.pause();
+            if (telemetryRef.current) telemetryRef.current.pause();
+        };
+
+        const onEvent = (e: Event) => {
+            if (e.isTrusted) cancelAutoScroll();
+        };
+
+        window.addEventListener('wheel', onEvent, { passive: true });
+        window.addEventListener('touchstart', onEvent, { passive: true });
+        window.addEventListener('mousedown', onEvent, { passive: true });
+
+        return () => {
+            cancelAnimationFrame(animationFrameId);
+            window.removeEventListener('wheel', onEvent);
+            window.removeEventListener('touchstart', onEvent);
+            window.removeEventListener('mousedown', onEvent);
+        };
+    }, [isAutoScrolling]);
 
     useEffect(() => {
         // ── Scroll handler ────────────────────────────────────────────────────────
@@ -358,8 +464,8 @@ export default function OurWorkPage() {
         ? (0.80 + Math.min(localP / 0.62, 1) * 0.20).toFixed(4)
         : "1";
 
-    // Metrics bars (scene 4 = VELOCITY)
-    const metricsP = sceneIdx === 4 ? localP : 0;
+    // Metrics bars (scene 4 = VELOCITY, which is now scene 5 index)
+    const metricsP = sceneIdx === 5 ? localP : 0;
 
     return (
         <>
@@ -448,10 +554,19 @@ export default function OurWorkPage() {
                                     <span className="bg-gradient-to-r from-white via-white/80 to-white/30 bg-clip-text text-transparent italic">ENGINEERED.</span>
                                 </h1>
                                 {/* Scroll prompt appears last */}
-                                <div className="mt-14 flex flex-col items-center gap-2 py-5 px-10 border border-white/10 rounded-full bg-white/[0.02] opacity-0"
+                                <div className="mt-14 flex flex-col md:flex-row items-center gap-4 opacity-0"
                                     style={{ pointerEvents: "auto", animation: "heroFadeUp 0.8s cubic-bezier(0.22,1,0.36,1) 0.9s forwards" }}>
-                                    <p className="text-[10px] font-black uppercase tracking-[0.5em] text-white/25 animate-pulse">Scroll to Begin</p>
-                                    <div className="w-px h-8 bg-gradient-to-b from-blue-500 to-transparent" />
+                                    <div className="flex flex-col items-center gap-2 py-5 px-10 border border-white/10 rounded-full bg-white/[0.02]">
+                                        <p className="text-[10px] font-black uppercase tracking-[0.5em] text-white/25 animate-pulse">Scroll to Explore</p>
+                                        <div className="w-px h-8 bg-gradient-to-b from-blue-500 to-transparent" />
+                                    </div>
+                                    {!isAutoScrolling && (
+                                        <button onClick={startAutoScroll} className="flex flex-col items-center gap-2 py-5 px-10 border border-blue-500/30 rounded-full bg-blue-500/10 hover:bg-blue-500/20 transition-colors group cursor-pointer"
+                                            style={{ cursor: 'pointer' }}>
+                                            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400 group-hover:text-blue-300">Play Cinematic Mode</p>
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="text-blue-400 group-hover:text-blue-300"><path d="M8 5v14l11-7z" /></svg>
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -495,25 +610,75 @@ export default function OurWorkPage() {
                             </div>
                         </div>
 
-                        {/* ── SCENE IV — FREQUENCY ── */}
+                        {/* ── SCENE IV — SYSTEM WARNING / WAKE UP CALL ── */}
                         <div className="absolute" style={{ left: `${SCENES[3].cx * 100}vw`, top: `${SCENES[3].cy * 100}vh`, width: "100vw", height: "100vh" }}>
+                            {(() => {
+                                const isVisible = progress > 2 * SLOT && progress < 5 * SLOT;
+                                if (!isVisible) return null;
+
+                                const p = sceneIdx === 3 ? localP : 0;
+                                // Glitch text logic
+                                const glitchX = p > 0.2 && p < 0.25 ? (Math.random() > 0.5 ? 10 : -10) : 0;
+                                const glitchY = p > 0.4 && p < 0.45 ? (Math.random() > 0.5 ? 10 : -10) : 0;
+
+                                const textOpacity1 = Math.max(0, Math.min(1, (p - 0.05) / 0.15));
+                                const textOpacity2 = Math.max(0, Math.min(1, (p - 0.25) / 0.15));
+                                const textOpacity3 = Math.max(0, Math.min(1, (p - 0.45) / 0.15));
+
+                                const overallFade = holdFade(p);
+
+                                return (
+                                    <div className="absolute inset-0 flex items-center justify-center overflow-hidden bg-black/90 pointer-events-none"
+                                        style={{ opacity: overallFade, zIndex: 100 }}>
+                                        <div className="absolute inset-0 pointer-events-none opacity-20 mix-blend-screen bg-[url('/images/noise.png')]" />
+                                        <div className="max-w-5xl text-center flex flex-col items-center p-4 px-6" style={{ transform: `scale(${0.9 + p * 0.1})` }}>
+                                            <div style={{ opacity: textOpacity1, transform: `translate(${glitchX}px, 0)` }} className="mb-8">
+                                                <span className="text-[10px] md:text-sm font-black text-red-500 uppercase tracking-[0.5em] mb-4 block animate-pulse">System Warning</span>
+                                                <h2 className="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter leading-[0.85]">
+                                                    FRAGMENTED <br className="hidden md:block" />
+                                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-800">PRESENCE</span>
+                                                </h2>
+                                            </div>
+                                            <div style={{ opacity: textOpacity2, transform: `translate(0, ${glitchY}px)` }} className="mb-12">
+                                                <p className="text-xl md:text-4xl font-bold text-white/80 uppercase tracking-tight max-w-3xl mx-auto leading-tight">
+                                                    A GREAT WEBSITE CAN&apos;T SAVE AN INVISIBLE BRAND. A GREAT PODCAST CAN&apos;T SURVIVE A BROKEN FUNNEL.
+                                                </p>
+                                            </div>
+                                            <div style={{ opacity: textOpacity3 }} className="p-8 border border-red-500/30 bg-red-950/20 rounded-3xl relative overflow-hidden backdrop-blur-md">
+                                                <div className="absolute inset-0 bg-red-500/10 blur-xl mix-blend-screen" />
+                                                <p className="text-sm md:text-xl font-black text-red-400 tracking-tight relative z-10 drop-shadow-[0_0_15px_rgba(239,68,68,0.5)] leading-relaxed">
+                                                    True authority isn&apos;t built in silos. We engineer a compounding ecosystem where your web presence, video content, and podcasting fuse into an undeniable powerhouse.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-red-950/20 to-transparent" style={{ maskImage: "linear-gradient(to top, black, transparent)", WebkitMaskImage: "linear-gradient(to top, black, transparent)" }}>
+                                            <div className="w-full h-full" style={{ backgroundImage: 'linear-gradient(rgba(239,68,68,0.1) 1px, transparent 1px)', backgroundSize: '100% 40px', transform: 'perspective(500px) rotateX(60deg)' }} />
+                                        </div>
+                                    </div>
+                                );
+                            })()}
+                        </div>
+
+                        {/* ── SCENE V — FREQUENCY ── */}
+                        <div className="absolute" style={{ left: `${SCENES[4].cx * 100}vw`, top: `${SCENES[4].cy * 100}vh`, width: "100vw", height: "100vh" }}>
                             <Ghost text="Sound" color="rgba(59,130,246,0.04)" />
 
                             {/* ── Title — exactly as original, full size, centered ── */}
                             <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                                <AudioWaveform active={sceneIdx === 3} />
-                                <span className="text-[10px] font-black tracking-[0.5em] text-blue-400 uppercase mb-5 relative z-10">Scene IV — Frequency</span>
+                                <AudioWaveform active={sceneIdx === 4} />
+                                <span className="text-[10px] font-black tracking-[0.5em] text-blue-400 uppercase mb-5 relative z-10">Scene V — Frequency</span>
                                 <h2 className="font-black uppercase tracking-tighter text-center relative z-10" style={{ fontSize: "clamp(2.5rem,9vw,7rem)" }}>
                                     Hear The<br /><span className="italic text-white/50">Authority.</span>
                                 </h2>
-                                <p className="mt-6 text-white/35 text-sm max-w-md text-center relative z-10 leading-relaxed">
+                                <p className="mt-6 text-white/35 text-sm max-w-md text-center relative z-10 leading-relaxed px-4">
                                     We engineer narrative authority through strategic podcasting — turning your voice into a marketing weapon.
                                 </p>
                             </div>
 
-                            {/* ── 8-card array emerging from center & raining into Scene V ── */}
+                            {/* ── 8-card array emerging from center & raining into Scene VI ── */}
                             {(() => {
-                                const p45 = Math.max(0, (progress - 3 * SLOT) / SLOT);
+                                // Now offset by 4 since we inserted WakeUpCall as 3
+                                const p45 = Math.max(0, (progress - 4 * SLOT) / SLOT);
                                 if (p45 === 0 || p45 > 2.5) return null;
 
                                 const ARC = [
@@ -530,44 +695,24 @@ export default function OurWorkPage() {
                                 return ARC.map((arc, i) => {
                                     const ep = PODCAST_EPISODES[arc.ep];
 
-                                    // Vanguard formation around center (indices 3 and 4)
-                                    const distFromCenter = Math.abs(3.5 - i); // 0.5, 1.5, 2.5, 3.5
-                                    const rank = Math.floor(distFromCenter); // 0, 1, 2, 3
-
-                                    // Emergence animation (0..1)
+                                    // Replace crazy physics with localized fade/transform
+                                    const rank = Math.floor(Math.abs(3.5 - i));
                                     const emergeThreshold = 0.04 + rank * 0.04;
-                                    const emergeRaw = Math.max(0, Math.min((p45 - emergeThreshold) / 0.45, 1));
-                                    const ease = emergeRaw * emergeRaw * emergeRaw * (emergeRaw * (emergeRaw * 6 - 15) + 10);
-
+                                    const ease = Math.max(0, Math.min((p45 - emergeThreshold) / 0.45, 1));
                                     if (ease < 0.001) return null;
 
-                                    // Falling animation: Outer edge cards fall away first for organic peeling effect
-                                    const fallStartRanked = 0.74 + (3 - rank) * 0.02;
-                                    const fallT = Math.max(0, p45 - fallStartRanked);
+                                    const fallT = Math.max(0, p45 - 0.74);
+                                    const fallFade = Math.max(0, 1 - Math.min(1, fallT * 2.5));
+                                    const op = Math.min(ease * 3, 1) * fallFade;
 
-                                    // Raining/Gravity math
-                                    const fallDy = 2200 * fallT * fallT; // Rapid downward acceleration
-                                    const fallDx = (i - 3.5) * 55 * fallT; // Organic spread out
-                                    const fallRot = (i - 3.5) * 45 * Math.pow(fallT, 1.2); // Tumble outwards
-
-                                    // Composite final transforms
-                                    const dx = (50 - arc.left) * (1 - ease) + fallDx;
-                                    const dy = (50 - arc.top) * (1 - ease) + fallDy;
-                                    const tx = `${dx.toFixed(2)}vw`;
-                                    const ty = `${dy.toFixed(2)}vh`;
-
-                                    // Base scale & rotation
-                                    const scale = 0.15 + 0.85 * ease;
-                                    const rot = arc.rot * ease + fallRot;
-
-                                    // Opacities
-                                    const appearOp = Math.min(ease * 3, 1);
-                                    const fallFade = Math.max(0, 1 - Math.min(1, fallT * 2.5)); // Fades completely before 2.0
-                                    const op = appearOp * fallFade;
-
-                                    const col = '59,130,246'; // Unified cinematic blue
-                                    // Keep outer cards tucked underneath
+                                    const col = '59,130,246';
                                     const stackZ = 25 - rank;
+
+                                    // Instead of falling into oblivion, we just gently push them out along X/Y
+                                    const tx = `${((50 - arc.left) * (1 - ease) + (i - 3.5) * 50 * fallT).toFixed(2)}vw`;
+                                    const ty = `${((50 - arc.top) * (1 - ease) + 150 * fallT).toFixed(2)}vh`;
+                                    const scale = 0.15 + 0.85 * ease;
+                                    const rot = arc.rot * ease + (i - 3.5) * 20 * fallT;
 
                                     return (
                                         <a key={i} href={ep?.url ?? '#'} target="_blank" rel="noopener noreferrer"
@@ -581,34 +726,28 @@ export default function OurWorkPage() {
                                                 pointerEvents: ease > 0.8 && fallT < 0.1 ? 'auto' : 'none',
                                                 willChange: 'transform, opacity',
                                             }}>
-                                            {/* Float — independent oscillation per card */}
                                             <div style={{ animation: `podFloat 5.5s ease-in-out ${-i * 0.55}s infinite`, willChange: 'transform' }}>
-                                                {/* 16:9 card — premium blue glow */}
                                                 <div className="relative overflow-hidden"
                                                     style={{
-                                                        width: 'clamp(170px, 18vw, 290px)',
+                                                        width: 'clamp(150px, 16vw, 290px)',
                                                         aspectRatio: '16 / 9',
                                                         borderRadius: '14px',
                                                         border: `1px solid rgba(${col},${0.25 + 0.35 * ease})`,
                                                         background: 'rgba(4,8,26,0.62)',
                                                         backdropFilter: 'blur(12px)',
-                                                        filter: `drop-shadow(0 20px 48px rgba(0,0,0,0.88)) drop-shadow(0 0 ${15 + 20 * ease}px rgba(${col},${0.2 + 0.4 * ease}))`,
-                                                        transition: 'filter 0.4s ease, transform 0.4s ease',
+                                                        boxShadow: `0 20px 48px rgba(0,0,0,0.88), 0 0 ${15 + 20 * ease}px rgba(${col},${0.2 + 0.4 * ease})`,
+                                                        transition: 'transform 0.4s ease',
                                                     }}
                                                     onMouseEnter={e => {
-                                                        (e.currentTarget as HTMLElement).style.filter = `drop-shadow(0 24px 58px rgba(0,0,0,0.93)) drop-shadow(0 0 35px rgba(${col},0.85))`;
                                                         (e.currentTarget as HTMLElement).style.transform = 'scale(1.08)';
                                                     }}
                                                     onMouseLeave={e => {
-                                                        (e.currentTarget as HTMLElement).style.filter = `drop-shadow(0 20px 48px rgba(0,0,0,0.88)) drop-shadow(0 0 35px rgba(${col},0.6))`;
                                                         (e.currentTarget as HTMLElement).style.transform = '';
                                                     }}>
                                                     <Image src={ep?.thumb ?? ''} alt={ep?.title ?? ''} fill
                                                         className="object-cover" sizes="290px" />
-                                                    {/* Color tint overlay on hover */}
                                                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                                                         style={{ background: `linear-gradient(135deg,rgba(${col},0.22),transparent)` }} />
-                                                    {/* Play button */}
                                                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                                         <div className="w-11 h-11 rounded-full flex items-center justify-center"
                                                             style={{ background: `rgba(${col},0.92)`, boxShadow: `0 0 24px rgba(${col},0.75)` }}>
@@ -616,9 +755,8 @@ export default function OurWorkPage() {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                {/* Episode name */}
                                                 <p className="mt-1.5 text-[8px] font-black uppercase tracking-widest text-center text-blue-400"
-                                                    style={{ width: 'clamp(170px,18vw,290px)', opacity: 0.65 + 0.35 * ease }}>
+                                                    style={{ width: 'clamp(150px,16vw,290px)', opacity: 0.65 + 0.35 * ease }}>
                                                     {ep?.title ?? ''}
                                                 </p>
                                             </div>
@@ -628,12 +766,12 @@ export default function OurWorkPage() {
                             })()}
                         </div>
 
-                        {/* ── SCENE V — VELOCITY ── */}
-                        <div className="absolute" style={{ left: `${SCENES[4].cx * 100}vw`, top: `${SCENES[4].cy * 100}vh`, width: "100vw", height: "100vh" }}>
+                        {/* ── SCENE VI — VELOCITY ── */}
+                        <div className="absolute" style={{ left: `${SCENES[5].cx * 100}vw`, top: `${SCENES[5].cy * 100}vh`, width: "100vw", height: "100vh" }}>
                             <Ghost text="Growth" color="rgba(34,197,94,0.03)" />
                             <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
                                 style={{ opacity: holdFade(metricsP), transform: `scale(${0.94 + metricsP * 0.06})` }}>
-                                <span className="text-[10px] font-black tracking-[0.4em] text-blue-400 uppercase mb-3">Scene V — Velocity</span>
+                                <span className="text-[10px] font-black tracking-[0.4em] text-blue-400 uppercase mb-3">Scene VI — Velocity</span>
                                 <h2 className="font-black tracking-tighter uppercase text-center mb-8" style={{ fontSize: "clamp(2.5rem,7vw,5.5rem)" }}>
                                     Growth<br /><span className="italic text-blue-400">Engineered.</span>
                                 </h2>
@@ -653,18 +791,18 @@ export default function OurWorkPage() {
                             </div>
                         </div>
 
-                        {/* ── SCENE VI — INTEL ── */}
-                        <div className="absolute" style={{ left: `${SCENES[5].cx * 100}vw`, top: `${SCENES[5].cy * 100}vh`, width: "100vw", height: "100vh" }}>
+                        {/* ── SCENE VII — INTEL ── */}
+                        <div className="absolute" style={{ left: `${SCENES[6].cx * 100}vw`, top: `${SCENES[6].cy * 100}vh`, width: "100vw", height: "100vh" }}>
                             <Ghost text="Knowledge" color="rgba(168,85,247,0.04)" />
                             <div className="absolute top-[10%] left-1/2 -translate-x-1/2 text-center pointer-events-none" style={{ zIndex: 5 }}>
-                                <span className="text-[10px] font-black tracking-[0.5em] text-purple-400 uppercase">Scene VI — Intel</span>
+                                <span className="text-[10px] font-black tracking-[0.5em] text-purple-400 uppercase">Scene VII — Intel</span>
                                 <h2 className="font-black uppercase tracking-tighter mt-1" style={{ fontSize: "clamp(2rem,5vw,4rem)" }}>
                                     The <span className="italic text-purple-400">Knowledge Vault.</span>
                                 </h2>
                                 <p className="text-white/25 text-xs mt-2">AI, SEO, web &amp; digital warfare — decoded.</p>
                             </div>
                             <div className="absolute inset-0" style={{ pointerEvents: "auto" }}>
-                                {RECENT_POSTS.map((post, i) => <BlogCard key={post.slug} post={post} index={i} localP={sceneIdx === 5 ? localP : 0} />)}
+                                {RECENT_POSTS.map((post, i) => <BlogCard key={post.slug} post={post} index={i} localP={sceneIdx === 6 ? localP : 0} />)}
                             </div>
                             <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2"
                                 style={{ zIndex: 40, opacity: holdFade(localP) * Math.min(1, Math.max(0, (localP - 0.55) / 0.15)), pointerEvents: "auto" }}>
@@ -674,11 +812,11 @@ export default function OurWorkPage() {
                             </div>
                         </div>
 
-                        {/* ── SCENE VII — VISION ── */}
-                        <div className="absolute" style={{ left: `${SCENES[6].cx * 100}vw`, top: `${SCENES[6].cy * 100}vh`, width: "100vw", height: "100vh" }}>
+                        {/* ── SCENE VIII — VISION ── */}
+                        <div className="absolute" style={{ left: `${SCENES[7].cx * 100}vw`, top: `${SCENES[7].cy * 100}vh`, width: "100vw", height: "100vh" }}>
                             <Ghost text="Vision" color="rgba(59,130,246,0.04)" />
                             <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                                <span className="text-[10px] font-black tracking-[0.5em] text-blue-400 uppercase mb-6">Scene VII — Vision</span>
+                                <span className="text-[10px] font-black tracking-[0.5em] text-blue-400 uppercase mb-6">Scene VIII — Vision</span>
                                 <div className="relative w-[84vw] max-w-5xl aspect-video rounded-3xl overflow-hidden pointer-events-auto"
                                     style={{ boxShadow: "0 0 80px rgba(59,130,246,0.1), 0 40px 100px rgba(0,0,0,0.7)" }}>
                                     <iframe className="absolute inset-0 w-full h-full border-0"
@@ -701,14 +839,14 @@ export default function OurWorkPage() {
                             </div>
                         </div>
 
-                        {/* ── SCENE VIII — TERMINAL ── */}
-                        <div className="absolute" style={{ left: `${SCENES[7].cx * 100}vw`, top: `${SCENES[7].cy * 100}vh`, width: "100vw", height: "100vh" }}>
+                        {/* ── SCENE IX — TERMINAL ── */}
+                        <div className="absolute" style={{ left: `${SCENES[8].cx * 100}vw`, top: `${SCENES[8].cy * 100}vh`, width: "100vw", height: "100vh" }}>
                             <Ghost text="Terminal" color="rgba(59,130,246,0.04)" />
                             {(() => {
                                 // Animate the entire scene out beautifully when scrolling into the footer
-                                // Scene 8 occupies the final standard time slot (124vh)
+                                // Scene 9 occupies the final standard time slot
                                 // Beyond this, the user is scrolling purely into the footer space.
-                                const isFooter = Math.max(0, (progress - 7 * SLOT) / SLOT);
+                                const isFooter = Math.max(0, (progress - 8 * SLOT) / SLOT);
                                 // The footer comes up rapidly at the very end
                                 const exitT = Math.max(0, (isFooter - 0.75) / 0.25);
 
@@ -730,7 +868,7 @@ export default function OurWorkPage() {
 
                                             {/* Text group */}
                                             <div style={{ opacity: textOp, transform: `scale(${textScale}) translateY(${textTy}px)`, willChange: "transform, opacity", pointerEvents: "none" }}>
-                                                <span className="text-blue-400 text-[10px] font-black tracking-[0.6em] uppercase mb-7 opacity-60 block">Scene VIII — Terminal</span>
+                                                <span className="text-blue-400 text-[10px] font-black tracking-[0.6em] uppercase mb-7 opacity-60 block">Scene IX — Terminal</span>
                                                 <h2 className="font-black mb-6 tracking-tighter leading-[0.88] uppercase" style={{ fontSize: "clamp(3rem,8vw,6.5rem)" }}>
                                                     Accelerate Your<br />
                                                     <span className="italic bg-gradient-to-r from-blue-400 to-white bg-clip-text text-transparent">Vision.</span>
