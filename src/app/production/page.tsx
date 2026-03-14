@@ -15,6 +15,7 @@ import PodcastingCommandBar from "@/components/ui/PodcastingCommandBar";
 import WakeUpCall from "@/components/ui/WakeUpCall";
 import MultiCamArchitect from "@/components/ui/MultiCamArchitect";
 import RawVsGradedSlider from "@/components/ui/RawVsGradedSlider";
+import FAQAccordion from "@/components/ui/FAQAccordion";
 
 const tiers = [
     {
@@ -380,6 +381,19 @@ export default function ProductionPage() {
             <ProductionPipeline />
 
             <Portfolio titleAs="h2" />
+
+            <FAQAccordion
+                faqs={[
+                    {
+                        question: "Do you travel for video production?",
+                        answer: "Yes, our Multi-Cam Architect framework is highly mobile. We deploy cinematic crews across the region to capture on-location footage."
+                    },
+                    {
+                        question: "What type of cameras do you use?",
+                        answer: "We operate exclusively on premium 4K to 8K cinema camera systems, including high-end Sony Alpha setups, built for flawless low-light performance and maximum dynamic range."
+                    }
+                ]}
+            />
 
             <Footer />
 

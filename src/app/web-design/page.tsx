@@ -16,7 +16,7 @@ import WireframeHeroBg from "@/components/ui/web-design/WireframeHeroBg";
 import TerminalWindow from "@/components/ui/web-design/TerminalWindow";
 import LiveScanner from "@/components/ui/web-design/LiveScanner";
 import WakeUpCall from "@/components/ui/WakeUpCall";
-
+import FAQAccordion from "@/components/ui/FAQAccordion";
 
 interface Protocol {
     title: string;
@@ -390,6 +390,19 @@ export default function WebDesignPage() {
                     </motion.div>
                 </div>
             </section>
+
+            <FAQAccordion
+                faqs={[
+                    {
+                        question: "Do you use WordPress for your web design?",
+                        answer: "No. We exclusively build high-velocity digital engines using modern frameworks like Next.js and React, hosted on Edge networks for maximum performance, security, and AI-crawler compatibility."
+                    },
+                    {
+                        question: "How long does a website build take?",
+                        answer: "Our flagship Identity Protocol builds typically launch within 4-6 weeks, pending client feedback and asset collection. Complex enterprise ecosystems may take longer."
+                    }
+                ]}
+            />
 
             <script
                 type="application/ld+json"

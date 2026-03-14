@@ -11,6 +11,7 @@ import { ArrowRight, Info, Check, X, Terminal, Workflow } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import ProductSchema from "@/components/seo/ProductSchema";
+import ImageObjectSchema from "@/components/seo/ImageObjectSchema";
 
 // Force static generation for known paths
 export function generateStaticParams() {
@@ -85,6 +86,10 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
         <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-accent selection:text-white">
             <BreadcrumbSchema items={breadcrumbItems} />
             <ProductSchema product={product} />
+            <ImageObjectSchema
+                url={product.image}
+                caption={`High-resolution image of ${product.name} used in the ${product.category} production pipeline at Power Digital Media in Jackson, MS.`}
+            />
             <Navbar />
 
             {/* Ambient Background Protocol */}

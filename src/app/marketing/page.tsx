@@ -11,6 +11,7 @@ import BookingModal from "@/components/ui/BookingModal";
 import { useState } from "react";
 import Image from "next/image";
 import WakeUpCall from "@/components/ui/WakeUpCall";
+import FAQAccordion from "@/components/ui/FAQAccordion";
 
 const tiers = [
     {
@@ -329,6 +330,19 @@ export default function MarketingPage() {
             </section>
 
             <Portfolio titleAs="h2" />
+
+            <FAQAccordion
+                faqs={[
+                    {
+                        question: "Do your marketing prices include ad spend?",
+                        answer: "No. Our pricing tiers ($1,000 to $2,000/month) cover campaign management, custom ad creatives, A/B testing, and funnel optimization. Ad spend is managed directly through your Meta Business Manager."
+                    },
+                    {
+                        question: "What platforms do you run ads on?",
+                        answer: "We specialize exclusively in Meta (Facebook and Instagram) ads to build high-velocity conversion funnels."
+                    }
+                ]}
+            />
 
             <Footer />
 
