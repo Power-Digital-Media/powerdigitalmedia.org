@@ -224,7 +224,7 @@ export default function ProductionPage() {
                             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[0.85] uppercase">
                                 Cinematic <br />
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 text-glow-cyan">
-                                    Firepower.
+                                    Video Production in Jackson MS.
                                 </span>
                             </h1>
 

@@ -157,6 +157,34 @@ h1, h2, h3 { font - family: var(--font - heading); letter - spacing: -0.02em; fo
                   "name": "Mississippi"
                 }
               ],
+              "founder": {
+                "@type": "Person",
+                "name": "Christopher Simmons",
+                "jobTitle": "Lead Infrastructure Architect"
+              },
+              "makesOffer": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "High-Velocity Web Design"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Cinematic Video Production"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Automated Marketing Systems"
+                  }
+                }
+              ],
               "description": "Power Digital Media is a Jackson, Mississippi elite digital media studio offering cinematic video production, automated marketing, and AI-powered web architecture for high-ticket businesses and creators."
             })
           }}

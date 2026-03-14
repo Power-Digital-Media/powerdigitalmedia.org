@@ -3,6 +3,12 @@ import { projects } from "@/data/projects";
 import { notFound } from "next/navigation";
 import ProjectShowcaseClient from "@/components/ui/portfolio/ProjectShowcaseClient";
 
+export async function generateStaticParams() {
+    return projects.map((p) => ({
+        slug: p.id,
+    }));
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
     const project = projects.find((p) => p.id === slug);

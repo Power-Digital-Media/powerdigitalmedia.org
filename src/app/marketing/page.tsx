@@ -190,10 +190,10 @@ export default function MarketingPage() {
                             Paid Acquisition Protocols
                         </div>
 
-                        <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-10 leading-[0.85] uppercase text-balance">
-                            Build <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500 text-glow-blue">
-                                Scale.
+                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[0.85] uppercase">
+                            Automated <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 text-glow-blue">
+                                Marketing in Jackson MS.
                             </span>
                         </h1>
 

@@ -179,10 +179,10 @@ export default function WebDesignPage() {
                         className="max-w-5xl mx-auto"
                     >
                         <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[10px] md:text-xs mb-6 block">Premium Digital Infrastructure</span>
-                        <h1 className="text-5xl md:text-9xl font-bold mb-10 tracking-tighter leading-tight">
-                            Digital <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-500 text-glow-cyan text-glow pb-2">
-                                Architecture.
+                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[0.85] uppercase">
+                            High-Velocity <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 text-glow-cyan">
+                                Web Design in Jackson MS.
                             </span>
                         </h1>
                         <p className="text-xl md:text-3xl text-foreground/70 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
