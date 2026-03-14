@@ -129,8 +129,65 @@ export default function ProductionPage() {
     ];
 
     return (
-        <main className="relative min-h-screen bg-background overflow-x-hidden">
+        <main className="relative min-h-screen bg-background overflow-x-clip">
             <BreadcrumbSchema items={breadcrumbItems} />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Service",
+                        "name": "Cinematic Production & Podcasting",
+                        "provider": {
+                            "@id": "https://powerdigitalmedia.org/#organization"
+                        },
+                        "description": "Studio-grade cinema services, high-end video podcasts, and commercial production for dynamic brands and creators.",
+                        "category": "Video Production",
+                        "serviceType": "Commercial Video Production",
+                        "areaServed": {
+                            "@type": "City",
+                            "name": "Jackson",
+                            "containedInPlace": {
+                                "@type": "State",
+                                "name": "Mississippi"
+                            }
+                        },
+                        "offers": {
+                            "@type": "AggregateOffer",
+                            "priceCurrency": "USD",
+                            "lowPrice": "500",
+                            "highPrice": "4000+"
+                        }
+                    })
+                }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "FAQPage",
+                        "mainEntity": [
+                            {
+                                "@type": "Question",
+                                "name": "Do you travel for video production?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Yes, our Multi-Cam Architect framework is highly mobile. We deploy cinematic crews across the region to capture on-location footage."
+                                }
+                            },
+                            {
+                                "@type": "Question",
+                                "name": "What type of cameras do you use?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "We operate exclusively on premium 4K to 8K cinema camera systems, including high-end Sony Alpha setups, built for flawless low-light performance and maximum dynamic range."
+                                }
+                            }
+                        ]
+                    })
+                }}
+            />
             <Navbar />
 
             <PodcastingCommandBar />
@@ -139,7 +196,7 @@ export default function ProductionPage() {
             <section className="relative min-h-[90vh] flex items-center pt-32 pb-20 overflow-hidden bg-[#020202]">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop"
+                        src="https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=2070&auto=format&fit=crop"
                         alt="On-Location Production Floor"
                         fill
                         className="object-cover opacity-10 mix-blend-luminosity scale-105 filter blur-sm"
@@ -208,7 +265,7 @@ export default function ProductionPage() {
                                 </div>
                                 <div className="flex-1 relative">
                                     <Image
-                                        src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=80&w=2056&auto=format&fit=crop"
+                                        src="/cinematic_camera.png"
                                         alt="Cinematic Target"
                                         fill
                                         className="object-cover"
@@ -242,6 +299,16 @@ export default function ProductionPage() {
                 subtitle="Your event ROI shouldn't die the moment the doors close."
                 paragraph="You flew in the speakers. You rented the lighting. You packed the room. But if the final video output is flat, washed out, and boring—that's how the entire internet will perceive your brand forever. We don't do shaky cameras in the back of the room. We deploy full cinema cameras, heavy staging, and live-grading to ensure your brand looks like a blockbuster."
             />
+
+            {/* Answer Engine Optimization Block */}
+            <section className="py-12 bg-[#050505] border-y border-white/5 relative z-20">
+                <div className="container px-4 mx-auto max-w-4xl text-center">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-4 tracking-tight">What is Cinematic Production?</h2>
+                    <p className="text-foreground/70 leading-relaxed font-light">
+                        Cinematic Production is the process of capturing studio-grade, multi-cam 4K and 8K video for high-end commercial use and video podcasting. We utilize premium cinema camera systems, specialized lighting architectures, and professional color grading strictly tailored for maximum brand authority and Answer Engine discovery.
+                    </p>
+                </div>
+            </section>
 
             <MultiCamArchitect />
 

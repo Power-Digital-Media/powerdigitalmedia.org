@@ -2,6 +2,7 @@ import { BookOpen, Calendar, ArrowRight, Book, Share2, Search } from "lucide-rea
 import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import NewsletterForm from "@/components/ui/NewsletterForm";
 
 import { blogPosts } from "@/data/blogPosts";
 import Link from "next/link";
@@ -116,22 +117,9 @@ export default function BlogPage() {
                     <Share2 className="w-12 h-12 text-accent mx-auto mb-6" />
                     <h3 className="text-3xl font-bold mb-4">Stay Ahead of the Curve.</h3>
                     <p className="text-muted-foreground mb-8">Join our newsletter for the latest insights in studio tech and digital strategy.</p>
-                    <form
-                        action="https://formspree.io/f/mdazlovb"
-                        method="POST"
-                        className="max-w-md mx-auto flex gap-4"
-                    >
-                        <input
-                            type="email"
-                            name="email"
-                            required
-                            placeholder="email@example.com"
-                            className="flex-1 px-6 py-4 rounded-2xl glass-card border-white/10 outline-none focus:border-accent/40"
-                        />
-                        <button className="px-8 py-4 font-bold text-white bg-accent rounded-2xl border-glow hover:bg-accent/90">
-                            Join
-                        </button>
-                    </form>
+                    <div className="relative">
+                        <NewsletterForm />
+                    </div>
                 </div>
             </section>
 

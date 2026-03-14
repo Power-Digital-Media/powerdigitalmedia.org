@@ -9,6 +9,33 @@ import { useState } from "react";
 
 export default function StandaloneContactPage() {
     const [isBookingOpen, setIsBookingOpen] = useState(false);
+    const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setStatus("submitting");
+        const form = e.currentTarget;
+        const data = new FormData(form);
+
+        try {
+            const response = await fetch("https://formspree.io/f/mdazlovb", {
+                method: "POST",
+                body: data,
+                headers: {
+                    Accept: "application/json",
+                },
+            });
+
+            if (response.ok) {
+                setStatus("success");
+                form.reset();
+            } else {
+                setStatus("error");
+            }
+        } catch (error) {
+            setStatus("error");
+        }
+    };
 
     return (
         <main className="relative min-h-screen bg-background">
@@ -95,38 +122,68 @@ export default function StandaloneContactPage() {
                                 viewport={{ once: true }}
                             >
                                 <div className="p-10 rounded-[3rem] glass-card border-white/10 bg-accent/5">
-                                    <form
-                                        action="https://formspree.io/f/mdazlovb"
-                                        method="POST"
-                                        className="space-y-8"
-                                    >
-                                        <div className="grid gap-8 sm:grid-cols-2">
-                                            <div className="space-y-2">
-                                                <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Name</label>
-                                                <input type="text" name="name" required className="w-full px-0 py-3 bg-transparent border-b border-white/10 focus:border-accent outline-none transition-all placeholder:text-muted-foreground/30" placeholder="John Doe" />
+                                    {status === "success" ? (
+                                        <motion.div
+                                            initial={{ opacity: 0, scale: 0.9 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            className="h-full flex flex-col items-center justify-center text-center space-y-6 py-12"
+                                        >
+                                            <div className="w-16 h-16 rounded-full bg-accent/20 flex items-center justify-center">
+                                                <Send className="w-6 h-6 text-accent" />
+                                            </div>
+                                            <div>
+                                                <h3 className="text-xl font-bold mb-2">Message Sent</h3>
+                                                <p className="text-muted-foreground text-sm">We've received your inquiry and will be in touch soon.</p>
+                                            </div>
+                                            <button
+                                                onClick={() => setStatus("idle")}
+                                                className="px-6 py-2 rounded-full border border-white/10 hover:bg-white/5 transition-colors text-xs font-bold uppercase tracking-widest"
+                                            >
+                                                Send Another
+                                            </button>
+                                        </motion.div>
+                                    ) : (
+                                        <form
+                                            onSubmit={handleSubmit}
+                                            className="space-y-8"
+                                        >
+                                            <div className="grid gap-8 sm:grid-cols-2">
+                                                <div className="space-y-2">
+                                                    <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Name</label>
+                                                    <input type="text" name="name" required disabled={status === "submitting"} className="w-full px-0 py-3 bg-transparent border-b border-white/10 focus:border-accent outline-none transition-all placeholder:text-muted-foreground/30 disabled:opacity-50" placeholder="John Doe" />
+                                                </div>
+                                                <div className="space-y-2">
+                                                    <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Email</label>
+                                                    <input type="email" name="email" required disabled={status === "submitting"} className="w-full px-0 py-3 bg-transparent border-b border-white/10 focus:border-accent outline-none transition-all placeholder:text-muted-foreground/30 disabled:opacity-50" placeholder="john@example.com" />
+                                                </div>
                                             </div>
                                             <div className="space-y-2">
-                                                <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Email</label>
-                                                <input type="email" name="email" required className="w-full px-0 py-3 bg-transparent border-b border-white/10 focus:border-accent outline-none transition-all placeholder:text-muted-foreground/30" placeholder="john@example.com" />
+                                                <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Topic</label>
+                                                <select name="topic" disabled={status === "submitting"} className="w-full px-0 py-3 bg-transparent border-b border-white/10 focus:border-accent outline-none text-muted-foreground disabled:opacity-50">
+                                                    <option>General Inquiry</option>
+                                                    <option>Studio Booking</option>
+                                                    <option>Web Design Bundle</option>
+                                                    <option>Strategy Consultation</option>
+                                                </select>
                                             </div>
-                                        </div>
-                                        <div className="space-y-2">
-                                            <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Topic</label>
-                                            <select name="topic" className="w-full px-0 py-3 bg-transparent border-b border-white/10 focus:border-accent outline-none text-muted-foreground">
-                                                <option>General Inquiry</option>
-                                                <option>Studio Booking</option>
-                                                <option>Web Design Bundle</option>
-                                                <option>Strategy Consultation</option>
-                                            </select>
-                                        </div>
-                                        <div className="space-y-2">
-                                            <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Message</label>
-                                            <textarea rows={4} name="message" required className="w-full px-0 py-3 bg-transparent border-b border-white/10 focus:border-accent outline-none transition-all placeholder:text-muted-foreground/30 resize-none" placeholder="Tell us about your project..."></textarea>
-                                        </div>
-                                        <button className="w-full py-5 bg-accent text-white font-bold rounded-2xl border-glow flex items-center justify-center gap-2 hover:bg-accent/90 transition-all group">
-                                            Send Message <Send className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                                        </button>
-                                    </form>
+                                            <div className="space-y-2">
+                                                <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Message</label>
+                                                <textarea rows={4} name="message" required disabled={status === "submitting"} className="w-full px-0 py-3 bg-transparent border-b border-white/10 focus:border-accent outline-none transition-all placeholder:text-muted-foreground/30 resize-none disabled:opacity-50" placeholder="Tell us about your project..."></textarea>
+                                            </div>
+
+                                            {status === "error" && (
+                                                <p className="text-red-400 text-sm">Error sending message. Please try again.</p>
+                                            )}
+
+                                            <button
+                                                disabled={status === "submitting"}
+                                                className="w-full py-5 bg-accent text-white font-bold rounded-2xl border-glow flex items-center justify-center gap-2 hover:bg-accent/90 focus:scale-[0.98] disabled:opacity-70 disabled:hover:scale-100 disabled:cursor-not-allowed transition-all group"
+                                            >
+                                                {status === "submitting" ? "Sending..." : "Send Message"}
+                                                <Send className={`w-4 h-4 transition-transform ${status === "submitting" ? "animate-pulse" : "group-hover:translate-x-1 group-hover:-translate-y-1"}`} />
+                                            </button>
+                                        </form>
+                                    )}
                                 </div>
                             </motion.div>
 

@@ -12,6 +12,7 @@ const TechStack = dynamic(() => import("@/components/sections/TechStack"));
 const LatestInsights = dynamic(() => import("@/components/sections/LatestInsights"));
 const LeadArchitect = dynamic(() => import("@/components/sections/LeadArchitect"));
 const Contact = dynamic(() => import("@/components/sections/Contact"));
+const WakeUpCall = dynamic(() => import("@/components/ui/WakeUpCall"));
 
 export const metadata = {
   title: "Power Digital Media | Premier Digital Production Studio",
@@ -74,6 +75,11 @@ export default function Home() {
         </div>
       </div>
 
+      <WakeUpCall
+        title="You run a premium business. But your digital presence looks strictly amateur."
+        subtitle="Mediocre digital architecture kills great companies."
+        paragraph="If your brand looks like everyone else's, you will be priced like everyone else. A slow, outdated website isn't just a bad look—it's actively bleeding revenue. We engineer high-velocity digital ecosystems that separate you from the noise and command absolute authority in your market."
+      />
       <Portfolio />
       <LocalWebDesign />
       <Services />

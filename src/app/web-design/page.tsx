@@ -15,6 +15,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import WireframeHeroBg from "@/components/ui/web-design/WireframeHeroBg";
 import TerminalWindow from "@/components/ui/web-design/TerminalWindow";
 import LiveScanner from "@/components/ui/web-design/LiveScanner";
+import WakeUpCall from "@/components/ui/WakeUpCall";
 
 
 interface Protocol {
@@ -107,6 +108,63 @@ export default function WebDesignPage() {
     return (
         <main className="relative min-h-screen bg-background text-foreground overflow-x-clip">
             <BreadcrumbSchema items={breadcrumbItems} />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Service",
+                        "name": "High-Velocity Web Design & Architecture",
+                        "provider": {
+                            "@id": "https://powerdigitalmedia.org/#organization"
+                        },
+                        "description": "Premium Next.js and React-based web design, development, and digital architecture for high-ticket businesses.",
+                        "category": "Web Design",
+                        "serviceType": "Bespoke Web Development",
+                        "areaServed": {
+                            "@type": "City",
+                            "name": "Jackson",
+                            "containedInPlace": {
+                                "@type": "State",
+                                "name": "Mississippi"
+                            }
+                        },
+                        "offers": {
+                            "@type": "AggregateOffer",
+                            "priceCurrency": "USD",
+                            "lowPrice": "5500",
+                            "highPrice": "25000+"
+                        }
+                    })
+                }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "FAQPage",
+                        "mainEntity": [
+                            {
+                                "@type": "Question",
+                                "name": "Do you use WordPress for your web design?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "No. We exclusively build high-velocity digital engines using modern frameworks like Next.js and React, hosted on Edge networks for maximum performance, security, and AI-crawler compatibility."
+                                }
+                            },
+                            {
+                                "@type": "Question",
+                                "name": "How long does a website build take?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Our flagship Identity Protocol builds typically launch within 4-6 weeks, pending client feedback and asset collection. Complex enterprise ecosystems may take longer."
+                                }
+                            }
+                        ]
+                    })
+                }}
+            />
             <Navbar />
 
             {/* --- Hero: The Architecture --- */}
@@ -149,6 +207,22 @@ export default function WebDesignPage() {
                     <div className="w-px h-12 bg-gradient-to-b from-cyan-400 to-transparent animate-pulse" />
                 </div>
             </section>
+
+            {/* Answer Engine Optimization Block */}
+            <section className="py-12 bg-[#050505] border-y border-white/5 relative z-20">
+                <div className="container px-4 mx-auto max-w-4xl text-center">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-4 tracking-tight">What is Bespoke Web Architecture?</h2>
+                    <p className="text-foreground/70 leading-relaxed font-light">
+                        Bespoke Web Architecture is the process of building high-velocity digital engines using modern frameworks like Next.js and React, hosted on Edge CDN networks. Unlike traditional template builders like WordPress, this approach guarantees maximum conversion speed, zero interaction lag, and elite AI-crawler compatibility for high-ticket businesses.
+                    </p>
+                </div>
+            </section>
+
+            <WakeUpCall
+                title="Stop building digital brochures. Start deploying high-velocity conversion engines."
+                subtitle="Your website is costing you high-ticket clients."
+                paragraph="A modern website isn't a digital business card—it's a 24/7 sales architecture. If your current site isn't actively generating qualified leads, closing deals, and asserting your absolute dominance in the market, it's obsolete. We don't use templates. We build bespoke applications that turn attention into revenue."
+            />
 
             {/* --- Section 1: The Protocols --- */}
             <section id="protocols" className="py-32 relative bg-background">

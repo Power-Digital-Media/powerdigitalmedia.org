@@ -123,9 +123,14 @@ h1, h2, h3 { font - family: var(--font - heading); letter - spacing: -0.02em; fo
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Organization",
+              "@type": "LocalBusiness",
+              "@id": "https://powerdigitalmedia.org/#organization",
               "name": "Power Digital Media LLC",
               "url": "https://powerdigitalmedia.org",
+              "logo": "https://powerdigitalmedia.org/power-logo.webp",
+              "image": "https://powerdigitalmedia.org/hero-bg.webp",
+              "telephone": "+16015550199", // Ensure this is replaced with the actual phone number if applicable
+              "priceRange": "$$$",
               "sameAs": [
                 "https://www.youtube.com/@PowerDigitalMedia",
                 "https://www.instagram.com/PowerDigitalMedia"
@@ -136,7 +141,23 @@ h1, h2, h3 { font - family: var(--font - heading); letter - spacing: -0.02em; fo
                 "addressRegion": "MS",
                 "addressCountry": "US"
               },
-              "description": "Power Digital Media is a Jackson, Mississippi digital media studio offering podcast production, video marketing, website design, and AI-powered branding services for businesses, creators, and ministries."
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 32.2988,
+                "longitude": -90.1848
+              },
+              "areaServed": [
+                {
+                  "@type": "City",
+                  "name": "Jackson",
+                  "sameAs": "https://en.wikipedia.org/wiki/Jackson,_Mississippi"
+                },
+                {
+                  "@type": "State",
+                  "name": "Mississippi"
+                }
+              ],
+              "description": "Power Digital Media is a Jackson, Mississippi elite digital media studio offering cinematic video production, automated marketing, and AI-powered web architecture for high-ticket businesses and creators."
             })
           }}
         />

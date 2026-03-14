@@ -10,34 +10,35 @@ import ProductionPipeline from "@/components/ui/ProductionPipeline";
 import BookingModal from "@/components/ui/BookingModal";
 import { useState } from "react";
 import Image from "next/image";
+import WakeUpCall from "@/components/ui/WakeUpCall";
 
 const tiers = [
     {
-        id: "social_micro",
-        name: "Micro-Growth",
+        id: "meta_micro",
+        name: "Campaign Ignition",
         priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_SOCIAL_MICRO || "price_social_micro_placeholder",
-        price: "250",
-        description: "The tactical entry for creators. Precision thumbnail engineering and high-authority video SEO.",
+        price: "1,000",
+        description: "The tactical entry for businesses. Precision Meta Ad setup and initial targeting.",
         features: [
-            "5 Custom Engineered Thumbnails",
-            "Video SEO Metadata (5 Videos)",
-            "Keyword Research & Target",
-            "CTR Mastery Optimization",
-            "Asset Delivery (72hrs)"
+            "Custom Ad Creatives",
+            "Target Audience Engineering",
+            "Campaign Setup & Launch",
+            "Pixel & Conversion Tracking",
+            "First-Month Optimization"
         ],
         type: "one-time"
     },
     {
-        id: "social_velocity",
-        name: "Social Velocity",
+        id: "meta_velocity",
+        name: "Ad Dominance",
         priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_SOCIAL_VELOCITY || "price_social_velocity_placeholder",
-        price: "750",
-        description: "The complete monthly growth protocol. Continuous thumbnail design and strategic SEO dominance.",
+        price: "1,500",
+        description: "The complete monthly paid growth protocol. Continuous ad testing and strategic scaling.",
         features: [
-            "Unlimited Thumbnail Design*",
-            "Full Video SEO & Optimization",
-            "A/B Testing for CTR",
-            "Community Management Sync",
+            "Unlimited Creative Testing*",
+            "Full Campaign Management",
+            "A/B Testing for Lower CPA",
+            "Advanced Retargeting Funnels",
             "Monthly Analytics Report"
         ],
         type: "monthly",
@@ -45,17 +46,17 @@ const tiers = [
         highlight: "border-blue-500/30 bg-blue-500/[0.02]"
     },
     {
-        id: "social_growth_strategy",
-        name: "Growth Strategy",
+        id: "meta_strategy",
+        name: "Market Takeover",
         priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_GROWTH_STRATEGY || "price_growth_strategy_placeholder",
-        price: "1,500",
-        description: "The ultimate brand partnership. High-level strategy, automated outreach, and full social takeover.",
+        price: "2,000",
+        description: "The ultimate scaling partnership. High-budget optimization, lead routing, and omni-channel support.",
         features: [
-            "Everything in 'Social Velocity'",
-            "Strategic Growth Consulting",
-            "Automated Lead Generation",
-            "Multi-Platform Management",
-            "Priority Support Link"
+            "Everything in 'Ad Dominance'",
+            "Strategic Scaling Consulting",
+            "Automated Lead Gen Workflows",
+            "Landing Page Optimization",
+            "Priority Support Line"
         ],
         type: "monthly"
     }
@@ -103,8 +104,65 @@ export default function MarketingPage() {
     };
 
     return (
-        <main className="relative min-h-screen bg-background overflow-x-hidden">
+        <main className="relative min-h-screen bg-background overflow-x-clip">
             <Navbar />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Service",
+                        "name": "Meta Ads & Paid Acquisition",
+                        "provider": {
+                            "@id": "https://powerdigitalmedia.org/#organization"
+                        },
+                        "description": "Precision Meta ad campaigns, algorithmic funnel engineering, and paid acquisition protocols for businesses seeking measurable ROI.",
+                        "category": "Digital Marketing",
+                        "serviceType": "Paid Social Advertising",
+                        "areaServed": {
+                            "@type": "City",
+                            "name": "Jackson",
+                            "containedInPlace": {
+                                "@type": "State",
+                                "name": "Mississippi"
+                            }
+                        },
+                        "offers": {
+                            "@type": "AggregateOffer",
+                            "priceCurrency": "USD",
+                            "lowPrice": "1000",
+                            "highPrice": "2000+"
+                        }
+                    })
+                }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "FAQPage",
+                        "mainEntity": [
+                            {
+                                "@type": "Question",
+                                "name": "Do your marketing prices include ad spend?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "No. Our pricing tiers ($1,000 to $2,000/month) cover campaign management, custom ad creatives, A/B testing, and funnel optimization. Ad spend is managed directly through your Meta Business Manager."
+                                }
+                            },
+                            {
+                                "@type": "Question",
+                                "name": "What platforms do you run ads on?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "We specialize exclusively in Meta (Facebook and Instagram) ads to build high-velocity conversion funnels."
+                                }
+                            }
+                        ]
+                    })
+                }}
+            />
 
             {/* Hero Section */}
             <section className="relative min-h-[80vh] flex items-center pt-24 pb-20 overflow-hidden">
@@ -128,18 +186,18 @@ export default function MarketingPage() {
                     >
                         <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-card border-blue-500/20 text-blue-400 text-[10px] font-black uppercase tracking-[0.4em] mb-10">
                             <TrendingUp className="w-3 h-3 animate-pulse" />
-                            Velocity & Growth Protcols
+                            Paid Acquisition Protocols
                         </div>
 
                         <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-10 leading-[0.85] uppercase text-balance">
                             Build <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500 text-glow-blue">
-                                Velocity.
+                                Scale.
                             </span>
                         </h1>
 
                         <p className="text-xl md:text-2xl text-foreground/70 leading-relaxed mb-12 max-w-2xl mx-auto font-light">
-                            We don&apos;t just post content. We engineer <span className="text-white font-medium italic">mathematical growth</span> through precision SEO and high-conversion assets.
+                            We don&apos;t just run ads. We engineer <span className="text-white font-medium italic">algorithmic funnels</span> through precision Meta campaigns and high-conversion assets.
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
@@ -147,12 +205,28 @@ export default function MarketingPage() {
                                 onClick={() => setIsBookingOpen(true)}
                                 className="px-12 py-6 bg-blue-500 text-white rounded-full font-black uppercase tracking-widest text-xs hover:bg-white hover:text-blue-500 transition-all shadow-[0_0_40px_rgba(59,130,246,0.3)]"
                             >
-                                Initiate Growth Protocol
+                                Initiate Campaign
                             </button>
                         </div>
                     </motion.div>
                 </div>
             </section>
+
+            {/* Answer Engine Optimization Block */}
+            <section className="py-12 bg-[#050505] border-y border-white/5 relative z-20">
+                <div className="container px-4 mx-auto max-w-4xl text-center">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-4 tracking-tight">What is Meta Ads Acquisition?</h2>
+                    <p className="text-foreground/70 leading-relaxed font-light">
+                        Meta Ads Acquisition is the deployment of precision advertising campaigns across Facebook and Instagram to drive immediate, measurable revenue. Instead of basic boosting, we engineer algorithmic funnels, utilize custom data-driven creatives, and optimize pixel tracking to systematically capture high-ticket leads and customers.
+                    </p>
+                </div>
+            </section>
+
+            <WakeUpCall
+                title="Boosting posts is not a strategy. It's a donation to Mark Zuckerberg."
+                subtitle="Hope is not a growth mechanism."
+                paragraph="If you are burning budget on Meta ads without a solid architecture, you don't have an ad problem—you have a funnel problem. We engineer ruthless targeting strategies and high-converting creatives that force the ecosystem to bring you qualified leads, scaling your revenue with absolute precision."
+            />
 
             {/* Strategic Pillars */}
             <section className="py-24 border-y border-white/5 bg-white/[0.01]">
@@ -162,18 +236,18 @@ export default function MarketingPage() {
                             <div className="w-16 h-16 rounded-[2rem] bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                                 <ImageIcon className="w-8 h-8 text-blue-400" />
                             </div>
-                            <h3 className="text-xl font-bold uppercase tracking-widest mb-4">Thumbnail Engineering</h3>
+                            <h3 className="text-xl font-bold uppercase tracking-widest mb-4">Creative Architecture</h3>
                             <p className="text-sm text-foreground/50 leading-relaxed italic">
-                                Visual architecture designed to force the click. High-CTR designs that dominate the feed.
+                                Visuals and direct-response copy designed to stop the scroll and force the click.
                             </p>
                         </div>
                         <div className="text-center group">
                             <div className="w-16 h-16 rounded-[2rem] bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                                 <Search className="w-8 h-8 text-indigo-400" />
                             </div>
-                            <h3 className="text-xl font-bold uppercase tracking-widest mb-4">Video SEO Domain</h3>
+                            <h3 className="text-xl font-bold uppercase tracking-widest mb-4">Algorithmic Targeting</h3>
                             <p className="text-sm text-foreground/50 leading-relaxed italic">
-                                Deep keyword extraction and metadata optimization to rank your content where it matters.
+                                Deep audience extraction and pixel optimization to place your ads in front of proven buyers.
                             </p>
                         </div>
                         <div className="text-center group">
@@ -194,7 +268,7 @@ export default function MarketingPage() {
                 <div className="container px-4 mx-auto">
                     <div className="text-center mb-20 text-balance uppercase tracking-tighter">
                         <span className="text-blue-400 font-bold tracking-[0.4em] text-[10px] mb-4 block">Deployment Tiers</span>
-                        <h2 className="text-4xl md:text-6xl font-black">Social <span className="text-white/40">Velocity.</span></h2>
+                        <h2 className="text-4xl md:text-6xl font-black">Meta <span className="text-white/40">Funnels.</span></h2>
                     </div>
 
                     <div className="grid gap-8 lg:grid-cols-3 max-w-6xl mx-auto">
@@ -219,7 +293,7 @@ export default function MarketingPage() {
                                     <div className="flex items-baseline gap-1">
                                         <span className="text-4xl font-black">${tier.price}</span>
                                         <span className="text-white/20 text-[10px] uppercase tracking-widest font-bold">
-                                            {tier.type === "monthly" ? "/ Month" : "Investment"}
+                                            {tier.type === "monthly" ? "/ Month" : "Investment"} <span className="text-white/50 ml-1">+ Ad Spend</span>
                                         </span>
                                     </div>
                                     <p className="mt-4 text-sm text-foreground/50 leading-relaxed italic">
