@@ -5,6 +5,9 @@ on:
     - cron: '0 6 * * *' # Run at 06:00 UTC (00:00 Central Time) every day
   workflow_dispatch: # Allow manual triggering from GitHub UI
 
+permissions:
+  contents: write
+
 jobs:
   research-and-inject:
     runs-on: ubuntu-latest
@@ -14,6 +17,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          ref: master
           fetch-depth: 0
 
       - name: Setup Node.js
@@ -29,16 +33,32 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
-        run: npm run claudebot
+        run: |
+          echo "🚀 ClaudeBot starting at $(date)"
+          npm run claudebot 2>&1 | tee claudebot-run.log
+          echo "✅ ClaudeBot finished at $(date)"
 
-      - name: Commit and Push Evolution
+      - name: Validate Build
+        run: |
+          echo "🔨 Validating build integrity..."
+          npm run build
+          echo "✅ Build passed — safe to commit"
+
+      - name: Commit and Push to Master
         run: |
           git config --global user.name "ClaudeBot [Bot]"
           git config --global user.email "claudebot@powerdigitalmedia.org"
           git add src/data/blogPosts.ts public/blog-images/
-          git diff --quiet && git diff --staged --quiet || (
+          if git diff --staged --quiet; then
+            echo "⚠️ No changes to commit"
+          else
             git commit -m "feat(agent): autonomous intelligence update - $(date +'%Y-%m-%d')"
-            git push origin HEAD:main
-            git push origin HEAD:master
-            git push origin HEAD:deploy-production --force
-          )
+            git push origin master
+            echo "✅ Pushed to master"
+          fi
+
+      - name: Sync Deploy Branch
+        if: success()
+        run: |
+          git push origin master:deploy-production --force || echo "⚠️ deploy-production sync failed (non-fatal)"
+          git push origin master:main --force || echo "⚠️ main sync failed (non-fatal)"
