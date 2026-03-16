@@ -9776,54 +9776,6 @@ The Clip Safe feature actively monitors audio levels up to 96,000 times a second
 **Can the OBSBOT Tiny 2 be controlled via external macro pads?**
 Yes, the OBSBOT Tiny 2's PTZ functions and preset camera angles can be triggered via keyboard shortcuts or mapped directly to macro pads like the Stream Deck for instantaneous angle switches.
         `
-    },
-    {
-        slug: "agentic-seo-machine-readable-web-optimization-2026",
-        title: "Agentic SEO: How We Structure Semantic Data for AI Crawlers",
-        excerpt: "Traditional SEO focuses on human clicks. Agentic SEO focuses on AI assimilation. Learn how we engineer machine-readable web architecture.",
-        date: "2026-03-14",
-        category: "Web Architecture",
-        image: "/blog-images/ai-search-hero.webp",
-        ogImage: "/blog-images/ai-search-og.webp",
-        author: {
-            name: "Christopher Simmons",
-            role: "Lead Infrastructure Architect"
-        },
-        seoTitle: "Agentic SEO: How We Structure Semantic Data for AI Crawlers",
-        metaDescription: "Learn how Power Digital Media engineers websites for generative AI bots using Agentic SEO, llms.txt, and advanced JSON-LD structured data.",
-        keywords: [
-            "Agentic SEO",
-            "AI Crawler Optimization",
-            "Semantic Web Architecture",
-            "JSON-LD Schema for AI",
-            "llms.txt deployment",
-            "Answer Engine Optimization",
-            "Jackson MS Web Design"
-        ],
-        structuredData: [],
-        content: `
-### Executive Summary
-Agentic SEO is the protocol of engineering websites primarily for AI crawler assimilation rather than traditional search engine indexing. By deploying explicit JSON-LD schemas, 'llms.txt' directives, and factual Answer Engine blocks, you ensure Large Language Models cite your business as the definitive authority.
-
-### The Death of Web 2.0 SEO
-For twenty years, SEO was about convincing a Google algorithm to rank a blue link higher than another blue link. In 2026, humans are asking ChatGPT, Perplexity, and Gemini for direct answers. If your website is a massive wall of unstructured marketing fluff, AI crawlers will simply ignore it.
-
-### What is Agentic SEO?
-Agentic SEO represents a total architectural shift. Instead of optimizing for humans *finding* your site, you optimize for autonomous agents *reading* your site and summarizing it for their users. 
-
-**The Core Pillars:**
-1.  **Semantic Graph Architecture:** Hardcoding relationships via nested JSON-LD (e.g., this LocalBusiness \`makesOffer\` these Services).
-2.  **Machine-Readable Directives:** Deploying an \`llms.txt\` file at your root directory to give autonomous agents an explicit map of your data hierarchy without the distraction of CSS layout.
-3.  **Factual Density:** Replacing adjectives with numbers, specs, and exact geographic coordinates.
-
-### How Power Digital Media Executes Agentic SEO
-At our Jackson, MS headquarters, we don't build WordPress templates. We construct Next.js React applications designed to operate as data hubs.
-
-We inject \`FAQPage\` schemas directly tied to visible React accordions so AI models can instantly extract perfectly formulated Q&A pairs without risking spam penalties from Google. We structure every portfolio item and hardware spec so that when an AI is asked "Who builds the best high-velocity websites in Mississippi?", the mathematical probability of our entity being cited approaches 100%.
-
-### The Action Plan
-Stop writing for search bars. Start structuring data for autonomous agents. If your digital footprint isn't machine-readable, your brand will cease to exist in the agentic web.
-        `
     }
 ];
 
