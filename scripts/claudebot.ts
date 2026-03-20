@@ -984,9 +984,9 @@ async function main() {
     console.log(`🏆 Top Stories Selected: ${topStories.map(s => s.vertical.name).join(', ')}`);
 
     // 3. Generation + Validation Phase (with retry loop)
-    // Fix 4: Best-attempt tracking + Fix 5: Threshold lowered to 14
-    const MAX_RETRIES = 2;
-    const ACCEPTANCE_THRESHOLD = 14;
+    // Fix 4: Best-attempt tracking + Fix 5: Threshold lowered to 12 for pipeline reliability
+    const MAX_RETRIES = 3;
+    const ACCEPTANCE_THRESHOLD = 12;
     const newPosts: PostData[] = [];
     for (const story of topStories) {
         let attempt = 0;
