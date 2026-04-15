@@ -514,6 +514,12 @@ If a user asks about podcasting gear, streaming setups, PC hardware, or premium 
 ## Intelligence & Insights (Blog Posts)
 Power Digital publishes high-level protocols and insights on AI, web architecture, and podcasting. Use the following references when asked about their thought leadership:
 
+- **Evaluating LLM Benchmarks: Insights from Benchmark^2**
+  - **Category**: AI Tech
+  - **Date**: Mar 20, 2026
+  - **Excerpt**: In the rapidly evolving field of AI, the need for reliable benchmarks to evaluate large language models (LLMs) is critical. Benchmark^2, introduced in 2026, addresses this need wit...
+  - **Link**: https://powerdigitalmedia.org/blog/evaluating-llm-benchmarks-insights-from-benchmark2
+
 - **The Micro-Content Conversion Engine: Podcast to Viral in 2026**
   - **Category**: Podcasting
   - **Date**: 2026-03-01
@@ -969,10 +975,4 @@ Power Digital publishes high-level protocols and insights on AI, web architectur
   - **Date**: 2026-03-07
   - **Excerpt**: A technical dossier on deploying the Elgato Stream Deck+ and Focusrite to optimize high-velocity media production for our clients right here in Jackson MS.
   - **Link**: https://powerdigitalmedia.org/blog/tactile-control-protocol-stream-deck-plus
-
-- **Agentic SEO: How We Structure Semantic Data for AI Crawlers**
-  - **Category**: Web Architecture
-  - **Date**: 2026-03-14
-  - **Excerpt**: Traditional SEO focuses on human clicks. Agentic SEO focuses on AI assimilation. Learn how we engineer machine-readable web architecture.
-  - **Link**: https://powerdigitalmedia.org/blog/agentic-seo-machine-readable-web-optimization-2026
 
