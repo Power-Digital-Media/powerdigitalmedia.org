@@ -68,7 +68,8 @@ export default function Footer() {
                     <div>
                         <h4 className="font-bold mb-6 uppercase tracking-wider text-xs text-accent">Service Area</h4>
                         <ul className="space-y-4 text-sm text-muted-foreground">
-                            <li>Jackson • Madison • Brandon, MS</li>
+                            <li>2914 Cynthia Rd.</li>
+                            <li>Jackson, MS 39209</li>
                             <li>info@powerdigitalmedia.org</li>
                             <li>601-446-2393</li>
                             <li>

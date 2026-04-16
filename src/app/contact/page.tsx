@@ -78,7 +78,8 @@ export default function StandaloneContactPage() {
                                             </div>
                                             <div>
                                                 <p className="text-xs font-bold text-accent uppercase tracking-widest">Office</p>
-                                                <p className="font-medium">Jackson, Mississippi</p>
+                                                <p className="font-medium">2914 Cynthia Rd.</p>
+                                                <p className="font-medium">Jackson, MS 39209</p>
                                             </div>
                                         </div>
                                         <div className="flex items-center gap-4 group">
