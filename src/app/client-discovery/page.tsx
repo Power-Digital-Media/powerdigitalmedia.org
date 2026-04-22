@@ -1,10 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Send, ClipboardList, User, Building2, Share2, Megaphone, Target, Camera, DollarSign, StickyNote } from "lucide-react";
+import { Send, ClipboardList, User, Building2, Share2, Megaphone, Target, Camera, DollarSign, StickyNote, type LucideIcon } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 
 /* ─── Types ─────────────────────────────────────────────────────── */
 type FormStatus = "idle" | "submitting" | "success" | "error";
@@ -54,7 +54,7 @@ function YesNo({ name, disabled }: { name: string; disabled: boolean }) {
 }
 
 /* ─── Section Wrapper ───────────────────────────────────────────── */
-function FormSection({ icon: Icon, title, children, delay = 0 }: { icon: React.ElementType; title: string; children: React.ReactNode; delay?: number }) {
+function FormSection({ icon: Icon, title, children, delay = 0 }: { icon: LucideIcon; title: string; children: React.ReactNode; delay?: number }) {
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
