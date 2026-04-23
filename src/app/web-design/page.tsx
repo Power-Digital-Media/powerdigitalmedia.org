@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { Globe, Cpu, Zap, Shield, Search, ArrowRight, BarChart3, Layers } from "lucide-react";
 import Link from "next/link";
@@ -9,7 +9,7 @@ import Footer from "@/components/layout/Footer";
 import Image from "next/image";
 import Portfolio from "@/components/sections/Portfolio";
 import ArchitectureCompare from "@/components/sections/ArchitectureCompare";
-import BookingModal from "@/components/ui/BookingModal";
+
 import WebDesignPricing from "@/components/ui/billing/WebDesignPricing";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import WireframeHeroBg from "@/components/ui/web-design/WireframeHeroBg";
@@ -97,7 +97,6 @@ const tiers: Tier[] = [
 ];
 
 export default function WebDesignPage() {
-    const [isBookingOpen, setIsBookingOpen] = useState(false);
 
     const baseUrl = "https://powerdigitalmedia.org";
     const breadcrumbItems = [
@@ -189,12 +188,9 @@ export default function WebDesignPage() {
                             We don&apos;t build websites. We deploy <span className="text-white font-medium">high-velocity digital engines</span> engineered for prestige and engineered for dominance.
                         </p>
                         <div className="flex flex-wrap justify-center gap-6">
-                            <button
-                                onClick={() => setIsBookingOpen(true)}
-                                className="w-full sm:w-auto px-12 py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 hover:text-white transition-all uppercase tracking-widest text-sm shadow-[0_0_40px_rgba(255,255,255,0.2)]"
-                            >
+                            <Link href="/web-design/discovery" className="w-full sm:w-auto px-12 py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 hover:text-white transition-all uppercase tracking-widest text-sm shadow-[0_0_40px_rgba(255,255,255,0.2)] text-center">
                                 Initialize Build
-                            </button>
+                            </Link>
                             <Link href="#protocols" className="w-full sm:w-auto flex items-center justify-center px-12 py-5 border border-white/20 rounded-full hover:bg-white/5 transition-all font-bold uppercase tracking-widest text-sm">
                                 View Protocols
                             </Link>
@@ -381,12 +377,9 @@ export default function WebDesignPage() {
                         <p className="text-xl text-foreground/60 mb-16 max-w-xl mx-auto leading-relaxed">
                             Stop building websites. Start engineering your digital dominance. Deploy your custom growth architecture today.
                         </p>
-                        <button
-                            onClick={() => setIsBookingOpen(true)}
-                            className="inline-block bg-white text-black px-16 py-8 rounded-full font-black uppercase tracking-[0.3em] text-sm hover:scale-105 transition-all shadow-[0_0_60px_rgba(255,255,255,0.2)] hover:shadow-cyan-400/50"
-                        >
-                            Initialize Contact
-                        </button>
+                        <Link href="/web-design/discovery" className="inline-block bg-white text-black px-16 py-8 rounded-full font-black uppercase tracking-[0.3em] text-sm hover:scale-105 transition-all shadow-[0_0_60px_rgba(255,255,255,0.2)] hover:shadow-cyan-400/50">
+                            Initialize Build
+                        </Link>
                     </motion.div>
                 </div>
             </section>
@@ -434,10 +427,7 @@ export default function WebDesignPage() {
             />
             <Footer />
 
-            <BookingModal
-                isOpen={isBookingOpen}
-                onClose={() => setIsBookingOpen(false)}
-            />
+
         </main>
     );
 }
