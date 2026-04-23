@@ -222,6 +222,7 @@ export default function WebDesignDiscoveryPage() {
                                                 "Salon / Barbershop", "Fitness / Gym", "Non-Profit / Foundation",
                                                 "Technology / SaaS", "Photography / Videography", "Consulting / Coaching",
                                                 "Home Services (HVAC, Plumbing, etc.)", "Entertainment / Events", "Education / Training",
+                                                "Insurance", "Pharmacy",
                                             ].map((type) => (
                                                 <Checkbox key={type} name="business_type" value={type} label={type} disabled={disabled} />
                                             ))}
