@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import {
     Send, Globe, User, Building2, Palette, LayoutGrid,
-    FileText, Wrench, Clock, HeartHandshake, type LucideIcon,
+    FileText, Wrench, Clock, HeartHandshake, Search, Sparkles,
+    Monitor, type LucideIcon,
 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -266,9 +267,42 @@ export default function WebDesignDiscoveryPage() {
                                         </div>
                                     </div>
                                     <TextArea label="Reference sites you love (paste URLs)" name="reference_sites" placeholder="e.g. https://stripe.com, https://apple.com — tell us what you like about them" rows={2} disabled={disabled} />
+                                    <TextArea label="Competitor websites (paste URLs)" name="competitor_sites" placeholder="Your top 2-3 competitors — we'll study them and build something that outperforms" rows={2} disabled={disabled} />
                                     <div className="space-y-2">
                                         <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Do you have existing brand colors and a logo?</label>
                                         <RadioGroup name="has_branding" options={["Yes — ready to go", "Partially — needs refinement", "No — need branding too"]} disabled={disabled} />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">What&apos;s the #1 thing visitors should do on your site?</label>
+                                        <RadioGroup name="primary_goal" options={["Call / Contact Us", "Buy a Product", "Book an Appointment", "Fill Out a Form", "Learn About Services", "Sign Up / Register"]} disabled={disabled} />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Hero section preference (top of homepage)</label>
+                                        <RadioGroup name="hero_style" options={["Video Background", "Static Image", "Image Slider / Carousel", "Animated Text / Minimal", "Not sure — recommend something"]} disabled={disabled} />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Animation level</label>
+                                        <RadioGroup name="animation_level" options={["Static / Minimal — clean and fast", "Moderate — subtle scroll effects and transitions", "Heavy — parallax, cinematic, motion-rich"]} disabled={disabled} />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Photography direction</label>
+                                        <RadioGroup name="photo_direction" options={["Custom photography", "Professional stock imagery", "Illustrations / Graphics", "Icon-heavy / minimal photos", "Mix of everything"]} disabled={disabled} />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Color mood</label>
+                                        <RadioGroup name="color_mood" options={["Warm (reds, oranges, golds)", "Cool (blues, greens, purples)", "Neutral (grays, blacks, whites)", "Earthy (browns, tans, forest)", "Bold & Vibrant", "Muted & Pastel"]} disabled={disabled} />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Font vibe</label>
+                                        <RadioGroup name="font_vibe" options={["Modern / Clean sans-serif", "Classic / Serif (traditional)", "Bold / Display (high-impact)", "Handwritten / Script", "Not sure — you decide"]} disabled={disabled} />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Layout density</label>
+                                        <RadioGroup name="layout_density" options={["Spacious — lots of whitespace and breathing room", "Balanced — clean but informative", "Content-rich — packed with info above the fold"]} disabled={disabled} />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">How important is mobile?</label>
+                                        <RadioGroup name="mobile_priority" options={["Critical — most of our customers are on phones", "Important — about equal mobile/desktop", "Secondary — most visitors use desktop"]} disabled={disabled} />
                                     </div>
                                 </FormSection>
 
@@ -336,6 +370,53 @@ export default function WebDesignDiscoveryPage() {
                                             ))}
                                         </div>
                                         <Field label="Other integrations" name="integrations_other" placeholder="Any other tools or platforms..." disabled={disabled} />
+                                    </div>
+                                </FormSection>
+
+                                {/* ─── Search & AI Visibility ──────────── */}
+                                <FormSection icon={Search} title="Search & AI Visibility" delay={0.32}>
+                                    <p className="text-sm text-muted-foreground -mt-2">Modern visibility goes beyond Google. Select the strategies you&apos;re interested in — we&apos;ll scope them into your build.</p>
+                                    <div className="space-y-5">
+                                        <label className="relative flex items-start gap-3 cursor-pointer group select-none">
+                                            <input type="checkbox" name="visibility_services" value="SEO" disabled={disabled} className="peer absolute opacity-0 w-0 h-0" />
+                                            <span className="w-5 h-5 mt-0.5 rounded-md border border-white/20 bg-white/5 peer-checked:bg-cyan-400 peer-checked:border-cyan-400 peer-focus-visible:ring-2 peer-focus-visible:ring-cyan-400/50 transition-all flex items-center justify-center group-hover:border-white/40 shrink-0">
+                                                <svg className="w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity" viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                                            </span>
+                                            <div>
+                                                <span className="text-sm font-semibold text-white group-hover:text-cyan-400 transition-colors">SEO — Search Engine Optimization</span>
+                                                <p className="text-xs text-muted-foreground mt-0.5">Rank higher on Google & Bing. Includes keyword strategy, meta tags, site speed optimization, schema markup, and technical SEO best practices.</p>
+                                            </div>
+                                        </label>
+                                        <label className="relative flex items-start gap-3 cursor-pointer group select-none">
+                                            <input type="checkbox" name="visibility_services" value="AEO" disabled={disabled} className="peer absolute opacity-0 w-0 h-0" />
+                                            <span className="w-5 h-5 mt-0.5 rounded-md border border-white/20 bg-white/5 peer-checked:bg-cyan-400 peer-checked:border-cyan-400 peer-focus-visible:ring-2 peer-focus-visible:ring-cyan-400/50 transition-all flex items-center justify-center group-hover:border-white/40 shrink-0">
+                                                <svg className="w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity" viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                                            </span>
+                                            <div>
+                                                <span className="text-sm font-semibold text-white group-hover:text-cyan-400 transition-colors">AEO — Answer Engine Optimization</span>
+                                                <p className="text-xs text-muted-foreground mt-0.5">Get featured in AI-powered answers (Google AI Overviews, Siri, Alexa). We structure your content so AI assistants pull your business as the answer.</p>
+                                            </div>
+                                        </label>
+                                        <label className="relative flex items-start gap-3 cursor-pointer group select-none">
+                                            <input type="checkbox" name="visibility_services" value="GEO" disabled={disabled} className="peer absolute opacity-0 w-0 h-0" />
+                                            <span className="w-5 h-5 mt-0.5 rounded-md border border-white/20 bg-white/5 peer-checked:bg-cyan-400 peer-checked:border-cyan-400 peer-focus-visible:ring-2 peer-focus-visible:ring-cyan-400/50 transition-all flex items-center justify-center group-hover:border-white/40 shrink-0">
+                                                <svg className="w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity" viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                                            </span>
+                                            <div>
+                                                <span className="text-sm font-semibold text-white group-hover:text-cyan-400 transition-colors">GEO — Generative Engine Optimization</span>
+                                                <p className="text-xs text-muted-foreground mt-0.5">Be cited by ChatGPT, Claude, Perplexity, and other AI search engines. We optimize your site&apos;s authority signals so generative AI models reference your business in their responses.</p>
+                                            </div>
+                                        </label>
+                                        <label className="relative flex items-start gap-3 cursor-pointer group select-none">
+                                            <input type="checkbox" name="visibility_services" value="llms.txt" disabled={disabled} className="peer absolute opacity-0 w-0 h-0" />
+                                            <span className="w-5 h-5 mt-0.5 rounded-md border border-white/20 bg-white/5 peer-checked:bg-cyan-400 peer-checked:border-cyan-400 peer-focus-visible:ring-2 peer-focus-visible:ring-cyan-400/50 transition-all flex items-center justify-center group-hover:border-white/40 shrink-0">
+                                                <svg className="w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity" viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                                            </span>
+                                            <div>
+                                                <span className="text-sm font-semibold text-white group-hover:text-cyan-400 transition-colors">llms.txt — AI-Readable Site Index</span>
+                                                <p className="text-xs text-muted-foreground mt-0.5">A machine-readable file (like robots.txt but for AI) that tells large language models exactly what your business does, what you offer, and how to represent you. The new standard for AI discoverability.</p>
+                                            </div>
+                                        </label>
                                     </div>
                                 </FormSection>
 
