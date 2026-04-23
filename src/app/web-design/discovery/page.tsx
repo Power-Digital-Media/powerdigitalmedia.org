@@ -212,7 +212,22 @@ export default function WebDesignDiscoveryPage() {
 
                                 {/* ─── Business Context ────────────────────── */}
                                 <FormSection icon={Building2} title="About Your Business" delay={0.05}>
-                                    <Field label="Industry / Niche" name="industry" placeholder="e.g. Real Estate, Ministry, Health & Wellness, E-commerce" disabled={disabled} />
+                                    <div className="space-y-3">
+                                        <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">What type of business are you?</label>
+                                        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                                            {[
+                                                "Construction / Contractor", "Real Estate", "Restaurant / Food Service",
+                                                "Retail / E-Commerce Store", "Health & Wellness", "Ministry / Church",
+                                                "Law Firm / Legal", "Medical / Dental", "Automotive",
+                                                "Salon / Barbershop", "Fitness / Gym", "Non-Profit / Foundation",
+                                                "Technology / SaaS", "Photography / Videography", "Consulting / Coaching",
+                                                "Home Services (HVAC, Plumbing, etc.)", "Entertainment / Events", "Education / Training",
+                                            ].map((type) => (
+                                                <Checkbox key={type} name="business_type" value={type} label={type} disabled={disabled} />
+                                            ))}
+                                        </div>
+                                        <Field label="Other Industry (if not listed)" name="business_type_other" placeholder="e.g. Agriculture, Logistics, Insurance..." disabled={disabled} />
+                                    </div>
                                     <TextArea label="What products or services do you offer?" name="products_services" placeholder="Describe your core offerings..." disabled={disabled} />
                                     <Field label="Who is your ideal customer?" name="ideal_customer" placeholder="Demographics, pain points, buying behavior..." disabled={disabled} />
                                     <Field label="Business Location / Service Area" name="service_area" placeholder="Jackson, MS — serving all of Mississippi" disabled={disabled} />
