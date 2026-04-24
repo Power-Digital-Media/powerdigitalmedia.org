@@ -5,7 +5,7 @@ import { m, AnimatePresence } from "framer-motion";
 import { Menu, X, LayoutDashboard, LogIn, Terminal, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import BookingModal from "../ui/BookingModal";
+
 import { useAuth } from "@/context/AuthContext";
 import { isAdmin } from "@/lib/auth-constants";
 
@@ -13,7 +13,7 @@ export default function Navbar() {
     const { user } = useAuth();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [isBookingOpen, setIsBookingOpen] = useState(false);
+
 
     useEffect(() => {
         const handleScroll = () => {
@@ -135,7 +135,7 @@ export default function Navbar() {
                             )}
                         </Link>
                         <Link
-                            href="#footer"
+                            href="/book"
                             className="px-5 py-2 text-sm font-bold text-white bg-accent rounded-full hover:bg-accent/90 transition-all border-glow"
                         >
                             Book Studio
@@ -232,7 +232,7 @@ export default function Navbar() {
                             )}
 
                             <Link
-                                href="#footer"
+                                href="/book"
                                 onClick={() => setIsMobileMenuOpen(false)}
                                 className="w-full py-4 text-center font-bold text-white bg-accent rounded-xl border border-accent border-glow shadow-[0_0_30px_rgba(var(--accent),0.3)] hover:shadow-[0_0_50px_rgba(var(--accent),0.5)] transition-all mt-2"
                             >
@@ -242,10 +242,7 @@ export default function Navbar() {
                     </m.div>
                 )}
             </AnimatePresence>
-            <BookingModal
-                isOpen={isBookingOpen}
-                onClose={() => setIsBookingOpen(false)}
-            />
+
         </nav>
     );
 }

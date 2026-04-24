@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { useEffect } from "react";
+import { BOOKING_CONFIG } from "@/lib/booking";
 
 interface BookingModalProps {
     isOpen: boolean;
@@ -10,7 +11,7 @@ interface BookingModalProps {
     calLink?: string;
 }
 
-export default function BookingModal({ isOpen, onClose, calLink = "damein-powerdigitalmedia.org" }: BookingModalProps) {
+export default function BookingModal({ isOpen, onClose, calLink }: BookingModalProps) {
     // Prevent scrolling when modal is open
     useEffect(() => {
         if (isOpen) {
@@ -58,11 +59,15 @@ export default function BookingModal({ isOpen, onClose, calLink = "damein-powerd
                             </button>
                         </div>
 
-                        {/* Cal.com Embed */}
-                        <div className="w-full h-full pt-16">
+                        {/* Google Calendar Embed — dark‑mode invert */}
+                        <div className="w-full h-full pt-16" style={{ background: "#0b1120" }}>
                             <iframe
-                                src={`https://cal.com/${calLink}?embed=true`}
+                                src={calLink || BOOKING_CONFIG.calendarUrl}
                                 className="w-full h-full border-none"
+                                style={{
+                                    filter: "invert(0.88) hue-rotate(180deg)",
+                                    colorScheme: "light",
+                                }}
                                 title="Schedule a call"
                             />
                         </div>

@@ -9,49 +9,81 @@ import {
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { useState, type FormEvent } from "react";
+import { useRouter } from "next/navigation";
 
 /* ─── Types ─────────────────────────────────────────────────────── */
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
 /* ─── Styled Checkbox ───────────────────────────────────────────── */
 function Checkbox({ name, value, label, disabled }: { name: string; value: string; label: string; disabled: boolean }) {
+    const [checked, setChecked] = useState(false);
+    const toggle = () => { if (!disabled) setChecked(c => !c); };
     return (
-        <label className="relative flex items-center gap-3 cursor-pointer group select-none">
-            <input
-                type="checkbox"
-                name={name}
-                value={value}
-                disabled={disabled}
-                className="peer absolute opacity-0 w-0 h-0"
-            />
-            <span className="w-5 h-5 rounded-md border border-white/20 bg-white/5 peer-checked:bg-cyan-400 peer-checked:border-cyan-400 peer-focus-visible:ring-2 peer-focus-visible:ring-cyan-400/50 transition-all flex items-center justify-center group-hover:border-white/40 shrink-0">
-                <svg className="w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity" viewBox="0 0 12 12" fill="none">
-                    <path d="M2 6L5 9L10 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+        <div className="relative flex items-center gap-3 cursor-pointer group select-none" onClick={toggle} role="checkbox" aria-checked={checked} tabIndex={0} onKeyDown={(e) => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); } }}>
+            <input type="hidden" name={checked ? name : ''} value={value} />
+            <span className={`w-5 h-5 rounded-md border transition-all flex items-center justify-center shrink-0 ${
+                checked ? 'bg-cyan-400 border-cyan-400' : 'border-white/20 bg-white/5 group-hover:border-white/40'
+            }`}>
+                {checked && (
+                    <svg className="w-3 h-3 text-white" viewBox="0 0 12 12" fill="none">
+                        <path d="M2 6L5 9L10 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                )}
             </span>
             <span className="text-sm text-slate-300 group-hover:text-white transition-colors">{label}</span>
-        </label>
+        </div>
+    );
+}
+
+/* ─── Descriptive Checkbox (for visibility section) ─────────────── */
+function DescriptiveCheckbox({ name, value, title, description, disabled }: { name: string; value: string; title: string; description: string; disabled: boolean }) {
+    const [checked, setChecked] = useState(false);
+    const toggle = () => { if (!disabled) setChecked(c => !c); };
+    return (
+        <div className="relative flex items-start gap-3 cursor-pointer group select-none" onClick={toggle} role="checkbox" aria-checked={checked} tabIndex={0} onKeyDown={(e) => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); } }}>
+            <input type="hidden" name={checked ? name : ''} value={value} />
+            <span className={`w-5 h-5 mt-0.5 rounded-md border transition-all flex items-center justify-center shrink-0 ${
+                checked ? 'bg-cyan-400 border-cyan-400' : 'border-white/20 bg-white/5 group-hover:border-white/40'
+            }`}>
+                {checked && (
+                    <svg className="w-3 h-3 text-white" viewBox="0 0 12 12" fill="none">
+                        <path d="M2 6L5 9L10 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                )}
+            </span>
+            <div>
+                <span className={`text-sm font-semibold transition-colors ${checked ? 'text-cyan-400' : 'text-white group-hover:text-cyan-400'}`}>{title}</span>
+                <p className="text-xs text-muted-foreground mt-0.5">{description}</p>
+            </div>
+        </div>
     );
 }
 
 /* ─── Radio Group ───────────────────────────────────────────────── */
 function RadioGroup({ name, options, disabled }: { name: string; options: string[]; disabled: boolean }) {
+    const [selected, setSelected] = useState<string | null>(null);
     return (
         <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+            <input type="hidden" name={name} value={selected ?? ''} />
             {options.map((val) => (
-                <label key={val} className="relative flex items-center gap-2 cursor-pointer group select-none">
-                    <input
-                        type="radio"
-                        name={name}
-                        value={val}
-                        disabled={disabled}
-                        className="peer absolute opacity-0 w-0 h-0"
-                    />
-                    <span className="w-5 h-5 rounded-full border border-white/20 bg-white/5 peer-checked:border-cyan-400 transition-all flex items-center justify-center group-hover:border-white/40">
-                        <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 scale-0 peer-checked:scale-100 transition-transform" />
+                <div
+                    key={val}
+                    className="relative flex items-center gap-2 cursor-pointer group select-none"
+                    onClick={() => { if (!disabled) setSelected(prev => prev === val ? null : val); }}
+                    role="radio"
+                    aria-checked={selected === val}
+                    tabIndex={0}
+                    onKeyDown={(e) => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); if (!disabled) setSelected(prev => prev === val ? null : val); } }}
+                >
+                    <span className={`w-5 h-5 rounded-full border transition-all flex items-center justify-center ${
+                        selected === val ? 'border-cyan-400' : 'border-white/20 bg-white/5 group-hover:border-white/40'
+                    }`}>
+                        <span className={`w-2.5 h-2.5 rounded-full bg-cyan-400 transition-transform ${
+                            selected === val ? 'scale-100' : 'scale-0'
+                        }`} />
                     </span>
                     <span className="text-sm text-slate-300 group-hover:text-white transition-colors">{val}</span>
-                </label>
+                </div>
             ))}
         </div>
     );
@@ -117,6 +149,7 @@ function TextArea({ label, name, placeholder = "", rows = 3, disabled = false }:
 export default function WebDesignDiscoveryPage() {
     const [status, setStatus] = useState<FormStatus>("idle");
     const disabled = status === "submitting";
+    const router = useRouter();
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -132,8 +165,8 @@ export default function WebDesignDiscoveryPage() {
             });
 
             if (response.ok) {
-                setStatus("success");
                 form.reset();
+                router.push("/book?from=discovery");
             } else {
                 setStatus("error");
             }
@@ -377,46 +410,10 @@ export default function WebDesignDiscoveryPage() {
                                 <FormSection icon={Search} title="Search & AI Visibility" delay={0.32}>
                                     <p className="text-sm text-muted-foreground -mt-2">Modern visibility goes beyond Google. Select the strategies you&apos;re interested in — we&apos;ll scope them into your build.</p>
                                     <div className="space-y-5">
-                                        <label className="relative flex items-start gap-3 cursor-pointer group select-none">
-                                            <input type="checkbox" name="visibility_services" value="SEO" disabled={disabled} className="peer absolute opacity-0 w-0 h-0" />
-                                            <span className="w-5 h-5 mt-0.5 rounded-md border border-white/20 bg-white/5 peer-checked:bg-cyan-400 peer-checked:border-cyan-400 peer-focus-visible:ring-2 peer-focus-visible:ring-cyan-400/50 transition-all flex items-center justify-center group-hover:border-white/40 shrink-0">
-                                                <svg className="w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity" viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                                            </span>
-                                            <div>
-                                                <span className="text-sm font-semibold text-white group-hover:text-cyan-400 transition-colors">SEO — Search Engine Optimization</span>
-                                                <p className="text-xs text-muted-foreground mt-0.5">Rank higher on Google & Bing. Includes keyword strategy, meta tags, site speed optimization, schema markup, and technical SEO best practices.</p>
-                                            </div>
-                                        </label>
-                                        <label className="relative flex items-start gap-3 cursor-pointer group select-none">
-                                            <input type="checkbox" name="visibility_services" value="AEO" disabled={disabled} className="peer absolute opacity-0 w-0 h-0" />
-                                            <span className="w-5 h-5 mt-0.5 rounded-md border border-white/20 bg-white/5 peer-checked:bg-cyan-400 peer-checked:border-cyan-400 peer-focus-visible:ring-2 peer-focus-visible:ring-cyan-400/50 transition-all flex items-center justify-center group-hover:border-white/40 shrink-0">
-                                                <svg className="w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity" viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                                            </span>
-                                            <div>
-                                                <span className="text-sm font-semibold text-white group-hover:text-cyan-400 transition-colors">AEO — Answer Engine Optimization</span>
-                                                <p className="text-xs text-muted-foreground mt-0.5">Get featured in AI-powered answers (Google AI Overviews, Siri, Alexa). We structure your content so AI assistants pull your business as the answer.</p>
-                                            </div>
-                                        </label>
-                                        <label className="relative flex items-start gap-3 cursor-pointer group select-none">
-                                            <input type="checkbox" name="visibility_services" value="GEO" disabled={disabled} className="peer absolute opacity-0 w-0 h-0" />
-                                            <span className="w-5 h-5 mt-0.5 rounded-md border border-white/20 bg-white/5 peer-checked:bg-cyan-400 peer-checked:border-cyan-400 peer-focus-visible:ring-2 peer-focus-visible:ring-cyan-400/50 transition-all flex items-center justify-center group-hover:border-white/40 shrink-0">
-                                                <svg className="w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity" viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                                            </span>
-                                            <div>
-                                                <span className="text-sm font-semibold text-white group-hover:text-cyan-400 transition-colors">GEO — Generative Engine Optimization</span>
-                                                <p className="text-xs text-muted-foreground mt-0.5">Be cited by ChatGPT, Claude, Perplexity, and other AI search engines. We optimize your site&apos;s authority signals so generative AI models reference your business in their responses.</p>
-                                            </div>
-                                        </label>
-                                        <label className="relative flex items-start gap-3 cursor-pointer group select-none">
-                                            <input type="checkbox" name="visibility_services" value="llms.txt" disabled={disabled} className="peer absolute opacity-0 w-0 h-0" />
-                                            <span className="w-5 h-5 mt-0.5 rounded-md border border-white/20 bg-white/5 peer-checked:bg-cyan-400 peer-checked:border-cyan-400 peer-focus-visible:ring-2 peer-focus-visible:ring-cyan-400/50 transition-all flex items-center justify-center group-hover:border-white/40 shrink-0">
-                                                <svg className="w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity" viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                                            </span>
-                                            <div>
-                                                <span className="text-sm font-semibold text-white group-hover:text-cyan-400 transition-colors">llms.txt — AI-Readable Site Index</span>
-                                                <p className="text-xs text-muted-foreground mt-0.5">A machine-readable file (like robots.txt but for AI) that tells large language models exactly what your business does, what you offer, and how to represent you. The new standard for AI discoverability.</p>
-                                            </div>
-                                        </label>
+                                        <DescriptiveCheckbox name="visibility_services" value="SEO" disabled={disabled} title="SEO — Search Engine Optimization" description="Rank higher on Google & Bing. Includes keyword strategy, meta tags, site speed optimization, schema markup, and technical SEO best practices." />
+                                        <DescriptiveCheckbox name="visibility_services" value="AEO" disabled={disabled} title="AEO — Answer Engine Optimization" description="Get featured in AI-powered answers (Google AI Overviews, Siri, Alexa). We structure your content so AI assistants pull your business as the answer." />
+                                        <DescriptiveCheckbox name="visibility_services" value="GEO" disabled={disabled} title="GEO — Generative Engine Optimization" description="Be cited by ChatGPT, Claude, Perplexity, and other AI search engines. We optimize your site's authority signals so generative AI models reference your business in their responses." />
+                                        <DescriptiveCheckbox name="visibility_services" value="llms.txt" disabled={disabled} title="llms.txt — AI-Readable Site Index" description="A machine-readable file (like robots.txt but for AI) that tells large language models exactly what your business does, what you offer, and how to represent you. The new standard for AI discoverability." />
                                     </div>
                                 </FormSection>
 
