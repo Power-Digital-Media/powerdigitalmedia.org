@@ -45,12 +45,8 @@ export default function PodcastingCommandBar() {
                         </div>
 
                         <Link
-                            href="#pricing"
+                            href="/podcasting/discovery"
                             className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 px-6 py-3 rounded-full font-black uppercase tracking-widest text-[10px] md:text-xs transition-all flex items-center gap-2 group hover:shadow-[0_0_15px_rgba(34,211,238,0.6)]"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
-                            }}
                         >
                             <Radio className="w-4 h-4 group-hover:animate-pulse" />
                             Initialize Protocol

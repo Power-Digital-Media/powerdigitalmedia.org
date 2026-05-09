@@ -233,12 +233,12 @@ export default function ProductionPage() {
                             </p>
 
                             <div className="flex flex-col sm:flex-row items-center gap-6">
-                                <button
-                                    onClick={() => setIsBookingOpen(true)}
+                                <Link
+                                    href="/production/discovery"
                                     className="w-full sm:w-auto px-10 py-5 bg-cyan-400 text-slate-950 rounded-full font-black uppercase tracking-widest text-[10px] hover:bg-white transition-all shadow-[0_0_40px_rgba(34,211,238,0.2)] flex items-center justify-center gap-2 group"
                                 >
                                     Claim Your Slot <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                </button>
+                                </Link>
                                 <span className="text-xs text-foreground/40 font-mono tracking-widest uppercase">
                                     Fully Managed • Zero Tech Headaches
                                 </span>

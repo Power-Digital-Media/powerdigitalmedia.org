@@ -202,12 +202,12 @@ export default function MarketingPage() {
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                            <button
-                                onClick={() => setIsBookingOpen(true)}
-                                className="px-12 py-6 bg-blue-500 text-white rounded-full font-black uppercase tracking-widest text-xs hover:bg-white hover:text-blue-500 transition-all shadow-[0_0_40px_rgba(59,130,246,0.3)]"
+                            <Link
+                                href="/marketing/discovery"
+                                className="px-12 py-6 bg-blue-500 text-white rounded-full font-black uppercase tracking-widest text-xs hover:bg-white hover:text-blue-500 transition-all shadow-[0_0_40px_rgba(59,130,246,0.3)] text-center"
                             >
                                 Initiate Campaign
-                            </button>
+                            </Link>
                         </div>
                     </motion.div>
                 </div>

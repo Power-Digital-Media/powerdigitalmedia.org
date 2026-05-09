@@ -230,12 +230,12 @@ export default function PodcastingPage() {
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                            <button
-                                onClick={() => setIsBookingOpen(true)}
-                                className="w-full sm:w-auto px-10 py-5 font-black text-slate-950 bg-accent rounded-full border-glow hover:bg-white transition-all uppercase tracking-widest text-[11px]"
+                            <Link
+                                href="/podcasting/discovery"
+                                className="w-full sm:w-auto px-10 py-5 font-black text-slate-950 bg-accent rounded-full border-glow hover:bg-white transition-all uppercase tracking-widest text-[11px] text-center"
                             >
                                 Initialize Protocol
-                            </button>
+                            </Link>
                             <Link href="#tiers" className="w-full sm:w-auto px-10 py-5 font-black transition-all border border-white/10 rounded-full glass-card hover:bg-white/5 uppercase tracking-widest text-[11px]">
                                 View Production Tiers
                             </Link>
