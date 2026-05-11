@@ -68,112 +68,115 @@ export default function Navbar() {
     ];
 
     return (
-        <nav
-            className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${isScrolled ? "py-4" : "py-6"
-                } ${isHiddenByWakeUp && !isMobileMenuOpen ? "-translate-y-full opacity-0 pointer-events-none" : "translate-y-0 opacity-100"}`}
-        >
-            <div className="container px-4 mx-auto relative z-50">
-                <div
-                    className={`relative flex items-center justify-between px-6 py-3 rounded-full transition-all duration-300 ${isScrolled || isMobileMenuOpen
-                        ? "glass-card bg-background/80 backdrop-blur-lg border-white/10"
-                        : "bg-transparent border-transparent"
-                        }`}
-                >
-                    {/* Logo */}
-                    <Link href="/" className="flex items-center gap-2 group" onClick={() => setIsMobileMenuOpen(false)}>
-                        <div className="relative flex items-center justify-center w-12 h-12">
-                            <img src="/power-logo.webp" alt="Power Digital Media" width={40} height={40} className="object-contain group-hover:scale-110 transition-transform" />
-                        </div>
-                        <div className="flex flex-col">
-                            <span className="text-xl font-bold tracking-tighter leading-none">
-                                POWER <span className="text-accent">DIGITAL</span>
-                            </span>
-                            <span className="text-[8px] font-bold tracking-[0.3em] text-muted-foreground uppercase leading-none mt-1">
-                                Media Studio
-                            </span>
-                        </div>
-                    </Link>
+        <>
+            {/* Navbar Bar */}
+            <nav
+                className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${isScrolled ? "py-4" : "py-6"
+                    } ${isHiddenByWakeUp && !isMobileMenuOpen ? "-translate-y-full opacity-0 pointer-events-none" : "translate-y-0 opacity-100"}`}
+            >
+                <div className="container px-4 mx-auto relative z-50">
+                    <div
+                        className={`relative flex items-center justify-between px-6 py-3 rounded-full transition-all duration-300 ${isScrolled || isMobileMenuOpen
+                            ? "glass-card bg-background/80 backdrop-blur-lg border-white/10"
+                            : "bg-transparent border-transparent"
+                            }`}
+                    >
+                        {/* Logo */}
+                        <Link href="/" className="flex items-center gap-2 group" onClick={() => setIsMobileMenuOpen(false)}>
+                            <div className="relative flex items-center justify-center w-12 h-12">
+                                <img src="/power-logo.webp" alt="Power Digital Media" width={40} height={40} className="object-contain group-hover:scale-110 transition-transform" />
+                            </div>
+                            <div className="flex flex-col">
+                                <span className="text-xl font-bold tracking-tighter leading-none">
+                                    POWER <span className="text-accent">DIGITAL</span>
+                                </span>
+                                <span className="text-[8px] font-bold tracking-[0.3em] text-muted-foreground uppercase leading-none mt-1">
+                                    Media Studio
+                                </span>
+                            </div>
+                        </Link>
 
-                    {/* Desktop Nav */}
-                    <div className="hidden lg:flex items-center gap-8">
-                        {/* Services Dropdown */}
-                        <div className="relative group/services py-2">
-                            <button className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors flex items-center gap-1">
-                                Services <ChevronDown className="w-4 h-4 opacity-70 group-hover/services:rotate-180 transition-transform duration-300" />
-                            </button>
-                            <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover/services:opacity-100 group-hover/services:visible transition-all duration-300 w-48">
-                                <div className="glass-card rounded-2xl p-2 flex flex-col border border-white/10 shadow-xl bg-background/95 backdrop-blur-xl">
-                                    {serviceLinks.map((link) => (
-                                        <Link
-                                            key={link.name}
-                                            href={link.href}
-                                            className="px-4 py-3 text-sm font-medium hover:bg-white/5 hover:text-accent rounded-xl transition-colors"
-                                        >
-                                            {link.name}
-                                        </Link>
-                                    ))}
+                        {/* Desktop Nav */}
+                        <div className="hidden lg:flex items-center gap-8">
+                            {/* Services Dropdown */}
+                            <div className="relative group/services py-2">
+                                <button className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors flex items-center gap-1">
+                                    Services <ChevronDown className="w-4 h-4 opacity-70 group-hover/services:rotate-180 transition-transform duration-300" />
+                                </button>
+                                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover/services:opacity-100 group-hover/services:visible transition-all duration-300 w-48">
+                                    <div className="glass-card rounded-2xl p-2 flex flex-col border border-white/10 shadow-xl bg-background/95 backdrop-blur-xl">
+                                        {serviceLinks.map((link) => (
+                                            <Link
+                                                key={link.name}
+                                                href={link.href}
+                                                className="px-4 py-3 text-sm font-medium hover:bg-white/5 hover:text-accent rounded-xl transition-colors"
+                                            >
+                                                {link.name}
+                                            </Link>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
+
+                            {mainLinks.map((link) => (
+                                <Link
+                                    key={link.name}
+                                    href={link.href}
+                                    target={link.external ? "_blank" : undefined}
+                                    rel={link.external ? "noopener noreferrer" : undefined}
+                                    className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors"
+                                >
+                                    {link.name}
+                                </Link>
+                            ))}
+
+                            {isAdmin(user?.email) && (
+                                <Link
+                                    href="/admin"
+                                    className="flex items-center gap-2 px-5 py-2 text-sm font-black text-accent glass-card border-accent/40 hover:bg-accent/10 transition-all rounded-full"
+                                >
+                                    <Terminal className="w-4 h-4" />
+                                    Nexus HUD
+                                </Link>
+                            )}
+                            <Link
+                                href={user ? "/dashboard" : "/login"}
+                                className="flex items-center gap-2 px-5 py-2 text-sm font-bold text-white glass-card border-accent/20 hover:bg-accent/10 transition-all rounded-full"
+                            >
+                                {user ? (
+                                    <>
+                                        <LayoutDashboard className="w-4 h-4 text-accent" />
+                                        Dashboard
+                                    </>
+                                ) : (
+                                    <>
+                                        <LogIn className="w-4 h-4 text-accent" />
+                                        Client Portal
+                                    </>
+                                )}
+                            </Link>
+                            <Link
+                                href="/book"
+                                className="px-5 py-2 text-sm font-bold text-white bg-accent rounded-full hover:bg-accent/90 transition-all border-glow"
+                            >
+                                Book Studio
+                            </Link>
                         </div>
 
-                        {mainLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                target={link.external ? "_blank" : undefined}
-                                rel={link.external ? "noopener noreferrer" : undefined}
-                                className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors"
-                            >
-                                {link.name}
-                            </Link>
-                        ))}
-
-                        {isAdmin(user?.email) && (
-                            <Link
-                                href="/admin"
-                                className="flex items-center gap-2 px-5 py-2 text-sm font-black text-accent glass-card border-accent/40 hover:bg-accent/10 transition-all rounded-full"
-                            >
-                                <Terminal className="w-4 h-4" />
-                                Nexus HUD
-                            </Link>
-                        )}
-                        <Link
-                            href={user ? "/dashboard" : "/login"}
-                            className="flex items-center gap-2 px-5 py-2 text-sm font-bold text-white glass-card border-accent/20 hover:bg-accent/10 transition-all rounded-full"
+                        {/* Mobile Toggle */}
+                        <button
+                            className="lg:hidden text-foreground p-2 rounded-full hover:bg-white/5"
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            aria-label="Toggle mobile menu"
+                            aria-expanded={isMobileMenuOpen}
                         >
-                            {user ? (
-                                <>
-                                    <LayoutDashboard className="w-4 h-4 text-accent" />
-                                    Dashboard
-                                </>
-                            ) : (
-                                <>
-                                    <LogIn className="w-4 h-4 text-accent" />
-                                    Client Portal
-                                </>
-                            )}
-                        </Link>
-                        <Link
-                            href="/book"
-                            className="px-5 py-2 text-sm font-bold text-white bg-accent rounded-full hover:bg-accent/90 transition-all border-glow"
-                        >
-                            Book Studio
-                        </Link>
+                            {isMobileMenuOpen ? <X className="w-6 h-6 text-accent" /> : <Menu className="w-6 h-6" />}
+                        </button>
                     </div>
-
-                    {/* Mobile Toggle */}
-                    <button
-                        className="lg:hidden text-foreground p-2 rounded-full hover:bg-white/5"
-                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        aria-label="Toggle mobile menu"
-                        aria-expanded={isMobileMenuOpen}
-                    >
-                        {isMobileMenuOpen ? <X className="w-6 h-6 text-accent" /> : <Menu className="w-6 h-6" />}
-                    </button>
                 </div>
-            </div>
+            </nav>
 
-            {/* Mobile Menu Full Screen Overlay */}
+            {/* Mobile Menu Full Screen Overlay — lives OUTSIDE nav so it's never affected by nav transforms */}
             <AnimatePresence>
                 {isMobileMenuOpen && (
                     <m.div
@@ -181,7 +184,7 @@ export default function Navbar() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.3 }}
-                        className="fixed inset-0 z-40 bg-background/98 backdrop-blur-2xl lg:hidden flex flex-col pt-32 pb-8 px-6 overflow-y-auto"
+                        className="fixed inset-0 z-[99] bg-background/98 backdrop-blur-2xl lg:hidden flex flex-col pt-32 pb-8 px-6 overflow-y-auto"
                     >
                         {/* Primary Exploration Links */}
                         <div className="flex flex-col gap-6 flex-1">
@@ -261,7 +264,6 @@ export default function Navbar() {
                     </m.div>
                 )}
             </AnimatePresence>
-
-        </nav>
+        </>
     );
 }
