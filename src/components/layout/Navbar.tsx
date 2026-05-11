@@ -13,6 +13,7 @@ export default function Navbar() {
     const { user } = useAuth();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isHiddenByWakeUp, setIsHiddenByWakeUp] = useState(false);
 
 
     useEffect(() => {
@@ -34,6 +35,24 @@ export default function Navbar() {
         }
     }, [isMobileMenuOpen]);
 
+    // Hide navbar when a WakeUpCall section is in view (cinematic immersion)
+    useEffect(() => {
+        const zones = document.querySelectorAll('.wakeup-zone');
+        if (!zones.length) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                // Hide if ANY wakeup zone is intersecting
+                const anyActive = entries.some(e => e.isIntersecting);
+                setIsHiddenByWakeUp(anyActive);
+            },
+            { threshold: 0.05 }
+        );
+
+        zones.forEach(zone => observer.observe(zone));
+        return () => observer.disconnect();
+    }, []);
+
     const serviceLinks = [
         { name: "Web Design", href: "/web-design" },
         { name: "Podcasting", href: "/podcasting" },
@@ -50,8 +69,8 @@ export default function Navbar() {
 
     return (
         <nav
-            className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${isScrolled ? "py-4" : "py-6"
-                }`}
+            className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${isScrolled ? "py-4" : "py-6"
+                } ${isHiddenByWakeUp && !isMobileMenuOpen ? "-translate-y-full opacity-0 pointer-events-none" : "translate-y-0 opacity-100"}`}
         >
             <div className="container px-4 mx-auto relative z-50">
                 <div

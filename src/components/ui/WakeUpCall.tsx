@@ -27,7 +27,7 @@ export default function WakeUpCall({ title, subtitle, paragraph }: { title: stri
     const secondHalf = splitTitle.slice(Math.ceil(splitTitle.length / 2)).join(' ');
 
     return (
-        <section ref={containerRef} className="relative h-[250vh] bg-background">
+        <section ref={containerRef} className="wakeup-zone relative h-[250vh] bg-background">
             <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden bg-black z-30 shadow-[0_0_100px_rgba(0,0,0,1)]">
 
                 {/* Dynamic noise background */}
