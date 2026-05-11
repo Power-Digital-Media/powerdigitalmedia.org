@@ -190,6 +190,28 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ slu
                             </div>
                         )}
 
+                        {/* YouTube Video Embed */}
+                        {post.videoUrl && (
+                            <div className="mb-16">
+                                <div className="relative group">
+                                    <div className="absolute -inset-3 bg-accent/10 blur-2xl rounded-[2rem] -z-10 group-hover:bg-accent/15 transition-all duration-500" />
+                                    <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl group-hover:border-accent/30 transition-all duration-500">
+                                        <iframe
+                                            src={post.videoUrl}
+                                            title={`${post.title} — Video Tutorial`}
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            allowFullScreen
+                                            className="w-full h-full"
+                                            loading="lazy"
+                                        />
+                                    </div>
+                                    <p className="text-center text-sm text-muted-foreground mt-4 font-medium tracking-wide">
+                                        📺 Watch the full tutorial — <span className="text-accent font-bold">{post.title}</span>
+                                    </p>
+                                </div>
+                            </div>
+                        )}
+
                         <div className="prose prose-invert prose-blue max-w-none">
                             <ReactMarkdown
                                 components={{

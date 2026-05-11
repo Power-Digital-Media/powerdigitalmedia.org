@@ -976,3 +976,9 @@ Power Digital publishes high-level protocols and insights on AI, web architectur
   - **Excerpt**: A technical dossier on deploying the Elgato Stream Deck+ and Focusrite to optimize high-velocity media production for our clients right here in Jackson MS.
   - **Link**: https://powerdigitalmedia.org/blog/tactile-control-protocol-stream-deck-plus
 
+- **Gamma AI for Fast Website Pages and Smart Layouts**
+  - **Category**: AI Website Tools
+  - **Date**: 2026-05-11
+  - **Excerpt**: Learn how Gamma AI helps small businesses create fast visual pages, lead magnets, and website drafts while Power Digital Media builds the full growth system.
+  - **Link**: https://powerdigitalmedia.org/blog/gamma-ai-website-pages-smart-layouts
+
