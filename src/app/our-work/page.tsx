@@ -15,17 +15,16 @@ const FEATURED_GEAR = GEAR_COLLECTION.filter((g) => g.isFeatured).slice(0, 6);
 const RECENT_POSTS = blogPosts.slice(0, 6);
 
 // ─── PODCAST EPISODES ─────────────────────────────────────────────────────────
-// Thumbnails live in /public/images/Thumbnail Cards SVG/
-// Update `url` for each episode with the real YouTube/podcast link.
+// Optimized WebP thumbnails (converted from SVG originals)
 const PODCAST_EPISODES: { title: string; thumb: string; url: string }[] = [
-    { title: "Amber Norsworthy", thumb: "/images/Thumbnail Cards SVG/Amber Norsworthy Thumbnail.svg", url: "https://www.youtube.com/@HSPpodcast" },
-    { title: "Clean Slate", thumb: "/images/Thumbnail Cards SVG/Clean Slate Thumbnail.svg", url: "https://www.youtube.com/@HSPpodcast" },
-    { title: "DJ Winn", thumb: "/images/Thumbnail Cards SVG/DJ Winn Thumbnail.svg", url: "https://www.youtube.com/@HSPpodcast" },
-    { title: "Jimmy Hunt", thumb: "/images/Thumbnail Cards SVG/Jimmy Hunt Thumbnail.svg", url: "https://www.youtube.com/@HSPpodcast" },
-    { title: "Jimmy Nichols", thumb: "/images/Thumbnail Cards SVG/Jimmy Nichols Thumbnail.svg", url: "https://www.youtube.com/@HSPpodcast" },
-    { title: "John Gallaghar", thumb: "/images/Thumbnail Cards SVG/John Gallaghar Thumbnail.svg", url: "https://www.youtube.com/@HSPpodcast" },
-    { title: "Kyle Rayborn", thumb: "/images/Thumbnail Cards SVG/Kyle Rayborn Thumbnail.svg", url: "https://www.youtube.com/@HSPpodcast" },
-    { title: "Michelle Adcock", thumb: "/images/Thumbnail Cards SVG/Michelle Adcock Thumbnail.svg", url: "https://www.youtube.com/@HSPpodcast" },
+    { title: "Amber Norsworthy", thumb: "/images/thumbnails/amber-norsworthy.webp", url: "https://www.youtube.com/@HSPpodcast" },
+    { title: "Clean Slate", thumb: "/images/thumbnails/clean-slate.webp", url: "https://www.youtube.com/@HSPpodcast" },
+    { title: "DJ Winn", thumb: "/images/thumbnails/dj-winn.webp", url: "https://www.youtube.com/@HSPpodcast" },
+    { title: "Jimmy Hunt", thumb: "/images/thumbnails/jimmy-hunt.webp", url: "https://www.youtube.com/@HSPpodcast" },
+    { title: "Jimmy Nichols", thumb: "/images/thumbnails/jimmy-nichols.webp", url: "https://www.youtube.com/@HSPpodcast" },
+    { title: "John Gallaghar", thumb: "/images/thumbnails/john-gallaghar.webp", url: "https://www.youtube.com/@HSPpodcast" },
+    { title: "Kyle Rayborn", thumb: "/images/thumbnails/kyle-rayborn.webp", url: "https://www.youtube.com/@HSPpodcast" },
+    { title: "Michelle Adcock", thumb: "/images/thumbnails/michelle-adcock.webp", url: "https://www.youtube.com/@HSPpodcast" },
 ];
 
 // ─── CANVAS SCENES ────────────────────────────────────────────────────────────
@@ -659,12 +658,12 @@ export default function OurWorkPage() {
                             })()}
                         </div>
 
-                        {/* ── SCENE V — FREQUENCY ── */}
+                        {/* ── SCENE V — FREQUENCY — Signal Cascade ── */}
                         <div className="absolute" style={{ left: `${SCENES[4].cx * 100}vw`, top: `${SCENES[4].cy * 100}vh`, width: "100vw", height: "100vh" }}>
                             <Ghost text="Sound" color="rgba(59,130,246,0.04)" />
 
-                            {/* ── Title — exactly as original, full size, centered ── */}
-                            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                            {/* ── Title ── */}
+                            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none" style={{ zIndex: 5 }}>
                                 <AudioWaveform active={sceneIdx === 4} />
                                 <span className="text-[10px] font-black tracking-[0.5em] text-blue-400 uppercase mb-5 relative z-10">Scene V — Frequency</span>
                                 <h2 className="font-black uppercase tracking-tighter text-center relative z-10" style={{ fontSize: "clamp(2.5rem,9vw,7rem)" }}>
@@ -675,79 +674,84 @@ export default function OurWorkPage() {
                                 </p>
                             </div>
 
-                            {/* ── 8-card array emerging from center & raining into Scene VI ── */}
+                            {/* ── Podcast Cards — Signal Cascade ── */}
                             {(() => {
-                                // Now offset by 4 since we inserted WakeUpCall as 3
-                                const p45 = Math.max(0, (progress - 4 * SLOT) / SLOT);
-                                if (p45 === 0 || p45 > 2.5) return null;
+                                const p = sceneIdx === 4 ? localP : (sceneIdx > 4 ? 1 : 0);
+                                const sceneFade = sceneIdx === 4 ? holdFade(localP) : 0;
+                                if (sceneFade < 0.01 && sceneIdx !== 4) return null;
 
                                 const ARC = [
-                                    { left: 6, top: 82, rot: -28, ep: 0 },
-                                    { left: 18, top: 58, rot: -20, ep: 1 },
-                                    { left: 32, top: 38, rot: -12, ep: 2 },
-                                    { left: 45, top: 26, rot: -4, ep: 3 },
-                                    { left: 55, top: 26, rot: 4, ep: 4 },
-                                    { left: 68, top: 38, rot: 12, ep: 5 },
-                                    { left: 82, top: 58, rot: 20, ep: 6 },
-                                    { left: 94, top: 82, rot: 28, ep: 7 },
+                                    { left: 6, top: 78, rot: -18 },
+                                    { left: 18, top: 56, rot: -13 },
+                                    { left: 32, top: 38, rot: -7 },
+                                    { left: 45, top: 28, rot: -2 },
+                                    { left: 55, top: 28, rot: 2 },
+                                    { left: 68, top: 38, rot: 7 },
+                                    { left: 82, top: 56, rot: 13 },
+                                    { left: 94, top: 78, rot: 18 },
                                 ];
 
                                 return ARC.map((arc, i) => {
-                                    const ep = PODCAST_EPISODES[arc.ep];
+                                    const ep = PODCAST_EPISODES[i];
+                                    if (!ep) return null;
 
-                                    // Replace crazy physics with localized fade/transform
-                                    const rank = Math.floor(Math.abs(3.5 - i));
-                                    const emergeThreshold = 0.04 + rank * 0.04;
-                                    const ease = Math.max(0, Math.min((p45 - emergeThreshold) / 0.45, 1));
-                                    if (ease < 0.001) return null;
+                                    // Stagger: center cards appear first, edges last
+                                    const rank = Math.abs(3.5 - i);
+                                    const delay = 0.06 + rank * 0.06;
+                                    // Smooth entrance over 30% of local progress
+                                    const raw = Math.max(0, Math.min((p - delay) / 0.30, 1));
+                                    const ease = raw * raw * (3 - 2 * raw); // smoothstep
 
-                                    const fallT = Math.max(0, p45 - 0.74);
-                                    const fallFade = Math.max(0, 1 - Math.min(1, fallT * 2.5));
-                                    const op = Math.min(ease * 3, 1) * fallFade;
+                                    // Card starts at center and fans out to final position
+                                    const cx = 50 + (arc.left - 50) * ease;
+                                    const cy = 50 + (arc.top - 50) * ease;
+                                    const rot = arc.rot * ease;
+                                    const scale = 0.3 + 0.7 * ease;
+                                    const cardOp = Math.min(ease * 2.5, 1) * sceneFade;
+
+                                    if (cardOp < 0.01) return null;
 
                                     const col = '59,130,246';
-                                    const stackZ = 25 - rank;
-
-                                    // Instead of falling into oblivion, we just gently push them out along X/Y
-                                    const tx = `${((50 - arc.left) * (1 - ease) + (i - 3.5) * 50 * fallT).toFixed(2)}vw`;
-                                    const ty = `${((50 - arc.top) * (1 - ease) + 150 * fallT).toFixed(2)}vh`;
-                                    const scale = 0.15 + 0.85 * ease;
-                                    const rot = arc.rot * ease + (i - 3.5) * 20 * fallT;
+                                    const glowIntensity = 0.15 + 0.45 * ease;
 
                                     return (
-                                        <a key={i} href={ep?.url ?? '#'} target="_blank" rel="noopener noreferrer"
+                                        <a key={i} href={ep.url} target="_blank" rel="noopener noreferrer"
                                             className="group absolute block"
                                             style={{
-                                                left: `${arc.left}%`,
-                                                top: `${arc.top}%`,
-                                                zIndex: stackZ,
-                                                opacity: op,
-                                                transform: `translate(-50%, -50%) translate(${tx}, ${ty}) scale(${scale}) rotate(${rot}deg)`,
-                                                pointerEvents: ease > 0.8 && fallT < 0.1 ? 'auto' : 'none',
+                                                left: `${cx}%`,
+                                                top: `${cy}%`,
+                                                zIndex: 20 + (4 - Math.floor(rank)),
+                                                opacity: cardOp,
+                                                transform: `translate(-50%, -50%) scale(${scale}) rotate(${rot}deg)`,
+                                                pointerEvents: ease > 0.7 ? 'auto' : 'none',
                                                 willChange: 'transform, opacity',
                                             }}>
                                             <div style={{ animation: `podFloat 5.5s ease-in-out ${-i * 0.55}s infinite`, willChange: 'transform' }}>
                                                 <div className="relative overflow-hidden"
                                                     style={{
-                                                        width: 'clamp(150px, 16vw, 290px)',
+                                                        width: 'clamp(140px, 15vw, 280px)',
                                                         aspectRatio: '16 / 9',
                                                         borderRadius: '14px',
-                                                        border: `1px solid rgba(${col},${0.25 + 0.35 * ease})`,
-                                                        background: 'rgba(4,8,26,0.62)',
+                                                        border: `1px solid rgba(${col},${glowIntensity + 0.1})`,
+                                                        background: 'rgba(4,8,26,0.72)',
                                                         backdropFilter: 'blur(12px)',
-                                                        boxShadow: `0 20px 48px rgba(0,0,0,0.88), 0 0 ${15 + 20 * ease}px rgba(${col},${0.2 + 0.4 * ease})`,
-                                                        transition: 'transform 0.4s ease',
+                                                        boxShadow: `0 16px 40px rgba(0,0,0,0.85), 0 0 ${12 + 18 * ease}px rgba(${col},${glowIntensity})`,
+                                                        transition: 'transform 0.35s ease, box-shadow 0.35s ease',
                                                     }}
                                                     onMouseEnter={e => {
                                                         (e.currentTarget as HTMLElement).style.transform = 'scale(1.08)';
+                                                        (e.currentTarget as HTMLElement).style.boxShadow = `0 20px 50px rgba(0,0,0,0.9), 0 0 35px rgba(${col},0.7)`;
                                                     }}
                                                     onMouseLeave={e => {
                                                         (e.currentTarget as HTMLElement).style.transform = '';
+                                                        (e.currentTarget as HTMLElement).style.boxShadow = '';
                                                     }}>
-                                                    <Image src={ep?.thumb ?? ''} alt={ep?.title ?? ''} fill
-                                                        className="object-cover" sizes="290px" />
-                                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                                        style={{ background: `linear-gradient(135deg,rgba(${col},0.22),transparent)` }} />
+                                                    <Image src={ep.thumb} alt={ep.title} fill
+                                                        className="object-cover" sizes="(max-width:768px) 40vw, 280px" />
+                                                    {/* Holographic shimmer overlay */}
+                                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                                                        style={{ background: `linear-gradient(125deg, transparent 30%, rgba(${col},0.15) 45%, rgba(168,85,247,0.1) 55%, transparent 70%)`, backgroundSize: '250% 250%', animation: 'shimmer 3s ease infinite' }} />
+                                                    {/* Play button */}
                                                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                                         <div className="w-11 h-11 rounded-full flex items-center justify-center"
                                                             style={{ background: `rgba(${col},0.92)`, boxShadow: `0 0 24px rgba(${col},0.75)` }}>
@@ -756,8 +760,8 @@ export default function OurWorkPage() {
                                                     </div>
                                                 </div>
                                                 <p className="mt-1.5 text-[8px] font-black uppercase tracking-widest text-center text-blue-400"
-                                                    style={{ width: 'clamp(150px,16vw,290px)', opacity: 0.65 + 0.35 * ease }}>
-                                                    {ep?.title ?? ''}
+                                                    style={{ width: 'clamp(140px,15vw,280px)', opacity: 0.5 + 0.5 * ease }}>
+                                                    {ep.title}
                                                 </p>
                                             </div>
                                         </a>
