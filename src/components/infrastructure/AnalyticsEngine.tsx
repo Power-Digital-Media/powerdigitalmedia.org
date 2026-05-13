@@ -18,11 +18,11 @@ export default function AnalyticsEngine() {
 
     return (
         <>
-            {/* Google Analytics 4 (Deferred) */}
+            {/* Google Analytics 4 — offloaded to Partytown web worker */}
             {GA_ID && (
                 <>
-                    <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="lazyOnload" />
-                    <Script id="google-analytics" strategy="lazyOnload">
+                    <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="worker" />
+                    <Script id="google-analytics" strategy="worker">
                         {`
                             window.dataLayer = window.dataLayer || [];
                             function gtag(){dataLayer.push(arguments);}
@@ -33,12 +33,12 @@ export default function AnalyticsEngine() {
                 </>
             )}
 
-            {/* Meta Pixel (Deferred) */}
+            {/* Meta Pixel — offloaded to Partytown web worker */}
             {PIXEL_ID && (
                 <>
                     <Script
                         id="fb-pixel"
-                        strategy="lazyOnload"
+                        strategy="worker"
                         dangerouslySetInnerHTML={{
                             __html: `
                                 !function(f,b,e,v,n,t,s)

@@ -77,38 +77,6 @@ export default function RootLayout({
         <meta name="google-site-verification" content="3gJZWrSWWnZtSbDZgQzznQeNdzOgHuUcC8C-H2LzenA" />
 
 
-        <style dangerouslySetInnerHTML={{
-          __html: `
-          :root {
-  --background: #020617;
-  --foreground: #f8fafc;
-  --primary: #3b82f6;
-  --accent: #3b82f6;
-  --font - sans: var(--font - inter);
-  --font - heading: var(--font - space - grotesk);
-}
-          body {
-  background: var(--background);
-  color: var(--foreground);
-  font - family: var(--font - sans);
-  -webkit - font - smoothing: antialiased;
-  overflow - x: hidden;
-  margin: 0;
-}
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z - index: -2;
-  background: radial - gradient(circle at 50 % 50 %, #020617 0 %, #020617 100 %);
-}
-h1, h2, h3 { font - family: var(--font - heading); letter - spacing: -0.02em; font - weight: 700; }
-          .cyber - grid {
-  background - image: linear - gradient(to right, rgba(34, 211, 238, 0.05) 1px, transparent 1px),
-    linear - gradient(to bottom, rgba(34, 211, 238, 0.05) 1px, transparent 1px);
-  background - size: 40px 40px;
-}
-`}} />
       </head>
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
@@ -194,8 +162,8 @@ h1, h2, h3 { font - family: var(--font - heading); letter - spacing: -0.02em; fo
             {children}
           </SmoothScrollProvider>
         </MotionProvider>
-        {/* Lazy load GTM */}
-        <Script id="google-tag-manager" strategy="lazyOnload">
+        {/* GTM — offloaded to Partytown web worker (off main thread) */}
+        <Script id="google-tag-manager" strategy="worker">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
