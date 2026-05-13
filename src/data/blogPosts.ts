@@ -31,8 +31,8 @@ export const blogPosts: BlogPost[] = [
         excerpt: "Most LLM benchmarks test the model. Benchmark² tests the benchmark itself — and the results expose serious reliability gaps across 15 major evaluation suites.",
         date: "Mar 20, 2026",
         category: "AI Tech",
-        image: "/blog-images/evaluating-llm-benchmarks-insights-from-benchmark2-1773983179693.png",
-        ogImage: "/blog-images/evaluating-llm-benchmarks-insights-from-benchmark2-1773983179693.png",
+        image: "/blog-images/evaluating-llm-benchmarks-insights-from-benchmark2-1773983179693.webp",
+        ogImage: "/blog-images/evaluating-llm-benchmarks-insights-from-benchmark2-1773983179693.webp",
         author: {
             name: "Damein Wayne Donald",
             role: "Founder"
@@ -58,7 +58,7 @@ export const blogPosts: BlogPost[] = [
                         "url": "https://powerdigitalmedia.org/",
                         "logo": {
                             "@type": "ImageObject",
-                            "url": "https://powerdigitalmedia.org/logo.png"
+                            "url": "https://powerdigitalmedia.org/power-logo.webp"
                         },
                         "address": {
                             "@type": "PostalAddress",
@@ -266,7 +266,7 @@ Running local LLM inference to validate benchmark claims against your own worklo
                         "url": "https://powerdigitalmedia.org/",
                         "logo": {
                             "@type": "ImageObject",
-                            "url": "https://powerdigitalmedia.org/logo.png"
+                            "url": "https://powerdigitalmedia.org/power-logo.webp"
                         },
                         "address": {
                             "@type": "PostalAddress",
@@ -465,7 +465,7 @@ To build a flawless source file for your micro-content engine, your hardware mus
                         "url": "https://powerdigitalmedia.org/",
                         "logo": {
                             "@type": "ImageObject",
-                            "url": "https://powerdigitalmedia.org/logo.png"
+                            "url": "https://powerdigitalmedia.org/power-logo.webp"
                         },
                         "address": {
                             "@type": "PostalAddress",
@@ -665,7 +665,7 @@ To build a flawless audio backbone for your video stage, we mandate the followin
                         "url": "https://powerdigitalmedia.org/",
                         "logo": {
                             "@type": "ImageObject",
-                            "url": "https://powerdigitalmedia.org/logo.png"
+                            "url": "https://powerdigitalmedia.org/power-logo.webp"
                         },
                         "address": {
                             "@type": "PostalAddress",
@@ -869,7 +869,7 @@ To break out of the audio-only trap, you must deploy cinematic hardware. We reco
                         "url": "https://powerdigitalmedia.org/",
                         "logo": {
                             "@type": "ImageObject",
-                            "url": "https://powerdigitalmedia.org/logo.png"
+                            "url": "https://powerdigitalmedia.org/power-logo.webp"
                         },
                         "address": {
                             "@type": "PostalAddress",
@@ -1074,7 +1074,7 @@ High-end sponsorships require high-end production value. We recommend the follow
                         "url": "https://powerdigitalmedia.org/",
                         "logo": {
                             "@type": "ImageObject",
-                            "url": "https://powerdigitalmedia.org/logo.png"
+                            "url": "https://powerdigitalmedia.org/power-logo.webp"
                         },
                         "address": {
                             "@type": "PostalAddress",
@@ -1276,7 +1276,7 @@ To achieve these results, you must employ the right tactical gear.Review these c
                         "url": "https://powerdigitalmedia.org/",
                         "logo": {
                             "@type": "ImageObject",
-                            "url": "https://powerdigitalmedia.org/logo.png"
+                            "url": "https://powerdigitalmedia.org/power-logo.webp"
                         },
                         "address": {
                             "@type": "PostalAddress",
@@ -1522,7 +1522,7 @@ Here is exactly ** how to start a video podcast ** workflow shift this week to h
                         "url": "https://powerdigitalmedia.org/",
                         "logo": {
                             "@type": "ImageObject",
-                            "url": "https://powerdigitalmedia.org/logo.png"
+                            "url": "https://powerdigitalmedia.org/power-logo.webp"
                         },
                         "address": {
                             "@type": "PostalAddress",
@@ -8446,7 +8446,7 @@ Validate your schema, check your machine-readable files, and test conversational
                 "@id": "https://powerdigitalmedia.org/#organization",
                 "name": "Power Digital Media",
                 "url": "https://powerdigitalmedia.org",
-                "logo": "https://powerdigitalmedia.org/logo.png",
+                "logo": "https://powerdigitalmedia.org/power-logo.webp",
                 "address": {
                     "@type": "PostalAddress",
                     "addressLocality": "Jackson",
@@ -8642,7 +8642,7 @@ Local relevance is a key signal for AI geo-coherence. We ensure regional busines
                 "@id": "https://powerdigitalmedia.org/#organization",
                 "name": "Power Digital Media",
                 "url": "https://powerdigitalmedia.org",
-                "logo": "https://powerdigitalmedia.org/logo.png",
+                "logo": "https://powerdigitalmedia.org/power-logo.webp",
                 "address": {
                     "@type": "PostalAddress",
                     "addressLocality": "Jackson",
@@ -8752,7 +8752,7 @@ You must map your physical location in machine language using JSON-LD. For a bus
   "@type": "LocalBusiness",
   "@id": "https://powerdigitalmedia.org/#organization",
   "name": "Power Digital Media LLC",
-  "image": "https://powerdigitalmedia.org/logo.png",
+  "image": "https://powerdigitalmedia.org/power-logo.webp",
   "url": "https://powerdigitalmedia.org",
   "telephone": "+16015550198",
   "address": {
@@ -8836,7 +8836,7 @@ No. While helpful, implicit mentions do not carry the operational weight of a JS
                 "@id": "https://powerdigitalmedia.org/#organization",
                 "name": "Power Digital Media",
                 "url": "https://powerdigitalmedia.org",
-                "logo": "https://powerdigitalmedia.org/logo.png",
+                "logo": "https://powerdigitalmedia.org/power-logo.webp",
                 "address": {
                     "@type": "PostalAddress",
                     "addressLocality": "Jackson",
@@ -9005,7 +9005,7 @@ No. Service businesses need agent-navigable interfaces as much as retailers so t
                 "@id": "https://powerdigitalmedia.org/#organization",
                 "name": "Power Digital Media",
                 "url": "https://powerdigitalmedia.org",
-                "logo": "https://powerdigitalmedia.org/logo.png",
+                "logo": "https://powerdigitalmedia.org/power-logo.webp",
                 "address": {
                     "@type": "PostalAddress",
                     "addressLocality": "Jackson",
@@ -9230,7 +9230,7 @@ Small local businesses that adopt agent-navigable architecture will directly fee
                 "@id": "https://powerdigitalmedia.org/#organization",
                 "name": "Power Digital Media",
                 "url": "https://powerdigitalmedia.org",
-                "logo": "https://powerdigitalmedia.org/logo.png",
+                "logo": "https://powerdigitalmedia.org/power-logo.webp",
                 "address": {
                     "@type": "PostalAddress",
                     "addressLocality": "Jackson",
@@ -9447,8 +9447,8 @@ Keyword ranking focuses on securing SERP placement for human clicks. Citation au
         excerpt: "A technical dossier on deploying the Shure SM7B and Rødecaster Pro II. Engineer broadcast-ready sound for your Jackson, MS business and eliminate bad audio.",
         date: "2026-03-07",
         category: "Hardware",
-        image: "/images/blog/audio_post_hero.png",
-        ogImage: "/images/blog/audio_post_og.png",
+        image: "/images/blog/audio_post_hero.webp",
+        ogImage: "/images/blog/audio_post_og.webp",
         relatedGearIds: ["shure-sm7b", "rode-caster-pro-2", "shure-mv7-plus", "rode-procaster"],
         author: {
             name: "Power Digital Media",
@@ -9467,7 +9467,7 @@ Keyword ranking focuses on securing SERP placement for human clicks. Citation au
                     "url": "https://powerdigitalmedia.org/",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": "https://powerdigitalmedia.org/logo.png"
+                        "url": "https://powerdigitalmedia.org/power-logo.webp"
                     },
                     "address": {
                         "@type": "PostalAddress",
@@ -9629,8 +9629,8 @@ Yes. The Rødecaster Pro II is engineered with powerful headphone amplifiers cap
         excerpt: "A technical dossier on eliminating VRAM bottlenecks with the RTX 5090. Upgrade your Jackson, MS agency's computational hardware for rapid 8K rendering.",
         date: "2026-03-07",
         category: "Hardware",
-        image: "/images/blog/pc_post_hero.png",
-        ogImage: "/images/blog/pc_post_og.png",
+        image: "/images/blog/pc_post_hero.webp",
+        ogImage: "/images/blog/pc_post_og.webp",
         relatedGearIds: ["nvidia-rtx-5090", "amd-rx-9070-xt", "msi-rtx-4090", "corsair-dominator-titanium-2026"],
         author: {
             name: "Power Digital Media",
@@ -9649,7 +9649,7 @@ Yes. The Rødecaster Pro II is engineered with powerful headphone amplifiers cap
                     "url": "https://powerdigitalmedia.org/",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": "https://powerdigitalmedia.org/logo.png"
+                        "url": "https://powerdigitalmedia.org/power-logo.webp"
                     },
                     "address": {
                         "@type": "PostalAddress",
@@ -9811,8 +9811,8 @@ PCIe Gen 5.0 doubles the bandwidth pipeline between the CPU and GPU compared to 
         excerpt: "A technical dossier on deploying the Elgato Stream Deck+ and Focusrite to optimize high-velocity media production for our clients right here in Jackson MS.",
         date: "2026-03-07",
         category: "Hardware",
-        image: "/images/blog/tactile_post_hero.png",
-        ogImage: "/images/blog/tactile_post_og.png",
+        image: "/images/blog/tactile_post_hero.webp",
+        ogImage: "/images/blog/tactile_post_og.webp",
         relatedGearIds: ["elgato-stream-deck-plus", "focusrite-scarlett-2i2", "obsbot-tiny-2", "elgato-wave-3"],
         author: {
             name: "Power Digital Media",
@@ -9831,7 +9831,7 @@ PCIe Gen 5.0 doubles the bandwidth pipeline between the CPU and GPU compared to 
                     "url": "https://powerdigitalmedia.org/",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": "https://powerdigitalmedia.org/logo.png"
+                        "url": "https://powerdigitalmedia.org/power-logo.webp"
                     },
                     "address": {
                         "@type": "PostalAddress",
@@ -9993,8 +9993,8 @@ Yes, the OBSBOT Tiny 2's PTZ functions and preset camera angles can be triggered
         excerpt: "Learn how Gamma AI helps small businesses create fast visual pages, lead magnets, and website drafts while Power Digital Media builds the full growth system.",
         date: "2026-05-11",
         category: "AI Website Tools",
-        image: "/images/blog/gamma_ai_post_hero.png",
-        ogImage: "/images/blog/gamma_ai_post_og.png",
+        image: "/images/blog/gamma_ai_post_hero.webp",
+        ogImage: "/images/blog/gamma_ai_post_og.webp",
         videoUrl: "https://www.youtube.com/embed/NWwVsCWwHUU",
         relatedGearIds: ["samsung-odyssey-g9", "msi-katana-15", "obsbot-tiny-2", "elgato-stream-deck-plus"],
         author: {
@@ -10014,7 +10014,7 @@ Yes, the OBSBOT Tiny 2's PTZ functions and preset camera angles can be triggered
                     "url": "https://powerdigitalmedia.org",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": "https://powerdigitalmedia.org/logo.png"
+                        "url": "https://powerdigitalmedia.org/power-logo.webp"
                     },
                     "address": {
                         "@type": "PostalAddress",

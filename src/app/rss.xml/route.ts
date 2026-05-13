@@ -10,7 +10,7 @@ export async function GET() {
         id: siteUrl,
         link: siteUrl,
         language: "en",
-        image: `${siteUrl}/icon.png`,
+        image: `${siteUrl}/power-logo.webp`,
         favicon: `${siteUrl}/favicon.ico`,
         copyright: `All rights reserved ${new Date().getFullYear()}, Power Digital Media`,
         updated: new Date(),

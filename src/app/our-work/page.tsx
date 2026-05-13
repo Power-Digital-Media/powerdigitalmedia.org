@@ -629,7 +629,7 @@ export default function OurWorkPage() {
                                 return (
                                     <div className="absolute inset-0 flex items-center justify-center overflow-hidden bg-black/90 pointer-events-none"
                                         style={{ opacity: overallFade, zIndex: 100 }}>
-                                        <div className="absolute inset-0 pointer-events-none opacity-20 mix-blend-screen bg-[url('/images/noise.png')]" />
+                                        <div className="absolute inset-0 pointer-events-none opacity-20 mix-blend-screen noise-texture" />
                                         <div className="max-w-5xl text-center flex flex-col items-center p-4 px-6" style={{ transform: `scale(${0.9 + p * 0.1})` }}>
                                             <div style={{ opacity: textOpacity1, transform: `translate(${glitchX}px, 0)` }} className="mb-8">
                                                 <span className="text-[10px] md:text-sm font-black text-red-500 uppercase tracking-[0.5em] mb-4 block animate-pulse">System Warning</span>

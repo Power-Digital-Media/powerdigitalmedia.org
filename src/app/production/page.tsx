@@ -266,7 +266,7 @@ export default function ProductionPage() {
                                 </div>
                                 <div className="flex-1 relative">
                                     <Image
-                                        src="/cinematic_camera.png"
+                                        src="/cinematic_camera.webp"
                                         alt="Cinematic Target"
                                         fill
                                         className="object-cover"

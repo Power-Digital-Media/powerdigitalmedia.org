@@ -87,7 +87,7 @@ export default function CostOfInaction() {
                             className="absolute inset-0 bg-gradient-to-br from-cyan-950/40 to-slate-900 border-l border-cyan-400 p-8 md:p-16 flex flex-col justify-center"
                             style={{ clipPath: `inset(0 0 0 ${sliderPos}%)` }}
                         >
-                            <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-10 mix-blend-overlay" />
+                            <div className="absolute inset-0 noise-texture opacity-10 mix-blend-overlay" />
 
                             <h3 className="text-3xl md:text-5xl font-black text-cyan-400 uppercase tracking-tighter mb-8 drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]">
                                 The Power Protocol

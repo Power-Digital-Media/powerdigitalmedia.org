@@ -64,7 +64,7 @@ export default function MultiCamArchitect() {
 
     return (
         <section className="py-32 bg-black relative overflow-hidden">
-            <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-10 mix-blend-overlay pointer-events-none" />
+            <div className="absolute inset-0 noise-texture opacity-10 mix-blend-overlay pointer-events-none" />
             <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-cyan-900/5 rounded-full blur-[150px] pointer-events-none" />
 
             <div className="container px-4 mx-auto relative z-10">

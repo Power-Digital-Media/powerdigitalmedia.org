@@ -37,7 +37,7 @@ export default function WakeUpCall({ title, subtitle, paragraph }: { title: stri
                     animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
                     transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
                 >
-                    <div className="w-full h-full bg-[url('/images/noise.png')] opacity-30" />
+                    <div className="w-full h-full noise-texture opacity-30" />
                 </motion.div>
 
                 <motion.div style={{ opacity, scale }} className="absolute inset-0 flex flex-col justify-center items-center p-4">
