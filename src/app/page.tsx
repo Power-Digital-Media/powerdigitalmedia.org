@@ -13,6 +13,7 @@ const LatestInsights = dynamic(() => import("@/components/sections/LatestInsight
 const LeadArchitect = dynamic(() => import("@/components/sections/LeadArchitect"));
 const Contact = dynamic(() => import("@/components/sections/Contact"));
 const WakeUpCall = dynamic(() => import("@/components/ui/WakeUpCall"));
+const BBBSeal = dynamic(() => import("@/components/ui/BBBSeal"));
 
 export const metadata = {
   title: "Power Digital Media | Premier Digital Production Studio",
@@ -65,13 +66,16 @@ export default function Home() {
           </a>
         </div>
 
-        {/* Speed Proof / Trust Badge */}
-        <div className="mt-14 mb-8 flex flex-col items-center justify-center gap-2 opacity-80 hover:opacity-100 transition-opacity">
-          <div className="flex items-center gap-3 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-950/20 backdrop-blur-sm">
-            <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_#22d3ee]" />
-            <span className="text-xs font-bold tracking-widest uppercase text-cyan-400">Verified 90+/100 Mobile PageSpeed</span>
+        {/* Trust Signals Bar */}
+        <div className="mt-14 mb-8 flex flex-col items-center justify-center gap-4 opacity-80 hover:opacity-100 transition-opacity">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <div className="flex items-center gap-3 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-950/20 backdrop-blur-sm">
+              <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_#22d3ee]" />
+              <span className="text-xs font-bold tracking-widest uppercase text-cyan-400">Verified 90+/100 Mobile PageSpeed</span>
+            </div>
+            <BBBSeal variant="inline" />
           </div>
-          <p className="text-[10px] uppercase tracking-widest text-foreground/40 mt-2">Most agencies score a 40. We build blistering fast infrastructure.</p>
+          <p className="text-[10px] uppercase tracking-widest text-foreground/40 mt-1">Most agencies score a 40. We build blistering fast infrastructure.</p>
         </div>
       </div>
 

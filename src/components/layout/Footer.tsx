@@ -4,6 +4,7 @@ import { Instagram, Twitter, Youtube, Mail, Phone, MapPin, Facebook } from "luci
 import Link from "next/link";
 import { useState } from "react";
 import BookingModal from "../ui/BookingModal";
+import BBBSeal from "../ui/BBBSeal";
 
 export default function Footer() {
     const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -81,6 +82,9 @@ export default function Footer() {
                                 </button>
                             </li>
                         </ul>
+                        <div className="mt-6">
+                            <BBBSeal variant="badge" />
+                        </div>
                     </div>
 
                 </div>
