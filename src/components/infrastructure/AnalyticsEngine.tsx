@@ -9,6 +9,13 @@ export default function AnalyticsEngine() {
     const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
     const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
+    // Trigger GA4 page views on client-side route changes
+    useEffect(() => {
+        if (GA_ID && window.gtag) {
+            window.gtag('config', GA_ID, { page_path: pathname });
+        }
+    }, [pathname, GA_ID]);
+
     // Trigger Facebook Pixel page views on route changes
     useEffect(() => {
         if (PIXEL_ID && window.fbq) {
@@ -18,11 +25,14 @@ export default function AnalyticsEngine() {
 
     return (
         <>
-            {/* Google Analytics 4 — offloaded to Partytown web worker */}
+            {/* Google Analytics 4 — loads after hydration */}
             {GA_ID && (
                 <>
-                    <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="worker" />
-                    <Script id="google-analytics" strategy="worker">
+                    <Script
+                        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+                        strategy="afterInteractive"
+                    />
+                    <Script id="google-analytics" strategy="afterInteractive">
                         {`
                             window.dataLayer = window.dataLayer || [];
                             function gtag(){dataLayer.push(arguments);}
@@ -33,12 +43,12 @@ export default function AnalyticsEngine() {
                 </>
             )}
 
-            {/* Meta Pixel — offloaded to Partytown web worker */}
+            {/* Meta Pixel — loads after hydration */}
             {PIXEL_ID && (
                 <>
                     <Script
                         id="fb-pixel"
-                        strategy="worker"
+                        strategy="afterInteractive"
                         dangerouslySetInnerHTML={{
                             __html: `
                                 !function(f,b,e,v,n,t,s)
@@ -69,9 +79,11 @@ export default function AnalyticsEngine() {
     );
 }
 
-// Add types for fbq
+// Add types for fbq and gtag
 declare global {
     interface Window {
         fbq: any;
+        gtag: (...args: any[]) => void;
     }
 }
+
