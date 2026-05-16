@@ -982,3 +982,9 @@ Power Digital publishes high-level protocols and insights on AI, web architectur
   - **Excerpt**: Learn how Gamma AI helps small businesses create fast visual pages, lead magnets, and website drafts while Power Digital Media builds the full growth system.
   - **Link**: https://powerdigitalmedia.org/blog/gamma-ai-website-pages-smart-layouts
 
+- **WebMCP: Why Your Website Must Become an AI API**
+  - **Category**: AI Search Infrastructure
+  - **Date**: 2026-05-15
+  - **Excerpt**: WebMCP, Agentic SEO, and machine-readable infrastructure are changing discovery. Learn how Jackson MS businesses can prepare now.
+  - **Link**: https://powerdigitalmedia.org/blog/webmcp-agentic-seo-machine-readable-infrastructure
+
