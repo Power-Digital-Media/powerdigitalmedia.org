@@ -29,7 +29,7 @@ export default function LeadArchitect() {
                         <div className="relative rounded-2xl overflow-hidden border border-cyan-500/30 bg-black/50 aspect-[4/3] shadow-[0_0_40px_rgba(6,182,212,0.15)]">
                             <Image
                                 src="/images/founder-booth.webp"
-                                alt="Christopher Simmons - Lead Infrastructure Architect"
+                                alt="Damein Donald - Lead Infrastructure Architect"
                                 fill
                                 sizes="(max-width: 768px) 100vw, 50vw"
                                 className="object-cover object-center scale-105 transition-transform duration-1000 group-hover:scale-100"

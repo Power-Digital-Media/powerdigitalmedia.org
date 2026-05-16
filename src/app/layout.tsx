@@ -131,7 +131,7 @@ export default function RootLayout({
               ],
               "founder": {
                 "@type": "Person",
-                "name": "Christopher Simmons",
+                "name": "Damein Donald",
                 "jobTitle": "Lead Infrastructure Architect"
               },
               "makesOffer": [
