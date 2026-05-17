@@ -159,7 +159,7 @@ export default function Navbar() {
                                 href="/book"
                                 className="px-5 py-2 text-sm font-bold text-white bg-accent rounded-full hover:bg-accent/90 transition-all border-glow"
                             >
-                                Book Studio
+                                Book a Call
                             </Link>
                         </div>
 
@@ -258,7 +258,7 @@ export default function Navbar() {
                                 onClick={() => setIsMobileMenuOpen(false)}
                                 className="w-full py-4 text-center font-bold text-white bg-accent rounded-xl border border-accent border-glow shadow-[0_0_30px_rgba(var(--accent),0.3)] hover:shadow-[0_0_50px_rgba(var(--accent),0.5)] transition-all mt-2"
                             >
-                                Book Studio
+                                Book a Call
                             </Link>
                         </div>
                     </m.div>

@@ -92,9 +92,24 @@ export default function Footer() {
                 <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground font-medium">
                     <div className="flex flex-col gap-1">
                         <p>© {currentYear} Power Digital Media LLC. All rights reserved. 🛡️ v1.6-elite</p>
-                        <p className="text-[10px] opacity-50 uppercase tracking-widest">As an Amazon Associate I earn from qualifying purchases.</p>
+                        <p className="text-[10px] opacity-50 uppercase tracking-widest">As an Amazon Associate I earn from qualifying purchases. We may earn commissions from affiliate links.</p>
                     </div>
-                    <div className="flex items-center gap-8">
+                    <div className="flex items-center gap-6">
+                        {/* Netlify Affiliate Badge */}
+                        <a
+                            href="https://join.netlify.com/power-digital-media-llc"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-teal-400/30 transition-all group"
+                            title="Deployed on Netlify"
+                        >
+                            <svg className="w-4 h-4 text-[#00C7B7] group-hover:drop-shadow-[0_0_6px_rgba(0,199,183,0.5)] transition-all" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M149.1 72.7l-34.4 34.4h47.3l6.3-6.3c-2.4-11-8.5-20.5-19.2-28.1zm-84.5 84.5l-6.3 6.3c2.4 11 8.5 20.5 19.2 28.1l34.4-34.4H64.6zm106.2-29.2H128l-42.8 42.8c5.8 2.3 12.4 3.6 19.7 3.6h27.5c7.3 0 13.9-1.3 19.7-3.6L109.3 128h42.8l42.8-42.8c-5.8-2.3-12.4-3.6-19.7-3.6h-27.5c-7.3 0-13.9 1.3-19.7 3.6L170.8 128z" transform="translate(23, 23) scale(0.82)" />
+                            </svg>
+                            <span className="text-[10px] font-bold tracking-wider uppercase text-muted-foreground group-hover:text-[#00C7B7] transition-colors">
+                                Deployed on Netlify
+                            </span>
+                        </a>
                         <Link href="/privacy" className="hover:text-accent transition-colors">Privacy Policy</Link>
                         <Link href="/terms" className="hover:text-accent transition-colors">Terms of Service</Link>
                         <Link href="/refund-policy" className="hover:text-accent transition-colors">Refund Policy</Link>

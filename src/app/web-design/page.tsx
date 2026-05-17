@@ -11,6 +11,7 @@ import Portfolio from "@/components/sections/Portfolio";
 import ArchitectureCompare from "@/components/sections/ArchitectureCompare";
 
 import WebDesignPricing from "@/components/ui/billing/WebDesignPricing";
+import Founders100Standalone from "@/components/ui/billing/Founders100Standalone";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import WireframeHeroBg from "@/components/ui/web-design/WireframeHeroBg";
 import TerminalWindow from "@/components/ui/web-design/TerminalWindow";
@@ -208,7 +209,36 @@ export default function WebDesignPage() {
                 paragraph="A modern website isn't a digital business card—it's a 24/7 sales architecture. If your current site isn't actively generating qualified leads, closing deals, and asserting your absolute dominance in the market, it's obsolete. We don't use templates. We build bespoke applications that turn attention into revenue."
             />
 
-            {/* --- Section 1: The Protocols --- */}
+            {/* --- Investment Roadmap (moved up: strike while urgency is peak) --- */}
+            <section id="investment" className="py-32 relative bg-background overflow-hidden scroll-mt-24">
+                <div className="container px-4 mx-auto">
+                    <div className="text-center mb-24">
+                        <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-xs mb-4 block">Deployment Phases</span>
+                        <h2 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight">Investment Roadmap.</h2>
+                        <p className="text-xl text-foreground/60 leading-relaxed max-w-2xl mx-auto font-light">
+                            High-prestige architecture is an investment in your organization&apos;s future dominance. Select your protocol depth.
+                        </p>
+                    </div>
+
+                    <div className="grid gap-8 lg:grid-cols-3 mb-20">
+                        {/* Interactive Pricing Hub */}
+                        <div className="col-span-full">
+                            <WebDesignPricing />
+                        </div>
+                    </div>
+
+                    {/* Founders 100 Promotion — Limited Offer */}
+                    <Founders100Standalone />
+
+                    <div className="mt-20 text-center">
+                        <p className="text-[10px] text-foreground/20 uppercase tracking-[0.3em] font-medium">
+                            * All architectures include enterprise-grade edge hosting and technical support protocols.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            {/* --- Section 1: The Protocols (reinforcement for non-converters) --- */}
             <section id="protocols" className="py-32 relative bg-background">
                 <div className="container px-4 mx-auto">
                     <div className="max-w-4xl mb-24">
@@ -315,37 +345,8 @@ export default function WebDesignPage() {
             {/* --- Integration: 3D Proof of Work --- */}
             <Portfolio titleAs="h2" />
 
-
-
             {/* --- NEW: Live Scanner Lead Magnet --- */}
             <LiveScanner />
-
-            {/* --- Section 3: Investment Roadmap --- */}
-            <section id="investment" className="py-32 relative bg-background overflow-hidden scroll-mt-24">
-                <div className="container px-4 mx-auto">
-                    <div className="text-center mb-24">
-                        <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-xs mb-4 block">Deployment Phases</span>
-                        <h2 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight">Investment Roadmap.</h2>
-                        <p className="text-xl text-foreground/60 leading-relaxed max-w-2xl mx-auto font-light">
-                            High-prestige architecture is an investment in your organization&apos;s future dominance. Select your protocol depth.
-                        </p>
-                    </div>
-
-                    <div className="grid gap-8 lg:grid-cols-3 mb-20">
-                        {/* Interactive Pricing Hub */}
-                        <div className="col-span-full">
-                            <WebDesignPricing />
-                        </div>
-                    </div>
-
-
-                    <div className="mt-20 text-center">
-                        <p className="text-[10px] text-foreground/20 uppercase tracking-[0.3em] font-medium">
-                            * All architectures include enterprise-grade edge hosting and technical support protocols.
-                        </p>
-                    </div>
-                </div>
-            </section>
 
             {/* --- Final CTA: The Ecosystem --- */}
             <section className="py-40 relative overflow-hidden">

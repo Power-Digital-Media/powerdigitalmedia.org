@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Terminal, Search, Activity, Cpu, Code, Zap, FileJson, AlertTriangle, ShieldCheck, ChevronRight, CheckCircle, XCircle } from "lucide-react";
+import { Terminal, Search, Activity, Cpu, Code, Zap, FileJson, AlertTriangle, ShieldCheck, ChevronRight, CheckCircle, XCircle, CalendarCheck, ArrowRight } from "lucide-react";
 import BookingModal from "@/components/ui/BookingModal";
 
 export default function LiveScanner() {
@@ -13,6 +13,19 @@ export default function LiveScanner() {
     const [isBookingOpen, setIsBookingOpen] = useState(false);
     const [email, setEmail] = useState("");
     const [reportState, setReportState] = useState<"idle" | "sending" | "sent" | "error">("idle");
+    const bookingTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+    // Auto-open booking modal 2s after report is sent
+    useEffect(() => {
+        if (reportState === "sent") {
+            bookingTimerRef.current = setTimeout(() => {
+                setIsBookingOpen(true);
+            }, 2000);
+        }
+        return () => {
+            if (bookingTimerRef.current) clearTimeout(bookingTimerRef.current);
+        };
+    }, [reportState]);
 
     const addLog = (text: string, type: "info" | "success" | "warning" | "error" | "system" = "info") => {
         setLogs(prev => [...prev.slice(-4), { text, type }]);
@@ -283,10 +296,27 @@ export default function LiveScanner() {
                                         {/* Seamless Email Capture + Formspree */}
                                         <div className="mt-auto border-t border-white/10 pt-6">
                                             {reportState === "sent" ? (
-                                                <div className="text-center py-4">
-                                                    <CheckCircle className="w-8 h-8 text-green-400 mx-auto mb-3" />
-                                                    <p className="text-green-400 font-bold uppercase tracking-widest text-sm">Report Transmitted Successfully</p>
-                                                    <p className="text-white/50 text-xs mt-2">Check your inbox for the full diagnostic breakdown.</p>
+                                                <div className="text-center py-4 space-y-5">
+                                                    <div>
+                                                        <CheckCircle className="w-8 h-8 text-green-400 mx-auto mb-3" />
+                                                        <p className="text-green-400 font-bold uppercase tracking-widest text-sm">Report Transmitted Successfully</p>
+                                                        <p className="text-white/50 text-xs mt-2">Check your inbox for the full diagnostic breakdown.</p>
+                                                    </div>
+
+                                                    {/* Booking CTA — fires after report send */}
+                                                    <div className="border-t border-white/10 pt-5">
+                                                        <p className="text-white/70 text-sm mb-4 font-light">
+                                                            Want us to walk you through the findings and map out a fix?
+                                                        </p>
+                                                        <button
+                                                            onClick={() => setIsBookingOpen(true)}
+                                                            className="inline-flex items-center gap-3 bg-cyan-500 hover:bg-cyan-400 text-black font-bold uppercase tracking-widest px-8 py-4 rounded-lg transition-all shadow-[0_0_20px_rgba(34,211,238,0.2)] hover:shadow-[0_0_40px_rgba(34,211,238,0.5)] group"
+                                                        >
+                                                            <CalendarCheck className="w-5 h-5" />
+                                                            Schedule a Strategy Call
+                                                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             ) : (
                                                 <>

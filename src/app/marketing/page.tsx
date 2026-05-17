@@ -344,6 +344,30 @@ export default function MarketingPage() {
                 ]}
             />
 
+            {/* Capsule CRM Affiliate Trust Strip */}
+            <section className="relative z-10 py-6 border-t border-white/5 bg-white/[0.01]">
+                <div className="container px-4 mx-auto flex items-center justify-center">
+                    <a
+                        href="https://get.capsulenow.io/power-digital-media-llc"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-emerald-400/30 transition-all group"
+                        title="CRM Powered by Capsule"
+                    >
+                        {/* Capsule CRM Icon */}
+                        <svg className="w-5 h-5 text-emerald-400 group-hover:drop-shadow-[0_0_8px_rgba(52,211,153,0.5)] transition-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M12 2C6.48 2 2 6 2 10.5c0 3 1.5 5.5 4 7v4.5l3.5-2c.8.2 1.6.3 2.5.3 5.52 0 10-4 10-8.5S17.52 2 12 2z" />
+                            <circle cx="8" cy="10.5" r="1" fill="currentColor" />
+                            <circle cx="12" cy="10.5" r="1" fill="currentColor" />
+                            <circle cx="16" cy="10.5" r="1" fill="currentColor" />
+                        </svg>
+                        <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted-foreground group-hover:text-emerald-400 transition-colors">
+                            CRM Powered by Capsule
+                        </span>
+                    </a>
+                </div>
+            </section>
+
             <Footer />
 
             <BookingModal

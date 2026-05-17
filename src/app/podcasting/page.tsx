@@ -360,6 +360,31 @@ export default function PodcastingPage() {
             {/* Add-On Protocols */}
             <AddOnProtocols />
 
+            {/* ElevenLabs Affiliate Trust Strip */}
+            <section className="relative z-10 py-6 border-t border-white/5 bg-white/[0.01]">
+                <div className="container px-4 mx-auto flex items-center justify-center">
+                    <a
+                        href="https://try.elevenlabs.io/power-digital-media-llc"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-purple-400/30 transition-all group"
+                        title="Audio Enhanced by ElevenLabs"
+                    >
+                        {/* ElevenLabs Soundwave Icon */}
+                        <svg className="w-5 h-5 text-purple-400 group-hover:drop-shadow-[0_0_8px_rgba(168,85,247,0.5)] transition-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="4" y1="8" x2="4" y2="16" />
+                            <line x1="8" y1="4" x2="8" y2="20" />
+                            <line x1="12" y1="6" x2="12" y2="18" />
+                            <line x1="16" y1="4" x2="16" y2="20" />
+                            <line x1="20" y1="8" x2="20" y2="16" />
+                        </svg>
+                        <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted-foreground group-hover:text-purple-400 transition-colors">
+                            Audio Enhanced by ElevenLabs
+                        </span>
+                    </a>
+                </div>
+            </section>
+
             <Footer />
 
             <BookingModal
