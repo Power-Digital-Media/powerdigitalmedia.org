@@ -165,6 +165,14 @@ export default function WebDesignDiscoveryPage() {
             });
 
             if (response.ok) {
+                const nameVal = data.get("name") as string;
+                const emailVal = data.get("email") as string;
+                // Fire-and-forget thank-you email
+                fetch("/api/contact/thank-you", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email: emailVal, name: nameVal, template: "web-design-discovery" }),
+                }).catch(() => {});
                 form.reset();
                 router.push("/book?from=discovery");
             } else {

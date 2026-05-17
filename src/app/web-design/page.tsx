@@ -28,16 +28,6 @@ interface Protocol {
     bg: string;
 }
 
-interface Tier {
-    name: string;
-    investment: string;
-    description: string;
-    features: string[];
-    cta: string;
-    accent: string;
-    featured?: boolean;
-}
-
 const protocols: Protocol[] = [
     {
         title: "The Aesthetic Protocol",
@@ -68,33 +58,6 @@ const protocols: Protocol[] = [
     }
 ];
 
-const tiers: Tier[] = [
-    {
-        name: "Identity Protocol",
-        investment: "$5,500+",
-        description: "For leaders and organizations requiring a singular, high-prestige flagship presence to ground their digital authority.",
-        features: ["Bespoke Visual Identity", "Next.js Performance Core", "Cinematic Media Layer", "Premium SEO Foundation"],
-        cta: "Deploy Identity",
-        accent: "border-blue-500/20"
-    },
-    {
-        name: "Growth Architecture",
-        investment: "$12,500+",
-        description: "The complete system. Full integration between your Media Studio and the Growth Engine to drive measurable scale.",
-        features: ["Full Studio + Engine Sync", "High-Velocity Funnel Layer", "Automated Lead Protocol", "Ecosystem Brand Scaling"],
-        cta: "Initialize Growth",
-        accent: "border-cyan-500/40",
-        featured: true
-    },
-    {
-        name: "Enterprise Ecosystem",
-        investment: "$25,000+",
-        description: "For organizations managing multiple brands or high-volume traffic. Custom engineered multi-site synchronization.",
-        features: ["Custom Protocol Sync", "Dedicated Engineering Hub", "Multi-Brand Architecture", "Advanced Data Layer"],
-        accent: "border-indigo-500/20",
-        cta: "Contact Enterprise"
-    }
-];
 
 export default function WebDesignPage() {
 
@@ -131,8 +94,9 @@ export default function WebDesignPage() {
                         "offers": {
                             "@type": "AggregateOffer",
                             "priceCurrency": "USD",
-                            "lowPrice": "5500",
-                            "highPrice": "25000+"
+                            "lowPrice": "1500",
+                            "highPrice": "5000",
+                            "offerCount": 3
                         }
                     })
                 }}
@@ -158,6 +122,30 @@ export default function WebDesignPage() {
                                 "acceptedAnswer": {
                                     "@type": "Answer",
                                     "text": "Our flagship Identity Protocol builds typically launch within 4-6 weeks, pending client feedback and asset collection. Complex enterprise ecosystems may take longer."
+                                }
+                            },
+                            {
+                                "@type": "Question",
+                                "name": "What does a custom website cost in Jackson MS?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Our web architecture starts at $1,500 for a bespoke Identity Protocol build and scales to $5,000+ for enterprise-grade multi-site ecosystems. Every project is custom-scoped to deliver maximum ROI."
+                                }
+                            },
+                            {
+                                "@type": "Question",
+                                "name": "Do you offer website management after launch?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Yes. Our Build & Manage protocol includes security patches, weekly updates, content changes, and tactical support for $550/month. Most high-ticket businesses opt for ongoing management to maintain peak performance."
+                                }
+                            },
+                            {
+                                "@type": "Question",
+                                "name": "Can you redesign my existing website?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Absolutely. We frequently migrate businesses from outdated platforms like WordPress, Wix, and Squarespace to modern Next.js architecture. The result is a faster, more secure, and conversion-optimized digital engine."
                                 }
                             }
                         ]
@@ -185,12 +173,12 @@ export default function WebDesignPage() {
                             </span>
                         </h1>
                         <p className="text-xl md:text-3xl text-foreground/70 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
-                            We don&apos;t build websites. We deploy <span className="text-white font-medium">high-velocity digital engines</span> engineered for prestige and engineered for dominance.
+                            We don&apos;t build websites. We deploy <span className="text-white font-medium">high-velocity digital engines</span> engineered for prestige and built for dominance.
                         </p>
                         <div className="flex flex-wrap justify-center gap-6">
-                            <Link href="/web-design/discovery" className="w-full sm:w-auto px-12 py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 hover:text-white transition-all uppercase tracking-widest text-sm shadow-[0_0_40px_rgba(255,255,255,0.2)] text-center">
+                            <a href="#investment" className="w-full sm:w-auto px-12 py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 hover:text-white transition-all uppercase tracking-widest text-sm shadow-[0_0_40px_rgba(255,255,255,0.2)] text-center">
                                 Initialize Build
-                            </Link>
+                            </a>
                             <Link href="#protocols" className="w-full sm:w-auto flex items-center justify-center px-12 py-5 border border-white/20 rounded-full hover:bg-white/5 transition-all font-bold uppercase tracking-widest text-sm">
                                 View Protocols
                             </Link>
@@ -333,7 +321,7 @@ export default function WebDesignPage() {
             <LiveScanner />
 
             {/* --- Section 3: Investment Roadmap --- */}
-            <section className="py-32 relative bg-background overflow-hidden">
+            <section id="investment" className="py-32 relative bg-background overflow-hidden scroll-mt-24">
                 <div className="container px-4 mx-auto">
                     <div className="text-center mb-24">
                         <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-xs mb-4 block">Deployment Phases</span>
@@ -377,9 +365,9 @@ export default function WebDesignPage() {
                         <p className="text-xl text-foreground/60 mb-16 max-w-xl mx-auto leading-relaxed">
                             Stop building websites. Start engineering your digital dominance. Deploy your custom growth architecture today.
                         </p>
-                        <Link href="/web-design/discovery" className="inline-block bg-white text-black px-16 py-8 rounded-full font-black uppercase tracking-[0.3em] text-sm hover:scale-105 transition-all shadow-[0_0_60px_rgba(255,255,255,0.2)] hover:shadow-cyan-400/50">
+                        <a href="#investment" className="inline-block bg-white text-black px-16 py-8 rounded-full font-black uppercase tracking-[0.3em] text-sm hover:scale-105 transition-all shadow-[0_0_60px_rgba(255,255,255,0.2)] hover:shadow-cyan-400/50">
                             Initialize Build
-                        </Link>
+                        </a>
                     </motion.div>
                 </div>
             </section>
@@ -393,38 +381,23 @@ export default function WebDesignPage() {
                     {
                         question: "How long does a website build take?",
                         answer: "Our flagship Identity Protocol builds typically launch within 4-6 weeks, pending client feedback and asset collection. Complex enterprise ecosystems may take longer."
+                    },
+                    {
+                        question: "What does a custom website cost in Jackson MS?",
+                        answer: "Our web architecture starts at $1,500 for a bespoke Identity Protocol build and scales to $5,000+ for enterprise-grade multi-site ecosystems. Every project is custom-scoped to deliver maximum ROI."
+                    },
+                    {
+                        question: "Do you offer website management after launch?",
+                        answer: "Yes. Our Build & Manage protocol includes security patches, weekly updates, content changes, and tactical support for $550/month. Most high-ticket businesses opt for ongoing management to maintain peak performance."
+                    },
+                    {
+                        question: "Can you redesign my existing website?",
+                        answer: "Absolutely. We frequently migrate businesses from outdated platforms like WordPress, Wix, and Squarespace to modern Next.js architecture. The result is a faster, more secure, and conversion-optimized digital engine."
                     }
                 ]}
             />
 
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "Service",
-                        "name": "High-Velocity Web Architecture & Design",
-                        "provider": {
-                            "@type": "ProfessionalService",
-                            "name": "Power Digital Media"
-                        },
-                        "serviceType": "Web Design",
-                        "description": "Premium digital infrastructure engineered for visual prestige, technical superiority, and conversion dominance. Hand-coded React and Next.js platforms.",
-                        "areaServed": {
-                            "@type": "City",
-                            "name": "Jackson",
-                            "addressRegion": "MS"
-                        },
-                        "offers": {
-                            "@type": "AggregateOffer",
-                            "priceCurrency": "USD",
-                            "lowPrice": "5500",
-                            "highPrice": "25000",
-                            "offerCount": 3
-                        }
-                    })
-                }}
-            />
+
             <Footer />
 
 

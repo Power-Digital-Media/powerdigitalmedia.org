@@ -104,6 +104,13 @@ export default function HookGenerator() {
                 setThumbnailUrl(null); // Explicitly null if generation failed due to quota
             }
 
+            // Fire-and-forget thank-you email
+            fetch("/api/contact/thank-you", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, template: "hook-generator" }),
+            }).catch(() => {});
+
             setStep("result");
         } catch (err: any) {
             console.error("Growth Intelligence Protocol Breach:", err);

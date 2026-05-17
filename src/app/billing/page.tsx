@@ -7,10 +7,12 @@ import {
     Camera, TrendingUp, Search, Briefcase, Globe
 } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import LifecycleCard from "@/components/ui/billing/LifecycleCard";
+import Founders100Banner from "@/components/ui/billing/Founders100Banner";
 
 interface ServiceTier {
     id: string;
@@ -57,7 +59,7 @@ const serviceTiers: ServiceTier[] = [
     {
         id: "web_management",
         name: "Build & Manage",
-        price: 500,
+        price: 550,
         priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_MANAGEMENT || "price_management_placeholder",
         description: "Continuous evolution and high-sec hosting (Monthly).",
         features: ["2 Monthly Updates", "Elite Hosting", "Security Core"],
@@ -190,6 +192,18 @@ const serviceTiers: ServiceTier[] = [
 export default function BillingPage() {
     const [loading, setLoading] = useState<string | null>(null);
     const [activeCategory, setActiveCategory] = useState<'all' | 'design' | 'podcasting' | 'production' | 'growth'>('all');
+    const searchParams = useSearchParams();
+    const isSuccess = searchParams.get('success') === 'true';
+    const isCanceled = searchParams.get('canceled') === 'true';
+    const [showBanner, setShowBanner] = useState(false);
+
+    useEffect(() => {
+        if (isSuccess || isCanceled) {
+            setShowBanner(true);
+            const timer = setTimeout(() => setShowBanner(false), 8000);
+            return () => clearTimeout(timer);
+        }
+    }, [isSuccess, isCanceled]);
 
     const handleCheckout = async (priceId: string) => {
         setLoading(priceId);
@@ -247,6 +261,40 @@ export default function BillingPage() {
         <main className="relative min-h-screen bg-background text-foreground overflow-hidden">
             <Navbar />
 
+            {/* Success / Canceled Banner */}
+            <AnimatePresence>
+                {showBanner && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -40 }}
+                        className="fixed top-24 left-1/2 -translate-x-1/2 z-50 w-full max-w-lg"
+                    >
+                        {isSuccess ? (
+                            <div className="mx-4 p-6 rounded-2xl bg-emerald-500/10 border border-emerald-400/30 backdrop-blur-xl shadow-[0_0_40px_rgba(16,185,129,0.2)] flex items-center gap-4">
+                                <div className="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                                    <CheckCircle2 className="w-6 h-6 text-emerald-400" />
+                                </div>
+                                <div>
+                                    <p className="text-emerald-300 font-black text-sm uppercase tracking-wider">Payment Confirmed</p>
+                                    <p className="text-emerald-200/60 text-xs mt-1">Your invoice has been generated and sent to your email.</p>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="mx-4 p-6 rounded-2xl bg-amber-500/10 border border-amber-400/30 backdrop-blur-xl shadow-[0_0_40px_rgba(245,158,11,0.15)] flex items-center gap-4">
+                                <div className="w-12 h-12 rounded-xl bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                                    <Receipt className="w-6 h-6 text-amber-400" />
+                                </div>
+                                <div>
+                                    <p className="text-amber-300 font-black text-sm uppercase tracking-wider">Checkout Canceled</p>
+                                    <p className="text-amber-200/60 text-xs mt-1">No charges were made. You can resume anytime.</p>
+                                </div>
+                            </div>
+                        )}
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
             {/* Background Ambience */}
             <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-accent/5 rounded-full blur-[160px] pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[140px] pointer-events-none" />
@@ -269,6 +317,9 @@ export default function BillingPage() {
                             Foundational protocols and bespoke financial engineering for high-authority digital deployments.
                         </p>
                     </motion.div>
+
+                    {/* Founder's 100 Promo Banner */}
+                    <Founders100Banner onCheckout={handleCheckout} loading={loading} />
 
                     {/* Category Switcher */}
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 max-w-7xl mx-auto">

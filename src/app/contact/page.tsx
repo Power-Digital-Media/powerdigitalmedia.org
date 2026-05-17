@@ -28,6 +28,14 @@ export default function StandaloneContactPage() {
 
             if (response.ok) {
                 setStatus("success");
+                const nameVal = data.get("name") as string;
+                const emailVal = data.get("email") as string;
+                // Fire-and-forget thank-you email
+                fetch("/api/contact/thank-you", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email: emailVal, name: nameVal, template: "contact" }),
+                }).catch(() => {});
                 form.reset();
             } else {
                 setStatus("error");

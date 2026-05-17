@@ -29,7 +29,17 @@ export default function LoginPage() {
 
         try {
             if (isRegistering) {
-                await createUserWithEmailAndPassword(auth, email, password);
+                const cred = await createUserWithEmailAndPassword(auth, email, password);
+                // Trigger backend onboarding — creates Stripe customer + Firestore profile
+                await fetch("/api/onboard", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        uid: cred.user.uid,
+                        email: cred.user.email,
+                        displayName: cred.user.email?.split("@")[0] || "Client",
+                    }),
+                });
             } else {
                 await signInWithEmailAndPassword(auth, email, password);
             }
@@ -58,7 +68,17 @@ export default function LoginPage() {
         const provider = new GoogleAuthProvider();
 
         try {
-            await signInWithPopup(auth, provider);
+            const cred = await signInWithPopup(auth, provider);
+            // Onboard if first-time Google user — backend deduplicates
+            await fetch("/api/onboard", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    uid: cred.user.uid,
+                    email: cred.user.email,
+                    displayName: cred.user.displayName || cred.user.email?.split("@")[0] || "Client",
+                }),
+            });
             router.push("/dashboard");
         } catch (err: any) {
             console.error("Google Login Error:", err);

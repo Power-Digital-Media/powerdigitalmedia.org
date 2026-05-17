@@ -22,6 +22,13 @@ export default function NewsletterForm() {
 
             if (response.ok) {
                 setStatus("success");
+                const emailVal = data.get("email") as string;
+                // Fire-and-forget thank-you email
+                fetch("/api/contact/thank-you", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email: emailVal, template: "newsletter" }),
+                }).catch(() => {});
                 form.reset();
             } else {
                 setStatus("error");

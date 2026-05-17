@@ -48,7 +48,7 @@ const tiers: Tier[] = [
     }
 ];
 
-const MANAGEMENT_PRICE = 500;
+const MANAGEMENT_PRICE = 550;
 const MANAGEMENT_PRICE_ID = process.env.NEXT_PUBLIC_STRIPE_PRICE_MANAGEMENT || "price_management_placeholder"; // Match Billing Hub catalog
 
 export default function WebDesignPricing() {
@@ -204,7 +204,7 @@ export default function WebDesignPricing() {
                                         <div className={`w-3 h-3 rounded-full border ${wantsManagement === true ? "bg-cyan-400 border-cyan-400" : "border-white/20"}`} />
                                         <h4 className="text-lg font-bold uppercase tracking-widest">Build & Manage</h4>
                                     </div>
-                                    <span className="text-cyan-400 font-black tracking-tighter">+$500/mo</span>
+                                    <span className="text-cyan-400 font-black tracking-tighter">+$550/mo</span>
                                 </div>
                                 <p className="text-sm text-foreground/50 leading-relaxed mb-4">
                                     Managed high-authority growth engine. Includes security patches, weekly updates, and tactical support.
@@ -235,7 +235,7 @@ export default function WebDesignPricing() {
                                 </span>
                                 {wantsManagement && (
                                     <span className="text-xl font-bold text-cyan-400">
-                                        + $500/mo
+                                        + $550/mo
                                     </span>
                                 )}
                             </div>

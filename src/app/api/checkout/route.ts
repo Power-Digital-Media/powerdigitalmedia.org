@@ -14,6 +14,8 @@ export async function POST(req: Request) {
         // For now, we'll allow the frontend to hint, but we'll add a safety check
         const sessionMode = mode || (items.some((item: any) => item.price?.includes('recurring') || item.quantity === 1 && item.priceId?.includes('sub')) ? 'subscription' : 'payment');
 
+        const enableTax = process.env.STRIPE_TAX_ENABLED === 'true';
+
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             line_items: items,
@@ -21,12 +23,12 @@ export async function POST(req: Request) {
             customer_email: customerEmail,
             success_url: successUrl || `${process.env.NEXT_PUBLIC_SITE_URL}/billing?success=true`,
             cancel_url: cancelUrl || `${process.env.NEXT_PUBLIC_SITE_URL}/billing?canceled=true`,
-            automatic_tax: { enabled: true },
+            ...(enableTax && { automatic_tax: { enabled: true } }),
             billing_address_collection: 'required',
             invoice_creation: sessionMode === 'payment' ? { enabled: true } : undefined,
             metadata: {
                 payment_type: sessionMode,
-                source: 'web-design-gateway'
+                source: 'power-digital-media-gateway'
             }
         });
 

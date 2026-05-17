@@ -309,7 +309,7 @@ export default function Services() {
                             We deploy high-velocity <span className="text-cyan-400 font-medium tracking-tight">Growth Architecture</span>. High-performance digital systems that turn studio-grade media into engineered dominance.
                         </p>
                         <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-                            <Link href="https://powerdigitalgrowth.org" target="_blank" rel="noopener noreferrer" className="px-10 py-5 bg-cyan-400 text-slate-950 font-black rounded-full shadow-[0_0_40px_rgba(34,211,238,0.2)] hover:scale-105 transition-all uppercase tracking-widest text-[10px] active:scale-95">
+                            <Link href="/client-discovery" className="px-10 py-5 bg-cyan-400 text-slate-950 font-black rounded-full shadow-[0_0_40px_rgba(34,211,238,0.2)] hover:scale-105 transition-all uppercase tracking-widest text-[10px] active:scale-95">
                                 Initialize Protocol
                             </Link>
                             <button

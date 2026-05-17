@@ -59,7 +59,7 @@ export default function Footer() {
                         <ul className="space-y-4 text-sm text-muted-foreground">
                             <li><Link href="/web-design" className="hover:text-accent transition-colors">Design</Link></li>
                             <li><Link href="/podcasting" className="hover:text-accent transition-colors">Podcasting</Link></li>
-                            <li><a href="https://powerdigitalgrowth.org" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">Marketing</a></li>
+                            <li><Link href="/marketing" className="hover:text-accent transition-colors">Marketing</Link></li>
                             <li><Link href="/our-work" className="hover:text-accent transition-colors">Portfolio</Link></li>
                             <li><Link href="/blog" className="hover:text-accent transition-colors">Blog</Link></li>
                         </ul>

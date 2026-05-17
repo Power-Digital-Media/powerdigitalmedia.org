@@ -11,6 +11,8 @@ export default function LiveScanner() {
     const [logs, setLogs] = useState<{ text: string, type: "info" | "success" | "warning" | "error" | "system" }[]>([]);
     const [results, setResults] = useState<any>(null);
     const [isBookingOpen, setIsBookingOpen] = useState(false);
+    const [email, setEmail] = useState("");
+    const [reportState, setReportState] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
     const addLog = (text: string, type: "info" | "success" | "warning" | "error" | "system" = "info") => {
         setLogs(prev => [...prev.slice(-4), { text, type }]);
@@ -278,29 +280,75 @@ export default function LiveScanner() {
                                             </div>
                                         </div>
 
-                                        {/* Seamless Email Capture (Replaces URL Input Form) */}
+                                        {/* Seamless Email Capture + Formspree */}
                                         <div className="mt-auto border-t border-white/10 pt-6">
-                                            <p className="text-xs text-white/60 mb-3 uppercase tracking-widest text-center">
-                                                <AlertTriangle className="w-3 h-3 inline-block -mt-1 mr-1 text-yellow-400" />
-                                                Action Required: Full Diagnostic Report Available
-                                            </p>
-                                            <div className="flex flex-col md:flex-row gap-4">
-                                                <div className="relative flex-1">
-                                                    <input
-                                                        type="email"
-                                                        placeholder="ENTER EMAIL FOR FULL REPORT"
-                                                        className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-4 text-white placeholder:text-white/40 focus:outline-none focus:border-cyan-400 focus:bg-cyan-400/5 transition-all outline-none"
-                                                    />
+                                            {reportState === "sent" ? (
+                                                <div className="text-center py-4">
+                                                    <CheckCircle className="w-8 h-8 text-green-400 mx-auto mb-3" />
+                                                    <p className="text-green-400 font-bold uppercase tracking-widest text-sm">Report Transmitted Successfully</p>
+                                                    <p className="text-white/50 text-xs mt-2">Check your inbox for the full diagnostic breakdown.</p>
                                                 </div>
-                                                <button
-                                                    onClick={() => setIsBookingOpen(true)}
-                                                    className="bg-cyan-500 hover:bg-cyan-400 text-black font-bold uppercase tracking-widest px-8 py-4 rounded-lg flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(34,211,238,0.2)] hover:shadow-[0_0_30px_rgba(34,211,238,0.4)]"
-                                                >
-                                                    Get Report <ChevronRight className="w-4 h-4" />
-                                                </button>
-                                            </div>
+                                            ) : (
+                                                <>
+                                                    <p className="text-xs text-white/60 mb-3 uppercase tracking-widest text-center">
+                                                        <AlertTriangle className="w-3 h-3 inline-block -mt-1 mr-1 text-yellow-400" />
+                                                        Action Required: Full Diagnostic Report Available
+                                                    </p>
+                                                    <form onSubmit={async (e) => {
+                                                        e.preventDefault();
+                                                        if (!email.trim() || reportState === "sending") return;
+                                                        setReportState("sending");
+                                                        try {
+                                                            const payload = {
+                                                                email,
+                                                                scannedUrl: results.url,
+                                                                schemaScore: results.schemaScore,
+                                                                schemaTypes: results.schemaTypesFound?.join(', ') || 'None',
+                                                                aiReadiness: results.hasLlmsTxt ? 'Pass' : 'Fail',
+                                                                seoScore: results.seoScore ?? 0,
+                                                            };
+                                                            // Fire both: Formspree (lead capture) + Resend (user report email)
+                                                            const [formspreeRes] = await Promise.all([
+                                                                fetch("https://formspree.io/f/mdazlovb", {
+                                                                    method: "POST",
+                                                                    headers: { "Content-Type": "application/json", Accept: "application/json" },
+                                                                    body: JSON.stringify({ _subject: `🔬 Scanner Lead: ${results.url}`, ...payload }),
+                                                                }),
+                                                                fetch("/api/scan/report", {
+                                                                    method: "POST",
+                                                                    headers: { "Content-Type": "application/json" },
+                                                                    body: JSON.stringify(payload),
+                                                                }).catch(() => {}), // Don't block on report email failure
+                                                            ]);
+                                                            if (formspreeRes.ok) { setReportState("sent"); }
+                                                            else { setReportState("error"); }
+                                                        } catch { setReportState("error"); }
+                                                    }} className="flex flex-col md:flex-row gap-4">
+                                                        <div className="relative flex-1">
+                                                            <input
+                                                                type="email"
+                                                                required
+                                                                value={email}
+                                                                onChange={(e) => { setEmail(e.target.value); if (reportState === "error") setReportState("idle"); }}
+                                                                placeholder="ENTER EMAIL FOR FULL REPORT"
+                                                                className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-4 text-white placeholder:text-white/40 focus:outline-none focus:border-cyan-400 focus:bg-cyan-400/5 transition-all outline-none"
+                                                            />
+                                                        </div>
+                                                        <button
+                                                            type="submit"
+                                                            disabled={reportState === "sending"}
+                                                            className="bg-cyan-500 hover:bg-cyan-400 disabled:opacity-50 disabled:cursor-wait text-black font-bold uppercase tracking-widest px-8 py-4 rounded-lg flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(34,211,238,0.2)] hover:shadow-[0_0_30px_rgba(34,211,238,0.4)]"
+                                                        >
+                                                            {reportState === "sending" ? "Transmitting..." : reportState === "error" ? "Retry" : "Get Report"} <ChevronRight className="w-4 h-4" />
+                                                        </button>
+                                                    </form>
+                                                    {reportState === "error" && (
+                                                        <p className="text-red-400 text-xs text-center mt-2 uppercase tracking-widest">Transmission failed. Please retry.</p>
+                                                    )}
+                                                </>
+                                            )}
                                             <button
-                                                onClick={() => setScanState("idle")}
+                                                onClick={() => { setScanState("idle"); setReportState("idle"); setEmail(""); }}
                                                 className="mx-auto mt-4 text-white/30 hover:text-white transition-colors text-xs tracking-widest uppercase flex items-center gap-1 justify-center w-full"
                                             >
                                                 Run New Scan
