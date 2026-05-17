@@ -988,3 +988,9 @@ Power Digital publishes high-level protocols and insights on AI, web architectur
   - **Excerpt**: WebMCP, Agentic SEO, and machine-readable infrastructure are changing discovery. Learn how Jackson MS businesses can prepare now.
   - **Link**: https://powerdigitalmedia.org/blog/webmcp-agentic-seo-machine-readable-infrastructure
 
+- **Next.js 16 and the Rise of Version-Aware AI Coding Agents**
+  - **Category**: AI Tech
+  - **Date**: May 16, 2026
+  - **Excerpt**: Next.js 16 ships a built-in MCP server. AI coding agents can now read your build errors, inspect your routes, and fix your code without guessing. The framework just became an API for machines.
+  - **Link**: https://powerdigitalmedia.org/blog/nextjs-16-ai-coding-agents
+

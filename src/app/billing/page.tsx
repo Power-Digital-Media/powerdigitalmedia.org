@@ -7,7 +7,7 @@ import {
     Camera, TrendingUp, Search, Briefcase, Globe
 } from "lucide-react";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -189,7 +189,7 @@ const serviceTiers: ServiceTier[] = [
     },
 ];
 
-export default function BillingPage() {
+function BillingContent() {
     const [loading, setLoading] = useState<string | null>(null);
     const [activeCategory, setActiveCategory] = useState<'all' | 'design' | 'podcasting' | 'production' | 'growth'>('all');
     const searchParams = useSearchParams();
@@ -455,5 +455,17 @@ export default function BillingPage() {
 
             <Footer />
         </main>
+    );
+}
+
+export default function BillingPage() {
+    return (
+        <Suspense fallback={
+            <main className="relative min-h-screen bg-background text-foreground flex items-center justify-center">
+                <div className="animate-pulse text-accent text-sm font-bold tracking-widest uppercase">Loading Billing...</div>
+            </main>
+        }>
+            <BillingContent />
+        </Suspense>
     );
 }
