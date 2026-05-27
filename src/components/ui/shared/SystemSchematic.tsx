@@ -107,6 +107,27 @@ export default function SystemSchematic() {
                     } else {
                         setActiveNode("hub");
                     }
+
+                    // Dynamically flip light trail direction based on scroll heading
+                    if (self.direction === 1) {
+                        // Scrolling Down -> Comet moves right -> tail trails left (scaleX = 1)
+                        gsap.to(trail, { 
+                            scaleX: 1, 
+                            duration: 0.4, 
+                            transformOrigin: "100px 96px", 
+                            ease: "power2.out", 
+                            overwrite: "auto" 
+                        });
+                    } else if (self.direction === -1) {
+                        // Scrolling Up -> Comet moves left -> tail trails right (scaleX = -1)
+                        gsap.to(trail, { 
+                            scaleX: -1, 
+                            duration: 0.4, 
+                            transformOrigin: "100px 96px", 
+                            ease: "power2.out", 
+                            overwrite: "auto" 
+                        });
+                    }
                 }
             }
         });
