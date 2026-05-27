@@ -21,6 +21,10 @@ export default function ExitIntentPopup() {
 
         // 2. Desktop Trigger: Exit Intent (Cursor leaves top of viewport)
         const handleMouseLeave = (e: MouseEvent) => {
+            // Dynamic check at event execution time
+            if (sessionStorage.getItem("audit_dismissed") === "true" || localStorage.getItem("audit_converted") === "true") {
+                return;
+            }
             // e.clientY < 20 signifies the user moving the cursor towards the address bar/tabs/close button
             if (e.clientY < 20) {
                 setIsOpen(true);
@@ -29,6 +33,10 @@ export default function ExitIntentPopup() {
 
         // 3. Mobile Trigger: Scroll Depth (Scrolls past 60% of page)
         const handleScroll = () => {
+            // Dynamic check at event execution time
+            if (sessionStorage.getItem("audit_dismissed") === "true" || localStorage.getItem("audit_converted") === "true") {
+                return;
+            }
             const scrollTop = window.scrollY;
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
             if (docHeight > 0) {
