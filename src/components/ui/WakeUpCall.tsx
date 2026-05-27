@@ -27,7 +27,7 @@ export default function WakeUpCall({ title, subtitle, paragraph }: { title: stri
     const secondHalf = splitTitle.slice(Math.ceil(splitTitle.length / 2)).join(' ');
 
     return (
-        <section ref={containerRef} className="wakeup-zone relative h-[250vh] bg-background">
+        <section ref={containerRef} className="wakeup-zone relative h-[150vh] md:h-[250vh] bg-background">
             <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden bg-black z-30 shadow-[0_0_100px_rgba(0,0,0,1)]">
 
                 {/* Dynamic noise background */}
@@ -60,9 +60,9 @@ export default function WakeUpCall({ title, subtitle, paragraph }: { title: stri
                         </motion.div>
 
                         {/* Line 3 - The Resolution */}
-                        <motion.div style={{ opacity: textOpacity3 }} className="p-8 border border-cyan-500/30 glass-card bg-cyan-950/20 rounded-3xl relative overflow-hidden">
+                        <motion.div style={{ opacity: textOpacity3 }} className="p-6 md:p-10 border border-cyan-500/30 glass-card bg-cyan-950/20 rounded-3xl relative overflow-hidden">
                             <div className="absolute inset-0 bg-cyan-500/10 blur-xl mix-blend-screen" />
-                            <p className="text-xl md:text-3xl font-black text-cyan-400 tracking-tighter relative z-10 drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]">
+                            <p className="text-base sm:text-2xl md:text-3xl font-black text-cyan-400 tracking-tighter relative z-10 drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]">
                                 {paragraph}
                             </p>
                         </motion.div>

@@ -40,6 +40,10 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
         const section = sectionRef.current;
         if (!track || !section) return;
 
+        // On mobile, skip GSAP ScrollTrigger pinning to allow native, silky-smooth horizontal swiping
+        const isMobile = window.innerWidth < 768;
+        if (isMobile) return;
+
         // Calculate how far to move the track
         const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
 
@@ -82,37 +86,24 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
             // Glow logic on center intersection using Opacity on a separate layer
             const glowLayer = card.querySelector(".device-glow");
             if (glowLayer) {
-                // 1. Fade IN as it approaches the center
-                gsap.fromTo(glowLayer,
-                    { opacity: 0 },
-                    {
-                        opacity: 1,
-                        ease: "none",
-                        scrollTrigger: {
-                            trigger: card,
-                            containerAnimation: scrollTween,
-                            start: "left center+=15%", // Start fading in as left edge nears center
-                            end: "center center", // Max opacity at absolute center
-                            scrub: true,
-                        }
+                // Create a single timeline for the glow to prevent overlapping fromTo conflicts (race conditions)
+                const glowTimeline = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: card,
+                        containerAnimation: scrollTween,
+                        start: "left center+=15%", // Start fading in as left edge nears center
+                        end: "right center-=15%", // Fully transparent when right edge leaves center
+                        scrub: true,
+                        onLeave: () => gsap.set(glowLayer, { opacity: 0 }),
+                        onLeaveBack: () => gsap.set(glowLayer, { opacity: 0 }),
                     }
-                );
+                });
 
-                // 2. Fade OUT as it leaves the center
-                gsap.fromTo(glowLayer,
-                    { opacity: 1 },
-                    {
-                        opacity: 0,
-                        immediateRender: false,
-                        ease: "none",
-                        scrollTrigger: {
-                            trigger: card,
-                            containerAnimation: scrollTween,
-                            start: "center center", // Start fading out past center
-                            end: "right center-=15%", // Fully transparent when right edge leaves center
-                            scrub: true,
-                        }
-                    }
+                glowTimeline.fromTo(glowLayer,
+                    { opacity: 0 },
+                    { opacity: 1, ease: "none", duration: 1 }
+                ).to(glowLayer,
+                    { opacity: 0, ease: "none", duration: 1 }
                 );
             }
         });
@@ -142,8 +133,8 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
                 </div>
 
                 {/* The Track Container moving horizontally inside the Sticky Frame */}
-                <div className="relative flex h-full w-full items-center pl-4 md:px-0 py-0 bg-transparent">
-                    <div ref={trackRef} className="relative flex gap-6 md:gap-16 w-max items-center h-full pt-20 md:pt-[150px] pb-16 md:pb-24 px-0 md:px-12">
+                <div className="relative flex h-full w-full items-center pl-4 md:px-0 py-0 bg-transparent overflow-x-auto md:overflow-x-hidden snap-x snap-mandatory no-scrollbar">
+                    <div ref={trackRef} className="relative flex gap-6 md:gap-16 w-max items-center h-full pt-20 md:pt-[150px] pb-16 md:pb-24 px-0 md:px-12 snap-x snap-mandatory md:snap-none">
                         {/* Initial padding so the first card isn't overlapping text */}
                         <div className="block w-[5vw] md:w-[10vw] shrink-0" />
 
@@ -277,11 +268,10 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
 
                                     {/* Active Glow Layer mapped to GSAP opacity - Displayed on top for sharp border definition */}
                                     <div
-                                        className="device-glow absolute inset-0 rounded-[2.5rem] md:rounded-[4rem] pointer-events-none z-30 border-[1px] md:border-[2px]"
+                                        className="device-glow absolute inset-0 rounded-[2.5rem] md:rounded-[4rem] pointer-events-none z-30 border-[1px] md:border-[2px] opacity-80 md:opacity-0 transition-opacity duration-500"
                                         style={{
                                             boxShadow: `0 0 30px 2px rgba(${glowRGB}, 0.7), 0 0 100px 15px rgba(${glowRGB}, 0.25), inset 0 0 20px 2px rgba(${glowRGB}, 0.5)`,
-                                            borderColor: `rgba(${glowRGB}, 1)`,
-                                            opacity: 0
+                                            borderColor: `rgba(${glowRGB}, 1)`
                                         }}
                                     />
                                 </div>

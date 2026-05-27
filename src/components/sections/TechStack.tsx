@@ -19,6 +19,13 @@ const mainStack = [
         description: "Enterprise-Grade Real-Time Data. Sub-20ms database query execution, secure row-level security (RLS) policies, and instant serverless scaling to handle massive user spikes with absolute data security.",
         image: "/images/growth-data-overlay.webp",
         specs: ["Serverless PostgreSQL", "Real-Time Sockets Sync", "Row-Level Security Policies"]
+    },
+    {
+        name: "Capsule CRM & Transpond Automation",
+        type: "The System Bridge",
+        description: "Official CRM & Marketing Partner. Seamless operations integration through REST API webhooks, automated contact synchronization, and dynamic tag segmentation. Instantly capture customer intent and convert leads into paid client pipelines.",
+        image: "/images/spatial-bg-1.webp",
+        specs: ["Official Partnership Integrations", "REST API Automated Sync", "Transpond Email Marketing Automations"]
     }
 ];
 
@@ -49,7 +56,7 @@ export default function TechStack() {
                             transition={{ duration: 0.8, delay: 0.2 }}
                             className={`flex flex-col ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} gap-16 items-center`}
                         >
-                            <div className="flex-1 w-full h-[500px] relative rounded-3xl overflow-hidden glass-card">
+                            <div className="flex-1 w-full h-[280px] md:h-[500px] relative rounded-3xl overflow-hidden glass-card">
                                 <Image
                                     src={item.image}
                                     alt={item.name}
@@ -59,16 +66,17 @@ export default function TechStack() {
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
                             </div>
-                            <div className="flex-1 max-w-xl">
-                                <span className="text-accent font-bold tracking-widest uppercase text-xs mb-3 block">{item.type}</span>
-                                <h3 className="text-3xl md:text-5xl font-bold mb-6">{item.name}</h3>
-                                <p className="text-lg text-foreground/80 mb-8 leading-relaxed">
+                            <div className="flex-1 max-w-xl text-center lg:text-left flex flex-col items-center lg:items-start w-full">
+                                <span className="text-accent font-bold tracking-widest uppercase text-xs mb-3 block text-center lg:text-left w-full">{item.type}</span>
+                                <h3 className="text-3xl md:text-5xl font-bold mb-6 text-center lg:text-left w-full">{item.name}</h3>
+                                <p className="text-lg text-foreground/80 mb-8 leading-relaxed text-left w-full">
                                     {item.description}
                                 </p>
-                                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                                <ul className="flex flex-wrap gap-3 mb-8 w-full justify-start">
                                     {item.specs.map((spec) => (
-                                        <li key={spec} className="flex items-center gap-2 text-sm font-medium text-foreground/60 border-l border-accent/30 pl-4 py-1">
-                                            {spec}
+                                        <li key={spec} className="flex items-center gap-2.5 text-[10px] font-black uppercase tracking-widest text-white/70 bg-white/[0.02] border border-white/5 rounded-full px-4 py-2.5 hover:bg-white/[0.04] hover:border-accent/30 transition-all duration-300 w-fit shrink-0">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse shadow-[0_0_8px_#22d3ee] flex-shrink-0" />
+                                            <span>{spec}</span>
                                         </li>
                                     ))}
                                 </ul>

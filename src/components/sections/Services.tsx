@@ -10,6 +10,49 @@ import BookingModal from "@/components/ui/BookingModal";
 import DashboardProof from "@/components/ui/DashboardProof";
 import SystemSchematic from "@/components/ui/shared/SystemSchematic";
 
+const proofCards = [
+    {
+        image: "/images/proof/Growth_Proof/5.webp",
+        badge: "Verified GA4 Data",
+        text: "35m 12s Avg. Engagement",
+        border: "border-accent/40",
+        bar: "from-accent to-blue-500",
+        shadow: "shadow-[0_0_20px_rgba(34,211,238,0.2)]",
+        badgeColor: "text-accent",
+        badgeBorder: "border-accent/50",
+    },
+    {
+        image: "/images/proof/Growth_Proof/4.webp",
+        badge: "Event Tracking",
+        text: "+3,095% Performance Growth",
+        border: "border-purple-500/40",
+        bar: "from-purple-500 to-fuchsia-400",
+        shadow: "shadow-[0_0_20px_rgba(168,85,247,0.2)]",
+        badgeColor: "text-purple-400",
+        badgeBorder: "border-purple-500/50",
+    },
+    {
+        image: "/images/proof/Growth_Proof/3.webp",
+        badge: "High-Volume Capture",
+        text: "Dominant Traffic Pipelines",
+        border: "border-blue-500/40",
+        bar: "from-blue-500 to-cyan-400",
+        shadow: "shadow-[0_0_20px_rgba(59,130,246,0.2)]",
+        badgeColor: "text-blue-400",
+        badgeBorder: "border-blue-500/50",
+    },
+    {
+        image: "/images/proof/Growth_Proof/1.webp",
+        badge: "Baseline Indexing",
+        text: "Total Search Authority",
+        border: "border-white/20",
+        bar: "from-white/40 to-white/10",
+        shadow: "",
+        badgeColor: "text-white/80",
+        badgeBorder: "border-white/20",
+    }
+];
+
 export default function Services() {
     const [isBookingOpen, setIsBookingOpen] = useState(false);
 
@@ -31,24 +74,24 @@ export default function Services() {
 
                     {/* Text Container */}
                     <div className="container px-6 md:px-6 mx-auto">
-                        <div className="flex justify-start md:justify-end">
+                        <div className="flex justify-center md:justify-end">
                             <m.div
                                 initial={{ opacity: 0, x: 30 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                                className="max-w-xl text-left md:text-right flex flex-col items-start md:items-end"
+                                className="max-w-xl flex flex-col items-center md:items-end w-full"
                             >
-                                <span className="text-accent font-bold tracking-[0.4em] uppercase text-[9px] md:text-xs mb-4 block hover:text-white transition-colors">Undeniable Metrics</span>
-                                <h2 className="text-4xl md:text-7xl font-bold mb-6 md:mb-8 tracking-tight uppercase leading-none text-white">The Reach.</h2>
-                                <p className="text-base md:text-xl text-foreground/80 mb-8 max-w-md leading-relaxed text-balance font-light">
+                                <span className="text-accent font-bold tracking-[0.4em] uppercase text-[9px] md:text-xs mb-4 block hover:text-white transition-colors text-center md:text-right w-full">Undeniable Metrics</span>
+                                <h2 className="text-4xl md:text-7xl font-bold mb-6 md:mb-8 tracking-tight uppercase leading-none text-white text-center md:text-right w-full">The Reach.</h2>
+                                <p className="text-base md:text-xl text-foreground/80 mb-8 max-w-md leading-relaxed text-balance font-light text-left md:text-right w-full">
                                     Real, raw data. <strong className="text-white">35M 12S average engagement time</strong> and <strong className="text-accent">+3,095% event tracking growth.</strong> We engineer digital infrastructure that commands absolute attention and converts raw traffic into captured audiences.
                                 </p>
                                 <ul className="space-y-4 mb-10 flex flex-col items-start md:items-end w-full">
                                     {["Data-Driven SEO Protocol", "Page-One Search Placement", "High-Converting Organic Traffic"].map((f) => (
-                                        <li key={f} className="flex items-center flex-row-reverse md:flex-row-reverse gap-3 text-sm md:text-lg font-medium text-white/50 w-full justify-end md:justify-start">
-                                            <div className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-purple-400 flex-shrink-0 shadow-[0_0_10px_rgba(168,85,247,0.5)]" />
-                                            <span className="text-right md:text-left">{f}</span>
+                                        <li key={f} className="flex items-center gap-3 text-sm md:text-lg font-medium text-white/50 w-full justify-start md:justify-end text-left md:text-right">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-purple-400 flex-shrink-0 shadow-[0_0_10px_rgba(168,85,247,0.5)]" />
+                                            <span>{f}</span>
                                         </li>
                                     ))}
                                 </ul>
@@ -59,84 +102,65 @@ export default function Services() {
                         </div>
                     </div>
 
-                    {/* --- MOBILE OPTIMIZED 2D PRESENTATION (CAROUSEL) IN DOCUMENT FLOW --- */}
-                    <div className="flex md:hidden w-full flex-col pb-4">
-                        <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory px-6 pb-8 touch-pan-x [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                    {/* --- MOBILE OPTIMIZED AUTOMATED SCROLLING MARQUEE BANNER --- */}
+                    <div className="flex md:hidden w-full flex-col pb-4 overflow-hidden relative z-20 mt-4">
+                        {/* Self-contained CSS Marquee Animations for 100% hardware acceleration */}
+                        <style dangerouslySetInnerHTML={{__html: `
+                            @keyframes marquee {
+                                0% { transform: translateX(0); }
+                                100% { transform: translateX(-50%); }
+                            }
+                            .animate-marquee {
+                                display: flex;
+                                width: max-content;
+                                animation: marquee 35s linear infinite;
+                            }
+                            .animate-marquee:active, .animate-marquee:hover {
+                                animation-play-state: paused;
+                            }
+                        `}} />
 
-                            {/* Card 1: Engagement Time Container */}
-                            <m.div
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                className="relative w-[300px] sm:w-[350px] shrink-0 snap-center aspect-video rounded-2xl overflow-hidden shadow-2xl border border-accent/40 glass-card"
-                            >
-                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent to-blue-500 z-20" />
-                                <Image src="/images/proof/Growth_Proof/5.webp" alt="Google Analytics Engagement 35m" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
+                        <div className="w-full overflow-hidden py-2">
+                            <div className="animate-marquee flex gap-4 pr-4">
+                                {/* First Set of Cards */}
+                                {proofCards.map((card, idx) => (
+                                    <div
+                                        key={`set1-${idx}`}
+                                        className={`relative w-[280px] sm:w-[320px] shrink-0 aspect-video rounded-2xl overflow-hidden shadow-2xl border ${card.border} glass-card`}
+                                    >
+                                        <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${card.bar} z-20`} />
+                                        <Image src={card.image} alt={card.badge} fill sizes="320px" className="object-cover" />
 
-                                <div className="absolute bottom-4 left-4 right-4 bg-slate-950/95 backdrop-blur-xl border border-accent/50 text-accent px-4 py-3 rounded-xl text-center shadow-[0_0_20px_rgba(34,211,238,0.2)] z-30">
-                                    <span className="text-[11px] font-black tracking-widest uppercase block mb-0.5">Verified GA4 Data</span>
-                                    <span className="text-sm font-bold opacity-90 text-white">35m 12s Avg. Engagement</span>
-                                </div>
-                            </m.div>
+                                        <div className={`absolute bottom-3 left-3 right-3 bg-slate-950/95 backdrop-blur-xl border ${card.badgeBorder} ${card.badgeColor} px-4 py-2.5 rounded-xl text-center ${card.shadow} z-30`}>
+                                            <span className="text-[9px] font-black tracking-widest uppercase block mb-0.5">{card.badge}</span>
+                                            <span className="text-[11px] font-bold opacity-95 text-white leading-none">{card.text}</span>
+                                        </div>
+                                    </div>
+                                ))}
 
-                            {/* Card 2: Performance Graph */}
-                            <m.div
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.1 }}
-                                className="relative w-[300px] sm:w-[350px] shrink-0 snap-center aspect-video rounded-2xl overflow-hidden shadow-2xl border border-purple-500/40 glass-card"
-                            >
-                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-fuchsia-400 z-20" />
-                                <Image src="/images/proof/Growth_Proof/4.webp" alt="Google Search Console Performance" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
+                                {/* Second Set of Cards (Duplicates for infinite loop) */}
+                                {proofCards.map((card, idx) => (
+                                    <div
+                                        key={`set2-${idx}`}
+                                        className={`relative w-[280px] sm:w-[320px] shrink-0 aspect-video rounded-2xl overflow-hidden shadow-2xl border ${card.border} glass-card`}
+                                    >
+                                        <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${card.bar} z-20`} />
+                                        <Image src={card.image} alt={card.badge} fill sizes="320px" className="object-cover" />
 
-                                <div className="absolute bottom-4 left-4 right-4 bg-slate-950/95 backdrop-blur-xl border border-purple-500/50 text-purple-400 px-4 py-3 rounded-xl text-center shadow-[0_0_20px_rgba(168,85,247,0.2)] z-30">
-                                    <span className="text-[11px] font-black tracking-widest uppercase block mb-0.5">Event Tracking</span>
-                                    <span className="text-sm font-bold opacity-90 text-white">+3,095% Performance Growth</span>
-                                </div>
-                            </m.div>
-
-                            {/* Card 3: Dashboard Traffic */}
-                            <m.div
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.2 }}
-                                className="relative w-[300px] sm:w-[350px] shrink-0 snap-center aspect-video rounded-2xl overflow-hidden shadow-2xl border border-blue-500/40 glass-card"
-                            >
-                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-cyan-400 z-20" />
-                                <Image src="/images/proof/Growth_Proof/3.webp" alt="Google Analytics Home Data" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
-
-                                <div className="absolute bottom-4 left-4 right-4 bg-slate-950/95 backdrop-blur-xl border border-blue-500/50 text-blue-400 px-4 py-3 rounded-xl text-center shadow-[0_0_20px_rgba(59,130,246,0.2)] z-30">
-                                    <span className="text-[11px] font-black tracking-widest uppercase block mb-0.5">High-Volume Capture</span>
-                                    <span className="text-sm font-bold opacity-90 text-white">Dominant Traffic Pipelines</span>
-                                </div>
-                            </m.div>
-
-                            {/* Card 4: Search Console Baseline */}
-                            <m.div
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.3 }}
-                                className="relative w-[300px] sm:w-[350px] shrink-0 snap-center aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20 glass-card opacity-90"
-                            >
-                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-white/40 to-white/10 z-20" />
-                                <Image src="/images/proof/Growth_Proof/1.webp" alt="Google Search Console Data" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
-
-                                <div className="absolute bottom-4 left-4 right-4 bg-slate-950/95 backdrop-blur-xl border border-white/20 text-white/80 px-4 py-3 rounded-xl text-center z-30">
-                                    <span className="text-[11px] font-black tracking-widest uppercase block mb-0.5">Baseline Indexing</span>
-                                    <span className="text-sm font-bold opacity-90 text-white">Total Search Authority</span>
-                                </div>
-                            </m.div>
-
+                                        <div className={`absolute bottom-3 left-3 right-3 bg-slate-950/95 backdrop-blur-xl border ${card.badgeBorder} ${card.badgeColor} px-4 py-2.5 rounded-xl text-center ${card.shadow} z-30`}>
+                                            <span className="text-[9px] font-black tracking-widest uppercase block mb-0.5">{card.badge}</span>
+                                            <span className="text-[11px] font-bold opacity-95 text-white leading-none">{card.text}</span>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
             {/* Section 1: Custom Applications */}
-            <section className="relative flex flex-col justify-start pt-8 pb-12 md:pt-40 md:pb-32 overflow-hidden">
+            <section className="relative flex flex-col justify-start pt-20 pb-12 md:pt-40 md:pb-32 overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <div className="absolute inset-0 bg-gradient-to-b from-background via-slate-950/80 to-slate-950/80" />
                     <div className="absolute inset-0 cyber-grid opacity-10" />
@@ -149,22 +173,22 @@ export default function Services() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                            className="max-w-xl"
+                            className="max-w-xl flex flex-col items-center md:items-start mx-auto md:mx-0 w-full"
                         >
-                            <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[9px] md:text-xs mb-4 block">Software Engineering</span>
-                            <h2 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight uppercase leading-none">The Engine.</h2>
-                            <p className="text-base md:text-xl text-foreground/70 mb-8 leading-relaxed font-light">
+                            <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[9px] md:text-xs mb-4 block text-center md:text-left w-full">Software Engineering</span>
+                            <h2 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight uppercase leading-none text-center md:text-left w-full">The Engine.</h2>
+                            <p className="text-base md:text-xl text-foreground/70 mb-8 leading-relaxed font-light text-left w-full">
                                 Custom SaaS platforms, client portals, automated operations dashboards, and secure CRM bridges engineered to scale your business operations.
                             </p>
-                            <ul className="space-y-4 mb-10">
+                            <ul className="space-y-4 mb-10 flex flex-col items-start w-full">
                                 {["SaaS & Portal Systems", "Automated Ops Dashboards", "Capsule & Transpond Sync", "Serverless API Bridges"].map((f) => (
-                                    <li key={f} className="flex items-center gap-3 text-sm md:text-lg font-medium text-white/60">
+                                    <li key={f} className="flex items-center gap-3 text-sm md:text-lg font-medium text-white/60 justify-start text-left w-full">
                                         <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.5)]" />
                                         {f}
                                     </li>
                                 ))}
                             </ul>
-                            <div className="flex flex-col sm:flex-row items-center gap-4">
+                            <div className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center md:justify-start">
                                 <Link
                                     href="/custom-applications"
                                     className="w-full sm:w-auto px-8 py-4 bg-cyan-400 text-slate-950 font-black rounded-full hover:bg-white transition-all uppercase tracking-widest text-[10px] active:scale-95 text-center block"
@@ -217,22 +241,22 @@ export default function Services() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 1 }}
-                            className="order-1 md:order-2"
+                            className="order-1 md:order-2 flex flex-col items-center md:items-start w-full"
                         >
-                            <span className="text-blue-400 font-bold tracking-[0.4em] uppercase text-[9px] md:text-xs mb-4 block">Web Architecture</span>
-                            <h2 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight uppercase leading-none">The Build.</h2>
-                            <p className="text-base md:text-xl text-foreground/70 mb-8 max-w-md leading-relaxed font-light">
+                            <span className="text-blue-400 font-bold tracking-[0.4em] uppercase text-[9px] md:text-xs mb-4 block text-center md:text-left w-full">Web Architecture</span>
+                            <h2 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight uppercase leading-none text-center md:text-left w-full">The Build.</h2>
+                            <p className="text-base md:text-xl text-foreground/70 mb-8 max-w-md leading-relaxed font-light text-left w-full">
                                 Blistering fast web architectures built on Next.js 14 and React. Designed to project immediate aesthetic prestige and deliver massive SEO performance.
                             </p>
-                            <div className="grid grid-cols-2 gap-4 mb-10">
+                            <div className="grid grid-cols-2 gap-4 mb-10 w-fit mx-auto md:mx-0 text-left">
                                 {["0.4s Interaction Load", "Edge CDN Distribution", "Semantic SEO Structure", "Tesla-Level Aesthetics"].map((f) => (
-                                    <div key={f} className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-black text-white/40">
+                                    <div key={f} className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-black text-white/40 justify-start">
                                         <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 flex-shrink-0" />
                                         {f}
                                     </div>
                                 ))}
                             </div>
-                            <Link href="/web-design" className="inline-flex items-center gap-4 px-10 py-5 bg-white text-slate-950 font-black rounded-full hover:bg-blue-400 hover:text-white transition-all uppercase tracking-widest text-[10px]">
+                            <Link href="/web-design" className="inline-flex items-center gap-4 px-10 py-5 bg-white text-slate-950 font-black rounded-full hover:bg-blue-400 hover:text-white transition-all uppercase tracking-widest text-[10px] w-full sm:w-auto justify-center">
                                 Explore Web Design <ArrowRight className="w-4 h-4" />
                             </Link>
                         </m.div>

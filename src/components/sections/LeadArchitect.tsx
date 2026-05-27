@@ -7,14 +7,14 @@ import Link from "next/link";
 
 export default function LeadArchitect() {
     return (
-        <section className="relative w-full py-24 overflow-hidden z-20" id="architect">
+        <section className="relative w-full py-16 md:py-24 overflow-hidden z-20" id="architect">
 
             {/* Background Glows and Fade Gradients */}
             <div className="absolute inset-0 pointer-events-none" />
             <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
             <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-indigo-500/10 rounded-full blur-[150px] pointer-events-none" />
 
-            <div className="container mx-auto px-6 md:px-12 relative z-10 pt-20">
+            <div className="container mx-auto px-6 md:px-12 relative z-10 pt-0 md:pt-12">
                 <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
 
                     {/* Image Column */}
@@ -69,15 +69,15 @@ export default function LeadArchitect() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-                        className="w-full lg:w-1/2 space-y-8"
+                        className="w-full lg:w-1/2 space-y-8 flex flex-col items-center lg:items-start text-center lg:text-left"
                     >
-                        <div className="space-y-4">
+                        <div className="space-y-4 flex flex-col items-center lg:items-start">
                             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-950/40 border border-cyan-500/30">
                                 <ShieldCheck className="w-4 h-4 text-cyan-400" />
                                 <span className="text-xs font-mono text-cyan-400 tracking-wider uppercase">Direct Accountability</span>
                             </div>
 
-                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-satoshi text-white leading-tight">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-satoshi text-white leading-tight text-center lg:text-left">
                                 Engineered by the <br />
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 drop-shadow-[0_0_15px_rgba(34,211,238,0.3)]">
                                     Lead Architect
@@ -85,7 +85,7 @@ export default function LeadArchitect() {
                             </h2>
                         </div>
 
-                        <div className="space-y-6 text-slate-300 text-lg leading-relaxed font-inter">
+                        <div className="space-y-6 text-slate-300 text-lg leading-relaxed font-inter text-left lg:text-left w-full">
                             <p>
                                 I don't outsource your brand's infrastructure to junior developers or cheap overseas agencies. When you partner with Power Digital Media, you work directly with me.
                             </p>
@@ -95,7 +95,7 @@ export default function LeadArchitect() {
                         </div>
 
                         {/* Feature Bullets */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 w-full text-left">
                             <div className="glass-card p-4 rounded-xl border border-white/5 flex items-start gap-3 group hover:border-cyan-500/30 transition-colors">
                                 <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-400 group-hover:scale-110 transition-transform">
                                     <Code2 className="w-5 h-5" />
@@ -118,7 +118,7 @@ export default function LeadArchitect() {
                         </div>
 
                         {/* CTA */}
-                        <div className="pt-6">
+                        <div className="pt-6 w-full flex justify-center lg:justify-start">
                             <Link href="/contact" className="group relative inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-semibold rounded-full overflow-hidden transition-all hover:scale-105 shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)]">
                                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white" />
                                 <span className="relative z-10 group-hover:text-white transition-colors duration-300">Initialize Your Build</span>

@@ -12,14 +12,14 @@ export default function LatestInsights() {
         .slice(0, 3);
 
     return (
-        <section className="py-24 relative overflow-hidden">
+        <section className="py-16 md:py-24 relative overflow-hidden">
             {/* Background Ambience & Gradient Fade */}
             <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-background to-background pointer-events-none z-0" />
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
 
             <div className="container px-4 mx-auto relative z-10">
-                <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-8">
-                    <div>
+                <div className="flex flex-col md:flex-row items-center md:items-end justify-between mb-16 gap-6 md:gap-8">
+                    <div className="text-center md:text-left">
                         <span className="text-accent font-bold tracking-[0.4em] uppercase text-[10px] mb-4 block">Market Intelligence</span>
                         <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none">
                             Latest <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40">Intel.</span>

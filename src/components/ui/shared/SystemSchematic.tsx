@@ -83,9 +83,18 @@ export default function SystemSchematic() {
         const container = containerRef.current;
         if (!progressPath || !trail || !container) return;
 
+        // Skip ScrollTrigger node updates on mobile to let user tap-explore freely without scroll overrides
+        const isMobile = window.innerWidth < 768;
+        if (isMobile) return;
+
         // Reset and establish starting coordinates (stroke length is 800)
         gsap.set(progressPath, { strokeDashoffset: 800 });
         gsap.set(trail, { x: 0 });
+        
+        // Query individual element orbit glow circles
+        const rings = container.querySelectorAll(".node-glow-ring");
+        gsap.set(rings, { opacity: 0 });
+        if (rings[0]) gsap.set(rings[0], { opacity: 1 });
 
         // Synchronized timeline mapped directly to the viewport scroll
         const tl = gsap.timeline({
@@ -97,12 +106,12 @@ export default function SystemSchematic() {
                 onUpdate: (self) => {
                     const progress = self.progress;
 
-                    // Sync highlighted HUD tabs perfectly with scroll progress thresholds
-                    if (progress < 0.2) {
+                    // Sync highlighted HUD tabs perfectly with scroll progress thresholds (midpoints: 0.167, 0.5, 0.833)
+                    if (progress < 0.167) {
                         setActiveNode("feed");
-                    } else if (progress >= 0.2 && progress < 0.5) {
+                    } else if (progress >= 0.167 && progress < 0.5) {
                         setActiveNode("interface");
-                    } else if (progress >= 0.5 && progress < 0.8) {
+                    } else if (progress >= 0.5 && progress < 0.833) {
                         setActiveNode("engine");
                     } else {
                         setActiveNode("hub");
@@ -132,9 +141,24 @@ export default function SystemSchematic() {
             }
         });
 
-        // Coordinate progress path lighting and energy charge translation
-        tl.to(progressPath, { strokeDashoffset: 0, ease: "none" }, 0)
-          .to(trail, { x: 800, ease: "none" }, 0);
+        // Coordinate progress path lighting and energy charge translation with duration 3
+        // This splits the horizontal route perfectly into three equal-time segments
+        tl.to(progressPath, { strokeDashoffset: 0, duration: 3, ease: "none" }, 0)
+          .to(trail, { x: 800, duration: 3, ease: "none" }, 0);
+
+        if (rings.length === 4) {
+            // Segment 1 (0 to 1): Glow shifts from Feed (Node 0) to Interface (Node 1)
+            tl.to(rings[0], { opacity: 0, duration: 1, ease: "power1.inOut" }, 0)
+              .to(rings[1], { opacity: 1, duration: 1, ease: "power1.inOut" }, 0);
+              
+            // Segment 2 (1 to 2): Glow shifts from Interface (Node 1) to Engine (Node 2)
+            tl.to(rings[1], { opacity: 0, duration: 1, ease: "power1.inOut" }, 1)
+              .to(rings[2], { opacity: 1, duration: 1, ease: "power1.inOut" }, 1);
+              
+            // Segment 3 (2 to 3): Glow shifts from Engine (Node 2) to Hub (Node 3)
+            tl.to(rings[2], { opacity: 0, duration: 1, ease: "power1.inOut" }, 2)
+              .to(rings[3], { opacity: 1, duration: 1, ease: "power1.inOut" }, 2);
+        }
 
     }, { scope: containerRef });
 
@@ -244,15 +268,13 @@ export default function SystemSchematic() {
                             >
                                 {/* Pinned Orbit Circle */}
                                 <div className="relative flex items-center justify-center w-20 h-20">
-                                    {/* Glowing active outer ring */}
-                                    {isActive && (
-                                        <motion.div 
-                                            layoutId="activeGlowRing"
-                                            className="absolute inset-0 rounded-full border-2 border-white/20"
-                                            style={{ boxShadow: `0 0 25px 2px ${node.glow}` }}
-                                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                                        />
-                                    )}
+                                    {/* Glowing active outer ring, animated continuously by GSAP */}
+                                    <div 
+                                        className="node-glow-ring absolute inset-0 rounded-full border-2 border-white/20 pointer-events-none"
+                                        style={{ 
+                                            boxShadow: `0 0 25px 2px ${node.glow}`,
+                                        }}
+                                    />
 
                                     {/* Static hover ring */}
                                     <div className="absolute inset-2 rounded-full border border-white/5 bg-slate-950/90 group-hover:border-white/10 transition-colors" />
