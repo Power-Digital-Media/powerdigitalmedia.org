@@ -72,32 +72,32 @@ const schematicNodes: SchematicNode[] = [
 
 export default function SystemSchematic() {
     const [activeNode, setActiveNode] = useState<string>("feed");
-    const containerRef = useRef<HTMLDivElement>(null);
-    const pathRef = useRef<SVGPathElement>(null);
-
     const currentNode = schematicNodes.find(n => n.id === activeNode) || schematicNodes[0];
+    const containerRef = useRef<HTMLDivElement>(null);
+    const progressPathRef = useRef<SVGPathElement>(null);
+    const trailRef = useRef<SVGGElement>(null);
 
     useGSAP(() => {
-        const path = pathRef.current;
+        const progressPath = progressPathRef.current;
+        const trail = trailRef.current;
         const container = containerRef.current;
-        if (!path || !container) return;
+        if (!progressPath || !trail || !container) return;
 
-        // Reset state & set initial stroke dash properties for path length = 800
-        gsap.set(path, { strokeDashoffset: 0 });
+        // Reset and establish starting coordinates (stroke length is 800)
+        gsap.set(progressPath, { strokeDashoffset: 800 });
+        gsap.set(trail, { x: 0 });
 
-        // Create scroll-bound path travel
-        gsap.to(path, {
-            strokeDashoffset: -800,
-            ease: "none",
+        // Synchronized timeline mapped directly to the viewport scroll
+        const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: container,
-                start: "top center+=25%",  // Trigger when container top passes 25% below screen center
-                end: "bottom center-=15%", // Complete when container bottom passes 15% above screen center
-                scrub: 0.5,                 // Ultra-smooth 0.5s lag-less scrub follow
+                start: "top center+=25%",  // Starts as the top enters 25% below center
+                end: "bottom center-=15%", // Completes as the bottom passes 15% above center
+                scrub: 0.5,                 // Ultra-smooth 0.5s scrub latency
                 onUpdate: (self) => {
                     const progress = self.progress;
 
-                    // Automatically transition highlighted nodes based on exact scroll progress intervals
+                    // Sync highlighted HUD tabs perfectly with scroll progress thresholds
                     if (progress < 0.2) {
                         setActiveNode("feed");
                     } else if (progress >= 0.2 && progress < 0.5) {
@@ -110,6 +110,11 @@ export default function SystemSchematic() {
                 }
             }
         });
+
+        // Coordinate progress path lighting and energy charge translation
+        tl.to(progressPath, { strokeDashoffset: 0, ease: "none" }, 0)
+          .to(trail, { x: 800, ease: "none" }, 0);
+
     }, { scope: containerRef });
 
     return (
@@ -128,7 +133,7 @@ export default function SystemSchematic() {
                         </linearGradient>
                     </defs>
                     
-                    {/* Background Static Connection Line */}
+                    {/* Background Static Connection Line (Dark Grey base) */}
                     <path 
                         d="M 100 96 H 900" 
                         fill="none" 
@@ -136,7 +141,7 @@ export default function SystemSchematic() {
                         strokeWidth="2" 
                     />
                     
-                    {/* Glowing Pulse Line running horizontally in the background */}
+                    {/* Glowing Pulse Line running horizontally in the background for active depth */}
                     <path 
                         d="M 100 96 H 900" 
                         fill="none" 
@@ -146,17 +151,28 @@ export default function SystemSchematic() {
                         style={{ filter: "drop-shadow(0px 0px 4px rgba(255,255,255,0.2))" }}
                     />
 
-                    {/* Scroll-Triggered Premium Light Trail */}
+                    {/* Illuminated Progress Connection Path (flows behind the charge) */}
                     <path 
-                        ref={pathRef}
+                        ref={progressPathRef}
                         d="M 100 96 H 900" 
                         fill="none" 
                         stroke="url(#glowGrad)" 
-                        strokeWidth="4" 
-                        strokeDasharray="80 720" // 80px long premium glowing trail
+                        strokeWidth="3" 
+                        strokeDasharray="800"
+                        strokeDashoffset="800"
                         strokeLinecap="round"
-                        style={{ filter: "drop-shadow(0px 0px 10px rgba(59, 130, 246, 0.8))" }}
+                        style={{ filter: "drop-shadow(0px 0px 6px rgba(59, 130, 246, 0.5))" }}
                     />
+
+                    {/* Scroll-Triggered Premium Energy Charge Particle */}
+                    <g ref={trailRef}>
+                        {/* Large pulsing outer cyan glow */}
+                        <circle cx="100" cy="96" r="12" fill="#00f0ff" opacity="0.18" className="animate-pulse" />
+                        {/* Mid-layer neon blue glow */}
+                        <circle cx="100" cy="96" r="7" fill="#3b82f6" opacity="0.75" style={{ filter: "drop-shadow(0px 0px 5px #00f0ff)" }} />
+                        {/* Core white-hot high-contrast capsule */}
+                        <circle cx="100" cy="96" r="3.5" fill="#ffffff" style={{ filter: "drop-shadow(0px 0px 3px #ffffff)" }} />
+                    </g>
                 </svg>
 
                 {/* Nodes container */}
