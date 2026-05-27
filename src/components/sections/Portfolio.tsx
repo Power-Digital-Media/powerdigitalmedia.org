@@ -246,21 +246,21 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
                                             </div>
                                         </div>
 
-                                        {/* Mobile Actions (Always visible for structure, but entire card is clickable) */}
-                                        <div className="flex md:hidden absolute inset-0 z-20 flex-col justify-end p-6 pb-8 pointer-events-none">
-                                            <h3 className="text-3xl font-black text-white tracking-tight uppercase mb-6 leading-none drop-shadow-[0_4px_10px_rgba(0,0,0,0.8)]">
+                                        {/* Mobile Actions Dock (Masks screenshot bottom to prevent text/button overlap glitches) */}
+                                        <div className="flex md:hidden absolute bottom-0 inset-x-0 z-20 flex-col p-5 pb-6 bg-[#030712]/90 backdrop-blur-md border-t border-white/5 pointer-events-none">
+                                            <h3 className="text-xl font-bold text-white tracking-tight uppercase mb-3 leading-none text-left">
                                                 {project.title}
                                             </h3>
-                                            <div className="flex items-center justify-between gap-3 pointer-events-none w-full">
+                                            <div className="flex items-center justify-between gap-3 w-full">
                                                 <span
-                                                    className="flex-1 text-center py-4 bg-white text-black text-sm font-black uppercase tracking-widest rounded-xl shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+                                                    className="flex-1 text-center py-3 bg-white text-black text-xs font-black uppercase tracking-widest rounded-xl shadow-[0_4px_12px_rgba(255,255,255,0.15)]"
                                                 >
                                                     Analyze Build
                                                 </span>
                                                 <span
-                                                    className="flex items-center justify-center w-14 h-14 rounded-xl border-2 border-white/30 text-white bg-black/60 shadow-[0_0_20px_rgba(0,0,0,0.6)] backdrop-blur-md"
+                                                    className="flex items-center justify-center w-11 h-11 rounded-xl border border-white/10 text-white bg-black/50 backdrop-blur-md"
                                                 >
-                                                    <ExternalLink className="w-6 h-6 ml-0.5" />
+                                                    <ExternalLink className="w-5 h-5 ml-0.5" />
                                                 </span>
                                             </div>
                                         </div>
