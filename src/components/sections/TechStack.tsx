@@ -24,7 +24,7 @@ const mainStack = [
         name: "Capsule CRM & Transpond Automation",
         type: "The System Bridge",
         description: "Official CRM & Marketing Partner. Seamless operations integration through REST API webhooks, automated contact synchronization, and dynamic tag segmentation. Instantly capture customer intent and convert leads into paid client pipelines.",
-        image: "/images/spatial-bg-1.webp",
+        image: "/images/capsule_transpond_sync.png",
         specs: ["Official Partnership Integrations", "REST API Automated Sync", "Transpond Email Marketing Automations"]
     }
 ];
