@@ -164,14 +164,48 @@ export default function SystemSchematic() {
                         style={{ filter: "drop-shadow(0px 0px 6px rgba(59, 130, 246, 0.5))" }}
                     />
 
-                    {/* Scroll-Triggered Premium Energy Charge Particle */}
+                    {/* Scroll-Triggered Premium Light Trail (Comet/Streak) */}
                     <g ref={trailRef}>
-                        {/* Large pulsing outer cyan glow */}
-                        <circle cx="100" cy="96" r="12" fill="#00f0ff" opacity="0.18" className="animate-pulse" />
-                        {/* Mid-layer neon blue glow */}
-                        <circle cx="100" cy="96" r="7" fill="#3b82f6" opacity="0.75" style={{ filter: "drop-shadow(0px 0px 5px #00f0ff)" }} />
-                        {/* Core white-hot high-contrast capsule */}
-                        <circle cx="100" cy="96" r="3.5" fill="#ffffff" style={{ filter: "drop-shadow(0px 0px 3px #ffffff)" }} />
+                        <defs>
+                            <linearGradient id="trailFadingGrad" x1="0" y1="0" x2="1" y2="0">
+                                <stop offset="0%" stopColor="rgba(59, 130, 246, 0)" />
+                                <stop offset="50%" stopColor="rgba(59, 130, 246, 0.25)" />
+                                <stop offset="85%" stopColor="rgba(0, 240, 255, 0.7)" />
+                                <stop offset="100%" stopColor="rgba(255, 255, 255, 1)" />
+                            </linearGradient>
+                        </defs>
+
+                        {/* Outer Glow Trail (slightly wider blurred tail) */}
+                        <rect 
+                            x="-50" 
+                            y="88" 
+                            width="150" 
+                            height="16" 
+                            rx="8" 
+                            fill="url(#trailFadingGrad)" 
+                            opacity="0.3" 
+                            style={{ filter: "blur(5px)" }} 
+                        />
+
+                        {/* Core Neon Trail Capsule */}
+                        <rect 
+                            x="-30" 
+                            y="92" 
+                            width="130" 
+                            height="8" 
+                            rx="4" 
+                            fill="url(#trailFadingGrad)" 
+                            style={{ filter: "drop-shadow(0px 0px 6px #00f0ff)" }} 
+                        />
+
+                        {/* White-Hot Leading Tip */}
+                        <circle 
+                            cx="100" 
+                            cy="96" 
+                            r="4.5" 
+                            fill="#ffffff" 
+                            style={{ filter: "drop-shadow(0px 0px 4px #ffffff)" }} 
+                        />
                     </g>
                 </svg>
 
