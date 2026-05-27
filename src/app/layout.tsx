@@ -6,6 +6,7 @@ import AnalyticsEngine from "@/components/infrastructure/AnalyticsEngine";
 import MotionProvider from "@/components/infrastructure/MotionProvider";
 import SmoothScrollProvider from "@/components/infrastructure/SmoothScrollProvider";
 import Script from "next/script";
+import ExitIntentPopup from "@/components/ui/ExitIntentPopup";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -164,6 +165,7 @@ export default function RootLayout({
         <MotionProvider>
           <SmoothScrollProvider>
             {children}
+            <ExitIntentPopup />
           </SmoothScrollProvider>
         </MotionProvider>
         {/* GTM — offloaded to Partytown web worker (off main thread) */}

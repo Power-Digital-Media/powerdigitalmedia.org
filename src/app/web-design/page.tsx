@@ -9,6 +9,7 @@ import Footer from "@/components/layout/Footer";
 import Image from "next/image";
 import Portfolio from "@/components/sections/Portfolio";
 import ArchitectureCompare from "@/components/sections/ArchitectureCompare";
+import AuditCTA from "@/components/sections/AuditCTA";
 
 import WebDesignPricing from "@/components/ui/billing/WebDesignPricing";
 import Founders100Standalone from "@/components/ui/billing/Founders100Standalone";
@@ -177,8 +178,8 @@ export default function WebDesignPage() {
                             We don&apos;t build websites. We deploy <span className="text-white font-medium">high-velocity digital engines</span> engineered for prestige and built for dominance.
                         </p>
                         <div className="flex flex-wrap justify-center gap-6">
-                            <a href="#investment" className="w-full sm:w-auto px-12 py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 hover:text-white transition-all uppercase tracking-widest text-sm shadow-[0_0_40px_rgba(255,255,255,0.2)] text-center">
-                                Initialize Build
+                            <a href="/free-audit" className="w-full sm:w-auto px-12 py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 hover:text-white transition-all uppercase tracking-widest text-sm shadow-[0_0_40px_rgba(255,255,255,0.2)] text-center">
+                                Get a Free Website Audit
                             </a>
                             <Link href="#protocols" className="w-full sm:w-auto flex items-center justify-center px-12 py-5 border border-white/20 rounded-full hover:bg-white/5 transition-all font-bold uppercase tracking-widest text-sm">
                                 View Protocols
@@ -347,6 +348,8 @@ export default function WebDesignPage() {
 
             {/* --- NEW: Live Scanner Lead Magnet --- */}
             <LiveScanner />
+
+            <AuditCTA />
 
             {/* --- Final CTA: The Ecosystem --- */}
             <section className="py-40 relative overflow-hidden">

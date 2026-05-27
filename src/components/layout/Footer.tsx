@@ -32,7 +32,7 @@ export default function Footer() {
                             </div>
                         </Link>
                         <p className="max-w-sm text-muted-foreground leading-relaxed mb-8">
-                            Premium podcasting, video production, and digital systems built for those who have a message that deserves more than the default.
+                            Bespoke Web Design, Custom Applications, and High-Velocity Growth Marketing built for high-ticket brands.
                         </p>
                         <div className="flex items-center gap-4">
                             <a href="https://instagram.com/powerdigitalmedia" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram" className="w-12 h-12 rounded-full glass-card flex items-center justify-center text-muted-foreground hover:text-accent hover:border-accent/40 transition-all">
@@ -55,10 +55,10 @@ export default function Footer() {
 
                     {/* Quick Links */}
                     <div>
-                        <h4 className="font-bold mb-6 uppercase tracking-wider text-xs text-accent">Studio</h4>
+                        <h4 className="font-bold mb-6 uppercase tracking-wider text-xs text-accent">Services</h4>
                         <ul className="space-y-4 text-sm text-muted-foreground">
-                            <li><Link href="/web-design" className="hover:text-accent transition-colors">Design</Link></li>
-                            <li><Link href="/podcasting" className="hover:text-accent transition-colors">Podcasting</Link></li>
+                            <li><Link href="/web-design" className="hover:text-accent transition-colors">Web Design</Link></li>
+                            <li><Link href="/custom-applications" className="hover:text-accent transition-colors">Custom Apps</Link></li>
                             <li><Link href="/marketing" className="hover:text-accent transition-colors">Marketing</Link></li>
                             <li><Link href="/our-work" className="hover:text-accent transition-colors">Portfolio</Link></li>
                             <li><Link href="/blog" className="hover:text-accent transition-colors">Blog</Link></li>

@@ -16,9 +16,10 @@ export default function StandaloneContactPage() {
         setStatus("submitting");
         const form = e.currentTarget;
         const data = new FormData(form);
+        data.append("_form_source", "contact-page");
 
         try {
-            const response = await fetch("https://formspree.io/f/mdazlovb", {
+            const response = await fetch("/api/forms", {
                 method: "POST",
                 body: data,
                 headers: {
@@ -28,14 +29,6 @@ export default function StandaloneContactPage() {
 
             if (response.ok) {
                 setStatus("success");
-                const nameVal = data.get("name") as string;
-                const emailVal = data.get("email") as string;
-                // Fire-and-forget thank-you email
-                fetch("/api/contact/thank-you", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email: emailVal, name: nameVal, template: "contact" }),
-                }).catch(() => {});
                 form.reset();
             } else {
                 setStatus("error");

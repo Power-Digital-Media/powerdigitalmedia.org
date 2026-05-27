@@ -55,9 +55,8 @@ export default function Navbar() {
 
     const serviceLinks = [
         { name: "Web Design", href: "/web-design" },
-        { name: "Podcasting", href: "/podcasting" },
-        { name: "Production", href: "/production" },
-        { name: "Marketing", href: "/marketing" },
+        { name: "Custom Applications", href: "/custom-applications" },
+        { name: "Growth Marketing", href: "/marketing" },
     ];
 
     const mainLinks = [

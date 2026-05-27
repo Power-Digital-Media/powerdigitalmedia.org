@@ -30,6 +30,20 @@ const nextConfig = {
   },
   compress: true,
   poweredByHeader: false,
+  async redirects() {
+    return [
+      {
+        source: '/podcasting',
+        destination: '/marketing',
+        permanent: true,
+      },
+      {
+        source: '/production',
+        destination: '/marketing',
+        permanent: true,
+      },
+    ];
+  },
   // Target modern browsers only (no legacy JavaScript polyfills per PageSpeed Insights)
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',

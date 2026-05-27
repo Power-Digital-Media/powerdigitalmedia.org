@@ -1,8 +1,9 @@
 "use client";
 
 import { m } from "framer-motion";
-import { Film, TrendingUp, CheckCircle2, ArrowRight } from "lucide-react";
+import { CheckCircle2, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import TerminalWindow from "@/components/ui/web-design/TerminalWindow";
 import Link from "next/link";
 import { useState } from "react";
 import BookingModal from "@/components/ui/BookingModal";
@@ -133,17 +134,9 @@ export default function Services() {
                 </div>
             </section>
 
-            {/* Section 1: The Studio */}
+            {/* Section 1: Custom Applications */}
             <section className="relative flex flex-col justify-start pt-8 pb-12 md:pt-40 md:pb-32 overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <Image
-                        src="/images/studio-session.webp"
-                        alt="Professional Podcasting Studio Background"
-                        fill
-                        sizes="100vw"
-                        className="object-cover object-center opacity-10 blur-sm scale-110"
-                        title="Studio Background" aria-description="An official Power Digital Media structured image asset." data-caption="Power Digital Media Portfolio & Assets"
-                    />
                     <div className="absolute inset-0 bg-gradient-to-b from-background via-slate-950/80 to-slate-950/80" />
                     <div className="absolute inset-0 cyber-grid opacity-10" />
                 </div>
@@ -157,13 +150,13 @@ export default function Services() {
                             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                             className="max-w-xl"
                         >
-                            <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[9px] md:text-xs mb-4 block">The Core</span>
-                            <h2 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight uppercase leading-none">The Studio.</h2>
+                            <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[9px] md:text-xs mb-4 block">Software Engineering</span>
+                            <h2 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight uppercase leading-none">The Engine.</h2>
                             <p className="text-base md:text-xl text-foreground/70 mb-8 leading-relaxed font-light">
-                                Complete studio-grade podcasting. From show concept and branding to full RØDECaster-powered production in JACKSON, MS.
+                                Custom SaaS platforms, client portals, automated operations dashboards, and secure CRM bridges engineered to scale your business operations.
                             </p>
                             <ul className="space-y-4 mb-10">
-                                {["Show Naming & Format Strategy", "Broadcast-Quality Audio Chain", "Editing & Mastering"].map((f) => (
+                                {["SaaS & Portal Systems", "Automated Ops Dashboards", "Capsule & Transpond Sync", "Serverless API Bridges"].map((f) => (
                                     <li key={f} className="flex items-center gap-3 text-sm md:text-lg font-medium text-white/60">
                                         <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.5)]" />
                                         {f}
@@ -171,65 +164,33 @@ export default function Services() {
                                 ))}
                             </ul>
                             <div className="flex flex-col sm:flex-row items-center gap-4">
+                                <Link
+                                    href="/custom-applications"
+                                    className="w-full sm:w-auto px-8 py-4 bg-cyan-400 text-slate-950 font-black rounded-full hover:bg-white transition-all uppercase tracking-widest text-[10px] active:scale-95 text-center block"
+                                >
+                                    Initialize Platform Build
+                                </Link>
                                 <button
                                     onClick={() => setIsBookingOpen(true)}
-                                    className="w-full sm:w-auto px-8 py-4 bg-cyan-400 text-slate-950 font-black rounded-full hover:bg-white transition-all uppercase tracking-widest text-[10px] active:scale-95 text-center"
+                                    className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 border border-white/10 rounded-full font-black uppercase tracking-widest text-[10px] hover:bg-white/5 transition-all group active:scale-95"
                                 >
-                                    Start My Show
+                                    Book Strategy Call
                                 </button>
-                                <Link href="/our-work" className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 border border-white/10 rounded-full font-black uppercase tracking-widest text-[10px] hover:bg-white/5 transition-all group active:scale-95">
-                                    Watch Showreel <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                                </Link>
                             </div>
                         </m.div>
 
-                        <m.div
-                            initial={{ opacity: 0, scale: 0.95, x: 30 }}
-                            whileInView={{ opacity: 1, scale: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                            className="relative aspect-square md:aspect-[4/3] rounded-[2rem] overflow-hidden border border-white/10 group shadow-2xl"
-                        >
-                            <Image
-                                src="/images/rodecaster-studio-neon.webp"
-                                alt="Power Digital Studio Hardware - Rodecaster Pro Neon"
-                                fill
-                                sizes="(max-width: 768px) 100vw, 50vw"
-                                className="object-cover group-hover:scale-105 transition-transform duration-[1.5s] ease-out"
-                                title="Studio Session Detail" aria-description="An official Power Digital Media structured image asset." data-caption="Power Digital Media Portfolio & Assets"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 to-transparent mix-blend-overlay" />
-
-                            {/* HUD Recording Indicator */}
-                            <div className="absolute top-6 right-6 flex items-center gap-2 px-3 py-1.5 bg-black/60 backdrop-blur-md rounded-sm border border-white/10">
-                                <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.8)]" />
-                                <span className="text-[10px] font-bold tracking-widest uppercase text-white/90">REC</span>
-                            </div>
-
-                            {/* Tech Overlay */}
-                            <div className="absolute bottom-6 left-6 px-4 py-2 bg-black/60 backdrop-blur-md rounded-sm border border-white/10">
-                                <div className="flex flex-col gap-1">
-                                    <span className="text-[8px] text-cyan-400 uppercase tracking-widest">Active Node</span>
-                                    <span className="text-xs font-mono text-white/90">RØDECaster Pro II</span>
-                                </div>
-                            </div>
-                        </m.div>
+                        <div className="w-full flex justify-center">
+                            <TerminalWindow />
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* Section: The Capture (On-Location) */}
+            {/* Section 2: Bespoke Web Design */}
             <section className="relative flex flex-col justify-start pt-8 pb-12 md:pt-40 md:pb-32 overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <Image
-                        src="/images/podcast-hero-cinematic.webp"
-                        alt="On-Location Cinematography"
-                        fill
-                        sizes="100vw"
-                        className="object-cover object-center opacity-25 scale-110"
-                        title="Podcast Hero Cinematic" aria-description="An official Power Digital Media structured image asset." data-caption="Power Digital Media Portfolio & Assets"
-                    />
                     <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-background/60 to-background" />
+                    <div className="absolute inset-0 cyber-grid opacity-10" />
                 </div>
 
                 <div className="container relative z-10 px-6 mx-auto">
@@ -238,16 +199,16 @@ export default function Services() {
                             initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
-                            className="order-2 md:order-1 relative aspect-video rounded-[2.5rem] overflow-hidden border border-white/10"
+                            className="order-2 md:order-1 relative aspect-video rounded-[2.5rem] overflow-hidden border border-white/10 w-full"
                         >
                             <Image
-                                src="/images/captures/live-event-gimbal.webp"
-                                alt="Event Production"
+                                src="/images/growth-data-overlay.webp"
+                                alt="High Velocity Web Design Architecture"
                                 fill
                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
-                                className="object-cover group-hover:scale-110 transition-transform duration-700"
+                                className="object-cover group-hover:scale-105 transition-transform duration-700"
                             />
-                            <div className="absolute inset-0 bg-accent/20 mix-blend-overlay" />
+                            <div className="absolute inset-0 bg-blue-500/10 mix-blend-overlay" />
                         </m.div>
 
                         <m.div
@@ -257,21 +218,21 @@ export default function Services() {
                             transition={{ duration: 1 }}
                             className="order-1 md:order-2"
                         >
-                            <span className="text-blue-400 font-bold tracking-[0.4em] uppercase text-[9px] md:text-xs mb-4 block">Field Acquisition</span>
-                            <h2 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight uppercase leading-none">The Capture.</h2>
+                            <span className="text-blue-400 font-bold tracking-[0.4em] uppercase text-[9px] md:text-xs mb-4 block">Web Architecture</span>
+                            <h2 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight uppercase leading-none">The Build.</h2>
                             <p className="text-base md:text-xl text-foreground/70 mb-8 max-w-md leading-relaxed font-light">
-                                We go where you are. Cinematic event coverage, brand documentaries, and high-fidelity live streaming from any location.
+                                Blistering fast web architectures built on Next.js 14 and React. Designed to project immediate aesthetic prestige and deliver massive SEO performance.
                             </p>
                             <div className="grid grid-cols-2 gap-4 mb-10">
-                                {["Footage Mastery", "YouTube Ready Edits", "Viral Social Snippets", "Live Event Streams"].map((f) => (
+                                {["0.4s Interaction Load", "Edge CDN Distribution", "Semantic SEO Structure", "Tesla-Level Aesthetics"].map((f) => (
                                     <div key={f} className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-black text-white/40">
-                                        <CheckCircle2 className="w-3 h-3 text-blue-400" />
+                                        <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 flex-shrink-0" />
                                         {f}
                                     </div>
                                 ))}
                             </div>
-                            <Link href="/production" className="inline-flex items-center gap-4 px-10 py-5 bg-white text-slate-950 font-black rounded-full hover:bg-blue-400 hover:text-white transition-all uppercase tracking-widest text-[10px]">
-                                Explore Production Tiers <ArrowRight className="w-4 h-4" />
+                            <Link href="/web-design" className="inline-flex items-center gap-4 px-10 py-5 bg-white text-slate-950 font-black rounded-full hover:bg-blue-400 hover:text-white transition-all uppercase tracking-widest text-[10px]">
+                                Explore Web Design <ArrowRight className="w-4 h-4" />
                             </Link>
                         </m.div>
                     </div>

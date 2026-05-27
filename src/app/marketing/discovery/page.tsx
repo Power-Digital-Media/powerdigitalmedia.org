@@ -158,7 +158,7 @@ export default function MarketingDiscoveryPage() {
         const data = new FormData(form);
 
         try {
-            const response = await fetch("https://formspree.io/f/mdazlovb", {
+            const response = await fetch("/api/forms", {
                 method: "POST",
                 body: data,
                 headers: { Accept: "application/json" },

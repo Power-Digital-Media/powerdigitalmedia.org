@@ -14,6 +14,7 @@ const LeadArchitect = dynamic(() => import("@/components/sections/LeadArchitect"
 const Contact = dynamic(() => import("@/components/sections/Contact"));
 const WakeUpCall = dynamic(() => import("@/components/ui/WakeUpCall"));
 const BBBSeal = dynamic(() => import("@/components/ui/BBBSeal"));
+const AuditCTA = dynamic(() => import("@/components/sections/AuditCTA"));
 
 export const metadata = {
   title: "Power Digital Media | Premier Digital Production Studio",
@@ -56,7 +57,7 @@ export default function Home() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8 mt-6 md:mt-10">
           <a
-            href="#contact"
+            href="/free-audit"
             className="w-full sm:w-auto px-8 py-4 md:px-12 md:py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 hover:text-white transition-all uppercase tracking-widest text-[9px] shadow-[0_0_50px_rgba(255,255,255,0.1)] active:scale-95 text-center block"
           >
             Get a Free Architecture Audit
@@ -90,6 +91,7 @@ export default function Home() {
       <TechStack />
       <LatestInsights />
       <LeadArchitect />
+      <AuditCTA />
       <Contact />
       <script
         type="application/ld+json"
