@@ -1,8 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Globe, Database, Terminal, Shield, Zap, RefreshCw, BarChart } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+if (typeof window !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
+}
 
 interface SchematicNode {
     id: string;
@@ -65,16 +72,53 @@ const schematicNodes: SchematicNode[] = [
 
 export default function SystemSchematic() {
     const [activeNode, setActiveNode] = useState<string>("feed");
+    const containerRef = useRef<HTMLDivElement>(null);
+    const pathRef = useRef<SVGPathElement>(null);
 
     const currentNode = schematicNodes.find(n => n.id === activeNode) || schematicNodes[0];
 
+    useGSAP(() => {
+        const path = pathRef.current;
+        const container = containerRef.current;
+        if (!path || !container) return;
+
+        // Reset state & set initial stroke dash properties for path length = 800
+        gsap.set(path, { strokeDashoffset: 0 });
+
+        // Create scroll-bound path travel
+        gsap.to(path, {
+            strokeDashoffset: -800,
+            ease: "none",
+            scrollTrigger: {
+                trigger: container,
+                start: "top center+=25%",  // Trigger when container top passes 25% below screen center
+                end: "bottom center-=15%", // Complete when container bottom passes 15% above screen center
+                scrub: 0.5,                 // Ultra-smooth 0.5s lag-less scrub follow
+                onUpdate: (self) => {
+                    const progress = self.progress;
+
+                    // Automatically transition highlighted nodes based on exact scroll progress intervals
+                    if (progress < 0.2) {
+                        setActiveNode("feed");
+                    } else if (progress >= 0.2 && progress < 0.5) {
+                        setActiveNode("interface");
+                    } else if (progress >= 0.5 && progress < 0.8) {
+                        setActiveNode("engine");
+                    } else {
+                        setActiveNode("hub");
+                    }
+                }
+            }
+        });
+    }, { scope: containerRef });
+
     return (
-        <div className="w-full max-w-5xl mx-auto mt-16 px-4">
+        <div ref={containerRef} className="w-full max-w-5xl mx-auto mt-16 px-4">
             
             {/* Desktop Pipeline Diagram (Horizontal layout with SVG connections) */}
             <div className="hidden md:block relative h-48 mb-12">
                 {/* Custom SVG Connecting Lines with glowing flows */}
-                <svg className="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+                <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1000 200" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <linearGradient id="glowGrad" x1="0" y1="0" x2="1" y2="0">
                             <stop offset="0%" stopColor="#a855f7" />
@@ -92,21 +136,32 @@ export default function SystemSchematic() {
                         strokeWidth="2" 
                     />
                     
-                    {/* Glowing Pulse Line running horizontally */}
-                    <motion.path 
+                    {/* Glowing Pulse Line running horizontally in the background */}
+                    <path 
+                        d="M 100 96 H 900" 
+                        fill="none" 
+                        stroke="rgba(255, 255, 255, 0.08)" 
+                        strokeWidth="2" 
+                        strokeDasharray="20 180"
+                        style={{ filter: "drop-shadow(0px 0px 4px rgba(255,255,255,0.2))" }}
+                    />
+
+                    {/* Scroll-Triggered Premium Light Trail */}
+                    <path 
+                        ref={pathRef}
                         d="M 100 96 H 900" 
                         fill="none" 
                         stroke="url(#glowGrad)" 
-                        strokeWidth="2" 
-                        strokeDasharray="20 180"
-                        animate={{ strokeDashoffset: [0, -1000] }}
-                        transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
+                        strokeWidth="4" 
+                        strokeDasharray="80 720" // 80px long premium glowing trail
+                        strokeLinecap="round"
+                        style={{ filter: "drop-shadow(0px 0px 10px rgba(59, 130, 246, 0.8))" }}
                     />
                 </svg>
 
                 {/* Nodes container */}
                 <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-12 z-10">
-                    {schematicNodes.map((node, index) => {
+                    {schematicNodes.map((node) => {
                         const Icon = node.icon;
                         const isActive = activeNode === node.id;
                         
