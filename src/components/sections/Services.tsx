@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useState } from "react";
 import BookingModal from "@/components/ui/BookingModal";
 import DashboardProof from "@/components/ui/DashboardProof";
+import SystemSchematic from "@/components/ui/shared/SystemSchematic";
 
 export default function Services() {
     const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -269,7 +270,10 @@ export default function Services() {
                         <p className="text-lg md:text-3xl text-foreground/70 mb-12 max-w-2xl mx-auto leading-relaxed font-light text-balance">
                             We deploy high-velocity <span className="text-cyan-400 font-medium tracking-tight">Growth Architecture</span>. High-performance digital systems that turn studio-grade media into engineered dominance.
                         </p>
-                        <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+                        
+                        <SystemSchematic />
+
+                        <div className="flex flex-wrap justify-center gap-4 md:gap-6 mt-16">
                             <Link href="/client-discovery" className="px-10 py-5 bg-cyan-400 text-slate-950 font-black rounded-full shadow-[0_0_40px_rgba(34,211,238,0.2)] hover:scale-105 transition-all uppercase tracking-widest text-[10px] active:scale-95">
                                 Initialize Protocol
                             </Link>
