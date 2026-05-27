@@ -8,7 +8,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import WakeUpCall from "@/components/ui/WakeUpCall";
-import WireframeHeroBg from "@/components/ui/web-design/WireframeHeroBg";
+import CyberHeroBg from "@/components/ui/shared/CyberHeroBg";
 import TerminalWindow from "@/components/ui/web-design/TerminalWindow";
 import AuditCTA from "@/components/sections/AuditCTA";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
@@ -99,7 +99,7 @@ export default function CustomApplicationsPage() {
 
             {/* --- Hero: The Infrastructure --- */}
             <section className="viewport-section relative overflow-hidden flex flex-col justify-center min-h-[90vh]">
-                <WireframeHeroBg />
+                <CyberHeroBg variant="custom-applications" />
 
                 <div className="container relative z-10 px-4 mx-auto text-center mt-32 md:mt-16 mb-24">
                     <motion.div

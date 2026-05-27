@@ -23,8 +23,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Power Digital Media | Podcast, Video & Web Design in Jackson, MS",
-  description: "Power Digital Media is a Jackson, Mississippi digital media studio offering podcast production, video marketing, website design, and AI-powered branding services for businesses, creators, and ministries.",
+  title: "Power Digital Media | Elite Web Design, Custom Apps & Growth Marketing in Jackson, MS",
+  description: "Jackson, MS elite digital agency engineering blistering-fast Next.js web architectures, bespoke custom applications, and high-converting growth marketing systems.",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -41,8 +41,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Power Digital Media | Premier Digital Production",
-    description: "Podcast production, video marketing, and web design in Jackson, MS.",
+    title: "Power Digital Media | Elite Web Design, Custom Apps & Growth Marketing",
+    description: "Bespoke Web Design, Custom Applications, and High-Velocity Growth Marketing in Jackson, MS.",
     images: ["/hero-bg.webp"],
     creator: "@PowerDigitalMS",
     site: "@PowerDigitalMS",
@@ -147,18 +147,18 @@ export default function RootLayout({
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Cinematic Video Production"
+                    "name": "Bespoke Custom Applications"
                   }
                 },
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Automated Marketing Systems"
+                    "name": "High-Velocity Growth Marketing"
                   }
                 }
               ],
-              "description": "Power Digital Media is a Jackson, Mississippi elite digital media studio offering cinematic video production, automated marketing, and AI-powered web architecture for high-ticket businesses and creators."
+              "description": "Power Digital Media is a Jackson, Mississippi elite digital agency engineering bespoke custom applications, high-converting growth marketing, and AI-powered web architecture for high-ticket businesses."
             })
           }}
         />

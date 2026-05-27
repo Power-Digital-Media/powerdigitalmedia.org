@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
+import CyberHeroBg from "@/components/ui/shared/CyberHeroBg";
 
 const Portfolio = dynamic(() => import("@/components/sections/Portfolio"));
 
@@ -17,11 +18,11 @@ const BBBSeal = dynamic(() => import("@/components/ui/BBBSeal"));
 const AuditCTA = dynamic(() => import("@/components/sections/AuditCTA"));
 
 export const metadata = {
-  title: "Power Digital Media | Premier Digital Production Studio",
-  description: "Transforming brands with high-velocity content, expert web design, and cinematic video production in Jackson, MS.",
+  title: "Power Digital Media | Elite Web Design, Custom Apps & Growth Marketing",
+  description: "We engineer blistering-fast Next.js web architectures, bespoke custom applications, and high-converting growth marketing systems in Jackson, MS.",
   openGraph: {
-    title: "Power Digital Media | Premier Digital Production Studio",
-    description: "Transforming brands with high-velocity content, expert web design, and cinematic video production in Jackson, MS.",
+    title: "Power Digital Media | Elite Web Design, Custom Apps & Growth Marketing",
+    description: "We engineer blistering-fast Next.js web architectures, bespoke custom applications, and high-converting growth marketing systems in Jackson, MS.",
     images: ["/hero-bg.webp"],
   },
 };
@@ -33,13 +34,10 @@ export default function Home() {
 
       {/* 
         CRITICAL LCP OPTIMIZATION: 
-        We render the Hero Background here in the Server Component 
-        to eliminate the 1.8s "Render Delay" caused by React hydration in client components.
+        We render the hardware-accelerated CyberHeroBg here
+        to eliminate hydration delays while displaying a premium 3D perspective network platform.
       */}
-      <div className="fixed inset-0 w-full h-full z-0 pointer-events-none">
-        <div className="absolute inset-0 cyber-grid opacity-10" />
-        <div className="absolute top-0 w-full h-[60vh] bg-gradient-to-b from-blue-500/5 to-transparent" />
-      </div>
+      <CyberHeroBg variant="home" />
 
       <div className="container relative z-10 px-4 mx-auto text-center mt-32 md:mt-48 mb-4">
         <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[8px] md:text-[9px] mb-4 md:mb-6 block">
@@ -125,7 +123,7 @@ export default function Home() {
               { "@type": "City", "name": "Clinton" },
               { "@type": "City", "name": "Ridgeland" }
             ],
-            "description": "Premier digital production studio specializing in cinematic video production, high-end web design, and AI-driven marketing in the Jackson, MS area.",
+            "description": "Jackson, MS elite digital agency engineering blistering-fast Next.js web architectures, bespoke custom applications, and high-converting growth marketing systems.",
             "openingHoursSpecification": {
               "@type": "OpeningHoursSpecification",
               "dayOfWeek": [

@@ -14,7 +14,7 @@ import AuditCTA from "@/components/sections/AuditCTA";
 import WebDesignPricing from "@/components/ui/billing/WebDesignPricing";
 import Founders100Standalone from "@/components/ui/billing/Founders100Standalone";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
-import WireframeHeroBg from "@/components/ui/web-design/WireframeHeroBg";
+import CyberHeroBg from "@/components/ui/shared/CyberHeroBg";
 import TerminalWindow from "@/components/ui/web-design/TerminalWindow";
 import LiveScanner from "@/components/ui/web-design/LiveScanner";
 import WakeUpCall from "@/components/ui/WakeUpCall";
@@ -158,7 +158,7 @@ export default function WebDesignPage() {
 
             {/* --- Hero: The Architecture --- */}
             <section className="viewport-section relative overflow-hidden flex flex-col justify-center min-h-[90vh]">
-                <WireframeHeroBg />
+                <CyberHeroBg variant="web-design" />
 
                 <div className="container relative z-10 px-4 mx-auto text-center mt-32 md:mt-16 mb-24">
                     <motion.div

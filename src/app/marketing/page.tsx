@@ -12,6 +12,7 @@ import { useState } from "react";
 import Image from "next/image";
 import WakeUpCall from "@/components/ui/WakeUpCall";
 import FAQAccordion from "@/components/ui/FAQAccordion";
+import CyberHeroBg from "@/components/ui/shared/CyberHeroBg";
 
 const tiers = [
     {
@@ -167,16 +168,7 @@ export default function MarketingPage() {
 
             {/* Hero Section */}
             <section className="relative min-h-[80vh] flex items-center pt-24 pb-20 overflow-hidden">
-                <div className="absolute inset-0 z-0">
-                    <Image
-                        src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop"
-                        alt="Digital Growth Architecture"
-                        fill
-                        className="object-cover opacity-10 scale-105"
-                        priority
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
-                </div>
+                <CyberHeroBg variant="marketing" />
 
                 <div className="container px-4 mx-auto relative z-10 text-center">
                     <motion.div
