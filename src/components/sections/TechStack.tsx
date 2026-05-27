@@ -5,22 +5,20 @@ import { Zap, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-const mainGear = [
+const mainStack = [
     {
-        name: "RØDECaster Pro II",
-        type: "The Heart",
-        description: "Studio-Grade Audio Chain. Revolutionary audio production studio with ultra-low-noise Revolution Preamps™ and world-class APHEX® processing.",
-        image: "/images/gear/rodecaster_pro_2.webp",
-        specs: ["Dual USB-C interfaces", "Advanced APHEX processing", "Individually customizable pads"],
-        showroomLink: "/showroom/audio/rode-caster-pro-2"
+        name: "Next.js 14 & React Server Components",
+        type: "The Framework Core",
+        description: "High-Performance Edge Architecture. Blistering fast edge rendering and React server-side optimization. The ultimate codebase architecture for 2026 search engine crawler dominance, providing sub-200ms Largest Contentful Paint (LCP) performance.",
+        image: "/portfolio/growth-engine-real.webp",
+        specs: ["React Server Components", "Vercel Edge Distribution", "Sub-200ms Interactive Load"]
     },
     {
-        name: "OBSBOT Tiny 2 Lite PTZ",
-        type: "Autonomous Eye",
-        description: "Next-generation 4K visual capture. A high-performance PTZ camera featuring an elite AI tracking algorithm and rapid-response gimbal to maintain focus on the subject with high-velocity precision.",
-        image: "/images/gear/obsbot_tiny_2.webp",
-        specs: ["4K UHD Resolution", "AI Subject Tracking", "PTZ Functionality"],
-        showroomLink: "/showroom/visual/obsbot-tiny-2"
+        name: "Supabase & Serverless PostgreSQL",
+        type: "The Database Engine",
+        description: "Enterprise-Grade Real-Time Data. Sub-20ms database query execution, secure row-level security (RLS) policies, and instant serverless scaling to handle massive user spikes with absolute data security.",
+        image: "/images/growth-data-overlay.webp",
+        specs: ["Serverless PostgreSQL", "Real-Time Sockets Sync", "Row-Level Security Policies"]
     }
 ];
 
@@ -37,12 +35,12 @@ export default function TechStack() {
                     <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[9px] md:text-xs mb-4 block">Infrastructure</span>
                     <h2 className="text-4xl md:text-8xl font-black mb-8 tracking-tighter uppercase leading-none">Precision Implements.</h2>
                     <p className="text-base md:text-2xl text-foreground/70 leading-relaxed text-balance font-light">
-                        We don&apos;t just hit record. We use world-class signal chains and broadcast-grade equipment to ensure your message is felt, not just heard.
+                        We don&apos;t just write code. We select and orchestrate world-class technology stacks to ensure your digital footprint is lightning-fast, highly secure, and optimized for conversions.
                     </p>
                 </m.div>
 
                 <div className="space-y-40">
-                    {mainGear.map((item, index) => (
+                    {mainStack.map((item, index) => (
                         <m.div
                             key={item.name}
                             initial={{ opacity: 0, y: 40 }}
@@ -74,12 +72,6 @@ export default function TechStack() {
                                         </li>
                                     ))}
                                 </ul>
-                                <Link
-                                    href={item.showroomLink}
-                                    className="inline-flex items-center gap-2 px-6 py-3 bg-accent/10 hover:bg-accent/20 border border-accent/20 rounded-full text-accent font-bold transition-all group w-fit text-sm"
-                                >
-                                    View in Showroom <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                </Link>
                             </div>
                         </m.div>
                     ))}
@@ -89,12 +81,12 @@ export default function TechStack() {
                     <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-8 border border-accent/20">
                         <Zap className="w-8 h-8 text-accent" />
                     </div>
-                    <h4 className="text-2xl font-bold mb-4">Studio-Ready Guarantee</h4>
+                    <h4 className="text-2xl font-bold mb-4">Production-Ready Guarantee</h4>
                     <p className="text-foreground/70 text-lg mb-8 max-w-xl mx-auto leading-relaxed">
-                        Every session is backed by redundant recording paths and UPS power systems. Your production integrity is our highest priority.
+                        Every build is backed by redundant edge server failovers, automated testing suites, and secure data encryption protocols. Your business integrity is our highest priority.
                     </p>
                     <Link href="/contact" className="inline-flex items-center gap-2 text-accent font-bold hover:gap-4 transition-all">
-                        Tour the Studio <ArrowRight className="w-4 h-4" />
+                        Initialize Your Build <ArrowRight className="w-4 h-4" />
                     </Link>
                 </div>
             </div>

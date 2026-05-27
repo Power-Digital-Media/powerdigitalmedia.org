@@ -90,7 +90,7 @@ export default function LeadArchitect() {
                                 I don't outsource your brand's infrastructure to junior developers or cheap overseas agencies. When you partner with Power Digital Media, you work directly with me.
                             </p>
                             <p>
-                                As the Lead Architect, I personally design, deploy, and scale the digital systems that drive your revenue. Whether it's a high-performance web application or a cinematic podcasting studio, you get enterprise-grade execution from the top down.
+                                As the Lead Architect, I personally design, deploy, and scale the digital systems that drive your revenue. Whether it's a high-performance web application, custom portal, or high-converting growth marketing engine, you get enterprise-grade execution from the top down.
                             </p>
                         </div>
 
