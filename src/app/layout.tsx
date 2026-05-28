@@ -24,7 +24,7 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: "Power Digital Media | Elite Web Design, Custom Apps & Growth Marketing in Jackson, MS",
-  description: "Jackson, MS elite digital agency engineering blistering-fast Next.js web architectures, bespoke custom applications, and high-converting growth marketing systems.",
+  description: "Jackson, MS elite digital agency specializing in Next.js, React & Vite web design, custom application development, and high-velocity growth marketing systems.",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -221,7 +221,7 @@ export default function RootLayout({
                   }
                 }
               ],
-              "description": "Power Digital Media is a Jackson, Mississippi elite digital agency engineering bespoke custom applications, high-converting growth marketing, and AI-powered web architecture for high-ticket businesses."
+              "description": "Power Digital Media LLC is Jackson’s elite digital agency engineering high-performance web design, Next.js, React & Vite custom application development, and high-velocity growth marketing systems."
             })
           }}
         />
