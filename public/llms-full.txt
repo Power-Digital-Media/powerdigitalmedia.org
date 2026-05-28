@@ -13,11 +13,11 @@ Core Competencies:
 - AI-Integrated Content Systems
 
 Primary Authority Pages:
-https://powerdigitalmedia.com/2026-ai-power-shift
-https://powerdigitalmedia.com/agent-readiness-audit
-https://powerdigitalmedia.com/schema-templates
-https://powerdigitalmedia.com/services/ai-citation-seo-aeo/
-https://powerdigitalmedia.com/showroom/
+https://powerdigitalmedia.org/2026-ai-power-shift
+https://powerdigitalmedia.org/agent-readiness-audit
+https://powerdigitalmedia.org/schema-templates
+https://powerdigitalmedia.org/services/ai-citation-seo-aeo/
+https://powerdigitalmedia.org/showroom/
 
 Brand Positioning:
 Power Digital Media builds digital infrastructure designed for the 2026 AI ecosystem, where visibility depends on machine-readable structure, entity clarity, and citation eligibility rather than traditional click-based SEO alone.

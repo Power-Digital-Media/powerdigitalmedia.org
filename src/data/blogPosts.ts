@@ -1821,7 +1821,7 @@ Power Digital Media operates from Jackson, Mississippi, serving both regional an
                 "url": "https://powerdigitalmedia.org/",
                 "logo": {
                     "@type": "ImageObject",
-                    "url": "https://powerdigitalmedia.com/logo.webp"
+                    "url": "https://powerdigitalmedia.org/logo.webp"
                 },
                 "sameAs": [
                     "https://www.youtube.com/holyspiritpower121"
@@ -2063,7 +2063,7 @@ This hub links to:
                 "url": "https://powerdigitalmedia.org/",
                 "logo": {
                     "@type": "ImageObject",
-                    "url": "https://powerdigitalmedia.com/logo.webp"
+                    "url": "https://powerdigitalmedia.org/logo.webp"
                 },
                 "sameAs": [
                     "https://www.youtube.com/holyspiritpower121"
@@ -2942,48 +2942,48 @@ Or forgotten?
             {
                 "@context": "https://schema.org",
                 "@type": "WebSite",
-                "@id": "https://powerdigitalmedia.com/#website",
-                "url": "https://powerdigitalmedia.com/",
+                "@id": "https://powerdigitalmedia.org/#website",
+                "url": "https://powerdigitalmedia.org/",
                 "name": "Power Digital Media LLC",
                 "description": "Power Digital Media LLC is a 2026 tech and media authority specializing in agent-navigable websites, AI-citation SEO, and premium cinematic production.",
                 "inLanguage": "en-US",
                 "publisher": {
                     "@type": "Organization",
                     "name": "Power Digital Media LLC",
-                    "url": "https://powerdigitalmedia.com/",
+                    "url": "https://powerdigitalmedia.org/",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": "https://powerdigitalmedia.com/logo.webp"
+                        "url": "https://powerdigitalmedia.org/logo.webp"
                     }
                 },
                 "potentialAction": {
                     "@type": "SearchAction",
-                    "target": "https://powerdigitalmedia.com/?s={search_term_string}",
+                    "target": "https://powerdigitalmedia.org/?s={search_term_string}",
                     "query-input": "required name=search_term_string"
                 }
             },
             {
                 "@context": "https://schema.org",
                 "@type": "BreadcrumbList",
-                "@id": "https://powerdigitalmedia.com/2026-ai-power-shift#breadcrumb",
+                "@id": "https://powerdigitalmedia.org/2026-ai-power-shift#breadcrumb",
                 "itemListElement": [
                     {
                         "@type": "ListItem",
                         "position": 1,
                         "name": "Home",
-                        "item": "https://powerdigitalmedia.com/"
+                        "item": "https://powerdigitalmedia.org/"
                     },
                     {
                         "@type": "ListItem",
                         "position": 2,
                         "name": "Blog",
-                        "item": "https://powerdigitalmedia.com/blog/"
+                        "item": "https://powerdigitalmedia.org/blog/"
                     },
                     {
                         "@type": "ListItem",
                         "position": 3,
                         "name": "The 2026 AI Power Shift Is Breaking SEO and Video",
-                        "item": "https://powerdigitalmedia.com/2026-ai-power-shift"
+                        "item": "https://powerdigitalmedia.org/2026-ai-power-shift"
                     }
                 ]
             },
@@ -3003,12 +3003,12 @@ Or forgotten?
                     "name": "Power Digital Media LLC",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": "https://powerdigitalmedia.com/logo.webp"
+                        "url": "https://powerdigitalmedia.org/logo.webp"
                     }
                 },
                 "mainEntityOfPage": {
                     "@type": "WebPage",
-                    "@id": "https://powerdigitalmedia.com/2026-ai-power-shift"
+                    "@id": "https://powerdigitalmedia.org/2026-ai-power-shift"
                 }
             },
             {
@@ -3304,21 +3304,21 @@ It is a structural shift.
 ## Internal Anchor Map
 
 ### Money/Service pages
-- [agent-navigable websites](https://powerdigitalmedia.com/services/agent-navigable-websites/)
-- [AI citation SEO (AEO)](https://powerdigitalmedia.com/services/ai-citation-seo-aeo/)
-- [Live Broadcast Architecture](https://powerdigitalmedia.com/services/live-broadcast-architecture/)
-- [Showroom gear picks](https://powerdigitalmedia.com/showroom/)
+- [agent-navigable websites](https://powerdigitalmedia.org/services/agent-navigable-websites/)
+- [AI citation SEO (AEO)](https://powerdigitalmedia.org/services/ai-citation-seo-aeo/)
+- [Live Broadcast Architecture](https://powerdigitalmedia.org/services/live-broadcast-architecture/)
+- [Showroom gear picks](https://powerdigitalmedia.org/showroom/)
 
 ### Spoke articles
-- [How to Build an Agent-Navigable Website (Galaxy AI Era)](https://powerdigitalmedia.com/agent-navigable-website-galaxy-ai/)
-- [Seedance 2.0 Workflow: Prototype Ads 10x Faster](https://powerdigitalmedia.com/seedance-2-workflow-ad-prototyping/)
-- [HBM4 vs DDR5: What Creators Need to Know in 2026](https://powerdigitalmedia.com/hbm4-vs-ddr5-creators-2026/)
-- [2026 Creator Workstation Buying Guide (Resolve/Premiere)](https://powerdigitalmedia.com/creator-workstation-buying-guide-2026/)
+- [How to Build an Agent-Navigable Website (Galaxy AI Era)](https://powerdigitalmedia.org/agent-navigable-website-galaxy-ai/)
+- [Seedance 2.0 Workflow: Prototype Ads 10x Faster](https://powerdigitalmedia.org/seedance-2-workflow-ad-prototyping/)
+- [HBM4 vs DDR5: What Creators Need to Know in 2026](https://powerdigitalmedia.org/hbm4-vs-ddr5-creators-2026/)
+- [2026 Creator Workstation Buying Guide (Resolve/Premiere)](https://powerdigitalmedia.org/creator-workstation-buying-guide-2026/)
 
 ### Utility/linkable assets
-- [Agent-Readiness Audit Checklist](https://powerdigitalmedia.com/agent-readiness-audit/)
-- [llms.txt template (copy/paste)](https://powerdigitalmedia.com/llms-txt-template/)
-- [Schema stack templates (Article + FAQ + Product)](https://powerdigitalmedia.com/schema-templates/)
+- [Agent-Readiness Audit Checklist](https://powerdigitalmedia.org/agent-readiness-audit/)
+- [llms.txt template (copy/paste)](https://powerdigitalmedia.org/llms-txt-template/)
+- [Schema stack templates (Article + FAQ + Product)](https://powerdigitalmedia.org/schema-templates/)
 `
     },
     {
@@ -5011,7 +5011,7 @@ Architecture determines outcome. Timing determines advantage.
             role: "Power Digital Media"
         },
         relatedGearIds: ['amd-ryzen-9-9950x3d', 'nvidia-rtx-5090', 'gskill-trident-z5-neo', 'samsung-990-pro-4tb'],
-        structuredData: { "@context": "https://schema.org", "@type": "Article", "headline": "The Benchmark War: Google Gemini 3 vs. OpenAI GPT-5.2", "description": "Discover the AI benchmark rivalry between Google Gemini 3 and OpenAI GPT-5.2. Explore their performance, market impact, and what it means for your business.", "author": { "@type": "Organization", "name": "Power Digital Media" }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.powerdigitalmedia.com/articles/benchmark-war-google-gemini-3-vs-openai-gpt-5-2" }, "datePublished": "2026-02-20", "dateModified": "2026-02-20", "publisher": { "@type": "Organization", "name": "Power Digital Media", "logo": { "@type": "ImageObject", "url": "https://www.powerdigitalmedia.com/logo.webp" } }, "articleBody": "The battle between Google Gemini 3 Pro and OpenAI GPT-5.2 is more than a tech showdown; it's a strategic decision point for businesses aiming for market dominance...", "potentialAction": { "@type": "SearchAction", "target": "https://www.powerdigitalmedia.com/search?query={search_term_string}", "query-input": "required name=search_term_string" } },
+        structuredData: { "@context": "https://schema.org", "@type": "Article", "headline": "The Benchmark War: Google Gemini 3 vs. OpenAI GPT-5.2", "description": "Discover the AI benchmark rivalry between Google Gemini 3 and OpenAI GPT-5.2. Explore their performance, market impact, and what it means for your business.", "author": { "@type": "Organization", "name": "Power Digital Media" }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.powerdigitalmedia.org/articles/benchmark-war-google-gemini-3-vs-openai-gpt-5-2" }, "datePublished": "2026-02-20", "dateModified": "2026-02-20", "publisher": { "@type": "Organization", "name": "Power Digital Media", "logo": { "@type": "ImageObject", "url": "https://www.powerdigitalmedia.org/logo.webp" } }, "articleBody": "The battle between Google Gemini 3 Pro and OpenAI GPT-5.2 is more than a tech showdown; it's a strategic decision point for businesses aiming for market dominance...", "potentialAction": { "@type": "SearchAction", "target": "https://www.powerdigitalmedia.org/search?query={search_term_string}", "query-input": "required name=search_term_string" } },
         content: `
 ---
 
@@ -5844,7 +5844,7 @@ The future belongs to organizations that understand how to balance sovereignty, 
                 "name": "Power Digital Media",
                 "logo": {
                     "@type": "ImageObject",
-                    "url": "https://www.powerdigitalmedia.com/logo.webp"
+                    "url": "https://www.powerdigitalmedia.org/logo.webp"
                 }
             },
             "datePublished": "2026-02-18",
@@ -6110,13 +6110,13 @@ Software developers must also adapt their workflows to accommodate the unique re
 
 At Power Digital Media, we recognize the transformative potential of LLMs in the search domain. Our approach emphasizes a balanced perspective, weighing the opportunities against the inherent risks. For instance, while LLMs offer remarkable advances in user interaction and search efficiency, the technical debt and resource demands cannot be ignored. Our engineers highlight the need for strategic investment in infrastructure and talent to harness these technologies effectively.
 
-For those interested in exploring the cutting-edge hardware that supports these advancements, we recommend visiting our [SM7B Vocal Microphone (Shure)](https://powerdigitalmedia.com/showroom/audio/shure-sm7b) and [Rødecaster Pro II (Røde)](https://powerdigitalmedia.com/showroom/audio/rode-caster-pro-2) in our showroom.
+For those interested in exploring the cutting-edge hardware that supports these advancements, we recommend visiting our [SM7B Vocal Microphone (Shure)](https://powerdigitalmedia.org/showroom/audio/shure-sm7b) and [Rødecaster Pro II (Røde)](https://powerdigitalmedia.org/showroom/audio/rode-caster-pro-2) in our showroom.
 
 ### Conclusion: The Road Ahead
 
 The future of search is undeniably intertwined with the evolution of LLMs. As we move forward, the challenge will be to balance the benefits of enhanced AI capabilities with the realities of implementation costs and ethical considerations. Businesses and developers must remain agile, ready to adapt to the ongoing advancements in AI and search technology.
 
-For further insights on how Next.js and React + Vite compare in the current technological landscape, explore our detailed analysis in [Next.js vs React + Vite (2026): Which Architecture Actually Wins?](https://powerdigitalmedia.com/blog/next-js-vs-react-vite-2026-which-architecture-actually-wins).
+For further insights on how Next.js and React + Vite compare in the current technological landscape, explore our detailed analysis in [Next.js vs React + Vite (2026): Which Architecture Actually Wins?](https://powerdigitalmedia.org/blog/next-js-vs-react-vite-2026-which-architecture-actually-wins).
         `
     },
 

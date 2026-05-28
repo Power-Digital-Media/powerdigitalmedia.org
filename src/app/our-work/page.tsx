@@ -159,7 +159,7 @@ function ProjectCard({ project, index, localP, total }: {
                             <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
                         </div>
                         <div className="ml-3 bg-[#16163a] rounded-md py-1.5 px-4 text-[10px] text-white/25 font-mono truncate max-w-xs">
-                            {project.netlifyUrl?.replace("https://", "") ?? "powerdigitalmedia.com"}
+                            {project.netlifyUrl?.replace("https://", "") ?? "powerdigitalmedia.org"}
                         </div>
                     </div>
                     <div className="relative w-full" style={{ height: "calc(100% - 44px)" }}>
