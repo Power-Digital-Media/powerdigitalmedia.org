@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Database, Cpu, Shield, Layers, BarChart3, Terminal as TerminalIcon, Cpu as CpuIcon, ArrowRight, Zap, Check } from "lucide-react";
+import { Database, Cpu, Shield, Layers, BarChart3, Terminal as TerminalIcon, Cpu as CpuIcon, ArrowRight, Zap, Check, Video } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -122,8 +122,9 @@ export default function CustomApplicationsPage() {
                             <Link href="/book" className="w-full sm:w-auto px-12 py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 hover:text-white transition-all uppercase tracking-widest text-sm shadow-[0_0_40px_rgba(255,255,255,0.2)] text-center">
                                 Initialize Platform Build
                             </Link>
-                            <Link href="#protocols" className="w-full sm:w-auto flex items-center justify-center px-12 py-5 border border-white/20 rounded-full hover:bg-white/5 transition-all font-bold uppercase tracking-widest text-sm">
-                                View Architecture
+                            <Link href="/book" className="w-full sm:w-auto flex items-center justify-center gap-3 px-12 py-5 border border-white/20 rounded-full hover:bg-cyan-400 hover:text-white hover:border-cyan-400 transition-all font-bold uppercase tracking-widest text-sm group active:scale-95">
+                                <Video className="w-4 h-4 text-cyan-400 group-hover:text-white transition-colors" />
+                                Schedule a Google Meet
                             </Link>
                         </div>
                     </motion.div>
