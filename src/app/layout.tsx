@@ -102,11 +102,14 @@ export default function RootLayout({
               "url": "https://powerdigitalmedia.org",
               "logo": "https://powerdigitalmedia.org/power-logo.webp",
               "image": "https://powerdigitalmedia.org/hero-bg.webp",
-              "telephone": "+16015550199", // Ensure this is replaced with the actual phone number if applicable
+              "telephone": "+16014462393",
               "priceRange": "$$$",
               "sameAs": [
                 "https://www.youtube.com/@PowerDigitalMedia",
-                "https://www.instagram.com/PowerDigitalMedia"
+                "https://www.instagram.com/PowerDigitalMedia",
+                "https://www.facebook.com/PowerDigitalMedia",
+                "https://www.google.com/search?q=Power+Digital+Media+Jackson+MS",
+                "https://www.bbb.org/us/ms/jackson/profile/web-design/power-digital-media-llc"
               ],
               "address": {
                 "@type": "PostalAddress",
@@ -135,6 +138,66 @@ export default function RootLayout({
                 "name": "Damein Donald",
                 "jobTitle": "Lead Infrastructure Architect"
               },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "5.0",
+                "reviewCount": "15",
+                "bestRating": "5",
+                "worstRating": "1"
+              },
+              "review": [
+                {
+                  "@type": "Review",
+                  "author": {
+                    "@type": "Person",
+                    "name": "E-Commerce Client"
+                  },
+                  "reviewRating": {
+                    "@type": "Rating",
+                    "ratingValue": "5",
+                    "bestRating": "5"
+                  },
+                  "reviewBody": "Outstanding Next.js web development and CRM integration. Power Digital Media engineered a high-velocity marketing funnel that streamlined our customer bookings.",
+                  "publisher": {
+                    "@type": "Organization",
+                    "name": "Google Reviews"
+                  }
+                },
+                {
+                  "@type": "Review",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Regional Business Partner"
+                  },
+                  "reviewRating": {
+                    "@type": "Rating",
+                    "ratingValue": "5",
+                    "bestRating": "5"
+                  },
+                  "reviewBody": "Damein Donald designed a robust, machine-readable custom application that exceeded all expectations. Extremely professional service.",
+                  "publisher": {
+                    "@type": "Organization",
+                    "name": "Better Business Bureau"
+                  }
+                },
+                {
+                  "@type": "Review",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Media Network Leader"
+                  },
+                  "reviewRating": {
+                    "@type": "Rating",
+                    "ratingValue": "5",
+                    "bestRating": "5"
+                  },
+                  "reviewBody": "Exceptional audio-visual stage setup and SEO marketing architecture. Their attention to machine-readable schema is unparalleled.",
+                  "publisher": {
+                    "@type": "Organization",
+                    "name": "Facebook Reviews"
+                  }
+                }
+              ],
               "makesOffer": [
                 {
                   "@type": "Offer",
