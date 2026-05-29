@@ -19,7 +19,6 @@ import {
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import Portfolio from "@/components/sections/Portfolio";
 import BookingModal from "@/components/ui/BookingModal";
 import { useState } from "react";
 import Image from "next/image";
@@ -565,7 +564,124 @@ export default function MarketingPage() {
                 </div>
             </section>
 
-            <Portfolio titleAs="h2" />
+            {/* Revenue & Growth Case Studies (Replaces sliding Portfolio carousel) */}
+            <section className="py-24 border-y border-white/5 bg-[#040407] relative z-10">
+                <div className="container px-4 mx-auto max-w-6xl">
+                    <div className="text-center mb-20 uppercase tracking-tighter">
+                        <span className="text-blue-400 font-bold tracking-[0.4em] text-[10px] mb-4 block">Proven Campaigns</span>
+                        <h2 className="text-4xl md:text-6xl font-black">Revenue <span className="text-white/40">Engines.</span></h2>
+                    </div>
+
+                    <div className="grid gap-8 md:grid-cols-3">
+                        
+                        {/* Case Study 1: Geaux Pro Outdoors */}
+                        <div className="p-8 rounded-[2.5rem] glass-card border border-white/5 space-y-6 flex flex-col justify-between hover:border-blue-500/20 transition-all duration-300 relative group overflow-hidden">
+                            <div className="absolute inset-0 -z-10 bg-gradient-to-b from-blue-500/[0.01] to-transparent pointer-events-none" />
+                            <div className="space-y-4">
+                                <div className="flex items-center justify-between">
+                                    <span className="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Excavation & Dirt Work</span>
+                                    <span className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 text-[9px] font-black tracking-widest uppercase">$42K Pipeline</span>
+                                </div>
+                                <h3 className="text-2xl font-black uppercase tracking-tight">Geaux Pro Outdoors</h3>
+                                <p className="text-xs text-slate-400 leading-relaxed font-light">
+                                    Integrated custom estimate forms routing leads directly to a native Capsule CRM database paired with automated estimate follow-ups.
+                                </p>
+                                <ul className="space-y-2 pt-2">
+                                    <li className="flex items-center gap-2 text-[9px] uppercase tracking-widest font-black text-slate-400">
+                                        <CheckCircle2 className="w-3.5 h-3.5 text-blue-500" />
+                                        -58% Meta Cost-Per-Lead (CPA)
+                                    </li>
+                                    <li className="flex items-center gap-2 text-[9px] uppercase tracking-widest font-black text-slate-400">
+                                        <CheckCircle2 className="w-3.5 h-3.5 text-blue-500" />
+                                        Automated Estimate Tagging
+                                    </li>
+                                    <li className="flex items-center gap-2 text-[9px] uppercase tracking-widest font-black text-slate-400">
+                                        <CheckCircle2 className="w-3.5 h-3.5 text-blue-500" />
+                                        100% Lead-to-CRM Sync
+                                    </li>
+                                </ul>
+                            </div>
+                            <button
+                                onClick={() => setIsBookingOpen(true)}
+                                className="w-full py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white text-white hover:text-black font-black uppercase tracking-widest text-[9px] transition-all duration-300 block text-center"
+                            >
+                                Replicate This Engine
+                            </button>
+                        </div>
+
+                        {/* Case Study 2: Corner Pharmacy */}
+                        <div className="p-8 rounded-[2.5rem] glass-card border border-white/5 space-y-6 flex flex-col justify-between hover:border-indigo-500/20 transition-all duration-300 relative group overflow-hidden">
+                            <div className="absolute inset-0 -z-10 bg-gradient-to-b from-indigo-500/[0.01] to-transparent pointer-events-none" />
+                            <div className="space-y-4">
+                                <div className="flex items-center justify-between">
+                                    <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">Healthcare & Enrollment</span>
+                                    <span className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 text-[9px] font-black tracking-widest uppercase">+240% Intake</span>
+                                </div>
+                                <h3 className="text-2xl font-black uppercase tracking-tight">Corner Pharmacy</h3>
+                                <p className="text-xs text-slate-400 leading-relaxed font-light">
+                                    Automated patient intake pipelines connected directly to targeted segment tags and customized welcome broadcasts.
+                                </p>
+                                <ul className="space-y-2 pt-2">
+                                    <li className="flex items-center gap-2 text-[9px] uppercase tracking-widest font-black text-slate-400">
+                                        <CheckCircle2 className="w-3.5 h-3.5 text-indigo-500" />
+                                        400+ Hours Data Entry Saved
+                                    </li>
+                                    <li className="flex items-center gap-2 text-[9px] uppercase tracking-widest font-black text-slate-400">
+                                        <CheckCircle2 className="w-3.5 h-3.5 text-indigo-500" />
+                                        Automated Document Sync
+                                    </li>
+                                    <li className="flex items-center gap-2 text-[9px] uppercase tracking-widest font-black text-slate-400">
+                                        <CheckCircle2 className="w-3.5 h-3.5 text-indigo-500" />
+                                        HIPAA-Compliant Welcome Protocols
+                                    </li>
+                                </ul>
+                            </div>
+                            <button
+                                onClick={() => setIsBookingOpen(true)}
+                                className="w-full py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white text-white hover:text-black font-black uppercase tracking-widest text-[9px] transition-all duration-300 block text-center"
+                            >
+                                Replicate This Engine
+                            </button>
+                        </div>
+
+                        {/* Case Study 3: Powered by Peptides */}
+                        <div className="p-8 rounded-[2.5rem] glass-card border border-white/5 space-y-6 flex flex-col justify-between hover:border-purple-500/20 transition-all duration-300 relative group overflow-hidden">
+                            <div className="absolute inset-0 -z-10 bg-gradient-to-b from-purple-500/[0.01] to-transparent pointer-events-none" />
+                            <div className="space-y-4">
+                                <div className="flex items-center justify-between">
+                                    <span className="text-[10px] font-bold text-purple-400 uppercase tracking-widest">E-Commerce & Subscriptions</span>
+                                    <span className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 text-[9px] font-black tracking-widest uppercase">5.2x ROAS</span>
+                                </div>
+                                <h3 className="text-2xl font-black uppercase tracking-tight">Powered by Peptides</h3>
+                                <p className="text-xs text-slate-400 leading-relaxed font-light">
+                                    Engineered direct Meta Conversion API integrations and behavioral Transpond workflows to recover abandoned shopping carts.
+                                </p>
+                                <ul className="space-y-2 pt-2">
+                                    <li className="flex items-center gap-2 text-[9px] uppercase tracking-widest font-black text-slate-400">
+                                        <CheckCircle2 className="w-3.5 h-3.5 text-purple-500" />
+                                        +34% Abandoned Cart Recovery
+                                    </li>
+                                    <li className="flex items-center gap-2 text-[9px] uppercase tracking-widest font-black text-slate-400">
+                                        <CheckCircle2 className="w-3.5 h-3.5 text-purple-500" />
+                                        Automated Nurturing Pipelines
+                                    </li>
+                                    <li className="flex items-center gap-2 text-[9px] uppercase tracking-widest font-black text-slate-400">
+                                        <CheckCircle2 className="w-3.5 h-3.5 text-purple-500" />
+                                        5.2x Proven Ad Return
+                                    </li>
+                                </ul>
+                            </div>
+                            <button
+                                onClick={() => setIsBookingOpen(true)}
+                                className="w-full py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white text-white hover:text-black font-black uppercase tracking-widest text-[9px] transition-all duration-300 block text-center"
+                            >
+                                Replicate This Engine
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
 
             <FAQAccordion
                 faqs={[

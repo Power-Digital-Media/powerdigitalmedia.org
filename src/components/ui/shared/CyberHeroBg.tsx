@@ -152,75 +152,30 @@ export default function CyberHeroBg({ variant }: CyberHeroBgProps) {
                     </div>
                 )}
 
-                {/* --- VARIANT 3: GROWTH MARKETING (Ascending Sine Wave Graph) --- */}
+                {/* --- VARIANT 3: GROWTH MARKETING (Concentric Growth Radars & Telemetry Lines) --- */}
                 {variant === "marketing" && (
-                    <div className="w-full h-full relative flex items-center justify-center">
-                        {/* Interactive analytical coordinate box */}
-                        <div className="w-[85%] h-[85%] border border-purple-500/20 relative rounded-2xl overflow-hidden flex flex-col justify-end p-4">
-                            {/* Coordinate Graph Lines */}
-                            <div className="absolute inset-0" style={{
-                                backgroundImage: `
-                                    linear-gradient(to right, rgba(168, 85, 247, 0.07) 1px, transparent 1px),
-                                    linear-gradient(to top, rgba(168, 85, 247, 0.07) 1px, transparent 1px)
-                                `,
-                                backgroundSize: '20px 20px'
-                            }} />
-
-                            {/* Growing Analytics Wave */}
-                            <svg viewBox="0 0 200 100" className="w-full h-[80%] absolute inset-x-0 bottom-6 z-10 overflow-visible">
-                                <defs>
-                                    <linearGradient id="waveGrad" x1="0" y1="1" x2="1" y2="0">
-                                        <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.2" />
-                                        <stop offset="100%" stopColor="#a855f7" stopOpacity="0.8" />
-                                    </linearGradient>
-                                    <linearGradient id="waveFill" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="0%" stopColor="#a855f7" stopOpacity="0.1" />
-                                        <stop offset="100%" stopColor="transparent" stopOpacity="0" />
-                                    </linearGradient>
-                                </defs>
-
-                                {/* Background Area Under Wave */}
-                                <motion.path 
-                                    d="M 0 90 Q 30 75 60 85 T 120 40 T 180 15 L 200 10 L 200 100 L 0 100 Z"
-                                    fill="url(#waveFill)"
-                                    initial={{ pathLength: 0 }}
-                                    animate={{ pathLength: 1 }}
-                                    transition={{ duration: 2.5, ease: "easeOut" }}
-                                />
-
-                                {/* Dotted Prediction Analysis Wave */}
-                                <motion.path 
-                                    d="M 0 90 Q 30 75 60 85 T 120 40 T 180 15 L 200 10" 
-                                    fill="none" 
-                                    stroke="rgba(255,255,255,0.12)" 
-                                    strokeWidth="0.6" 
-                                    strokeDasharray="2 3"
-                                />
-
-                                {/* Dynamic Main Wave Path */}
-                                <motion.path 
-                                    d="M 0 90 Q 30 75 60 85 T 120 40 T 180 15 L 200 10" 
-                                    fill="none" 
-                                    stroke="url(#waveGrad)" 
-                                    strokeWidth="1.8"
-                                    strokeLinecap="round"
-                                    initial={{ pathLength: 0 }}
-                                    animate={{ pathLength: 1 }}
-                                    transition={{ duration: 2.5, ease: "easeOut" }}
-                                    style={{ filter: "drop-shadow(0px 0px 6px rgba(168, 85, 247, 0.45))" }}
-                                />
-
-                                {/* Glowing Nodes at key conversion spikes */}
-                                <motion.circle cx="60" cy="85" r="2.5" className="fill-blue-500 shadow-lg text-glow" animate={{ r: [2.5, 3.8, 2.5] }} transition={{ repeat: Infinity, duration: 2, delay: 0.5 }} style={{ filter: "drop-shadow(0px 0px 4px rgba(59, 130, 246, 0.8))" }} />
-                                <motion.circle cx="120" cy="40" r="2.5" className="fill-indigo-400 shadow-lg text-glow" animate={{ r: [2.5, 3.8, 2.5] }} transition={{ repeat: Infinity, duration: 2, delay: 1 }} style={{ filter: "drop-shadow(0px 0px 4px rgba(129, 140, 248, 0.8))" }} />
-                                <motion.circle cx="180" cy="15" r="2.5" className="fill-purple-400 shadow-lg text-glow" animate={{ r: [2.5, 4.2, 2.5] }} transition={{ repeat: Infinity, duration: 1.5 }} style={{ filter: "drop-shadow(0px 0px 5px rgba(168, 85, 247, 0.8))" }} />
+                    <div className="w-full h-full relative">
+                        <svg viewBox="0 0 100 100" className="w-full h-full animate-[spin_80s_linear_infinite]">
+                            <circle cx="50" cy="50" r="47" fill="none" stroke="currentColor" className="text-purple-500/30" strokeWidth="0.15" strokeDasharray="3 6" />
+                            <circle cx="50" cy="50" r="39" fill="none" stroke="currentColor" className="text-blue-500/40" strokeWidth="0.3" strokeDasharray="12 4 2 4" />
+                            <circle cx="50" cy="50" r="29" fill="none" stroke="currentColor" className="text-cyan-500/30" strokeWidth="0.15" />
+                            
+                            {/* Growth Indicators / Ascending vectors */}
+                            <path d="M 50 50 L 85 15" stroke="currentColor" className="text-purple-400/50" strokeWidth="0.3" strokeDasharray="1 1" />
+                            <circle cx="85" cy="15" r="1.2" fill="currentColor" className="text-purple-400" style={{ filter: "drop-shadow(0px 0px 4px rgba(168, 85, 247, 0.8))" }} />
+                            
+                            <line x1="50" y1="2" x2="50" y2="8" stroke="currentColor" className="text-blue-400" strokeWidth="0.4" />
+                            <line x1="50" y1="92" x2="50" y2="98" stroke="currentColor" className="text-blue-400" strokeWidth="0.4" />
+                            <line x1="2" y1="50" x2="8" y2="50" stroke="currentColor" className="text-blue-400" strokeWidth="0.4" />
+                            <line x1="92" y1="50" x2="98" y2="50" stroke="currentColor" className="text-blue-400" strokeWidth="0.4" />
+                        </svg>
+                        
+                        <div className="absolute inset-0 flex items-center justify-center">
+                            <svg viewBox="0 0 100 100" className="w-[70%] h-[70%] animate-[spin_30s_linear_infinite_reverse]">
+                                <polygon points="50,15 80,50 50,85 20,50" fill="none" stroke="currentColor" className="text-purple-500/40" strokeWidth="0.2" strokeDasharray="1 3" />
+                                <circle cx="50" cy="50" r="3.5" fill="currentColor" className="text-blue-400" style={{ filter: "drop-shadow(0px 0px 5px rgba(59, 130, 246, 0.8))" }} />
+                                <circle cx="50" cy="50" r="6" fill="none" stroke="currentColor" className="text-cyan-400/30" strokeWidth="0.2" />
                             </svg>
-
-                            {/* Subtitle metrics inside graph */}
-                            <div className="absolute top-4 left-4 flex gap-4 text-[9px] font-mono text-purple-400/40">
-                                <span>METRIC: CPA -54.2%</span>
-                                <span>CR: +3,095%</span>
-                            </div>
                         </div>
                     </div>
                 )}

@@ -2,284 +2,263 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
+import { ExternalLink, ArrowUpRight, ShieldCheck, Zap, Heart, TrendingUp, Sparkles, Activity } from "lucide-react";
+import { useState } from "react";
 import BookingModal from "../ui/BookingModal";
-import { projects } from "@/data/projects";
+import { projects, Project } from "@/data/projects";
 
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-
-if (typeof window !== "undefined") {
-    gsap.registerPlugin(ScrollTrigger);
-    // Ignore mobile browser UI bar collapsing/expanding to prevent massive pin layout jumps
-    ScrollTrigger.config({ ignoreMobileResize: true });
+// Type definition for visual metric overlays mapping directly to Jackson MS projects
+interface BentoMetric {
+    stat: string;
+    statLabel: string;
+    highlights: string[];
+    icon: React.ReactNode;
+    techStack: string[];
 }
+
+const bentoMetricsMap: Record<string, BentoMetric> = {
+    "all-things-new": {
+        stat: "98%",
+        statLabel: "PageSpeed Index",
+        highlights: ["Next.js cinematic engine", "Global CDN distribution", "Dynamic video compression"],
+        icon: <Sparkles className="w-5 h-5 text-green-400" />,
+        techStack: ["Next.js 14", "GSAP Cinematic", "Netlify Edge"]
+    },
+    "corner-pharmacy": {
+        stat: "400+ Hrs",
+        statLabel: "Manual Admin Saved",
+        highlights: ["HIPAA-compliant integration", "Free same-day delivery routing", "Frictionless refill capture"],
+        icon: <ShieldCheck className="w-5 h-5 text-teal-400" />,
+        techStack: ["React 18", "HIPAA Data Vault", "Tailwind CSS"]
+    },
+    "simmons-memorial": {
+        stat: "99/100",
+        statLabel: "Accessibility Score",
+        highlights: ["High-accessibility protocol", "Legacy database sync", "Mobile-optimized stream"],
+        icon: <Heart className="w-5 h-5 text-orange-400" />,
+        techStack: ["Next.js Core", "A11y Compliant", "Fluid Typography"]
+    },
+    "growth-engine": {
+        stat: "5.2x",
+        statLabel: "Marketing ROAS",
+        highlights: ["Real-time CRM integrations", "Meta Lead Gen webhooks", "Pipeline telemetry tracking"],
+        icon: <TrendingUp className="w-5 h-5 text-cyan-400" />,
+        techStack: ["Capsule CRM Sync", "Transpond Email API", "Facebook Webhooks"]
+    },
+    "black-sheep-recovery": {
+        stat: "180ms",
+        statLabel: "LCP Load Speed",
+        highlights: ["Emergency CDN routing", "Semantic schema linking", "High-converting forms"],
+        icon: <Activity className="w-5 h-5 text-red-500" />,
+        techStack: ["High-Velocity Load", "SEO Entity Schema", "Responsive Tailwind"]
+    }
+};
 
 export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | "h2" }) {
     const [isBookingOpen, setIsBookingOpen] = useState(false);
+    const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
-    const sectionRef = useRef<HTMLElement>(null);
-    const trackRef = useRef<HTMLDivElement>(null);
-
-    // CRITICAL: Ensure GSAP recalculates after custom fonts and layout shifts resolve
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            document.fonts.ready.then(() => {
-                ScrollTrigger.refresh();
-            });
-            // Fallback refresh loop just in case LCP image loaders shift the DOM later
-            const timer = setTimeout(() => ScrollTrigger.refresh(), 1000);
-            return () => clearTimeout(timer);
+    // Map desktop asymmetric columns to create a beautiful geometric Bento Grid
+    const getGridSpanClass = (projectId: string) => {
+        switch (projectId) {
+            case "all-things-new":
+                return "col-span-12 lg:col-span-8 h-[450px] lg:h-[550px]";
+            case "corner-pharmacy":
+                return "col-span-12 md:col-span-6 lg:col-span-4 h-[450px] lg:h-[550px]";
+            case "simmons-memorial":
+                return "col-span-12 md:col-span-6 lg:col-span-4 h-[450px] lg:h-[550px]";
+            case "growth-engine":
+                return "col-span-12 lg:col-span-8 h-[450px] lg:h-[550px]";
+            case "black-sheep-recovery":
+                return "col-span-12 h-[450px] lg:h-[600px]";
+            default:
+                return "col-span-12 h-[450px]";
         }
-    }, []);
-
-    useGSAP(() => {
-        const track = trackRef.current;
-        const section = sectionRef.current;
-        if (!track || !section) return;
-
-        // On mobile, skip GSAP ScrollTrigger pinning to allow native, silky-smooth horizontal swiping
-        const isMobile = window.innerWidth < 768;
-        if (isMobile) return;
-
-        // Calculate how far to move the track
-        const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
-
-        // Use GSAP native pinning instead of CSS sticky to perfectly control document flow
-        const scrollTween = gsap.to(track, {
-            x: getScrollAmount,
-            ease: "none",
-            force3D: true, // Force GPU acceleration
-            scrollTrigger: {
-                trigger: section,
-                pin: true,
-                start: "top top",
-                end: () => `+=${track.scrollWidth - window.innerWidth}`,
-                scrub: true, // strict 1:1 scrub prevents disjointed moving after pin releases
-                invalidateOnRefresh: true, // Recalculate on resize
-            }
-        });
-
-        // Glow intersections for cards
-        const cards = gsap.utils.toArray(".portfolio-card");
-        cards.forEach((card: any, i) => {
-            // Parallax on image inside the card
-            const img = card.querySelector(".portfolio-img");
-            if (img) {
-                gsap.to(img, {
-                    x: "15%",
-                    ease: "none",
-                    force3D: true, // Prevent jitter on parallax
-                    scrollTrigger: {
-                        trigger: card,
-                        containerAnimation: scrollTween,
-                        start: "left right", // Parallax triggers when card enters the viewport horizontally
-                        end: "right left",
-                        scrub: 1,
-                        invalidateOnRefresh: true,
-                    }
-                });
-            }
-
-            // Glow logic on center intersection using Opacity on a separate layer
-            const glowLayer = card.querySelector(".device-glow");
-            if (glowLayer) {
-                // Create a single timeline for the glow to prevent overlapping fromTo conflicts (race conditions)
-                const glowTimeline = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: card,
-                        containerAnimation: scrollTween,
-                        start: "left center+=15%", // Start fading in as left edge nears center
-                        end: "right center-=15%", // Fully transparent when right edge leaves center
-                        scrub: true,
-                        onLeave: () => gsap.set(glowLayer, { opacity: 0 }),
-                        onLeaveBack: () => gsap.set(glowLayer, { opacity: 0 }),
-                    }
-                });
-
-                glowTimeline.fromTo(glowLayer,
-                    { opacity: 0 },
-                    { opacity: 1, ease: "none", duration: 1 }
-                ).to(glowLayer,
-                    { opacity: 0, ease: "none", duration: 1 }
-                );
-            }
-        });
-    }, { scope: sectionRef });
+    };
 
     return (
         <section
             id="portfolio"
-            ref={sectionRef}
-            className="relative bg-[#020617] w-full overflow-hidden"
+            className="relative bg-[#020617] w-full overflow-hidden py-24 md:py-32 px-4 md:px-12 border-t border-white/5"
         >
-            <div className="relative w-full h-[100vh] flex flex-col justify-center">
+            {/* Soft Ambient Background Elements */}
+            <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[150px] pointer-events-none" />
 
-                {/* Header Area (Pinned Absolute Globally) */}
-                <div className="absolute top-0 left-0 w-full z-30 pt-16 md:pt-24 px-4 md:px-12 pointer-events-none shrink-0 flex flex-col justify-start">
-                    <div className="max-w-[1400px] mx-auto flex justify-between items-end w-full">
-                        <div>
-                            <div className="flex items-center gap-3 mb-4">
-                                <div className="h-[1px] w-8 bg-cyan-400"></div>
-                                <span className="text-cyan-400 font-mono text-sm tracking-[0.2em] uppercase">Our Portfolio</span>
-                            </div>
-                            <Title className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase text-glow-cyan leading-none drop-shadow-md">
-                                Beautiful & Responsive<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Websites</span>
-                            </Title>
+            <div className="max-w-[1400px] mx-auto relative z-10">
+                
+                {/* Section Header */}
+                <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
+                    <div>
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="h-[1px] w-8 bg-cyan-400"></div>
+                            <span className="text-cyan-400 font-mono text-sm tracking-[0.2em] uppercase">Engineering Portfolio</span>
                         </div>
+                        <Title className="text-4xl md:text-7xl font-black text-white tracking-tighter uppercase text-glow-cyan leading-none drop-shadow-md">
+                            High-Velocity<br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-500">
+                                Digital Systems
+                            </span>
+                        </Title>
+                        <p className="text-white/60 max-w-2xl mt-6 text-base md:text-lg leading-relaxed">
+                            A curated selection of our certified architectures built for humans, optimized for AI search engines, and integrated directly into B2B sales pipelines.
+                        </p>
                     </div>
+
+                    <button
+                        onClick={() => setIsBookingOpen(true)}
+                        className="self-start md:self-auto px-8 py-4 bg-white text-black text-xs font-black uppercase tracking-widest rounded-xl hover:bg-cyan-400 hover:text-white transition-all shadow-[0_0_30px_rgba(255,255,255,0.05)] active:scale-95 duration-300"
+                    >
+                        Initiate Strategy Audit
+                    </button>
                 </div>
 
-                {/* The Track Container moving horizontally inside the Sticky Frame */}
-                <div className="relative flex h-full w-full items-center pl-4 md:px-0 py-0 bg-transparent overflow-x-auto md:overflow-x-hidden snap-x snap-mandatory no-scrollbar">
-                    <div ref={trackRef} className="relative flex gap-6 md:gap-16 w-max items-center h-full pt-20 md:pt-[150px] pb-16 md:pb-24 px-0 md:px-12 snap-x snap-mandatory md:snap-none">
-                        {/* Initial padding so the first card isn't overlapping text */}
-                        <div className="block w-[5vw] md:w-[10vw] shrink-0" />
+                {/* SOTA Bento Grid */}
+                <div className="grid grid-cols-12 gap-6 lg:gap-8">
+                    {projects.map((project: Project) => {
+                        const metrics = bentoMetricsMap[project.id] || {
+                            stat: "99+",
+                            statLabel: "Score",
+                            highlights: ["High-speed server architecture", "Optimized micro-services"],
+                            icon: <Zap className="w-5 h-5 text-cyan-400" />,
+                            techStack: ["Next.js Core", "CDN Optimized"]
+                        };
 
-                        {projects.map((project, index) => {
-                            const glowRGB = project.glowColor || "34, 197, 94";
+                        const isHovered = hoveredCard === project.id;
+                        const glowRGB = project.glowColor || "34, 197, 94";
 
-                            return (
-                                <div
-                                    key={project.id}
-                                    className="portfolio-card relative shrink-0 w-[85vw] max-w-[400px] md:max-w-none md:w-[70vw] lg:w-[60vw] aspect-[9/16] md:aspect-auto md:h-[65vh] max-h-[850px] snap-center flex items-center justify-center group animate-float transform-gpu"
+                        return (
+                            <div
+                                key={project.id}
+                                className={`relative group rounded-[2rem] md:rounded-[3rem] overflow-hidden bg-slate-950/40 backdrop-blur-xl border border-white/5 shadow-2xl flex flex-col justify-end p-6 md:p-10 transition-all duration-700 ${getGridSpanClass(project.id)}`}
+                                onMouseEnter={() => setHoveredCard(project.id)}
+                                onMouseLeave={() => setHoveredCard(null)}
+                                style={{
+                                    boxShadow: isHovered 
+                                        ? `0 0 40px -5px rgba(${glowRGB}, 0.2), 0 0 100px -15px rgba(${glowRGB}, 0.05), inset 0 0 20px 2px rgba(${glowRGB}, 0.1)` 
+                                        : 'none',
+                                    borderColor: isHovered 
+                                        ? `rgba(${glowRGB}, 0.3)` 
+                                        : 'rgba(255, 255, 255, 0.05)'
+                                }}
+                            >
+                                {/* Immersive Brand-Matched Ambient Glow Backdrop */}
+                                <div 
+                                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 blur-[80px] rounded-full pointer-events-none z-0"
                                     style={{
-                                        animationDelay: `${index * 0.4}s`,
-                                        WebkitBackfaceVisibility: 'hidden', // iOS Safari composite fix
-                                        backfaceVisibility: 'hidden',
-                                        WebkitTransformStyle: 'preserve-3d', // Force GPU layer
-                                        transformStyle: 'preserve-3d',
-                                        willChange: 'transform' // Pre-allocate VRAM
+                                        background: `radial-gradient(circle at center, rgba(${glowRGB}, 0.15) 0%, transparent 70%)`
                                     }}
-                                >
-                                    {/* Main Structural Frame */}
-                                    <div className="relative w-full h-full rounded-[2.5rem] md:rounded-[4rem] overflow-hidden bg-black/50 backdrop-blur-sm border border-white/5 shadow-2xl flex flex-col justify-end transform-gpu"
-                                        style={{ backfaceVisibility: 'hidden' }}
-                                    >
+                                />
 
-                                        {/* Fallback Static Border (visible until center glow hits) */}
-                                        <div
-                                            className="absolute inset-0 rounded-[2.5rem] md:rounded-[4rem] pointer-events-none z-30 border-[1px] md:border-[2px] transition-opacity duration-1000 group-hover:opacity-0"
-                                            style={{
-                                                borderColor: 'rgba(255,255,255,0.05)',
-                                            }}
-                                        />
+                                {/* Background Screenshot Cover */}
+                                <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+                                    <Image
+                                        src={project.image}
+                                        alt={project.title}
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, 70vw"
+                                        className="object-cover object-top opacity-[0.18] group-hover:opacity-[0.38] group-hover:scale-[1.04] transition-all duration-[1200ms] ease-out"
+                                        priority={project.id === "all-things-new"}
+                                    />
+                                    {/* Glass Mask Gradients */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent z-10" />
+                                    <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-transparent to-transparent opacity-60 z-10" />
+                                </div>
 
-                                        {/* Mobile native clickable entire-card hit surface */}
-                                        <Link
-                                            href={`/portfolio/${project.id}`}
-                                            className="absolute inset-0 z-40 md:hidden"
-                                            aria-label={`View ${project.title} details`}
-                                        />
+                                {/* Floating Technical Code Tag */}
+                                <div className="absolute top-6 right-6 z-20 flex items-center gap-2 bg-slate-950/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/5">
+                                    <div 
+                                        className="w-1.5 h-1.5 rounded-full group-hover:animate-pulse"
+                                        style={{ 
+                                            backgroundColor: `rgb(${glowRGB})`,
+                                            boxShadow: `0 0 8px rgb(${glowRGB})`
+                                        }} 
+                                    />
+                                    <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-white/50">
+                                        Active Sync
+                                    </span>
+                                </div>
 
-                                        {/* Image Container (Needs extra width for parallax on desktop, exact fit on mobile) */}
-                                        <div className="absolute inset-0 w-full md:w-[115%] h-full left-0 md:-left-[7.5%] overflow-hidden bg-black pointer-events-none">
-                                            {/* Desktop Aspect Ratio */}
-                                            <Image
-                                                src={project.image}
-                                                alt={project.title}
-                                                fill
-                                                className="hidden md:block portfolio-img object-cover object-top opacity-60 group-hover:opacity-100 transition-opacity duration-1000"
-                                                sizes="(min-width: 768px) 70vw, 100vw"
-                                                priority={index < 2}
-                                            />
-
-                                            {/* Mobile 9x16 Aspect Ratio */}
-                                            <Image
-                                                src={project.mobileImage || project.image}
-                                                alt={`${project.title} Mobile View`}
-                                                fill
-                                                className="block md:hidden portfolio-img object-cover object-center opacity-80 group-hover:opacity-100 transition-opacity duration-1000 transform-gpu"
-                                                style={{ backfaceVisibility: 'hidden' }}
-                                                sizes="100vw"
-                                                priority={index < 2}
-                                                loading={index < 2 ? "eager" : "lazy"} // Force eager load for above-fold cards to stop layout glitches
-                                            />
-
-                                            {/* Mobile Inner Screen Glow */}
-                                            <div className="absolute inset-0 rounded-[2.5rem] shadow-[inset_0_0_20px_rgba(34,211,238,0.3)] pointer-events-none md:hidden z-20" />
-
-                                            {/* Gradient Masking */}
-                                            <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 md:via-black/40 to-transparent group-hover:from-black/80 group-hover:via-black/20 transition-colors duration-700" />
-                                        </div>
-
-                                        {/* Content Overlay */}
-                                        <div className="hidden md:flex absolute inset-0 z-20 p-6 md:p-10 flex-col justify-end pointer-events-none">
-
-                                            <div className="flex flex-wrap items-center gap-3 mb-5 opacity-80 group-hover:opacity-100 transition-opacity duration-500">
-                                                <div className="flex items-center gap-2 bg-black/80 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
-                                                    <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 group-hover:animate-pulse shadow-[0_0_12px_rgba(34,211,238,0.8)]" />
-                                                    <span className="text-[10px] font-black text-cyan-50 uppercase tracking-[0.25em] leading-none mt-0.5">
-                                                        {project.tags[0]}
-                                                    </span>
+                                {/* Core Card Content Layout */}
+                                <div className="relative z-20 flex flex-col justify-end h-full w-full">
+                                    
+                                    {/* Grid Top Content: Metric Spotlight */}
+                                    <div className="mb-auto flex flex-col items-start pt-4">
+                                        <div className="flex items-center gap-2.5 bg-white/[0.03] border border-white/10 rounded-2xl p-4 backdrop-blur-sm group-hover:bg-white/[0.06] transition-colors duration-500">
+                                            <div className="p-2.5 rounded-xl bg-slate-900 border border-white/5">
+                                                {metrics.icon}
+                                            </div>
+                                            <div>
+                                                <div className="text-2xl md:text-3xl font-black text-white leading-none tracking-tight">
+                                                    {metrics.stat}
                                                 </div>
-                                            </div>
-
-                                            <h3 className="text-3xl md:text-5xl lg:text-6xl font-black text-white tracking-tight uppercase mb-4 text-glow-cyan transform group-hover:scale-[1.02] origin-left transition-all duration-500 leading-none">
-                                                {project.title}
-                                            </h3>
-
-                                            <p className="text-white/70 text-sm md:text-lg leading-relaxed mb-8 max-w-2xl transform translate-y-2 group-hover:translate-y-0 transition-all duration-500 line-clamp-3">
-                                                {project.description}
-                                            </p>
-
-                                            {/* Desktop Actions */}
-                                            <div className="hidden md:flex items-center gap-4 pointer-events-auto transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 pb-2">
-                                                <Link
-                                                    href={`/portfolio/${project.id}`}
-                                                    className="flex items-center justify-center gap-2 px-8 py-4 bg-white text-black text-xs font-black uppercase tracking-widest rounded-xl hover:bg-cyan-400 hover:text-white transition-colors duration-300"
-                                                    aria-label={`View full architecture for ${project.title}`}
-                                                >
-                                                    Analyze Build
-                                                </Link>
-                                                <a
-                                                    href={project.netlifyUrl}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="flex items-center justify-center px-6 py-4 rounded-xl border border-white/20 text-xs font-black uppercase tracking-widest text-white hover:text-cyan-400 hover:border-cyan-400 transition-all bg-black/50 backdrop-blur-md hover:bg-white/5"
-                                                    aria-label={`Open ${project.title} live interface`}
-                                                >
-                                                    Live Intel <ExternalLink className="w-4 h-4 ml-2" />
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        {/* Mobile Actions Dock (Masks screenshot bottom to prevent text/button overlap glitches) */}
-                                        <div className="flex md:hidden absolute bottom-0 inset-x-0 z-20 flex-col p-5 pb-6 bg-[#030712]/90 backdrop-blur-md border-t border-white/5 pointer-events-none">
-                                            <h3 className="text-xl font-bold text-white tracking-tight uppercase mb-3 leading-none text-left">
-                                                {project.title}
-                                            </h3>
-                                            <div className="flex items-center justify-between gap-3 w-full">
-                                                <span
-                                                    className="flex-1 text-center py-3 bg-white text-black text-xs font-black uppercase tracking-widest rounded-xl shadow-[0_4px_12px_rgba(255,255,255,0.15)]"
-                                                >
-                                                    Analyze Build
-                                                </span>
-                                                <span
-                                                    className="flex items-center justify-center w-11 h-11 rounded-xl border border-white/10 text-white bg-black/50 backdrop-blur-md"
-                                                >
-                                                    <ExternalLink className="w-5 h-5 ml-0.5" />
-                                                </span>
+                                                <div className="text-[10px] font-bold text-white/40 tracking-wider uppercase mt-1">
+                                                    {metrics.statLabel}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    {/* Active Glow Layer mapped to GSAP opacity - Displayed on top for sharp border definition */}
-                                    <div
-                                        className="device-glow absolute inset-0 rounded-[2.5rem] md:rounded-[4rem] pointer-events-none z-30 border-[1px] md:border-[2px] opacity-80 md:opacity-0 transition-opacity duration-500"
-                                        style={{
-                                            boxShadow: `0 0 30px 2px rgba(${glowRGB}, 0.7), 0 0 100px 15px rgba(${glowRGB}, 0.25), inset 0 0 20px 2px rgba(${glowRGB}, 0.5)`,
-                                            borderColor: `rgba(${glowRGB}, 1)`
-                                        }}
-                                    />
+                                    {/* Grid Bottom Content: Title & Technical Specs */}
+                                    <div className="mt-8">
+                                        <div className="flex flex-wrap gap-2 mb-3">
+                                            {project.tags.map(tag => (
+                                                <span 
+                                                    key={tag} 
+                                                    className="text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-white/5 bg-slate-950/60 text-white/60"
+                                                >
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                        </div>
+
+                                        <h3 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tight mb-3 flex items-center gap-2 group-hover:translate-x-1 transition-transform duration-500">
+                                            {project.title}
+                                            <ArrowUpRight className="w-5 h-5 text-white/30 group-hover:text-white transition-colors duration-500" />
+                                        </h3>
+
+                                        <p className="text-white/60 text-xs md:text-sm leading-relaxed mb-6 max-w-xl line-clamp-2 md:line-clamp-3">
+                                            {project.description}
+                                        </p>
+
+                                        {/* Highlight Features */}
+                                        <ul className="space-y-2 mb-6 hidden md:block border-t border-white/5 pt-4">
+                                            {metrics.highlights.slice(0, 2).map((highlight, idx) => (
+                                                <li key={idx} className="flex items-center gap-2 text-[11px] text-white/50">
+                                                    <div 
+                                                        className="w-1 h-1 rounded-full shrink-0" 
+                                                        style={{ backgroundColor: `rgb(${glowRGB})` }} 
+                                                    />
+                                                    <span>{highlight}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+
+                                        {/* Actions Toolbar */}
+                                        <div className="flex items-center gap-4 border-t border-white/5 pt-5">
+                                            <Link
+                                                href={`/portfolio/${project.id}`}
+                                                className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 bg-white text-black text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-cyan-400 hover:text-white transition-all duration-300"
+                                            >
+                                                Analyze Build
+                                            </Link>
+                                            
+                                            {project.netlifyUrl && (
+                                                <a
+                                                    href={project.netlifyUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center justify-center px-4 py-3 rounded-xl border border-white/10 text-[10px] font-black uppercase tracking-widest text-white hover:text-cyan-400 hover:border-cyan-400 transition-all bg-slate-900/60 backdrop-blur-md"
+                                                >
+                                                    Live Intel <ExternalLink className="w-3.5 h-3.5 ml-1.5" />
+                                                </a>
+                                            )}
+                                        </div>
+                                    </div>
                                 </div>
-                            )
-                        })}
-                        {/* Trailing space block (mirrors the initial pl-4 + 5vw left space) */}
-                        <div className="block w-[calc(5vw+1rem)] md:w-[10vw] shrink-0" />
-                    </div>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
 
@@ -287,6 +266,6 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
                 isOpen={isBookingOpen}
                 onClose={() => setIsBookingOpen(false)}
             />
-        </section >
+        </section>
     );
 }
