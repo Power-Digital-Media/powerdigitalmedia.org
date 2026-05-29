@@ -88,11 +88,11 @@ graph TD
 
 The project is currently in a **100% stable, fully compiled, and production-ready state**. The latest updates resolved:
 * **Overhauled Paid Social & Marketing Services Page (`src/app/marketing/page.tsx`):**
-  - Redesigned to a premium 2-column conversion-focused grid layout.
-  - Embedded our custom-generated 3D isometric marketing telemetry visual mockup (`/images/marketing_telemetry_system.png`).
-  - Added an Interactive Conversion Telemetry chevron pipeline showcasing the exact low-friction B2B sync workflow.
-  - Constructed a high-trust reviews and ratings grid (Google, Better Business Bureau A+, Facebook Recommendations) linking direct local B2B proof.
-  - Structured all pricing cards with **Dual-Path CTAs**: Primary action opens in-context onboarding strategy `BookingModal`; Secondary action bridges Stripe checkout online.
+  - **Strategic Partner Pivot:** Redesigned the page to highlight the **certified Capsule CRM & Transpond partnership**, positioning this pipeline as the exclusive high-performance operational engine for local business deployments.
+  - **Pillars Refined:** Replaced generic cards with three certified operational pillars: **B2B Growth Funnels (Transpond + Next.js), Behavioral Email Marketing (Transpond sequences), and Sales Opportunities Management (Capsule visual pipelines)**.
+  - **Growth Tiers Updated:** Realigned all pricing packages to detail specific sync setups, Capsule contact integrations, email welcome automation, and CRM Sales Pipeline Opportunity board configurations.
+  - **Homepage Visual Matching:** Standardized the hero section to match the spacious centered design, typography, double button styles, and NAP PageSpeed-style trust bar layout of the homepage.
+  - **Telemetry Dashboard Showcase:** Moved the custom 3D isometric marketing telemetry graphic (`marketing_telemetry_system.png`) inside a floating glassmorphic dashboard mockup frame adjacent to the lead sync pipeline phases.
 * Codebase-wide `.com` domain alignment to standard `.org`.
 * Safe fallback triggers for Resend email initializations to prevent route crashes.
 * Upgrade of all service landing hero secondary CTA buttons to point to the direct Google Meet booking path `/book` with premium pulsing videography elements.
