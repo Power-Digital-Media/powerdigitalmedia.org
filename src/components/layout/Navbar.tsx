@@ -81,17 +81,9 @@ export default function Navbar() {
                             }`}
                     >
                         {/* Logo */}
-                        <Link href="/" className="flex items-center gap-2 group" onClick={() => setIsMobileMenuOpen(false)}>
-                            <div className="relative flex items-center justify-center w-12 h-12">
-                                <Image src="/power-logo.webp" alt="Power Digital Media" width={40} height={40} sizes="40px" className="object-contain group-hover:scale-110 transition-transform" priority />
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-xl font-bold tracking-tighter leading-none">
-                                    POWER <span className="text-accent">DIGITAL</span>
-                                </span>
-                                <span className="text-[8px] font-bold tracking-[0.3em] text-muted-foreground uppercase leading-none mt-1">
-                                    Media Studio
-                                </span>
+                        <Link href="/" className="flex items-center group" onClick={() => setIsMobileMenuOpen(false)}>
+                            <div className="relative flex items-center h-16 w-48">
+                                <Image src="/power-logo-v5.png" alt="Power Digital Media LLC" fill unoptimized className="object-contain group-hover:scale-105 transition-transform" priority />
                             </div>
                         </Link>
 

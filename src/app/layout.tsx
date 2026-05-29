@@ -100,7 +100,7 @@ export default function RootLayout({
               "@id": "https://powerdigitalmedia.org/#organization",
               "name": "Power Digital Media LLC",
               "url": "https://powerdigitalmedia.org",
-              "logo": "https://powerdigitalmedia.org/power-logo.webp",
+              "logo": "https://powerdigitalmedia.org/power-logo.png",
               "image": "https://powerdigitalmedia.org/hero-bg.webp",
               "telephone": "+16014462393",
               "priceRange": "$$$",

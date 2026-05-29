@@ -67,7 +67,7 @@ export default function TechSchematic() {
                                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 ${hoveredGear === index ? "bg-cyan-500/20 scale-110" : "bg-cyan-500/10 group-hover:scale-110"
                                         }`}>
                                         {item.icon === "logo" ? (
-                                            <Image src="/power-logo.webp" alt="" width={20} height={20} unoptimized className="object-contain" />
+                                            <Image src="/power-logo-v5.png" alt="" width={20} height={20} unoptimized className="object-contain" />
                                         ) : (
                                             <item.icon className="w-5 h-5 text-cyan-400" />
                                         )}
@@ -108,7 +108,7 @@ export default function TechSchematic() {
                                         transition={{ duration: hoveredGear === 1 ? 2 : 4, repeat: Infinity, ease: "easeInOut" }}
                                         className={`absolute inset-0 blur-[60px] rounded-full ${hoveredGear === 1 ? 'bg-cyan-400/40' : 'bg-cyan-500/20'}`}
                                     />
-                                    <Image src="/power-logo.webp" alt="Power Digital Media" width={128} height={128} unoptimized
+                                    <Image src="/power-logo-v5.png" alt="Power Digital Media" width={128} height={128} unoptimized
                                         className={`object-contain transition-all duration-500 relative z-10 ${hoveredGear === 1 ? 'opacity-100 scale-110 drop-shadow-[0_0_20px_rgba(34,211,238,0.8)]' : 'opacity-30'}`}
                                     />
 
