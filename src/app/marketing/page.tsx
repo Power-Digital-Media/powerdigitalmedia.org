@@ -180,76 +180,65 @@ export default function MarketingPage() {
             />
 
             {/* Hero Section */}
-            <section className="relative min-h-[90vh] lg:min-h-[100vh] flex items-center pt-32 pb-24 lg:py-0 overflow-hidden">
+            <section className="relative min-h-[90vh] lg:min-h-[100vh] flex flex-col justify-center pt-32 pb-24 md:py-0 overflow-hidden">
                 <CyberHeroBg variant="marketing" />
 
-                <div className="container px-4 mx-auto relative z-10">
-                    <div className="grid lg:grid-cols-12 gap-16 items-center max-w-6xl mx-auto">
-                        
-                        {/* Copy Column */}
-                        <div className="lg:col-span-7 text-left space-y-8">
-                            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-card border-blue-500/20 text-blue-400 text-[10px] font-black uppercase tracking-[0.4em]">
-                                <TrendingUp className="w-3 h-3 animate-pulse" />
-                                Local B2B Paid Social Engines
-                            </div>
+                {/* 3D Isometric Telemetry Centerpiece Background (Aligned with Home/Web-Design Visual Language) */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] w-[380px] h-[380px] md:w-[650px] md:h-[650px] opacity-[0.22] md:opacity-[0.20] pointer-events-none mix-blend-screen z-0">
+                    <div className="relative w-full h-full rounded-full overflow-hidden">
+                        {/* Core glow behind the telemetry graphic to blend it elegantly */}
+                        <div className="absolute inset-0 bg-blue-500/10 rounded-full blur-[80px] pointer-events-none" />
+                        <Image 
+                            src="/images/marketing_telemetry_system.png" 
+                            alt="Marketing Telemetry Background System" 
+                            fill
+                            className="object-contain"
+                            priority
+                        />
+                    </div>
+                </div>
 
-                            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.95] uppercase">
-                                High-Speed <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 text-glow-blue">
-                                    Ad Funnels.
-                                </span>
-                            </h1>
-
-                            <p className="text-lg md:text-xl text-slate-300 leading-relaxed max-w-xl font-light">
-                                Stop wasting money on boosted posts. We build high-converting paid social campaigns that capture qualified local leads and sync them directly into <strong className="text-blue-400 font-bold">Capsule CRM</strong> in milliseconds.
-                            </p>
-
-                            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
-                                <button
-                                    onClick={() => setIsBookingOpen(true)}
-                                    className="px-10 py-5 bg-blue-500 text-white rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white hover:text-blue-500 transition-all duration-300 shadow-[0_0_30px_rgba(59,130,246,0.3)] flex items-center justify-center gap-2 group"
-                                >
-                                    Schedule Strategy Call
-                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                </button>
-                                <a
-                                    href="#tiers"
-                                    className="px-10 py-5 bg-white/5 border border-white/10 text-white rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white hover:text-black transition-all duration-300 text-center"
-                                >
-                                    Explore Deployment Tiers
-                                </a>
-                            </div>
+                <div className="container relative z-10 px-4 mx-auto text-center mt-4 md:mt-16 mb-4">
+                    <div className="max-w-4xl mx-auto space-y-8 flex flex-col items-center">
+                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-card border-blue-500/20 text-blue-400 text-[10px] font-black uppercase tracking-[0.4em] mx-auto">
+                            <TrendingUp className="w-3 h-3 animate-pulse" />
+                            Local B2B Paid Social Engines
                         </div>
 
-                        {/* Interactive Visual Showcase Column */}
-                        <div className="lg:col-span-5 relative w-full flex justify-center">
-                            <motion.div 
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.8, delay: 0.2 }}
-                                className="relative p-3 rounded-[3rem] border border-white/10 glass-card bg-slate-950/40 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden group max-w-md w-full"
+                        <h1 className="text-4xl md:text-8xl font-black tracking-tighter leading-[0.85] uppercase">
+                            High-Speed <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 text-glow-blue block mt-2">
+                                Ad Funnels.
+                            </span>
+                        </h1>
+
+                        <p className="text-lg md:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto font-light">
+                            Stop wasting money on boosted posts. We build high-converting paid social campaigns that capture qualified local leads and sync them directly into <strong className="text-blue-400 font-bold">Capsule CRM</strong> in milliseconds.
+                        </p>
+
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-4 w-full sm:w-auto">
+                            <button
+                                onClick={() => setIsBookingOpen(true)}
+                                className="w-full sm:w-auto px-10 py-5 bg-blue-500 text-white rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white hover:text-blue-500 transition-all duration-300 shadow-[0_0_30px_rgba(59,130,246,0.3)] flex items-center justify-center gap-2 group animate-[pulse_3s_infinite_alternate]"
                             >
-                                <div className="absolute inset-0 -z-10 rounded-[3rem] bg-gradient-to-br from-blue-400/10 via-transparent to-purple-500/10 pointer-events-none" />
-                                
-                                {/* Telemetry Badge */}
-                                <div className="absolute top-6 left-6 z-20 px-3 py-1.5 rounded-full bg-slate-900/90 border border-blue-500/30 flex items-center gap-2">
-                                    <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_#22d3ee]" />
-                                    <span className="text-[9px] font-black uppercase tracking-widest text-cyan-400">TELEMETRY ACTIVE: SYNC LIVE</span>
-                                </div>
-
-                                <div className="relative aspect-square w-full rounded-[2.5rem] overflow-hidden bg-slate-950/80">
-                                    <Image 
-                                        src="/images/marketing_telemetry_system.png" 
-                                        alt="Automated paid social funnel telemetry showing direct Capsule CRM syncing pipelines" 
-                                        fill
-                                        sizes="(max-w-md) 100vw, 400px"
-                                        className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
-                                        priority
-                                    />
-                                </div>
-                            </motion.div>
+                                Schedule Strategy Call
+                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            </button>
+                            <a
+                                href="#tiers"
+                                className="w-full sm:w-auto px-10 py-5 bg-white/5 border border-white/10 text-white rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white hover:text-black transition-all duration-300 text-center block"
+                            >
+                                Explore Deployment Tiers
+                            </a>
                         </div>
+                    </div>
 
+                    {/* Telemetry Active Pulse Indicator Bar (High-end sub-trust bar) */}
+                    <div className="mt-14 mb-4 flex items-center justify-center opacity-85 hover:opacity-100 transition-opacity">
+                        <div className="flex items-center gap-3 px-4 py-2 rounded-full border border-blue-500/30 bg-blue-950/20 backdrop-blur-sm">
+                            <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_#22d3ee]" />
+                            <span className="text-[9px] font-black uppercase tracking-widest text-cyan-400">TELEMETRY ACTIVE: CAPSULE CRM SYNC LIVE</span>
+                        </div>
                     </div>
                 </div>
             </section>
