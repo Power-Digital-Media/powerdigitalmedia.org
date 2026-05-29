@@ -89,17 +89,19 @@ graph TD
 
 The project is currently in a **100% stable, fully compiled, and production-ready state**. The latest updates resolved:
 * **SOTA Interactive Glassmorphic Bento Grid Portfolio (`src/components/sections/Portfolio.tsx`):**
-  - Completely replaced the heavy, scroll-hijacking GSAP horizontal sliding/pinning carousel with a beautiful, natural-scrolling asymmetric Bento Grid.
+  - Completely replaced the heavy, scroll-hijacking GSAP horizontal sliding/pinning carousel with a beautiful, natural-scrolling asymmetric Bento Grid on the Home, Web Design, Production, and Marketing pages.
   - Configured custom geometric card spans on desktop (e.g. `col-span-8` landscape + `col-span-4` portrait) and clean vertical stacks on mobile.
   - Implemented brand-matched dynamic hover border glows and radial highlights utilizing React state and native CSS.
   - Embedded high-contrast B2B performance indicators and live-metric badges (`98% PageSpeed`, `400+ Hours Saved`, `5.2x ROAS`) to visually validate engineering and marketing authority.
   - Enabled smooth cinematic mouse-hover zoom parallax on screenshot mockups.
 * **Overhauled Paid Social & Marketing Services Page (`src/app/marketing/page.tsx`):**
+  - **Bento Grid Integration:** Dynamically imported and rendered our new `<Portfolio />` Bento Grid component to display client case studies, replacing the horizontal sliding carousel and previous static 3-column placeholder.
   - **Strategic Partner Pivot:** Redesigned the page to highlight the **certified Capsule CRM & Transpond partnership**, positioning this pipeline as the exclusive high-performance operational engine for local business deployments.
   - **Pillars Refined:** Replaced generic cards with three certified operational pillars: **B2B Growth Funnels (Transpond + Next.js), Behavioral Email Marketing (Transpond sequences), and Sales Opportunities Management (Capsule visual pipelines)**.
   - **Growth Tiers Updated:** Realigned all pricing packages to detail specific sync setups, Capsule contact integrations, email welcome automation, and CRM Sales Pipeline Opportunity board configurations.
   - **Homepage Visual Matching:** Standardized the hero section to match the spacious centered design, typography, double button styles, and NAP PageSpeed-style trust bar layout of the homepage.
   - **Telemetry Dashboard Showcase:** Moved the custom 3D isometric marketing telemetry graphic (`marketing_telemetry_system.png`) inside a floating glassmorphic dashboard mockup frame adjacent to the lead sync pipeline phases.
+
 * Codebase-wide `.com` domain alignment to standard `.org`.
 * Safe fallback triggers for Resend email initializations to prevent route crashes.
 * Upgrade of all service landing hero secondary CTA buttons to point to the direct Google Meet booking path `/book` with premium pulsing videography elements.
