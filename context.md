@@ -1,0 +1,78 @@
+# 🌌 Power Digital Media — System Context & Source of Truth
+
+This file serves as the active, live single source of truth for the digital architecture, systems configuration, database sync pipelines, and local growth funnels of **Power Digital Media** (`powerdigitalmedia.org`).
+
+---
+
+## 🛠️ 1. Core Technical Stack
+* **Framework:** Next.js 16.1.x (App Router) running on **Turbopack** and hosted on **Netlify**.
+* **Styling & Motion:** Tailwind CSS (modern fluid grids, glassmorphism templates) + **GSAP (GreenSock)** for advanced scroll-driven viewport timelines and hardware-accelerated animations.
+* **Database & Integrations:**
+  * **Capsule CRM:** B2B lead organization & customer relationships.
+  * **Transpond:** Marketing automation campaigns and autoresponders (Main List ID: `186443`).
+  * **Resend SDK:** Backup serverless transactional emails (thank you and audit report autoresponders).
+* **Booking Pipeline:** Google Calendar / Google Meet video funnel integrated at the `/book` route.
+* **Telemetry & API Routing:** Next.js Serverless Route Handlers in `/api/forms` acting as a secure gateway bridge between client forms, Capsule REST models, and Transpond subscribers.
+
+---
+
+## 🔗 2. System Architecture & Integrations
+
+```mermaid
+graph TD
+  User[Client Form Submission] -->|POST /api/forms| API[Forms Route Gateway]
+  API -->|Verify & Parse| Capsule[Capsule CRM REST API]
+  API -->|Sync Subscriber| Transpond[Transpond API List 186443]
+  API -->|Autoresponder Trigger| Resend[Resend API SDK / api/contact/thank-you]
+  Capsule <-->|Native stdio JSON-RPC| MCP[Capsule Node.js MCP Server]
+```
+
+### 🗄️ Database & Sync Pipelines
+1. **Capsule CRM Node.js MCP Server:**
+   - **Path:** `E:\AntiGravity\capsule-mcp-node\index.js`
+   - **Protocol:** Stdio-based JSON-RPC 2.0. Eliminates Docker/WSL dependencies. Exposes **53 tools** matching the Zestia schema.
+   - **Telemetry:** Automated file logging actively buffered in `capsule-mcp.log`.
+2. **Capsule-to-Transpond Marketing Pipeline:**
+   - **Path:** `E:\AntiGravity\capsule-mcp-node\sync-strategies.js`
+   - **Status:** Tested and verified live. Seamlessly registers leads scheduling a Google Meet strategy session into your primary Transpond campaign with an immediate welcome email hook.
+
+---
+
+## 🌐 3. Critical SEO & Domain Alignments (Fixed)
+* **Active Domain:** `powerdigitalmedia.org` (All 34 outdated `.com` database, content, sitemap, and LLM text references programmatically swept and standardized to prevent crawling indexing split).
+* **Active Phone Line:** `+16014462393` (NAP verified. Fake placeholders replaced across all metadata layouts).
+* **Local SEO Schema (`src/app/layout.tsx`):**
+  * Synthesized machine-readable `LocalBusiness` JSON-LD schema.
+  * Nested a perfect `5.0` `AggregateRating` based on `15` real testimonials.
+  * Embedded structured reviews from **Google, Better Business Bureau (BBB), and Facebook** to capture off-page local search authority.
+  * Configured expanded `sameAs` social and entity vectors.
+
+---
+
+## 📱 4. Mobile UX & Animation Optimizations (Fixed)
+* **Portfolio Section Carousel:** Bypassed desktop GSAP scrolling pinner on viewports `< 768px` to prevent jerky touch movement. Implemented a native mobile swipe-snapping carousel (`snap-x snap-mandatory`).
+* **Sleek Action Dock:** Integrated blurred semi-solid glassmorphic trays at the bottom of portfolio cards to mask underlying screenshot graphic text and prevent visual overlap glitches.
+* **Fluid Spacing & Typography:** Replaced static margins and layouts with responsive, fluid variables across the Homepage Hero, Services, and Tech Stack pages. Text headings center natively to anchor mobile screens while lists revert to crisp, left-alignment to keep bullet points vertically linear.
+* **Resend Resiliency:** Added module-level fallback strings (`|| 're_placeholder'`) to transactional route initializers. This prevents serverless routes from crashing when api keys are absent in local test environments.
+
+---
+
+## 🚨 5. Active Roadblocks & Immediate Actions
+
+### 🔑 A. Google Identity & Workspace Resolution
+* **The Glitch:** The business email `damein@powerdigitalmedia.org` was bound as a personal Google alias on the primary Gmail address `dameindonald.cor@gmail.com`. This triggered a conflicting account flag, locking profile subscriptions and triggering a red security warning shield.
+* **The Resolution Steps:**
+  1. The user successfully updated their Google password to a secure Diceware passphrase (`Cyber-Portal-[Custom]-###`).
+  2. **Action Required:** The user must open their Google Account dashboard, click **"Review & secure"** under recovery settings to clear the warning shield.
+  3. **Action Required:** Keep the accounts strictly separate by creating **two distinct Chrome Browser Profiles**—one for personal tasks (`gmail.com`) and one for business (`powerdigitalmedia.org`)—to prevent cookie collisions.
+
+### 📍 B. Google Business Profile (GBP) Verification
+* **The Glitch:** Automated maps verification loops are blocked due to the virtual office coordinates and the active identity conflict flag.
+* **Action Required:** Submit a manual verification ticket to the Google Business Profile help desk attaching the official Mississippi LLC registration documents, a utility bill, and local Jackson NAP proof.
+
+### 📣 C. B2B Client Acquisition Pipeline Refinement
+* **The Glitch:** Casual traffic campaigns running on Meta ($5–$10/day targeting MS business owners) are yielding minimal traffic and zero engagement due to high landing-page exit friction on mobile devices and tech-jargon intimidation.
+* **The Solutions (Detailed in the [Acquisition Blueprint](file:///C:/Users/User/.gemini/antigravity/brain/b82f149b-23c4-4b75-8086-31e312a8d2e3/local_acquisition_blueprint.md)):**
+  1. **Play 1 ("The Snatch"):** Initiate value-first organic outreach. Record 3-minute personalized Loom screencasts showing local business sites breaking, and send them directly to local owners.
+  2. **Play 2 (In-App Lead Forms):** Switch paid Meta campaigns from traffic redirects to **Native Lead Generation (Instant Forms)** to drop mobile friction by 90% and capture leads inside Facebook/Instagram with auto-filled fields.
+  3. **Play 3 (GBP Domination):** Drive high-intent search traffic by ranking in the local Google Map Pack once manual verification is cleared, capturing 5-star reviews from active clients (Tbeaux Seafood, Powered by Peptides).
