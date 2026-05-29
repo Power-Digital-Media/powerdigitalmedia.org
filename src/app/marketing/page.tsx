@@ -33,45 +33,47 @@ const tiers = [
         name: "Campaign Ignition",
         priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_SOCIAL_MICRO || "price_social_micro_placeholder",
         price: "1,000",
-        description: "Precision Meta Ad architecture setup. The tactical entry for local businesses looking to build a high-performance customer bridge.",
+        description: "Tactical Meta ad architecture paired with precision landing capture forms. Instantly syncs and tags names, emails, and company details in your list.",
         features: [
             "Custom Thumb-Stopping Ad Creatives",
-            "Local Audience Target Engineering",
-            "Meta Pixel & API Telemetry Setup",
-            "High-Converting Lead Form Setup",
-            "First-Month Strategy Optimization"
+            "Local Geotarget Audience Engineering",
+            "Meta Pixel & Conversion API Telemetry",
+            "Frictionless B2B Lead Funnel Setup",
+            "Transpond Active Sync (List 186443)"
         ],
         type: "one-time"
     },
     {
         id: "meta_velocity",
-        name: "Ad Dominance",
+        name: "Ad Dominance & CRM Sync",
         priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_SOCIAL_VELOCITY || "price_social_velocity_placeholder",
         price: "1,500",
-        description: "The complete monthly paid growth protocol. Continuous A/B creative testing, budget optimization, and strategic scaling.",
+        description: "Full-scale social campaign management integrated with a native Capsule CRM database. Automatically segments and tags leads on intake.",
         features: [
-            "Unlimited Multi-Format Ad Testing",
-            "Complete Campaign Management",
-            "Advanced Customer Retargeting Funnels",
-            "Continuous Cost-Per-Lead (CPA) Reductions",
-            "Monthly Growth Intelligence Analytics"
+            "Everything in 'Campaign Ignition'",
+            "Capsule CRM Client Account Integration",
+            "Automated B2B Lead-to-CRM Routing",
+            "Dynamic Customer Segment Tagging",
+            "Transpond Automated Welcome Sequences",
+            "Monthly Lead Telemetry Reports"
         ],
         type: "monthly",
         popular: true,
-        highlight: "border-blue-500/30 bg-blue-500/[0.02]"
+        highlight: "border-blue-500/40 bg-blue-500/[0.03] lg:scale-105 shadow-[0_0_40px_rgba(59,130,246,0.1)]"
     },
     {
         id: "meta_strategy",
-        name: "Market Takeover",
+        name: "Market Takeover & Sales Automation",
         priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_GROWTH_STRATEGY || "price_growth_strategy_placeholder",
         price: "2,000",
-        description: "The ultimate local scaling partnership. High-budget scaling, automated B2B workflows, and omni-channel support.",
+        description: "The ultimate local scaling pipeline. Integrates multi-channel ad scaling, automated email nurtures, and Capsule Sales Opportunity board tracking.",
         features: [
-            "Everything in 'Ad Dominance' tier",
-            "Automated B2B Lead Nurture Funnels",
-            "Direct Capsule CRM Custom Mapping",
-            "Transpond Email Automation Overhaul",
-            "Weekly Priority Strategy Sync"
+            "Everything in 'Ad Dominance & CRM Sync'",
+            "Capsule Sales Opportunities Board Setup",
+            "Visual Sales Pipeline & Value Tracking",
+            "Transpond Behavioral Email Nurtures",
+            "Automated Lead Follow-Up Triggers",
+            "Weekly Strategic Revenue Consultation"
         ],
         type: "monthly"
     }
@@ -439,37 +441,49 @@ export default function MarketingPage() {
                 </div>
             </section>
 
-            {/* Strategic Pillars */}
+            {/* Capsule & Transpond Operational Integration Pillars */}
             <section className="py-24 border-b border-white/5 bg-slate-950/20">
-                <div className="container px-4 mx-auto">
+                <div className="container px-4 mx-auto max-w-5xl">
+                    <div className="text-center mb-16 uppercase tracking-tighter">
+                        <span className="text-blue-400 font-bold tracking-[0.4em] text-[10px] mb-4 block">Operational Pillars</span>
+                        <h2 className="text-3xl md:text-5xl font-black">Our Certified <span className="text-white/40">Integrations.</span></h2>
+                    </div>
+
                     <div className="grid md:grid-cols-3 gap-12">
+                        
+                        {/* Pillar 1: Growth Funnels */}
                         <div className="text-center group">
                             <div className="w-16 h-16 rounded-[2rem] bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                                <ImageIcon className="w-8 h-8 text-blue-400" />
+                                <MousePointerClick className="w-8 h-8 text-blue-400" />
                             </div>
-                            <h3 className="text-xl font-bold uppercase tracking-widest mb-4">Creative Architecture</h3>
+                            <h3 className="text-xl font-bold uppercase tracking-widest mb-4">B2B Growth Funnels</h3>
                             <p className="text-sm text-slate-400 leading-relaxed font-light">
-                                Custom, direct-response design mockups and high-velocity copy built to capture attention and stop the scroll.
+                                We design custom Next.js forms and paid ad flows that capture qualified local intent and route contact data into your pipeline within 300ms.
                             </p>
                         </div>
+
+                        {/* Pillar 2: Email Marketing */}
                         <div className="text-center group">
                             <div className="w-16 h-16 rounded-[2rem] bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                                <Search className="w-8 h-8 text-indigo-400" />
+                                <MailCheck className="w-8 h-8 text-indigo-400" />
                             </div>
-                            <h3 className="text-xl font-bold uppercase tracking-widest mb-4">Target Engineering</h3>
+                            <h3 className="text-xl font-bold uppercase tracking-widest mb-4">Email Marketing</h3>
                             <p className="text-sm text-slate-400 leading-relaxed font-light">
-                                Deep geolocated audience targeting and pixel API tracking configuration to match your ads against ready buyers.
+                                Powered by Transpond automation. Custom automated welcome flows, cold B2B nurture sequences, and newsletters triggered by target tags.
                             </p>
                         </div>
+
+                        {/* Pillar 3: Sales Opportunities */}
                         <div className="text-center group">
                             <div className="w-16 h-16 rounded-[2rem] bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                                <BarChart3 className="w-8 h-8 text-cyan-400" />
+                                <Database className="w-8 h-8 text-cyan-400" />
                             </div>
-                            <h3 className="text-xl font-bold uppercase tracking-widest mb-4">Growth Intelligence</h3>
+                            <h3 className="text-xl font-bold uppercase tracking-widest mb-4">Sales Opportunities</h3>
                             <p className="text-sm text-slate-400 leading-relaxed font-light">
-                                Pure metric analytics. We measure real lead counts and client acquisition costs rather than empty likes or boosting views.
+                                Fully configured Capsule CRM sales pipelines. Track deal values, assign pipeline stages (lead, estimate, proposal), and never lose a follow-up.
                             </p>
                         </div>
+
                     </div>
                 </div>
             </section>
