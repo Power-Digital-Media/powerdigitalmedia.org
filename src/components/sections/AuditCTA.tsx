@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useState, type FormEvent } from "react";
 import { Send, Sparkles, AlertCircle, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -48,7 +48,7 @@ export default function AuditCTA() {
 
             <div className="container px-4 mx-auto">
                 <div className="max-w-5xl mx-auto">
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
@@ -80,7 +80,7 @@ export default function AuditCTA() {
                             {/* Form Column */}
                             <div className="lg:col-span-6">
                                 {status === "success" ? (
-                                    <motion.div
+                                    <m.div
                                         initial={{ opacity: 0, scale: 0.95 }}
                                         animate={{ opacity: 1, scale: 1 }}
                                         className="py-8 flex flex-col items-center justify-center text-center space-y-4"
@@ -92,7 +92,7 @@ export default function AuditCTA() {
                                             <h4 className="text-lg font-bold text-white mb-1">Queue Position Secured!</h4>
                                             <p className="text-xs text-muted-foreground">Redirecting you to our onboarding calendar...</p>
                                         </div>
-                                    </motion.div>
+                                    </m.div>
                                 ) : (
                                     <form onSubmit={handleSubmit} className="space-y-4">
                                         <div className="grid gap-4 sm:grid-cols-2">
@@ -143,7 +143,7 @@ export default function AuditCTA() {
                             </div>
 
                         </div>
-                    </motion.div>
+                    </m.div>
                 </div>
             </div>
         </section>

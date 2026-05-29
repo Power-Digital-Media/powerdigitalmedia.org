@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 interface CyberHeroBgProps {
     variant: "home" | "web-design" | "custom-applications" | "marketing";
@@ -71,7 +71,7 @@ export default function CyberHeroBg({ variant }: CyberHeroBgProps) {
             {/* Data Streams (Vertical Beams) */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 {[...Array(6)].map((_, i) => (
-                    <motion.div
+                    <m.div
                         key={i}
                         className={`absolute w-px h-[30vh] bg-gradient-to-b from-transparent ${theme.beamColor} to-transparent`}
                         style={{
@@ -193,10 +193,10 @@ export default function CyberHeroBg({ variant }: CyberHeroBgProps) {
                             <path d="M 50 4 L 50 96 M 4 50 L 96 50 M 18 18 L 82 82 M 82 18 L 18 82" stroke="currentColor" className="text-cyan-500/15" strokeWidth="0.1" />
 
                             {/* Orbiting data points */}
-                            <motion.circle cx="50" cy="4" r="1.5" className="fill-cyan-400 text-glow" style={{ filter: "drop-shadow(0px 0px 4px rgba(34, 211, 238, 0.8))" }} />
-                            <motion.circle cx="16" cy="18" r="1.2" className="fill-blue-400" style={{ filter: "drop-shadow(0px 0px 3px rgba(59, 130, 246, 0.8))" }} />
-                            <motion.circle cx="84" cy="18" r="1.2" className="fill-indigo-400" style={{ filter: "drop-shadow(0px 0px 3px rgba(129, 140, 248, 0.8))" }} />
-                            <motion.circle cx="50" cy="96" r="1.5" className="fill-cyan-400 text-glow" style={{ filter: "drop-shadow(0px 0px 4px rgba(34, 211, 238, 0.8))" }} />
+                            <m.circle cx="50" cy="4" r="1.5" className="fill-cyan-400 text-glow" style={{ filter: "drop-shadow(0px 0px 4px rgba(34, 211, 238, 0.8))" }} />
+                            <m.circle cx="16" cy="18" r="1.2" className="fill-blue-400" style={{ filter: "drop-shadow(0px 0px 3px rgba(59, 130, 246, 0.8))" }} />
+                            <m.circle cx="84" cy="18" r="1.2" className="fill-indigo-400" style={{ filter: "drop-shadow(0px 0px 3px rgba(129, 140, 248, 0.8))" }} />
+                            <m.circle cx="50" cy="96" r="1.5" className="fill-cyan-400 text-glow" style={{ filter: "drop-shadow(0px 0px 4px rgba(34, 211, 238, 0.8))" }} />
                         </svg>
 
                         {/* Reverse spinning vector core for high-prestige depth */}

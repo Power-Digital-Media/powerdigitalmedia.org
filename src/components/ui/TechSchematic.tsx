@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Camera, Settings, Cpu } from "lucide-react";
 import Image from "next/image";
 
@@ -51,7 +51,7 @@ export default function TechSchematic() {
 
                         <div className="grid gap-6 sm:grid-cols-2">
                             {gear.map((item, index) => (
-                                <motion.div
+                                <m.div
                                     key={item.title}
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
@@ -77,7 +77,7 @@ export default function TechSchematic() {
                                     <p className="text-sm text-foreground/40 leading-relaxed font-light line-clamp-3 group-hover:text-foreground/60 transition-colors">
                                         {item.description}
                                     </p>
-                                </motion.div>
+                                </m.div>
                             ))}
                         </div>
                     </div>
@@ -92,7 +92,7 @@ export default function TechSchematic() {
                             <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden bg-black/40 flex items-center justify-center border border-white/5">
 
                                 {/* Base radar sweep - fades when hovering to focus on specific gear */}
-                                <motion.div
+                                <m.div
                                     className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,rgba(34,211,238,0)_0%,rgba(34,211,238,0)_80%,rgba(34,211,238,0.1)_100%)] mix-blend-screen"
                                     animate={{ rotate: 360, opacity: hoveredGear !== null ? 0.2 : 1 }}
                                     transition={{ rotate: { duration: 4, repeat: Infinity, ease: "linear" }, opacity: { duration: 0.3 } }}
@@ -100,7 +100,7 @@ export default function TechSchematic() {
 
                                 {/* Central Hardware Visualization (Index 1 - RØDECaster) */}
                                 <div className="relative w-64 h-64 flex items-center justify-center">
-                                    <motion.div
+                                    <m.div
                                         animate={{
                                             scale: hoveredGear === 1 ? [1, 1.2, 1] : [1, 1.05, 1],
                                             opacity: hoveredGear === 1 ? [0.6, 1, 0.6] : [0.3, 0.5, 0.3]
@@ -113,12 +113,12 @@ export default function TechSchematic() {
                                     />
 
                                     {/* Orbital Data Rings (Index 2 - OBSBOT) */}
-                                    <motion.div
+                                    <m.div
                                         animate={{ rotate: 360 }}
                                         transition={{ duration: hoveredGear === 2 ? 5 : 20, repeat: Infinity, ease: "linear" }}
                                         className={`absolute inset-0 border border-dashed rounded-full scale-[1.2] transition-colors duration-500 ${hoveredGear === 2 ? 'border-cyan-400/80 shadow-[0_0_15px_rgba(34,211,238,0.5)]' : 'border-cyan-500/20'}`}
                                     />
-                                    <motion.div
+                                    <m.div
                                         animate={{ rotate: -360 }}
                                         transition={{ duration: hoveredGear === 2 ? 3 : 15, repeat: Infinity, ease: "linear" }}
                                         className={`absolute inset-0 border border-dotted rounded-full scale-[1.4] transition-colors duration-500 ${hoveredGear === 2 ? 'border-white/50' : 'border-white/10'}`}
@@ -130,7 +130,7 @@ export default function TechSchematic() {
                                     <span className={`text-[7px] font-bold uppercase tracking-widest mb-1 ${hoveredGear === 0 ? 'text-cyan-300 drop-shadow-md' : 'text-cyan-400/50'}`}>Live Input Array</span>
                                     <div className="flex gap-0.5 h-1.5 w-full bg-white/5 rounded-full overflow-hidden shadow-[0_0_10px_rgba(34,211,238,0.1)]">
                                         {[...Array(12)].map((_, i) => (
-                                            <motion.div
+                                            <m.div
                                                 key={`m1-${i}`}
                                                 animate={{
                                                     opacity: hoveredGear === 0 ? [0.4, 1, 0.4] : [0.2, 0.8, 0.2],
@@ -143,7 +143,7 @@ export default function TechSchematic() {
                                     </div>
                                     <div className="flex gap-0.5 h-1.5 w-full bg-white/5 rounded-full overflow-hidden mt-1">
                                         {[...Array(12)].map((_, i) => (
-                                            <motion.div
+                                            <m.div
                                                 key={`m2-${i}`}
                                                 animate={{ opacity: [0.2, 0.8, 0.2] }}
                                                 transition={{ duration: 0.3, repeat: Infinity, delay: (12 - i) * 0.05 }}
@@ -154,7 +154,7 @@ export default function TechSchematic() {
                                 </div>
 
                                 {/* Label Callouts */}
-                                <motion.div
+                                <m.div
                                     animate={{ y: [0, -10, 0] }}
                                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                                     className={`absolute top-1/4 right-[10%] p-4 glass-card bg-slate-950/80 rounded-2xl shadow-2xl transition-all duration-500 ${hoveredGear === 1 ? 'border-cyan-400/50 scale-110 drop-shadow-[0_0_20px_rgba(34,211,238,0.2)]' : 'border-cyan-500/20'}`}
@@ -165,9 +165,9 @@ export default function TechSchematic() {
                                     </div>
                                     <div className="w-full h-px bg-white/5 my-2" />
                                     <span className="text-[7px] text-white/40 block">BROADCAST SIGNAL ENGAGED</span>
-                                </motion.div>
+                                </m.div>
 
-                                <motion.div
+                                <m.div
                                     animate={{ y: [0, 10, 0] }}
                                     transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                                     className={`absolute bottom-1/3 left-[10%] p-4 glass-card bg-slate-950/80 rounded-2xl shadow-2xl transition-all duration-500 ${hoveredGear === 0 ? 'border-cyan-400/50 scale-110' : 'border-white/10'}`}
@@ -178,14 +178,14 @@ export default function TechSchematic() {
                                     </div>
                                     <div className="w-full h-px bg-white/5 my-2" />
                                     <span className="text-[7px] text-white/40 block">ULTRA-LOW GAIN ENGINE</span>
-                                </motion.div>
+                                </m.div>
 
                                 {/* Latency/Remote Integration (Index 3 - Remote Protocol) */}
                                 <div className={`absolute bottom-12 right-12 text-right transition-all duration-500 ${hoveredGear === 3 ? 'scale-125 origin-bottom-right' : 'opacity-80'}`}>
                                     <span className={`text-[7px] font-bold uppercase tracking-[0.3em] block mb-1 ${hoveredGear === 3 ? 'text-cyan-300' : 'text-white/30'}`}>Network Protocol</span>
                                     <span className={`text-xl font-mono font-black tracking-tighter ${hoveredGear === 3 ? 'text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]' : 'text-cyan-400'}`}>0.02ms</span>
                                     {hoveredGear === 3 && (
-                                        <motion.div
+                                        <m.div
                                             initial={{ scaleX: 0 }}
                                             animate={{ scaleX: 1 }}
                                             className="h-px bg-gradient-to-r from-transparent to-cyan-400 w-32 absolute -left-36 top-1/2"

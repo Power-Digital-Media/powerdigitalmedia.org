@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import { ShieldCheck, Cpu, Code2, ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -18,7 +18,7 @@ export default function LeadArchitect() {
                 <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
 
                     {/* Image Column */}
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
@@ -61,10 +61,10 @@ export default function LeadArchitect() {
 
                         {/* Drop Shadow Base */}
                         <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-3/4 h-8 bg-cyan-500/20 blur-2xl rounded-full" />
-                    </motion.div>
+                    </m.div>
 
                     {/* Text/Content Column */}
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0, x: 50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
@@ -126,7 +126,7 @@ export default function LeadArchitect() {
                             </Link>
                         </div>
 
-                    </motion.div>
+                    </m.div>
                 </div>
             </div>
         </section>

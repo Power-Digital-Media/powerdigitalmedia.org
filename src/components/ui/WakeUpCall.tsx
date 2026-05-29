@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { m, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 export default function WakeUpCall({ title, subtitle, paragraph }: { title: string, subtitle: string, paragraph: string }) {
@@ -31,43 +31,43 @@ export default function WakeUpCall({ title, subtitle, paragraph }: { title: stri
             <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden bg-black z-30 shadow-[0_0_100px_rgba(0,0,0,1)]">
 
                 {/* Dynamic noise background */}
-                <motion.div
+                <m.div
                     style={{ opacity }}
                     className="absolute inset-0 pointer-events-none opacity-20 mix-blend-screen"
                     animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
                     transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
                 >
                     <div className="w-full h-full noise-texture opacity-30" />
-                </motion.div>
+                </m.div>
 
-                <motion.div style={{ opacity, scale }} className="absolute inset-0 flex flex-col justify-center items-center p-4">
+                <m.div style={{ opacity, scale }} className="absolute inset-0 flex flex-col justify-center items-center p-4">
                     <div className="max-w-5xl text-center flex flex-col items-center">
 
                         {/* Line 1 - The Problem */}
-                        <motion.div style={{ opacity: textOpacity1, x: glitchX }} className="mb-8">
+                        <m.div style={{ opacity: textOpacity1, x: glitchX }} className="mb-8">
                             <span className="text-[10px] md:text-sm font-black text-red-500 uppercase tracking-[0.5em] mb-4 block">System Warning</span>
                             <h2 className="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter leading-[0.85]">
                                 {firstHalf} <br className="hidden md:block" />
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-800">{secondHalf}</span>
                             </h2>
-                        </motion.div>
+                        </m.div>
 
                         {/* Line 2 - The Agitation */}
-                        <motion.div style={{ opacity: textOpacity2, y: glitchY }} className="mb-12">
+                        <m.div style={{ opacity: textOpacity2, y: glitchY }} className="mb-12">
                             <p className="text-xl md:text-4xl font-bold text-foreground/80 uppercase tracking-tight max-w-3xl mx-auto leading-tight">
                                 {subtitle}
                             </p>
-                        </motion.div>
+                        </m.div>
 
                         {/* Line 3 - The Resolution */}
-                        <motion.div style={{ opacity: textOpacity3 }} className="p-6 md:p-10 border border-cyan-500/30 glass-card bg-cyan-950/20 rounded-3xl relative overflow-hidden">
+                        <m.div style={{ opacity: textOpacity3 }} className="p-6 md:p-10 border border-cyan-500/30 glass-card bg-cyan-950/20 rounded-3xl relative overflow-hidden">
                             <div className="absolute inset-0 bg-cyan-500/10 blur-xl mix-blend-screen" />
                             <p className="text-base sm:text-2xl md:text-3xl font-black text-cyan-400 tracking-tighter relative z-10 drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]">
                                 {paragraph}
                             </p>
-                        </motion.div>
+                        </m.div>
                     </div>
-                </motion.div>
+                </m.div>
 
                 {/* Cyberpunk Grid Floor */}
                 <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-cyan-950/20 to-transparent mask-gradient-v">

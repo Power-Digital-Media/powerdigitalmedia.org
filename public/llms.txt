@@ -994,3 +994,9 @@ Power Digital publishes high-level protocols and insights on AI, web architectur
   - **Excerpt**: Next.js 16 ships a built-in MCP server. AI coding agents can now read your build errors, inspect your routes, and fix your code without guessing. The framework just became an API for machines.
   - **Link**: https://powerdigitalmedia.org/blog/nextjs-16-ai-coding-agents
 
+- **Production AI Orchestration Beyond the API Endpoint**
+  - **Category**: AI Infrastructure
+  - **Date**: May 17, 2026
+  - **Excerpt**: A single API call is not an AI strategy. Production orchestration demands model routing, fallback chains, structured context injection, and observability infrastructure that survives real traffic.
+  - **Link**: https://powerdigitalmedia.org/blog/production-ai-orchestration-multi-model-workflows
+
