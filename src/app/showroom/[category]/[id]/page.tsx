@@ -12,6 +12,7 @@ import ReactMarkdown from "react-markdown";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import ProductSchema from "@/components/seo/ProductSchema";
 import ImageObjectSchema from "@/components/seo/ImageObjectSchema";
+import "../../../typography.css";
 
 // Force static generation for known paths
 export function generateStaticParams() {

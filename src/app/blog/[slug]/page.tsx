@@ -12,6 +12,7 @@ import { notFound } from "next/navigation";
 import ShareButtons from "@/components/blog/ShareButtons";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import PodcastPlayer from "@/components/blog/PodcastPlayer";
+import "../../typography.css";
 
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {

@@ -1,5 +1,6 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import "../typography.css";
 
 export const metadata = {
     title: "Terms of Service | Power Digital Media",

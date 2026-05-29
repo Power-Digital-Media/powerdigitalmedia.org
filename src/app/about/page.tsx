@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AboutClient from "./AboutClient";
+import "../typography.css";
 
 export const metadata: Metadata = {
     title: "About Us | Power Digital Media — AI-Ready Web Architecture in Jackson, MS",
