@@ -180,65 +180,53 @@ export default function MarketingPage() {
             />
 
             {/* Hero Section */}
-            <section className="relative min-h-[90vh] lg:min-h-[100vh] flex flex-col justify-center pt-32 pb-24 md:py-0 overflow-hidden">
+            <section className="relative min-h-[90vh] lg:min-h-[100vh] flex flex-col justify-center pt-28 pb-12 md:py-0 overflow-hidden">
                 <CyberHeroBg variant="marketing" />
 
-                {/* 3D Isometric Telemetry Centerpiece Background (Aligned with Home/Web-Design Visual Language) */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] w-[380px] h-[380px] md:w-[650px] md:h-[650px] opacity-[0.22] md:opacity-[0.20] pointer-events-none mix-blend-screen z-0">
-                    <div className="relative w-full h-full rounded-full overflow-hidden">
-                        {/* Core glow behind the telemetry graphic to blend it elegantly */}
-                        <div className="absolute inset-0 bg-blue-500/10 rounded-full blur-[80px] pointer-events-none" />
-                        <Image 
-                            src="/images/marketing_telemetry_system.png" 
-                            alt="Marketing Telemetry Background System" 
-                            fill
-                            className="object-contain"
-                            priority
-                        />
-                    </div>
-                </div>
-
                 <div className="container relative z-10 px-4 mx-auto text-center mt-4 md:mt-16 mb-4">
-                    <div className="max-w-4xl mx-auto space-y-8 flex flex-col items-center">
-                        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-card border-blue-500/20 text-blue-400 text-[10px] font-black uppercase tracking-[0.4em] mx-auto">
-                            <TrendingUp className="w-3 h-3 animate-pulse" />
-                            Local B2B Paid Social Engines
-                        </div>
+                    <span className="text-blue-400 font-bold tracking-[0.4em] uppercase text-[8px] md:text-[9px] mb-4 md:mb-6 block">
+                        LOCAL B2B PAID SOCIAL AD ACQUISITION
+                    </span>
+                    <h1 className="text-4xl md:text-8xl font-black mb-6 md:mb-8 tracking-tighter leading-[0.85] uppercase">
+                        High-Velocity <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 text-glow-blue block mt-2">
+                            Ad Funnels.
+                        </span>
+                    </h1>
+                    <p className="text-foreground/60 max-w-2xl mx-auto text-lg leading-relaxed">
+                        Stop wasting money on boosted posts. We build high-converting paid social campaigns that capture qualified local leads and sync them directly into <strong className="text-blue-400 font-bold">Capsule CRM</strong> in milliseconds.
+                    </p>
 
-                        <h1 className="text-4xl md:text-8xl font-black tracking-tighter leading-[0.85] uppercase">
-                            High-Speed <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 text-glow-blue block mt-2">
-                                Ad Funnels.
-                            </span>
-                        </h1>
-
-                        <p className="text-lg md:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto font-light">
-                            Stop wasting money on boosted posts. We build high-converting paid social campaigns that capture qualified local leads and sync them directly into <strong className="text-blue-400 font-bold">Capsule CRM</strong> in milliseconds.
-                        </p>
-
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-4 w-full sm:w-auto">
-                            <button
-                                onClick={() => setIsBookingOpen(true)}
-                                className="w-full sm:w-auto px-10 py-5 bg-blue-500 text-white rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white hover:text-blue-500 transition-all duration-300 shadow-[0_0_30px_rgba(59,130,246,0.3)] flex items-center justify-center gap-2 group animate-[pulse_3s_infinite_alternate]"
-                            >
-                                Schedule Strategy Call
-                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                            </button>
-                            <a
-                                href="#tiers"
-                                className="w-full sm:w-auto px-10 py-5 bg-white/5 border border-white/10 text-white rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white hover:text-black transition-all duration-300 text-center block"
-                            >
-                                Explore Deployment Tiers
-                            </a>
-                        </div>
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8 mt-6 md:mt-10">
+                        <button
+                            onClick={() => setIsBookingOpen(true)}
+                            className="w-full sm:w-auto px-8 py-4 md:px-12 md:py-5 bg-white text-black font-black rounded-full hover:bg-blue-500 hover:text-white transition-all uppercase tracking-widest text-[9px] shadow-[0_0_50px_rgba(255,255,255,0.1)] active:scale-95 text-center block"
+                        >
+                            Initiate Campaign Strategy
+                        </button>
+                        <button 
+                            onClick={() => setIsBookingOpen(true)}
+                            className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 md:px-12 md:py-5 border border-white/10 rounded-full font-black uppercase tracking-widest text-[9px] hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-all group active:scale-95 block"
+                        >
+                            <Video className="w-3.5 h-3.5 text-blue-400 group-hover:text-white transition-colors" />
+                            Schedule a Google Meet
+                        </button>
                     </div>
 
-                    {/* Telemetry Active Pulse Indicator Bar (High-end sub-trust bar) */}
-                    <div className="mt-14 mb-4 flex items-center justify-center opacity-85 hover:opacity-100 transition-opacity">
-                        <div className="flex items-center gap-3 px-4 py-2 rounded-full border border-blue-500/30 bg-blue-950/20 backdrop-blur-sm">
-                            <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_#22d3ee]" />
-                            <span className="text-[9px] font-black uppercase tracking-widest text-cyan-400">TELEMETRY ACTIVE: CAPSULE CRM SYNC LIVE</span>
+                    {/* Trust Signals Bar */}
+                    <div className="mt-14 mb-8 flex flex-col items-center justify-center gap-4 opacity-80 hover:opacity-100 transition-opacity">
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                            <div className="flex items-center gap-3 px-4 py-2 rounded-full border border-blue-500/30 bg-blue-950/20 backdrop-blur-sm">
+                                <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse shadow-[0_0_8px_#3b82f6]" />
+                                <span className="text-xs font-bold tracking-widest uppercase text-blue-400">Verified CRM Sync Pipelines</span>
+                            </div>
+                            <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/[0.02]">
+                                <span className="text-[10px] font-bold tracking-widest uppercase text-slate-300">BBB A+ ACCREDITED</span>
+                            </div>
                         </div>
+                        <p className="text-[10px] uppercase tracking-widest text-foreground/40 mt-1">
+                            Most agencies run generic ad setups. We build automated B2B engines.
+                        </p>
                     </div>
                 </div>
             </section>
@@ -261,68 +249,110 @@ export default function MarketingPage() {
 
             {/* Interactive Conversion Telemetry Pipeline */}
             <section className="py-24 border-y border-white/5 bg-[#030306] relative z-10">
-                <div className="container px-4 mx-auto max-w-5xl">
-                    <div className="text-center mb-16 uppercase tracking-tighter">
+                <div className="container px-4 mx-auto max-w-6xl">
+                    <div className="text-center mb-20 uppercase tracking-tighter">
                         <span className="text-blue-400 font-bold tracking-[0.4em] text-[10px] mb-4 block">The Lead Pipeline</span>
                         <h2 className="text-3xl md:text-5xl font-black">How We <span className="text-white/40">Sync Growth.</span></h2>
                     </div>
 
-                    <div className="grid gap-6 md:grid-cols-4 relative">
+                    <div className="grid gap-16 lg:grid-cols-12 items-center">
                         
-                        {/* Pipeline Step 1 */}
-                        <div className="p-6 rounded-2xl glass-card border border-white/5 space-y-4 hover:border-blue-500/30 transition-all duration-300">
-                            <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
-                                <MousePointerClick className="w-5 h-5" />
+                        {/* Pipeline Checklist Column */}
+                        <div className="lg:col-span-7 space-y-6 text-left">
+                            
+                            {/* Pipeline Step 1 */}
+                            <div className="p-6 rounded-2xl glass-card border border-white/5 flex gap-5 hover:border-blue-500/30 transition-all duration-300 items-start">
+                                <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0">
+                                    <MousePointerClick className="w-5 h-5" />
+                                </div>
+                                <div className="space-y-2">
+                                    <div className="flex items-center gap-3">
+                                        <span className="text-[9px] font-bold text-blue-400 uppercase tracking-widest">Phase 01</span>
+                                        <h3 className="font-bold text-sm uppercase tracking-wide">The Scroll Hook</h3>
+                                    </div>
+                                    <p className="text-xs text-slate-400 leading-relaxed">
+                                        Thumb-stopping direct response creatives designed to disrupt personal feeds and capture attention.
+                                    </p>
+                                </div>
                             </div>
-                            <div className="space-y-1">
-                                <span className="text-[10px] font-bold text-blue-400 uppercase tracking-widest block">Phase 01</span>
-                                <h3 className="font-bold text-sm uppercase tracking-wide">The Scroll Hook</h3>
+
+                            {/* Pipeline Step 2 */}
+                            <div className="p-6 rounded-2xl glass-card border border-white/5 flex gap-5 hover:border-indigo-500/30 transition-all duration-300 items-start">
+                                <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 shrink-0">
+                                    <TrendingUp className="w-5 h-5" />
+                                </div>
+                                <div className="space-y-2">
+                                    <div className="flex items-center gap-3">
+                                        <span className="text-[9px] font-bold text-indigo-400 uppercase tracking-widest">Phase 02</span>
+                                        <h3 className="font-bold text-sm uppercase tracking-wide">In-App Capture</h3>
+                                    </div>
+                                    <p className="text-xs text-slate-400 leading-relaxed">
+                                        Custom Meta lead forms auto-fill prospect contact details in 1-tap, slashing mobile friction by 90%.
+                                    </p>
+                                </div>
                             </div>
-                            <p className="text-xs text-slate-400 leading-relaxed">
-                                Thumb-stopping direct response creatives designed to disrupt personal feeds and capture attention.
-                            </p>
+
+                            {/* Pipeline Step 3 */}
+                            <div className="p-6 rounded-2xl glass-card border border-white/5 flex gap-5 hover:border-purple-500/30 transition-all duration-300 items-start">
+                                <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-400/20 flex items-center justify-center text-purple-400 shrink-0">
+                                    <Database className="w-5 h-5" />
+                                </div>
+                                <div className="space-y-2">
+                                    <div className="flex items-center gap-3">
+                                        <span className="text-[9px] font-bold text-purple-400 uppercase tracking-widest">Phase 03</span>
+                                        <h3 className="font-bold text-sm uppercase tracking-wide">300ms CRM Sync</h3>
+                                    </div>
+                                    <p className="text-xs text-slate-400 leading-relaxed">
+                                        Lead telemetry is instantly posted directly into Capsule CRM and tagged for immediate tracking.
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Pipeline Step 4 */}
+                            <div className="p-6 rounded-2xl glass-card border border-white/5 flex gap-5 hover:border-cyan-500/30 transition-all duration-300 items-start">
+                                <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 shrink-0">
+                                    <MailCheck className="w-5 h-5" />
+                                </div>
+                                <div className="space-y-2">
+                                    <div className="flex items-center gap-3">
+                                        <span className="text-[9px] font-bold text-cyan-400 uppercase tracking-widest">Phase 04</span>
+                                        <h3 className="font-bold text-sm uppercase tracking-wide">Welcome Protocol</h3>
+                                    </div>
+                                    <p className="text-xs text-slate-400 leading-relaxed">
+                                        Instant welcome email triggers via Transpond list sync, warm-calling the customer automatically.
+                                    </p>
+                                </div>
+                            </div>
+
                         </div>
 
-                        {/* Pipeline Step 2 */}
-                        <div className="p-6 rounded-2xl glass-card border border-white/5 space-y-4 hover:border-indigo-500/30 transition-all duration-300">
-                            <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
-                                <TrendingUp className="w-5 h-5" />
-                            </div>
-                            <div className="space-y-1">
-                                <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest block">Phase 02</span>
-                                <h3 className="font-bold text-sm uppercase tracking-wide">In-App Capture</h3>
-                            </div>
-                            <p className="text-xs text-slate-400 leading-relaxed">
-                                Custom Meta lead forms auto-fill prospect contact details in 1-tap, slashing mobile friction by 90%.
-                            </p>
-                        </div>
+                        {/* Interactive Visual Dashboard Column */}
+                        <div className="lg:col-span-5 relative w-full flex justify-center">
+                            <motion.div 
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8 }}
+                                className="relative p-3 rounded-[3rem] border border-white/10 glass-card bg-slate-950/40 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden group max-w-md w-full"
+                            >
+                                <div className="absolute inset-0 -z-10 rounded-[3rem] bg-gradient-to-br from-blue-400/10 via-transparent to-purple-500/10 pointer-events-none" />
+                                
+                                {/* Telemetry Badge */}
+                                <div className="absolute top-6 left-6 z-20 px-3 py-1.5 rounded-full bg-slate-900/90 border border-blue-500/30 flex items-center gap-2">
+                                    <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_#22d3ee]" />
+                                    <span className="text-[9px] font-black uppercase tracking-widest text-cyan-400">TELEMETRY SCHEMA: CRM ACTIVE</span>
+                                </div>
 
-                        {/* Pipeline Step 3 */}
-                        <div className="p-6 rounded-2xl glass-card border border-white/5 space-y-4 hover:border-purple-500/30 transition-all duration-300">
-                            <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-400/20 flex items-center justify-center text-purple-400">
-                                <Database className="w-5 h-5" />
-                            </div>
-                            <div className="space-y-1">
-                                <span className="text-[10px] font-bold text-purple-400 uppercase tracking-widest block">Phase 03</span>
-                                <h3 className="font-bold text-sm uppercase tracking-wide">300ms CRM Sync</h3>
-                            </div>
-                            <p className="text-xs text-slate-400 leading-relaxed">
-                                Lead telemetry is instantly posted directly into Capsule CRM and tagged for immediate tracking.
-                            </p>
-                        </div>
-
-                        {/* Pipeline Step 4 */}
-                        <div className="p-6 rounded-2xl glass-card border border-white/5 space-y-4 hover:border-cyan-500/30 transition-all duration-300">
-                            <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
-                                <MailCheck className="w-5 h-5" />
-                            </div>
-                            <div className="space-y-1">
-                                <span className="text-[10px] font-bold text-cyan-400 uppercase tracking-widest block">Phase 04</span>
-                                <h3 className="font-bold text-sm uppercase tracking-wide">Welcome Protocol</h3>
-                            </div>
-                            <p className="text-xs text-slate-400 leading-relaxed">
-                                Instant welcome email triggers via Transpond list sync, warm-calling the customer automatically.
-                            </p>
+                                <div className="relative aspect-square w-full rounded-[2.5rem] overflow-hidden bg-slate-950/80">
+                                    <Image 
+                                        src="/images/marketing_telemetry_system.png" 
+                                        alt="Automated paid social funnel telemetry showing direct Capsule CRM syncing pipelines" 
+                                        fill
+                                        sizes="(max-w-md) 100vw, 400px"
+                                        className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
+                                    />
+                                </div>
+                            </motion.div>
                         </div>
 
                     </div>
