@@ -100,6 +100,7 @@ export default function Navbar() {
                                             <Link
                                                 key={link.name}
                                                 href={link.href}
+                                                prefetch={false}
                                                 className="px-4 py-3 text-sm font-medium hover:bg-white/5 hover:text-accent rounded-xl transition-colors"
                                             >
                                                 {link.name}
@@ -113,6 +114,7 @@ export default function Navbar() {
                                 <Link
                                     key={link.name}
                                     href={link.href}
+                                    prefetch={false}
                                     target={link.external ? "_blank" : undefined}
                                     rel={link.external ? "noopener noreferrer" : undefined}
                                     className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors"
@@ -124,6 +126,7 @@ export default function Navbar() {
                             {isAdmin(user?.email) && (
                                 <Link
                                     href="/admin"
+                                    prefetch={false}
                                     className="flex items-center gap-2 px-5 py-2 text-sm font-black text-accent glass-card border-accent/40 hover:bg-accent/10 transition-all rounded-full"
                                 >
                                     <Terminal className="w-4 h-4" />
@@ -132,6 +135,7 @@ export default function Navbar() {
                             )}
                             <Link
                                 href={user ? "/dashboard" : "/login"}
+                                prefetch={false}
                                 className="flex items-center gap-2 px-5 py-2 text-sm font-bold text-white glass-card border-accent/20 hover:bg-accent/10 transition-all rounded-full"
                             >
                                 {user ? (
@@ -148,6 +152,7 @@ export default function Navbar() {
                             </Link>
                             <Link
                                 href="/book"
+                                prefetch={false}
                                 className="px-5 py-2 text-sm font-bold text-white bg-accent rounded-full hover:bg-accent/90 transition-all border-glow"
                             >
                                 Book a Call
@@ -187,6 +192,7 @@ export default function Navbar() {
                                         <Link
                                             key={link.name}
                                             href={link.href}
+                                            prefetch={false}
                                             className="px-6 py-4 text-lg font-medium hover:bg-white/5 rounded-2xl transition-colors"
                                             onClick={() => setIsMobileMenuOpen(false)}
                                         >
@@ -204,6 +210,7 @@ export default function Navbar() {
                                         <Link
                                             key={link.name}
                                             href={link.href}
+                                            prefetch={false}
                                             className="px-6 py-4 text-lg font-medium hover:bg-white/5 rounded-2xl transition-colors border-b border-white/5 last:border-0"
                                             onClick={() => setIsMobileMenuOpen(false)}
                                         >
@@ -219,6 +226,7 @@ export default function Navbar() {
                             <div className="grid grid-cols-2 gap-3">
                                 <Link
                                     href="/billing"
+                                    prefetch={false}
                                     className="py-3 text-center text-sm font-medium text-muted-foreground hover:text-white glass-card border-white/5 rounded-xl"
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
@@ -226,6 +234,7 @@ export default function Navbar() {
                                 </Link>
                                 <Link
                                     href={user ? "/dashboard" : "/login"}
+                                    prefetch={false}
                                     className="py-3 text-center text-sm font-medium text-white glass-card border-white/5 rounded-xl flex items-center justify-center gap-2"
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
@@ -246,6 +255,7 @@ export default function Navbar() {
 
                             <Link
                                 href="/book"
+                                prefetch={false}
                                 onClick={() => setIsMobileMenuOpen(false)}
                                 className="w-full py-4 text-center font-bold text-white bg-accent rounded-xl border border-accent border-glow shadow-[0_0_30px_rgba(var(--accent),0.3)] hover:shadow-[0_0_50px_rgba(var(--accent),0.5)] transition-all mt-2"
                             >

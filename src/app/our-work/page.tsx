@@ -8,11 +8,11 @@ import Footer from "@/components/layout/Footer";
 import BookingModal from "@/components/ui/BookingModal";
 import { projects } from "@/data/projects";
 import { GEAR_COLLECTION } from "@/data/gear";
-import { blogPosts } from "@/data/blogPosts";
+import { blogMetadata } from "@/data/blogMetadata";
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────
 const FEATURED_GEAR = GEAR_COLLECTION.filter((g) => g.isFeatured).slice(0, 6);
-const RECENT_POSTS = blogPosts.slice(0, 6);
+const RECENT_POSTS = blogMetadata.slice(0, 6);
 
 // ─── PODCAST EPISODES ─────────────────────────────────────────────────────────
 // Optimized WebP thumbnails (converted from SVG originals)

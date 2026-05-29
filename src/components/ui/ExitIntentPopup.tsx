@@ -31,29 +31,49 @@ export default function ExitIntentPopup() {
             }
         };
 
-        // 3. Mobile Trigger: Scroll Depth (Scrolls past 60% of page)
-        const handleScroll = () => {
-            // Dynamic check at event execution time
-            if (sessionStorage.getItem("audit_dismissed") === "true" || localStorage.getItem("audit_converted") === "true") {
-                return;
-            }
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            if (docHeight > 0) {
-                const scrollPercent = (scrollTop / docHeight) * 100;
-                if (scrollPercent > 60) {
-                    setIsOpen(true);
-                }
-            }
-        };
-
-        // Bind events
+        // Bind exit-intent desktop trigger
         document.addEventListener("mouseleave", handleMouseLeave);
-        window.addEventListener("scroll", handleScroll, { passive: true });
+
+        // 3. Mobile Trigger: Scroll Depth using IntersectionObserver (eliminates layout-thrashing Forced Reflows)
+        // Dynamically create a tiny sentinel div at 60% scroll depth client-side to prevent hydration mismatch
+        const sentinel = document.createElement("div");
+        sentinel.id = "exit-intent-sentinel";
+        sentinel.style.position = "absolute";
+        sentinel.style.top = "60%";
+        sentinel.style.left = "0";
+        sentinel.style.width = "1px";
+        sentinel.style.height = "1px";
+        sentinel.style.pointerEvents = "none";
+        sentinel.style.zIndex = "-9999";
+        
+        // Ensure body is relatively positioned so sentinel positions perfectly
+        if (document.body.style.position !== "relative") {
+            document.body.style.position = "relative";
+        }
+        document.body.appendChild(sentinel);
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (entries[0].isIntersecting) {
+                    const isConverted = localStorage.getItem("audit_converted") === "true";
+                    const isDismissed = sessionStorage.getItem("audit_dismissed") === "true";
+                    if (!isConverted && !isDismissed) {
+                        setIsOpen(true);
+                    }
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0 }
+        );
+        
+        observer.observe(sentinel);
 
         return () => {
             document.removeEventListener("mouseleave", handleMouseLeave);
-            window.removeEventListener("scroll", handleScroll);
+            observer.disconnect();
+            if (sentinel.parentNode) {
+                sentinel.parentNode.removeChild(sentinel);
+            }
         };
     }, []);
 

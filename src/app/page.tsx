@@ -1,22 +1,16 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
-import CyberHeroBg from "@/components/ui/shared/CyberHeroBg";
+import DeferredHeroBg from "@/components/ui/DeferredHeroBg";
 import { Video } from "lucide-react";
+import DeferredServices from "@/components/ui/DeferredServices";
+import DeferredFooterSections from "@/components/ui/DeferredFooterSections";
 
 const Portfolio = dynamic(() => import("@/components/sections/Portfolio"));
-
-const Footer = dynamic(() => import("@/components/layout/Footer"));
-
-const Services = dynamic(() => import("@/components/sections/Services"));
 const LocalWebDesign = dynamic(() => import("@/components/sections/LocalWebDesign"));
 const TechStack = dynamic(() => import("@/components/sections/TechStack"));
-const LatestInsights = dynamic(() => import("@/components/sections/LatestInsights"));
-const LeadArchitect = dynamic(() => import("@/components/sections/LeadArchitect"));
-const Contact = dynamic(() => import("@/components/sections/Contact"));
 const WakeUpCall = dynamic(() => import("@/components/ui/WakeUpCall"));
 const BBBSeal = dynamic(() => import("@/components/ui/BBBSeal"));
-const AuditCTA = dynamic(() => import("@/components/sections/AuditCTA"));
 
 export const metadata = {
   title: "Power Digital Media | Elite Web Design, Custom Apps & Growth Marketing",
@@ -39,19 +33,28 @@ export default function Home() {
         to eliminate hydration delays while displaying a premium 3D perspective network platform.
       */}
       <section className="relative overflow-hidden flex flex-col justify-center min-h-0 md:min-h-screen pt-28 pb-12 md:py-0">
-        <CyberHeroBg variant="web-design" />
+        <DeferredHeroBg variant="web-design" />
 
         <div className="container relative z-10 px-4 mx-auto text-center mt-4 md:mt-16 mb-4">
-          <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[8px] md:text-[9px] mb-4 md:mb-6 block">
+          <span 
+            style={{ fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif' }}
+            className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[8px] md:text-[9px] mb-4 md:mb-6 block"
+          >
             CENTRAL MISSISSIPPI'S FASTEST WEB ARCHITECTURE
           </span>
-          <h1 className="text-4xl md:text-8xl font-black mb-6 md:mb-8 tracking-tighter leading-[0.85] uppercase">
+          <h1 
+            style={{ fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif' }}
+            className="text-4xl md:text-8xl font-black mb-6 md:mb-8 tracking-tighter leading-[0.85] uppercase"
+          >
             We Engineer <br /> Websites That
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-500 text-glow-cyan text-glow block mt-2">
               Dominate Search
             </span>
           </h1>
-          <p className="text-foreground/60 max-w-2xl mx-auto text-lg leading-relaxed">
+          <p 
+            style={{ fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif' }}
+            className="text-foreground/60 max-w-2xl mx-auto text-lg leading-relaxed"
+          >
             Lightning-fast Next.js architecture designed for humans and trusted by AI search engines.
           </p>
 
@@ -89,12 +92,9 @@ export default function Home() {
       />
       <Portfolio />
       <LocalWebDesign />
-      <Services />
+      <DeferredServices />
       <TechStack />
-      <LatestInsights />
-      <LeadArchitect />
-      <AuditCTA />
-      <Contact />
+      <DeferredFooterSections />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -147,7 +147,6 @@ export default function Home() {
           })
         }}
       />
-      <Footer />
     </main>
   );
 }

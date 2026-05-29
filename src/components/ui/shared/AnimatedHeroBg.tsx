@@ -1,45 +1,31 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { m } from "framer-motion";
 
-interface CyberHeroBgProps {
+interface AnimatedHeroBgProps {
     variant: "home" | "web-design" | "custom-applications" | "marketing";
 }
 
-export default function CyberHeroBg({ variant }: CyberHeroBgProps) {
-    
-    // Choose glow colors and beam colors based on variant
+export default function AnimatedHeroBg({ variant }: AnimatedHeroBgProps) {
     const getThemeDetails = () => {
         switch (variant) {
             case "marketing":
                 return {
-                    glowTop: "bg-blue-600/10",
-                    glowBottom: "bg-purple-600/10",
-                    beamColor: "via-purple-400",
-                    gridColor: "rgba(168, 85, 247, 0.05)" // Purple grid
+                    beamColor: "via-purple-400"
                 };
             case "custom-applications":
                 return {
-                    glowTop: "bg-cyan-500/10",
-                    glowBottom: "bg-indigo-600/10",
-                    beamColor: "via-blue-400",
-                    gridColor: "rgba(99, 102, 241, 0.05)" // Indigo grid
+                    beamColor: "via-blue-400"
                 };
             case "home":
                 return {
-                    glowTop: "bg-cyan-500/10",
-                    glowBottom: "bg-indigo-600/10",
-                    beamColor: "via-cyan-400",
-                    gridColor: "rgba(6, 182, 212, 0.05)" // Cyan grid
+                    beamColor: "via-cyan-400"
                 };
             case "web-design":
             default:
                 return {
-                    glowTop: "bg-cyan-500/10",
-                    glowBottom: "bg-blue-600/10",
-                    beamColor: "via-cyan-400",
-                    gridColor: "rgba(34, 211, 238, 0.05)" // Cyan grid
+                    beamColor: "via-cyan-400"
                 };
         }
     };
@@ -47,27 +33,7 @@ export default function CyberHeroBg({ variant }: CyberHeroBgProps) {
     const theme = getThemeDetails();
 
     return (
-        <div className="absolute inset-0 z-0 overflow-hidden bg-black">
-            {/* Deep Core Glows */}
-            <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-[80vw] h-[80vw] max-w-[1200px] max-h-[1200px] ${theme.glowTop} rounded-full blur-[100px] md:blur-[150px] opacity-70 pointer-events-none`} />
-            <div className={`absolute bottom-0 right-[-20%] w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] ${theme.glowBottom} rounded-full blur-[120px] opacity-50 pointer-events-none`} />
-
-            {/* The Cyber Grid Platform */}
-            <div
-                className="absolute inset-x-0 bottom-0 h-[70vh] border-t border-white/5"
-                style={{
-                    backgroundImage: `
-                        linear-gradient(to right, ${theme.gridColor} 1px, transparent 1px),
-                        linear-gradient(to top, ${theme.gridColor} 1px, transparent 1px)
-                    `,
-                    backgroundSize: '40px 40px',
-                    transform: 'perspective(1000px) rotateX(60deg) translateY(100px) scale(2.5)',
-                    transformOrigin: 'bottom center',
-                    maskImage: 'linear-gradient(to top, black 20%, transparent 100%)',
-                    WebkitMaskImage: 'linear-gradient(to top, black 20%, transparent 100%)'
-                }}
-            />
-
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             {/* Data Streams (Vertical Beams) */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none hidden md:block">
                 {[...Array(6)].map((_, i) => (
@@ -92,9 +58,6 @@ export default function CyberHeroBg({ variant }: CyberHeroBgProps) {
                     />
                 ))}
             </div>
-
-            {/* Ambient Core Circle (Barely visible behind text overlay) */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[40%] w-[320px] h-[320px] md:w-[480px] md:h-[480px] rounded-full border border-white/[0.02] bg-white/[0.002] blur-sm pointer-events-none" />
 
             {/* Dynamic Centerpieces based on Variant */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[40%] w-[400px] h-[400px] md:w-[600px] md:h-[600px] opacity-[0.35] pointer-events-none mix-blend-screen hidden md:block">
@@ -126,24 +89,19 @@ export default function CyberHeroBg({ variant }: CyberHeroBgProps) {
                 {variant === "custom-applications" && (
                     <div className="w-full h-full relative">
                         <svg viewBox="0 0 100 100" className="w-full h-full animate-[spin_80s_linear_infinite]">
-                            {/* Microchip Outer Connections */}
                             <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" className="text-indigo-500/30" strokeWidth="0.1" />
                             <circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" className="text-cyan-500/40" strokeWidth="0.2" strokeDasharray="1 6" />
                             <circle cx="50" cy="50" r="32" fill="none" stroke="currentColor" className="text-indigo-400" strokeWidth="0.3" strokeDasharray="12 4 2 4" />
 
-                            {/* Core Microchip Square Frame */}
                             <rect x="36" y="36" width="28" height="28" rx="3" fill="none" stroke="currentColor" className="text-cyan-400" strokeWidth="0.4" />
                             
-                            {/* Circuit Traces / Radial Lines */}
                             <path d="M 50 2 L 50 36 M 50 64 L 50 98 M 2 50 L 36 50 M 64 50 L 98 50" stroke="currentColor" className="text-indigo-500/50" strokeWidth="0.2" />
                             <path d="M 16 16 L 36 36 M 84 84 L 64 64 M 84 16 L 64 36 M 16 84 L 36 64" stroke="currentColor" className="text-indigo-500/30" strokeWidth="0.2" />
                             
-                            {/* Tiny silicon transistors inside */}
                             <circle cx="50" cy="50" r="5" fill="none" stroke="currentColor" className="text-cyan-400 animate-pulse" strokeWidth="0.3" />
                             <rect x="47" y="47" width="6" height="6" fill="none" stroke="currentColor" className="text-blue-500" strokeWidth="0.2" />
                         </svg>
 
-                        {/* Fast Spinning Outer Processing Ring */}
                         <div className="absolute inset-0 flex items-center justify-center">
                             <svg viewBox="0 0 100 100" className="w-[90%] h-[90%] animate-[spin_25s_linear_infinite_reverse]">
                                 <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" className="text-cyan-400/60" strokeWidth="0.3" strokeDasharray="2 15" />
@@ -161,7 +119,6 @@ export default function CyberHeroBg({ variant }: CyberHeroBgProps) {
                             <circle cx="50" cy="50" r="39" fill="none" stroke="currentColor" className="text-blue-500/40" strokeWidth="0.3" strokeDasharray="12 4 2 4" />
                             <circle cx="50" cy="50" r="29" fill="none" stroke="currentColor" className="text-cyan-500/30" strokeWidth="0.15" />
                             
-                            {/* Growth Indicators / Ascending vectors */}
                             <path d="M 50 50 L 85 15" stroke="currentColor" className="text-purple-400/50" strokeWidth="0.3" strokeDasharray="1 1" />
                             <circle cx="85" cy="15" r="1.2" fill="currentColor" className="text-purple-400" style={{ filter: "drop-shadow(0px 0px 4px rgba(168, 85, 247, 0.8))" }} />
                             
@@ -185,22 +142,18 @@ export default function CyberHeroBg({ variant }: CyberHeroBgProps) {
                 {variant === "home" && (
                     <div className="w-full h-full relative">
                         <svg viewBox="0 0 100 100" className="w-full h-full animate-[spin_100s_linear_infinite]">
-                            {/* Interconnected CDN / Node circles */}
                             <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" className="text-cyan-500/25" strokeWidth="0.12" />
                             <circle cx="50" cy="50" r="34" fill="none" stroke="currentColor" className="text-blue-500/50" strokeWidth="0.25" strokeDasharray="6 12" />
                             <circle cx="50" cy="50" r="22" fill="none" stroke="currentColor" className="text-indigo-400/60" strokeWidth="0.12" />
 
-                            {/* Radial Server node connections */}
                             <path d="M 50 4 L 50 96 M 4 50 L 96 50 M 18 18 L 82 82 M 82 18 L 18 82" stroke="currentColor" className="text-cyan-500/15" strokeWidth="0.1" />
 
-                            {/* Orbiting data points */}
-                            <m.circle cx="50" cy="4" r="1.5" className="fill-cyan-400 text-glow" style={{ filter: "drop-shadow(0px 0px 4px rgba(34, 211, 238, 0.8))" }} />
-                            <m.circle cx="16" cy="18" r="1.2" className="fill-blue-400" style={{ filter: "drop-shadow(0px 0px 3px rgba(59, 130, 246, 0.8))" }} />
-                            <m.circle cx="84" cy="18" r="1.2" className="fill-indigo-400" style={{ filter: "drop-shadow(0px 0px 3px rgba(129, 140, 248, 0.8))" }} />
-                            <m.circle cx="50" cy="96" r="1.5" className="fill-cyan-400 text-glow" style={{ filter: "drop-shadow(0px 0px 4px rgba(34, 211, 238, 0.8))" }} />
+                            <circle cx="50" cy="4" r="1.5" className="fill-cyan-400 text-glow" style={{ filter: "drop-shadow(0px 0px 4px rgba(34, 211, 238, 0.8))" }} />
+                            <circle cx="16" cy="18" r="1.2" className="fill-blue-400" style={{ filter: "drop-shadow(0px 0px 3px rgba(59, 130, 246, 0.8))" }} />
+                            <circle cx="84" cy="18" r="1.2" className="fill-indigo-400" style={{ filter: "drop-shadow(0px 0px 3px rgba(129, 140, 248, 0.8))" }} />
+                            <circle cx="50" cy="96" r="1.5" className="fill-cyan-400 text-glow" style={{ filter: "drop-shadow(0px 0px 4px rgba(34, 211, 238, 0.8))" }} />
                         </svg>
 
-                        {/* Reverse spinning vector core for high-prestige depth */}
                         <div className="absolute inset-0 flex items-center justify-center">
                             <svg viewBox="0 0 100 100" className="w-[50%] h-[50%] animate-[spin_35s_linear_infinite_reverse]">
                                 <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" className="text-indigo-400/35" strokeWidth="0.3" strokeDasharray="3 5" />
@@ -210,11 +163,7 @@ export default function CyberHeroBg({ variant }: CyberHeroBgProps) {
                         </div>
                     </div>
                 )}
-
             </div>
-
-            {/* Fog overlay to blend edges and maintain strict dark readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-background z-[2]" />
         </div>
     );
 }

@@ -71,6 +71,7 @@ export default function LocalWebDesign() {
                 >
                     <Link
                         href="/contact"
+                        prefetch={false}
                         className="group flex items-center gap-3 px-10 py-4 font-bold text-white transition-all bg-accent rounded-full border-glow hover:bg-accent/90 hover:scale-105 active:scale-95"
                     >
                         Start Your Build <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

@@ -2,8 +2,7 @@
 # This eliminates polyfills and reduces bundle size
 
 [production]
->0.5%
-last 2 versions
+> 1% and supports es6-module
 not dead
 not IE 11
 not op_mini all

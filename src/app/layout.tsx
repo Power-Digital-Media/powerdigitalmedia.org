@@ -11,7 +11,7 @@ import ExitIntentPopup from "@/components/ui/ExitIntentPopup";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  display: "swap",
+  display: "optional",
   preload: true,
 });
 
@@ -72,16 +72,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
       <head>
         {/* Google Site Verification (HTML Tag Method) */}
         <meta name="google-site-verification" content="3gJZWrSWWnZtSbDZgQzznQeNdzOgHuUcC8C-H2LzenA" />
 
         {/* Preconnect to critical third-party origins */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://connect.facebook.net" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
       </head>
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
+        className="antialiased"
       >
 
         <Suspense fallback={null}>

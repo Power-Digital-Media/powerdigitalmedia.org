@@ -50,6 +50,7 @@ const nextConfig = {
   },
   experimental: {
     nextScriptWorkers: true,
+    optimizeCss: true,
   },
   // Use modern browserslist
 };

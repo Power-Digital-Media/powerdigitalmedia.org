@@ -3,11 +3,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Clock, ExternalLink } from "lucide-react";
-import { blogPosts } from "@/data/blogPosts";
+import { blogMetadata } from "@/data/blogMetadata";
 
 export default function LatestInsights() {
     // Get the 3 most recent posts
-    const recentPosts = blogPosts
+    const recentPosts = blogMetadata
         .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
         .slice(0, 3);
 

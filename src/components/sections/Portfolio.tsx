@@ -4,8 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink, ArrowUpRight, ShieldCheck, Zap, Heart, TrendingUp, Sparkles, Activity } from "lucide-react";
 import { useState } from "react";
-import BookingModal from "../ui/BookingModal";
+import dynamic from "next/dynamic";
 import { projects, Project } from "@/data/projects";
+
+const BookingModal = dynamic(() => import("../ui/BookingModal"), { ssr: false });
 
 // Type definition for visual metric overlays mapping directly to Jackson MS projects
 interface BentoMetric {
@@ -158,7 +160,6 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
                                         fill
                                         sizes="(max-width: 768px) 100vw, 70vw"
                                         className="object-cover object-top opacity-[0.18] group-hover:opacity-[0.38] group-hover:scale-[1.04] transition-all duration-[1200ms] ease-out"
-                                        priority={project.id === "all-things-new"}
                                     />
                                     {/* Glass Mask Gradients */}
                                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent z-10" />
@@ -238,6 +239,7 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
                                         <div className="flex items-center gap-4 border-t border-white/5 pt-5">
                                             <Link
                                                 href={`/portfolio/${project.id}`}
+                                                prefetch={false}
                                                 className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 bg-white text-black text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-cyan-400 hover:text-white transition-all duration-300"
                                             >
                                                 Analyze Build
