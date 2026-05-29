@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { X, Send, Sparkles, AlertCircle } from "lucide-react";
 import { useState, useEffect, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
@@ -100,7 +100,7 @@ export default function ExitIntentPopup() {
         <AnimatePresence>
             {isOpen && (
                 <div className="fixed bottom-6 right-6 z-[90] w-full max-w-[420px] px-4 md:px-0">
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0, y: 50, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 30, scale: 0.95 }}
@@ -123,7 +123,7 @@ export default function ExitIntentPopup() {
 
                         {/* Card Content */}
                         {status === "success" ? (
-                            <motion.div
+                            <m.div
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 className="flex flex-col items-center justify-center text-center py-6 space-y-4"
@@ -135,7 +135,7 @@ export default function ExitIntentPopup() {
                                     <h4 className="text-lg font-bold text-white mb-1">Audit Reserved! 🚀</h4>
                                     <p className="text-xs text-muted-foreground">Redirecting you to schedule a quick sync call...</p>
                                 </div>
-                            </motion.div>
+                            </m.div>
                         ) : (
                             <div className="space-y-5">
                                 {/* Badge */}
@@ -204,7 +204,7 @@ export default function ExitIntentPopup() {
                                 </form>
                             </div>
                         )}
-                    </motion.div>
+                    </m.div>
                 </div>
             )}
         </AnimatePresence>
