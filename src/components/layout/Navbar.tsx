@@ -83,7 +83,7 @@ export default function Navbar() {
                         {/* Logo */}
                         <Link href="/" className="flex items-center group" onClick={() => setIsMobileMenuOpen(false)}>
                             <div className="relative flex items-center h-16 w-48">
-                                <Image src="/power-logo.webp" alt="Power Digital Media LLC" fill unoptimized className="object-contain group-hover:scale-105 transition-transform" priority />
+                                <Image src="/images/new%20nav%20logo.webp" alt="Power Digital Media LLC" fill unoptimized className="object-contain group-hover:scale-105 transition-transform mix-blend-screen" priority />
                             </div>
                         </Link>
 
