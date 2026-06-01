@@ -1,915 +1,356 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState, useMemo } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import BookingModal from "@/components/ui/BookingModal";
-import { projects } from "@/data/projects";
-import { GEAR_COLLECTION } from "@/data/gear";
-import { blogMetadata } from "@/data/blogMetadata";
+import { liveSites, LiveSite } from "@/data/liveSites";
+import { 
+    ExternalLink, 
+    Globe, 
+    Activity, 
+    Zap, 
+    Search, 
+    Filter, 
+    Server, 
+    Clock, 
+    Gauge,
+    Shield,
+    Heart,
+    ShoppingBag,
+    Code,
+    CheckCircle2
+} from "lucide-react";
 
-// ─── DATA ─────────────────────────────────────────────────────────────────────
-const FEATURED_GEAR = GEAR_COLLECTION.filter((g) => g.isFeatured).slice(0, 6);
-const RECENT_POSTS = blogMetadata.slice(0, 6);
-
-// ─── PODCAST EPISODES ─────────────────────────────────────────────────────────
-// Optimized WebP thumbnails (converted from SVG originals)
-const PODCAST_EPISODES: { title: string; thumb: string; url: string }[] = [
-    { title: "Amber Norsworthy", thumb: "/images/thumbnails/amber-norsworthy.webp", url: "https://www.youtube.com/@HSPpodcast" },
-    { title: "Clean Slate", thumb: "/images/thumbnails/clean-slate.webp", url: "https://www.youtube.com/@HSPpodcast" },
-    { title: "DJ Winn", thumb: "/images/thumbnails/dj-winn.webp", url: "https://www.youtube.com/@HSPpodcast" },
-    { title: "Jimmy Hunt", thumb: "/images/thumbnails/jimmy-hunt.webp", url: "https://www.youtube.com/@HSPpodcast" },
-    { title: "Jimmy Nichols", thumb: "/images/thumbnails/jimmy-nichols.webp", url: "https://www.youtube.com/@HSPpodcast" },
-    { title: "John Gallaghar", thumb: "/images/thumbnails/john-gallaghar.webp", url: "https://www.youtube.com/@HSPpodcast" },
-    { title: "Kyle Rayborn", thumb: "/images/thumbnails/kyle-rayborn.webp", url: "https://www.youtube.com/@HSPpodcast" },
-    { title: "Michelle Adcock", thumb: "/images/thumbnails/michelle-adcock.webp", url: "https://www.youtube.com/@HSPpodcast" },
-];
-
-// ─── CANVAS SCENES ────────────────────────────────────────────────────────────
-const SCENES = [
-    { id: "I", label: "IGNITION", cx: 0.0, cy: 0.0, travel: "↓", bgIdx: 0 },
-    { id: "II", label: "ARCHITECTURE", cx: 0.0, cy: 1.0, travel: "→", bgIdx: 0 },
-    { id: "III", label: "ARMORY", cx: 1.4, cy: 1.0, travel: "↓", bgIdx: 1 },
-    { id: "IV", label: "SYSTEM WARNING", cx: 1.4, cy: 1.6, travel: "↓", bgIdx: 1 },
-    { id: "V", label: "FREQUENCY", cx: 1.4, cy: 2.2, travel: "↓", bgIdx: 1 },
-    { id: "VI", label: "VELOCITY", cx: 1.4, cy: 3.4, travel: "←", bgIdx: 1 },
-    { id: "VII", label: "INTEL", cx: 0.0, cy: 3.4, travel: "←", bgIdx: 2 },
-    { id: "VIII", label: "VISION", cx: -1.2, cy: 3.4, travel: "↓", bgIdx: 2 },
-    { id: "IX", label: "TERMINAL", cx: -1.2, cy: 4.6, travel: "·", bgIdx: 2 },
-];
-const N = SCENES.length;
-const SLOT = 1 / N;
-
-// ─── TOTAL PAGE HEIGHT ────────────────────────────────────────────────────────
-// 1800vh ÷ 9 scenes = 200vh per scene.
-// First 65% (130vh) = content animation window.
-// Last 35% (70vh)   = camera travels to next scene — quick, not 5-minute marathon.
-const TOTAL_VH = 1800;
-
-// ─── CAMERA TARGET ────────────────────────────────────────────────────────────
-function getTargetCam(globalP: number): { x: number; y: number } {
-    const raw = globalP / SLOT;
-    const fromI = Math.min(Math.floor(raw), N - 1);
-    const toI = Math.min(fromI + 1, N - 1);
-    const localP = raw - fromI;
-    // Scene I:   camera starts at 8%  — immediate animation feedback on first scroll.
-    // Scene V:   Frequency scene gets extra dwell time so all cards unfurl.
-    // Scene IV:  WakeUpCall scene gets extra dwell time.
-    // All others: 62% (124vh content dwell, 76vh travel).
-    let startAt = 0.62;
-    if (fromI === 0) startAt = 0.08;
-    if (fromI === 4) startAt = 0.78;
-    if (fromI === 3) startAt = 0.90;
-    const moveP = Math.max(0, (localP - startAt) / (1 - startAt));
-    const t = moveP * moveP * (3 - 2 * moveP); // smooth-step
-    const from = SCENES[fromI];
-    const to = SCENES[toI];
-    return {
-        x: from.cx + (to.cx - from.cx) * t,
-        y: from.cy + (to.cy - from.cy) * t,
-    };
-}
-
-function getActiveScene(globalP: number): number {
-    const raw = globalP / SLOT;
-    return Math.min(Math.floor(raw), N - 1);
-}
-
-// ─── CONTENT FADE — fades in, holds, fades out ────────────────────────────────
-// localP spans 0..1 across the scene's scroll slot.
-function holdFade(localP: number): number {
-    if (localP < 0.15) return localP / 0.15;
-    if (localP > 0.80) return 1 - (localP - 0.80) / 0.20;
-    return 1;
-}
-
-// ─── HUD ──────────────────────────────────────────────────────────────────────
-function HUD({ sceneIdx, progress }: { sceneIdx: number; progress: number }) {
-    const s = SCENES[sceneIdx];
-    return (
-        <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 9999 }}>
-            <div className="absolute left-4 top-20 rounded-2xl px-4 py-3 font-mono text-[10px] text-white/50 leading-loose min-w-[155px]"
-                style={{ background: "rgba(4,4,20,0.65)", border: "1px solid rgba(255,255,255,0.07)", backdropFilter: "blur(16px)" }}>
-                <div className="text-blue-400 font-black uppercase tracking-widest mb-0.5"
-                    style={{ textShadow: "0 0 12px rgba(59,130,246,0.8)" }}>
-                    {s.id} — {s.label}
-                </div>
-                <div className="text-white/20 text-[9px] mt-0.5">NEXT {s.travel}</div>
-            </div>
-            <div className="absolute right-4 top-20 rounded-2xl px-4 py-3 min-w-[160px]"
-                style={{ background: "rgba(4,4,20,0.65)", border: "1px solid rgba(255,255,255,0.07)", backdropFilter: "blur(16px)" }}>
-                <div className="font-mono text-[9px] text-white/25 uppercase tracking-widest mb-2">Trajectory</div>
-                <div className="flex gap-0.5">
-                    {SCENES.map((_, i) => (
-                        <div key={i} className="flex-1 h-1 rounded-sm transition-all duration-500"
-                            style={{ background: i <= sceneIdx ? "rgba(59,130,246,0.85)" : "rgba(255,255,255,0.06)" }} />
-                    ))}
-                </div>
-                <div className="mt-2 text-[9px] font-mono text-white/20">{sceneIdx + 1} / {N}</div>
-            </div>
-        </div>
-    );
-}
-
-// ─── GHOST WATERMARK ──────────────────────────────────────────────────────────
-function Ghost({ text, color = "rgba(59,130,246,0.04)" }: { text: string; color?: string }) {
-    return (
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-            <span className="font-black uppercase tracking-tighter leading-none"
-                style={{ fontSize: "clamp(8rem,22vw,22rem)", color }}>{text}</span>
-        </div>
-    );
-}
-
-// ─── PROJECT CARD ─────────────────────────────────────────────────────────────
-const IMG_MAP: Record<string, string> = {
-    "all-things-new": "/portfolio/all-things-new-hero.webp",
-    "corner-pharmacy": "/portfolio/corner-pharmacy-hero.webp",
-    "simmons-memorial": "/portfolio/simmons-hero.webp",
-    "growth-engine": "/portfolio/blacksheep-hero.webp",
-    "black-sheep": "/portfolio/blacksheep-hero.webp",
+// Category Icons Mapping
+const categoryIcons: Record<string, React.ReactNode> = {
+    Healthcare: <Shield className="w-4 h-4 text-teal-400" />,
+    "Local Business": <Globe className="w-4 h-4 text-amber-400" />,
+    "E-Commerce": <ShoppingBag className="w-4 h-4 text-purple-400" />,
+    "Faith & Community": <Heart className="w-4 h-4 text-red-400" />,
+    Agency: <Activity className="w-4 h-4 text-cyan-400" />
 };
 
-function ProjectCard({ project, index, localP, total }: {
-    project: any; index: number; localP: number; total: number;
-}) {
-    // Each card starts at 0%, 22%, 44%, 66% of localP
-    // → gives every card ~20% of "spotlight" before the next slides in
-    const arrival = (index / total) * 0.66;
-    const raw = Math.max(0, Math.min((localP - arrival) / 0.20, 1));
-    // Smooth-step: slow start → accelerates → decelerates into landing
-    const t = raw * raw * (3 - 2 * raw);
-    const fade = t < 1 ? t : holdFade(localP);
-    // 120vw travel — card sweeps in fully from off-screen left or right
-    const dir = index % 2 === 0 ? -1 : 1;
-    const tx = `${(dir * (1 - t) * 120).toFixed(2)}vw`;
-
-    if (fade < 0.01) return null;
-    return (
-        <div className="absolute inset-0 flex items-center justify-center"
-            style={{ opacity: fade, transform: `translate(${tx}, 0)`, pointerEvents: fade > 0.3 ? "auto" : "none", zIndex: 20 + index, willChange: "transform, opacity" }}>
-            <div className="relative group">
-                <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#06061a] max-w-5xl w-[82vw] aspect-video shadow-[0_24px_80px_rgba(0,0,0,0.85)]">
-                    <div className="flex items-center gap-2 px-5 py-3 bg-[#0d0d26] border-b border-white/[0.07]">
-                        <div className="flex gap-1.5">
-                            <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
-                            <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
-                            <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
-                        </div>
-                        <div className="ml-3 bg-[#16163a] rounded-md py-1.5 px-4 text-[10px] text-white/25 font-mono truncate max-w-xs">
-                            {project.netlifyUrl?.replace("https://", "") ?? "powerdigitalmedia.org"}
-                        </div>
-                    </div>
-                    <div className="relative w-full" style={{ height: "calc(100% - 44px)" }}>
-                        <Image src={IMG_MAP[project.id] ?? "/portfolio/blacksheep-hero.webp"} alt={project.title} fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" sizes="82vw" />
-                        <div className="absolute inset-0 flex flex-col items-center justify-center p-10 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                            style={{ background: "rgba(0,0,0,0.72)", backdropFilter: "blur(4px)" }}>
-                            <span className="text-blue-400 text-[10px] font-black tracking-[0.4em] uppercase mb-3">{project.tags[0]}</span>
-                            <h3 className="text-4xl font-black text-white mb-3 uppercase tracking-tighter">{project.title}</h3>
-                            <p className="text-white/50 max-w-lg mb-6 text-sm leading-relaxed">{project.description}</p>
-                            {project.netlifyUrl && (
-                                <a href={project.netlifyUrl} target="_blank" rel="noopener noreferrer"
-                                    className="px-10 py-3 bg-white text-black font-black uppercase text-xs tracking-[0.2em] rounded-full hover:bg-blue-500 hover:text-white transition-all">
-                                    Launch →
-                                </a>
-                            )}
-                        </div>
-                    </div>
-                </div>
-                <div className="absolute -bottom-7 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                    <span className="text-[10px] font-black tracking-[0.4em] text-white/20 uppercase">{project.client} · {project.year}</span>
-                </div>
-            </div>
-        </div>
-    );
-}
-
-// ─── GEAR CARD ────────────────────────────────────────────────────────────────
-const GEAR_COLORS: Record<string, string> = {
-    Audio: "#3b82f6", PC: "#a855f7", Visual: "#22c55e",
-    Lighting: "#f59e0b", "Build Kits": "#ef4444", Monitors: "#06b6d4", Essentials: "#f97316",
-};
-
-function GearCard({ item, index, localP }: { item: any; index: number; localP: number }) {
-    const stagger = 0.04 + (index / FEATURED_GEAR.length) * 0.45;
-    const raw = Math.max(0, Math.min((localP - stagger) / 0.2, 1));
-    const fade = raw < 1 ? raw * raw : holdFade(localP);
-    const color = GEAR_COLORS[item.category] ?? "#3b82f6";
-    const col = index % 3;
-    const row = Math.floor(index / 3);
-    const tx = (index % 2 === 0 ? -40 : 40) * (1 - raw);
-    const ty = (row === 0 ? -20 : 20) * (1 - raw);
-    if (fade < 0.01) return null;
-    return (
-        <div className="absolute" style={{ left: `${14 + col * 28}%`, top: `${row === 0 ? 22 : 55}%`, width: "24%", opacity: fade, transform: `translate(${tx}px, ${ty}px)`, zIndex: 30 + index, pointerEvents: fade > 0.4 ? "auto" : "none", willChange: "transform, opacity" }}>
-            <Link href="/showroom" className="block group rounded-2xl border border-white/[0.07] bg-black/40 overflow-hidden hover:border-blue-400/30 transition-colors duration-500"
-                style={{ boxShadow: `0 0 40px ${color}12`, backdropFilter: "blur(16px)" }}>
-                <div className="relative w-full aspect-square overflow-hidden" style={{ background: "#08081c" }}>
-                    <Image src={item.image} alt={item.name} fill className="object-contain p-4 transition-transform duration-700 group-hover:scale-110" sizes="24vw" />
-                    <div className="absolute top-3 right-3 px-2 py-1 rounded-full text-[8px] font-black uppercase tracking-widest"
-                        style={{ background: `${color}22`, color, border: `1px solid ${color}35` }}>
-                        {item.category}
-                    </div>
-                </div>
-                <div className="p-4">
-                    <div className="text-[10px] font-black uppercase tracking-widest mb-1 opacity-60" style={{ color }}>{item.brand}</div>
-                    <h3 className="text-[11px] font-black text-white leading-snug line-clamp-2 mb-2">{item.name}</h3>
-                    <div className="flex items-center justify-between">
-                        <span className="text-white/30 tracking-widest text-[10px] font-bold">{item.priceRange}</span>
-                        <span className="text-[9px] text-blue-400 font-black uppercase tracking-widest group-hover:translate-x-0.5 transition-transform">View →</span>
-                    </div>
-                </div>
-            </Link>
-        </div>
-    );
-}
-
-// ─── BLOG CARD ────────────────────────────────────────────────────────────────
-const BLOG_COLORS: Record<string, string> = {
-    "AI Marketing": "#a855f7", "Web Engineering": "#3b82f6", Podcasting: "#22c55e",
-    Video: "#f59e0b", SEO: "#ef4444", Tech: "#06b6d4",
-};
-
-function BlogCard({ post, index, localP }: { post: any; index: number; localP: number }) {
-    const stagger = 0.04 + (index / RECENT_POSTS.length) * 0.45;
-    const raw = Math.max(0, Math.min((localP - stagger) / 0.2, 1));
-    const fade = raw < 1 ? raw * raw : holdFade(localP);
-    const color = BLOG_COLORS[post.category] ?? "#3b82f6";
-    const col = index % 3;
-    const row = Math.floor(index / 3);
-    const tx = 50 * (1 - raw);
-    const ty = (row === 0 ? -20 : 20) * (1 - raw);
-    if (fade < 0.01) return null;
-    return (
-        <div className="absolute" style={{ left: `${14 + col * 28}%`, top: `${row === 0 ? 22 : 55}%`, width: "24%", opacity: fade, transform: `translate(${tx}px, ${ty}px)`, zIndex: 30 + index, pointerEvents: fade > 0.4 ? "auto" : "none", willChange: "transform, opacity" }}>
-            <Link href={`/blog/${post.slug}`} className="block group rounded-2xl border border-white/[0.07] bg-black/40 overflow-hidden hover:border-purple-400/25 transition-colors duration-500"
-                style={{ backdropFilter: "blur(16px)" }}>
-                <div className="relative w-full aspect-[16/9] overflow-hidden" style={{ background: "#08081c" }}>
-                    <Image src={post.image} alt={post.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="24vw" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/55 to-transparent" />
-                    <div className="absolute top-2 left-2 px-2 py-1 rounded-full text-[8px] font-black uppercase tracking-widest"
-                        style={{ background: `${color}28`, color, border: `1px solid ${color}35` }}>
-                        {post.category}
-                    </div>
-                </div>
-                <div className="p-4">
-                    <p className="text-[9px] text-white/25 font-mono mb-1">{post.date}</p>
-                    <h3 className="text-[11px] font-black text-white leading-snug line-clamp-3 mb-3">{post.title}</h3>
-                    <span className="text-[9px] text-purple-400 font-black uppercase tracking-widest group-hover:translate-x-0.5 transition-transform inline-block">Read Intel →</span>
-                </div>
-            </Link>
-        </div>
-    );
-}
-
-// ─── AUDIO WAVEFORM ───────────────────────────────────────────────────────────
-function AudioWaveform({ active }: { active: boolean }) {
-    return (
-        <svg viewBox="0 0 1200 160" preserveAspectRatio="none"
-            className="absolute inset-x-0 bottom-0 w-full pointer-events-none h-36"
-            style={{ opacity: active ? 0.18 : 0, transition: "opacity 1.5s" }}>
-            {Array.from({ length: 60 }, (_, i) => {
-                const h = Math.max(4, 20 + Math.sin(i * 0.8) * 50 + Math.cos(i * 1.4) * 30);
-                return (
-                    <rect key={i} x={(i / 60) * 1200} y={80 - h / 2} width={11} height={h} rx={3} fill="#3b82f6"
-                        style={{ animation: active ? `waveBar 1.4s ease-in-out ${i * 0.04}s infinite alternate` : "none" }} />
-                );
-            })}
-        </svg>
-    );
-}
-
-// ─── METRICS ──────────────────────────────────────────────────────────────────
-const METRICS = [
-    { label: "Organic Traffic", value: "↑ 312%", color: "#22c55e" },
-    { label: "Conv. Rate", value: "↑ 8.4%", color: "#3b82f6" },
-    { label: "Bounce Rate", value: "↓ 41%", color: "#f59e0b" },
-    { label: "Domain Auth.", value: "74 DA", color: "#a855f7" },
-    { label: "Page Speed", value: "98/100", color: "#22c55e" },
-    { label: "Backlinks", value: "+2,400", color: "#3b82f6" },
-];
-
-// ─── MAIN ─────────────────────────────────────────────────────────────────────
 export default function OurWorkPage() {
-    const [sceneIdx, setSceneIdx] = useState(0);
-    const [localP, setLocalP] = useState(0);
-    const [progress, setProgress] = useState(0);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [selectedCategory, setSelectedCategory] = useState<string>("All");
+    const [selectedTech, setSelectedTech] = useState<string>("All");
     const [isBookingOpen, setIsBookingOpen] = useState(false);
-    const [cursorPos, setCursorPos] = useState({ x: -100, y: -100 });
-    const [isAutoScrolling, setIsAutoScrolling] = useState(false);
 
-    const worldRef = useRef<HTMLDivElement>(null);
-    const bgRef = useRef<HTMLDivElement>(null);
-    const cursorDotRef = useRef<HTMLDivElement>(null);
-    const camRef = useRef({ x: 0, y: 0 });
-    const scrollPRef = useRef(0);
-    const droneRef = useRef<HTMLAudioElement | null>(null);
-    const powerUpRef = useRef<HTMLAudioElement | null>(null);
-    const braaamRef = useRef<HTMLAudioElement | null>(null);
-    const telemetryRef = useRef<HTMLAudioElement | null>(null);
+    // Filter Categories Lists
+    const categories = ["All", "Local Business", "Faith & Community", "Healthcare", "E-Commerce", "Agency"];
+    const techStacks = ["All", "Next.js", "Standard HTML/JS"];
 
-    // Audio setup
-    useEffect(() => {
-        droneRef.current = new Audio("/audio/Our_Work_Sounds/Scene 1/continuous_drone.mp3");
-        droneRef.current.loop = true;
-        droneRef.current.volume = 0.4;
+    // Filtered Sites Logic
+    const filteredSites = useMemo(() => {
+        return liveSites.filter((site) => {
+            const matchesSearch = 
+                site.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                site.domain.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                site.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                site.techStack.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
+            
+            const matchesCategory = selectedCategory === "All" || site.category === selectedCategory;
+            const matchesTech = selectedTech === "All" || 
+                (selectedTech === "Next.js" ? site.deployType === "Next.js" : site.deployType === "Standard HTML/JS");
 
-        powerUpRef.current = new Audio("/audio/Our_Work_Sounds/Scene 1/power_up.mp3");
-        powerUpRef.current.volume = 0.7;
+            return matchesSearch && matchesCategory && matchesTech;
+        });
+    }, [searchQuery, selectedCategory, selectedTech]);
 
-        braaamRef.current = new Audio("/audio/Our_Work_Sounds/Scene 1/epic_braaam.mp3");
-        braaamRef.current.volume = 0.8;
-
-        telemetryRef.current = new Audio("/audio/Our_Work_Sounds/Scene 1/telemetry.mp3");
-        telemetryRef.current.volume = 0.3;
-
-        return () => {
-            droneRef.current?.pause();
-            powerUpRef.current?.pause();
-            braaamRef.current?.pause();
-            telemetryRef.current?.pause();
-        };
+    // Average page speeds calculations for live metrics
+    const stats = useMemo(() => {
+        const total = liveSites.length;
+        const nextJsCount = liveSites.filter(s => s.deployType === "Next.js").length;
+        const avgSpeed = Math.round(liveSites.reduce((acc, curr) => acc + curr.performanceScore, 0) / total);
+        return { total, nextJsCount, avgSpeed };
     }, []);
-
-    const startAutoScroll = () => {
-        setIsAutoScrolling(true);
-
-        const playSafe = (audio: HTMLAudioElement | null, delayMs = 0) => {
-            if (!audio) return;
-            audio.currentTime = 0; // reset for replay
-            if (delayMs > 0) {
-                setTimeout(() => {
-                    if (isAutoScrolling) audio.play().catch(e => console.log('Audio error:', e));
-                }, delayMs);
-            } else {
-                audio.play().catch(e => console.log('Audio error:', e));
-            }
-        };
-
-        playSafe(droneRef.current);
-        playSafe(powerUpRef.current);
-        playSafe(braaamRef.current, 600); // slight delay to layer with powerup
-        playSafe(telemetryRef.current, 900); // sweeps in during text reveal
-    };
-
-    useEffect(() => {
-        if (!isAutoScrolling) return;
-
-        let animationFrameId: number;
-
-        const autoScrollStep = () => {
-            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-            const globalP = Math.min(maxScroll > 0 ? window.scrollY / maxScroll : 0, 1);
-
-            const si = getActiveScene(globalP);
-            const lp = (globalP / SLOT) - si;
-
-            // Scroll slower while 'holding' on content to allow reading
-            const isHolding = lp > 0.15 && lp < 0.65;
-            const pxPerFrame = isHolding ? 1.5 : 8;
-
-            window.scrollBy(0, pxPerFrame);
-
-            if (window.scrollY >= maxScroll - 5) {
-                setIsAutoScrolling(false);
-                if (droneRef.current) droneRef.current.pause();
-                return;
-            }
-
-            animationFrameId = requestAnimationFrame(autoScrollStep);
-        };
-
-        animationFrameId = requestAnimationFrame(autoScrollStep);
-
-        const cancelAutoScroll = () => {
-            setIsAutoScrolling(false);
-            if (droneRef.current) droneRef.current.pause();
-            if (powerUpRef.current) powerUpRef.current.pause();
-            if (braaamRef.current) braaamRef.current.pause();
-            if (telemetryRef.current) telemetryRef.current.pause();
-        };
-
-        const onEvent = (e: Event) => {
-            if (e.isTrusted) cancelAutoScroll();
-        };
-
-        window.addEventListener('wheel', onEvent, { passive: true });
-        window.addEventListener('touchstart', onEvent, { passive: true });
-        window.addEventListener('mousedown', onEvent, { passive: true });
-
-        return () => {
-            cancelAnimationFrame(animationFrameId);
-            window.removeEventListener('wheel', onEvent);
-            window.removeEventListener('touchstart', onEvent);
-            window.removeEventListener('mousedown', onEvent);
-        };
-    }, [isAutoScrolling]);
-
-    useEffect(() => {
-        // ── Scroll handler ────────────────────────────────────────────────────────
-        const onScroll = () => {
-            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-            const globalP = Math.min(maxScroll > 0 ? window.scrollY / maxScroll : 0, 1);
-            scrollPRef.current = globalP;
-
-            const si = getActiveScene(globalP);
-            const lp = (globalP / SLOT) - si;
-
-            setProgress(globalP);
-            setSceneIdx(si);
-            setLocalP(lp);
-        };
-        window.addEventListener("scroll", onScroll, { passive: true });
-
-        // ── RAF loop — lerp camera ────────────────────────────────────────────────
-        let rafId: number;
-        const loop = () => {
-            const target = getTargetCam(scrollPRef.current);
-            const cam = camRef.current;
-            cam.x += (target.x - cam.x) * 0.055;
-            cam.y += (target.y - cam.y) * 0.055;
-
-            if (worldRef.current) {
-                worldRef.current.style.transform = `translate(${-cam.x * 100}vw, ${-cam.y * 100}vh)`;
-            }
-            if (bgRef.current) {
-                bgRef.current.style.backgroundPosition = `calc(50% + ${cam.x * 18}vw) calc(50% + ${cam.y * 18}vh)`;
-            }
-            rafId = requestAnimationFrame(loop);
-        };
-        rafId = requestAnimationFrame(loop);
-
-        // ── Cursor ────────────────────────────────────────────────────────────────
-        const onMove = (e: MouseEvent) => {
-            setCursorPos({ x: e.clientX, y: e.clientY });
-            if (cursorDotRef.current) {
-                cursorDotRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-            }
-        };
-        window.addEventListener("mousemove", onMove);
-
-        return () => {
-            window.removeEventListener("scroll", onScroll);
-            window.removeEventListener("mousemove", onMove);
-            cancelAnimationFrame(rafId);
-        };
-    }, []);
-
-    // Architecture push-in: scale 0.80 → 1.0 over first 62% of scene dwell
-    const archScale = sceneIdx === 1
-        ? (0.80 + Math.min(localP / 0.62, 1) * 0.20).toFixed(4)
-        : "1";
-
-    // Metrics bars (scene 4 = VELOCITY, which is now scene 5 index)
-    const metricsP = sceneIdx === 5 ? localP : 0;
 
     return (
-        <>
-            <style>{`
-        @keyframes waveBar  { from { transform: scaleY(0.25); } to { transform: scaleY(1); } }
-        /* Hero entrance — rushes in from behind the camera */
-        @keyframes heroRush {
-          0%   { transform: scale(0.04) translateY(40px); opacity: 0; filter: blur(24px); }
-          55%  { opacity: 1; filter: blur(0); }
-          100% { transform: scale(1)    translateY(0);    opacity: 1; filter: blur(0); }
-        }
-        @keyframes heroFadeUp {
-          0%   { opacity: 0; transform: translateY(18px); }
-          100% { opacity: 1; transform: translateY(0); }
-        }
-        /* Podcast card float — 12px Y travel, per-card offset via animation-delay */
-        @keyframes podFloat {
-          0%, 100% { transform: translateY(0px); }
-          50%       { transform: translateY(-12px); }
-        }
-        *, *::before, *::after { cursor: none !important; }
-      `}</style>
+        <main className="min-h-screen bg-[#020617] text-slate-100 flex flex-col relative selection:bg-cyan-500 selection:text-slate-900">
+            {/* Cyber Studio Grid Mesh Background */}
+            <div className="fixed inset-0 z-0 pointer-events-none opacity-20 bg-[linear-gradient(to_right,rgba(34,211,238,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(34,211,238,0.03)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_100%)]" />
+            
+            <Navbar />
 
-            {/* Cursor */}
-            <div ref={cursorDotRef}
-                className="fixed top-0 left-0 w-3.5 h-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500 pointer-events-none mix-blend-difference"
-                style={{ zIndex: 99999, willChange: "transform" }} />
-            <div className="fixed top-0 left-0 w-6 h-6 -translate-x-1/2 -translate-y-1/2 rounded-full border border-blue-400/50 pointer-events-none"
-                style={{ zIndex: 99998, transform: `translate(${cursorPos.x}px, ${cursorPos.y}px)`, transition: "transform 0.15s ease-out" }} />
-
-            <HUD sceneIdx={sceneIdx} progress={progress} />
-
-            {/* ── PARALLAX BACKGROUND ── */}
-            <div className="fixed inset-0 pointer-events-none" style={{ zIndex: -10 }}>
-                {["/images/spatial-bg-1.webp", "/images/spatial-bg-2.webp", "/images/spatial-bg-3.webp"].map((src, bi) => {
-                    const inAt = bi === 0 ? 0 : bi === 1 ? 0.25 : 0.60;
-                    const outAt = bi === 0 ? 0.35 : bi === 1 ? 0.70 : 1.10;
-                    const peakAt = (inAt + outAt) / 2;
-                    let op = 0;
-                    if (progress >= inAt && progress <= peakAt) op = (progress - inAt) / (peakAt - inAt);
-                    else if (progress > peakAt && progress <= outAt) op = 1 - (progress - peakAt) / (outAt - peakAt);
-                    op = Math.max(0, Math.min(1, op));
-                    return (
-                        <div key={src}
-                            ref={bi === 0 ? bgRef : undefined}
-                            className="absolute inset-[-20%]"
-                            style={{
-                                backgroundImage: `url(${src})`,
-                                backgroundSize: "cover",
-                                backgroundPosition: "50% 50%",
-                                backgroundRepeat: "no-repeat",
-                                opacity: op,
-                                transition: "opacity 1.8s cubic-bezier(0.4,0,0.2,1)",
-                            }} />
-                    );
-                })}
-                <div className="absolute inset-0 bg-black/52" />
-            </div>
-
-            {/* ── SCROLL PROXY — gives the browser the correct page height ── */}
-            <div style={{ height: `${TOTAL_VH}vh` }}>
-                <Navbar />
-
-                {/* ── CAMERA VIEWPORT ── */}
-                <div className="fixed inset-0 overflow-hidden" style={{ zIndex: 1, pointerEvents: "none" }}>
-
-                    {/* ── CANVAS WORLD ── */}
-                    <div ref={worldRef} className="absolute"
-                        style={{ top: 0, left: 0, width: "500vw", height: "700vh", willChange: "transform" }}>
-
-                        {/* ── SCENE I — IGNITION ── */}
-                        <div className="absolute" style={{ left: `${SCENES[0].cx * 100}vw`, top: `${SCENES[0].cy * 100}vh`, width: "100vw", height: "100vh" }}>
-                            <Ghost text="Impact" color="rgba(59,130,246,0.035)" />
-                            <div className="absolute inset-0 pointer-events-none"
-                                style={{ backgroundImage: "linear-gradient(rgba(59,130,246,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.03) 1px, transparent 1px)", backgroundSize: "64px 64px" }} />
-                            <div className="absolute inset-0 flex flex-col items-center justify-center px-6" style={{ pointerEvents: "auto" }}>
-                                {/* Subtitle fades up 0.3s after page open */}
-                                <span className="text-[10px] font-black tracking-[0.5em] text-blue-400 uppercase mb-8 opacity-0"
-                                    style={{ animation: "heroFadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.3s forwards" }}>
-                                    Work &amp; Portfolio
-                                </span>
-                                {/* Main title rushes in from behind the camera */}
-                                <h1 className="font-black text-center leading-[0.85] tracking-tighter"
-                                    style={{ fontSize: "clamp(3.5rem,12vw,9rem)", animation: "heroRush 1.1s cubic-bezier(0.22,1,0.36,1) 0s both" }}>
-                                    IMPACT<br />
-                                    <span className="bg-gradient-to-r from-white via-white/80 to-white/30 bg-clip-text text-transparent italic">ENGINEERED.</span>
-                                </h1>
-                                {/* Scroll prompt appears last */}
-                                <div className="mt-14 flex flex-col md:flex-row items-center gap-4 opacity-0"
-                                    style={{ pointerEvents: "auto", animation: "heroFadeUp 0.8s cubic-bezier(0.22,1,0.36,1) 0.9s forwards" }}>
-                                    <div className="flex flex-col items-center gap-2 py-5 px-10 border border-white/10 rounded-full bg-white/[0.02]">
-                                        <p className="text-[10px] font-black uppercase tracking-[0.5em] text-white/25 animate-pulse">Scroll to Explore</p>
-                                        <div className="w-px h-8 bg-gradient-to-b from-blue-500 to-transparent" />
-                                    </div>
-                                    {!isAutoScrolling && (
-                                        <button onClick={startAutoScroll} className="flex flex-col items-center gap-2 py-5 px-10 border border-blue-500/30 rounded-full bg-blue-500/10 hover:bg-blue-500/20 transition-colors group cursor-pointer"
-                                            style={{ cursor: 'pointer' }}>
-                                            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400 group-hover:text-blue-300">Play Cinematic Mode</p>
-                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="text-blue-400 group-hover:text-blue-300"><path d="M8 5v14l11-7z" /></svg>
-                                        </button>
-                                    )}
-                                </div>
-                            </div>
+            {/* Immersive Header / Telemetry Section */}
+            <section className="relative z-10 pt-32 pb-12 px-6 md:px-12 max-w-[1400px] mx-auto w-full">
+                <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12">
+                    <div className="max-w-3xl">
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="h-[1px] w-8 bg-cyan-400"></div>
+                            <span className="text-cyan-400 font-mono text-xs tracking-[0.3em] uppercase">SYSTEMS SHOWCASE</span>
                         </div>
+                        <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter text-glow-cyan leading-none mb-6">
+                            OUR WORK &amp;<br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-500 italic">
+                                DIGITAL FLEET.
+                            </span>
+                        </h1>
+                        <p className="text-slate-400 text-base md:text-lg leading-relaxed max-w-2xl">
+                            Interactive showroom of client websites and applications engineered, hosted, and optimized by **Power Digital Media**. All systems feature certified live status indicators, custom styling, and premium core web vitals.
+                        </p>
+                    </div>
 
-                        {/* ── SCENE II — ARCHITECTURE — push-in ── */}
-                        <div className="absolute" style={{ left: `${SCENES[1].cx * 100}vw`, top: `${SCENES[1].cy * 100}vh`, width: "100vw", height: "100vh" }}>
-                            <div style={{ position: "absolute", inset: 0, transform: `scale(${archScale})`, transformOrigin: "center center", transition: "transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94)" }}>
-                                <Ghost text="Build" color="rgba(59,130,246,0.04)" />
-                                <div className="absolute top-[12%] left-1/2 -translate-x-1/2 text-center pointer-events-none" style={{ zIndex: 5 }}>
-                                    <span className="text-[10px] font-black tracking-[0.5em] text-blue-400 uppercase">Scene II — Architecture</span>
-                                    <h2 className="font-black uppercase tracking-tighter mt-1" style={{ fontSize: "clamp(2rem,5vw,4rem)" }}>
-                                        Built to <span className="italic text-blue-400">dominate.</span>
-                                    </h2>
-                                </div>
-                                {projects.map((p, i) => (
-                                    <ProjectCard key={p.id} project={p} index={i}
-                                        localP={sceneIdx === 1 ? localP : 0}
-                                        total={projects.length} />
-                                ))}
-                            </div>
+                    {/* Dynamic Telemetry Stats Counter */}
+                    <div className="grid grid-cols-3 gap-3 md:gap-4 bg-slate-950/60 border border-white/5 p-4 rounded-2xl backdrop-blur-md min-w-[280px] lg:min-w-[400px]">
+                        <div className="flex flex-col">
+                            <span className="text-[10px] font-mono uppercase text-slate-500 tracking-wider flex items-center gap-1">
+                                <Server className="w-3 h-3 text-cyan-400" /> Active Nodes
+                            </span>
+                            <span className="text-2xl md:text-3xl font-black text-white mt-1">
+                                {stats.total}
+                            </span>
                         </div>
-
-                        {/* ── SCENE III — ARMORY ── */}
-                        <div className="absolute" style={{ left: `${SCENES[2].cx * 100}vw`, top: `${SCENES[2].cy * 100}vh`, width: "100vw", height: "100vh" }}>
-                            <Ghost text="Gear" color="rgba(245,158,11,0.04)" />
-                            <div className="absolute top-[10%] left-1/2 -translate-x-1/2 text-center pointer-events-none" style={{ zIndex: 5 }}>
-                                <span className="text-[10px] font-black tracking-[0.5em] text-amber-400 uppercase">Scene III — Armory</span>
-                                <h2 className="font-black uppercase tracking-tighter mt-1" style={{ fontSize: "clamp(2rem,5vw,4rem)" }}>
-                                    The <span className="italic text-amber-400">Arsenal.</span>
-                                </h2>
-                                <p className="text-white/25 text-xs mt-2">We only recommend gear we actually use.</p>
-                            </div>
-                            <div className="absolute inset-0" style={{ pointerEvents: "auto" }}>
-                                {FEATURED_GEAR.map((item, i) => <GearCard key={item.id} item={item} index={i} localP={sceneIdx === 2 ? localP : 0} />)}
-                            </div>
-                            <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2"
-                                style={{ zIndex: 40, opacity: holdFade(localP) * Math.min(1, Math.max(0, (localP - 0.55) / 0.15)), pointerEvents: "auto" }}>
-                                <Link href="/showroom" className="px-10 py-4 bg-amber-500/10 border border-amber-500/40 text-amber-400 font-black uppercase tracking-[0.25em] text-xs rounded-full hover:bg-amber-500 hover:text-black transition-all block">
-                                    Enter The Armory →
-                                </Link>
-                            </div>
+                        <div className="flex flex-col border-l border-white/5 pl-3 md:pl-4">
+                            <span className="text-[10px] font-mono uppercase text-slate-500 tracking-wider flex items-center gap-1">
+                                <Code className="w-3 h-3 text-blue-400" /> Next.js
+                            </span>
+                            <span className="text-2xl md:text-3xl font-black text-blue-400 mt-1">
+                                {stats.nextJsCount}
+                            </span>
                         </div>
-
-                        {/* ── SCENE IV — SYSTEM WARNING / WAKE UP CALL ── */}
-                        <div className="absolute" style={{ left: `${SCENES[3].cx * 100}vw`, top: `${SCENES[3].cy * 100}vh`, width: "100vw", height: "100vh" }}>
-                            {(() => {
-                                const isVisible = progress > 2 * SLOT && progress < 5 * SLOT;
-                                if (!isVisible) return null;
-
-                                const p = sceneIdx === 3 ? localP : 0;
-                                // Glitch text logic
-                                const glitchX = p > 0.2 && p < 0.25 ? (Math.random() > 0.5 ? 10 : -10) : 0;
-                                const glitchY = p > 0.4 && p < 0.45 ? (Math.random() > 0.5 ? 10 : -10) : 0;
-
-                                const textOpacity1 = Math.max(0, Math.min(1, (p - 0.05) / 0.15));
-                                const textOpacity2 = Math.max(0, Math.min(1, (p - 0.25) / 0.15));
-                                const textOpacity3 = Math.max(0, Math.min(1, (p - 0.45) / 0.15));
-
-                                const overallFade = holdFade(p);
-
-                                return (
-                                    <div className="absolute inset-0 flex items-center justify-center overflow-hidden bg-black/90 pointer-events-none"
-                                        style={{ opacity: overallFade, zIndex: 100 }}>
-                                        <div className="absolute inset-0 pointer-events-none opacity-20 mix-blend-screen noise-texture" />
-                                        <div className="max-w-5xl text-center flex flex-col items-center p-4 px-6" style={{ transform: `scale(${0.9 + p * 0.1})` }}>
-                                            <div style={{ opacity: textOpacity1, transform: `translate(${glitchX}px, 0)` }} className="mb-8">
-                                                <span className="text-[10px] md:text-sm font-black text-red-500 uppercase tracking-[0.5em] mb-4 block animate-pulse">System Warning</span>
-                                                <h2 className="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter leading-[0.85]">
-                                                    FRAGMENTED <br className="hidden md:block" />
-                                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-800">PRESENCE</span>
-                                                </h2>
-                                            </div>
-                                            <div style={{ opacity: textOpacity2, transform: `translate(0, ${glitchY}px)` }} className="mb-12">
-                                                <p className="text-xl md:text-4xl font-bold text-white/80 uppercase tracking-tight max-w-3xl mx-auto leading-tight">
-                                                    A GREAT WEBSITE CAN&apos;T SAVE AN INVISIBLE BRAND. A GREAT PODCAST CAN&apos;T SURVIVE A BROKEN FUNNEL.
-                                                </p>
-                                            </div>
-                                            <div style={{ opacity: textOpacity3 }} className="p-8 border border-red-500/30 bg-red-950/20 rounded-3xl relative overflow-hidden backdrop-blur-md">
-                                                <div className="absolute inset-0 bg-red-500/10 blur-xl mix-blend-screen" />
-                                                <p className="text-sm md:text-xl font-black text-red-400 tracking-tight relative z-10 drop-shadow-[0_0_15px_rgba(239,68,68,0.5)] leading-relaxed">
-                                                    True authority isn&apos;t built in silos. We engineer a compounding ecosystem where your web presence, video content, and podcasting fuse into an undeniable powerhouse.
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-red-950/20 to-transparent" style={{ maskImage: "linear-gradient(to top, black, transparent)", WebkitMaskImage: "linear-gradient(to top, black, transparent)" }}>
-                                            <div className="w-full h-full" style={{ backgroundImage: 'linear-gradient(rgba(239,68,68,0.1) 1px, transparent 1px)', backgroundSize: '100% 40px', transform: 'perspective(500px) rotateX(60deg)' }} />
-                                        </div>
-                                    </div>
-                                );
-                            })()}
+                        <div className="flex flex-col border-l border-white/5 pl-3 md:pl-4">
+                            <span className="text-[10px] font-mono uppercase text-slate-500 tracking-wider flex items-center gap-1">
+                                <Gauge className="w-3 h-3 text-green-400" /> Avg Speed
+                            </span>
+                            <span className="text-2xl md:text-3xl font-black text-green-400 mt-1">
+                                {stats.avgSpeed}%
+                            </span>
                         </div>
-
-                        {/* ── SCENE V — FREQUENCY — Signal Cascade ── */}
-                        <div className="absolute" style={{ left: `${SCENES[4].cx * 100}vw`, top: `${SCENES[4].cy * 100}vh`, width: "100vw", height: "100vh" }}>
-                            <Ghost text="Sound" color="rgba(59,130,246,0.04)" />
-
-                            {/* ── Title ── */}
-                            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none" style={{ zIndex: 5 }}>
-                                <AudioWaveform active={sceneIdx === 4} />
-                                <span className="text-[10px] font-black tracking-[0.5em] text-blue-400 uppercase mb-5 relative z-10">Scene V — Frequency</span>
-                                <h2 className="font-black uppercase tracking-tighter text-center relative z-10" style={{ fontSize: "clamp(2.5rem,9vw,7rem)" }}>
-                                    Hear The<br /><span className="italic text-white/50">Authority.</span>
-                                </h2>
-                                <p className="mt-6 text-white/35 text-sm max-w-md text-center relative z-10 leading-relaxed px-4">
-                                    We engineer narrative authority through strategic podcasting — turning your voice into a marketing weapon.
-                                </p>
-                            </div>
-
-                            {/* ── Podcast Cards — Signal Cascade ── */}
-                            {(() => {
-                                const p = sceneIdx === 4 ? localP : (sceneIdx > 4 ? 1 : 0);
-                                const sceneFade = sceneIdx === 4 ? holdFade(localP) : 0;
-                                if (sceneFade < 0.01 && sceneIdx !== 4) return null;
-
-                                const ARC = [
-                                    { left: 6, top: 78, rot: -18 },
-                                    { left: 18, top: 56, rot: -13 },
-                                    { left: 32, top: 38, rot: -7 },
-                                    { left: 45, top: 28, rot: -2 },
-                                    { left: 55, top: 28, rot: 2 },
-                                    { left: 68, top: 38, rot: 7 },
-                                    { left: 82, top: 56, rot: 13 },
-                                    { left: 94, top: 78, rot: 18 },
-                                ];
-
-                                return ARC.map((arc, i) => {
-                                    const ep = PODCAST_EPISODES[i];
-                                    if (!ep) return null;
-
-                                    // Stagger: center cards appear first, edges last
-                                    const rank = Math.abs(3.5 - i);
-                                    const delay = 0.06 + rank * 0.06;
-                                    // Smooth entrance over 30% of local progress
-                                    const raw = Math.max(0, Math.min((p - delay) / 0.30, 1));
-                                    const ease = raw * raw * (3 - 2 * raw); // smoothstep
-
-                                    // Card starts at center and fans out to final position
-                                    const cx = 50 + (arc.left - 50) * ease;
-                                    const cy = 50 + (arc.top - 50) * ease;
-                                    const rot = arc.rot * ease;
-                                    const scale = 0.3 + 0.7 * ease;
-                                    const cardOp = Math.min(ease * 2.5, 1) * sceneFade;
-
-                                    if (cardOp < 0.01) return null;
-
-                                    const col = '59,130,246';
-                                    const glowIntensity = 0.15 + 0.45 * ease;
-
-                                    return (
-                                        <a key={i} href={ep.url} target="_blank" rel="noopener noreferrer"
-                                            className="group absolute block"
-                                            style={{
-                                                left: `${cx}%`,
-                                                top: `${cy}%`,
-                                                zIndex: 20 + (4 - Math.floor(rank)),
-                                                opacity: cardOp,
-                                                transform: `translate(-50%, -50%) scale(${scale}) rotate(${rot}deg)`,
-                                                pointerEvents: ease > 0.7 ? 'auto' : 'none',
-                                                willChange: 'transform, opacity',
-                                            }}>
-                                            <div style={{ animation: `podFloat 5.5s ease-in-out ${-i * 0.55}s infinite`, willChange: 'transform' }}>
-                                                <div className="relative overflow-hidden"
-                                                    style={{
-                                                        width: 'clamp(140px, 15vw, 280px)',
-                                                        aspectRatio: '16 / 9',
-                                                        borderRadius: '14px',
-                                                        border: `1px solid rgba(${col},${glowIntensity + 0.1})`,
-                                                        background: 'rgba(4,8,26,0.72)',
-                                                        backdropFilter: 'blur(12px)',
-                                                        boxShadow: `0 16px 40px rgba(0,0,0,0.85), 0 0 ${12 + 18 * ease}px rgba(${col},${glowIntensity})`,
-                                                        transition: 'transform 0.35s ease, box-shadow 0.35s ease',
-                                                    }}
-                                                    onMouseEnter={e => {
-                                                        (e.currentTarget as HTMLElement).style.transform = 'scale(1.08)';
-                                                        (e.currentTarget as HTMLElement).style.boxShadow = `0 20px 50px rgba(0,0,0,0.9), 0 0 35px rgba(${col},0.7)`;
-                                                    }}
-                                                    onMouseLeave={e => {
-                                                        (e.currentTarget as HTMLElement).style.transform = '';
-                                                        (e.currentTarget as HTMLElement).style.boxShadow = '';
-                                                    }}>
-                                                    <Image src={ep.thumb} alt={ep.title} fill
-                                                        className="object-cover" sizes="(max-width:768px) 40vw, 280px" />
-                                                    {/* Holographic shimmer overlay */}
-                                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                                                        style={{ background: `linear-gradient(125deg, transparent 30%, rgba(${col},0.15) 45%, rgba(168,85,247,0.1) 55%, transparent 70%)`, backgroundSize: '250% 250%', animation: 'shimmer 3s ease infinite' }} />
-                                                    {/* Play button */}
-                                                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                        <div className="w-11 h-11 rounded-full flex items-center justify-center"
-                                                            style={{ background: `rgba(${col},0.92)`, boxShadow: `0 0 24px rgba(${col},0.75)` }}>
-                                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z" /></svg>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <p className="mt-1.5 text-[8px] font-black uppercase tracking-widest text-center text-blue-400"
-                                                    style={{ width: 'clamp(140px,15vw,280px)', opacity: 0.5 + 0.5 * ease }}>
-                                                    {ep.title}
-                                                </p>
-                                            </div>
-                                        </a>
-                                    );
-                                });
-                            })()}
-                        </div>
-
-                        {/* ── SCENE VI — VELOCITY ── */}
-                        <div className="absolute" style={{ left: `${SCENES[5].cx * 100}vw`, top: `${SCENES[5].cy * 100}vh`, width: "100vw", height: "100vh" }}>
-                            <Ghost text="Growth" color="rgba(34,197,94,0.03)" />
-                            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
-                                style={{ opacity: holdFade(metricsP), transform: `scale(${0.94 + metricsP * 0.06})` }}>
-                                <span className="text-[10px] font-black tracking-[0.4em] text-blue-400 uppercase mb-3">Scene VI — Velocity</span>
-                                <h2 className="font-black tracking-tighter uppercase text-center mb-8" style={{ fontSize: "clamp(2.5rem,7vw,5.5rem)" }}>
-                                    Growth<br /><span className="italic text-blue-400">Engineered.</span>
-                                </h2>
-                                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 w-full max-w-3xl px-6">
-                                    {METRICS.map((m, i) => (
-                                        <div key={i} className="bg-black/35 border border-white/[0.08] rounded-2xl p-4 flex flex-col gap-1.5"
-                                            style={{ boxShadow: `0 0 24px ${m.color}18`, borderColor: `${m.color}25` }}>
-                                            <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: m.color }}>{m.label}</span>
-                                            <span className="text-3xl font-black text-white">{m.value}</span>
-                                            <div className="h-1 bg-white/[0.07] rounded-full overflow-hidden">
-                                                <div className="h-full rounded-full transition-all duration-[2500ms] ease-out"
-                                                    style={{ width: `${metricsP * 100}%`, background: m.color, boxShadow: `0 0 6px ${m.color}` }} />
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* ── SCENE VII — INTEL ── */}
-                        <div className="absolute" style={{ left: `${SCENES[6].cx * 100}vw`, top: `${SCENES[6].cy * 100}vh`, width: "100vw", height: "100vh" }}>
-                            <Ghost text="Knowledge" color="rgba(168,85,247,0.04)" />
-                            <div className="absolute top-[10%] left-1/2 -translate-x-1/2 text-center pointer-events-none" style={{ zIndex: 5 }}>
-                                <span className="text-[10px] font-black tracking-[0.5em] text-purple-400 uppercase">Scene VII — Intel</span>
-                                <h2 className="font-black uppercase tracking-tighter mt-1" style={{ fontSize: "clamp(2rem,5vw,4rem)" }}>
-                                    The <span className="italic text-purple-400">Knowledge Vault.</span>
-                                </h2>
-                                <p className="text-white/25 text-xs mt-2">AI, SEO, web &amp; digital warfare — decoded.</p>
-                            </div>
-                            <div className="absolute inset-0" style={{ pointerEvents: "auto" }}>
-                                {RECENT_POSTS.map((post, i) => <BlogCard key={post.slug} post={post} index={i} localP={sceneIdx === 6 ? localP : 0} />)}
-                            </div>
-                            <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2"
-                                style={{ zIndex: 40, opacity: holdFade(localP) * Math.min(1, Math.max(0, (localP - 0.55) / 0.15)), pointerEvents: "auto" }}>
-                                <Link href="/blog" className="px-10 py-4 bg-purple-500/10 border border-purple-500/40 text-purple-400 font-black uppercase tracking-[0.25em] text-xs rounded-full hover:bg-purple-500 hover:text-black transition-all block">
-                                    Read The Intel →
-                                </Link>
-                            </div>
-                        </div>
-
-                        {/* ── SCENE VIII — VISION ── */}
-                        <div className="absolute" style={{ left: `${SCENES[7].cx * 100}vw`, top: `${SCENES[7].cy * 100}vh`, width: "100vw", height: "100vh" }}>
-                            <Ghost text="Vision" color="rgba(59,130,246,0.04)" />
-                            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                                <span className="text-[10px] font-black tracking-[0.5em] text-blue-400 uppercase mb-6">Scene VIII — Vision</span>
-                                <div className="relative w-[84vw] max-w-5xl aspect-video rounded-3xl overflow-hidden pointer-events-auto"
-                                    style={{ boxShadow: "0 0 80px rgba(59,130,246,0.1), 0 40px 100px rgba(0,0,0,0.7)" }}>
-                                    <iframe className="absolute inset-0 w-full h-full border-0"
-                                        src="https://www.youtube.com/embed/MhlTopnX68g?autoplay=1&mute=1&controls=0&loop=1&playlist=MhlTopnX68g"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowFullScreen />
-                                    <div className="absolute top-0 inset-x-0 h-10 bg-gradient-to-b from-black to-transparent pointer-events-none" />
-                                    <div className="absolute bottom-0 inset-x-0 h-20 bg-gradient-to-t from-[#04040f] to-transparent pointer-events-none" />
-                                    <div className="absolute bottom-7 left-10 right-10 flex justify-between items-end pointer-events-none">
-                                        <div>
-                                            <span className="text-blue-400 text-[10px] font-black tracking-[0.4em] uppercase block mb-1">Streaming Now</span>
-                                            <h3 className="text-2xl font-black uppercase tracking-tighter">HSP Podcast</h3>
-                                        </div>
-                                        <a href="https://youtu.be/MhlTopnX68g" target="_blank" rel="noopener noreferrer"
-                                            className="px-7 py-3 bg-blue-500 text-black font-black uppercase text-xs tracking-widest rounded-full pointer-events-auto hover:scale-105 transition-transform">
-                                            Watch →
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* ── SCENE IX — TERMINAL ── */}
-                        <div className="absolute" style={{ left: `${SCENES[8].cx * 100}vw`, top: `${SCENES[8].cy * 100}vh`, width: "100vw", height: "100vh" }}>
-                            <Ghost text="Terminal" color="rgba(59,130,246,0.04)" />
-                            {(() => {
-                                // Animate the entire scene out beautifully when scrolling into the footer
-                                // Scene 9 occupies the final standard time slot
-                                // Beyond this, the user is scrolling purely into the footer space.
-                                const isFooter = Math.max(0, (progress - 8 * SLOT) / SLOT);
-                                // The footer comes up rapidly at the very end
-                                const exitT = Math.max(0, (isFooter - 0.75) / 0.25);
-
-                                // Text elements fade and scale up to disappear gracefully
-                                const textScale = 1 - exitT * 0.15; // Gently scale down into the background
-                                const textOp = Math.max(0, 1 - exitT * 2.5); // Fade out quickly
-                                const textTy = -exitT * 30; // Drift up slightly
-
-                                // Button pushes down gently by 35vh off its normal block-level position 
-                                // as the footer comes up, resulting in it perfectly straddling the line between the page and footer.
-                                const btnTy = exitT * 35;
-
-                                return (
-                                    <div className="absolute inset-0 flex flex-col items-center justify-center p-8 pointer-events-none">
-                                        <div className="absolute inset-0 pointer-events-none" style={{ opacity: textOp, background: "radial-gradient(ellipse 65% 55% at 50% 50%, rgba(59,130,246,0.07) 0%, transparent 70%)" }} />
-
-                                        {/* Main container — keeps items safely stacked */}
-                                        <div className="flex flex-col items-center max-w-3xl text-center relative z-10 pointer-events-auto">
-
-                                            {/* Text group */}
-                                            <div style={{ opacity: textOp, transform: `scale(${textScale}) translateY(${textTy}px)`, willChange: "transform, opacity", pointerEvents: "none" }}>
-                                                <span className="text-blue-400 text-[10px] font-black tracking-[0.6em] uppercase mb-7 opacity-60 block">Scene IX — Terminal</span>
-                                                <h2 className="font-black mb-6 tracking-tighter leading-[0.88] uppercase" style={{ fontSize: "clamp(3rem,8vw,6.5rem)" }}>
-                                                    Accelerate Your<br />
-                                                    <span className="italic bg-gradient-to-r from-blue-400 to-white bg-clip-text text-transparent">Vision.</span>
-                                                </h2>
-                                                <p className="text-white/35 text-base mb-12 max-w-xl leading-relaxed mx-auto">
-                                                    We don&apos;t build websites. We engineer high-velocity growth systems for visionaries who demand results.
-                                                </p>
-                                            </div>
-
-                                            {/* Button group — stays glued in the DOM flow but drops down as footer comes up */}
-                                            <div style={{ transform: `translateY(${btnTy}vh)`, zIndex: 90, willChange: "transform" }} className="flex flex-col items-center mt-6">
-                                                <button onClick={() => setIsBookingOpen(true)}
-                                                    className="px-16 py-6 bg-blue-500 text-black font-black uppercase tracking-[0.25em] text-sm rounded-full hover:scale-105 active:scale-95 transition-all"
-                                                    style={{ boxShadow: "0 0 80px rgba(59,130,246,0.5), 0 20px 40px rgba(0,0,0,0.8)" }}>
-                                                    Book Strategy Session
-                                                </button>
-                                                <span className="mt-5 text-white/15 text-[10px] font-mono tracking-widest uppercase transition-opacity"
-                                                    style={{ opacity: textOp }}>
-                                                    No obligation · Free 30-min discovery
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                );
-                            })()}
-                        </div>
-
-                    </div>{/* end world */}
-                </div>{/* end camera viewport */}
-
-                {/* Footer lives below the scroll proxy — reachable on last scene */}
-                <div className="absolute bottom-0 left-0 right-0" style={{ zIndex: 10, pointerEvents: "auto" }}>
-                    <Footer />
+                    </div>
                 </div>
-            </div >
 
-            <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
-        </>
+                {/* Filter and Search Controls Bar */}
+                <div className="flex flex-col md:flex-row gap-4 items-center bg-slate-950/40 border border-white/5 rounded-3xl p-4 md:p-6 mb-12 backdrop-blur-md">
+                    {/* Search Field */}
+                    <div className="relative w-full md:w-80">
+                        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                        <input
+                            type="text"
+                            placeholder="Search fleet (domain, tech, sector)..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="w-full bg-slate-900/50 border border-white/5 focus:border-cyan-500/40 rounded-2xl py-3 pl-10 pr-4 text-sm font-medium text-white focus:outline-none transition-colors"
+                        />
+                    </div>
+
+                    {/* Category Selector */}
+                    <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
+                        <span className="text-[10px] font-mono uppercase text-slate-500 tracking-widest mr-2 flex items-center gap-1">
+                            <Filter className="w-3 h-3" /> Sector:
+                        </span>
+                        <div className="flex flex-wrap gap-1.5">
+                            {categories.map((cat) => (
+                                <button
+                                    key={cat}
+                                    onClick={() => setSelectedCategory(cat)}
+                                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all uppercase tracking-wider ${
+                                        selectedCategory === cat
+                                            ? "bg-cyan-500/10 text-cyan-400 border border-cyan-500/35"
+                                            : "bg-slate-900/40 text-slate-400 border border-white/5 hover:bg-slate-800"
+                                    }`}
+                                >
+                                    {cat === "All" ? "All Sectors" : cat}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Tech Selector */}
+                    <div className="flex flex-wrap items-center gap-2 w-full md:w-auto ml-auto">
+                        <span className="text-[10px] font-mono uppercase text-slate-500 tracking-widest mr-2 flex items-center gap-1">
+                            <Code className="w-3 h-3" /> Stack:
+                        </span>
+                        <div className="flex gap-1.5">
+                            {techStacks.map((stack) => (
+                                <button
+                                    key={stack}
+                                    onClick={() => setSelectedTech(stack)}
+                                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all uppercase tracking-wider ${
+                                        selectedTech === stack
+                                            ? "bg-blue-500/10 text-blue-400 border border-blue-500/35"
+                                            : "bg-slate-900/40 text-slate-400 border border-white/5 hover:bg-slate-800"
+                                    }`}
+                                >
+                                    {stack === "All" ? "All Tech" : stack}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                {/* Empty State */}
+                {filteredSites.length === 0 && (
+                    <div className="text-center py-20 bg-slate-950/20 border border-white/5 rounded-[2rem] backdrop-blur-md">
+                        <Activity className="w-12 h-12 text-slate-600 mx-auto mb-4 animate-pulse" />
+                        <h3 className="text-xl font-bold text-white uppercase tracking-wider">No Active Nodes Located</h3>
+                        <p className="text-slate-500 text-sm mt-2 max-w-sm mx-auto">
+                            Adjust your filters or search terms to inspect other nodes within the Digital Fleet.
+                        </p>
+                    </div>
+                )}
+
+                {/* Blazing Fast Bento Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                    {filteredSites.map((site) => {
+                        return (
+                            <div
+                                key={site.id}
+                                className="group relative rounded-[2rem] border border-white/5 bg-slate-950/45 p-6 md:p-8 flex flex-col justify-between hover:border-opacity-100 transition-all duration-500 shadow-xl overflow-hidden"
+                                style={{
+                                    boxShadow: `0 0 40px -10px rgba(${site.glowColor}, 0.05), inset 0 0 16px rgba(${site.glowColor}, 0.02)`,
+                                }}
+                            >
+                                {/* Immersive Ambient Glow Backdrop */}
+                                <div 
+                                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 blur-[60px] rounded-full pointer-events-none -z-10"
+                                    style={{
+                                        background: `radial-gradient(circle at center, rgba(${site.glowColor}, 0.12) 0%, transparent 60%)`
+                                    }}
+                                />
+
+                                {/* Card Header Details */}
+                                <div>
+                                    <div className="flex items-center justify-between mb-6">
+                                        <div className="flex items-center gap-2 bg-slate-900 border border-white/5 px-3 py-1.5 rounded-full">
+                                            {categoryIcons[site.category] || <Globe className="w-3.5 h-3.5" />}
+                                            <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-slate-400">
+                                                {site.category}
+                                            </span>
+                                        </div>
+
+                                        {/* Deployment Pulse Light */}
+                                        <div className="flex items-center gap-2">
+                                            <span className="relative flex h-2 w-2">
+                                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                                            </span>
+                                            <span className="text-[9px] font-mono font-bold uppercase tracking-widest text-green-400">
+                                                Active Node
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    {/* Project Info */}
+                                    <h3 className="text-xl md:text-2xl font-black text-white uppercase tracking-tight mb-2 group-hover:text-glow transition-all">
+                                        {site.title}
+                                    </h3>
+                                    
+                                    <span className="text-[11px] font-mono text-cyan-400/80 tracking-widest block mb-4">
+                                        {site.domain}
+                                    </span>
+
+                                    <p className="text-slate-400 text-xs leading-relaxed mb-6 line-clamp-3">
+                                        {site.description}
+                                    </p>
+
+                                    {/* TechBadges */}
+                                    <div className="flex flex-wrap gap-1.5 mb-6 pt-4 border-t border-white/5">
+                                        {site.techStack.map(tech => (
+                                            <span 
+                                                key={tech} 
+                                                className="text-[8px] font-mono font-bold uppercase tracking-wider px-2 py-1 rounded-md border border-white/5 bg-slate-900/80 text-slate-300"
+                                            >
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Core Speed Indicators (Lighthouse Dials) */}
+                                <div className="mt-auto">
+                                    <div className="grid grid-cols-4 gap-2 bg-slate-900/60 border border-white/5 p-3 rounded-2xl mb-6">
+                                        <div className="flex flex-col items-center justify-center text-center">
+                                            <span className="text-xs font-black text-green-400 leading-none">
+                                                {site.performanceScore}
+                                            </span>
+                                            <span className="text-[7px] font-mono uppercase text-slate-500 tracking-wider mt-1">
+                                                Perf
+                                            </span>
+                                        </div>
+                                        <div className="flex flex-col items-center justify-center text-center border-l border-white/5">
+                                            <span className="text-xs font-black text-green-400 leading-none">
+                                                {site.accessibilityScore}
+                                            </span>
+                                            <span className="text-[7px] font-mono uppercase text-slate-500 tracking-wider mt-1">
+                                                A11y
+                                            </span>
+                                        </div>
+                                        <div className="flex flex-col items-center justify-center text-center border-l border-white/5">
+                                            <span className="text-xs font-black text-green-400 leading-none">
+                                                {site.bestPracticesScore}
+                                            </span>
+                                            <span className="text-[7px] font-mono uppercase text-slate-500 tracking-wider mt-1">
+                                                Best P.
+                                            </span>
+                                        </div>
+                                        <div className="flex flex-col items-center justify-center text-center border-l border-white/5">
+                                            <span className="text-xs font-black text-green-400 leading-none">
+                                                {site.seoScore}
+                                            </span>
+                                            <span className="text-[7px] font-mono uppercase text-slate-500 tracking-wider mt-1">
+                                                SEO
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    {/* Action Buttons */}
+                                    <div className="flex items-center gap-3">
+                                        <a
+                                            href={site.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 bg-white text-black text-[9px] font-black uppercase tracking-widest rounded-xl hover:bg-cyan-400 hover:text-white transition-all duration-300"
+                                        >
+                                            Launch System <ExternalLink className="w-3 h-3" />
+                                        </a>
+                                        <div className="px-3.5 py-3 rounded-xl border border-white/5 bg-slate-900/50 flex items-center justify-center">
+                                            <Clock className="w-3.5 h-3.5 text-slate-500" />
+                                            <span className="text-[7px] font-mono uppercase text-slate-500 tracking-wider ml-1.5 hidden group-hover:inline-block transition-all">
+                                                {site.publishedAt}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+
+                {/* Closing CTA */}
+                <div className="mt-20 border border-white/5 bg-slate-950/30 p-8 md:p-12 rounded-[2.5rem] backdrop-blur-md text-center max-w-4xl mx-auto relative overflow-hidden">
+                    <div className="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(34,211,238,0.02)_1px,transparent_1px)] bg-[size:20px_20px]" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-cyan-500/5 rounded-full blur-[80px] pointer-events-none" />
+                    
+                    <span className="text-[9px] font-mono font-bold uppercase tracking-[0.4em] text-cyan-400 mb-4 block">
+                        DEDICATED DIGITAL ENGINEERING
+                    </span>
+                    <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter leading-none mb-6">
+                        READY TO DEPLOY YOUR OWN<br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 italic">
+                            HIGH-SPEED ENGINE?
+                        </span>
+                    </h2>
+                    <p className="text-slate-400 text-sm leading-relaxed max-w-lg mx-auto mb-8">
+                        Stop bleeding B2B leads to slow, heavy WordPress templates. Secure a bespoke Next.js system and command first-page search authority now.
+                    </p>
+                    <button
+                        onClick={() => setIsBookingOpen(true)}
+                        className="px-10 py-4 bg-white text-black text-xs font-black uppercase tracking-widest rounded-xl hover:bg-cyan-400 hover:text-white transition-all shadow-[0_0_40px_rgba(255,255,255,0.05)] active:scale-95 duration-300"
+                    >
+                        Initiate Strategy Audit
+                    </button>
+                </div>
+            </section>
+
+            <Footer />
+
+            <BookingModal
+                isOpen={isBookingOpen}
+                onClose={() => setIsBookingOpen(false)}
+            />
+        </main>
     );
 }
