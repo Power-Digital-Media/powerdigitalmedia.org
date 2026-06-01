@@ -80,8 +80,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 primaryPhone = "(601) 720-4574";
             } else if (demoCompany === 'ms-dirt') {
                 companyName = "Geaux Pro Outdoors";
-                monthlyRate = 2500;
-                subscriptionTier = "custom";
+                monthlyRate = 550;
+                subscriptionTier = "management";
                 defaultEmail = "office@msdirt.com";
                 primaryPhone = "(601) 896-2664";
             } else if (demoCompany === 'powered-by-peptides') {
@@ -146,7 +146,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 notes: "Express Sandbox Access Bypass."
             });
 
-            setInvoices([
+            let mockInvoices: InvoiceData[] = [
                 {
                     id: "inv_demo_1",
                     stripeInvoiceId: "in_demo_001",
@@ -173,7 +173,53 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                     periodEnd: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString(),
                     createdAt: new Date(Date.now() - 45 * 24 * 60 * 60 * 1000).toISOString(),
                 }
-            ]);
+            ];
+
+            if (demoCompany === 'ms-dirt') {
+                mockInvoices = [
+                    {
+                        id: "inv_demo_gp_1",
+                        stripeInvoiceId: "in_demo_gp001",
+                        amountPaid: 550,
+                        amountDue: 0,
+                        currency: "usd",
+                        status: "paid",
+                        description: `${companyName} - Management & Hosting Retainer`,
+                        invoicePdf: "#",
+                        periodStart: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString(),
+                        periodEnd: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toISOString(),
+                        createdAt: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString(),
+                    },
+                    {
+                        id: "inv_demo_gp_2",
+                        stripeInvoiceId: "in_demo_gp002",
+                        amountPaid: 550,
+                        amountDue: 0,
+                        currency: "usd",
+                        status: "paid",
+                        description: `${companyName} - Management & Hosting Retainer`,
+                        invoicePdf: "#",
+                        periodStart: new Date(Date.now() - 45 * 24 * 60 * 60 * 1000).toISOString(),
+                        periodEnd: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString(),
+                        createdAt: new Date(Date.now() - 45 * 24 * 60 * 60 * 1000).toISOString(),
+                    },
+                    {
+                        id: "inv_demo_gp_3",
+                        stripeInvoiceId: "in_demo_gp003",
+                        amountPaid: 1500,
+                        amountDue: 0,
+                        currency: "usd",
+                        status: "paid",
+                        description: `${companyName} - Premium Website Design Production`,
+                        invoicePdf: "#",
+                        periodStart: new Date(Date.now() - 75 * 24 * 60 * 60 * 1000).toISOString(),
+                        periodEnd: new Date(Date.now() - 45 * 24 * 60 * 60 * 1000).toISOString(),
+                        createdAt: new Date(Date.now() - 75 * 24 * 60 * 60 * 1000).toISOString(),
+                    }
+                ];
+            }
+
+            setInvoices(mockInvoices);
 
             let project1Name = "Supplements E-Commerce Hub";
             let project2Name = "Local SEO Blitz Campaign";
@@ -242,7 +288,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             ]);
 
 
-            setActivity([
+            let mockActivity = [
                 {
                     id: "act_1",
                     type: "milestone",
@@ -261,7 +307,38 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                     message: "Bypass access handshake authenticated via Express sandbox.",
                     createdAt: new Date().toISOString(),
                 }
-            ]);
+            ];
+
+            if (demoCompany === 'ms-dirt') {
+                mockActivity = [
+                    {
+                        id: "act_1",
+                        type: "milestone",
+                        message: "Geaux Pro Excavation Platform launched on Netlify Edge CDN.",
+                        createdAt: new Date(Date.now() - 45 * 24 * 60 * 60 * 1000).toISOString(),
+                    },
+                    {
+                        id: "act_2",
+                        type: "payment",
+                        message: `Stripe Payment received for Invoice #in_demo_gp001 ($550.00 USD)`,
+                        createdAt: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString(),
+                    },
+                    {
+                        id: "act_3",
+                        type: "payment",
+                        message: `Stripe Payment received for Invoice #in_demo_gp003 ($1,500.00 USD)`,
+                        createdAt: new Date(Date.now() - 75 * 24 * 60 * 60 * 1000).toISOString(),
+                    },
+                    {
+                        id: "act_4",
+                        type: "login",
+                        message: "Bypass access handshake authenticated via Express sandbox.",
+                        createdAt: new Date().toISOString(),
+                    }
+                ];
+            }
+
+            setActivity(mockActivity);
 
             setLoading(false);
             setProfileLoading(false);
