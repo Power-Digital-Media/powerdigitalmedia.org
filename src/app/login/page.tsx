@@ -208,23 +208,29 @@ export default function LoginPage() {
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-3 gap-3">
+                            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
                                 {[
                                     { key: "tbeauxs", label: "Tbeaux's", color: "hover:border-red-500/30 hover:text-red-400" },
                                     { key: "ms-dirt", label: "Geaux Pro", color: "hover:border-yellow-500/30 hover:text-yellow-400" },
-                                    { key: "powered-by-peptides", label: "Peptides", color: "hover:border-purple-500/30 hover:text-purple-400" }
+                                    { key: "powered-by-peptides", label: "Peptides", color: "hover:border-purple-500/30 hover:text-purple-400" },
+                                    { key: "pastors-provision", label: "Pastor's", color: "hover:border-blue-500/30 hover:text-blue-400" },
+                                    { key: "church-244", label: "Church 244", color: "hover:border-cyan-500/30 hover:text-cyan-400" },
+                                    { key: "blacksheep-recovery", label: "Black Sheep", color: "hover:border-orange-500/30 hover:text-orange-400" },
+                                    { key: "simmons-memorial", label: "Simmons", color: "hover:border-indigo-500/30 hover:text-indigo-400" },
+                                    { key: "tew-and-company", label: "Tew & Co.", color: "hover:border-slate-500/30 hover:text-slate-400" }
                                 ].map((demo) => (
                                     <button
                                         key={demo.key}
                                         type="button"
                                         onClick={() => handleDemoLogin(demo.key)}
                                         disabled={loading || googleLoading}
-                                        className={`py-3.5 rounded-xl bg-white/[0.01] border border-white/5 text-[9px] font-black uppercase tracking-wider transition-all duration-300 ${demo.color} active:scale-95`}
+                                        className={`py-3 rounded-xl bg-white/[0.01] border border-white/5 text-[8px] font-black uppercase tracking-wider transition-all duration-300 ${demo.color} active:scale-95`}
                                     >
                                         {demo.label}
                                     </button>
                                 ))}
                             </div>
+
                         </form>
 
                         <div className="mt-8 text-center flex flex-col gap-4">

@@ -66,19 +66,65 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         if (demoCompany) {
             console.log("⚡ Sandbox Active: Loading mock credentials for", demoCompany);
             
-            const companyName = demoCompany === 'tbeauxs' ? "Tbeaux's Crawfish" 
-                : demoCompany === 'ms-dirt' ? "Geaux Pro Outdoors" 
-                : "Powered By Peptides";
+            let companyName = "Power Digital Media";
+            let monthlyRate = 1500;
+            let subscriptionTier = "custom";
+            let defaultEmail = "info@powerdigitalmedia.org";
+            let primaryPhone = "(601) 446-2393";
 
-            const monthlyRate = demoCompany === 'tbeauxs' ? 1200 
-                : demoCompany === 'ms-dirt' ? 2500 
-                : 3000;
-
-            const subscriptionTier = demoCompany === 'tbeauxs' ? "management" : "custom";
+            if (demoCompany === 'tbeauxs') {
+                companyName = "Tbeaux's Crawfish";
+                monthlyRate = 1200;
+                subscriptionTier = "management";
+                defaultEmail = "crawfish@tbeauxs.com";
+                primaryPhone = "(601) 720-4574";
+            } else if (demoCompany === 'ms-dirt') {
+                companyName = "Geaux Pro Outdoors";
+                monthlyRate = 2500;
+                subscriptionTier = "custom";
+                defaultEmail = "office@msdirt.com";
+                primaryPhone = "(601) 896-2664";
+            } else if (demoCompany === 'powered-by-peptides') {
+                companyName = "Powered By Peptides";
+                monthlyRate = 3000;
+                subscriptionTier = "custom";
+                defaultEmail = "info@poweredbypeptides.com";
+                primaryPhone = "(601) 555-0199";
+            } else if (demoCompany === 'pastors-provision') {
+                companyName = "Pastor's Provision";
+                monthlyRate = 1500;
+                subscriptionTier = "custom";
+                defaultEmail = "director@pastorsprovision.com";
+                primaryPhone = "(601) 555-0211";
+            } else if (demoCompany === 'church-244') {
+                companyName = "Church 244";
+                monthlyRate = 1000;
+                subscriptionTier = "management";
+                defaultEmail = "josh@church244.com";
+                primaryPhone = "(601) 555-0244";
+            } else if (demoCompany === 'blacksheep-recovery') {
+                companyName = "Black Sheep Recovery";
+                monthlyRate = 1800;
+                subscriptionTier = "custom";
+                defaultEmail = "danny@blacksheeprecoverywarfare.com";
+                primaryPhone = "(601) 555-0312";
+            } else if (demoCompany === 'simmons-memorial') {
+                companyName = "Simmons Memorial";
+                monthlyRate = 800;
+                subscriptionTier = "management";
+                defaultEmail = "contact@simmonsmemorial.org";
+                primaryPhone = "(601) 555-0450";
+            } else if (demoCompany === 'tew-and-company') {
+                companyName = "Tew & Company";
+                monthlyRate = 2000;
+                subscriptionTier = "custom";
+                defaultEmail = "tew@tewandcompany.com";
+                primaryPhone = "(601) 555-0580";
+            }
 
             const mockUser = {
                 uid: "demo-client-uid",
-                email: `${demoCompany}@powerdigitalmedia.org`,
+                email: defaultEmail,
                 displayName: companyName,
                 getIdToken: async () => "demo-bypass-token"
             } as unknown as User;
@@ -87,9 +133,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             
             setClientProfile({
                 displayName: companyName,
-                email: `${demoCompany}@powerdigitalmedia.org`,
+                email: defaultEmail,
                 company: companyName,
-                phone: "(601) 555-0199",
+                phone: primaryPhone,
                 stripeCustomerId: `cus_demo_${demoCompany}`,
                 subscriptionStatus: 'active',
                 subscriptionTier: subscriptionTier as any,
@@ -129,10 +175,45 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 }
             ]);
 
+            let project1Name = "Supplements E-Commerce Hub";
+            let project2Name = "Local SEO Blitz Campaign";
+            let project2Progress = 75;
+            let currentMilestone = "First-Page Dominance Sprint";
+
+            if (demoCompany === 'tbeauxs') {
+                project1Name = "Tbeaux's Crawfish Showcase";
+            } else if (demoCompany === 'ms-dirt') {
+                project1Name = "Geaux Pro Excavation Platform";
+            } else if (demoCompany === 'pastors-provision') {
+                project1Name = "Pastors Provision Care Portal";
+                project2Name = "Organic B2B SEO Campaign";
+                project2Progress = 65;
+            } else if (demoCompany === 'church-244') {
+                project1Name = "Church 244 Mobilization App";
+                project2Name = "Google Maps Map Pack Domination";
+                project2Progress = 80;
+                currentMilestone = "Map Pack Rank Blitz";
+            } else if (demoCompany === 'blacksheep-recovery') {
+                project1Name = "Recovery Crisis Landing App";
+                project2Name = "B2B Video Podcast Streaming Hub";
+                project2Progress = 50;
+                currentMilestone = "Video Layout Deployment";
+            } else if (demoCompany === 'simmons-memorial') {
+                project1Name = "Simmons Memorial Legacy Site";
+                project2Name = "A11y Accessibility Audit & Compliance";
+                project2Progress = 90;
+                currentMilestone = "ARIA Audit Pass";
+            } else if (demoCompany === 'tew-and-company') {
+                project1Name = "Tew B2B Consultancy Hub";
+                project2Name = "Stripe Payments & Visual Opportunity Pipeline";
+                project2Progress = 70;
+                currentMilestone = "Stripe Sync Gateway Webhook";
+            }
+
             setProjects([
                 {
                     id: "proj_demo_1",
-                    name: demoCompany === 'tbeauxs' ? "Tbeaux's Crawfish Showcase" : demoCompany === 'ms-dirt' ? "Geaux Pro Excavation Platform" : "Supplements E-Commerce Hub",
+                    name: project1Name,
                     type: "web-design",
                     status: "deployed",
                     progress: 100,
@@ -146,19 +227,20 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 },
                 {
                     id: "proj_demo_2",
-                    name: "Local SEO Blitz Campaign",
+                    name: project2Name,
                     type: "seo",
                     status: "engineering",
-                    progress: 75,
+                    progress: project2Progress,
                     milestones: [
                         { name: "Entity Auditing", status: "completed" },
                         { name: "Local GSC Setup", status: "completed" },
-                        { name: "First-Page Dominance Sprint", status: "current" }
+                        { name: currentMilestone, status: "current" }
                     ],
                     createdAt: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(),
                     updatedAt: new Date().toISOString(),
                 }
             ]);
+
 
             setActivity([
                 {

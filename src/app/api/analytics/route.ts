@@ -60,6 +60,34 @@ const domainMapping: Record<string, { domain: string; company: string; category:
             { query: "stream church 244 sermons", clicks: 52, impressions: 90, position: 1.1 }
         ]
     },
+    "blacksheep-recovery": {
+        domain: "blacksheeprecoverywarfare.com",
+        company: "Black Sheep Recovery",
+        category: "Faith & Community",
+        queries: [
+            { query: "black sheep recovery podcast", clicks: 320, impressions: 840, position: 1.2 },
+            { query: "addiction rescue ministry jackson", clicks: 112, impressions: 720, position: 2.5 },
+            { query: "black sheep recovery warfare", clicks: 190, impressions: 220, position: 1.0 }
+        ]
+    },
+    "simmons-memorial": {
+        domain: "simmonsmemorial.org",
+        company: "Simmons Memorial",
+        category: "Faith & Community",
+        queries: [
+            { query: "simmons memorial church", clicks: 145, impressions: 320, position: 1.1 },
+            { query: "historical faith community jackson", clicks: 42, impressions: 380, position: 2.9 }
+        ]
+    },
+    "tew-and-company": {
+        domain: "tewandcompany.com",
+        company: "Tew & Company",
+        category: "Local Business",
+        queries: [
+            { query: "tew and company consulting", clicks: 180, impressions: 420, position: 1.0 },
+            { query: "business strategist clinton ms", clicks: 88, impressions: 540, position: 2.1 }
+        ]
+    },
     "agency": {
         domain: "powerdigitalmedia.org",
         company: "Power Digital Media",
@@ -119,7 +147,14 @@ export async function GET(req: NextRequest) {
             key = "pastors-provision";
         } else if (cleanCompany.includes("244") || cleanCompany.includes("church")) {
             key = "church-244";
+        } else if (cleanCompany.includes("blacksheep") || cleanCompany.includes("black sheep") || cleanCompany.includes("recovery")) {
+            key = "blacksheep-recovery";
+        } else if (cleanCompany.includes("simmons") || cleanCompany.includes("memorial")) {
+            key = "simmons-memorial";
+        } else if (cleanCompany.includes("tew")) {
+            key = "tew-and-company";
         }
+
 
         const config = domainMapping[key] || domainMapping["agency"];
 
