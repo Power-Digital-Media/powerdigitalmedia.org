@@ -47,9 +47,9 @@ export default function Home() {
             style={{ fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif' }}
             className="text-4xl md:text-8xl font-black mb-6 md:mb-8 tracking-tighter leading-[0.85] uppercase"
           >
-            We Engineer <br /> Websites That
+            Jackson MS <br /> Web Design That
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-500 text-glow-cyan text-glow block mt-2">
-              Dominate Search
+              Dominates Search
             </span>
           </h1>
           <p 
@@ -110,16 +110,16 @@ export default function Home() {
             "priceRange": "$$$",
             "address": {
               "@type": "PostalAddress",
-              "streetAddress": "Regional Office",
+              "streetAddress": "2914 Cynthia Rd",
               "addressLocality": "Jackson",
               "addressRegion": "MS",
-              "postalCode": "39201",
+              "postalCode": "39209",
               "addressCountry": "US"
             },
             "geo": {
               "@type": "GeoCoordinates",
-              "latitude": 32.2988,
-              "longitude": -90.1848
+              "latitude": 32.3570,
+              "longitude": -90.2853
             },
             "areaServed": [
               { "@type": "City", "name": "Jackson" },

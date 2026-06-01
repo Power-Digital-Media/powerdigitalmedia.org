@@ -8757,16 +8757,16 @@ You must map your physical location in machine language using JSON-LD. For a bus
   "telephone": "+16015550198",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "123 Strategy Row",
+    "streetAddress": "2914 Cynthia Rd",
     "addressLocality": "Jackson",
     "addressRegion": "MS",
-    "postalCode": "39201",
+    "postalCode": "39209",
     "addressCountry": "US"
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": 32.2988,
-    "longitude": -90.1848
+    "latitude": 32.3570,
+    "longitude": -90.2853
   },
   "areaServed": [
     {

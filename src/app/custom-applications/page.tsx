@@ -110,9 +110,9 @@ export default function CustomApplicationsPage() {
                     >
                         <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[10px] md:text-xs mb-6 block">Bespoke Software Engineering</span>
                         <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[0.85] uppercase">
-                            Bespoke <br />
+                            Jackson MS <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-500 text-glow-cyan">
-                                Custom Applications
+                                Custom Software
                             </span>
                         </h1>
                         <p className="text-xl md:text-3xl text-foreground/70 mb-12 max-w-3xl mx-auto leading-relaxed font-light">

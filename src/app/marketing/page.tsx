@@ -191,9 +191,9 @@ export default function MarketingPage() {
                         LOCAL B2B PAID SOCIAL AD ACQUISITION
                     </span>
                     <h1 className="text-4xl md:text-8xl font-black mb-6 md:mb-8 tracking-tighter leading-[0.85] uppercase">
-                        High-Velocity <br />
+                        Jackson MS <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 text-glow-blue block mt-2">
-                            Ad Funnels.
+                            Digital Marketing
                         </span>
                     </h1>
                     <p className="text-foreground/60 max-w-2xl mx-auto text-lg leading-relaxed">

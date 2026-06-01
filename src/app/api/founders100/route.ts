@@ -9,7 +9,7 @@ import { adminDb } from '@/lib/firebase-admin';
 
 const PROMO_DOC = 'promotions/founders100';
 const TOTAL_SPOTS = 100;
-const INITIAL_CLAIMED = 3; // Already delivered 3 builds
+const INITIAL_CLAIMED = 4; // Already delivered 4 builds (including Tbeaux's)
 
 export async function GET() {
     try {

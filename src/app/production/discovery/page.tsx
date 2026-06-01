@@ -153,7 +153,7 @@ export default function ProductionDiscoveryPage() {
                                     <Field label="Estimated Duration" name="duration" placeholder="e.g. 3 hours, full day" disabled={disabled} />
                                 </div>
                                 <Field label="Venue / Location Name" name="venue_name" placeholder="The Westin Jackson, First Baptist Church..." disabled={disabled} />
-                                <Field label="Full Address" name="venue_address" placeholder="123 Main St, Jackson, MS 39201" disabled={disabled} />
+                                <Field label="Full Address" name="venue_address" placeholder="123 Main St, Jackson, MS 39209" disabled={disabled} />
                                 <div className="space-y-2">
                                     <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Indoor or Outdoor?</label>
                                     <RadioGroup name="venue_type" options={["Indoor","Outdoor","Both / Mixed"]} disabled={disabled} />

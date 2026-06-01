@@ -24,7 +24,7 @@ export default function Founders100Banner({ onCheckout, loading }: Founders100Pr
             .then((r) => r.json())
             .then(setPromoData)
             .catch(() =>
-                setPromoData({ remaining: 97, total: 100, claimed: 3, active: true })
+                setPromoData({ remaining: 96, total: 100, claimed: 4, active: true })
             );
     }, []);
 

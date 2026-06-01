@@ -113,14 +113,16 @@ export default function RootLayout({
               ],
               "address": {
                 "@type": "PostalAddress",
+                "streetAddress": "2914 Cynthia Rd",
                 "addressLocality": "Jackson",
                 "addressRegion": "MS",
+                "postalCode": "39209",
                 "addressCountry": "US"
               },
               "geo": {
                 "@type": "GeoCoordinates",
-                "latitude": 32.2988,
-                "longitude": -90.1848
+                "latitude": 32.3570,
+                "longitude": -90.2853
               },
               "areaServed": [
                 {
