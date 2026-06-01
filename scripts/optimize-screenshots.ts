@@ -35,6 +35,11 @@ const imagesToProcess = [
         src: path.join(brainDir, "media__1780330554166.png"),
         dest: path.join(outputDir, "church-244.webp"),
         name: "Church 244"
+    },
+    {
+        src: path.join(brainDir, "media__1780330718679.png"),
+        dest: path.join(outputDir, "in-his-grip.webp"),
+        name: "In His Grip"
     }
 ];
 

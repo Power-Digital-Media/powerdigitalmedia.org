@@ -116,7 +116,8 @@ export const liveSites: LiveSite[] = [
         accessibilityScore: 98,
         seoScore: 100,
         bestPracticesScore: 98,
-        glowColor: "34, 197, 94" // Green
+        glowColor: "34, 197, 94", // Green
+        image: "/portfolio/in-his-grip.webp"
     },
     {
         id: "church-244",
