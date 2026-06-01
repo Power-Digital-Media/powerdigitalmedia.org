@@ -20,17 +20,246 @@ import {
     Heart,
     ShoppingBag,
     Code,
-    CheckCircle2
+    Smartphone,
+    Monitor,
+    Play,
+    Plus,
+    Utensils,
+    ShoppingCart
 } from "lucide-react";
 
 // Category Icons Mapping
 const categoryIcons: Record<string, React.ReactNode> = {
-    Healthcare: <Shield className="w-4 h-4 text-teal-400" />,
     "Local Business": <Globe className="w-4 h-4 text-amber-400" />,
     "E-Commerce": <ShoppingBag className="w-4 h-4 text-purple-400" />,
     "Faith & Community": <Heart className="w-4 h-4 text-red-400" />,
     Agency: <Activity className="w-4 h-4 text-cyan-400" />
 };
+
+// CSS Interactive Web Preview Component for websites without direct screenshots
+function SimulatedWebPreview({ site }: { site: LiveSite }) {
+    if (site.id === "ms-dirt") {
+        return (
+            <div className="w-full h-full bg-[#06060c] relative flex flex-col justify-between p-4 overflow-hidden border border-amber-500/10">
+                {/* Construction Grid Background */}
+                <div className="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(245,158,11,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(245,158,11,0.05)_1px,transparent_1px)] bg-[size:16px_16px]" />
+                
+                {/* Mock Construction Header */}
+                <div className="flex items-center justify-between z-10 border-b border-white/5 pb-2">
+                    <span className="text-[10px] font-black text-amber-400 tracking-wider">MS DIRT &amp; GRAVEL</span>
+                    <div className="flex gap-2">
+                        <span className="w-2 h-2 rounded-full bg-amber-500" />
+                        <span className="w-2 h-2 rounded-full bg-white/20" />
+                    </div>
+                </div>
+
+                {/* Hero / Truck graphic overlay */}
+                <div className="my-auto z-10 text-center flex flex-col items-center">
+                    <span className="text-[8px] font-mono tracking-widest text-slate-500 block mb-1">HAULING &amp; LOGISTICS</span>
+                    <h4 className="text-sm font-black text-white leading-none uppercase">
+                        HEAVY CARGO <br />
+                        <span className="text-amber-400">DOMINANCE.</span>
+                    </h4>
+                    {/* Simulated Truck Shape */}
+                    <div className="mt-3 flex items-center justify-center gap-1">
+                        <div className="w-8 h-4 bg-amber-500/20 border border-amber-500/40 rounded-sm relative flex items-center justify-center">
+                            <span className="text-[6px] font-bold text-amber-400">18-WHL</span>
+                        </div>
+                        <div className="w-4 h-4 bg-slate-800 rounded-sm" />
+                    </div>
+                </div>
+
+                {/* Simulated Lead Quote Bar */}
+                <div className="z-10 bg-amber-500/10 border border-amber-500/30 rounded-lg p-1.5 text-center flex items-center justify-between mt-auto">
+                    <span className="text-[7px] font-mono text-slate-400">Get Hauling Rates</span>
+                    <span className="text-[8px] font-bold text-amber-400 flex items-center gap-0.5">
+                        Instant Quote <Plus className="w-2 h-2" />
+                    </span>
+                </div>
+            </div>
+        );
+    }
+
+    if (site.id === "tbeauxs") {
+        return (
+            <div className="w-full h-full bg-[#090303] relative flex flex-col justify-between p-4 overflow-hidden border border-red-500/10">
+                {/* Spicy Red Grid */}
+                <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,rgba(239,68,68,0.15)_0%,transparent_80%)]" />
+
+                {/* Mock Cafe Header */}
+                <div className="flex items-center justify-between z-10 border-b border-white/5 pb-2">
+                    <span className="text-[10px] font-black text-red-500 tracking-widest flex items-center gap-1">
+                        <Utensils className="w-2.5 h-2.5" /> TBEAUX&apos;S
+                    </span>
+                    <span className="text-[7px] font-mono text-red-400/70 border border-red-500/20 px-1.5 py-0.5 rounded">CATERING</span>
+                </div>
+
+                {/* Cafe Menu Showcase */}
+                <div className="my-auto z-10 space-y-2">
+                    <h4 className="text-xs font-black text-white text-center tracking-tight leading-none uppercase">
+                        SPICY CAJUN <br />
+                        <span className="text-red-500">CRAWFISH FEAST</span>
+                    </h4>
+                    {/* Mock Menu Items Grid */}
+                    <div className="grid grid-cols-2 gap-1.5 pt-1">
+                        <div className="bg-red-950/20 border border-red-500/20 rounded p-1 flex justify-between items-center">
+                            <span className="text-[6px] font-bold text-slate-300">Cajun Boil</span>
+                            <span className="text-[6px] font-mono text-red-400 font-bold">$14.99</span>
+                        </div>
+                        <div className="bg-red-950/20 border border-red-500/20 rounded p-1 flex justify-between items-center">
+                            <span className="text-[6px] font-bold text-slate-300">Po&apos; Boy</span>
+                            <span className="text-[6px] font-mono text-red-400 font-bold">$11.50</span>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Outbound Booking CTA */}
+                <div className="z-10 bg-red-600 text-white rounded-lg py-1 px-2 text-center text-[7px] font-black uppercase tracking-widest mt-auto hover:bg-red-500 transition-colors">
+                    Book Seafood Catering →
+                </div>
+            </div>
+        );
+    }
+
+    if (site.id === "powered-by-peptides") {
+        return (
+            <div className="w-full h-full bg-[#05020c] relative flex flex-col justify-between p-4 overflow-hidden border border-purple-500/10">
+                {/* Molecule Ambient background */}
+                <div className="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(168,85,247,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(168,85,247,0.05)_1px,transparent_1px)] bg-[size:20px_20px]" />
+                <div className="absolute top-1/3 left-1/3 w-16 h-16 bg-purple-500/10 rounded-full blur-xl" />
+
+                {/* Store Header */}
+                <div className="flex items-center justify-between z-10 border-b border-white/5 pb-2">
+                    <span className="text-[9px] font-black text-purple-400 tracking-wider">POWERED BY PEPTIDES</span>
+                    <span className="text-[8px] font-mono text-purple-300 flex items-center gap-1">
+                        <ShoppingCart className="w-2.5 h-2.5" /> Cart (0)
+                    </span>
+                </div>
+
+                {/* Supplement Grid */}
+                <div className="my-auto z-10 flex flex-col items-center">
+                    <span className="text-[7px] font-mono uppercase text-slate-500 mb-1">PREMIUM SUPPLEMENTS</span>
+                    <h4 className="text-xs font-black text-white text-center leading-tight">
+                        REGENERATE YOUR <br />
+                        <span className="text-purple-400">PHYSICAL LIMITS</span>
+                    </h4>
+                    {/* Simulated Supplement Jar */}
+                    <div className="mt-3 w-7 h-10 bg-gradient-to-b from-purple-600/40 to-slate-900 border border-purple-500/40 rounded flex flex-col justify-between p-1 items-center shadow-lg">
+                        <span className="w-5 h-2 bg-slate-950 rounded-sm" />
+                        <span className="text-[4px] font-mono text-purple-300 font-bold">PEPTIDE</span>
+                    </div>
+                </div>
+
+                {/* Store Buy CTA */}
+                <div className="z-10 bg-purple-500/10 border border-purple-500/35 text-purple-400 rounded-lg py-1.5 px-3 text-center text-[7px] font-black uppercase tracking-widest mt-auto">
+                    Explore Supplement Store →
+                </div>
+            </div>
+        );
+    }
+
+    if (site.id === "pastors-provision") {
+        return (
+            <div className="w-full h-full bg-[#02050e] relative flex flex-col justify-between p-4 overflow-hidden border border-blue-500/10">
+                {/* Care waves background */}
+                <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_bottom,rgba(59,130,246,0.15)_0%,transparent_80%)]" />
+
+                {/* Portal Header */}
+                <div className="flex items-center justify-between z-10 border-b border-white/5 pb-2">
+                    <span className="text-[9px] font-black text-blue-400 tracking-wider">PASTOR&apos;S PROVISION</span>
+                    <span className="text-[7px] font-mono text-slate-500">OUTREACH ACTIVE</span>
+                </div>
+
+                {/* Service Details */}
+                <div className="my-auto z-10 text-center">
+                    <h4 className="text-xs font-black text-white leading-tight uppercase">
+                        SUPPORTING THOSE <br />
+                        <span className="text-blue-400">WHO SHEPHERD OTHERS</span>
+                    </h4>
+                    <p className="text-[7px] text-slate-500 mt-2 max-w-[160px] mx-auto">
+                        Financial relief programs, local housing provisions, and medical assistance systems.
+                    </p>
+                </div>
+
+                {/* Simulated Donation slider */}
+                <div className="z-10 bg-slate-900 border border-white/5 rounded-lg p-1.5 flex justify-between items-center mt-auto">
+                    <span className="text-[6px] font-bold text-slate-400">Outreach Target: $25K</span>
+                    <div className="w-16 h-1 bg-slate-800 rounded overflow-hidden">
+                        <div className="w-2/3 h-full bg-blue-500" />
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    if (site.id === "in-his-grip") {
+        return (
+            <div className="w-full h-full bg-[#030605] relative flex flex-col justify-between p-4 overflow-hidden border border-green-500/10">
+                {/* Neon green grid */}
+                <div className="absolute inset-0 opacity-15 bg-[radial-gradient(circle_at_center,rgba(34,197,94,0.1)_0%,transparent_70%)]" />
+
+                {/* Faith Header */}
+                <div className="flex items-center justify-between z-10 border-b border-white/5 pb-2">
+                    <span className="text-[9px] font-black text-green-400 tracking-wider">IN HIS GRIP</span>
+                    <span className="text-[7px] font-mono text-green-500">MINISTRY HUB</span>
+                </div>
+
+                {/* Faith Grid details */}
+                <div className="my-auto z-10 text-center space-y-2 flex flex-col items-center">
+                    <h4 className="text-xs font-black text-white leading-tight uppercase">
+                        WALKING IN <br />
+                        <span className="text-green-400">HIS DESTINY</span>
+                    </h4>
+                    {/* Simulated Cross outline using CSS */}
+                    <div className="relative w-4 h-6 flex items-center justify-center">
+                        <div className="absolute w-1 h-full bg-green-500/30 border border-green-500/40 rounded-sm" />
+                        <div className="absolute h-1 w-full bg-green-500/30 border border-green-500/40 rounded-sm" />
+                    </div>
+                </div>
+
+                {/* Booking / event schedule CTA */}
+                <div className="z-10 bg-green-950/20 border border-green-500/35 text-green-400 rounded-lg py-1 px-3 text-center text-[7px] font-black uppercase tracking-wider mt-auto">
+                    View Local Fellowship Schedule
+                </div>
+            </div>
+        );
+    }
+
+    if (site.id === "church-244") {
+        return (
+            <div className="w-full h-full bg-[#02050c] relative flex flex-col justify-between p-4 overflow-hidden border border-cyan-500/10">
+                {/* Tech Cyan Grid */}
+                <div className="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(6,182,212,0.04)_1px,transparent_1px)] bg-[size:12px_12px]" />
+
+                {/* Modern Church Header */}
+                <div className="flex items-center justify-between z-10 border-b border-white/5 pb-2">
+                    <span className="text-[10px] font-black text-cyan-400 tracking-widest">CHURCH 244</span>
+                    <span className="text-[7px] font-mono text-slate-500">FLORA, MS</span>
+                </div>
+
+                {/* Sermon play mockup */}
+                <div className="my-auto z-10 flex flex-col items-center space-y-2">
+                    <span className="text-[7px] font-mono text-cyan-400/60 uppercase tracking-widest">STREAM SERMONS</span>
+                    <h4 className="text-xs font-black text-white text-center uppercase tracking-tight leading-none">
+                        A MODERN FELLOWSHIP <br />
+                        <span className="text-cyan-400">BUILT ON GRACE.</span>
+                    </h4>
+                    {/* Circular Play Button Mock */}
+                    <div className="w-7 h-7 rounded-full bg-cyan-500/10 border border-cyan-500/40 flex items-center justify-center hover:scale-105 transition-all">
+                        <Play className="w-2.5 h-2.5 text-cyan-400 fill-cyan-400/30 ml-0.5" />
+                    </div>
+                </div>
+
+                {/* Church schedule indicators */}
+                <div className="z-10 bg-slate-900 border border-white/5 rounded-lg p-1.5 text-center text-[6px] font-mono text-slate-400 mt-auto">
+                    Sunday Gatherings @ 10:00 AM
+                </div>
+            </div>
+        );
+    }
+
+    return null;
+}
 
 export default function OurWorkPage() {
     const [searchQuery, setSearchQuery] = useState("");
@@ -39,7 +268,7 @@ export default function OurWorkPage() {
     const [isBookingOpen, setIsBookingOpen] = useState(false);
 
     // Filter Categories Lists
-    const categories = ["All", "Local Business", "Faith & Community", "Healthcare", "E-Commerce", "Agency"];
+    const categories = ["All", "Local Business", "Faith & Community", "E-Commerce", "Agency"];
     const techStacks = ["All", "Next.js", "Standard HTML/JS"];
 
     // Filtered Sites Logic
@@ -198,7 +427,7 @@ export default function OurWorkPage() {
                         return (
                             <div
                                 key={site.id}
-                                className="group relative rounded-[2rem] border border-white/5 bg-slate-950/45 p-6 md:p-8 flex flex-col justify-between hover:border-opacity-100 transition-all duration-500 shadow-xl overflow-hidden"
+                                className="group relative rounded-[2rem] border border-white/5 bg-slate-950/45 p-6 flex flex-col justify-between hover:border-opacity-100 transition-all duration-500 shadow-xl overflow-hidden"
                                 style={{
                                     boxShadow: `0 0 40px -10px rgba(${site.glowColor}, 0.05), inset 0 0 16px rgba(${site.glowColor}, 0.02)`,
                                 }}
@@ -211,10 +440,46 @@ export default function OurWorkPage() {
                                     }}
                                 />
 
+                                {/* Website Visual Browser Mockup (Dynamic CSS Previews or Screenshots) */}
+                                <div className="relative aspect-video w-full rounded-2xl overflow-hidden border border-white/5 bg-slate-900/50 mb-6 group-hover:border-white/10 transition-colors">
+                                    {/* Mock Browser Header Controls */}
+                                    <div className="flex items-center gap-1.5 px-4 py-2.5 bg-slate-950/60 border-b border-white/5 absolute top-0 left-0 right-0 z-20">
+                                        <div className="flex gap-1">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-[#ff5f57]" />
+                                            <span className="w-1.5 h-1.5 rounded-full bg-[#febc2e]" />
+                                            <span className="w-1.5 h-1.5 rounded-full bg-[#28c840]" />
+                                        </div>
+                                        <div className="mx-auto bg-slate-900 border border-white/[0.03] rounded-md py-0.5 px-3 text-[7px] text-slate-500 font-mono tracking-wider truncate max-w-[120px] md:max-w-[160px] text-center">
+                                            {site.domain}
+                                        </div>
+                                    </div>
+
+                                    {/* Visual Content Wrapper */}
+                                    <div className="pt-8 h-full w-full relative">
+                                        {site.image ? (
+                                            /* Renders screenshot if mapped */
+                                            <Image 
+                                                src={site.image} 
+                                                alt={`${site.title} screenshot`}
+                                                fill
+                                                className="object-cover object-top opacity-80 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-[800ms] ease-out"
+                                                sizes="(max-width: 768px) 100vw, 33vw"
+                                            />
+                                        ) : (
+                                            /* Renders customized high-end simulated CSS preview otherwise */
+                                            <div className="h-full w-full group-hover:scale-[1.03] transition-transform duration-[800ms] ease-out">
+                                                <SimulatedWebPreview site={site} />
+                                            </div>
+                                        )}
+                                        {/* Glass Overlay on Mockup */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
+                                    </div>
+                                </div>
+
                                 {/* Card Header Details */}
                                 <div>
-                                    <div className="flex items-center justify-between mb-6">
-                                        <div className="flex items-center gap-2 bg-slate-900 border border-white/5 px-3 py-1.5 rounded-full">
+                                    <div className="flex items-center justify-between mb-4">
+                                        <div className="flex items-center gap-2 bg-slate-900 border border-white/5 px-3 py-1 rounded-full">
                                             {categoryIcons[site.category] || <Globe className="w-3.5 h-3.5" />}
                                             <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-slate-400">
                                                 {site.category}
@@ -234,11 +499,11 @@ export default function OurWorkPage() {
                                     </div>
 
                                     {/* Project Info */}
-                                    <h3 className="text-xl md:text-2xl font-black text-white uppercase tracking-tight mb-2 group-hover:text-glow transition-all">
+                                    <h3 className="text-xl font-black text-white uppercase tracking-tight mb-2 group-hover:text-glow transition-all">
                                         {site.title}
                                     </h3>
                                     
-                                    <span className="text-[11px] font-mono text-cyan-400/80 tracking-widest block mb-4">
+                                    <span className="text-[10px] font-mono text-cyan-400/80 tracking-widest block mb-4">
                                         {site.domain}
                                     </span>
 

@@ -4,7 +4,7 @@ export interface LiveSite {
     domain: string;
     url: string;
     deployType: 'Next.js' | 'Standard HTML/JS';
-    category: 'Healthcare' | 'Local Business' | 'E-Commerce' | 'Faith & Community' | 'Agency';
+    category: 'Local Business' | 'E-Commerce' | 'Faith & Community' | 'Agency';
     publishedAt: string;
     description: string;
     techStack: string[];
@@ -13,6 +13,7 @@ export interface LiveSite {
     seoScore: number;
     bestPracticesScore: number;
     glowColor: string; // Tailwind glow RGB values
+    image?: string; // Optional screenshot path
 }
 
 export const liveSites: LiveSite[] = [
@@ -30,23 +31,8 @@ export const liveSites: LiveSite[] = [
         accessibilityScore: 99,
         seoScore: 100,
         bestPracticesScore: 98,
-        glowColor: "34, 197, 94" // Neon Green
-    },
-    {
-        id: "corner-pharmacy",
-        title: "Corner Pharmacy",
-        domain: "corner-pharmacy-flora.netlify.app",
-        url: "https://corner-pharmacy-flora.netlify.app",
-        deployType: "Next.js",
-        category: "Healthcare",
-        publishedAt: "May 2026",
-        description: "Bespoke digital pharmacy engine bridging old-fashioned patient care with high-end modern prescription refilling, secure routing, and delivery systems.",
-        techStack: ["Next.js", "HIPAA Data Layer", "Tailwind CSS", "React Hook Forms"],
-        performanceScore: 99,
-        accessibilityScore: 100,
-        seoScore: 98,
-        bestPracticesScore: 99,
-        glowColor: "20, 184, 166" // Teal
+        glowColor: "34, 197, 94", // Neon Green
+        image: "/portfolio/all-things-new-real.webp"
     },
     {
         id: "ms-dirt",
@@ -103,7 +89,7 @@ export const liveSites: LiveSite[] = [
         url: "https://pastorsprovision.com",
         deployType: "Next.js",
         category: "Faith & Community",
-        publishedAt: "Published 2 months ago",
+        publishedAt: "Published 6 days ago",
         description: "Modern gateway for regional pastoral care programs, featuring clean donation pathways, resource indexing, and high accessibility compliance.",
         techStack: ["Next.js", "Tailwind CSS", "Semantic Schema", "Fluid Typography"],
         performanceScore: 99,
@@ -119,7 +105,7 @@ export const liveSites: LiveSite[] = [
         url: "https://in-his-grip.com",
         deployType: "Standard HTML/JS",
         category: "Faith & Community",
-        publishedAt: "Published 6 days ago",
+        publishedAt: "Published on May 26",
         description: "High-performance ministry homepage designed to maximize outreach and coordinate localized faith events in central Mississippi.",
         techStack: ["HTML5", "Tailwind CSS", "Vanilla JS", "Netlify Speed Hosting"],
         performanceScore: 99,
@@ -135,7 +121,7 @@ export const liveSites: LiveSite[] = [
         url: "https://church244.com",
         deployType: "Standard HTML/JS",
         category: "Faith & Community",
-        publishedAt: "Published 2 months ago",
+        publishedAt: "Published on Apr 15",
         description: "Streamlined faith portal designed for rapid mobile interaction, enabling seamless congregation check-ins, sermon playback, and updates.",
         techStack: ["HTML5", "Vanilla JS", "Tailwind CSS", "Netlify Edge"],
         performanceScore: 97,
@@ -150,15 +136,16 @@ export const liveSites: LiveSite[] = [
         domain: "blacksheeprecoverywarfare.com",
         url: "https://blacksheeprecoverywarfare.com",
         deployType: "Standard HTML/JS",
-        category: "Healthcare",
-        publishedAt: "Published 3 months ago",
+        category: "Faith & Community",
+        publishedAt: "Published on Mar 12",
         description: "Tactical B2B/outreach system designed for rapid loading under low bandwidth. Intercepts local crisis searches with semantic entity architecture.",
         techStack: ["HTML5", "Tailwind CSS", "SEO Entity Schema", "Responsive Grid"],
         performanceScore: 99,
         accessibilityScore: 98,
         seoScore: 100,
         bestPracticesScore: 99,
-        glowColor: "249, 115, 22" // Orange
+        glowColor: "249, 115, 22", // Orange
+        image: "/portfolio/Black_Sheep_Recovery_Warfare.webp"
     },
     {
         id: "simmons-memorial",
@@ -167,14 +154,15 @@ export const liveSites: LiveSite[] = [
         url: "https://simmonsmemorial.org",
         deployType: "Standard HTML/JS",
         category: "Faith & Community",
-        publishedAt: "Published 4 months ago",
+        publishedAt: "Published on Feb 8",
         description: "Elegant, highly accessible faith community landing page preserving historic legacy and presenting clean informational paths.",
         techStack: ["HTML5", "CSS3 Flexbox", "Vanilla JS", "A11y Compliant"],
         performanceScore: 98,
         accessibilityScore: 99,
         seoScore: 98,
         bestPracticesScore: 98,
-        glowColor: "99, 102, 241" // Indigo
+        glowColor: "99, 102, 241", // Indigo
+        image: "/portfolio/simmons-memorial-real.webp"
     },
     {
         id: "power-digital-media",
@@ -184,12 +172,13 @@ export const liveSites: LiveSite[] = [
         deployType: "Next.js",
         category: "Agency",
         publishedAt: "Published 16 minutes ago",
-        description: " Blistering-fast agency portal representing Power Digital's core Next.js architecture, digital marketing integrations, and local SEO dominance.",
+        description: "Blistering-fast agency portal representing Power Digital's core Next.js architecture, digital marketing integrations, and local SEO dominance.",
         techStack: ["Next.js 16", "Tailwind CSS v4", "Lucide React", "Capsule CRM Sync"],
         performanceScore: 99,
         accessibilityScore: 100,
         seoScore: 100,
         bestPracticesScore: 99,
-        glowColor: "6, 182, 212" // Cyan
+        glowColor: "6, 182, 212", // Cyan
+        image: "/portfolio/growth-engine-real.webp"
     }
 ];
