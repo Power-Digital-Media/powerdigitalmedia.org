@@ -26,13 +26,6 @@ const bentoMetricsMap: Record<string, BentoMetric> = {
         icon: <Sparkles className="w-5 h-5 text-green-400" />,
         techStack: ["Next.js 14", "GSAP Cinematic", "Netlify Edge"]
     },
-    "corner-pharmacy": {
-        stat: "400+ Hrs",
-        statLabel: "Manual Admin Saved",
-        highlights: ["HIPAA-compliant integration", "Free same-day delivery routing", "Frictionless refill capture"],
-        icon: <ShieldCheck className="w-5 h-5 text-teal-400" />,
-        techStack: ["React 18", "HIPAA Data Vault", "Tailwind CSS"]
-    },
     "simmons-memorial": {
         stat: "99/100",
         statLabel: "Accessibility Score",
@@ -65,14 +58,12 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
         switch (projectId) {
             case "all-things-new":
                 return "col-span-12 lg:col-span-8 h-[450px] lg:h-[550px]";
-            case "corner-pharmacy":
-                return "col-span-12 md:col-span-6 lg:col-span-4 h-[450px] lg:h-[550px]";
             case "simmons-memorial":
                 return "col-span-12 md:col-span-6 lg:col-span-4 h-[450px] lg:h-[550px]";
             case "growth-engine":
-                return "col-span-12 lg:col-span-8 h-[450px] lg:h-[550px]";
+                return "col-span-12 md:col-span-6 lg:col-span-4 h-[450px] lg:h-[550px]";
             case "black-sheep-recovery":
-                return "col-span-12 h-[450px] lg:h-[600px]";
+                return "col-span-12 lg:col-span-8 h-[450px] lg:h-[550px]";
             default:
                 return "col-span-12 h-[450px]";
         }

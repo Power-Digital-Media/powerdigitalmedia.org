@@ -31,21 +31,7 @@ export const projects: Project[] = [
         netlifyUrl: "https://allthingsnewpreview.netlify.app",
         glowColor: "34, 197, 94" // Solid neon green
     },
-    {
-        id: "corner-pharmacy",
-        title: "Corner Pharmacy",
-        description: "The Pharmacy Reimagined. Modern healthcare meets old-fashioned care with free same-day delivery and clinical precision.",
-        image: "/portfolio/corner-pharmacy-real.webp",
-        mobileImage: "/portfolio/Corner_Market_Pharmacy_mobile.webp",
-        tags: ["Healthcare", "E-Commerce", "Local Business"],
-        client: "Corner Pharmacy Group",
-        year: "2026",
-        objective: "Bridge the gap between local clinical trust and high-end digital efficiency.",
-        engineering: ["Secure HIPAA-Compliant Layer", "Rapid-Interaction Engine", "Semantic SEO Protocol"],
-        protocol: ["Clinical Precision UI", "Teal-Accented Authority", "Clean Architectural Grids"],
-        netlifyUrl: "https://corner-pharmacy-flora.netlify.app",
-        glowColor: "78, 208, 125" // Exactly matched from the internal design screenshot
-    },
+
     {
         id: "simmons-memorial",
         title: "Simmons Memorial",

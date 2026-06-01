@@ -62,6 +62,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }, [user, fetchProfile]);
 
     useEffect(() => {
+        if (!auth) {
+            console.warn("⚠️ Firebase Auth object is null. Skipping authentication state subscription.");
+            setLoading(false);
+            setProfileLoading(false);
+            return () => {};
+        }
+
         const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
             setUser(firebaseUser);
             setLoading(false);
