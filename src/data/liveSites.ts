@@ -36,19 +36,20 @@ export const liveSites: LiveSite[] = [
     },
     {
         id: "ms-dirt",
-        title: "MS Dirt & Gravel",
+        title: "Geaux Pro Outdoors",
         domain: "www.msdirt.com",
         url: "https://www.msdirt.com",
         deployType: "Next.js",
         category: "Local Business",
         publishedAt: "Published 2 hours ago",
-        description: "Blazing-fast commercial landing application for dirt, gravel, and heavy equipment logistics. Features frictionless click-to-quote conversion funnels.",
+        description: "Blazing-fast commercial site preparation and excavation landing application for Central Mississippi's elite contractor. Features click-to-quote conversion tunnels.",
         techStack: ["Next.js", "Tailwind CSS", "Netlify Serverless", "Lighthouse Optimized"],
         performanceScore: 97,
         accessibilityScore: 98,
         seoScore: 100,
         bestPracticesScore: 97,
-        glowColor: "234, 179, 8" // Yellow / Amber
+        glowColor: "234, 179, 8", // Yellow / Amber
+        image: "/portfolio/geaux-pro-outdoors.webp"
     },
     {
         id: "tbeauxs",
@@ -64,7 +65,8 @@ export const liveSites: LiveSite[] = [
         accessibilityScore: 96,
         seoScore: 98,
         bestPracticesScore: 96,
-        glowColor: "239, 68, 68" // Bright Red
+        glowColor: "239, 68, 68", // Bright Red
+        image: "/portfolio/tbeauxs.webp"
     },
     {
         id: "powered-by-peptides",
@@ -80,7 +82,8 @@ export const liveSites: LiveSite[] = [
         accessibilityScore: 98,
         seoScore: 99,
         bestPracticesScore: 96,
-        glowColor: "168, 85, 247" // Purple
+        glowColor: "168, 85, 247", // Purple
+        image: "/portfolio/powered-by-peptides.webp"
     },
     {
         id: "pastors-provision",
@@ -96,7 +99,8 @@ export const liveSites: LiveSite[] = [
         accessibilityScore: 100,
         seoScore: 98,
         bestPracticesScore: 99,
-        glowColor: "59, 130, 246" // Vibrant Blue
+        glowColor: "59, 130, 246", // Vibrant Blue
+        image: "/portfolio/pastors-provision.webp"
     },
     {
         id: "in-his-grip",
@@ -128,7 +132,8 @@ export const liveSites: LiveSite[] = [
         accessibilityScore: 99,
         seoScore: 98,
         bestPracticesScore: 97,
-        glowColor: "6, 182, 212" // Cyan
+        glowColor: "6, 182, 212", // Cyan
+        image: "/portfolio/church-244.webp"
     },
     {
         id: "blacksheep-recovery",
