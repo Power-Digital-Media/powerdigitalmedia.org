@@ -11,6 +11,7 @@ const LocalWebDesign = dynamic(() => import("@/components/sections/LocalWebDesig
 const TechStack = dynamic(() => import("@/components/sections/TechStack"));
 const WakeUpCall = dynamic(() => import("@/components/ui/WakeUpCall"));
 const BBBSeal = dynamic(() => import("@/components/ui/BBBSeal"));
+const AEOFAQ = dynamic(() => import("@/components/sections/AEOFAQ"));
 
 export const metadata = {
   title: "Power Digital Media | Elite Web Design, Custom Apps & Growth Marketing",
@@ -94,6 +95,7 @@ export default function Home() {
       <LocalWebDesign />
       <DeferredServices />
       <TechStack />
+      <AEOFAQ />
       <DeferredFooterSections />
       <script
         type="application/ld+json"
