@@ -18,6 +18,15 @@ export default function LoginPage() {
     const [googleLoading, setGoogleLoading] = useState(false);
     const router = useRouter();
 
+    const handleDemoLogin = (companyKey: string) => {
+        setLoading(true);
+        localStorage.setItem('pdm_demo_company', companyKey);
+        router.push("/dashboard");
+        setTimeout(() => {
+            window.location.href = "/dashboard";
+        }, 100);
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         if (!auth) {
             setError("Security Protocol Offline: Configuration missing.");
@@ -189,6 +198,33 @@ export default function LoginPage() {
                                     </>
                                 )}
                             </button>
+
+                            <div className="relative py-4">
+                                <div className="absolute inset-0 flex items-center">
+                                    <div className="w-full border-t border-white/5"></div>
+                                </div>
+                                <div className="relative flex justify-center text-[8px] font-black uppercase tracking-[0.4em]">
+                                    <span className="bg-[#0A0A0A] px-4 text-white/20">OR DEMO SANDBOX</span>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-3 gap-3">
+                                {[
+                                    { key: "tbeauxs", label: "Tbeaux's", color: "hover:border-red-500/30 hover:text-red-400" },
+                                    { key: "ms-dirt", label: "Geaux Pro", color: "hover:border-yellow-500/30 hover:text-yellow-400" },
+                                    { key: "powered-by-peptides", label: "Peptides", color: "hover:border-purple-500/30 hover:text-purple-400" }
+                                ].map((demo) => (
+                                    <button
+                                        key={demo.key}
+                                        type="button"
+                                        onClick={() => handleDemoLogin(demo.key)}
+                                        disabled={loading || googleLoading}
+                                        className={`py-3.5 rounded-xl bg-white/[0.01] border border-white/5 text-[9px] font-black uppercase tracking-wider transition-all duration-300 ${demo.color} active:scale-95`}
+                                    >
+                                        {demo.label}
+                                    </button>
+                                ))}
+                            </div>
                         </form>
 
                         <div className="mt-8 text-center flex flex-col gap-4">

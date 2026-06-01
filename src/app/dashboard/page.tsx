@@ -55,9 +55,13 @@ export default function DashboardPage() {
             if (!user) return;
             try {
                 const token = await user.getIdToken();
-                const res = await fetch("/api/analytics", {
-                    headers: { "Authorization": `Bearer ${token}` }
-                });
+                const headers: Record<string, string> = {
+                    "Authorization": `Bearer ${token}`
+                };
+                if (clientProfile?.company) {
+                    headers["X-Demo-Company"] = clientProfile.company;
+                }
+                const res = await fetch("/api/analytics", { headers });
                 if (!res.ok) throw new Error("Failed to authenticate search console.");
                 const data = await res.json();
                 setAnalytics(data);

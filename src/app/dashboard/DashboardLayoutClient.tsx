@@ -33,8 +33,22 @@ export default function DashboardLayout({
     if (!user) return null;
 
     const handleLogout = async () => {
-        await signOut(auth);
+        if (typeof window !== 'undefined') {
+            localStorage.removeItem('pdm_demo_company');
+        }
+        if (auth) {
+            try {
+                await signOut(auth);
+            } catch (err) {
+                console.error("SignOut error:", err);
+            }
+        }
         router.push("/login");
+        setTimeout(() => {
+            if (typeof window !== 'undefined') {
+                window.location.reload();
+            }
+        }, 50);
     };
 
     return (
