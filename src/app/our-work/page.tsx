@@ -425,9 +425,12 @@ export default function OurWorkPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                     {filteredSites.map((site) => {
                         return (
-                            <div
+                            <a
                                 key={site.id}
-                                className="group relative rounded-[2rem] border border-white/5 bg-slate-950/45 p-6 flex flex-col justify-between hover:border-opacity-100 transition-all duration-500 shadow-xl overflow-hidden"
+                                href={site.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group relative rounded-[2rem] border border-white/5 bg-slate-950/45 p-6 flex flex-col justify-between hover:border-opacity-100 transition-all duration-500 shadow-xl overflow-hidden cursor-pointer"
                                 style={{
                                     boxShadow: `0 0 40px -10px rgba(${site.glowColor}, 0.05), inset 0 0 16px rgba(${site.glowColor}, 0.02)`,
                                 }}
@@ -563,14 +566,11 @@ export default function OurWorkPage() {
 
                                     {/* Action Buttons */}
                                     <div className="flex items-center gap-3">
-                                        <a
-                                            href={site.url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 bg-white text-black text-[9px] font-black uppercase tracking-widest rounded-xl hover:bg-cyan-400 hover:text-white transition-all duration-300"
+                                        <div
+                                            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 bg-white text-black text-[9px] font-black uppercase tracking-widest rounded-xl group-hover:bg-cyan-400 group-hover:text-white transition-all duration-300"
                                         >
                                             Launch System <ExternalLink className="w-3 h-3" />
-                                        </a>
+                                        </div>
                                         <div className="px-3.5 py-3 rounded-xl border border-white/5 bg-slate-900/50 flex items-center justify-center">
                                             <Clock className="w-3.5 h-3.5 text-slate-500" />
                                             <span className="text-[7px] font-mono uppercase text-slate-500 tracking-wider ml-1.5 hidden group-hover:inline-block transition-all">
@@ -579,7 +579,7 @@ export default function OurWorkPage() {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         );
                     })}
                 </div>
