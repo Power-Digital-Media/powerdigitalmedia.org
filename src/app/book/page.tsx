@@ -7,6 +7,9 @@ import Footer from "@/components/layout/Footer";
 import { BOOKING_CONFIG } from "@/lib/booking";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+
+const BBBSeal = dynamic(() => import("@/components/ui/BBBSeal"));
 
 /* ─── Inner content (needs useSearchParams inside Suspense) ────── */
 function BookPageContent() {
@@ -115,6 +118,23 @@ function BookPageContent() {
                     </motion.div>
                 </div>
             </section>
+
+            {/* ─── Trust Signals Bar ────────────────────────────── */}
+            {!fromDiscovery && (
+                <section className="relative z-20 pb-4 mt-2">
+                    <div className="container px-4 mx-auto">
+                        <div className="flex flex-col items-center justify-center gap-4 opacity-80 hover:opacity-100 transition-opacity">
+                            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                                <div className="flex items-center gap-3 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-950/20 backdrop-blur-sm">
+                                    <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_#22d3ee]" />
+                                    <span className="text-xs font-bold tracking-widest uppercase text-cyan-400">Verified 90+/100 Mobile PageSpeed</span>
+                                </div>
+                                <BBBSeal variant="inline" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            )}
 
             {/* ─── Funnel Progress Indicator ────────────────────── */}
             {!fromDiscovery && (
@@ -244,8 +264,8 @@ function BookPageContent() {
                                             </label>
                                             <div className="grid gap-4 sm:grid-cols-3">
                                                 {[
-                                                    { id: "phone", icon: Phone, label: "Phone Call", desc: "We'll call you" },
-                                                    { id: "meet", icon: Video, label: "Google Meet", desc: "Screen share & video" },
+                                                    { id: "phone", icon: Phone, label: "Phone Call", desc: "We'll call you directly" },
+                                                    { id: "meet", icon: Video, label: "Google Meet", desc: "Perfect for screen-sharing & live audits" },
                                                     { id: "lunch", icon: Coffee, label: "Business Lunch", desc: "Jackson Metro — our treat" },
                                                 ].map((opt) => (
                                                     <button
@@ -282,7 +302,7 @@ function BookPageContent() {
                                             </label>
                                             <textarea 
                                                 rows={3} 
-                                                name="message" 
+                                                name="primary_goals" 
                                                 required 
                                                 disabled={status === "submitting"} 
                                                 className="w-full px-0 py-3 bg-transparent border-b border-white/10 focus:border-cyan-400 outline-none transition-all placeholder:text-muted-foreground/30 resize-none disabled:opacity-50" 
@@ -329,7 +349,7 @@ function BookPageContent() {
                                     <div className="grid gap-4 sm:grid-cols-3">
                                         {[
                                             { icon: Clock, label: `${BOOKING_CONFIG.duration} Call`, desc: "Focused and efficient — no fluff" },
-                                            { icon: Video, label: "Google Meet", desc: "Face-to-face via video call" },
+                                            { icon: Video, label: "Google Meet", desc: "Perfect for screen-sharing & live audits" },
                                             { icon: Sparkles, label: "Custom Strategy", desc: "Tailored plan for your business" },
                                         ].map((item) => (
                                             <div
