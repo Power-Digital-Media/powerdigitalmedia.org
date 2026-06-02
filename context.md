@@ -105,6 +105,7 @@ The project is currently in a **100% stable, fully compiled, and production-read
 * Codebase-wide `.com` domain alignment to standard `.org`.
 * Safe fallback triggers for Resend email initializations to prevent route crashes.
 * Upgrade of all service landing hero secondary CTA buttons to point to the direct Google Meet booking path `/book` with premium pulsing videography elements.
+* Overhaul of the `/book` page into a premium 2-step booking funnel capturing lead details (Phone, Email, Name, Company, Goals) and chosen format (Phone, Meet, Lunch) before transitioning to the Google Calendar schedule, automatically syncing the lead to Capsule CRM & Transpond.
 * Rich JSON-LD review structures nested in the site layout to establish trust graph matching against Google and BBB.
 * Creation of the local B2B acquisition playbook.
 
