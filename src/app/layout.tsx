@@ -32,10 +32,10 @@ export const metadata: Metadata = {
     siteName: "Power Digital Media",
     images: [
       {
-        url: "/hero-bg.webp",
+        url: "/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Power Digital Media Studio",
+        alt: "Power Digital Media Business Tech Stack",
       },
     ],
   },
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Power Digital Media | Elite Web Design, Custom Apps & Growth Marketing",
     description: "Bespoke Web Design, Custom Applications, and High-Velocity Growth Marketing in Jackson, MS.",
-    images: ["/hero-bg.webp"],
+    images: ["/images/og-image.png"],
     creator: "@PowerDigitalMS",
     site: "@PowerDigitalMS",
   },

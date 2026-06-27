@@ -39,8 +39,8 @@ export default async function Image() {
                 POWER DIGITAL MEDIA
             </div>
         </div>
-        <div style={{ fontSize: 30, color: '#4ade80', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
-            Premium Production Studio
+        <div style={{ fontSize: 30, color: '#22d3ee', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
+            One-Stop Business Tech Stack
         </div>
       </div>
     ),

@@ -34,7 +34,7 @@ const nextConfig = {
     return [
       {
         source: '/podcasting',
-        destination: '/marketing',
+        destination: '/',
         permanent: true,
       },
       {

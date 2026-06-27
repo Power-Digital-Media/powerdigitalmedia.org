@@ -175,18 +175,18 @@ export default function Services() {
                             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                             className="max-w-xl flex flex-col items-center md:items-start mx-auto md:mx-0 w-full"
                         >
-                            <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[9px] md:text-xs mb-4 block text-center md:text-left w-full">Software Engineering</span>
-                            <h2 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight uppercase leading-none text-center md:text-left w-full">The Engine.</h2>
+                            <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[9px] md:text-xs mb-4 block text-center md:text-left w-full">CRM & Lead Automation</span>
+                            <h2 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight uppercase leading-none text-center md:text-left w-full">CRM & Automation.</h2>
                             <p className="text-base md:text-xl text-foreground/70 mb-8 leading-relaxed font-light text-left w-full">
-                                Custom SaaS platforms, client portals, automated operations dashboards, and secure CRM bridges engineered to scale your business operations.
+                                We deploy and configure Capsule CRM and Transpond automation so every lead from your website, social media, and offline events is captured, organized, and followed up on automatically.
                             </p>
                             <ul className="space-y-4 mb-10 flex flex-col items-start w-full">
-                                {["SaaS & Portal Systems", "Automated Ops Dashboards", "Capsule & Transpond Sync", "Serverless API Bridges"].map((f) => (
-                                    <li key={f} className="flex items-center gap-3 text-sm md:text-lg font-medium text-white/60 justify-start text-left w-full">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.5)]" />
-                                        {f}
-                                    </li>
-                                ))}
+                                {["Capsule CRM Setup", "Transpond Marketing Automation", "Automated Pipeline Workflows", "Bespoke Lead Capture Integrations"].map((f) => (
+                                     <li key={f} className="flex items-center gap-3 text-sm md:text-lg font-medium text-white/60 justify-start text-left w-full">
+                                         <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.5)]" />
+                                         {f}
+                                     </li>
+                                 ))}
                             </ul>
                             <div className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center md:justify-start">
                                 <Link
@@ -292,7 +292,7 @@ export default function Services() {
                             The <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 text-glow-cyan">System.</span>
                         </h2>
                         <p className="text-lg md:text-3xl text-foreground/70 mb-12 max-w-2xl mx-auto leading-relaxed font-light text-balance">
-                            We deploy high-velocity <span className="text-cyan-400 font-medium tracking-tight">Growth Architecture</span>. High-performance digital systems that turn studio-grade media into engineered dominance.
+                            We deploy the ultimate local business infrastructure: <span className="text-cyan-400 font-medium tracking-tight">Blistering-fast Websites</span>, <span className="text-cyan-400 font-medium tracking-tight">Automated Lead CRM</span>, and <span className="text-cyan-400 font-medium tracking-tight">Cloud Business Phone Systems</span>. Everything synced, everything simple, backed by 100% local support.
                         </p>
                         
                         <SystemSchematic />

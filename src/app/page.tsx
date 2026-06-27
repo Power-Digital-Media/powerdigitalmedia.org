@@ -20,7 +20,7 @@ export const metadata = {
   openGraph: {
     title: "Power Digital Media | Elite Web Design, Custom Apps & Growth Marketing",
     description: "We engineer blistering-fast Next.js web architectures, bespoke custom applications, and high-converting growth marketing systems in Jackson, MS.",
-    images: ["/hero-bg.webp"],
+    images: ["/images/og-image.png"],
   },
 };
 
@@ -42,22 +42,22 @@ export default function Home() {
             style={{ fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif' }}
             className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[8px] md:text-[9px] mb-4 md:mb-6 block"
           >
-            CENTRAL MISSISSIPPI'S FASTEST WEB ARCHITECTURE
+            THE COMPLETE LOCAL BUSINESS TECHNOLOGY STACK
           </span>
           <h1 
             style={{ fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif' }}
             className="text-4xl md:text-8xl font-black mb-6 md:mb-8 tracking-tighter leading-[0.85] uppercase"
           >
-            Jackson MS <br /> Web Design That
+            Jackson MS <br /> One-Stop
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-500 text-glow-cyan text-glow block mt-2">
-              Dominates Search
+              Business Tech Stack
             </span>
           </h1>
           <p 
             style={{ fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif' }}
             className="text-foreground/60 max-w-2xl mx-auto text-lg leading-relaxed"
           >
-            Lightning-fast Next.js architecture designed for humans and trusted by AI search engines.
+            We engineer blistering-fast websites, configure automatic lead-tracking CRMs, and set up cloud business phone systems. One local partner for your entire digital backbone.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8 mt-6 md:mt-10">
