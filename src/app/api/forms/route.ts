@@ -80,7 +80,11 @@ export async function POST(req: Request) {
                 '_capsule_firstName': firstName,
                 '_capsule_lastName': lastName,
                 '_capsule_name': name,
-                '_capsule_person': true
+                '_capsule_person': true,
+                '_capsule_phone': body.phone || body.prospect_phone || '',
+                'BUSINESSNAME': body.business_name || body.company || body.organisation || body.prospect_company || '',
+                'ROADBLOCK': body.roadblock || body.biggest_challenge || body.message || body.notes || '',
+                'SERVICESINTERESTED': Array.isArray(body.services) ? body.services.join(', ') : (body.services || body.services_interested || '')
             }
         };
 
