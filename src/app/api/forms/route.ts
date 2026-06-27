@@ -64,11 +64,16 @@ export async function POST(req: Request) {
 
         // Prepare the payload for Transpond API
         const customTags = Array.isArray(body.tags) ? body.tags : (body.tags ? [body.tags] : []);
+        let groupId = parseInt(process.env.TRANSPOND_GROUP_ID || '186443', 10);
+        if (formSource === 'community-event') {
+            groupId = 187780; // Jackson Community Leads
+        }
+
         const transpondPayload = {
             emailAddress: email,
             firstName: firstName,
             lastName: lastName,
-            groupId: parseInt(process.env.TRANSPOND_GROUP_ID || '186443', 10),
+            groupId: groupId,
             notes: summaryText,
             tags: [formSource, 'website-lead', ...customTags],
             customFields: {
