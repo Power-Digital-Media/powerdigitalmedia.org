@@ -14,7 +14,8 @@ const STATIC_URLS = [
     `https://${HOST}/showroom`,
     `https://${HOST}/web-design`,
     `https://${HOST}/podcasting`,
-    `https://${HOST}/production`
+    `https://${HOST}/production`,
+    `https://${HOST}/community`
 ];
 
 const DYNAMIC_URLS = GEAR_COLLECTION.map(item => `https://${HOST}/showroom/${item.category.toLowerCase()}/${item.id}`);
