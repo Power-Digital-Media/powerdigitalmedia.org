@@ -63,13 +63,14 @@ export async function POST(req: Request) {
         });
 
         // Prepare the payload for Transpond API
+        const customTags = Array.isArray(body.tags) ? body.tags : (body.tags ? [body.tags] : []);
         const transpondPayload = {
             emailAddress: email,
             firstName: firstName,
             lastName: lastName,
             groupId: parseInt(process.env.TRANSPOND_GROUP_ID || '186443', 10),
             notes: summaryText,
-            tags: [formSource, 'website-lead'],
+            tags: [formSource, 'website-lead', ...customTags],
             customFields: {
                 '_capsule_firstName': firstName,
                 '_capsule_lastName': lastName,

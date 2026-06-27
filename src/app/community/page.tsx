@@ -42,6 +42,7 @@ export default function CommunityLandingPage() {
       business_name: formData.get("business_name"),
       biggest_challenge: formData.get("biggest_challenge"),
       services_interested: services,
+      tags: ["community", "community-event", "jackson-local"],
       _form_source: "community-event"
     };
 
