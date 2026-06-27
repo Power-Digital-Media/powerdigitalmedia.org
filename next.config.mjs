@@ -42,6 +42,74 @@ const nextConfig = {
         destination: '/marketing',
         permanent: true,
       },
+      // GSC 404 Redirect Fixes
+      {
+        source: '/video-first-podcasting-2026',
+        destination: '/blog/video-first-podcasting-2026',
+        permanent: true,
+      },
+      {
+        source: '/evaluating-llm-benchmarks-insights-from-benchmark2',
+        destination: '/blog/evaluating-llm-benchmarks-insights-from-benchmark2',
+        permanent: true,
+      },
+      {
+        source: '/evaluating-llm-benchmarks-insights-from-benchmark2/',
+        destination: '/blog/evaluating-llm-benchmarks-insights-from-benchmark2',
+        permanent: true,
+      },
+      {
+        source: '/home',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/showroom/chassis/nzxt-h6-flow',
+        destination: '/showroom',
+        permanent: true,
+      },
+      {
+        source: '/showroom/pc/intel-core-ultra-9-285k',
+        destination: '/showroom',
+        permanent: true,
+      },
+      // Soft 404 Renamed Blog Redirects
+      {
+        source: '/blog/the-truth-about-the-2026-benchmark-war-sovereign-clouds-role',
+        destination: '/blog/sovereign-cloud-2026-control-compliance-performance',
+        permanent: true,
+      },
+      {
+        source: '/blog/mastering-modern-studio-tech-february-2026-insights',
+        destination: '/blog/studio-tech-advancements-february-2026-insights',
+        permanent: true,
+      },
+      {
+        source: '/blog/accelerating-creative-velocity-ai-and-automation-in-2026',
+        destination: '/blog/creative-workflow-management-maximizing-creative-velocity-in-2026',
+        permanent: true,
+      },
+      // Showroom Category Consolidation Redirects
+      {
+        source: '/showroom/cooling/:id',
+        destination: '/showroom/pc/:id',
+        permanent: true,
+      },
+      {
+        source: '/showroom/computing/:id',
+        destination: '/showroom/pc/:id',
+        permanent: true,
+      },
+      {
+        source: '/showroom/chassis/:id',
+        destination: '/showroom/pc/:id',
+        permanent: true,
+      },
+      {
+        source: '/showroom/storage/:id',
+        destination: '/showroom/pc/:id',
+        permanent: true,
+      },
     ];
   },
   // Target modern browsers only (no legacy JavaScript polyfills per PageSpeed Insights)

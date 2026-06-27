@@ -15,6 +15,12 @@ import PodcastPlayer from "@/components/blog/PodcastPlayer";
 import "../../typography.css";
 
 
+export async function generateStaticParams() {
+    return blogPosts.map((post) => ({
+        slug: post.slug,
+    }));
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
     const post = blogPosts.find((p) => p.slug === slug);
@@ -32,6 +38,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         title: title,
         description: description,
         keywords: post.keywords?.join(", "),
+        alternates: {
+            canonical: `https://powerdigitalmedia.org/blog/${post.slug}`,
+        },
         openGraph: {
             title: title,
             description: description,
@@ -118,6 +127,21 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ slu
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify(post.structuredData || defaultSchema)
+                }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "WebPage",
+                        "@id": `https://powerdigitalmedia.org/blog/${post.slug}/#webpage`,
+                        "url": `https://powerdigitalmedia.org/blog/${post.slug}/`,
+                        "speakable": {
+                            "@type": "SpeakableSpecification",
+                            "cssSelector": ["h1", "h2"]
+                        }
+                    })
                 }}
             />
 

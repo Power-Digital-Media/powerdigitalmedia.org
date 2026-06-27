@@ -10,6 +10,25 @@ export const metadata: Metadata = {
     }
 };
 
+const speakableSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://powerdigitalmedia.org/about/#webpage",
+    "url": "https://powerdigitalmedia.org/about/",
+    "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", "h2"]
+    }
+};
+
 export default function AboutPage() {
-    return <AboutClient />;
+    return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }}
+            />
+            <AboutClient />
+        </>
+    );
 }

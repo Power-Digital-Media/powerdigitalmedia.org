@@ -31,6 +31,9 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
     return {
         title: `${product.name} | ${product.level} Protocol`,
         description: product.description,
+        alternates: {
+            canonical: `https://powerdigitalmedia.org/showroom/${category}/${id}`,
+        },
         openGraph: {
             title: product.name,
             description: product.description,

@@ -9,6 +9,7 @@ import DeferredFooterSections from "@/components/ui/DeferredFooterSections";
 const Portfolio = dynamic(() => import("@/components/sections/Portfolio"));
 const LocalWebDesign = dynamic(() => import("@/components/sections/LocalWebDesign"));
 const TechStack = dynamic(() => import("@/components/sections/TechStack"));
+const LatestInsights = dynamic(() => import("@/components/sections/LatestInsights"));
 const WakeUpCall = dynamic(() => import("@/components/ui/WakeUpCall"));
 const BBBSeal = dynamic(() => import("@/components/ui/BBBSeal"));
 const AEOFAQ = dynamic(() => import("@/components/sections/AEOFAQ"));
@@ -95,6 +96,7 @@ export default function Home() {
       <LocalWebDesign />
       <DeferredServices />
       <TechStack />
+      <LatestInsights />
       <AEOFAQ />
       <DeferredFooterSections />
       <script

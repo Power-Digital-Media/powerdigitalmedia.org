@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "Insights & Intel | Power Digital Media Blog",
     description: "Explore the latest trends in digital media, podcasting technology, and content strategy from the experts at Power Digital Media.",
     alternates: {
-        canonical: './',
+        canonical: 'https://powerdigitalmedia.org/blog',
     }
 };
 

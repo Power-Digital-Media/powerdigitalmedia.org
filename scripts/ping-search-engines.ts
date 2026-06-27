@@ -1,5 +1,6 @@
 import https from 'https';
 import { GEAR_COLLECTION } from '../src/data/gear';
+import { blogPosts } from '../src/data/blogPosts';
 
 const SITEMAP_URL = 'https://powerdigitalmedia.org/sitemap.xml';
 const HOST = 'powerdigitalmedia.org';
@@ -7,7 +8,6 @@ const KEY = process.env.INDEXNOW_KEY || '4f29e2030638421b8c2576b251211756'; // F
 const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 
 // List of URLs to submit
-// We combine static core pages with dynamic showroom items
 const STATIC_URLS = [
     `https://${HOST}/`,
     `https://${HOST}/blog`,
@@ -18,8 +18,9 @@ const STATIC_URLS = [
 ];
 
 const DYNAMIC_URLS = GEAR_COLLECTION.map(item => `https://${HOST}/showroom/${item.category.toLowerCase()}/${item.id}`);
+const BLOG_URLS = blogPosts.map(post => `https://${HOST}/blog/${post.slug}`);
 
-const URL_LIST = [...STATIC_URLS, ...DYNAMIC_URLS];
+const URL_LIST = [...STATIC_URLS, ...DYNAMIC_URLS, ...BLOG_URLS];
 
 
 

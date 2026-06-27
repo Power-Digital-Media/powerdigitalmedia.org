@@ -74,9 +74,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
       <head>
-        {/* Google Site Verification (HTML Tag Method) */}
-        <meta name="google-site-verification" content="3gJZWrSWWnZtSbDZgQzznQeNdzOgHuUcC8C-H2LzenA" />
-
         {/* Preconnect to critical third-party origins */}
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://connect.facebook.net" crossOrigin="anonymous" />

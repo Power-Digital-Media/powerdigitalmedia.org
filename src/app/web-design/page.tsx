@@ -154,6 +154,21 @@ export default function WebDesignPage() {
                     })
                 }}
             />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "WebPage",
+                        "@id": "https://powerdigitalmedia.org/web-design/#webpage",
+                        "url": "https://powerdigitalmedia.org/web-design/",
+                        "speakable": {
+                            "@type": "SpeakableSpecification",
+                            "cssSelector": ["h1", "h2", "details > p"]
+                        }
+                    })
+                }}
+            />
             <Navbar />
 
             {/* --- Hero: The Architecture --- */}

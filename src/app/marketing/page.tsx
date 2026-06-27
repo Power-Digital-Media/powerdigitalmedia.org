@@ -181,6 +181,21 @@ export default function MarketingPage() {
                     })
                 }}
             />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "WebPage",
+                        "@id": "https://powerdigitalmedia.org/marketing/#webpage",
+                        "url": "https://powerdigitalmedia.org/marketing/",
+                        "speakable": {
+                            "@type": "SpeakableSpecification",
+                            "cssSelector": ["h1", "h2", "details > p"]
+                        }
+                    })
+                }}
+            />
 
             {/* Hero Section */}
             <section className="relative min-h-[90vh] lg:min-h-[100vh] flex flex-col justify-center pt-28 pb-12 md:py-0 overflow-hidden">
