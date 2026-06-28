@@ -272,7 +272,7 @@ export default function BusinessPhonesPage() {
                                 <p className="text-foreground/60 text-sm mb-6 leading-relaxed">
                                     Custom virtual voice menus, physical desk phone setup, and mobile app linking. Best for offices needing reliable, professional calling.
                                 </p>
-                                <span className="text-4xl font-black text-white">$2,500+</span>
+                                <span className="text-4xl font-black text-white">Starting at $1,250</span>
                                 <span className="text-xs text-foreground/40 block mt-1">One-time setup fee</span>
 
                                 <ul className="space-y-3 mt-8 border-t border-white/5 pt-6 text-sm text-foreground/75">
@@ -300,7 +300,7 @@ export default function BusinessPhonesPage() {
                                 <p className="text-foreground/60 text-sm mb-6 leading-relaxed">
                                     Unified CRM & Telephony integration. Pop up customer contact cards instantly on incoming calls and log histories automatically.
                                 </p>
-                                <span className="text-4xl font-black text-white">$4,500+</span>
+                                <span className="text-4xl font-black text-white">Starting at $2,500</span>
                                 <span className="text-xs text-foreground/40 block mt-1">One-time integration fee</span>
 
                                 <ul className="space-y-3 mt-8 border-t border-white/5 pt-6 text-sm text-foreground/75">

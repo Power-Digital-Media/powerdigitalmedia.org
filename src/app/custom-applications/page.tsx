@@ -272,7 +272,7 @@ export default function CustomApplicationsPage() {
                                 <p className="text-foreground/60 text-sm mb-6 leading-relaxed">
                                     Bespoke Capsule CRM & Transpond email automation setup. Unify your website lead capture, event QR forms, and marketing emails under one robust system.
                                 </p>
-                                <span className="text-4xl font-black text-white">$4,500+</span>
+                                <span className="text-4xl font-black text-white">Starting at $2,500</span>
                                 <span className="text-xs text-foreground/40 block mt-1">One-time setup scope</span>
 
                                 <ul className="space-y-3 mt-8 border-t border-white/5 pt-6 text-sm text-foreground/75">
