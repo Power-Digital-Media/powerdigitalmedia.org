@@ -317,6 +317,12 @@ export default function BusinessPhonesPage() {
                             </Link>
                         </div>
                     </div>
+
+                    <div className="text-center mt-12 max-w-2xl mx-auto">
+                        <p className="text-[10px] text-foreground/40 leading-relaxed uppercase tracking-wider">
+                            *Note: Monthly recurring calling plans and user seat licenses are billed directly by Ultatel at standard partner rates. One-time setup and integration fees cover custom auto-attendant menus, physical desk phone configuration, mobile softphone linking, and Capsule CRM integration services engineered by Power Digital Media.
+                        </p>
+                    </div>
                 </div>
             </section>
 
