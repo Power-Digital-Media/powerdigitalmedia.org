@@ -4,6 +4,7 @@ import { m } from "framer-motion";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import TerminalWindow from "@/components/ui/web-design/TerminalWindow";
+import PhoneConsole from "@/components/ui/shared/PhoneConsole";
 import Link from "next/link";
 import { useState } from "react";
 import BookingModal from "@/components/ui/BookingModal";
@@ -264,7 +265,59 @@ export default function Services() {
                 </div>
             </section>
 
-            {/* Section 3: The System -> Ecosystem Bridge */}
+            {/* Section 3: Cloud VoIP Phones */}
+            <section className="relative flex flex-col justify-start pt-8 pb-12 md:pt-40 md:pb-32 overflow-hidden">
+                <div className="absolute inset-0 z-0">
+                    <div className="absolute inset-0 bg-gradient-to-b from-background via-slate-950/80 to-slate-950/80" />
+                    <div className="absolute inset-0 cyber-grid opacity-10" />
+                </div>
+
+                <div className="container relative z-10 px-6 mx-auto">
+                    <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+                        <m.div
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                            className="max-w-xl flex flex-col items-center md:items-start mx-auto md:mx-0 w-full"
+                        >
+                            <span className="text-amber-400 font-bold tracking-[0.4em] uppercase text-[9px] md:text-xs mb-4 block text-center md:text-left w-full">Cloud Telephony</span>
+                            <h2 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight uppercase leading-none text-center md:text-left w-full">VoIP & Cloud Phones.</h2>
+                            <p className="text-base md:text-xl text-foreground/70 mb-8 leading-relaxed font-light text-left w-full">
+                                We deploy enterprise-grade Ultatel cloud phone systems integrated directly with your Capsule CRM and website. Get professional call routing (IVR menus), voice AI call agents, and 100% human local on-site support.
+                            </p>
+                            <ul className="space-y-4 mb-10 flex flex-col items-start w-full">
+                                {["Voice AI Call Agent Answering", "Capsule CRM Screen Pops & Logging", "Microsoft Teams Certified SBC", "99.999% Voice Uptime Guarantee"].map((f) => (
+                                     <li key={f} className="flex items-center gap-3 text-sm md:text-lg font-medium text-white/60 justify-start text-left w-full">
+                                         <div className="w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_10px_rgba(245,158,11,0.5)]" />
+                                         {f}
+                                     </li>
+                                 ))}
+                            </ul>
+                            <div className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center md:justify-start">
+                                <Link
+                                    href="/business-phones"
+                                    className="w-full sm:w-auto px-8 py-4 bg-amber-500 hover:bg-white hover:text-slate-950 text-white font-black rounded-full transition-all uppercase tracking-widest text-[10px] active:scale-95 text-center block shadow-[0_0_30px_rgba(245,158,11,0.2)] border border-amber-500/20"
+                                >
+                                    Explore VoIP Phones
+                                </Link>
+                                <button
+                                    onClick={() => setIsBookingOpen(true)}
+                                    className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 border border-white/10 rounded-full font-black uppercase tracking-widest text-[10px] hover:bg-white/5 transition-all group active:scale-95"
+                                >
+                                    Book Phone Audit
+                                </button>
+                            </div>
+                        </m.div>
+
+                        <div className="w-full flex justify-center">
+                            <PhoneConsole />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Section 4: The System -> Ecosystem Bridge */}
             <section id="the-system" className="relative min-h-[90vh] md:min-h-screen flex flex-col items-center justify-center pt-12 pb-0 md:pt-16 md:pb-0 overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
