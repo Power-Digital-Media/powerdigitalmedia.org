@@ -154,7 +154,7 @@ export default function CommunityLandingPage() {
                 </div>
                 <h3 className="text-xl font-bold uppercase tracking-tight mb-3">3. Business Phone</h3>
                 <p className="text-sm text-foreground/75 leading-relaxed">
-                  Deploy **Ultel Business Phone** systems. Crystal-clear cloud telecommunications built for growing businesses, giving you auto-attendants, mobile app sync, and dedicated support.
+                  Deploy **Ultatel Business Phone** systems. Crystal-clear cloud telecommunications built for growing businesses, giving you auto-attendants, mobile app sync, and dedicated support.
                 </p>
               </div>
             </motion.div>
@@ -315,10 +315,10 @@ export default function CommunityLandingPage() {
                             <input 
                               type="checkbox" 
                               name="services_interested" 
-                              value="Ultel Business Phone"
+                              value="Ultatel Business Phone"
                               className="rounded border-white/10 text-cyan-500 focus:ring-0 focus:ring-offset-0 bg-transparent w-4 h-4"
                             />
-                            <span>Ultel Business Phone</span>
+                            <span>Ultatel Business Phone</span>
                           </label>
                         </div>
                       </div>

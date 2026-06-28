@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Phone, Users, Shield, Layers, BarChart3, Terminal as TerminalIcon, ArrowRight, Zap, Check, Video, Volume2, Key } from "lucide-react";
+import { Phone, Users, Shield, Layers, BarChart3, Terminal as TerminalIcon, ArrowRight, Zap, Check, Video, Volume2, Key, HelpCircle } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -25,10 +25,10 @@ interface PhoneFeature {
 
 const phoneFeatures: PhoneFeature[] = [
     {
-        title: "IVR Auto-Attendant",
-        subtitle: "Professional Routing",
-        description: "Configure custom virtual receptionists and interactive voice trees to route incoming calls to the right department or mobile device instantly.",
-        features: ["Multi-Level Voice Menus", "Time-of-Day Routing Rules", "Holiday & Out-of-Office Trees", "Custom Welcoming Audios"],
+        title: "IVR & Voice AI Agent",
+        subtitle: "AI-Powered Routing",
+        description: "Deploy a cutting-edge conversational Voice AI Agent to answer calls, handle routine tasks, and route complex requests to the right department automatically.",
+        features: ["Voice AI Conversational Agent", "Multi-Level Voice Menus", "Time-of-Day Routing Rules", "Custom Welcome Greetings"],
         icon: Volume2,
         color: "text-blue-400",
         bg: "bg-blue-500/10"
@@ -36,17 +36,17 @@ const phoneFeatures: PhoneFeature[] = [
     {
         title: "CRM Screen Pop Sync",
         subtitle: "Customer HUDs",
-        description: "Connect your business phone lines directly to Capsule CRM. Instantly open customer profiles on incoming calls and automatically log call history notes.",
+        description: "Connect your phone lines directly to Capsule CRM. Instantly open customer profiles on incoming calls and automatically log call history notes.",
         features: ["Capsule CRM Screen Pops", "Automated Call Notes Log", "Direct Click-to-Dial Setup", "Missed Call Email Alerts"],
         icon: Users,
         color: "text-cyan-400",
         bg: "bg-cyan-500/10"
     },
     {
-        title: "Multi-Device Mobility",
+        title: "Teams & VoIP Mobility",
         subtitle: "Unified Dialing",
-        description: "Make and receive corporate calls from physical VoIP desk phones, high-performance softphone mobile apps, or directly inside your web browser.",
-        features: ["iOS & Android Mobile Apps", "Modern VoIP Desk Phone Link", "Web Browser Dialers", "Voicemail-to-Email (Audio+Text)"],
+        description: "Make and receive corporate calls from physical desk phones, mobile apps, or directly inside Microsoft Teams via certified Teams SBC integration.",
+        features: ["Microsoft Teams Certified SBC", "iOS & Android Mobile Apps", "99.999% Uptime Guarantee", "24/7/365 Live Support"],
         icon: Phone,
         color: "text-indigo-400",
         bg: "bg-indigo-500/10"
@@ -231,16 +231,16 @@ export default function BusinessPhonesPage() {
                                 <div className="space-y-4">
                                     <div className="flex items-center gap-3">
                                         <Zap className="w-6 h-6 text-cyan-400" />
-                                        <span className="font-bold text-xl">Ultel Partnership</span>
+                                        <span className="font-bold text-xl">Ultatel Partnership</span>
                                     </div>
-                                    <p className="text-sm text-foreground/50">Official Ultel cloud partner ensuring premium voice quality and maximum uptime.</p>
+                                    <p className="text-sm text-foreground/50">Official Ultatel cloud partner ensuring premium voice quality, 99.999% uptime, and 24/7/365 live support.</p>
                                 </div>
                                 <div className="space-y-4">
                                     <div className="flex items-center gap-3">
                                         <Shield className="w-6 h-6 text-blue-400" />
-                                        <span className="font-bold text-xl">HIPAA & Secure</span>
+                                        <span className="font-bold text-xl">HIPAA & Compliant</span>
                                     </div>
-                                    <p className="text-sm text-foreground/50">Encrypted call pathways meeting the highest standards for medical and legal groups.</p>
+                                    <p className="text-sm text-foreground/50">Enterprise-grade security meeting HIPAA, SOC 2, ISO 27001, PCI DSS, and NIST 800-53 compliance standards.</p>
                                 </div>
                             </div>
                         </motion.div>
