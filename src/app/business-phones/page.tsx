@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Database, Cpu, Shield, Layers, BarChart3, Terminal as TerminalIcon, Cpu as CpuIcon, ArrowRight, Zap, Check, Video } from "lucide-react";
+import { Phone, Users, Shield, Layers, BarChart3, Terminal as TerminalIcon, ArrowRight, Zap, Check, Video, Volume2, Key } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -13,7 +13,7 @@ import TerminalWindow from "@/components/ui/web-design/TerminalWindow";
 import AuditCTA from "@/components/sections/AuditCTA";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
-interface AppProtocol {
+interface PhoneFeature {
     title: string;
     subtitle: string;
     description: string;
@@ -23,41 +23,41 @@ interface AppProtocol {
     bg: string;
 }
 
-const appProtocols: AppProtocol[] = [
+const phoneFeatures: PhoneFeature[] = [
     {
-        title: "CRM & Lead Automation",
-        subtitle: "Sales Pipeline Systems",
-        description: "Configure Capsule CRM and Transpond email pipelines to turn raw website traffic, social media leads, and offline QR codes into organized, high-converting pipelines automatically.",
-        features: ["Capsule CRM Setup & Sync", "Transpond Automated Campaigns", "Bespoke Lead Capture Bridges", "Automated Contact Tagging"],
-        icon: Shield,
+        title: "IVR Auto-Attendant",
+        subtitle: "Professional Routing",
+        description: "Configure custom virtual receptionists and interactive voice trees to route incoming calls to the right department or mobile device instantly.",
+        features: ["Multi-Level Voice Menus", "Time-of-Day Routing Rules", "Holiday & Out-of-Office Trees", "Custom Welcoming Audios"],
+        icon: Volume2,
         color: "text-blue-400",
         bg: "bg-blue-500/10"
     },
     {
-        title: "Bespoke Custom Software",
-        subtitle: "Client Portals & SaaS",
-        description: "Secure client portals, operations dashboards, and multi-tenant SaaS hubs built to scale. Bridge customer data directly with your internal operations.",
-        features: ["Multi-Tenant Authentication", "Operations HUDs & Live Data", "Stripe Subscription Engine", "Sub-20ms Edge Performance"],
-        icon: BarChart3,
+        title: "CRM Screen Pop Sync",
+        subtitle: "Customer HUDs",
+        description: "Connect your business phone lines directly to Capsule CRM. Instantly open customer profiles on incoming calls and automatically log call history notes.",
+        features: ["Capsule CRM Screen Pops", "Automated Call Notes Log", "Direct Click-to-Dial Setup", "Missed Call Email Alerts"],
+        icon: Users,
         color: "text-cyan-400",
         bg: "bg-cyan-500/10"
     },
     {
-        title: "Operational API Bridges",
-        subtitle: "System Integrations",
-        description: "Secure, custom API connections bridging your forms, legacy systems, and external vendor APIs under one fast, serverless database layer.",
-        features: ["Serverless Database Hubs", "Custom Webhook Integrations", "Zapier & Custom API Bridges", "Automated Reports (PDF/CSV)"],
-        icon: Database,
+        title: "Multi-Device Mobility",
+        subtitle: "Unified Dialing",
+        description: "Make and receive corporate calls from physical VoIP desk phones, high-performance softphone mobile apps, or directly inside your web browser.",
+        features: ["iOS & Android Mobile Apps", "Modern VoIP Desk Phone Link", "Web Browser Dialers", "Voicemail-to-Email (Audio+Text)"],
+        icon: Phone,
         color: "text-indigo-400",
         bg: "bg-indigo-500/10"
     }
 ];
 
-export default function CustomApplicationsPage() {
+export default function BusinessPhonesPage() {
     const baseUrl = "https://powerdigitalmedia.org";
     const breadcrumbItems = [
         { name: "Services", url: `${baseUrl}/#services` },
-        { name: "CRM & Custom Apps", url: `${baseUrl}/custom-applications` }
+        { name: "Business Phones", url: `${baseUrl}/business-phones` }
     ];
 
     return (
@@ -69,13 +69,13 @@ export default function CustomApplicationsPage() {
                     __html: JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "Service",
-                        "name": "CRM, Automation & Custom Applications",
+                        "name": "Cloud Business Phone Systems (VoIP) & Telecom Setup",
                         "provider": {
                             "@id": "https://powerdigitalmedia.org/#organization"
                         },
-                        "description": "Premium Capsule CRM and Transpond integration setup, automated email marketing pipelines, and custom SaaS software engineering.",
-                        "category": "Software Engineering & CRM Automation",
-                        "serviceType": "CRM Setup & Custom Software Development",
+                        "description": "Premium cloud VoIP business phone systems, automated IVR voice menus, Capsule CRM integrations, and local Jackson MS support.",
+                        "category": "Telecommunications & Business VoIP",
+                        "serviceType": "Business VoIP Phone System Installation",
                         "areaServed": {
                             "@type": "City",
                             "name": "Jackson",
@@ -87,8 +87,8 @@ export default function CustomApplicationsPage() {
                         "offers": {
                             "@type": "AggregateOffer",
                             "priceCurrency": "USD",
-                            "lowPrice": "4500",
-                            "highPrice": "12500",
+                            "lowPrice": "2500",
+                            "highPrice": "4500",
                             "offerCount": 2
                         }
                     })
@@ -97,7 +97,7 @@ export default function CustomApplicationsPage() {
 
             <Navbar />
 
-            {/* --- Hero: The Infrastructure --- */}
+            {/* --- Hero Section --- */}
             <section className="viewport-section relative overflow-hidden flex flex-col justify-center min-h-[90vh]">
                 <CyberHeroBg variant="custom-applications" />
 
@@ -108,19 +108,19 @@ export default function CustomApplicationsPage() {
                         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                         className="max-w-5xl mx-auto"
                     >
-                        <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[10px] md:text-xs mb-6 block">CRM, Automation & Custom Apps</span>
+                        <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[10px] md:text-xs mb-6 block">Cloud Telephony & VoIP Integration</span>
                         <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[0.85] uppercase">
                             Jackson MS <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-500 text-glow-cyan">
-                                CRM & Custom Apps
+                                Business Phones
                             </span>
                         </h1>
                         <p className="text-xl md:text-3xl text-foreground/70 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
-                            We deploy Capsule CRM and Transpond automation pipelines to track every lead, and build <span className="text-white font-medium">bespoke custom software</span> to run your entire operations.
+                            We deploy bulletproof, automated cloud VoIP phone systems integrated directly with your <span className="text-white font-medium">Capsule CRM and lead pipelines</span>. Local Jackson support.
                         </p>
                         <div className="flex flex-wrap justify-center gap-6">
                             <Link href="/book" className="w-full sm:w-auto px-12 py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 hover:text-white transition-all uppercase tracking-widest text-sm shadow-[0_0_40px_rgba(255,255,255,0.2)] text-center">
-                                Initialize Platform Build
+                                Request Phone Audit
                             </Link>
                             <Link href="/book" className="w-full sm:w-auto flex items-center justify-center gap-3 px-12 py-5 border border-white/20 rounded-full hover:bg-cyan-400 hover:text-white hover:border-cyan-400 transition-all font-bold uppercase tracking-widest text-sm group active:scale-95">
                                 <Video className="w-4 h-4 text-cyan-400 group-hover:text-white transition-colors" />
@@ -136,67 +136,67 @@ export default function CustomApplicationsPage() {
                 </div>
             </section>
 
-            {/* Answer Engine Optimization Block */}
+            {/* AEO Description Block */}
             <section className="py-12 bg-[#050505] border-y border-white/5 relative z-20">
                 <div className="container px-4 mx-auto max-w-4xl text-center">
-                    <h2 className="text-2xl md:text-3xl font-bold mb-4 tracking-tight">What are CRM Systems & Custom Applications?</h2>
+                    <h2 className="text-2xl md:text-3xl font-bold mb-4 tracking-tight">What are Cloud VoIP Business Phones?</h2>
                     <p className="text-foreground/70 leading-relaxed font-light">
-                        CRM & Custom Applications are tools designed to manage your customer relationships, automate follow-up emails, and streamline business processes. By integrating Capsule CRM and Transpond email marketing with custom Next.js dashboards, we help you eliminate admin overhead, secure client data, and capture leads from every online and offline marketing channel automatically.
+                        Cloud Business Phone Systems (Voice over IP) run your office telephony through a secure internet connection rather than legacy copper wires. By integrating cloud phones with Capsule CRM and Transpond, every customer call, voicemail, and text is synced directly to the client's contact record. You get crystal-clear calling on physical desk phones, mobile softphones, and web browsers, backed by local on-site support.
                     </p>
                 </div>
             </section>
 
             <WakeUpCall
-                title="Stop running your operations on duct-taped spreadsheets."
-                subtitle="Fragmented software is costing you administrative hours and lost leads."
-                paragraph="If your business relies on five different software subscriptions bridged together with unstable Zapiers, your pipeline is fragile. A unified setup bridges your Capsule CRM directly with Transpond and your website forms under one lightning-fast, automated system. Zero licensing bloat. Absolute control."
+                title="Stop missing customer calls on legacy phone lines."
+                subtitle="Unanswered calls are costing you thousands in missed business."
+                paragraph="If your office relies on traditional landlines or unintegrated mobile numbers, you have a fragmented workflow. When clients call, your staff has to search for customer records manually. A modern cloud VoIP phone system automatically displays customer profile 'screen pops' the second your phone rings. 100% connected, 100% automated."
             />
 
-            {/* --- Section 1: The Protocols (Core Pillars) --- */}
-            <section id="protocols" className="py-32 relative bg-background">
+            {/* --- Pillars Section --- */}
+            <section id="features" className="py-32 relative bg-background">
                 <div className="container px-4 mx-auto">
                     <div className="max-w-4xl mb-24">
-                        <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-xs mb-4 block">Bespoke Specifications</span>
-                        <h2 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight">CRM & Software Pillars.</h2>
+                        <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-xs mb-4 block">Telephony Specs</span>
+                        <h2 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight">VoIP Phone Pillars.</h2>
                         <p className="text-xl text-foreground/60 leading-relaxed max-w-2xl font-light">
-                            Our software architecture integrates secure CRM tracking, direct email marketing pipelines, and custom software dashboards under a single automated ecosystem.
+                            Our cloud phone architectures unify professional auto-attendants, Capsule CRM screen pops, and multi-device mobility under a single secure business setup.
                         </p>
                     </div>
 
                     <div className="grid gap-8 lg:grid-cols-3">
-                        {appProtocols.map((protocol, index) => (
+                        {phoneFeatures.map((feature, index) => (
                             <motion.div
-                                key={protocol.title}
+                                key={feature.title}
                                 initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8, delay: index * 0.2 }}
                                 className="group relative p-10 rounded-[3rem] glass-card border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-700 overflow-hidden"
                             >
-                                <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 blur-[60px] md:blur-[100px] pointer-events-none rounded-[3rem] ${protocol.bg.replace('/10', '/20')}`} />
+                                <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 blur-[60px] md:blur-[100px] pointer-events-none rounded-[3rem] ${feature.bg.replace('/10', '/20')}`} />
 
                                 <div className="relative z-10">
-                                    <div className={`w-16 h-16 rounded-2xl ${protocol.bg} flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-6 transition-all duration-700`}>
-                                        <protocol.icon className={`w-8 h-8 ${protocol.color} group-hover:animate-pulse`} />
+                                    <div className={`w-16 h-16 rounded-2xl ${feature.bg} flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-6 transition-all duration-700`}>
+                                        <feature.icon className={`w-8 h-8 ${feature.color} group-hover:animate-pulse`} />
                                     </div>
-                                    <span className={`${protocol.color} font-bold tracking-widest uppercase text-[10px] mb-3 block transform group-hover:translate-x-2 transition-transform duration-500`}>
-                                        {protocol.subtitle}
+                                    <span className={`${feature.color} font-bold tracking-widest uppercase text-[10px] mb-3 block transform group-hover:translate-x-2 transition-transform duration-500`}>
+                                        {feature.subtitle}
                                     </span>
                                     <h3 className="text-3xl font-bold mb-6 transform group-hover:translate-x-2 transition-transform duration-500 delay-75">
-                                        {protocol.title}
+                                        {feature.title}
                                     </h3>
                                     <p className="text-foreground/70 mb-10 leading-relaxed text-lg font-light transform group-hover:translate-x-2 transition-transform duration-500 delay-100">
-                                        {protocol.description}
+                                        {feature.description}
                                     </p>
                                     <ul className="space-y-4">
-                                        {protocol.features.map((feature, i) => (
+                                        {feature.features.map((f, i) => (
                                             <li
-                                                key={feature}
+                                                key={f}
                                                 className={`flex items-center gap-3 text-sm font-medium text-foreground/50 border-l border-white/10 pl-4 transition-all duration-500 group-hover:text-foreground/80 transform group-hover:translate-x-4`}
                                                 style={{ transitionDelay: `${150 + i * 75}ms` }}
                                             >
-                                                <div className={`w-1.5 h-1.5 rounded-full ${protocol.bg.replace('/10', '/50')} opacity-0 group-hover:opacity-100 transition-opacity absolute -left-[3px]`} />
-                                                <span className="relative">{feature}</span>
+                                                <div className={`w-1.5 h-1.5 rounded-full ${feature.bg.replace('/10', '/50')} opacity-0 group-hover:opacity-100 transition-opacity absolute -left-[3px]`} />
+                                                <span className="relative">{f}</span>
                                             </li>
                                         ))}
                                     </ul>
@@ -207,7 +207,7 @@ export default function CustomApplicationsPage() {
                 </div>
             </section>
 
-            {/* --- Section 2: Technical Specifications --- */}
+            {/* --- Local Support block --- */}
             <section className="viewport-section relative bg-background border-t border-white/5">
                 <div className="absolute inset-0 z-0">
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan-500/5 rounded-full blur-[140px] pointer-events-none" />
@@ -222,25 +222,25 @@ export default function CustomApplicationsPage() {
                             viewport={{ once: true }}
                             className="flex-1"
                         >
-                            <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-xs mb-4 block">Engine Specs</span>
-                            <h2 className="text-4xl md:text-7xl font-bold mb-10 tracking-tight leading-tight">Serverless Code.<br />Zero Licensing.</h2>
+                            <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-xs mb-4 block">On-Site Specs</span>
+                            <h2 className="text-4xl md:text-7xl font-bold mb-10 tracking-tight leading-tight">Local Support.<br />100% Human.</h2>
                             <p className="text-xl text-foreground/70 mb-12 leading-relaxed font-light">
-                                Off-the-shelf software subscriptions bleed your business with recurring seat licensing. We deploy serverless architectures that only charge based on usage. Pay pennies for actual activity, not static account fees.
+                                Standard VoIP companies mail you a box of phones and tell you to figure it out yourself. We do the opposite. We come directly to your office in Jackson, set up the physical phones, configure the voice trees, and test the CRM sync live before we leave. Local support is just a text or call away.
                             </p>
                             <div className="grid grid-cols-2 gap-12">
                                 <div className="space-y-4">
                                     <div className="flex items-center gap-3">
                                         <Zap className="w-6 h-6 text-cyan-400" />
-                                        <span className="font-bold text-xl">Supabase & Edge</span>
+                                        <span className="font-bold text-xl">Ultel Partnership</span>
                                     </div>
-                                    <p className="text-sm text-foreground/50">PostgreSQL engine with instantly scaling serverless API layers.</p>
+                                    <p className="text-sm text-foreground/50">Official Ultel cloud partner ensuring premium voice quality and maximum uptime.</p>
                                 </div>
                                 <div className="space-y-4">
                                     <div className="flex items-center gap-3">
                                         <Shield className="w-6 h-6 text-blue-400" />
-                                        <span className="font-bold text-xl">Edge Firewall</span>
+                                        <span className="font-bold text-xl">HIPAA & Secure</span>
                                     </div>
-                                    <p className="text-sm text-foreground/50">Iron-clad database connections with multi-level row policies.</p>
+                                    <p className="text-sm text-foreground/50">Encrypted call pathways meeting the highest standards for medical and legal groups.</p>
                                 </div>
                             </div>
                         </motion.div>
@@ -257,9 +257,9 @@ export default function CustomApplicationsPage() {
                 <div className="container px-4 mx-auto">
                     <div className="text-center mb-24">
                         <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-xs mb-4 block">Pricing Tiers</span>
-                        <h2 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight">Software Scope.</h2>
+                        <h2 className="text-4xl md:text-7xl font-bold mb-8 tracking-tight">VoIP Systems Scope.</h2>
                         <p className="text-xl text-foreground/60 leading-relaxed max-w-2xl mx-auto font-light">
-                            High-velocity software built to be an asset for your business. Select your protocol depth.
+                            Select your phone system depth. Full local installation and on-site support included in all setups.
                         </p>
                     </div>
 
@@ -267,16 +267,16 @@ export default function CustomApplicationsPage() {
                         {/* Package 1 */}
                         <div className="p-8 rounded-[2.5rem] glass-card border border-white/5 bg-white/[0.01] flex flex-col justify-between">
                             <div>
-                                <span className="text-cyan-400 font-bold tracking-widest uppercase text-[10px] mb-2 block">Automation Layer</span>
-                                <h3 className="text-3xl font-bold text-white mb-4">CRM & Automation</h3>
+                                <span className="text-cyan-400 font-bold tracking-widest uppercase text-[10px] mb-2 block">Traction Layer</span>
+                                <h3 className="text-3xl font-bold text-white mb-4">Local VoIP Setup</h3>
                                 <p className="text-foreground/60 text-sm mb-6 leading-relaxed">
-                                    Bespoke Capsule CRM & Transpond email automation setup. Unify your website lead capture, event QR forms, and marketing emails under one robust system.
+                                    Custom virtual voice menus, physical desk phone setup, and mobile app linking. Best for offices needing reliable, professional calling.
                                 </p>
-                                <span className="text-4xl font-black text-white">$4,500+</span>
-                                <span className="text-xs text-foreground/40 block mt-1">One-time setup scope</span>
+                                <span className="text-4xl font-black text-white">$2,500+</span>
+                                <span className="text-xs text-foreground/40 block mt-1">One-time setup fee</span>
 
                                 <ul className="space-y-3 mt-8 border-t border-white/5 pt-6 text-sm text-foreground/75">
-                                    {["Capsule CRM Setup & Pipeline Design", "Transpond Email Campaign Automation", "Bespoke Lead Capture API Bridges", "Automated Contact Tagging & Pipelines"].map((f) => (
+                                    {["Custom IVR Auto-Attendant Setup", "Desk Phone & Mobile Softphone Link", "Voicemail-to-Email Notifications", "Local On-Site Installation & Training"].map((f) => (
                                         <li key={f} className="flex items-center gap-2">
                                             <Check className="w-4 h-4 text-cyan-400 shrink-0" />
                                             <span>{f}</span>
@@ -285,7 +285,7 @@ export default function CustomApplicationsPage() {
                                 </ul>
                             </div>
                             <Link href="/book" className="w-full mt-8 py-4 bg-white/5 hover:bg-white/10 text-white font-bold rounded-full transition-colors text-center text-xs uppercase tracking-widest border border-white/10 block">
-                                Request Specs Audit
+                                Request Phone Audit
                             </Link>
                         </div>
 
@@ -296,15 +296,15 @@ export default function CustomApplicationsPage() {
                             </div>
                             <div>
                                 <span className="text-cyan-400 font-bold tracking-widest uppercase text-[10px] mb-2 block">Enterprise Layer</span>
-                                <h3 className="text-3xl font-bold text-white mb-4">Custom SaaS & Software</h3>
+                                <h3 className="text-3xl font-bold text-white mb-4">CRM & Phone Sync</h3>
                                 <p className="text-foreground/60 text-sm mb-6 leading-relaxed">
-                                    Full multi-tenant portal or platform development. Perfect for launching a software product, building custom client areas, or creating proprietary SaaS hubs.
+                                    Unified CRM & Telephony integration. Pop up customer contact cards instantly on incoming calls and log histories automatically.
                                 </p>
-                                <span className="text-4xl font-black text-white">$12,500+</span>
-                                <span className="text-xs text-foreground/40 block mt-1">One-time development scope</span>
+                                <span className="text-4xl font-black text-white">$4,500+</span>
+                                <span className="text-xs text-foreground/40 block mt-1">One-time integration fee</span>
 
                                 <ul className="space-y-3 mt-8 border-t border-white/5 pt-6 text-sm text-foreground/75">
-                                    {["Full Multi-Tenant Authentication", "Stripe Subscription & Payments Gateway", "Advanced Dynamic Admin Privileges", "Serverless PostgreSQL Database Sync", "Enterprise API & CRM Integrations"].map((f) => (
+                                    {["Everything in Local VoIP Setup Package", "Capsule CRM Integration (Screen Pops)", "Automated Call Activity Note Logging", "Voicemail-to-Email Text Transcription", "Custom Call Recording Rules & Uptime"].map((f) => (
                                         <li key={f} className="flex items-center gap-2">
                                             <Check className="w-4 h-4 text-cyan-400 shrink-0" />
                                             <span>{f}</span>
@@ -313,7 +313,7 @@ export default function CustomApplicationsPage() {
                                 </ul>
                             </div>
                             <Link href="/book" className="w-full mt-8 py-4 bg-cyan-400 text-slate-950 hover:bg-white transition-colors font-bold rounded-full text-center text-xs uppercase tracking-widest block shadow-[0_0_35px_rgba(34,211,238,0.2)]">
-                                Initialize Build Call
+                                Initialize Phone Build
                             </Link>
                         </div>
                     </div>
@@ -326,20 +326,20 @@ export default function CustomApplicationsPage() {
             <FAQAccordion
                 faqs={[
                     {
-                        question: "Why should I choose automated CRM and custom apps over duct-taped software?",
-                        answer: "Using unstable Zapier bridges and paying multiple software licenses is fragile and expensive. By integrating Capsule CRM and Transpond directly with custom Next.js endpoints, you get a bulletproof lead pipeline with zero Zapier fees and total control over your customer records."
+                        question: "What is a VoIP cloud business phone system?",
+                        answer: "VoIP (Voice over Internet Protocol) runs your phone lines over a secure, cloud-based internet connection instead of old physical telephone wires. This allows you to place calls from desk phones, mobile apps, or computers, while reducing line rental costs and gaining advanced call routing features."
                     },
                     {
-                        question: "Do you link my custom application to my Capsule CRM?",
-                        answer: "Yes, absolutely. We build robust server-side synchronization bridges. When a client performs an action inside your custom portal, it immediately writes notes, maps custom tags, and creates opportunities directly inside your Capsule CRM dynamically."
+                        question: "How does the CRM integration work with the phone?",
+                        answer: "When a customer calls your business number, our system queries Capsule CRM using the caller ID. It immediately pops up the customer's contact card on your computer screen so your staff knows exactly who is calling, what they bought, and can instantly take notes that save directly to Capsule."
                     },
                     {
-                        question: "How long does a CRM automation or custom app take to set up?",
-                        answer: "We can deploy and sync a complete Capsule CRM and Transpond automation setup in 2 to 3 weeks. Custom SaaS portals or operations dashboards typically deploy within 6 to 10 weeks."
+                        question: "Why is local Jackson MS support important for VoIP?",
+                        answer: "Standard phone providers mail you a box of pre-configured phones, and when something goes wrong with your voice quality or network router, you get stuck in a call center queue. We come directly to your office, handle all network wiring, verify your router settings for voice, and test it on-site so it is 100% working."
                     },
                     {
-                        question: "Is Next.js secure enough for financial databases?",
-                        answer: "Yes. By deploying Next.js Server Components, our backend API endpoints run fully server-side. Sensitive database credentials and keys are never visible to the client, preventing common browser hacking and data injection attempts."
+                        question: "Do I have to buy new desk phones?",
+                        answer: "Not necessarily. If you already have modern IP phones (like Polycom, Yealink, or Cisco), we can often re-program them to link to your new cloud network. Alternatively, you can use our desktop and mobile softphone apps with zero physical hardware cost."
                     }
                 ]}
             />
