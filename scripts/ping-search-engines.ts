@@ -4,7 +4,7 @@ import { GEAR_COLLECTION } from '../src/data/gear';
 import { blogPosts } from '../src/data/blogPosts';
 
 const HOST = 'powerdigitalmedia.org';
-const KEY = process.env.INDEXNOW_KEY || '4f29e2030638421b8c2576b251211756';
+const KEY = process.env.INDEXNOW_KEY || '93f2ea70d65b4c10a8ef18cd301e52ba';
 const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 
 // IndexNow URLs (Sitemap full scan)
