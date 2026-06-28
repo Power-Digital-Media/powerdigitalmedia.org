@@ -2,6 +2,12 @@
 
 This playbook contains the reusable, step-by-step process to connect a client's Ultatel Cloud VoIP phone system to Capsule CRM (using Transpond as the sync engine).
 
+> [!IMPORTANT]
+> **Antigravity AI Agent Custom Skill:**
+> To have your AI agent automatically scaffold and register this telephony sync for a new client project, copy and paste this command into the chat:
+> 
+> `"Use the telephony-crm-setup skill to connect this client's phone and CRM."`
+
 ---
 
 ## 1. Setup Checklist & Account Configuration

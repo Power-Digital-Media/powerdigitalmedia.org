@@ -2,6 +2,12 @@
 
 This playbook contains the reusable, step-by-step process to configure real-time search engine indexing (Google + Bing + Yahoo) on Next.js website deployments. This ensures new blog posts, services, and changes get crawled and index-updated within minutes of going live.
 
+> [!TIP]
+> **CLI Verification Command:**
+> To manually trigger and verify the search engine indexing sequence for any new client site, run this command in your project terminal:
+> 
+> `"npx tsx scripts/ping-search-engines.ts"`
+
 ---
 
 ## 1. Setup Checklist & Configurations
