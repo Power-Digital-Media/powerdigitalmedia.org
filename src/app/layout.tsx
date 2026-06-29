@@ -137,66 +137,6 @@ export default function RootLayout({
                 "name": "Damein Donald",
                 "jobTitle": "Lead Infrastructure Architect"
               },
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "5.0",
-                "reviewCount": "15",
-                "bestRating": "5",
-                "worstRating": "1"
-              },
-              "review": [
-                {
-                  "@type": "Review",
-                  "author": {
-                    "@type": "Person",
-                    "name": "E-Commerce Client"
-                  },
-                  "reviewRating": {
-                    "@type": "Rating",
-                    "ratingValue": "5",
-                    "bestRating": "5"
-                  },
-                  "reviewBody": "Outstanding Next.js web development and CRM integration. Power Digital Media engineered a high-velocity marketing funnel that streamlined our customer bookings.",
-                  "publisher": {
-                    "@type": "Organization",
-                    "name": "Google Reviews"
-                  }
-                },
-                {
-                  "@type": "Review",
-                  "author": {
-                    "@type": "Person",
-                    "name": "Regional Business Partner"
-                  },
-                  "reviewRating": {
-                    "@type": "Rating",
-                    "ratingValue": "5",
-                    "bestRating": "5"
-                  },
-                  "reviewBody": "Damein Donald designed a robust, machine-readable custom application that exceeded all expectations. Extremely professional service.",
-                  "publisher": {
-                    "@type": "Organization",
-                    "name": "Better Business Bureau"
-                  }
-                },
-                {
-                  "@type": "Review",
-                  "author": {
-                    "@type": "Person",
-                    "name": "Media Network Leader"
-                  },
-                  "reviewRating": {
-                    "@type": "Rating",
-                    "ratingValue": "5",
-                    "bestRating": "5"
-                  },
-                  "reviewBody": "Exceptional audio-visual stage setup and SEO marketing architecture. Their attention to machine-readable schema is unparalleled.",
-                  "publisher": {
-                    "@type": "Organization",
-                    "name": "Facebook Reviews"
-                  }
-                }
-              ],
               "makesOffer": [
                 {
                   "@type": "Offer",
