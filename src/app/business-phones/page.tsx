@@ -108,7 +108,7 @@ export default function BusinessPhonesPage() {
                         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                         className="max-w-5xl mx-auto"
                     >
-                        <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[10px] md:text-xs mb-6 block">Cloud Telephony & VoIP Integration</span>
+                        <span className="text-cyan-400 font-bold tracking-[0.3em] md:tracking-[0.45em] uppercase text-[9px] md:text-xs mb-6 block">Authorized Integration Partner of ULTATEL Cloud Communications</span>
                         <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[0.85] uppercase">
                             Jackson MS <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-500 text-glow-cyan">
@@ -136,13 +136,44 @@ export default function BusinessPhonesPage() {
                 </div>
             </section>
 
-            {/* AEO Description Block */}
-            <section className="py-12 bg-[#050505] border-y border-white/5 relative z-20">
-                <div className="container px-4 mx-auto max-w-4xl text-center">
-                    <h2 className="text-2xl md:text-3xl font-bold mb-4 tracking-tight">What are Cloud VoIP Business Phones?</h2>
-                    <p className="text-foreground/70 leading-relaxed font-light">
-                        Cloud Business Phone Systems (Voice over IP) run your office telephony through a secure internet connection rather than legacy copper wires. By integrating cloud phones with Capsule CRM and Transpond, every customer call, voicemail, and text is synced directly to the client's contact record. You get crystal-clear calling on physical desk phones, mobile softphones, and web browsers, backed by local on-site support.
-                    </p>
+            {/* Co-Branded Partnership Showcase Block */}
+            <section className="py-24 bg-[#050505] border-y border-white/5 relative z-20 overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.03),transparent)] pointer-events-none" />
+                <div className="container px-4 mx-auto max-w-6xl">
+                    <div className="grid gap-16 lg:grid-cols-12 items-center">
+                        <div className="lg:col-span-7 space-y-6">
+                            <span className="text-blue-400 font-bold tracking-[0.3em] uppercase text-[10px] block">PDM x ULTATEL</span>
+                            <h2 className="text-3xl md:text-5xl font-black tracking-tight uppercase leading-tight">
+                                Carrier-Grade Voice.<br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Local Workflow Sync.</span>
+                            </h2>
+                            <p className="text-foreground/70 leading-relaxed font-light text-lg">
+                                Power Digital Media has partnered with **ULTATEL**, a premier national cloud communications provider, to deliver carrier-grade VoIP networks integrated directly into your business applications. By marrying ULTATEL's 99.999% uptime voice infrastructure with our custom Capsule CRM API bridges and local on-site support, we deploy a unified communication backbone that automates customer follow-ups and logs activities on autopilot.
+                            </p>
+                        </div>
+                        <div className="lg:col-span-5 grid grid-cols-2 gap-4">
+                            <div className="p-6 rounded-3xl bg-white/[0.01] border border-white/5 hover:border-blue-500/20 transition-colors">
+                                <span className="text-blue-400 font-bold text-2xl md:text-3xl block">99.999%</span>
+                                <span className="text-xs font-bold uppercase tracking-wider text-foreground/55 mt-2 block">Voice SLA Uptime</span>
+                                <p className="text-[10px] text-foreground/45 mt-2 leading-relaxed">Carrier-grade reliability with zero voice latency.</p>
+                            </div>
+                            <div className="p-6 rounded-3xl bg-white/[0.01] border border-white/5 hover:border-blue-500/20 transition-colors">
+                                <span className="text-cyan-400 font-bold text-2xl md:text-3xl block">Teams</span>
+                                <span className="text-xs font-bold uppercase tracking-wider text-foreground/55 mt-2 block">SBC Direct Routing</span>
+                                <p className="text-[10px] text-foreground/45 mt-2 leading-relaxed">Connect your phone lines natively into Microsoft Teams.</p>
+                            </div>
+                            <div className="p-6 rounded-3xl bg-white/[0.01] border border-white/5 hover:border-blue-500/20 transition-colors">
+                                <span className="text-indigo-400 font-bold text-2xl md:text-3xl block">HIPAA</span>
+                                <span className="text-xs font-bold uppercase tracking-wider text-foreground/55 mt-2 block">Compliant Security</span>
+                                <p className="text-[10px] text-foreground/45 mt-2 leading-relaxed">Full compliance meeting HIPAA, SOC 2, and PCI DSS standards.</p>
+                            </div>
+                            <div className="p-6 rounded-3xl bg-white/[0.01] border border-white/5 hover:border-blue-500/20 transition-colors">
+                                <span className="text-slate-200 font-bold text-2xl md:text-3xl block">24/7/365</span>
+                                <span className="text-xs font-bold uppercase tracking-wider text-foreground/55 mt-2 block">US-Based Support</span>
+                                <p className="text-[10px] text-foreground/45 mt-2 leading-relaxed">Tier-1 network operations center monitoring your lines round-the-clock.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
