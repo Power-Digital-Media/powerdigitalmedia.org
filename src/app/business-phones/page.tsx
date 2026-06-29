@@ -318,9 +318,9 @@ export default function BusinessPhonesPage() {
                         </div>
                     </div>
 
-                    <div className="text-center mt-12 max-w-2xl mx-auto">
+                    <div className="text-center mt-12 max-w-3xl mx-auto">
                         <p className="text-[10px] text-foreground/40 leading-relaxed uppercase tracking-wider">
-                            *Note: Monthly recurring calling plans and user seat licenses are billed directly by Ultatel at standard partner rates. One-time setup and integration fees cover custom auto-attendant menus, physical desk phone configuration, mobile softphone linking, and Capsule CRM integration services engineered by Power Digital Media.
+                            *Disclaimer: ULTATEL cloud phone service is provided by ULTATEL. Power Digital Media provides separate setup, onboarding, configuration, training, device support, workflow consulting, and ongoing management services. Any Power Digital Media setup, installation, support, or management fees are separate from ULTATEL service charges and are not ULTATEL installation fees.
                         </p>
                     </div>
                 </div>
