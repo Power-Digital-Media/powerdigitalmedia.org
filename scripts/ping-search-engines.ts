@@ -2,6 +2,11 @@ import https from 'https';
 import { google } from 'googleapis';
 import { GEAR_COLLECTION } from '../src/data/gear';
 import { blogPosts } from '../src/data/blogPosts';
+import dotenv from 'dotenv';
+
+// Load environment variables from .env.local or .env
+dotenv.config({ path: '.env.local' });
+dotenv.config();
 
 const HOST = 'powerdigitalmedia.org';
 const KEY = process.env.INDEXNOW_KEY || '93f2ea70d65b4c10a8ef18cd301e52ba';
