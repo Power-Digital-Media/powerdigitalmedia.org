@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/showroom',
         '/web-design',
         '/business-phones',
+        '/custom-applications',
         '/privacy',
         '/terms',
         '/refund-policy',
