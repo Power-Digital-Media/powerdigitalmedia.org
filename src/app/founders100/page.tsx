@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Founders100Standalone from "@/components/ui/billing/Founders100Standalone";
-import { Sparkles, ArrowRight, CheckCircle2, AlertCircle } from "lucide-react";
+import { Sparkles, ArrowRight, CheckCircle2, AlertCircle, Cpu, ShieldCheck, Gauge, ShoppingCart, HelpCircle } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 
@@ -46,51 +46,182 @@ export default function Founders100Page() {
         <main className="relative min-h-screen bg-background text-white overflow-hidden">
             <Navbar />
 
-            {/* Glowing background shapes */}
-            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-amber-500/5 blur-[120px] pointer-events-none -z-10 rounded-full" />
-            <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-orange-500/5 blur-[150px] pointer-events-none -z-10 rounded-full" />
+            {/* Cyan/Blue tech ambient glows */}
+            <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-cyan-500/5 blur-[150px] pointer-events-none -z-10 rounded-full" />
+            <div className="absolute bottom-1/3 right-1/4 w-[700px] h-[700px] bg-blue-500/5 blur-[180px] pointer-events-none -z-10 rounded-full" />
+
+            {/* Cyber Circuit Grid Overlay */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none -z-10" />
 
             <section className="relative pt-36 pb-24 md:pt-44">
-                <div className="container px-4 mx-auto max-w-5xl">
+                <div className="container px-4 mx-auto max-w-6xl">
                     
-                    {/* Header */}
-                    <div className="text-center mb-16">
+                    {/* Header Block matching the Flyer */}
+                    <div className="text-center mb-16 space-y-4">
                         <motion.div
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-widest mb-6"
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-cyan-400/20 text-cyan-400 text-xs font-bold uppercase tracking-widest"
                         >
                             <Sparkles className="w-4 h-4 animate-pulse" />
-                            EXCLUSIVE INITIATIVE
+                            LIMITED OFFER
                         </motion.div>
 
                         <motion.h1
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.1 }}
-                            className="text-4xl font-black tracking-tight md:text-6xl mb-6 uppercase"
+                            transition={{ delay: 0.1 }}
+                            className="text-5xl md:text-7xl font-extrabold tracking-tighter text-white uppercase leading-none"
                         >
-                            Founder&apos;s <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-500 to-amber-500">100</span>
+                            Founder&apos;s <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500">100</span>
                         </motion.h1>
+
+                        <motion.h2
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.2 }}
+                            className="text-xl md:text-2xl font-bold tracking-widest text-slate-300 uppercase"
+                        >
+                            High-Authority Website Initiative
+                        </motion.h2>
 
                         <motion.p
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            className="text-lg text-slate-300 max-w-xl mx-auto leading-relaxed"
+                            transition={{ delay: 0.3 }}
+                            className="text-base text-slate-400 max-w-2xl mx-auto leading-relaxed"
                         >
-                            Mississippi&apos;s High-Authority Web Build Campaign. Lock in your Growth Build deliverables at a one-time 50% discount. Permanent codebase ownership, zero licensing lock-in.
+                            We are building 100 enterprise-grade Next.js web applications at our Growth Build tier for the price of a basic identity build. Once all 100 spots are claimed, this campaign disappears permanently.
                         </motion.p>
                     </div>
 
-                    {/* Standard Billing component */}
-                    <Founders100Standalone />
+                    {/* Standard Billing component wrapper */}
+                    <div className="border border-cyan-500/20 rounded-[2.5rem] p-2 bg-slate-950/20 backdrop-blur-md mb-24 relative">
+                        <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/10 via-cyan-500/15 to-blue-500/10 rounded-[2.6rem] blur-sm pointer-events-none -z-10" />
+                        <Founders100Standalone />
+                    </div>
 
-                    {/* Inquiry / Lead Form Block below checkout */}
-                    <div className="mt-20 max-w-3xl mx-auto">
-                        <div className="relative rounded-[40px] border border-white/10 glass-card bg-slate-950/40 p-10 md:p-14 overflow-hidden">
-                            <div className="absolute inset-0 -z-10 bg-gradient-to-br from-amber-500/5 via-transparent to-orange-500/5 pointer-events-none" />
+                    {/* Detailed Features Expansion (The Flyer Pillars) */}
+                    <div className="mb-24 space-y-16">
+                        <div className="text-center space-y-2">
+                            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight uppercase">Campaign Deliverables</h2>
+                            <p className="text-sm text-slate-400">Technical specifications for the Growth Architecture tier included in this campaign</p>
+                        </div>
+
+                        <div className="grid gap-8 md:grid-cols-3">
+                            <div className="p-8 rounded-[2.5rem] border border-white/5 bg-white/[0.01] space-y-6">
+                                <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+                                    <Cpu className="w-6 h-6" />
+                                </div>
+                                <h3 className="text-lg font-bold uppercase tracking-wider">Custom UI/UX & 3D Assets</h3>
+                                <p className="text-sm text-slate-400 leading-relaxed font-light">
+                                    No generic templates. Your design is engineered from scratch, using tailored grid systems, cinematic transitions, and optional WebGL/Three.js 3D elements to establish a premium visual authority.
+                                </p>
+                            </div>
+
+                            <div className="p-8 rounded-[2.5rem] border border-white/5 bg-white/[0.01] space-y-6">
+                                <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                                    <Gauge className="w-6 h-6" />
+                                </div>
+                                <h3 className="text-lg font-bold uppercase tracking-wider">Performance & SEO Core</h3>
+                                <p className="text-sm text-slate-400 leading-relaxed font-light">
+                                    Built on Next.js App Router with server-side pre-rendering (SSR) for sub-second load times. Pre-loaded with full JSON-LD entity schema arrays and `llms.txt` config files for Google and AI search visibility.
+                                </p>
+                            </div>
+
+                            <div className="p-8 rounded-[2.5rem] border border-white/5 bg-white/[0.01] space-y-6">
+                                <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+                                    <ShoppingCart className="w-6 h-6" />
+                                </div>
+                                <h3 className="text-lg font-bold uppercase tracking-wider">E-Commerce & Integrations</h3>
+                                <p className="text-sm text-slate-400 leading-relaxed font-light">
+                                    Equipped with Stripe Checkout payment integrations, client booking links, custom input forms, and data pipe bridges that sync incoming website leads straight into your CRM.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Comparison Table */}
+                    <div className="mb-24 space-y-8">
+                        <div className="text-center space-y-2">
+                            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight uppercase">Package Comparison</h2>
+                            <p className="text-sm text-slate-400">See the exact features upgraded for this limited initiative</p>
+                        </div>
+
+                        <div className="overflow-x-auto rounded-3xl border border-white/5 bg-white/[0.01]">
+                            <table className="w-full border-collapse text-left text-sm">
+                                <thead>
+                                    <tr className="border-b border-white/10 bg-white/[0.03]">
+                                        <th className="p-6 font-bold uppercase text-slate-400">Architecture Features</th>
+                                        <th className="p-6 font-bold uppercase text-slate-400">Identity Protocol ($1,500)</th>
+                                        <th className="p-6 font-bold uppercase text-cyan-400 bg-cyan-400/[0.02]">Growth Architecture (Included!)</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-white/5 text-slate-300">
+                                    <tr>
+                                        <td className="p-6 font-medium">Bespoke Design Framework</td>
+                                        <td className="p-6">✓ Up to 5 Pages</td>
+                                        <td className="p-6 font-bold text-white bg-cyan-400/[0.02]">✓ Dynamic Multi-Page (Unlimited)</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="p-6 font-medium">Core speed optimization</td>
+                                        <td className="p-6">✓ Standard Next.js</td>
+                                        <td className="p-6 font-bold text-white bg-cyan-400/[0.02]">✓ Edge Runtime Rendering (Sub-second)</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="p-6 font-medium">Structured Entity Schema</td>
+                                        <td className="p-6">✓ Basic tags</td>
+                                        <td className="p-6 font-bold text-white bg-cyan-400/[0.02]">✓ Fully mapped JSON-LD ID Loop Array</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="p-6 font-medium">CRM Lead Sync Bridge</td>
+                                        <td className="p-6">❌ Not Included</td>
+                                        <td className="p-6 font-bold text-white bg-cyan-400/[0.02]">✓ Transpond & Capsule API Automation</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="p-6 font-medium">Stripe Payment Gateway</td>
+                                        <td className="p-6">❌ Not Included</td>
+                                        <td className="p-6 font-bold text-white bg-cyan-400/[0.02]">✓ Stripe Checkout & Subscription Hooks</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="p-6 font-medium">Managed Hosting Integration</td>
+                                        <td className="p-6">✓ Netlify deploy</td>
+                                        <td className="p-6 font-bold text-white bg-cyan-400/[0.02]">✓ Netlify Edge + Webhook config</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    {/* How it Works / Onboarding */}
+                    <div className="mb-24 space-y-12">
+                        <div className="text-center space-y-2">
+                            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight uppercase">How It Works</h2>
+                            <p className="text-sm text-slate-400">Our 4-step onboarding pipeline from purchase to deployment</p>
+                        </div>
+
+                        <div className="grid gap-6 md:grid-cols-4">
+                            {[
+                                { step: "01", title: "Claim Your Spot", desc: "Purchase the build above or submit an inquiry to lock in one of the 100 campaign spots." },
+                                { step: "02", title: "Onboarding Call", desc: "We schedule a strategy kickoff meeting to map out your brand assets, target audience, and project scope." },
+                                { step: "03", title: "Build & Integrate", desc: "Our team develops your Next.js project and configures your Capsule CRM and Ultatel VoIP networks." },
+                                { step: "04", title: "Edge Launch", desc: "We deploy your high-authority website live onto the Netlify Edge network and trigger search indexing." }
+                            ].map((item, idx) => (
+                                <div key={idx} className="relative p-6 rounded-2xl bg-white/[0.01] border border-white/5 space-y-4">
+                                    <div className="text-xs font-black tracking-widest text-cyan-400 bg-cyan-400/10 px-3 py-1 rounded-full w-fit">
+                                        STEP {item.step}
+                                    </div>
+                                    <h3 className="font-bold text-base uppercase tracking-tight">{item.title}</h3>
+                                    <p className="text-xs text-slate-400 leading-relaxed font-light">{item.desc}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Application / Inquiry Form */}
+                    <div className="max-w-3xl mx-auto">
+                        <div className="relative rounded-[40px] border border-cyan-500/20 glass-card bg-slate-950/40 p-10 md:p-14 overflow-hidden">
+                            <div className="absolute inset-0 -z-10 bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5 pointer-events-none" />
                             
                             {status === "success" ? (
                                 <motion.div
@@ -98,20 +229,20 @@ export default function Founders100Page() {
                                     animate={{ opacity: 1, scale: 1 }}
                                     className="py-12 flex flex-col items-center justify-center text-center space-y-6"
                                 >
-                                    <div className="w-16 h-16 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400">
+                                    <div className="w-16 h-16 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400">
                                         <CheckCircle2 className="w-6 h-6 animate-pulse" />
                                     </div>
                                     <div className="space-y-2">
-                                        <h3 className="text-2xl font-bold">Spot Reserved!</h3>
+                                        <h3 className="text-2xl font-bold">Inquiry Registered!</h3>
                                         <p className="text-slate-300 text-sm leading-relaxed">
-                                            Your application has been received and synced to Transpond CRM. Redirecting you to book your local design onboarding...
+                                            Your application is synced to Transpond CRM. Redirecting you to book your local onboarding call...
                                         </p>
                                     </div>
                                 </motion.div>
                             ) : (
                                 <div className="space-y-8">
                                     <div className="text-center md:text-left space-y-2">
-                                        <h2 className="text-2xl font-extrabold tracking-tight">Prefer to Consult First?</h2>
+                                        <h2 className="text-2xl font-extrabold tracking-tight uppercase">Prefer to Consult First?</h2>
                                         <p className="text-slate-300 text-sm leading-relaxed max-w-lg">
                                             Fill out this brief application to secure your spot temporarily. We will schedule a discovery review to verify project compatibility.
                                         </p>
@@ -128,7 +259,7 @@ export default function Founders100Page() {
                                                 required 
                                                 disabled={status === "submitting"}
                                                 placeholder="John Doe" 
-                                                className="w-full px-4 py-4 bg-white/5 border border-white/10 focus:border-amber-400 rounded-2xl outline-none transition-all placeholder:text-muted-foreground/30 text-white text-sm"
+                                                className="w-full px-4 py-4 bg-white/5 border border-white/10 focus:border-cyan-400 rounded-2xl outline-none transition-all placeholder:text-muted-foreground/30 text-white text-sm"
                                             />
                                         </div>
 
@@ -142,7 +273,7 @@ export default function Founders100Page() {
                                                 required 
                                                 disabled={status === "submitting"}
                                                 placeholder="john@yourbusiness.com" 
-                                                className="w-full px-4 py-4 bg-white/5 border border-white/10 focus:border-amber-400 rounded-2xl outline-none transition-all placeholder:text-muted-foreground/30 text-white text-sm"
+                                                className="w-full px-4 py-4 bg-white/5 border border-white/10 focus:border-cyan-400 rounded-2xl outline-none transition-all placeholder:text-muted-foreground/30 text-white text-sm"
                                             />
                                         </div>
 
@@ -156,7 +287,7 @@ export default function Founders100Page() {
                                                 required 
                                                 disabled={status === "submitting"}
                                                 placeholder="601-555-0199" 
-                                                className="w-full px-4 py-4 bg-white/5 border border-white/10 focus:border-amber-400 rounded-2xl outline-none transition-all placeholder:text-muted-foreground/30 text-white text-sm"
+                                                className="w-full px-4 py-4 bg-white/5 border border-white/10 focus:border-cyan-400 rounded-2xl outline-none transition-all placeholder:text-muted-foreground/30 text-white text-sm"
                                             />
                                         </div>
 
@@ -170,7 +301,7 @@ export default function Founders100Page() {
                                                 required 
                                                 disabled={status === "submitting"}
                                                 placeholder="My Enterprise" 
-                                                className="w-full px-4 py-4 bg-white/5 border border-white/10 focus:border-amber-400 rounded-2xl outline-none transition-all placeholder:text-muted-foreground/30 text-white text-sm"
+                                                className="w-full px-4 py-4 bg-white/5 border border-white/10 focus:border-cyan-400 rounded-2xl outline-none transition-all placeholder:text-muted-foreground/30 text-white text-sm"
                                             />
                                         </div>
 
@@ -183,7 +314,7 @@ export default function Founders100Page() {
                                                 name="current_website" 
                                                 disabled={status === "submitting"}
                                                 placeholder="https://mycurrentbusiness.com" 
-                                                className="w-full px-4 py-4 bg-white/5 border border-white/10 focus:border-amber-400 rounded-2xl outline-none transition-all placeholder:text-muted-foreground/30 text-white text-sm"
+                                                className="w-full px-4 py-4 bg-white/5 border border-white/10 focus:border-cyan-400 rounded-2xl outline-none transition-all placeholder:text-muted-foreground/30 text-white text-sm"
                                             />
                                         </div>
 
@@ -198,7 +329,7 @@ export default function Founders100Page() {
                                             <button
                                                 type="submit"
                                                 disabled={status === "submitting"}
-                                                className="w-full py-5 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-black rounded-2xl flex items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(245,158,11,0.4)] transition-all duration-300 group text-xs uppercase tracking-widest disabled:opacity-50"
+                                                className="w-full py-5 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-black rounded-2xl flex items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(34,211,238,0.3)] transition-all duration-300 group text-xs uppercase tracking-widest disabled:opacity-50"
                                             >
                                                 {status === "submitting" ? (
                                                     "Securing Application Slot..."
