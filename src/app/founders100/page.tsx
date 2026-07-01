@@ -96,9 +96,26 @@ export default function Founders100Page() {
                     </div>
 
                     {/* Standard Billing component wrapper */}
-                    <div className="border border-cyan-500/20 rounded-[2.5rem] p-2 bg-slate-950/20 backdrop-blur-md mb-24 relative">
+                    <div className="border border-cyan-500/20 rounded-[2.5rem] p-2 bg-slate-950/20 backdrop-blur-md mb-16 relative">
                         <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/10 via-cyan-500/15 to-blue-500/10 rounded-[2.6rem] blur-sm pointer-events-none -z-10" />
                         <Founders100Standalone />
+                    </div>
+
+                    {/* Architecture & Hosting Disclosure */}
+                    <div className="max-w-4xl mx-auto mb-24 p-8 rounded-[2rem] border border-blue-500/20 bg-blue-950/20 relative overflow-hidden">
+                        <div className="absolute top-0 left-0 w-1.5 h-full bg-cyan-400" />
+                        <h3 className="text-base font-bold uppercase tracking-wider text-white mb-3">
+                            Codebase Architecture & Hosting Protocol
+                        </h3>
+                        <p className="text-sm text-slate-300 leading-relaxed">
+                            Every site we build is custom-engineered using modern framework standards—specifically <strong className="text-white">Next.js, React, Vite, and Vanilla JS</strong>. These are high-performance, developer-grade applications, not simple drag-and-drop templates built on Wix or WordPress. 
+                        </p>
+                        <p className="text-sm text-slate-300 leading-relaxed mt-4">
+                            Because of this custom architecture, these applications require specialized edge hosting and active technical maintenance. Power Digital Media provides a fully managed <strong className="text-cyan-400">Hosting & Tech Management Protocol for $550.00/month</strong> which covers edge servers, security patches, performance tuning, and code maintenance. 
+                        </p>
+                        <p className="text-sm text-slate-300 leading-relaxed mt-4 italic text-slate-400">
+                            Note: This monthly management plan is optional. If you choose to host and manage the site yourself, we will deliver the raw codebase to you. However, you will need your own server setup and a professional developer on staff to maintain and deploy updates.
+                        </p>
                     </div>
 
                     {/* Detailed Features Expansion (The Flyer Pillars) */}
