@@ -56,50 +56,50 @@ export default function Founders100Page() {
             <section className="relative pt-36 pb-24 md:pt-44">
                 <div className="container px-4 mx-auto max-w-6xl">
                     
-                    {/* Two-Column Split Screen Hero (Form and Checkout side-by-side above the fold!) */}
+                    {/* Full-Width Header Block (Spans across both columns) */}
+                    <div className="max-w-4xl mb-12 space-y-4">
+                        <motion.div
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-cyan-400/20 text-cyan-400 text-xs font-bold uppercase tracking-widest"
+                        >
+                            <Sparkles className="w-4 h-4 animate-pulse" />
+                            LIMITED OFFER
+                        </motion.div>
+
+                        <motion.h1
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.1 }}
+                            className="text-5xl md:text-7xl font-extrabold tracking-tighter text-white uppercase leading-none"
+                        >
+                            Founder&apos;s <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500">100</span>
+                        </motion.h1>
+
+                        <motion.h2
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.2 }}
+                            className="text-lg md:text-xl font-bold tracking-widest text-cyan-400/90 uppercase"
+                        >
+                            High-Authority Website Initiative
+                        </motion.h2>
+
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.3 }}
+                            className="text-base md:text-lg text-slate-300 leading-relaxed font-light max-w-3xl"
+                        >
+                            We are building 100 enterprise-grade Next.js web applications at our Growth Build tier for the price of a basic identity build. Once all 100 spots are claimed, this campaign disappears permanently.
+                        </motion.p>
+                    </div>
+
+                    {/* Two-Column Grid (Aligned perfectly at the top edge!) */}
                     <div className="grid gap-12 lg:grid-cols-12 items-start mb-24">
                         
-                        {/* Left Column: Value Proposition & Checkout Banner */}
-                        <div className="lg:col-span-7 space-y-8">
-                            <div className="space-y-4">
-                                <motion.div
-                                    initial={{ opacity: 0, y: -20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-cyan-400/20 text-cyan-400 text-xs font-bold uppercase tracking-widest"
-                                >
-                                    <Sparkles className="w-4 h-4 animate-pulse" />
-                                    LIMITED OFFER
-                                </motion.div>
-
-                                <motion.h1
-                                    initial={{ opacity: 0, y: -20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.1 }}
-                                    className="text-4xl md:text-6xl font-extrabold tracking-tighter text-white uppercase leading-none"
-                                >
-                                    Founder&apos;s <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500">100</span>
-                                </motion.h1>
-
-                                <motion.h2
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ delay: 0.2 }}
-                                    className="text-lg md:text-xl font-bold tracking-widest text-slate-300 uppercase"
-                                >
-                                    High-Authority Website Initiative
-                                </motion.h2>
-
-                                <motion.p
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ delay: 0.3 }}
-                                    className="text-sm text-slate-400 leading-relaxed max-w-xl"
-                                >
-                                    We are building 100 enterprise-grade Next.js web applications at our Growth Build tier for the price of a basic identity build. Once all 100 spots are claimed, this campaign disappears permanently.
-                                </motion.p>
-                            </div>
-
-                            {/* Standard Billing component wrapper */}
+                        {/* Left Column: Checkout Card */}
+                        <div className="lg:col-span-7">
                             <div className="border border-cyan-500/20 rounded-[2.5rem] p-2 bg-slate-950/20 backdrop-blur-md relative">
                                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/10 via-cyan-500/15 to-blue-500/10 rounded-[2.6rem] blur-sm pointer-events-none -z-10" />
                                 <Founders100Standalone />
@@ -235,7 +235,7 @@ export default function Founders100Page() {
 
                     </div>
 
-                    {/* Architecture & Hosting Disclosure (Moved below the split hero fold) */}
+                    {/* Architecture & Hosting Disclosure */}
                     <div className="max-w-6xl mx-auto mb-24 p-8 rounded-[2rem] border border-blue-500/20 bg-blue-950/20 relative overflow-hidden">
                         <div className="absolute top-0 left-0 w-1.5 h-full bg-cyan-400" />
                         <h3 className="text-base font-bold uppercase tracking-wider text-white mb-3">
