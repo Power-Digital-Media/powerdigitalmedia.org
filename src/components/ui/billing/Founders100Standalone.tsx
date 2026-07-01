@@ -3,14 +3,19 @@
 import { useState } from "react";
 import Founders100Banner from "./Founders100Banner";
 
-/**
- * Self-contained wrapper for Founders100Banner that manages its own
- * Stripe checkout lifecycle. Drop this anywhere without passing props.
- */
-export default function Founders100Standalone() {
+interface Founders100StandaloneProps {
+    onClaimSpot?: () => void;
+}
+
+export default function Founders100Standalone({ onClaimSpot }: Founders100StandaloneProps) {
     const [loading, setLoading] = useState<string | null>(null);
 
     const handleCheckout = async (priceId: string) => {
+        if (onClaimSpot) {
+            onClaimSpot();
+            return;
+        }
+
         if (!priceId || priceId.includes("placeholder")) {
             alert(
                 "⚠️ Stripe Not Configured\n\nThe Founders 100 Price ID is missing. Please add NEXT_PUBLIC_STRIPE_PRICE_FOUNDERS100 to your environment variables."

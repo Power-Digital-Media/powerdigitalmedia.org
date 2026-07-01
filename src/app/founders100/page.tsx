@@ -4,13 +4,22 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Founders100Standalone from "@/components/ui/billing/Founders100Standalone";
-import { Sparkles, ArrowRight, CheckCircle2, AlertCircle, Cpu, Gauge, ShoppingCart } from "lucide-react";
+import { Sparkles, ArrowRight, CheckCircle2, AlertCircle, Cpu, Gauge, ShoppingCart, Loader2 } from "lucide-react";
 import { useState, type FormEvent } from "react";
-import { useRouter } from "next/navigation";
 
 export default function Founders100Page() {
-    const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
-    const router = useRouter();
+    const [status, setStatus] = useState<"idle" | "submitting" | "checkout_redirect" | "success" | "error">("idle");
+
+    const handleClaimSpotClick = () => {
+        const formElement = document.getElementById("secure-spot-form-container");
+        if (formElement) {
+            formElement.scrollIntoView({ behavior: "smooth" });
+            const nameInput = document.getElementsByName("name")[0] as HTMLInputElement;
+            if (nameInput) {
+                setTimeout(() => nameInput.focus(), 800);
+            }
+        }
+    };
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -19,25 +28,52 @@ export default function Founders100Page() {
         const form = e.currentTarget;
         const data = new FormData(form);
         data.append("_form_source", "founders-100-application");
+        data.append("tags", "secure-spot"); // Sends tag to trigger Transpond automations
 
         try {
+            // Step 1: Secure lead inside Transpond and Capsule CRM
             const response = await fetch("/api/forms", {
                 method: "POST",
                 body: data,
                 headers: { Accept: "application/json" }
             });
 
-            if (response.ok) {
+            if (!response.ok) {
+                setStatus("error");
+                return;
+            }
+
+            // Step 2: Forward to Stripe Checkout
+            setStatus("checkout_redirect");
+            const priceId = process.env.NEXT_PUBLIC_STRIPE_PRICE_FOUNDERS100 || "";
+
+            if (!priceId || priceId.includes("placeholder")) {
+                // Fallback success if Stripe isn't configured in this environment
                 setStatus("success");
                 form.reset();
-                setTimeout(() => {
-                    router.push("/book?from=founders100");
-                }, 1000);
+                return;
+            }
+
+            const checkoutResponse = await fetch("/api/checkout", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    items: [{ price: priceId, quantity: 1 }],
+                    successUrl: window.location.origin + "/web-design?success=founders100",
+                    cancelUrl: window.location.origin + "/web-design?canceled=true",
+                    mode: "payment",
+                }),
+            });
+
+            const checkoutData = await checkoutResponse.json();
+            if (checkoutData.url) {
+                window.location.href = checkoutData.url;
             } else {
+                console.error("Stripe Error Details:", checkoutData);
                 setStatus("error");
             }
         } catch (err) {
-            console.error("Founders 100 application error:", err);
+            console.error("Founders 100 pipeline error:", err);
             setStatus("error");
         }
     };
@@ -56,7 +92,7 @@ export default function Founders100Page() {
             <section className="relative pt-36 pb-24 md:pt-44">
                 <div className="container px-4 mx-auto max-w-6xl">
                     
-                    {/* Full-Width Header Block (Spans across both columns) */}
+                    {/* Full-Width Header Block */}
                     <div className="max-w-4xl mb-12 space-y-4">
                         <motion.div
                             initial={{ opacity: 0, y: -20 }}
@@ -95,19 +131,19 @@ export default function Founders100Page() {
                         </motion.p>
                     </div>
 
-                    {/* Two-Column Grid (Aligned perfectly at the top edge!) */}
+                    {/* Two-Column Grid */}
                     <div className="grid gap-12 lg:grid-cols-12 items-start mb-24">
                         
                         {/* Left Column: Checkout Card */}
                         <div className="lg:col-span-7">
                             <div className="border border-cyan-500/20 rounded-[2.5rem] p-2 bg-slate-950/20 backdrop-blur-md relative">
                                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/10 via-cyan-500/15 to-blue-500/10 rounded-[2.6rem] blur-sm pointer-events-none -z-10" />
-                                <Founders100Standalone />
+                                <Founders100Standalone onClaimSpot={handleClaimSpotClick} />
                             </div>
                         </div>
 
                         {/* Right Column: Lead Capture / Inquiry Form */}
-                        <div className="lg:col-span-5">
+                        <div className="lg:col-span-5" id="secure-spot-form-container">
                             <div className="relative rounded-[3rem] border border-cyan-500/20 glass-card bg-slate-950/40 p-8 md:p-10 overflow-hidden">
                                 <div className="absolute inset-0 -z-10 bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5 pointer-events-none" />
                                 
@@ -123,16 +159,32 @@ export default function Founders100Page() {
                                         <div className="space-y-2">
                                             <h3 className="text-2xl font-bold">Inquiry Sent!</h3>
                                             <p className="text-slate-300 text-sm leading-relaxed">
-                                                Your application is registered in our CRM. Redirecting you to book your local onboarding consultation...
+                                                Your details have been saved to secure your spot. Redirecting you to book your design consultation...
+                                            </p>
+                                        </div>
+                                    </motion.div>
+                                ) : status === "checkout_redirect" ? (
+                                    <motion.div
+                                        initial={{ opacity: 0, scale: 0.95 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        className="py-12 flex flex-col items-center justify-center text-center space-y-6"
+                                    >
+                                        <div className="w-16 h-16 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-450">
+                                            <Loader2 className="w-6 h-6 animate-spin" />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <h3 className="text-xl font-bold">Details Secured</h3>
+                                            <p className="text-slate-300 text-xs leading-relaxed">
+                                                Lead data saved. Opening secure Stripe payment portal to complete registration...
                                             </p>
                                         </div>
                                     </motion.div>
                                 ) : (
                                     <div className="space-y-6">
                                         <div className="space-y-2">
-                                            <h3 className="text-xl font-extrabold tracking-tight uppercase">Prefer to Consult First?</h3>
+                                            <h3 className="text-xl font-extrabold tracking-tight uppercase">Secure Your Spot</h3>
                                             <p className="text-xs text-slate-450 leading-relaxed">
-                                                Fill out this application to secure your spot temporarily and request a project audit.
+                                                Register your details to claim one of the 100 campaign spots and proceed to secure checkout.
                                             </p>
                                         </div>
 
@@ -222,7 +274,7 @@ export default function Founders100Page() {
                                                     "Securing Application Slot..."
                                                 ) : (
                                                     <>
-                                                        Apply & Request Call
+                                                        Proceed to Secure Checkout
                                                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                                     </>
                                                 )}
