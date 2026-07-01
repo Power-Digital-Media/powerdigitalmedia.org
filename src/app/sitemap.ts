@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/business-phones',
         '/custom-applications',
         '/free-audit',
+        '/business-solutions',
         '/founders100',
         '/privacy',
         '/terms',
