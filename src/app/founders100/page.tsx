@@ -4,13 +4,18 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Founders100Standalone from "@/components/ui/billing/Founders100Standalone";
-import { Sparkles, ArrowRight, CheckCircle2, AlertCircle, Cpu, Gauge, ShoppingCart, Loader2 } from "lucide-react";
+import { Sparkles, ArrowRight, CheckCircle2, AlertCircle, Cpu, Gauge, ShoppingCart, Loader2, CreditCard, Calendar } from "lucide-react";
 import { useState, type FormEvent } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Founders100Page() {
+    const [activeTab, setActiveTab] = useState<"checkout" | "consult">("checkout");
     const [status, setStatus] = useState<"idle" | "submitting" | "checkout_redirect" | "success" | "error">("idle");
+    const router = useRouter();
 
     const handleClaimSpotClick = () => {
+        // Switch to the checkout tab first
+        setActiveTab("checkout");
         const formElement = document.getElementById("secure-spot-form-container");
         if (formElement) {
             formElement.scrollIntoView({ behavior: "smooth" });
@@ -27,8 +32,13 @@ export default function Founders100Page() {
 
         const form = e.currentTarget;
         const data = new FormData(form);
-        data.append("_form_source", "founders-100-application");
-        data.append("tags", "secure-spot"); // Sends tag to trigger Transpond automations
+        
+        // Define source and tag based on active tab
+        const formSource = activeTab === "checkout" ? "founders-100-checkout" : "founders-100-inquiry";
+        const tag = activeTab === "checkout" ? "secure-spot" : "founders-100-inquiry";
+        
+        data.append("_form_source", formSource);
+        data.append("tags", tag);
 
         try {
             // Step 1: Secure lead inside Transpond and Capsule CRM
@@ -43,34 +53,42 @@ export default function Founders100Page() {
                 return;
             }
 
-            // Step 2: Forward to Stripe Checkout
-            setStatus("checkout_redirect");
-            const priceId = process.env.NEXT_PUBLIC_STRIPE_PRICE_FOUNDERS100 || "";
+            // Step 2: Route users based on active tab selection
+            if (activeTab === "checkout") {
+                setStatus("checkout_redirect");
+                const priceId = process.env.NEXT_PUBLIC_STRIPE_PRICE_FOUNDERS100 || "";
 
-            if (!priceId || priceId.includes("placeholder")) {
-                // Fallback success if Stripe isn't configured in this environment
+                if (!priceId || priceId.includes("placeholder")) {
+                    setStatus("success");
+                    form.reset();
+                    return;
+                }
+
+                const checkoutResponse = await fetch("/api/checkout", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        items: [{ price: priceId, quantity: 1 }],
+                        successUrl: window.location.origin + "/web-design?success=founders100",
+                        cancelUrl: window.location.origin + "/web-design?canceled=true",
+                        mode: "payment",
+                    }),
+                });
+
+                const checkoutData = await checkoutResponse.json();
+                if (checkoutData.url) {
+                    window.location.href = checkoutData.url;
+                } else {
+                    console.error("Stripe Error Details:", checkoutData);
+                    setStatus("error");
+                }
+            } else {
+                // Consultation path - redirect directly to calendar
                 setStatus("success");
                 form.reset();
-                return;
-            }
-
-            const checkoutResponse = await fetch("/api/checkout", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    items: [{ price: priceId, quantity: 1 }],
-                    successUrl: window.location.origin + "/web-design?success=founders100",
-                    cancelUrl: window.location.origin + "/web-design?canceled=true",
-                    mode: "payment",
-                }),
-            });
-
-            const checkoutData = await checkoutResponse.json();
-            if (checkoutData.url) {
-                window.location.href = checkoutData.url;
-            } else {
-                console.error("Stripe Error Details:", checkoutData);
-                setStatus("error");
+                setTimeout(() => {
+                    router.push("/book?from=founders100");
+                }, 1000);
             }
         } catch (err) {
             console.error("Founders 100 pipeline error:", err);
@@ -142,11 +160,29 @@ export default function Founders100Page() {
                             </div>
                         </div>
 
-                        {/* Right Column: Lead Capture / Inquiry Form */}
+                        {/* Right Column: Lead Capture Tabbed Form Container */}
                         <div className="lg:col-span-5" id="secure-spot-form-container">
-                            <div className="relative rounded-[3rem] border border-cyan-500/20 glass-card bg-slate-950/40 p-8 md:p-10 overflow-hidden">
+                            <div className="relative rounded-[3rem] border border-cyan-500/20 glass-card bg-slate-950/40 p-8 overflow-hidden">
                                 <div className="absolute inset-0 -z-10 bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5 pointer-events-none" />
                                 
+                                {/* Tabs */}
+                                <div className="flex bg-white/5 p-1 rounded-2xl mb-6 border border-white/5">
+                                    <button
+                                        onClick={() => { setActiveTab("checkout"); setStatus("idle"); }}
+                                        className={`flex-1 py-3 rounded-xl text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 transition-all ${activeTab === "checkout" ? "bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-md" : "text-slate-400 hover:text-white"}`}
+                                    >
+                                        <CreditCard className="w-3.5 h-3.5" />
+                                        Secure Spot
+                                    </button>
+                                    <button
+                                        onClick={() => { setActiveTab("consult"); setStatus("idle"); }}
+                                        className={`flex-1 py-3 rounded-xl text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 transition-all ${activeTab === "consult" ? "bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-md" : "text-slate-400 hover:text-white"}`}
+                                    >
+                                        <Calendar className="w-3.5 h-3.5" />
+                                        Inquire First
+                                    </button>
+                                </div>
+
                                 {status === "success" ? (
                                     <motion.div
                                         initial={{ opacity: 0, scale: 0.95 }}
@@ -159,7 +195,7 @@ export default function Founders100Page() {
                                         <div className="space-y-2">
                                             <h3 className="text-2xl font-bold">Inquiry Sent!</h3>
                                             <p className="text-slate-300 text-sm leading-relaxed">
-                                                Your details have been saved to secure your spot. Redirecting you to book your design consultation...
+                                                Your details have been registered. Redirecting you to book your local onboarding consultation...
                                             </p>
                                         </div>
                                     </motion.div>
@@ -182,9 +218,14 @@ export default function Founders100Page() {
                                 ) : (
                                     <div className="space-y-6">
                                         <div className="space-y-2">
-                                            <h3 className="text-xl font-extrabold tracking-tight uppercase">Secure Your Spot</h3>
+                                            <h3 className="text-lg font-extrabold tracking-tight uppercase">
+                                                {activeTab === "checkout" ? "Secure Your Spot" : "Inquire First"}
+                                            </h3>
                                             <p className="text-xs text-slate-450 leading-relaxed">
-                                                Register your details to claim one of the 100 campaign spots and proceed to secure checkout.
+                                                {activeTab === "checkout" 
+                                                    ? "Register your details to claim one of the 100 spots and proceed to secure checkout."
+                                                    : "Not ready to buy? Secure a temporary hold and schedule a 10-minute discovery call."
+                                                }
                                             </p>
                                         </div>
 
@@ -271,10 +312,10 @@ export default function Founders100Page() {
                                                 className="w-full py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-black rounded-xl flex items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(34,211,238,0.3)] transition-all duration-300 group text-xs uppercase tracking-widest disabled:opacity-50"
                                             >
                                                 {status === "submitting" ? (
-                                                    "Securing Application Slot..."
+                                                    activeTab === "checkout" ? "Securing checkout pipe..." : "Booking consult slots..."
                                                 ) : (
                                                     <>
-                                                        Proceed to Secure Checkout
+                                                        {activeTab === "checkout" ? "Proceed to Secure Checkout" : "Request Free Consultation"}
                                                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                                     </>
                                                 )}
@@ -304,7 +345,7 @@ export default function Founders100Page() {
                         </p>
                     </div>
 
-                    {/* Detailed Features Expansion (The Flyer Pillars) */}
+                    {/* Detailed Features Expansion */}
                     <div className="mb-24 space-y-16">
                         <div className="text-center space-y-2">
                             <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight uppercase">Campaign Deliverables</h2>
