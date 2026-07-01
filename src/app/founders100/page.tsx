@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Founders100Standalone from "@/components/ui/billing/Founders100Standalone";
-import { Sparkles, ArrowRight, CheckCircle2, AlertCircle, Cpu, ShieldCheck, Gauge, ShoppingCart, HelpCircle } from "lucide-react";
+import { Sparkles, ArrowRight, CheckCircle2, AlertCircle, Cpu, Gauge, ShoppingCart } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 
@@ -56,64 +56,198 @@ export default function Founders100Page() {
             <section className="relative pt-36 pb-24 md:pt-44">
                 <div className="container px-4 mx-auto max-w-6xl">
                     
-                    {/* Header Block matching the Flyer */}
-                    <div className="text-center mb-16 space-y-4">
-                        <motion.div
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-cyan-400/20 text-cyan-400 text-xs font-bold uppercase tracking-widest"
-                        >
-                            <Sparkles className="w-4 h-4 animate-pulse" />
-                            LIMITED OFFER
-                        </motion.div>
+                    {/* Two-Column Split Screen Hero (Form and Checkout side-by-side above the fold!) */}
+                    <div className="grid gap-12 lg:grid-cols-12 items-start mb-24">
+                        
+                        {/* Left Column: Value Proposition & Checkout Banner */}
+                        <div className="lg:col-span-7 space-y-8">
+                            <div className="space-y-4">
+                                <motion.div
+                                    initial={{ opacity: 0, y: -20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-cyan-400/20 text-cyan-400 text-xs font-bold uppercase tracking-widest"
+                                >
+                                    <Sparkles className="w-4 h-4 animate-pulse" />
+                                    LIMITED OFFER
+                                </motion.div>
 
-                        <motion.h1
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.1 }}
-                            className="text-5xl md:text-7xl font-extrabold tracking-tighter text-white uppercase leading-none"
-                        >
-                            Founder&apos;s <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500">100</span>
-                        </motion.h1>
+                                <motion.h1
+                                    initial={{ opacity: 0, y: -20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.1 }}
+                                    className="text-4xl md:text-6xl font-extrabold tracking-tighter text-white uppercase leading-none"
+                                >
+                                    Founder&apos;s <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500">100</span>
+                                </motion.h1>
 
-                        <motion.h2
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.2 }}
-                            className="text-xl md:text-2xl font-bold tracking-widest text-slate-300 uppercase"
-                        >
-                            High-Authority Website Initiative
-                        </motion.h2>
+                                <motion.h2
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 0.2 }}
+                                    className="text-lg md:text-xl font-bold tracking-widest text-slate-300 uppercase"
+                                >
+                                    High-Authority Website Initiative
+                                </motion.h2>
 
-                        <motion.p
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.3 }}
-                            className="text-base text-slate-400 max-w-2xl mx-auto leading-relaxed"
-                        >
-                            We are building 100 enterprise-grade Next.js web applications at our Growth Build tier for the price of a basic identity build. Once all 100 spots are claimed, this campaign disappears permanently.
-                        </motion.p>
+                                <motion.p
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 0.3 }}
+                                    className="text-sm text-slate-400 leading-relaxed max-w-xl"
+                                >
+                                    We are building 100 enterprise-grade Next.js web applications at our Growth Build tier for the price of a basic identity build. Once all 100 spots are claimed, this campaign disappears permanently.
+                                </motion.p>
+                            </div>
+
+                            {/* Standard Billing component wrapper */}
+                            <div className="border border-cyan-500/20 rounded-[2.5rem] p-2 bg-slate-950/20 backdrop-blur-md relative">
+                                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/10 via-cyan-500/15 to-blue-500/10 rounded-[2.6rem] blur-sm pointer-events-none -z-10" />
+                                <Founders100Standalone />
+                            </div>
+                        </div>
+
+                        {/* Right Column: Lead Capture / Inquiry Form */}
+                        <div className="lg:col-span-5">
+                            <div className="relative rounded-[3rem] border border-cyan-500/20 glass-card bg-slate-950/40 p-8 md:p-10 overflow-hidden">
+                                <div className="absolute inset-0 -z-10 bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5 pointer-events-none" />
+                                
+                                {status === "success" ? (
+                                    <motion.div
+                                        initial={{ opacity: 0, scale: 0.95 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        className="py-12 flex flex-col items-center justify-center text-center space-y-6"
+                                    >
+                                        <div className="w-16 h-16 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400 animate-pulse">
+                                            <CheckCircle2 className="w-6 h-6" />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <h3 className="text-2xl font-bold">Inquiry Sent!</h3>
+                                            <p className="text-slate-300 text-sm leading-relaxed">
+                                                Your application is registered in our CRM. Redirecting you to book your local onboarding consultation...
+                                            </p>
+                                        </div>
+                                    </motion.div>
+                                ) : (
+                                    <div className="space-y-6">
+                                        <div className="space-y-2">
+                                            <h3 className="text-xl font-extrabold tracking-tight uppercase">Prefer to Consult First?</h3>
+                                            <p className="text-xs text-slate-450 leading-relaxed">
+                                                Fill out this application to secure your spot temporarily and request a project audit.
+                                            </p>
+                                        </div>
+
+                                        <form onSubmit={handleSubmit} className="space-y-4">
+                                            <div className="space-y-1.5">
+                                                <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">
+                                                    Full Name
+                                                </label>
+                                                <input 
+                                                    type="text" 
+                                                    name="name" 
+                                                    required 
+                                                    disabled={status === "submitting"}
+                                                    placeholder="John Doe" 
+                                                    className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-cyan-400 rounded-xl outline-none transition-all placeholder:text-muted-foreground/30 text-white text-xs"
+                                                />
+                                            </div>
+
+                                            <div className="space-y-1.5">
+                                                <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">
+                                                    Email Address
+                                                </label>
+                                                <input 
+                                                    type="email" 
+                                                    name="email" 
+                                                    required 
+                                                    disabled={status === "submitting"}
+                                                    placeholder="john@yourbusiness.com" 
+                                                    className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-cyan-400 rounded-xl outline-none transition-all placeholder:text-muted-foreground/30 text-white text-xs"
+                                                />
+                                            </div>
+
+                                            <div className="space-y-1.5">
+                                                <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">
+                                                    Phone Number
+                                                </label>
+                                                <input 
+                                                    type="tel" 
+                                                    name="phone" 
+                                                    required 
+                                                    disabled={status === "submitting"}
+                                                    placeholder="601-555-0199" 
+                                                    className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-cyan-400 rounded-xl outline-none transition-all placeholder:text-muted-foreground/30 text-white text-xs"
+                                                />
+                                            </div>
+
+                                            <div className="space-y-1.5">
+                                                <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">
+                                                    Business Name
+                                                </label>
+                                                <input 
+                                                    type="text" 
+                                                    name="business_name" 
+                                                    required 
+                                                    disabled={status === "submitting"}
+                                                    placeholder="My Enterprise" 
+                                                    className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-cyan-400 rounded-xl outline-none transition-all placeholder:text-muted-foreground/30 text-white text-xs"
+                                                />
+                                            </div>
+
+                                            <div className="space-y-1.5">
+                                                <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">
+                                                    Current Website
+                                                </label>
+                                                <input 
+                                                    type="url" 
+                                                    name="current_website" 
+                                                    disabled={status === "submitting"}
+                                                    placeholder="https://mycurrentbusiness.com" 
+                                                    className="w-full px-4 py-3 bg-white/5 border border-white/10 focus:border-cyan-400 rounded-xl outline-none transition-all placeholder:text-muted-foreground/30 text-white text-xs"
+                                                />
+                                            </div>
+
+                                            {status === "error" && (
+                                                <div className="p-3 bg-red-500/10 border border-red-500/20 text-red-400 text-xs rounded-xl flex items-center gap-2">
+                                                    <AlertCircle className="w-4 h-4 shrink-0" />
+                                                    Submission failed. Try again.
+                                                </div>
+                                            )}
+
+                                            <button
+                                                type="submit"
+                                                disabled={status === "submitting"}
+                                                className="w-full py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-black rounded-xl flex items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(34,211,238,0.3)] transition-all duration-300 group text-xs uppercase tracking-widest disabled:opacity-50"
+                                            >
+                                                {status === "submitting" ? (
+                                                    "Securing Application Slot..."
+                                                ) : (
+                                                    <>
+                                                        Apply & Request Call
+                                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                                    </>
+                                                )}
+                                            </button>
+                                        </form>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+
                     </div>
 
-                    {/* Standard Billing component wrapper */}
-                    <div className="border border-cyan-500/20 rounded-[2.5rem] p-2 bg-slate-950/20 backdrop-blur-md mb-16 relative">
-                        <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/10 via-cyan-500/15 to-blue-500/10 rounded-[2.6rem] blur-sm pointer-events-none -z-10" />
-                        <Founders100Standalone />
-                    </div>
-
-                    {/* Architecture & Hosting Disclosure */}
-                    <div className="max-w-4xl mx-auto mb-24 p-8 rounded-[2rem] border border-blue-500/20 bg-blue-950/20 relative overflow-hidden">
+                    {/* Architecture & Hosting Disclosure (Moved below the split hero fold) */}
+                    <div className="max-w-6xl mx-auto mb-24 p-8 rounded-[2rem] border border-blue-500/20 bg-blue-950/20 relative overflow-hidden">
                         <div className="absolute top-0 left-0 w-1.5 h-full bg-cyan-400" />
                         <h3 className="text-base font-bold uppercase tracking-wider text-white mb-3">
                             Codebase Architecture & Hosting Protocol
                         </h3>
-                        <p className="text-sm text-slate-300 leading-relaxed">
+                        <p className="text-sm text-slate-300 leading-relaxed font-light">
                             Every site we build is custom-engineered using modern framework standards—specifically <strong className="text-white">Next.js, React, Vite, and Vanilla JS</strong>. These are high-performance, developer-grade applications, not simple drag-and-drop templates built on Wix or WordPress. 
                         </p>
-                        <p className="text-sm text-slate-300 leading-relaxed mt-4">
+                        <p className="text-sm text-slate-300 leading-relaxed mt-4 font-light">
                             Because of this custom architecture, these applications require specialized edge hosting and active technical maintenance. Power Digital Media provides a fully managed <strong className="text-cyan-400">Hosting & Tech Management Protocol for $550.00/month</strong> which covers edge servers, security patches, performance tuning, and code maintenance. 
                         </p>
-                        <p className="text-sm text-slate-300 leading-relaxed mt-4 italic text-slate-400">
+                        <p className="text-sm text-slate-300 leading-relaxed mt-4 italic text-slate-400 font-light">
                             Note: This monthly management plan is optional. If you choose to host and manage the site yourself, we will deliver the raw codebase to you. However, you will need your own server setup and a professional developer on staff to maintain and deploy updates.
                         </p>
                     </div>
@@ -196,7 +330,7 @@ export default function Founders100Page() {
                                         <td className="p-6 font-bold text-white bg-cyan-400/[0.02]">✓ Transpond & Capsule API Automation</td>
                                     </tr>
                                     <tr>
-                                        <td className="p-6 font-medium">Stripe Payment Gateway</td>
+                                        <td className="p-6 font-medium">Stripe Gateway Setup</td>
                                         <td className="p-6">❌ Not Included</td>
                                         <td className="p-6 font-bold text-white bg-cyan-400/[0.02]">✓ Stripe Checkout & Subscription Hooks</td>
                                     </tr>
@@ -211,7 +345,7 @@ export default function Founders100Page() {
                     </div>
 
                     {/* How it Works / Onboarding */}
-                    <div className="mb-24 space-y-12">
+                    <div className="space-y-12">
                         <div className="text-center space-y-2">
                             <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight uppercase">How It Works</h2>
                             <p className="text-sm text-slate-400">Our 4-step onboarding pipeline from purchase to deployment</p>
@@ -229,138 +363,9 @@ export default function Founders100Page() {
                                         STEP {item.step}
                                     </div>
                                     <h3 className="font-bold text-base uppercase tracking-tight">{item.title}</h3>
-                                    <p className="text-xs text-slate-400 leading-relaxed font-light">{item.desc}</p>
+                                    <p className="text-xs text-slate-450 leading-relaxed font-light">{item.desc}</p>
                                 </div>
                             ))}
-                        </div>
-                    </div>
-
-                    {/* Application / Inquiry Form */}
-                    <div className="max-w-3xl mx-auto">
-                        <div className="relative rounded-[40px] border border-cyan-500/20 glass-card bg-slate-950/40 p-10 md:p-14 overflow-hidden">
-                            <div className="absolute inset-0 -z-10 bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5 pointer-events-none" />
-                            
-                            {status === "success" ? (
-                                <motion.div
-                                    initial={{ opacity: 0, scale: 0.95 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    className="py-12 flex flex-col items-center justify-center text-center space-y-6"
-                                >
-                                    <div className="w-16 h-16 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400">
-                                        <CheckCircle2 className="w-6 h-6 animate-pulse" />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <h3 className="text-2xl font-bold">Inquiry Registered!</h3>
-                                        <p className="text-slate-300 text-sm leading-relaxed">
-                                            Your application is synced to Transpond CRM. Redirecting you to book your local onboarding call...
-                                        </p>
-                                    </div>
-                                </motion.div>
-                            ) : (
-                                <div className="space-y-8">
-                                    <div className="text-center md:text-left space-y-2">
-                                        <h2 className="text-2xl font-extrabold tracking-tight uppercase">Prefer to Consult First?</h2>
-                                        <p className="text-slate-300 text-sm leading-relaxed max-w-lg">
-                                            Fill out this brief application to secure your spot temporarily. We will schedule a discovery review to verify project compatibility.
-                                        </p>
-                                    </div>
-
-                                    <form onSubmit={handleSubmit} className="grid gap-6 md:grid-cols-2">
-                                        <div className="space-y-2">
-                                            <label className="text-xs font-bold uppercase tracking-widest text-slate-400 ml-1">
-                                                Full Name
-                                            </label>
-                                            <input 
-                                                type="text" 
-                                                name="name" 
-                                                required 
-                                                disabled={status === "submitting"}
-                                                placeholder="John Doe" 
-                                                className="w-full px-4 py-4 bg-white/5 border border-white/10 focus:border-cyan-400 rounded-2xl outline-none transition-all placeholder:text-muted-foreground/30 text-white text-sm"
-                                            />
-                                        </div>
-
-                                        <div className="space-y-2">
-                                            <label className="text-xs font-bold uppercase tracking-widest text-slate-400 ml-1">
-                                                Email Address
-                                            </label>
-                                            <input 
-                                                type="email" 
-                                                name="email" 
-                                                required 
-                                                disabled={status === "submitting"}
-                                                placeholder="john@yourbusiness.com" 
-                                                className="w-full px-4 py-4 bg-white/5 border border-white/10 focus:border-cyan-400 rounded-2xl outline-none transition-all placeholder:text-muted-foreground/30 text-white text-sm"
-                                            />
-                                        </div>
-
-                                        <div className="space-y-2">
-                                            <label className="text-xs font-bold uppercase tracking-widest text-slate-400 ml-1">
-                                                Phone Number
-                                            </label>
-                                            <input 
-                                                type="tel" 
-                                                name="phone" 
-                                                required 
-                                                disabled={status === "submitting"}
-                                                placeholder="601-555-0199" 
-                                                className="w-full px-4 py-4 bg-white/5 border border-white/10 focus:border-cyan-400 rounded-2xl outline-none transition-all placeholder:text-muted-foreground/30 text-white text-sm"
-                                            />
-                                        </div>
-
-                                        <div className="space-y-2">
-                                            <label className="text-xs font-bold uppercase tracking-widest text-slate-400 ml-1">
-                                                Business Name
-                                            </label>
-                                            <input 
-                                                type="text" 
-                                                name="business_name" 
-                                                required 
-                                                disabled={status === "submitting"}
-                                                placeholder="My Enterprise" 
-                                                className="w-full px-4 py-4 bg-white/5 border border-white/10 focus:border-cyan-400 rounded-2xl outline-none transition-all placeholder:text-muted-foreground/30 text-white text-sm"
-                                            />
-                                        </div>
-
-                                        <div className="space-y-2 md:col-span-2">
-                                            <label className="text-xs font-bold uppercase tracking-widest text-slate-400 ml-1">
-                                                Current Website (If applicable)
-                                            </label>
-                                            <input 
-                                                type="url" 
-                                                name="current_website" 
-                                                disabled={status === "submitting"}
-                                                placeholder="https://mycurrentbusiness.com" 
-                                                className="w-full px-4 py-4 bg-white/5 border border-white/10 focus:border-cyan-400 rounded-2xl outline-none transition-all placeholder:text-muted-foreground/30 text-white text-sm"
-                                            />
-                                        </div>
-
-                                        {status === "error" && (
-                                            <div className="md:col-span-2 p-3 bg-red-500/10 border border-red-500/20 text-red-400 text-xs rounded-xl flex items-center gap-2">
-                                                <AlertCircle className="w-4 h-4 shrink-0" />
-                                                Submission failed. Please check details and try again.
-                                            </div>
-                                        )}
-
-                                        <div className="md:col-span-2 pt-2">
-                                            <button
-                                                type="submit"
-                                                disabled={status === "submitting"}
-                                                className="w-full py-5 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-black rounded-2xl flex items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(34,211,238,0.3)] transition-all duration-300 group text-xs uppercase tracking-widest disabled:opacity-50"
-                                            >
-                                                {status === "submitting" ? (
-                                                    "Securing Application Slot..."
-                                                ) : (
-                                                    <>
-                                                        Apply & Request Call
-                                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                                    </>
-                                                )}
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            )}
                         </div>
                     </div>
 
