@@ -18,37 +18,48 @@ export async function POST(req: Request) {
 
         console.log(`Processing Calendly booking for: ${email}`);
 
-        // Prepare the payload for Transpond API to add the "Call Scheduled" tag
-        const transpondPayload = {
-            emailAddress: email,
-            tags: ['Call Scheduled']
-        };
+        // Transpond requires a groupId to update a contact's tags.
+        // We update the contact in all four key groups to ensure the tag applies account-wide
+        // regardless of which form/group the lead originally registered through.
+        const groupIds = [187913, 187918, 186443, 187780];
+        
+        const updatePromises = groupIds.map(async (groupId) => {
+            try {
+                const response = await fetch('https://api.transpond.io/subscriber', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${process.env.TRANSPOND_API_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        emailAddress: email,
+                        groupId: groupId,
+                        tags: ['Call Scheduled']
+                    })
+                });
 
-        // Submit to Transpond API to update the subscriber tags
-        const response = await fetch('https://api.transpond.io/subscriber', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${process.env.TRANSPOND_API_KEY}`,
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(transpondPayload)
+                if (!response.ok) {
+                    const errText = await response.text();
+                    console.error(`Transpond API error for group ${groupId}:`, errText);
+                    return { groupId, success: false, error: errText };
+                }
+
+                console.log(`Successfully sent tag update for group ${groupId}`);
+                return { groupId, success: true };
+            } catch (err: any) {
+                console.error(`Failed to connect to Transpond for group ${groupId}:`, err);
+                return { groupId, success: false, error: err.message };
+            }
         });
 
-        const responseText = await response.text();
-        console.log(`Transpond API Webhook Tagging Response Status: ${response.status}`, responseText);
+        const results = await Promise.all(updatePromises);
+        console.log('Transpond Tagging Results:', results);
 
-        if (!response.ok) {
-            console.error(`Transpond API error during tagging: ${responseText}`);
-            // Return 200 anyway to prevent Calendly from disabling the webhook due to retries
-            return NextResponse.json({ success: false, error: responseText }, { status: 200 });
-        }
-
-        console.log(`Successfully tagged contact ${email} with "Call Scheduled" in Transpond.`);
-        return NextResponse.json({ success: true });
+        return NextResponse.json({ success: true, results });
     } catch (error: any) {
         console.error('Calendly Webhook Handler error:', error);
-        // Return 200 to keep the webhook active, logging the error internally
+        // Return 200 to keep the webhook active in Calendly even if internal code crashes
         return NextResponse.json({ success: false, error: error.message || 'Internal server error' }, { status: 200 });
     }
 }
