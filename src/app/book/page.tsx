@@ -19,6 +19,7 @@ function BookPageContent() {
     const [step, setStep] = useState<1 | 2>(1);
     const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
     const [meetingFormat, setMeetingFormat] = useState<"phone" | "meet" | "lunch">("meet");
+    const [leadInfo, setLeadInfo] = useState({ name: "", email: "", phone: "" });
 
     // Initialize step based on URL params to avoid flashing Step 1
     useEffect(() => {
@@ -33,6 +34,11 @@ function BookPageContent() {
         const form = e.currentTarget;
         const data = new FormData(form);
         data.append("_form_source", "g-business-booking");
+
+        const nameVal = data.get("name")?.toString() || "";
+        const emailVal = data.get("email")?.toString() || "";
+        const phoneVal = data.get("phone")?.toString() || "";
+        setLeadInfo({ name: nameVal, email: emailVal, phone: phoneVal });
 
         try {
             const response = await fetch("/api/forms", {
@@ -55,6 +61,30 @@ function BookPageContent() {
             setStatus("error");
             setStep(2);
         }
+    };
+
+    const getCalendarUrl = () => {
+        const calendlyConfig = BOOKING_CONFIG.calendly;
+        
+        if (calendlyConfig && calendlyConfig.username) {
+            const slug = calendlyConfig.slugs[meetingFormat];
+            if (slug) {
+                let url = `https://calendly.com/${calendlyConfig.username}/${slug}?embed_domain=powerdigitalmedia.org&embed_type=Inline&background_color=0b1120&text_color=ffffff&primary_color=22d3ee`;
+                
+                if (leadInfo.name) {
+                    url += `&name=${encodeURIComponent(leadInfo.name)}`;
+                }
+                if (leadInfo.email) {
+                    url += `&email=${encodeURIComponent(leadInfo.email)}`;
+                }
+                if (leadInfo.phone) {
+                    url += `&phone=${encodeURIComponent(leadInfo.phone)}`;
+                }
+                return url;
+            }
+        }
+        
+        return BOOKING_CONFIG.calendarUrl;
     };
 
     return (
@@ -365,7 +395,7 @@ function BookPageContent() {
                                         ))}
                                     </div>
 
-                                    {/* Google Calendar Widget */}
+                                    {/* Calendar Scheduler Widget */}
                                     <div className="rounded-3xl glass-card border-white/10 overflow-hidden bg-slate-950/40">
                                         {/* Calendar Header */}
                                         <div className="flex items-center justify-between px-8 py-4 border-b border-white/5 bg-slate-950/50">
@@ -377,11 +407,11 @@ function BookPageContent() {
                                             </div>
                                             <div className="flex items-center gap-2 text-xs text-white/30">
                                                 <CalendarCheck className="w-3.5 h-3.5" />
-                                                Google Calendar
+                                                {getCalendarUrl().includes("calendly.com") ? "Calendly" : "Google Calendar"}
                                             </div>
                                         </div>
 
-                                        {/* Iframe — CSS invert trick for dark-mode appearance */}
+                                        {/* Iframe */}
                                         <div
                                             className="w-full rounded-b-3xl overflow-hidden"
                                             style={{
@@ -390,12 +420,12 @@ function BookPageContent() {
                                             }}
                                         >
                                             <iframe
-                                                src={BOOKING_CONFIG.calendarUrl}
+                                                src={getCalendarUrl()}
                                                 className="w-full border-none"
                                                 style={{
                                                     height: "680px",
-                                                    filter: "invert(0.88) hue-rotate(180deg)",
-                                                    colorScheme: "light",
+                                                    filter: getCalendarUrl().includes("calendly.com") ? "none" : "invert(0.88) hue-rotate(180deg)",
+                                                    colorScheme: getCalendarUrl().includes("calendly.com") ? "dark" : "light",
                                                 }}
                                                 title={`Book a ${BOOKING_CONFIG.title}`}
                                                 loading="lazy"
