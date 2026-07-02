@@ -69,6 +69,8 @@ export async function POST(req: Request) {
             groupId = 187780; // Jackson Community Leads
         } else if (formSource === 'founders-100-reservation') {
             groupId = parseInt(process.env.TRANSPOND_FOUNDERS100_GROUP_ID || '187913', 10);
+        } else if (formSource === 'unified-solutions-lead') {
+            groupId = parseInt(process.env.TRANSPOND_SOLUTIONS_GROUP_ID || '187918', 10);
         }
 
         const transpondPayload = {
