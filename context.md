@@ -13,11 +13,12 @@
 * **Framework:** Next.js 16.1.x (App Router) running on **Turbopack** and hosted on **Netlify**.
 * **Styling & Motion:** Tailwind CSS (modern fluid grids, glassmorphism templates) + **GSAP (GreenSock)** for advanced scroll-driven viewport timelines and hardware-accelerated animations.
 * **Database & Integrations:**
-  * **Capsule CRM:** B2B lead organization & customer relationships.
-  * **Transpond:** Marketing automation campaigns and autoresponders (Main List ID: `186443`).
+  * **Capsule CRM:** B2B lead organization & customer relationships (Damein is a certified Capsule Solutions Partner).
+  * **Transpond:** Marketing automation campaigns and autoresponders (Main List ID: `186443`, Damein is a certified Transpond Solutions Partner).
+  * **Ultatel:** Business Phone Systems integration provider.
   * **Resend SDK:** Backup serverless transactional emails (thank you and audit report autoresponders).
-* **Booking Pipeline:** Google Calendar / Google Meet video funnel integrated at the `/book` route.
-* **Telemetry & API Routing:** Next.js Serverless Route Handlers in `/api/forms` acting as a secure gateway bridge between client forms, Capsule REST models, and Transpond subscribers.
+* **Booking Pipeline:** Calendly scheduling widget integrated dynamically at the `/book` route.
+* **Telemetry & API Routing:** Next.js Serverless Route Handlers in `/api/forms` and `/api/webhooks/calendly` acting as a secure gateway bridge between client forms, Capsule REST models, and Transpond subscribers.
 
 ---
 
@@ -30,6 +31,12 @@ graph TD
   API -->|Sync Subscriber| Transpond[Transpond API List 186443]
   API -->|Autoresponder Trigger| Resend[Resend API SDK / api/contact/thank-you]
   Capsule <-->|Native stdio JSON-RPC| MCP[Capsule Node.js MCP Server]
+
+  ClientBook[Client Schedules Meeting] -->|Calendly Widget| Calendly[Calendly Scheduler]
+  Calendly -->|Webhook: invitee.created| WebhookAPI[Webhook: /api/webhooks/calendly]
+  WebhookAPI -->|Apply Tag: Call Scheduled| Transpond
+  Calendly -->|Sync Event| GoogleCal[Google Calendar]
+  GoogleCal -->|Sync Event| Capsule
 ```
 
 ### 🗄️ Database & Sync Pipelines
@@ -102,10 +109,15 @@ The project is currently in a **100% stable, fully compiled, and production-read
   - **Homepage Visual Matching:** Standardized the hero section to match the spacious centered design, typography, double button styles, and NAP PageSpeed-style trust bar layout of the homepage.
   - **Telemetry Dashboard Showcase:** Moved the custom 3D isometric marketing telemetry graphic (`marketing_telemetry_system.png`) inside a floating glassmorphic dashboard mockup frame adjacent to the lead sync pipeline phases.
 
+* **Dynamic Calendly Booking & Webhook Auto-Tagging Integration:**
+  - Integrated Calendly scheduler at `/book` mapped to the single `30min` event type under user `damein-powerdigitalmedia`.
+  - Enabled dynamic prefilling of lead's Name, Email, and Phone number from Step 1 into the Calendly widget to remove form friction.
+  - Built a custom serverless Next.js endpoint (`src/app/api/webhooks/calendly/route.ts`) to listen for Calendly's `invitee.created` event.
+  - The webhook calls Transpond's API to immediately tag the invitee with `Call Scheduled`, halting automated email campaigns.
+  - Webhook subscription registered programmatically with Calendly using a local PowerShell execution script to prevent token transit safety filters from corrupting payloads.
 * Codebase-wide `.com` domain alignment to standard `.org`.
 * Safe fallback triggers for Resend email initializations to prevent route crashes.
 * Upgrade of all service landing hero secondary CTA buttons to point to the direct Google Meet booking path `/book` with premium pulsing videography elements.
-* Overhaul of the `/book` page into a premium 2-step booking funnel capturing lead details (Phone, Email, Name, Company, Goals) and chosen format (Phone, Meet, Lunch) before transitioning to the Google Calendar schedule, automatically syncing the lead to Capsule CRM & Transpond.
 * Rich JSON-LD review structures nested in the site layout to establish trust graph matching against Google and BBB.
 * Creation of the local B2B acquisition playbook.
 
