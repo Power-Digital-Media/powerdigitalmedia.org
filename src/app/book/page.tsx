@@ -69,7 +69,7 @@ function BookPageContent() {
         if (calendlyConfig && calendlyConfig.username) {
             const slug = calendlyConfig.slugs[meetingFormat];
             if (slug) {
-                let url = `https://calendly.com/${calendlyConfig.username}/${slug}?embed_domain=powerdigitalmedia.org&embed_type=Inline&background_color=0b1120&text_color=ffffff&primary_color=22d3ee`;
+                let url = `https://calendly.com/${calendlyConfig.username}/${slug}?embed_domain=powerdigitalmedia.org&embed_type=Inline`;
                 
                 if (leadInfo.name) {
                     url += `&name=${encodeURIComponent(leadInfo.name)}`;
