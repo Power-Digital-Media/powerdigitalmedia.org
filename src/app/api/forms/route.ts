@@ -143,28 +143,40 @@ export async function POST(req: Request) {
             }
         }
 
-        // Trigger the internal thank-you email as a backup/co-responder
-        let templateType = 'contact';
-        if (formSource === 'web-design-discovery') {
-            templateType = 'web-design-discovery';
-        } else if (formSource === 'podcasting-discovery') {
-            templateType = 'client-discovery'; // Matches the 'client-discovery' template in thank-you route
-        }
+        // Trigger the internal thank-you email as a backup/co-responder ONLY for general contact forms
+        // Campaigns have their own dedicated Transpond automation sequences.
+        const bypassBackupAutoresponder = [
+            'lead-leak-check',
+            'unified-solutions-lead',
+            'founders-100-reservation',
+            'community-event'
+        ].includes(formSource);
 
-        try {
-            const baseUrl = req.url.startsWith('http') ? new URL(req.url).origin : '';
-            await fetch(`${baseUrl}/api/contact/thank-you`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    email: email,
-                    name: name,
-                    template: templateType
-                })
-            });
-            console.log('Backup thank-you autoresponder triggered successfully.');
-        } catch (emailErr) {
-            console.error('Backup autoresponder failed (continuing anyway):', emailErr);
+        if (!bypassBackupAutoresponder) {
+            let templateType = 'contact';
+            if (formSource === 'web-design-discovery') {
+                templateType = 'web-design-discovery';
+            } else if (formSource === 'podcasting-discovery') {
+                templateType = 'client-discovery'; // Matches the 'client-discovery' template in thank-you route
+            }
+
+            try {
+                const baseUrl = req.url.startsWith('http') ? new URL(req.url).origin : '';
+                await fetch(`${baseUrl}/api/contact/thank-you`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        name: name,
+                        template: templateType
+                    })
+                });
+                console.log('Backup thank-you autoresponder triggered successfully.');
+            } catch (emailErr) {
+                console.error('Backup autoresponder failed (continuing anyway):', emailErr);
+            }
+        } else {
+            console.log(`Skipping backup autoresponder for campaign source: ${formSource}`);
         }
 
         // Extract client headers and cookies for Meta Conversions API
