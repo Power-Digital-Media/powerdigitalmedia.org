@@ -23,7 +23,7 @@ const STATIC_URLS = [
     `https://${HOST}/community`
 ];
 
-const DYNAMIC_URLS = GEAR_COLLECTION.map(item => `https://${HOST}/showroom/${item.category.toLowerCase()}/${item.id}`);
+const DYNAMIC_URLS = GEAR_COLLECTION.map(item => `https://${HOST}/showroom/${item.category.replace(/\s+/g, '-').toLowerCase()}/${item.id}`);
 const BLOG_URLS = blogPosts.map(post => `https://${HOST}/blog/${post.slug}`);
 const URL_LIST = [...STATIC_URLS, ...DYNAMIC_URLS, ...BLOG_URLS];
 

@@ -44,7 +44,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // Showroom Routes (Dynamic Catalog Injection)
     const showroomRoutes = GEAR_COLLECTION.map((item) => ({
-        url: `${baseUrl}/showroom/${item.category.toLowerCase()}/${item.id}`,
+        url: `${baseUrl}/showroom/${item.category.replace(/\s+/g, '-').toLowerCase()}/${item.id}`,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: item.level === 'Elite' ? 0.9 : 0.8,

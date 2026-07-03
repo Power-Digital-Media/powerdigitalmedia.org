@@ -326,7 +326,7 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ slu
                                     return (
                                         <a
                                             key={item.id}
-                                            href={`/showroom/${item.category.toLowerCase()}/${item.id}`}
+                                            href={`/showroom/${item.category.replace(/\s+/g, '-').toLowerCase()}/${item.id}`}
                                             className="group relative flex flex-col p-6 rounded-3xl bg-white/5 border border-white/10 hover:border-accent/40 transition-all duration-500 hover:bg-white/10 hover:-translate-y-1 block"
                                         >
                                             <div className="relative aspect-square rounded-2xl overflow-hidden mb-6 bg-slate-900 border border-white/5">

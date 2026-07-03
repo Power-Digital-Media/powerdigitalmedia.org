@@ -83,7 +83,7 @@ export default function GearCard({ item }: GearCardProps) {
         >
             {/* Image Section */}
             <div className="relative aspect-[4/5] overflow-hidden">
-                <Link href={`/showroom/${item.category.toLowerCase()}/${item.id}`}>
+                <Link href={`/showroom/${item.category.replace(/\s+/g, '-').toLowerCase()}/${item.id}`}>
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10 opacity-60" />
                     <img
                         src={imgSrc}
@@ -140,7 +140,7 @@ export default function GearCard({ item }: GearCardProps) {
             {/* Content Section */}
             <div className="p-8 flex flex-col flex-grow">
                 <div className="mb-4">
-                    <Link href={`/showroom/${item.category.toLowerCase()}/${item.id}`}>
+                    <Link href={`/showroom/${item.category.replace(/\s+/g, '-').toLowerCase()}/${item.id}`}>
                         <h3 className="text-2xl font-black tracking-tighter uppercase leading-none mb-2 hover:text-accent transition-colors cursor-pointer">
                             {item.name}
                         </h3>
@@ -174,7 +174,7 @@ export default function GearCard({ item }: GearCardProps) {
                     </a>
 
                     <Link
-                        href={`/showroom/${item.category.toLowerCase()}/${item.id}`}
+                        href={`/showroom/${item.category.replace(/\s+/g, '-').toLowerCase()}/${item.id}`}
                         className="w-full py-3 bg-white/5 text-white/60 rounded-xl font-bold uppercase tracking-[0.2em] text-[9px] flex items-center justify-center gap-2 border border-white/10 transition-all hover:bg-white/10 hover:text-white hover:border-white/20"
                     >
                         Learn More

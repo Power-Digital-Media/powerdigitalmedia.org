@@ -85,7 +85,7 @@ async function generatePost(context: string) {
 
     const currentDate = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
     const showroomContext = GEAR_COLLECTION.map(item =>
-        `- ${item.name} (${item.brand}) Category: ${item.category}. Desc: ${item.description}. URL: /showroom/${item.category.toLowerCase()}/${item.id}`
+        `- ${item.name} (${item.brand}) Category: ${item.category}. Desc: ${item.description}. URL: /showroom/${item.category.replace(/\s+/g, '-').toLowerCase()}/${item.id}`
     ).join('\n');
 
     const recentTitles = blogPosts.slice(0, 10).map(p => `- ${p.title}`).join('\n');
