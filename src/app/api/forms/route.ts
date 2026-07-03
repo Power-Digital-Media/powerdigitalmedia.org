@@ -73,7 +73,7 @@ export async function POST(req: Request) {
         } else if (formSource === 'unified-solutions-lead') {
             groupId = parseInt(process.env.TRANSPOND_SOLUTIONS_GROUP_ID || '187918', 10);
         } else if (formSource === 'lead-leak-check') {
-            groupId = parseInt(process.env.TRANSPOND_LEAD_LEAK_CHECK_GROUP_ID || '186443', 10);
+            groupId = parseInt(process.env.TRANSPOND_LEAD_LEAK_CHECK_GROUP_ID || '187977', 10);
         }
 
         const transpondPayload = {
