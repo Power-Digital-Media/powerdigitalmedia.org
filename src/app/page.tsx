@@ -108,7 +108,7 @@ export default function Home() {
             "name": "Power Digital Media",
             "image": "https://powerdigitalmedia.org/hero-bg.webp",
             "url": "https://powerdigitalmedia.org",
-            "telephone": "+1-601-446-2393",
+            "telephone": "+1-601-300-2004",
             "priceRange": "$$$",
             "address": {
               "@type": "PostalAddress",

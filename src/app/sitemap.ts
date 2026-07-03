@@ -19,6 +19,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/free-audit',
         '/business-solutions',
         '/founders100',
+        '/lead-leak-check',
+        '/marketing',
         '/privacy',
         '/terms',
         '/refund-policy',

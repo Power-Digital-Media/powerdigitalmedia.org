@@ -52,7 +52,7 @@ graph TD
 
 ## 🌐 3. Critical SEO & Domain Alignments (Fixed)
 * **Active Domain:** `powerdigitalmedia.org` (All 34 outdated `.com` database, content, sitemap, and LLM text references programmatically swept and standardized to prevent crawling indexing split).
-* **Active Phone Line:** `+16014462393` (NAP verified. Fake placeholders replaced across all metadata layouts).
+* **Active Phone Line:** `+16013002004` (NAP verified. Fake placeholders replaced across all metadata layouts).
 * **Local SEO Schema (`src/app/layout.tsx`):**
   * Synthesized machine-readable `LocalBusiness` JSON-LD schema.
   * Nested a perfect `5.0` `AggregateRating` based on `15` real testimonials.

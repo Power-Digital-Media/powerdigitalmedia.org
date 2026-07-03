@@ -72,7 +72,7 @@ export default function Footer() {
                             <li>2914 Cynthia Rd.</li>
                             <li>Jackson, MS 39209</li>
                             <li>info@powerdigitalmedia.org</li>
-                            <li>601-446-2393</li>
+                            <li>601-300-2004</li>
                             <li>
                                 <button
                                     onClick={() => setIsBookingOpen(true)}

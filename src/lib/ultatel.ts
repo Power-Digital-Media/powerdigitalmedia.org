@@ -19,8 +19,8 @@ export class UltatelClient {
     private apiKey: string;
     private baseUrl: string = "https://platform.ultatel.com";
 
-    constructor() {
-        this.apiKey = process.env.ULTATEL_API_KEY || "";
+    constructor(apiKey?: string) {
+        this.apiKey = apiKey || process.env.ULTATEL_API_KEY || "";
     }
 
     private getHeaders(extraHeaders: Record<string, string> = {}) {
@@ -138,8 +138,8 @@ export class UltatelClient {
     /**
      * Search Transpond subscribers to match the caller ID phone number
      */
-    async findSubscriberByPhone(phone: string): Promise<{ emailAddress: string; firstName: string; lastName: string; id: number } | null> {
-        const transpondKey = process.env.TRANSPOND_API_KEY;
+    async findSubscriberByPhone(phone: string, transpondKeyOverride?: string): Promise<{ emailAddress: string; firstName: string; lastName: string; id: number } | null> {
+        const transpondKey = transpondKeyOverride || process.env.TRANSPOND_API_KEY;
         if (!transpondKey) return null;
 
         try {
@@ -186,19 +186,23 @@ export class UltatelClient {
     /**
      * Log call logs to Transpond (which automatically appends to Capsule CRM feed)
      */
-    async logCallToCRM(params: {
-        phone: string;
-        direction: string;
-        duration: number;
-        summary: string;
-        transcript: string;
-        sentiment: string;
-    }) {
-        const transpondKey = process.env.TRANSPOND_API_KEY;
+    async logCallToCRM(
+        params: {
+            phone: string;
+            direction: string;
+            duration: number;
+            summary: string;
+            transcript: string;
+            sentiment: string;
+        },
+        transpondKeyOverride?: string,
+        transpondGroupIdOverride?: number
+    ) {
+        const transpondKey = transpondKeyOverride || process.env.TRANSPOND_API_KEY;
         if (!transpondKey) return;
 
         // Search for existing subscriber
-        const match = await this.findSubscriberByPhone(params.phone);
+        const match = await this.findSubscriberByPhone(params.phone, transpondKey);
         const email = match?.emailAddress || `phone-lead-${params.phone.replace(/\D/g, "")}@powerdigitalmedia.org`;
         const firstName = match?.firstName || "VoIP Phone";
         const lastName = match?.lastName || "Lead";
@@ -215,11 +219,14 @@ export class UltatelClient {
         noteText += `---\n\n### AI Call Summary:\n${params.summary}\n\n`;
         noteText += `---\n\n### Call Transcript Snippet:\n*${params.transcript.substring(0, 500)}...*\n`;
 
+        // 187780 is the fallback General Jackson Leads Sync group
+        const targetGroupId = transpondGroupIdOverride || 187780;
+
         const payload = {
             emailAddress: email,
             firstName: firstName,
             lastName: lastName,
-            groupId: 187780, // General Jackson Leads Sync group
+            groupId: targetGroupId,
             notes: noteText,
             tags: ["voip-call", `call-${params.direction}`],
             customFields: {

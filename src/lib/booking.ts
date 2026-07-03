@@ -16,7 +16,7 @@ export const BOOKING_CONFIG = {
         }
     },
     /** Fallback contact phone */
-    phone: "(601) 446-2393",
+    phone: "(601) 300-2004",
     /** Fallback contact email */
     email: "info@powerdigitalmedia.org",
     /** Default meeting duration label */

@@ -1,12 +1,42 @@
 import { NextResponse } from "next/server";
 import { UltatelClient, UltatelCallEvent } from "@/lib/ultatel";
+import { adminDb } from "@/lib/firebase-admin";
 
 export async function POST(req: Request) {
     try {
         const body: UltatelCallEvent = await req.json();
         console.log(`[Telephony API] Received webhook event: ${body.eventType} for Call ID: ${body.data?.callId}`);
 
-        const client = new UltatelClient();
+        const pbxId = body.pbxId;
+        let ultatelApiKey = process.env.ULTATEL_API_KEY || "";
+        let transpondApiKey = process.env.TRANSPOND_API_KEY || "";
+        let transpondGroupId: number | undefined = undefined;
+
+        // Dynamic multi-client lookup from Firestore partner onboardings
+        if (pbxId) {
+            console.log(`[Telephony API] Querying client profile for PBX ID: ${pbxId}...`);
+            const snapshot = await adminDb.collection("client_setups")
+                .where("ultatelPbxId", "==", pbxId)
+                .limit(1)
+                .get();
+
+            if (!snapshot.empty) {
+                const clientData = snapshot.docs[0].data();
+                if (clientData.ultatelApiKey) {
+                    console.log(`[Telephony API] Found client custom Ultatel API Key for ${clientData.companyName}`);
+                    ultatelApiKey = clientData.ultatelApiKey;
+                }
+                if (clientData.transpondApiKey) {
+                    console.log(`[Telephony API] Found client custom Transpond API Key for ${clientData.companyName}`);
+                    transpondApiKey = clientData.transpondApiKey;
+                }
+                if (clientData.transpondGroupId) {
+                    transpondGroupId = Number(clientData.transpondGroupId);
+                }
+            }
+        }
+
+        const client = new UltatelClient(ultatelApiKey);
 
         // Verify the event type
         if (body.eventType === "ai.analysis_complete" || body.eventType === "call.end") {
@@ -25,14 +55,18 @@ export async function POST(req: Request) {
 
             // Log the call details directly into Transpond/Capsule CRM
             console.log(`[Telephony API] Logging call for ${phone} to CRM...`);
-            await client.logCallToCRM({
-                phone: phone,
-                direction: direction,
-                duration: duration,
-                summary: aiData.summary,
-                transcript: aiData.transcript,
-                sentiment: aiData.sentiment
-            });
+            await client.logCallToCRM(
+                {
+                    phone: phone,
+                    direction: direction,
+                    duration: duration,
+                    summary: aiData.summary,
+                    transcript: aiData.transcript,
+                    sentiment: aiData.sentiment
+                },
+                transpondApiKey,
+                transpondGroupId
+            );
 
             return NextResponse.json({ success: true, message: "Call event processed and logged to CRM" });
         }

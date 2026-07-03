@@ -18,6 +18,7 @@ import Footer from "@/components/layout/Footer";
 import AnalyticsOverview from "@/components/ui/admin/AnalyticsOverview";
 import BusinessIntelCard from "@/components/ui/admin/BusinessIntelCard";
 import TaxReserveCard from "@/components/ui/dashboard/TaxReserveCard";
+import Link from "next/link";
 
 export default function AdminDashboard() {
     // Mastermind Intelligence Mock Data
@@ -121,6 +122,9 @@ export default function AdminDashboard() {
                                         <span className="text-sm font-black uppercase tracking-tighter">Admin Protocols</span>
                                     </div>
                                     <div className="space-y-4">
+                                        <Link href="/admin/services-setup" className="w-full py-4 rounded-xl glass-card border-white/5 text-[10px] font-bold uppercase tracking-widest hover:bg-white/5 transition-all text-left px-5 flex items-center justify-between group">
+                                            Client Services Setup <ArrowUpRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                                        </Link>
                                         <button className="w-full py-4 rounded-xl glass-card border-white/5 text-[10px] font-bold uppercase tracking-widest hover:bg-white/5 transition-all text-left px-5 flex items-center justify-between group">
                                             User Management <ArrowUpRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                                         </button>

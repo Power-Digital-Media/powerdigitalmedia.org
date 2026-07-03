@@ -136,7 +136,7 @@ export default function RefundPolicyPage() {
                                 info@powerdigitalmedia.org
                             </a>
                         </li>
-                        <li><strong>Phone:</strong> 601-446-2393</li>
+                        <li><strong>Phone:</strong> 601-300-2004</li>
                         <li><strong>Location:</strong> Jackson, MS Metro Area</li>
                     </ul>
                 </div>

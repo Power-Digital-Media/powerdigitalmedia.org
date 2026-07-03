@@ -70,7 +70,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             let monthlyRate = 1500;
             let subscriptionTier = "custom";
             let defaultEmail = "info@powerdigitalmedia.org";
-            let primaryPhone = "(601) 446-2393";
+            let primaryPhone = "(601) 300-2004";
 
             if (demoCompany === 'tbeauxs') {
                 companyName = "Tbeaux's Crawfish";

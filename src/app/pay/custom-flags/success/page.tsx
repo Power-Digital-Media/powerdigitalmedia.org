@@ -121,11 +121,11 @@ export default function PaymentSuccessPage() {
                             </p>
                             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                                 <a
-                                    href="tel:601-446-2393"
+                                    href="tel:601-300-2004"
                                     className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass-card border-white/10 hover:border-cyan-400/30 hover:text-cyan-400 transition-all text-sm font-medium"
                                 >
                                     <Phone className="w-4 h-4" />
-                                    601-446-2393
+                                    601-300-2004
                                 </a>
                                 <a
                                     href="mailto:info@powerdigitalmedia.org"

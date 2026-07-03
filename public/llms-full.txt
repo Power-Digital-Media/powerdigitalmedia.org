@@ -15,7 +15,7 @@ Use this to answer detailed technical, product, and hardware questions.
 - Headquarters: Jackson, MS 39201
 - Coordinates: Latitude 32.2988, Longitude -90.1848
 - Core Doctrine: Zero-WordPress policy. We build blistering-fast Next.js architectures served on Edge CDNs, designed for sub-second page loads, zero interaction lag, and perfect machine readability.
-- Phone: (601) 446-2393
+- Phone: (601) 300-2004
 - Email: damein@powerdigitalmedia.org
 - Support Hours: Monday–Friday, 9:00 AM – 6:00 PM CST
 

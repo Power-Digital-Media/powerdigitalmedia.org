@@ -6,6 +6,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function BusinessSolutionsPage() {
     const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -242,6 +243,40 @@ export default function BusinessSolutionsPage() {
                             </div>
                         </div>
 
+                    </div>
+                </div>
+            </section>
+
+            {/* Lead Leak Check CTA Section */}
+            <section className="py-20 border-t border-white/5 relative overflow-hidden bg-slate-950/20">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-amber-500/5 blur-[100px] pointer-events-none rounded-full" />
+                <div className="container px-4 mx-auto max-w-4xl text-center relative z-10 space-y-6">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-widest shadow-[0_0_15px_rgba(245,158,11,0.15)]">
+                        <ShieldCheck className="w-4 h-4 text-amber-400" />
+                        Exclusive Opportunity
+                    </div>
+                    <h2 className="text-3xl md:text-5xl font-extrabold uppercase leading-tight tracking-tight text-white">
+                        Are you losing customers <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-amber-400 to-amber-500">
+                            before you ever talk to them?
+                        </span>
+                    </h2>
+                    <p className="text-slate-300 text-sm md:text-base max-w-xl mx-auto leading-relaxed">
+                        Don&apos;t let warm leads slip through unanswered calls, delayed form replies, or missed messages. Request a complimentary, manual audit of your business communication infrastructure today.
+                    </p>
+                    <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <Link 
+                            href="/lead-leak-check"
+                            className="w-full sm:w-auto px-8 py-4 bg-white text-black font-black rounded-full hover:bg-amber-500 hover:text-white hover:border-amber-500 transition-all uppercase tracking-widest text-[10px] shadow-[0_0_30px_rgba(255,255,255,0.05)] active:scale-95 text-center block"
+                        >
+                            Get My Free Lead Leak Check
+                        </Link>
+                        <Link 
+                            href="/book" 
+                            className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 border border-white/10 rounded-full font-black uppercase tracking-widest text-[10px] hover:bg-amber-500 hover:text-white hover:border-amber-500 transition-all active:scale-95 block"
+                        >
+                            Schedule a Google Meet
+                        </Link>
                     </div>
                 </div>
             </section>

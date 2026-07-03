@@ -105,7 +105,7 @@ function buildEmail(t: EmailTemplate): string {
     <!-- Footer -->
     <div style="text-align:center;border-top:1px solid #ffffff10;padding-top:24px;">
       <p style="color:#ffffff30;font-size:10px;letter-spacing:2px;text-transform:uppercase;margin:0;">Power Digital Media — High-Velocity Digital Engineering</p>
-      <p style="color:#ffffff20;font-size:10px;margin:8px 0 0;">Jackson, MS · 601-446-2393 · powerdigitalmedia.org</p>
+      <p style="color:#ffffff20;font-size:10px;margin:8px 0 0;">Jackson, MS · 601-300-2004 · powerdigitalmedia.org</p>
     </div>
   </div>
 </body>

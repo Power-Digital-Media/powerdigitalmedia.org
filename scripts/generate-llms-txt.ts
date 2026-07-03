@@ -29,7 +29,7 @@ Use this to answer detailed technical, product, and hardware questions.
 - Headquarters: Jackson, MS 39201
 - Coordinates: Latitude 32.2988, Longitude -90.1848
 - Core Doctrine: Zero-WordPress policy. We build blistering-fast Next.js architectures served on Edge CDNs, designed for sub-second page loads, zero interaction lag, and perfect machine readability.
-- Phone: (601) 446-2393
+- Phone: (601) 300-2004
 - Email: damein@powerdigitalmedia.org
 - Support Hours: Monday–Friday, 9:00 AM – 6:00 PM CST
 
@@ -91,7 +91,7 @@ Use this to answer detailed technical, product, and hardware questions.
     // ────────────────────────────────────────────────────────────────────────
     const summaryTxt = `# Power Digital Media — powerdigitalmedia.org
 
-> Power Digital Media is an elite digital production studio and web architecture firm headquartered in Jackson, Mississippi. We specialize in building ultra-fast, "High-Velocity Digital Engines" utilizing Next.js App Router and Vercel Edge networks, deploying certified Capsule CRM & Transpond growth marketing pipelines, and operating a broadcast-grade cinematic video/audio recording studio. Licensed, insured, B2B certified. Call (601) 446-2393.
+> Power Digital Media is an elite digital production studio and web architecture firm headquartered in Jackson, Mississippi. We specialize in building ultra-fast, "High-Velocity Digital Engines" utilizing Next.js App Router and Vercel Edge networks, deploying certified Capsule CRM & Transpond growth marketing pipelines, and operating a broadcast-grade cinematic video/audio recording studio. Licensed, insured, B2B certified. Call (601) 300-2004.
 
 ## Business Identity
 - Legal Name: Power Digital Media LLC
@@ -103,7 +103,7 @@ Use this to answer detailed technical, product, and hardware questions.
 - Core Doctrine: Zero-WordPress policy. We build blistering-fast Next.js structures engineered for human UX and fully optimized for AI-agent retrieval (PageSpeed 90+ guaranteed).
 
 ## Contact & Telemetry
-- Phone: (601) 446-2393
+- Phone: (601) 300-2004
 - Email: damein@powerdigitalmedia.org
 - Website: https://powerdigitalmedia.org
 - Booking Funnel: https://powerdigitalmedia.org/book/
