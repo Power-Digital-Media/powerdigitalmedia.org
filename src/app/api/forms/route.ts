@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { UltatelClient } from "@/lib/ultatel";
+import { sendMetaCAPILeadEvent } from "@/lib/meta-capi";
 
 export async function POST(req: Request) {
     try {
@@ -165,6 +166,34 @@ export async function POST(req: Request) {
         } catch (emailErr) {
             console.error('Backup autoresponder failed (continuing anyway):', emailErr);
         }
+
+        // Extract client headers and cookies for Meta Conversions API
+        const clientIp = req.headers.get('x-forwarded-for')?.split(',')[0].trim() || 
+                         req.headers.get('x-real-ip') || 
+                         '';
+        const clientUserAgent = req.headers.get('user-agent') || '';
+        
+        const cookieHeader = req.headers.get('cookie') || '';
+        const fbc = cookieHeader.split(';').find(c => c.trim().startsWith('_fbc='))?.split('=')[1] || '';
+        const fbp = cookieHeader.split(';').find(c => c.trim().startsWith('_fbp='))?.split('=')[1] || '';
+        
+        // Formulate source URL (e.g. from referer, page_path, or default)
+        const referer = req.headers.get('referer') || '';
+        const sourceUrl = body.page_path ? `https://powerdigitalmedia.org${body.page_path}` : referer || 'https://powerdigitalmedia.org/lead-leak-check';
+
+        // Fire Meta Conversions API Lead Event in the background (don't block the API response)
+        sendMetaCAPILeadEvent({
+            email,
+            phone: body.phone || body.prospect_phone || '',
+            firstName,
+            lastName,
+            sourceUrl,
+            clientIp,
+            clientUserAgent,
+            fbc,
+            fbp,
+            formSource
+        }).catch(err => console.error('[Forms API] Meta CAPI trigger failed:', err));
 
         return NextResponse.json({ success: true });
     } catch (error: any) {
