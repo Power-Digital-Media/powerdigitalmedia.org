@@ -4,6 +4,7 @@ import { m } from "framer-motion";
 import { Send, Calendar, MessageSquare, Phone, ArrowRight, X } from "lucide-react";
 import { useState } from "react";
 import BookingModal from "@/components/ui/BookingModal";
+import Link from "next/link";
 
 export default function Contact() {
     const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -106,6 +107,10 @@ export default function Contact() {
                                 </div>
                                 <p className="text-foreground/50 text-xs pl-8">
                                     Broadcast-grade production available on-site or via secure remote systems.
+                                </p>
+                                {/* SMS Keyword Opt-in Disclaimer */}
+                                <p className="text-[10px] text-muted-foreground leading-relaxed pl-8">
+                                    By texting "START" to 601-446-2393, you agree that you may receive appointment reminders, support, and updates via text messages (SMS) from Power Digital Media. Msg & data rates may apply. Msg frequency varies. Mobile information will not be shared with third parties/affiliates for marketing/promotional purposes. All the above categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties. Unsubscribe at any time by replying STOP. Reply HELP for support. To review our Privacy Policy, click <Link href="/privacy" className="text-cyan-400 underline hover:text-cyan-300">here</Link>, and to view our Terms & Conditions, click <Link href="/terms" className="text-cyan-400 underline hover:text-cyan-300">here</Link>.
                                 </p>
                             </div>
                         </m.div>

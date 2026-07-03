@@ -247,4 +247,47 @@ export class UltatelClient {
             console.error("Failed to post call log to Transpond:", error);
         }
     }
+
+    /**
+     * Sends an outbound SMS message via Ultatel API
+     */
+    async sendSMS(params: { to: string; text: string }): Promise<{ success: boolean; messageId?: string; message: string }> {
+        if (!this.apiKey) {
+            console.log(`[Ultatel Client] Mock SMS sent (API Key not set) to ${params.to}: "${params.text}"`);
+            return { success: true, messageId: "mock_sms_id_pending_key", message: "Mock SMS triggered successfully." };
+        }
+
+        try {
+            const cleanPhone = params.to.replace(/\D/g, "");
+            // Format phone to standard e.164 if needed (adding +1 for US if missing)
+            const formattedPhone = cleanPhone.length === 10 ? `+1${cleanPhone}` : `+${cleanPhone}`;
+
+            const response = await fetch(`${this.baseUrl}/v1/sms/send`, {
+                method: "POST",
+                headers: this.getHeaders(),
+                body: JSON.stringify({
+                    to: formattedPhone,
+                    text: params.text
+                })
+            });
+
+            if (!response.ok) {
+                const errData: any = await response.json().catch(() => ({}));
+                return { 
+                    success: false, 
+                    message: `HTTP Error ${response.status}: ${errData?.error?.message || response.statusText}` 
+                };
+            }
+
+            const data: any = await response.json();
+            return { 
+                success: true, 
+                messageId: data.data?.messageId,
+                message: data.message || "SMS sent successfully." 
+            };
+        } catch (error: any) {
+            console.error("Error sending SMS:", error);
+            return { success: false, message: `Network error: ${error.message}` };
+        }
+    }
 }

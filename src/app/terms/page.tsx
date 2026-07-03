@@ -32,6 +32,10 @@ export default function TermsPage() {
                         All content on this site, including text, graphics, logos, and images, is the property of Power Digital Media or its content suppliers
                         and is protected by international copyright laws.
                     </p>
+                    <h2>3. SMS Messaging Terms</h2>
+                    <p>
+                        By agreeing to receive reminders, updates, and support messages from Power Digital Media, you understand that message frequency varies, and message/data rates may apply. Reply STOP to opt out.
+                    </p>
                     <p>For inquiries, please contact info@powerdigitalmedia.org.</p>
                 </div>
             </div>

@@ -8,6 +8,7 @@ import { BOOKING_CONFIG } from "@/lib/booking";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 
 const BBBSeal = dynamic(() => import("@/components/ui/BBBSeal"));
 
@@ -285,6 +286,21 @@ function BookPageContent() {
                                                     placeholder="Your Company LLC" 
                                                 />
                                             </div>
+                                        </div>
+
+                                        {/* SMS Opt-in Disclaimer Checkbox */}
+                                        <div className="flex items-start gap-3 p-4 rounded-2xl border border-white/5 bg-white/[0.02]">
+                                            <input 
+                                                type="checkbox" 
+                                                id="sms-opt-in" 
+                                                name="sms_opt_in" 
+                                                required 
+                                                disabled={status === "submitting"}
+                                                className="mt-1 shrink-0 rounded border-white/10 bg-transparent text-cyan-400 focus:ring-cyan-400 focus:ring-offset-slate-950"
+                                            />
+                                            <label htmlFor="sms-opt-in" className="text-[10px] text-muted-foreground leading-relaxed">
+                                                By checking this box, you agree that you may receive appointment reminders, support, and updates via text messages (SMS) from Power Digital Media. Msg & data rates may apply. Msg frequency varies. Mobile information will not be shared with third parties/affiliates for marketing/promotional purposes. All the above categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties. Unsubscribe at any time by replying STOP. Reply HELP for support. To review our Privacy Policy, click <Link href="/privacy" className="text-cyan-400 underline hover:text-cyan-300">here</Link>, and to view our Terms & Conditions, click <Link href="/terms" className="text-cyan-400 underline hover:text-cyan-300">here</Link>.
+                                            </label>
                                         </div>
 
                                         {/* Meeting Format Choice */}

@@ -28,6 +28,10 @@ export default function PrivacyPage() {
                         We collect data primarily to communicate with you regarding our services (Podcasting, Web Design, Video Production).
                         We do not sell your personal data to third parties.
                     </p>
+                    <h2>SMS Consent & Messaging</h2>
+                    <p>
+                        Mobile information will not be shared with third parties/affiliates for marketing/promotional purposes. All the above categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties.
+                    </p>
                     <p>For more details, please contact us at info@powerdigitalmedia.org.</p>
                 </div>
             </div>

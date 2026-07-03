@@ -6,6 +6,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import BookingModal from "@/components/ui/BookingModal";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function StandaloneContactPage() {
     const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -101,6 +102,10 @@ export default function StandaloneContactPage() {
                                                 <p className="font-medium">601-446-2393</p>
                                             </div>
                                         </div>
+                                        {/* SMS Keyword Opt-in Disclaimer */}
+                                        <p className="text-[10px] text-muted-foreground leading-relaxed max-w-sm pl-2 border-l border-white/5">
+                                            By texting "START" to 601-446-2393, you agree that you may receive appointment reminders, support, and updates via text messages (SMS) from Power Digital Media. Msg & data rates may apply. Msg frequency varies. Mobile information will not be shared with third parties/affiliates for marketing/promotional purposes. All the above categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties. Unsubscribe at any time by replying STOP. Reply HELP for support. To review our Privacy Policy, click <Link href="/privacy" className="text-cyan-400 underline hover:text-cyan-300">here</Link>, and to view our Terms & Conditions, click <Link href="/terms" className="text-cyan-400 underline hover:text-cyan-300">here</Link>.
+                                        </p>
                                     </div>
                                 </div>
 

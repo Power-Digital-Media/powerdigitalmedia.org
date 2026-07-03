@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { UltatelClient } from "@/lib/ultatel";
 
 export async function POST(req: Request) {
     try {
@@ -117,6 +118,25 @@ export async function POST(req: Request) {
                     { error: `Transpond integration error: ${responseText}` }, 
                     { status: response.status }
                 );
+            }
+        }
+
+        // Trigger automated SMS if the user opted in and provided a phone number
+        const userPhone = body.phone || body.prospect_phone;
+        const optedIn = body.sms_opt_in === 'on' || body.sms_opt_in === true || body.sms_opt_in === 'true' || body.sms_opt_in === '1';
+
+        if (userPhone && optedIn) {
+            try {
+                const ultClient = new UltatelClient();
+                const smsMessage = `Hi ${firstName || 'there'}, thanks for connecting with Power Digital Media! We've received your request and will reach out shortly. Reply STOP to opt out.`;
+                console.log(`[Forms API] Triggering automated SMS for ${userPhone}...`);
+                const smsResult = await ultClient.sendSMS({
+                    to: userPhone,
+                    text: smsMessage
+                });
+                console.log(`[Forms API] SMS trigger result:`, smsResult);
+            } catch (smsErr) {
+                console.error('[Forms API] Automated SMS failed:', smsErr);
             }
         }
 
