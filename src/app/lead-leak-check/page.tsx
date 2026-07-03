@@ -403,12 +403,11 @@ export default function LeadLeakCheckPage() {
                                             {/* Phone Number */}
                                             <div className="space-y-1.5">
                                                 <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">
-                                                    Phone Number
+                                                    Phone Number (Optional)
                                                 </label>
                                                 <input 
                                                     type="tel" 
                                                     name="phone" 
-                                                    required 
                                                     disabled={status === "submitting"}
                                                     placeholder="601-555-0199" 
                                                     className="w-full px-4 py-3.5 bg-white/5 border border-white/10 focus:border-amber-400 rounded-2xl outline-none transition-all placeholder:text-muted-foreground/30 text-white text-sm"
