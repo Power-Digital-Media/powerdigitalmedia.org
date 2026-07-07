@@ -130,7 +130,7 @@ export default function PrivacyClient() {
                                     </div>
                                     <div className="prose prose-invert max-w-none text-foreground/75 leading-relaxed space-y-4">
                                         <p>
-                                            Power Digital Media LLC (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) operates as a premier digital architecture and media production firm in Jackson, Mississippi. We are committed to protecting the privacy of our clients, leads, and website visitors.
+                                            Power Digital Media LLC (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) operates as a premier digital architecture and business integration firm (specializing in custom Web Design and integrations with Capsule CRM, Transpond email marketing, and Ultatel VoIP systems) in Jackson, Mississippi. We are committed to protecting the privacy of our clients, leads, and website visitors.
                                         </p>
                                         <p>
                                             This System Protocol details how we collect, store, process, and secure personal information obtained via `powerdigitalmedia.org` and our integrated sync services (Capsule CRM, Transpond, Ultatel, and Resend). By utilizing our platform or submitting inquiries, you consent to the data policies established herein.

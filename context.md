@@ -96,7 +96,7 @@ graph TD
 
 The project is currently in a **100% stable, fully compiled, and production-ready state**. The latest updates resolved:
 * **SOTA Interactive Glassmorphic Bento Grid Portfolio (`src/components/sections/Portfolio.tsx`):**
-  - Completely replaced the heavy, scroll-hijacking GSAP horizontal sliding/pinning carousel with a beautiful, natural-scrolling asymmetric Bento Grid on the Home, Web Design, Production, and Marketing pages.
+  - Completely replaced the heavy, scroll-hijacking GSAP horizontal sliding/pinning carousel with a beautiful, natural-scrolling asymmetric Bento Grid on the Home, Web Design, and Marketing pages.
   - Configured custom geometric card spans on desktop (e.g. `col-span-8` landscape + `col-span-4` portrait) and clean vertical stacks on mobile.
   - Implemented brand-matched dynamic hover border glows and radial highlights utilizing React state and native CSS.
   - Embedded high-contrast B2B performance indicators and live-metric badges (`98% PageSpeed`, `400+ Hours Saved`, `5.2x ROAS`) to visually validate engineering and marketing authority.
@@ -117,7 +117,7 @@ The project is currently in a **100% stable, fully compiled, and production-read
   - Webhook subscription registered programmatically with Calendly using a local PowerShell execution script to prevent token transit safety filters from corrupting payloads.
 * Codebase-wide `.com` domain alignment to standard `.org`.
 * Safe fallback triggers for Resend email initializations to prevent route crashes.
-* Upgrade of all service landing hero secondary CTA buttons to point to the direct Google Meet booking path `/book` with premium pulsing videography elements.
+* Upgrade of all service landing hero secondary CTA buttons to point to the direct Google Meet booking path `/book` with pulsing interactive elements.
 * Rich JSON-LD review structures nested in the site layout to establish trust graph matching against Google and BBB.
 * Creation of the local B2B acquisition playbook.
 

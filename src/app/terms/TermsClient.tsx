@@ -130,7 +130,7 @@ export default function TermsClient() {
                                     </div>
                                     <div className="prose prose-invert max-w-none text-foreground/75 leading-relaxed space-y-4">
                                         <p>
-                                            Welcome to Power Digital Media. By accessing our platform, utilizing our custom design systems, or purchasing our development, podcasting, or video production services, you agree to comply with and be bound by the following Terms of Service.
+                                            Welcome to Power Digital Media. By accessing our platform, utilizing our custom design systems, or purchasing our web design, custom development, or business integration services (including Capsule CRM, Transpond email marketing, and Ultatel VoIP systems), you agree to comply with and be bound by the following Terms of Service.
                                         </p>
                                         <p>
                                             If you are entering into this agreement on behalf of a company, church, or organization, you represent that you hold the legal authority to bind that entity to these conditions.
@@ -148,7 +148,7 @@ export default function TermsClient() {
                                     </div>
                                     <div className="prose prose-invert max-w-none text-foreground/75 leading-relaxed space-y-4">
                                         <p>
-                                            Power Digital Media LLC provides high-velocity digital solutions including custom Next.js development, local SEO optimization, digital booking integrations, podcast editing, and videography.
+                                            Power Digital Media LLC provides high-velocity digital solutions including custom Next.js development, local SEO optimization, digital booking integrations, Capsule CRM visual pipelines, Transpond automated email marketing systems, and Ultatel business phone VoIP systems.
                                         </p>
                                         <p>
                                             Specific deliverables, timelines, and launch phases will be outlined in your custom Service Level Agreement (SLA). All development launches are pending client content assets and prompt design feedback.
