@@ -110,8 +110,8 @@ export default function Footer() {
                                 Deployed on Netlify
                             </span>
                         </a>
-                        <Link href="/privacy" className="hover:text-accent transition-colors">Privacy Policy</Link>
-                        <Link href="/terms" className="hover:text-accent transition-colors">Terms of Service</Link>
+                        <Link href="/privacy-policy" className="hover:text-accent transition-colors">Privacy Policy</Link>
+                        <Link href="/terms-and-conditions" className="hover:text-accent transition-colors">Terms of Service</Link>
                         <Link href="/refund-policy" className="hover:text-accent transition-colors">Refund Policy</Link>
                     </div>
                 </div>

@@ -34,7 +34,7 @@ export default function TermsPage() {
                     </p>
                     <h2>3. SMS Messaging Terms</h2>
                     <p>
-                        By agreeing to receive reminders, updates, and support messages from Power Digital Media, you understand that message frequency varies, and message/data rates may apply. Reply STOP to opt out.
+                        By agreeing to receive reminders, updates, and support messages from Power Digital Media LLC, you understand that message frequency varies, and message/data rates may apply. Reply STOP to opt out.
                     </p>
                     <p>For inquiries, please contact info@powerdigitalmedia.org.</p>
                 </div>

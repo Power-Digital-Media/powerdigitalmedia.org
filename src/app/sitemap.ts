@@ -23,6 +23,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/marketing',
         '/privacy',
         '/terms',
+        '/privacy-policy',
+        '/terms-and-conditions',
         '/refund-policy',
         '/client-discovery',
         '/web-design/discovery',
