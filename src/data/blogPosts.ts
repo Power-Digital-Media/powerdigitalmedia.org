@@ -10179,9 +10179,7 @@ The Gamma AI website builder is an AI-powered visual creation tool that helps us
 It helps small businesses move faster when they need a landing page, proposal, lead magnet, service page draft, or visual explainer without starting from a blank screen.
 It can add modern layouts, structured sections, visuals, and web-style pages quickly, which makes it useful for early-stage campaigns and content planning.
 It does not replace a fully custom website strategy, but it can speed up the planning, prototyping, and publishing process before a deeper build with Power Digital Media.
-Try Gamma through Power Digital Media here: [Start building with Gamma AI](https://try.gamma.app/powerdigitalmedia).
-
-*Affiliate Disclosure: This article contains an affiliate link. If you try Gamma through Power Digital Media's link, we may earn a commission at no extra cost to you.*
+Try Gamma to outline your next website design concept.
 
 ---
 

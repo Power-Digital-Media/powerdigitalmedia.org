@@ -62,7 +62,6 @@ export default function Navbar() {
 
     const mainLinks = [
         { name: "Portfolio", href: "/our-work", external: false },
-        { name: "Showroom", href: "/showroom", external: false },
         { name: "Blog", href: "/blog", external: false },
         { name: "About", href: "/about", external: false },
     ];

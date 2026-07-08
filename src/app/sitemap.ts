@@ -1,6 +1,5 @@
 import { MetadataRoute } from 'next';
 import { blogPosts } from '@/data/blogPosts';
-import { GEAR_COLLECTION } from '@/data/gear';
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://powerdigitalmedia.org';
@@ -12,7 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/blog',
         '/contact',
         '/our-work',
-        '/showroom',
         '/web-design',
         '/business-phones',
         '/custom-applications',
@@ -44,13 +42,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
     }));
 
-    // Showroom Routes (Dynamic Catalog Injection)
-    const showroomRoutes = GEAR_COLLECTION.map((item) => ({
-        url: `${baseUrl}/showroom/${item.category.replace(/\s+/g, '-').toLowerCase()}/${item.id}`,
-        lastModified: new Date(),
-        changeFrequency: 'weekly' as const,
-        priority: item.level === 'Elite' ? 0.9 : 0.8,
-    }));
-
-    return [...routes, ...blogRoutes, ...showroomRoutes];
+    return [...routes, ...blogRoutes];
 }

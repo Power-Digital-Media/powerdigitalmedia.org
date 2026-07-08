@@ -63,16 +63,7 @@ const nextConfig = {
         destination: '/',
         permanent: true,
       },
-      {
-        source: '/showroom/chassis/nzxt-h6-flow',
-        destination: '/showroom',
-        permanent: true,
-      },
-      {
-        source: '/showroom/pc/intel-core-ultra-9-285k',
-        destination: '/showroom',
-        permanent: true,
-      },
+
       // Soft 404 Renamed Blog Redirects
       {
         source: '/blog/the-truth-about-the-2026-benchmark-war-sovereign-clouds-role',
@@ -89,25 +80,15 @@ const nextConfig = {
         destination: '/blog/creative-workflow-management-maximizing-creative-velocity-in-2026',
         permanent: true,
       },
-      // Showroom Category Consolidation Redirects
+      // Showroom Retirement Catch-All Redirects
       {
-        source: '/showroom/cooling/:id',
-        destination: '/showroom/pc/:id',
+        source: '/showroom',
+        destination: '/',
         permanent: true,
       },
       {
-        source: '/showroom/computing/:id',
-        destination: '/showroom/pc/:id',
-        permanent: true,
-      },
-      {
-        source: '/showroom/chassis/:id',
-        destination: '/showroom/pc/:id',
-        permanent: true,
-      },
-      {
-        source: '/showroom/storage/:id',
-        destination: '/showroom/pc/:id',
+        source: '/showroom/:path*',
+        destination: '/',
         permanent: true,
       },
     ];

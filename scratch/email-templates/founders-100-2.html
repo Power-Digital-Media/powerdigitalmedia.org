@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Next.js vs WordPress: Why Speed Matters</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc; color: #1e293b; margin: 0; padding: 0; }
+    .email-container { max-width: 600px; margin: 40px auto; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+    .header { background-color: #0b1528; padding: 32px; text-align: center; border-bottom: 2px solid #06b6d4; }
+    .logo { color: #ffffff; font-size: 20px; font-weight: 800; tracking-widest: 0.1em; text-transform: uppercase; margin: 0; }
+    .logo span { color: #06b6d4; }
+    .content { padding: 40px 32px; line-height: 1.6; }
+    h1 { font-size: 22px; font-weight: 800; color: #0b1528; margin-top: 0; margin-bottom: 20px; text-transform: uppercase; letter-spacing: -0.02em; }
+    p { margin-bottom: 20px; font-size: 15px; color: #475569; }
+    .features-comparison { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 13px; }
+    .features-comparison th, .features-comparison td { padding: 12px; border: 1px solid #e2e8f0; text-align: left; }
+    .features-comparison th { background-color: #f8fafc; font-weight: 700; color: #1e293b; text-transform: uppercase; }
+    .cta-container { text-align: center; margin: 32px 0; }
+    .cta-button { display: inline-block; background: linear-gradient(90deg, #3b82f6 0%, #06b6d4 100%); color: #ffffff !important; text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 13px; tracking-widest: 0.05em; padding: 16px 36px; border-radius: 12px; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
+    .footer { background-color: #f8fafc; border-top: 1px solid #e2e8f0; padding: 24px; text-align: center; font-size: 11px; color: #94a3b8; }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <div class="header">
+      <div class="logo">Power Digital <span>Media</span></div>
+    </div>
+    <div class="content">
+      <h1>Wix and WordPress are slowing down your sales</h1>
+      <p>Hi {{_capsule_firstName}},</p>
+      <p>A few days ago, you registered for our Founder's 100 campaign. Before we jump on our scoping call, I want to clarify why we custom-build websites using Next.js/React instead of dragging-and-dropping on Wix or WordPress.</p>
+      
+      <p>Most local websites are loaded with heavy plugins, bloated database calls, and unoptimized files. This kills your speed, spikes your bounce rates, and prevents search engine crawlers from reading your services.</p>
+
+      <table class="features-comparison">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Wix / WordPress</th>
+            <th>Next.js Custom Apps</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Load Time</strong></td>
+            <td>3 - 8 seconds (bloated)</td>
+            <td>Sub-second (instant edge load)</td>
+          </tr>
+          <tr>
+            <td><strong>SEO Schemas</strong></td>
+            <td>Requires third-party plugins</td>
+            <td>Bespoke JSON-LD entity loops</td>
+          </tr>
+          <tr>
+            <td><strong>Deliverability</strong></td>
+            <td>Heavy server rendering</td>
+            <td>Prerendered static hydration</td>
+          </tr>
+          <tr>
+            <td><strong>Platform Fees</strong></td>
+            <td>$20 - $100/mo locks you in</td>
+            <td>$0 monthly platform licensing fees</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>With our Founder's 100 campaign, you own the entire, customized source code. If you haven't scheduled your 10-minute kickoff review yet, lock in your slot on our calendar below:</p>
+
+      <div class="cta-container">
+        <a href="https://powerdigitalmedia.org/book?from=email2" class="cta-button">Claim My Onboarding Slot</a>
+      </div>
+
+      <p>Let's build a web presence that actually converts.</p>
+      <p>Best regards,<br><strong>Damein Donald</strong><br>Power Digital Media</p>
+    </div>
+    <div class="footer">
+      Power Digital Media LLC • 2914 Cynthia Rd., Jackson, MS 39209<br>
+      To stop receiving these emails, you can unsubscribe in your dashboard.
+    </div>
+  </div>
+</body>
+</html>

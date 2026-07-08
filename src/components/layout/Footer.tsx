@@ -92,7 +92,6 @@ export default function Footer() {
                 <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground font-medium">
                     <div className="flex flex-col gap-1">
                         <p>© {currentYear} Power Digital Media LLC. All rights reserved. 🛡️ v1.6-elite</p>
-                        <p className="text-[10px] opacity-50 uppercase tracking-widest">As an Amazon Associate I earn from qualifying purchases. We may earn commissions from affiliate links.</p>
                     </div>
                     <div className="flex items-center gap-6">
                         {/* Netlify Affiliate Badge */}

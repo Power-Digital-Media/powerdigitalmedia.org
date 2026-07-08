@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Reservation is Expiring</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc; color: #1e293b; margin: 0; padding: 0; }
+    .email-container { max-width: 600px; margin: 40px auto; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+    .header { background-color: #0b1528; padding: 32px; text-align: center; border-bottom: 2px solid #06b6d4; }
+    .logo { color: #ffffff; font-size: 20px; font-weight: 800; tracking-widest: 0.1em; text-transform: uppercase; margin: 0; }
+    .logo span { color: #06b6d4; }
+    .content { padding: 40px 32px; line-height: 1.6; }
+    h1 { font-size: 22px; font-weight: 800; color: #dc2626; margin-top: 0; margin-bottom: 20px; text-transform: uppercase; letter-spacing: -0.02em; }
+    p { margin-bottom: 20px; font-size: 15px; color: #475569; }
+    .warning-box { background-color: #fef2f2; border-left: 4px solid #ef4444; padding: 16px 20px; margin: 24px 0; border-radius: 0 8px 8px 0; }
+    .warning-box p { margin: 0; font-weight: 600; color: #991b1b; }
+    .cta-container { text-align: center; margin: 32px 0; }
+    .cta-button { display: inline-block; background: #dc2626; color: #ffffff !important; text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 13px; tracking-widest: 0.05em; padding: 16px 36px; border-radius: 12px; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3); }
+    .footer { background-color: #f8fafc; border-top: 1px solid #e2e8f0; padding: 24px; text-align: center; font-size: 11px; color: #94a3b8; }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <div class="header">
+      <div class="logo">Power Digital <span>Media</span></div>
+    </div>
+    <div class="content">
+      <h1>Your Founder's 100 Hold is Expiring</h1>
+      <p>Hi {{_capsule_firstName}},</p>
+      <p>We are reaching out to let you know that your temporary reservation in the <strong>Founder's 100 Website Initiative</strong> is scheduled to expire soon.</p>
+      
+      <p>Because we have restricted this campaign to exactly 100 participants to maintain our scoping and development quality, we cannot hold inactive slots indefinitely.</p>
+
+      <div class="warning-box">
+        <p>Current Status: Hold expiring in 24 hours.</p>
+      </div>
+
+      <p>To keep your reservation active and lock in your 50% discount ($1,500 one-time build cost), please schedule your 10-minute compatibility review call today:</p>
+
+      <div class="cta-container">
+        <a href="https://powerdigitalmedia.org/book?from=email3" class="cta-button">Confirm My Reservation Call</a>
+      </div>
+
+      <p>If we don't hear from you, your spot will automatically release back to the general Jackson local business queue.</p>
+      <p>Hope to see you on the schedule,</p>
+      <p>Best regards,<br><strong>Damein Donald</strong><br>Power Digital Media</p>
+    </div>
+    <div class="footer">
+      Power Digital Media LLC • 2914 Cynthia Rd., Jackson, MS 39209<br>
+      To stop receiving these emails, you can unsubscribe in your dashboard.
+    </div>
+  </div>
+</body>
+</html>
