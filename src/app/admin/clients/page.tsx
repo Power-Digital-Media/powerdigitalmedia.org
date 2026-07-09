@@ -154,6 +154,7 @@ interface Project {
     waitingOn?: string;
     blockerNotes?: string;
     notes?: string;
+    localProjectPath?: string;
 }
 
 interface Platform {
@@ -2878,6 +2879,11 @@ export default function ExcelAlignedNexusRegistry() {
                                                     <span className="text-[9px] uppercase font-black text-accent">{p.status}</span>
                                                 </div>
                                                 <p className="text-[10px] text-white/60 leading-relaxed">"{p.scopeSummary}"</p>
+                                                {p.localProjectPath && (
+                                                    <div className="text-[9px] text-white/40 font-mono mt-1">
+                                                        Local Project: <span className="text-white/60 select-all font-bold">{p.localProjectPath}</span>
+                                                    </div>
+                                                )}
                                                 {p.waitingOn && (
                                                     <div className="text-red-400 font-bold text-[9px] flex items-center gap-1.5 mt-1">
                                                         <AlertTriangle className="w-3.5 h-3.5 animate-pulse" />

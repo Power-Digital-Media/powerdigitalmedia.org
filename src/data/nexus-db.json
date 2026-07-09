@@ -2,9 +2,9 @@
   "clients": [
     {
       "id": "client-bornagain",
-      "name": "David",
+      "name": "David Dilmore",
       "companyName": "Born Again Roofing & Remodeling",
-      "phone": "(601) 555-0144",
+      "phone": "601-573-6178",
       "email": "dd@bornagainroofing.com",
       "website": "https://bornagainroofing.com",
       "status": "Active",
@@ -17,13 +17,14 @@
       "notes": "Premium contractor account. Managed via Capsule + Transpond reseller plan.",
       "clientStatus": "active",
       "clientType": "roofing",
+      "serviceArea": "Florence, MS",
       "priorityLevel": "high",
       "paymentTerms": "Due on Receipt",
       "billingMethod": "invoice",
       "accountOwner": "Power Digital Media LLC",
       "nextFollowUpDate": "2026-07-20",
       "currentNeed": "Deploying the main marketing campaign and syncing leads from webform to CRM.",
-      "internalNotes": "David prefers texts. Follow up mid-month regarding transpond lists.",
+      "internalNotes": "Address: 150 Highland Dr. Florence, MS 39073. David prefers texts. Follow up mid-month regarding transpond lists.",
       "archived": false
     },
     {
@@ -161,10 +162,10 @@
     {
       "id": "con-bornagain-1",
       "clientId": "client-bornagain",
-      "name": "David",
+      "name": "David Dilmore",
       "role": "Owner / Decision Maker",
       "email": "dd@bornagainroofing.com",
-      "phone": "(601) 555-0144",
+      "phone": "601-573-6178",
       "preferredContactMethod": "text",
       "decisionMaker": "yes",
       "billingContact": "yes",
@@ -370,7 +371,8 @@
       "outOfScope": "Managing domain transfers outside registrar.",
       "approvalStatus": "pending",
       "waitingOn": "Client 2FA Code",
-      "blockerNotes": "Need Capsule verification SMS code from David to map Transpond webhook."
+      "blockerNotes": "Need Capsule verification SMS code from David to map Transpond webhook.",
+      "localProjectPath": "E:\\\\AntiGravity\\\\born-again-roofing"
     },
     {
       "id": "proj-tbeauxs-1",
@@ -649,6 +651,40 @@
       "twoFactorEnabled": "no",
       "secretLocation": "Bitwarden -> All Things New Ministries -> Podbean",
       "lastVerifiedDate": "2026-07-08"
+    },
+    {
+      "id": "plat-bornagain-gbp",
+      "clientName": "Born Again Roofing & Remodeling",
+      "platformName": "Google Business Profile",
+      "type": "SEO / Local Maps",
+      "loginEmail": "damein@powerdigitalmedia.org",
+      "planName": "Free Listing",
+      "status": "Active",
+      "monthlyCost": 0,
+      "paidBy": "Client",
+      "renewalDate": "2026-08-01",
+      "accessLevel": "Manager",
+      "notes": "Needs owner approval access request.",
+      "accessStatus": "needs_access",
+      "twoFactorEnabled": "no",
+      "secretLocation": "Bitwarden -> Born Again Roofing -> GBP"
+    },
+    {
+      "id": "plat-bornagain-facebook",
+      "clientName": "Born Again Roofing & Remodeling",
+      "platformName": "Facebook Business Page",
+      "type": "Social Media",
+      "loginEmail": "damein@powerdigitalmedia.org",
+      "planName": "Free Page",
+      "status": "Active",
+      "monthlyCost": 0,
+      "paidBy": "Client",
+      "renewalDate": "2026-08-01",
+      "accessLevel": "Admin",
+      "notes": "Needs business partner access request.",
+      "accessStatus": "needs_access",
+      "twoFactorEnabled": "no",
+      "secretLocation": "Bitwarden -> Born Again Roofing -> Facebook"
     }
   ],
   "domainsHosting": [
