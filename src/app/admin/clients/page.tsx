@@ -36,6 +36,13 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Link from "next/link";
 
+interface ApiKey {
+    id: string;
+    serviceName: string;
+    apiKey: string;
+    notes: string;
+}
+
 interface Client {
     id: string;
     name: string;
@@ -51,6 +58,7 @@ interface Client {
     nextFollowUp: string;
     primaryNeed: string;
     notes: string;
+    apiKeys?: ApiKey[];
 }
 
 interface Service {
@@ -201,6 +209,11 @@ export default function ExcelAlignedNexusRegistry() {
         }
     ]);
     const chatEndRef = useRef<HTMLDivElement>(null);
+
+    // Form Hooks: API Keys
+    const [newApiKeyService, setNewApiKeyService] = useState("");
+    const [newApiKeyValue, setNewApiKeyValue] = useState("");
+    const [newApiKeyNotes, setNewApiKeyNotes] = useState("");
 
     // Form Hooks: Client
     const [cName, setCName] = useState("");
@@ -569,6 +582,57 @@ export default function ExcelAlignedNexusRegistry() {
         await saveDatabase(updated);
         setOpenModal(null);
         setNClient(""); setNTitle(""); setNBody(""); setNFollowUpDate("");
+    };
+
+    const handleAddApiKey = async (clientId: string) => {
+        if (!newApiKeyService || !newApiKeyValue) return;
+        const newKey: ApiKey = {
+            id: `key-${Date.now()}`,
+            serviceName: newApiKeyService,
+            apiKey: newApiKeyValue,
+            notes: newApiKeyNotes
+        };
+        const updatedClients = db.clients.map(c => {
+            if (c.id === clientId) {
+                return {
+                    ...c,
+                    apiKeys: [...(c.apiKeys || []), newKey]
+                };
+            }
+            return c;
+        });
+        const updatedDb = { ...db, clients: updatedClients };
+        await saveDatabase(updatedDb);
+        
+        // Also update selectedDetailClient state so the UI stays in sync!
+        const matchingClient = updatedClients.find(c => c.id === clientId);
+        if (matchingClient) {
+            setSelectedDetailClient(matchingClient);
+        }
+
+        setNewApiKeyService("");
+        setNewApiKeyValue("");
+        setNewApiKeyNotes("");
+    };
+
+    const handleDeleteApiKey = async (clientId: string, keyId: string) => {
+        if (!confirm("Are you sure you want to delete this API Key?")) return;
+        const updatedClients = db.clients.map(c => {
+            if (c.id === clientId) {
+                return {
+                    ...c,
+                    apiKeys: (c.apiKeys || []).filter(k => k.id !== keyId)
+                };
+            }
+            return c;
+        });
+        const updatedDb = { ...db, clients: updatedClients };
+        await saveDatabase(updatedDb);
+
+        const matchingClient = updatedClients.find(c => c.id === clientId);
+        if (matchingClient) {
+            setSelectedDetailClient(matchingClient);
+        }
     };
 
     // Global deletion
@@ -2130,6 +2194,74 @@ export default function ExcelAlignedNexusRegistry() {
                                         {db.notes.filter(n => n.clientName === selectedDetailClient.companyName).length === 0 && (
                                             <p className="text-xs text-white/20 italic">No notes logged yet.</p>
                                         )}
+                                    </div>
+
+                                    {/* SECTION 6: API KEYS & INTEGRATIONS */}
+                                    <div className="space-y-3">
+                                        <h4 className="text-xs font-black uppercase tracking-widest text-white/40 border-b border-white/5 pb-2">API Keys & Integrations</h4>
+                                        
+                                        {/* Existing Keys List */}
+                                        {(selectedDetailClient.apiKeys || []).map(k => (
+                                            <div key={k.id} className="p-4 rounded-2xl bg-white/[0.01] border border-white/5 flex justify-between items-start gap-4 animate-fadeIn">
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="flex items-center gap-2">
+                                                        <span className="text-xs font-bold text-white">{k.serviceName}</span>
+                                                    </div>
+                                                    <p className="text-xs font-mono text-accent mt-1 select-all break-all">{k.apiKey}</p>
+                                                    {k.notes && <p className="text-[10px] text-white/40 mt-1 italic">"{k.notes}"</p>}
+                                                </div>
+                                                <button
+                                                    onClick={() => handleDeleteApiKey(selectedDetailClient.id, k.id)}
+                                                    className="p-2 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/25 transition-all"
+                                                    title="Delete API Key"
+                                                >
+                                                    <Trash2 className="w-3.5 h-3.5" />
+                                                </button>
+                                            </div>
+                                        ))}
+
+                                        {(selectedDetailClient.apiKeys || []).length === 0 && (
+                                            <p className="text-xs text-white/20 italic">No API keys registered for this client yet.</p>
+                                        )}
+
+                                        {/* Inline Add API Key form */}
+                                        <div className="p-4 rounded-2xl bg-white/[0.01] border border-white/5 border-dashed space-y-3 mt-4">
+                                            <span className="text-[9px] font-black uppercase tracking-widest text-white/40 block">Register New API Key / Token</span>
+                                            
+                                            <div className="grid grid-cols-2 gap-3">
+                                                <input
+                                                    type="text"
+                                                    placeholder="Service Name (e.g. Stripe, SendGrid)"
+                                                    value={newApiKeyService}
+                                                    onChange={e => setNewApiKeyService(e.target.value)}
+                                                    className="bg-black/40 border border-white/5 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-accent/40"
+                                                />
+                                                <input
+                                                    type="text"
+                                                    placeholder="Secret Token / Key Value"
+                                                    value={newApiKeyValue}
+                                                    onChange={e => setNewApiKeyValue(e.target.value)}
+                                                    className="bg-black/40 border border-white/5 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-accent/40 font-mono"
+                                                />
+                                            </div>
+                                            
+                                            <input
+                                                type="text"
+                                                placeholder="Brief notes/purpose (optional)"
+                                                value={newApiKeyNotes}
+                                                onChange={e => setNewApiKeyNotes(e.target.value)}
+                                                className="w-full bg-black/40 border border-white/5 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-accent/40"
+                                            />
+                                            
+                                            <button
+                                                type="button"
+                                                onClick={() => handleAddApiKey(selectedDetailClient.id)}
+                                                className="w-full py-2.5 rounded-xl bg-accent/10 border border-accent/20 text-accent text-[9px] font-black uppercase tracking-widest hover:bg-accent hover:text-black transition-all flex items-center justify-center gap-1.5"
+                                            >
+                                                <Plus className="w-3.5 h-3.5" />
+                                                Register API Key
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </motion.div>
