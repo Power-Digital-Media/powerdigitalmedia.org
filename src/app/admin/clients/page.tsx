@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
     Terminal,
@@ -23,7 +23,10 @@ import {
     X,
     Mail,
     CheckSquare,
-    Square
+    Square,
+    MessageSquare,
+    Send,
+    Sparkles
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import AdminGuard from "@/components/auth/AdminGuard";
@@ -156,6 +159,11 @@ interface NexusDb {
 
 type TabType = 'clients' | 'services' | 'payments' | 'tasks' | 'platforms' | 'domainsHosting' | 'salesPipeline' | 'notes';
 
+interface ChatMessage {
+    sender: "user" | "ai" | "system";
+    text: string;
+}
+
 export default function ExcelAlignedNexusRegistry() {
     const { user } = useAuth();
     const [db, setDb] = useState<NexusDb>({
@@ -175,6 +183,18 @@ export default function ExcelAlignedNexusRegistry() {
     // Modals
     const [openModal, setOpenModal] = useState<TabType | null>(null);
     const [sendingInvoiceId, setSendingInvoiceId] = useState<string | null>(null);
+
+    // AI Drawer States
+    const [isAiOpen, setIsAiOpen] = useState(false);
+    const [aiInput, setAiInput] = useState("");
+    const [aiLoading, setAiLoading] = useState(false);
+    const [aiMessages, setAiMessages] = useState<ChatMessage[]>([
+        {
+            sender: "ai",
+            text: "Hello Damein! I am your Nexus AI Registry Agent. Tell me what you'd like to log (e.g. checks, cash, tasks, subscriptions) or ask me questions about your overhead and net profit!"
+        }
+    ]);
+    const chatEndRef = useRef<HTMLDivElement>(null);
 
     // Form Hooks: Client
     const [cName, setCName] = useState("");
@@ -330,6 +350,12 @@ export default function ExcelAlignedNexusRegistry() {
             fetchDatabase();
         }
     }, [user]);
+
+    useEffect(() => {
+        if (isAiOpen) {
+            chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [aiMessages, isAiOpen]);
 
     // Financial calculations matching spreadsheet rules
     const activeClientsCount = db.clients.filter(c => c.status === "Active").length;
@@ -585,6 +611,52 @@ export default function ExcelAlignedNexusRegistry() {
         }
     };
 
+    // AI Command Send Handler
+    const handleSendAiMessage = async (overrideText?: string) => {
+        const text = overrideText || aiInput;
+        if (!text || !text.trim() || !user) return;
+
+        setAiMessages((prev) => [...prev, { sender: "user", text }]);
+        if (!overrideText) setAiInput("");
+        setAiLoading(true);
+
+        try {
+            const token = await user.getIdToken();
+            const res = await fetch("/api/admin/nexus/ai", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify({ message: text })
+            });
+            const payload = await res.json();
+            if (res.ok && payload.success) {
+                setAiMessages((prev) => [...prev, { sender: "ai", text: payload.reply }]);
+                if (payload.data) {
+                    const normalized = {
+                        clients: payload.data.clients || [],
+                        services: payload.data.services || [],
+                        payments: payload.data.payments || [],
+                        tasks: payload.data.tasks || [],
+                        platforms: payload.data.platforms || [],
+                        domainsHosting: payload.data.domainsHosting || [],
+                        salesPipeline: payload.data.salesPipeline || [],
+                        notes: payload.data.notes || []
+                    };
+                    setDb(normalized);
+                }
+            } else {
+                setAiMessages((prev) => [...prev, { sender: "system", text: payload.error || "Failed to process AI command." }]);
+            }
+        } catch (err) {
+            console.error("AI command failed:", err);
+            setAiMessages((prev) => [...prev, { sender: "system", text: "A network error occurred." }]);
+        } finally {
+            setAiLoading(false);
+        }
+    };
+
     return (
         <AdminGuard>
             <main className="relative min-h-screen bg-background text-foreground overflow-hidden">
@@ -632,12 +704,20 @@ export default function ExcelAlignedNexusRegistry() {
                                     Aligned with `PDM_Client_Records_Template.xlsx`. Digital tracking for clients, finance, and overhead.
                                 </p>
                             </div>
-                            <button
-                                onClick={() => setOpenModal(activeTab)}
-                                className="px-5 py-3.5 rounded-xl bg-accent text-black text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all flex items-center gap-2 self-start"
-                            >
-                                <Plus className="w-4 h-4" /> Add Record to {activeTab.replace(/([A-Z])/g, ' $1').trim()}
-                            </button>
+                            <div className="flex gap-4">
+                                <button
+                                    onClick={() => setIsAiOpen(true)}
+                                    className="px-5 py-3.5 rounded-xl border border-accent/30 bg-accent/5 text-accent text-[10px] font-black uppercase tracking-widest hover:bg-accent hover:text-black transition-all flex items-center gap-2"
+                                >
+                                    <Sparkles className="w-4 h-4" /> Ask Nexus AI
+                                </button>
+                                <button
+                                    onClick={() => setOpenModal(activeTab)}
+                                    className="px-5 py-3.5 rounded-xl bg-accent text-black text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all flex items-center gap-2"
+                                >
+                                    <Plus className="w-4 h-4" /> Add Record
+                                </button>
+                            </div>
                         </div>
 
                         {/* Top KPI Metrics HUD */}
@@ -681,7 +761,7 @@ export default function ExcelAlignedNexusRegistry() {
                             </div>
                         </div>
 
-                        {/* TAX VAULT HUD & LEDGER PANEL (Only shows on Payments and Overview tabs) */}
+                        {/* TAX VAULT HUD & LEDGER PANEL */}
                         {(activeTab === 'payments' || activeTab === 'clients') && (
                             <div className="p-8 rounded-[2rem] glass-card border-accent/20 bg-accent/[0.02] grid gap-6 md:grid-cols-3">
                                 <div>
@@ -1675,6 +1755,122 @@ export default function ExcelAlignedNexusRegistry() {
                         </motion.div>
                     </div>
                 )}
+
+                {/* FLOATING CHAT BUBBLE TRIGGER */}
+                <button
+                    onClick={() => setIsAiOpen(true)}
+                    className="fixed bottom-8 right-8 w-14 h-14 bg-accent text-black rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all z-40 border border-accent/20"
+                >
+                    <MessageSquare className="w-6 h-6" />
+                </button>
+
+                {/* SLIDING AI ASSISTANT DRAWER */}
+                <AnimatePresence>
+                    {isAiOpen && (
+                        <>
+                            {/* Backdrop */}
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                onClick={() => setIsAiOpen(false)}
+                                className="fixed inset-0 bg-black/60 backdrop-blur-xs z-45"
+                            />
+                            
+                            {/* Drawer Content */}
+                            <motion.div
+                                initial={{ x: "100%" }}
+                                animate={{ x: 0 }}
+                                exit={{ x: "100%" }}
+                                transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                                className="fixed right-0 top-0 h-full w-full sm:w-[420px] bg-zinc-950 border-l border-white/5 shadow-2xl z-50 flex flex-col p-6 space-y-6"
+                            >
+                                <div className="flex items-center justify-between pb-4 border-b border-white/5">
+                                    <div className="flex items-center gap-2">
+                                        <div className="p-1.5 rounded-md bg-accent/10 border border-accent/20">
+                                            <Sparkles className="w-4 h-4 text-accent" />
+                                        </div>
+                                        <div>
+                                            <h3 className="text-sm font-black uppercase tracking-widest">Nexus Assistant</h3>
+                                            <span className="text-[8px] font-bold text-accent uppercase tracking-widest">Online — Gemini backed</span>
+                                        </div>
+                                    </div>
+                                    <button onClick={() => setIsAiOpen(false)} className="text-white/40 hover:text-white p-1 rounded-lg hover:bg-white/5 transition-all">
+                                        <X className="w-5 h-5" />
+                                    </button>
+                                </div>
+
+                                {/* Chat Logs Viewport */}
+                                <div className="flex-1 overflow-y-auto space-y-4 pr-1 scrollbar-thin">
+                                    {aiMessages.map((msg, idx) => (
+                                        <div
+                                            key={idx}
+                                            className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                                        >
+                                            <div
+                                                className={`max-w-[85%] rounded-2xl p-4 text-xs leading-relaxed ${msg.sender === 'user' ? 'bg-accent text-black font-semibold' : msg.sender === 'system' ? 'bg-red-950/40 border border-red-500/20 text-red-300' : 'bg-white/[0.03] border border-white/5 text-white/90'}`}
+                                            >
+                                                {msg.text}
+                                            </div>
+                                        </div>
+                                    ))}
+                                    {aiLoading && (
+                                        <div className="flex justify-start">
+                                            <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-4 flex items-center gap-3">
+                                                <Loader2 className="w-4 h-4 text-accent animate-spin" />
+                                                <span className="text-[10px] text-white/40 font-bold uppercase tracking-widest">AI is thinking...</span>
+                                            </div>
+                                        </div>
+                                    )}
+                                    <div ref={chatEndRef} />
+                                </div>
+
+                                {/* Quick Command Chips */}
+                                <div className="space-y-2">
+                                    <span className="text-[8px] font-black uppercase tracking-widest text-white/30 block mb-1">Quick Ledger Actions:</span>
+                                    <div className="flex flex-wrap gap-2">
+                                        <button
+                                            onClick={() => handleSendAiMessage("Log $1,500 check from Acme Corporation")}
+                                            className="px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:border-accent/40 text-[10px] text-white/60 hover:text-white transition-all text-left"
+                                        >
+                                            💵 Check $1,500
+                                        </button>
+                                        <button
+                                            onClick={() => handleSendAiMessage("Add Platform Slack ($15/mo) overhead")}
+                                            className="px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:border-accent/40 text-[10px] text-white/60 hover:text-white transition-all text-left"
+                                        >
+                                            ☁️ Add Slack Overhead
+                                        </button>
+                                        <button
+                                            onClick={() => handleSendAiMessage("What is my current net profit margin?")}
+                                            className="px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:border-accent/40 text-[10px] text-white/60 hover:text-white transition-all text-left"
+                                        >
+                                            📊 Query Margin
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* Chat Input Bar */}
+                                <div className="flex items-center gap-3 pt-2">
+                                    <input
+                                        type="text"
+                                        placeholder="Type command (e.g. log check)..."
+                                        value={aiInput}
+                                        onChange={(e) => setAiInput(e.target.value)}
+                                        onKeyDown={(e) => e.key === "Enter" && handleSendAiMessage()}
+                                        className="flex-1 bg-black/40 border border-white/5 rounded-xl px-4 py-3.5 text-xs text-white focus:outline-none focus:border-accent/40"
+                                    />
+                                    <button
+                                        onClick={() => handleSendAiMessage()}
+                                        className="p-3.5 rounded-xl bg-accent text-black hover:scale-105 active:scale-95 transition-all"
+                                    >
+                                        <Send className="w-4 h-4" />
+                                    </button>
+                                </div>
+                            </motion.div>
+                        </>
+                    )}
+                </AnimatePresence>
 
                 <Footer />
             </main>
