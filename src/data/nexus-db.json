@@ -24,7 +24,7 @@
       "accountOwner": "Power Digital Media LLC",
       "nextFollowUpDate": "2026-07-20",
       "currentNeed": "Deploying the main marketing campaign and syncing leads from webform to CRM.",
-      "internalNotes": "Address: 150 Highland Dr. Florence, MS 39073. David prefers texts. Follow up mid-month regarding transpond lists.",
+      "internalNotes": "Address: 150 Highland Dr. Florence, MS 39073. David prefers texts. Follow up mid-month regarding transpond lists. Inspired the reseller system setup with Najib due to login 2FA verification loops. Plan to add Transpond API key by tomorrow once dashboard access is completed.",
       "archived": false
     },
     {
