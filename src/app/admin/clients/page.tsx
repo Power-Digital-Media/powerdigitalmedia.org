@@ -155,6 +155,7 @@ interface NexusDb {
     domainsHosting: DomainHosting[];
     salesPipeline: SalesLead[];
     notes: ClientNote[];
+    chatHistory?: ChatMessage[];
 }
 
 type TabType = 'clients' | 'services' | 'payments' | 'tasks' | 'platforms' | 'domainsHosting' | 'salesPipeline' | 'notes';
@@ -174,7 +175,8 @@ export default function ExcelAlignedNexusRegistry() {
         platforms: [],
         domainsHosting: [],
         salesPipeline: [],
-        notes: []
+        notes: [],
+        chatHistory: []
     });
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
@@ -311,9 +313,13 @@ export default function ExcelAlignedNexusRegistry() {
                     platforms: payload.data.platforms || [],
                     domainsHosting: payload.data.domainsHosting || [],
                     salesPipeline: payload.data.salesPipeline || [],
-                    notes: payload.data.notes || []
+                    notes: payload.data.notes || [],
+                    chatHistory: payload.data.chatHistory || []
                 };
                 setDb(normalized);
+                if (payload.data.chatHistory && payload.data.chatHistory.length > 0) {
+                    setAiMessages(payload.data.chatHistory);
+                }
             }
         } catch (err) {
             console.error("Failed to load registry database:", err);
@@ -632,7 +638,6 @@ export default function ExcelAlignedNexusRegistry() {
             });
             const payload = await res.json();
             if (res.ok && payload.success) {
-                setAiMessages((prev) => [...prev, { sender: "ai", text: payload.reply }]);
                 if (payload.data) {
                     const normalized = {
                         clients: payload.data.clients || [],
@@ -642,9 +647,15 @@ export default function ExcelAlignedNexusRegistry() {
                         platforms: payload.data.platforms || [],
                         domainsHosting: payload.data.domainsHosting || [],
                         salesPipeline: payload.data.salesPipeline || [],
-                        notes: payload.data.notes || []
+                        notes: payload.data.notes || [],
+                        chatHistory: payload.data.chatHistory || []
                     };
                     setDb(normalized);
+                    if (payload.data.chatHistory && payload.data.chatHistory.length > 0) {
+                        setAiMessages(payload.data.chatHistory);
+                    }
+                } else {
+                    setAiMessages((prev) => [...prev, { sender: "ai", text: payload.reply }]);
                 }
             } else {
                 setAiMessages((prev) => [...prev, { sender: "system", text: payload.error || "Failed to process AI command." }]);

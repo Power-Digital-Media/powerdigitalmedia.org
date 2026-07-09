@@ -19,13 +19,15 @@ async function getDbData() {
         } catch (err) {
             console.error("❌ Failed to restore database from Firestore:", err);
         }
-        return { clients: [], services: [], payments: [], tasks: [], platforms: [], domainsHosting: [], salesPipeline: [], notes: [] };
+        return { clients: [], services: [], payments: [], tasks: [], platforms: [], domainsHosting: [], salesPipeline: [], notes: [], chatHistory: [] };
     }
     const raw = fs.readFileSync(dbPath, "utf-8");
     try {
-        return JSON.parse(raw);
+        const parsed = JSON.parse(raw);
+        if (!parsed.chatHistory) parsed.chatHistory = [];
+        return parsed;
     } catch {
-        return { clients: [], services: [], payments: [], tasks: [], platforms: [], domainsHosting: [], salesPipeline: [], notes: [] };
+        return { clients: [], services: [], payments: [], tasks: [], platforms: [], domainsHosting: [], salesPipeline: [], notes: [], chatHistory: [] };
     }
 }
 
@@ -35,6 +37,32 @@ async function writeDbData(data: any) {
         await adminDb.collection("nexus_registry").doc("database").set(data);
     } catch (err) {
         console.error("❌ Firestore backup failed:", err);
+    }
+}
+
+export async function GET(req: NextRequest) {
+    try {
+        const authHeader = req.headers.get("Authorization");
+        if (!authHeader || !authHeader.startsWith("Bearer ")) {
+            return NextResponse.json({ error: "Unauthorized access — missing token." }, { status: 401 });
+        }
+
+        const idToken = authHeader.split("Bearer ")[1];
+        let decodedToken;
+        try {
+            decodedToken = await adminAuth.verifyIdToken(idToken);
+        } catch (err) {
+            return NextResponse.json({ error: "Invalid or expired session token." }, { status: 401 });
+        }
+
+        if (!isAdmin(decodedToken.email)) {
+            return NextResponse.json({ error: "Forbidden — admin clearance required." }, { status: 403 });
+        }
+
+        const db = await getDbData();
+        return NextResponse.json({ success: true, chatHistory: db.chatHistory || [] });
+    } catch (error: any) {
+        return NextResponse.json({ error: error.message || "Failed to load chat history." }, { status: 500 });
     }
 }
 
@@ -70,21 +98,33 @@ export async function POST(req: NextRequest) {
         const db = await getDbData();
         const todayStr = new Date().toISOString().split("T")[0];
 
-        const systemPrompt = `You are "Nexus AI", the bespoke financial and operations command agent for Power Digital Media.
+        // Format conversation history for Gemini (limit to last 20 messages for context efficiency)
+        const historyContext = db.chatHistory.slice(-20).map((m: any) => `${m.sender.toUpperCase()}: ${m.text}`).join("\n");
+
+        const systemPrompt = `You are "Nexus AI", the bespoke proactive CFO and Operations Advisor for Power Digital Media.
 You are directly integrated into the client registry database. 
-Your goal is to parse the user's natural language command, determine if it requires writing or modifying the registry database, and formulate a response.
+Your goal is to parse the user's natural language command, determine if it requires writing or modifying the registry database, perform business intelligence audits, and formulate a response.
 
 CURRENT DATABASE STATE:
 ${JSON.stringify(db, null, 2)}
 
 TODAY'S DATE: ${todayStr}
 
+CONVERSATION HISTORY MEMORY (Use this to keep up with progression and past instructions):
+${historyContext}
+
 YOUR INSTRUCTIONS:
 1. Determine if the user is asking to add a payment, log cash/check, add a task, add an overhead subscription/platform, add a client, or toggle a tax checkmark.
 2. If so, structure a database mutation matching one of the schemas below.
-3. If they are just asking a question (e.g., "how much overhead do I have?" or "who has not paid?"), do not run a mutation ("mutation": null) and just reply with the answer in the "reply" field.
+3. If they are just asking a question (e.g., "how much overhead do I have?" or "who has not paid?"), do not run a mutation ("mutation": null) and just reply with the answer.
 4. If you log a payment (e.g., "I just got a check for $1,200 from Acme"), make sure to match the clientName with their official company name from the clients table (e.g., "Acme Corporation" instead of just "Acme"). If the client does not exist, use the name they typed.
-5. In your "reply" field, always explain exactly what you did, and mention any key metrics (like how much should go to the tax reserve). Keep it friendly, direct, and professional.
+
+PROACTIVE AUDITS & WARNING RULES (You MUST check these on every message and append helpful tips/warnings to your response if triggered):
+- Tax Reserve Audit: Compute total Paid payments * 0.3. Look at unpaid/unsettled tax reserves. If unsettled tax is > $0, remind the user to move it. E.g.: "⚠️ Tax Alert: You have $X in unsettled tax reserves. Please move this to your tax savings vault to maintain 100% solvency."
+- Overhead Margin Audit: If platforms cost (overhead) where paidBy === "Power Digital" exceeds 15% of MRR (Monthly Recurring Value), warn them that overhead is high and they might want to cut down on platform subscriptions.
+- Cash Flow Risk: If outstanding invoices (status Unpaid/Overdue/Partial/Sent) exceed 30% of your active monthly value, warn them about cash flow bottlenecks and suggest nudging clients.
+- Delinquency Check: Check if there are payment items marked "Overdue" or "Unpaid" past their due dates, and prompt the user to email them an invoice.
+- Blocker/Task Alerts: Check for tasks that have status "Waiting on Client" and remind them to follow up.
 
 RESPONSE JSON FORMAT:
 You MUST respond with a single, valid JSON object matching this structure:
@@ -93,7 +133,7 @@ You MUST respond with a single, valid JSON object matching this structure:
     "type": "add_payment" | "add_client" | "add_service" | "add_platform" | "add_task",
     "data": { ... }
   } | null,
-  "reply": "Conversational confirmation string here."
+  "reply": "CFO response string here, including any proactive reminders, alerts, or tips when relevant."
 }
 
 MUTATION DATA SCHEMAS:
@@ -171,7 +211,6 @@ MUTATION DATA SCHEMAS:
         if (parsed.mutation) {
             const { type, data } = parsed.mutation;
             
-            // Execute the mutation in the database
             if (type === "add_payment") {
                 const item = {
                     id: `pay-${Date.now()}`,
@@ -198,10 +237,24 @@ MUTATION DATA SCHEMAS:
                 };
                 db.clients.push(item);
             }
-
-            // Write back to disk and Firestore cloud
-            await writeDbData(db);
         }
+
+        // Save conversation history log persistently
+        db.chatHistory.push({
+            id: `msg-${Date.now()}-u`,
+            sender: "user",
+            text: message,
+            timestamp: todayStr
+        });
+        db.chatHistory.push({
+            id: `msg-${Date.now()}-a`,
+            sender: "ai",
+            text: parsed.reply || "I have processed your command.",
+            timestamp: todayStr
+        });
+
+        // Save changes to disk and Firestore backup
+        await writeDbData(db);
 
         return NextResponse.json({
             success: true,
