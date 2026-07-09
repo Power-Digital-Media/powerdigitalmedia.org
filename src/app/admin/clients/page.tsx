@@ -193,6 +193,7 @@ export default function ExcelAlignedNexusRegistry() {
     // Detail Drawer
     const [selectedDetailClient, setSelectedDetailClient] = useState<Client | null>(null);
     const [activeTab, setActiveTab] = useState<TabType>('clients');
+    const [clientsViewMode, setClientsViewMode] = useState<'grid' | 'spreadsheet'>('grid');
 
     // Modals
     const [openModal, setOpenModal] = useState<TabType | null>(null);
@@ -382,6 +383,20 @@ export default function ExcelAlignedNexusRegistry() {
 
     // Financial calculations matching spreadsheet rules
     const activeClientsCount = db.clients.filter(c => c.status === "Active").length;
+
+    const getPaidThisMonth = (clientName: string) => {
+        const currentMonth = new Date().toISOString().substring(0, 7);
+        return db.payments
+            .filter(p => p.clientName === clientName && p.status === "Paid" && p.paymentDate?.startsWith(currentMonth))
+            .reduce((sum, p) => sum + (Number(p.amount) || 0), 0);
+    };
+
+    const getOutstandingThisMonth = (clientName: string) => {
+        const currentMonth = new Date().toISOString().substring(0, 7);
+        return db.payments
+            .filter(p => p.clientName === clientName && ["Unpaid", "Sent", "Overdue", "Partial"].includes(p.status) && p.dueDate?.startsWith(currentMonth))
+            .reduce((sum, p) => sum + (Number(p.amount) || 0), 0);
+    };
     
     // MRR = Services that are Active and Monthly
     const monthlyRecurringValue = db.services
@@ -908,89 +923,175 @@ export default function ExcelAlignedNexusRegistry() {
                                 {/* ─── 1. CLIENTS SHEET ─── */}
                                 {/* ─── 1. CLIENTS GRID CARDS ─── */}
                                 {activeTab === 'clients' && (
-                                    <div className="p-8">
-                                        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                                            {db.clients.map((c) => {
-                                                const initials = c.companyName.split(" ").map((w: string) => w[0]).join("").substring(0, 2).toUpperCase();
-                                                const serviceCount = db.services.filter((s) => s.clientName === c.companyName).length;
-                                                const taskCount = db.tasks.filter((t) => t.clientName === c.companyName && t.status !== 'Completed').length;
-                                                
-                                                return (
-                                                    <motion.div
-                                                        key={c.id}
-                                                        initial={{ opacity: 0, y: 10 }}
-                                                        animate={{ opacity: 1, y: 0 }}
-                                                        whileHover={{ y: -4 }}
-                                                        className="p-6 rounded-3xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.02] hover:border-accent/30 transition-all flex flex-col justify-between gap-6 cursor-pointer"
-                                                        onClick={() => setSelectedDetailClient(c)}
-                                                    >
-                                                        {/* Card Header */}
-                                                        <div className="flex items-start justify-between gap-4">
-                                                            <div className="flex items-center gap-4">
-                                                                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-accent/20 to-blue-500/20 border border-accent/20 flex items-center justify-center text-sm font-black text-accent">
-                                                                    {initials}
+                                    <div className="p-8 space-y-6">
+                                        {/* View Mode Toggle */}
+                                        <div className="flex justify-between items-center pb-4 border-b border-white/5">
+                                            <div className="flex gap-2">
+                                                <button
+                                                    onClick={() => setClientsViewMode('grid')}
+                                                    className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${clientsViewMode === 'grid' ? 'bg-accent text-black' : 'bg-white/5 text-white/60 hover:text-white border border-white/5'}`}
+                                                >
+                                                    Bento Grid
+                                                </button>
+                                                <button
+                                                    onClick={() => setClientsViewMode('spreadsheet')}
+                                                    className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${clientsViewMode === 'spreadsheet' ? 'bg-accent text-black' : 'bg-white/5 text-white/60 hover:text-white border border-white/5'}`}
+                                                >
+                                                    Spreadsheet List
+                                                </button>
+                                            </div>
+                                            <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest font-mono">
+                                                Viewing {db.clients.length} Clients
+                                            </span>
+                                        </div>
+
+                                        {clientsViewMode === 'grid' ? (
+                                            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                                                {db.clients.map((c) => {
+                                                    const initials = c.companyName.split(" ").map((w: string) => w[0]).join("").substring(0, 2).toUpperCase();
+                                                    const serviceCount = db.services.filter((s) => s.clientName === c.companyName).length;
+                                                    const taskCount = db.tasks.filter((t) => t.clientName === c.companyName && t.status !== 'Completed').length;
+                                                    
+                                                    return (
+                                                        <motion.div
+                                                            key={c.id}
+                                                            initial={{ opacity: 0, y: 10 }}
+                                                            animate={{ opacity: 1, y: 0 }}
+                                                            whileHover={{ y: -4 }}
+                                                            className="p-6 rounded-3xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.02] hover:border-accent/30 transition-all flex flex-col justify-between gap-6 cursor-pointer"
+                                                            onClick={() => setSelectedDetailClient(c)}
+                                                        >
+                                                            {/* Card Header */}
+                                                            <div className="flex items-start justify-between gap-4">
+                                                                <div className="flex items-center gap-4">
+                                                                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-accent/20 to-blue-500/20 border border-accent/20 flex items-center justify-center text-sm font-black text-accent">
+                                                                        {initials}
+                                                                    </div>
+                                                                    <div>
+                                                                        <h4 className="font-bold text-white text-base leading-snug">{c.companyName}</h4>
+                                                                        <p className="text-[10px] text-white/40 font-bold uppercase tracking-wider mt-0.5">{c.businessType}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <span className={`inline-block px-2.5 py-1 rounded-full text-[8px] font-black uppercase tracking-widest border ${c.status.toLowerCase().includes('active') ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-white/5 border-white/10 text-white/50'}`}>
+                                                                    {c.status}
+                                                                </span>
+                                                            </div>
+
+                                                            {/* Primary Need */}
+                                                            <p className="text-xs text-white/60 font-medium italic line-clamp-2 min-h-[2.5rem]">
+                                                                "{c.primaryNeed || 'No primary need documented.'}"
+                                                            </p>
+
+                                                            {/* Card Stats */}
+                                                            <div className="grid grid-cols-3 gap-2 py-4 border-y border-white/5 text-center">
+                                                                <div>
+                                                                    <div className="text-[8px] font-black uppercase tracking-widest text-white/30">MRR</div>
+                                                                    <div className="text-xs font-black text-white mt-1">${c.monthlyValue}</div>
                                                                 </div>
                                                                 <div>
-                                                                    <h4 className="font-bold text-white text-base leading-snug">{c.companyName}</h4>
-                                                                    <p className="text-[10px] text-white/40 font-bold uppercase tracking-wider mt-0.5">{c.businessType}</p>
+                                                                    <div className="text-[8px] font-black uppercase tracking-widest text-white/30">Services</div>
+                                                                    <div className="text-xs font-black text-accent mt-1">{serviceCount}</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div className="text-[8px] font-black uppercase tracking-widest text-white/30">Tasks</div>
+                                                                    <div className="text-xs font-black text-blue-400 mt-1">{taskCount}</div>
                                                                 </div>
                                                             </div>
-                                                            <span className={`inline-block px-2.5 py-1 rounded-full text-[8px] font-black uppercase tracking-widest border ${c.status === 'Active' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-white/5 border-white/10 text-white/50'}`}>
-                                                                {c.status}
-                                                            </span>
-                                                        </div>
 
-                                                        {/* Primary Need */}
-                                                        <p className="text-xs text-white/60 font-medium italic line-clamp-2 min-h-[2.5rem]">
-                                                            "{c.primaryNeed || 'No primary need documented.'}"
-                                                        </p>
-
-                                                        {/* Card Stats */}
-                                                        <div className="grid grid-cols-3 gap-2 py-4 border-y border-white/5 text-center">
-                                                            <div>
-                                                                <div className="text-[8px] font-black uppercase tracking-widest text-white/30">MRR</div>
-                                                                <div className="text-xs font-black text-white mt-1">${c.monthlyValue}</div>
+                                                            {/* Card Footer Actions */}
+                                                            <div className="flex items-center justify-between gap-3 pt-2" onClick={(e) => e.stopPropagation()}>
+                                                                <div className="flex items-center gap-2 text-[10px] text-white/40">
+                                                                    <Calendar className="w-3.5 h-3.5" />
+                                                                    <span className="font-mono text-[9px]">{c.nextFollowUp}</span>
+                                                                </div>
+                                                                <div className="flex gap-2">
+                                                                    <button
+                                                                        onClick={() => setSelectedDetailClient(c)}
+                                                                        className="p-2 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-all flex items-center justify-center"
+                                                                        title="View Consolidated Profile"
+                                                                    >
+                                                                        <Eye className="w-3.5 h-3.5" />
+                                                                    </button>
+                                                                    <button
+                                                                        onClick={() => handleDeleteRecord('clients', c.id)}
+                                                                        className="p-2 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/25 transition-all"
+                                                                        title="Delete Client Record"
+                                                                    >
+                                                                        <Trash2 className="w-3.5 h-3.5" />
+                                                                    </button>
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                <div className="text-[8px] font-black uppercase tracking-widest text-white/30">Services</div>
-                                                                <div className="text-xs font-black text-accent mt-1">{serviceCount}</div>
-                                                            </div>
-                                                            <div>
-                                                                <div className="text-[8px] font-black uppercase tracking-widest text-white/30">Tasks</div>
-                                                                <div className="text-xs font-black text-blue-400 mt-1">{taskCount}</div>
-                                                            </div>
-                                                        </div>
-
-                                                        {/* Card Footer Actions */}
-                                                        <div className="flex items-center justify-between gap-3 pt-2" onClick={(e) => e.stopPropagation()}>
-                                                            <div className="flex items-center gap-2 text-[10px] text-white/40">
-                                                                <Calendar className="w-3.5 h-3.5" />
-                                                                <span className="font-mono text-[9px]">{c.nextFollowUp}</span>
-                                                            </div>
-                                                            <div className="flex gap-2">
-                                                                <button
-                                                                    onClick={() => setSelectedDetailClient(c)}
-                                                                    className="p-2 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-all flex items-center justify-center"
-                                                                    title="View Consolidated Profile"
-                                                                >
-                                                                    <Eye className="w-3.5 h-3.5" />
-                                                                </button>
-                                                                <button
-                                                                    onClick={() => handleDeleteRecord('clients', c.id)}
-                                                                    className="p-2 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/25 transition-all"
-                                                                    title="Delete Client Record"
-                                                                >
-                                                                    <Trash2 className="w-3.5 h-3.5" />
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </motion.div>
-                                                );
-                                            })}
-                                            {db.clients.length === 0 && (
-                                                <div className="col-span-3 py-16 text-center text-white/20 italic">No client records found.</div>
-                                            )}
-                                        </div>
+                                                        </motion.div>
+                                                    );
+                                                })}
+                                                {db.clients.length === 0 && (
+                                                    <div className="col-span-3 py-16 text-center text-white/20 italic">No client records found.</div>
+                                                )}
+                                            </div>
+                                        ) : (
+                                            /* SPREADSHEET LIST VIEW */
+                                            <div className="overflow-x-auto border border-white/5 rounded-2xl bg-black/40">
+                                                <table className="w-full text-left border-collapse">
+                                                    <thead>
+                                                        <tr className="border-b border-white/5 text-[9px] font-black uppercase tracking-widest text-white/40 bg-white/[0.02]">
+                                                            <th className="py-4 px-6">Client / Company Name</th>
+                                                            <th className="py-4 px-6">Contact Owner</th>
+                                                            <th className="py-4 px-6">Status</th>
+                                                            <th className="py-4 px-6 text-right">Monthly Retainer</th>
+                                                            <th className="py-4 px-6 text-right text-emerald-400">Paid This Month</th>
+                                                            <th className="py-4 px-6 text-right text-accent">Outstanding (Current Month)</th>
+                                                            <th className="py-4 px-6 text-right">Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {db.clients.map((c) => {
+                                                            const paidVal = getPaidThisMonth(c.companyName);
+                                                            const outstandingVal = getOutstandingThisMonth(c.companyName);
+                                                            
+                                                            return (
+                                                                <tr key={c.id} className="border-b border-white/5 text-xs text-white hover:bg-white/[0.01] transition-all">
+                                                                    <td className="py-4 px-6 font-bold cursor-pointer hover:text-accent" onClick={() => setSelectedDetailClient(c)}>
+                                                                        {c.companyName}
+                                                                    </td>
+                                                                    <td className="py-4 px-6 text-white/60">{c.name}</td>
+                                                                    <td className="py-4 px-6">
+                                                                        <span className={`inline-block px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-widest border ${c.status.toLowerCase().includes('active') ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-white/5 border-white/10 text-white/40'}`}>
+                                                                            {c.status}
+                                                                        </span>
+                                                                    </td>
+                                                                    <td className="py-4 px-6 text-right font-mono font-bold">${c.monthlyValue}</td>
+                                                                    <td className="py-4 px-6 text-right font-mono text-emerald-400 font-bold">${paidVal}</td>
+                                                                    <td className="py-4 px-6 text-right font-mono text-accent font-bold">${outstandingVal}</td>
+                                                                    <td className="py-4 px-6 text-right">
+                                                                        <div className="flex gap-2 justify-end">
+                                                                            <button
+                                                                                onClick={() => setSelectedDetailClient(c)}
+                                                                                className="p-1.5 rounded-lg bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-all"
+                                                                                title="View Profile Drawer"
+                                                                            >
+                                                                                <Eye className="w-3.5 h-3.5" />
+                                                                            </button>
+                                                                            <button
+                                                                                onClick={() => handleDeleteRecord('clients', c.id)}
+                                                                                className="p-1.5 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/25 transition-all"
+                                                                                title="Delete Client"
+                                                                            >
+                                                                                <Trash2 className="w-3.5 h-3.5" />
+                                                                            </button>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            );
+                                                        })}
+                                                        {db.clients.length === 0 && (
+                                                            <tr>
+                                                                <td colSpan={7} className="py-12 text-center text-white/20 italic">No client records found.</td>
+                                                            </tr>
+                                                        )}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        )}
                                     </div>
                                 )}
 

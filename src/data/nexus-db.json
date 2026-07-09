@@ -51,7 +51,7 @@
     {
       "id": "client-marino",
       "name": "Marino Owner",
-      "companyName": "Marino Marketing",
+      "companyName": "Marino Marketing (Moore Brothers Auto Sales)",
       "phone": "",
       "email": "info@marinomarketing.com",
       "website": "https://marinomarketing.com",
@@ -61,7 +61,7 @@
       "setupFee": 0,
       "startDate": "2026-07-01",
       "nextFollowUp": "2026-08-01",
-      "primaryNeed": "Ongoing marketing retainer",
+      "primaryNeed": "Moore Brothers Auto sales contract (4 videos/mo to promote vehicle a week)",
       "notes": "Password Location: Move to password manager > Clients > Marino Brothers Auto Group"
     },
     {
@@ -133,14 +133,25 @@
     },
     {
       "id": "svc-marino-1",
-      "clientName": "Marino Marketing",
-      "serviceName": "Monthly Management Fee",
+      "clientName": "Marino Marketing (Moore Brothers Auto Sales)",
+      "serviceName": "Moore Brothers Auto Sales Retainer (4 videos/mo)",
       "category": "Marketing",
       "price": 1000,
       "billingType": "Monthly",
       "status": "Active",
       "startDate": "2026-07-01",
-      "notes": "Marketing retainer"
+      "notes": "4 videos per month to promote a vehicle a week"
+    },
+    {
+      "id": "svc-marino-2",
+      "clientName": "Marino Marketing (Moore Brothers Auto Sales)",
+      "serviceName": "Ad-hoc Creative & Video Branding",
+      "category": "Creative Work",
+      "price": 0,
+      "billingType": "One-Time",
+      "status": "Active",
+      "startDate": "2026-07-01",
+      "notes": "Random creative work for other Marino clients"
     },
     {
       "id": "svc-victory-1",
@@ -209,17 +220,31 @@
       "taxSettled": false
     },
     {
-      "id": "pay-marino-1",
-      "clientName": "Marino Marketing",
-      "invoiceNum": "1013",
+      "id": "pay-marino-1a",
+      "clientName": "Marino Marketing (Moore Brothers Auto Sales)",
+      "invoiceNum": "1013-A",
       "invoiceDate": "2026-07-01",
-      "amount": 1000,
+      "amount": 500,
       "dueDate": "2026-07-10",
       "status": "Paid",
       "paymentDate": "2026-07-04",
       "paymentMethod": "Check",
-      "relatedService": "Monthly Management Fee",
-      "notes": "July invoice cleared",
+      "relatedService": "Moore Brothers Auto Sales Retainer (4 videos/mo)",
+      "notes": "Moore Brothers Retainer - Check Payment 1 of 2",
+      "taxSettled": false
+    },
+    {
+      "id": "pay-marino-1b",
+      "clientName": "Marino Marketing (Moore Brothers Auto Sales)",
+      "invoiceNum": "1013-B",
+      "invoiceDate": "2026-07-15",
+      "amount": 500,
+      "dueDate": "2026-07-25",
+      "status": "Paid",
+      "paymentDate": "2026-07-18",
+      "paymentMethod": "Check",
+      "relatedService": "Moore Brothers Auto Sales Retainer (4 videos/mo)",
+      "notes": "Moore Brothers Retainer - Check Payment 2 of 2",
       "taxSettled": false
     },
     {
