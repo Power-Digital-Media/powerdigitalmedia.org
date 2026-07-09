@@ -32,7 +32,7 @@
       "name": "Scott Lowery",
       "companyName": "Geaux Pro Outdoors / MS Dirt",
       "phone": "(601) 896-2664",
-      "email": "office@msdirt.com",
+      "email": "slowery64@aol.com",
       "website": "https://msdirt.com",
       "status": "Active",
       "businessType": "Landscaping & Contracting",
@@ -177,7 +177,7 @@
       "clientId": "client-geauxpro",
       "name": "Scott Lowery",
       "role": "Owner",
-      "email": "office@msdirt.com",
+      "email": "slowery64@aol.com",
       "phone": "(601) 896-2664",
       "preferredContactMethod": "email",
       "decisionMaker": "yes",
@@ -373,6 +373,21 @@
       "waitingOn": "Client 2FA Code",
       "blockerNotes": "Need Capsule verification SMS code from David to map Transpond webhook.",
       "localProjectPath": "E:\\\\AntiGravity\\\\born-again-roofing"
+    },
+    {
+      "id": "proj-geauxpro-1",
+      "clientId": "client-geauxpro",
+      "projectName": "Geaux Pro Outdoors Funnel & SEO Optimization",
+      "projectType": "SEO & Funnel",
+      "status": "active",
+      "startDate": "2026-07-01",
+      "targetLaunchDate": "2026-08-01",
+      "actualLaunchDate": "",
+      "budget": 500,
+      "scopeSummary": "Build landing page funnel, integrate Capsule CRM reseller lead form, publish weekly local citation listings.",
+      "outOfScope": "Running paid Google Ads campaigns.",
+      "approvalStatus": "approved",
+      "localProjectPath": "E:\\\\AntiGravity\\\\geaux-pro-outdoors"
     },
     {
       "id": "proj-tbeauxs-1",
@@ -633,6 +648,23 @@
       "twoFactorEnabled": "no",
       "secretLocation": "Bitwarden -> Geaux Pro Outdoors -> Transpond",
       "lastVerifiedDate": "2026-07-08"
+    },
+    {
+      "id": "plat-geauxpro-youtube",
+      "clientName": "Geaux Pro Outdoors / MS Dirt",
+      "platformName": "YouTube Channel",
+      "type": "Video Content",
+      "loginEmail": "slowery64@aol.com",
+      "planName": "Free Channel",
+      "status": "Active",
+      "monthlyCost": 0,
+      "paidBy": "Client",
+      "renewalDate": "2026-08-01",
+      "accessLevel": "Manager",
+      "notes": "Channel URL: https://www.youtube.com/@Geauxprooutdoors",
+      "accessStatus": "active",
+      "twoFactorEnabled": "no",
+      "secretLocation": "Bitwarden -> Geaux Pro Outdoors -> YouTube"
     },
     {
       "id": "plat-allthingsnew-podbean",
