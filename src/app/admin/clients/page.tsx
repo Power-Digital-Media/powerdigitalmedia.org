@@ -21,8 +21,9 @@ import {
     Globe,
     Layers,
     X,
-    Filter,
-    FolderPlus
+    Mail,
+    CheckSquare,
+    Square
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import AdminGuard from "@/components/auth/AdminGuard";
@@ -67,11 +68,12 @@ interface Payment {
     invoiceDate: string;
     amount: number;
     dueDate: string;
-    status: string; // Paid, Unpaid, Overdue, Partial, Cancelled
+    status: string; // Paid, Unpaid, Overdue, Partial, Cancelled, Sent
     paymentDate: string;
     paymentMethod: string; // Card, Check, Bank Transfer, Stripe, Cash, Cash App, Other
     relatedService: string;
     notes: string;
+    taxSettled?: boolean; // Tracks if 30% was transferred to tax vault
 }
 
 interface Task {
@@ -172,6 +174,7 @@ export default function ExcelAlignedNexusRegistry() {
 
     // Modals
     const [openModal, setOpenModal] = useState<TabType | null>(null);
+    const [sendingInvoiceId, setSendingInvoiceId] = useState<string | null>(null);
 
     // Form Hooks: Client
     const [cName, setCName] = useState("");
@@ -280,7 +283,6 @@ export default function ExcelAlignedNexusRegistry() {
             });
             const payload = await res.json();
             if (res.ok && payload.success) {
-                // Ensure arrays exist for all 8 tables
                 const normalized = {
                     clients: payload.data.clients || [],
                     services: payload.data.services || [],
@@ -344,15 +346,25 @@ export default function ExcelAlignedNexusRegistry() {
 
     const netProfitMargin = monthlyRecurringValue - monthlyOverheadValue;
 
-    // Total Amount Outstanding = Unpaid/Overdue Payments
+    // Total Amount Outstanding = Unpaid/Overdue/Sent/Partial Payments
     const totalAmountOutstanding = db.payments
-        .filter(p => ["Unpaid", "Overdue", "Partial"].includes(p.status))
+        .filter(p => ["Unpaid", "Overdue", "Partial", "Sent"].includes(p.status))
         .reduce((sum, p) => sum + (Number(p.amount) || 0), 0);
 
-    // Open sales opportunities
-    const openLeadsCount = db.salesPipeline.filter(s => !["Won", "Lost"].includes(s.stage)).length;
-    const tasksDueCount = db.tasks.filter(t => t.status !== "Completed" && t.dueDate === new Date().toISOString().split('T')[0]).length;
-    const followUpsDueCount = db.clients.filter(c => c.status === "Active" && c.nextFollowUp === new Date().toISOString().split('T')[0]).length;
+    // TAX VAULT CALCULATIONS (30% Rule)
+    // Sum of all paid payments
+    const totalInboundPaid = db.payments
+        .filter(p => p.status === "Paid")
+        .reduce((sum, p) => sum + (Number(p.amount) || 0), 0);
+
+    const estimatedTaxReserve = totalInboundPaid * 0.3;
+
+    // Unsettled Tax = Paid payments where taxSettled is false (not yet transferred to savings)
+    const unsettledTaxReserve = db.payments
+        .filter(p => p.status === "Paid" && !p.taxSettled)
+        .reduce((sum, p) => sum + (Number(p.amount) || 0), 0) * 0.3;
+
+    const netOperatingCapital = totalInboundPaid - estimatedTaxReserve;
 
     // Form Submissions
     const handleAddClient = async (e: React.FormEvent) => {
@@ -376,7 +388,6 @@ export default function ExcelAlignedNexusRegistry() {
         const updated = { ...db, clients: [...db.clients, item] };
         await saveDatabase(updated);
         setOpenModal(null);
-        // Clear
         setCName(""); setCCompany(""); setCPhone(""); setCEmail(""); setCWeb(""); setCVal(0); setCSetup(0); setCStart(""); setCFollowUp(""); setCNeed(""); setCNotes("");
     };
 
@@ -413,7 +424,8 @@ export default function ExcelAlignedNexusRegistry() {
             paymentDate: pPayDate,
             paymentMethod: pMethod,
             relatedService: pSvc,
-            notes: pNotes
+            notes: pNotes,
+            taxSettled: false
         };
         const updated = { ...db, payments: [...db.payments, item] };
         await saveDatabase(updated);
@@ -533,6 +545,46 @@ export default function ExcelAlignedNexusRegistry() {
         await saveDatabase(updated);
     };
 
+    // Toggle Tax Settled
+    const handleToggleTaxSettled = async (paymentId: string) => {
+        const updatedPayments = db.payments.map((p) => {
+            if (p.id === paymentId) {
+                return { ...p, taxSettled: !p.taxSettled };
+            }
+            return p;
+        });
+        await saveDatabase({ ...db, payments: updatedPayments });
+    };
+
+    // Email Invoice Dispatcher
+    const handleSendInvoiceEmail = async (paymentId: string) => {
+        if (!user) return;
+        setSendingInvoiceId(paymentId);
+        try {
+            const token = await user.getIdToken();
+            const res = await fetch("/api/admin/payments/invoice", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify({ paymentId })
+            });
+            const data = await res.json();
+            if (res.ok) {
+                alert(data.message || "Invoice successfully emailed to client!");
+                await fetchDatabase();
+            } else {
+                alert(`Error: ${data.error || 'Failed to dispatch invoice.'}`);
+            }
+        } catch (err) {
+            console.error("Error emailing invoice:", err);
+            alert("Network error occurred while emailing invoice.");
+        } finally {
+            setSendingInvoiceId(null);
+        }
+    };
+
     return (
         <AdminGuard>
             <main className="relative min-h-screen bg-background text-foreground overflow-hidden">
@@ -628,6 +680,40 @@ export default function ExcelAlignedNexusRegistry() {
                                 <p className="text-[9px] text-blue-400 mt-2 font-bold uppercase tracking-widest">Open Invoice Balances</p>
                             </div>
                         </div>
+
+                        {/* TAX VAULT HUD & LEDGER PANEL (Only shows on Payments and Overview tabs) */}
+                        {(activeTab === 'payments' || activeTab === 'clients') && (
+                            <div className="p-8 rounded-[2rem] glass-card border-accent/20 bg-accent/[0.02] grid gap-6 md:grid-cols-3">
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <TrendingUp className="w-4 h-4 text-emerald-400" />
+                                        <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Total Inbound Payments</span>
+                                    </div>
+                                    <h4 className="text-2xl font-black">${totalInboundPaid.toLocaleString()}</h4>
+                                    <p className="text-[9px] text-white/30 mt-1">Cleared Cash/Checks/Stripe</p>
+                                </div>
+
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <AlertTriangle className="w-4 h-4 text-accent" />
+                                        <span className="text-[10px] font-black uppercase tracking-widest text-accent">Est. Tax Liability (30%)</span>
+                                    </div>
+                                    <h4 className="text-2xl font-black text-accent">${estimatedTaxReserve.toLocaleString()}</h4>
+                                    <p className="text-[9px] text-white/30 mt-1">
+                                        Unsettled Reserve: <span className="font-bold text-white/80">${unsettledTaxReserve.toLocaleString()}</span>
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <CreditCard className="w-4 h-4 text-blue-400" />
+                                        <span className="text-[10px] font-black uppercase tracking-widest text-blue-400">Net Operating Capital</span>
+                                    </div>
+                                    <h4 className="text-2xl font-black text-blue-400">${netOperatingCapital.toLocaleString()}</h4>
+                                    <p className="text-[9px] text-white/30 mt-1">Operational Safe Zone</p>
+                                </div>
+                            </div>
+                        )}
 
                         {/* Navigation Tabs */}
                         <div className="flex overflow-x-auto border-b border-white/5 pb-2 gap-6 scrollbar-hide">
@@ -751,43 +837,88 @@ export default function ExcelAlignedNexusRegistry() {
                                     </div>
                                 )}
 
-                                {/* ─── 3. PAYMENTS SHEET ─── */}
+                                {/* ─── 3. PAYMENTS SHEET (INVOICING & TAX VAULT) ─── */}
                                 {activeTab === 'payments' && (
                                     <div className="overflow-x-auto">
                                         <table className="w-full text-left border-collapse">
                                             <thead>
                                                 <tr className="border-b border-white/5 text-[9px] font-black uppercase tracking-widest text-white/40 bg-black/20">
-                                                    <th className="py-4 px-6">Client</th>
+                                                    <th className="py-4 px-6">Client Name</th>
                                                     <th className="py-4 px-6">Invoice #</th>
-                                                    <th className="py-4 px-6">Due Date</th>
                                                     <th className="py-4 px-6">Amount</th>
+                                                    <th className="py-4 px-6">Due Date</th>
                                                     <th className="py-4 px-6">Status</th>
-                                                    <th className="py-4 px-6">Payment Date</th>
-                                                    <th className="py-4 px-6">Method</th>
+                                                    <th className="py-4 px-6">Tax Moved?</th>
+                                                    <th className="py-4 px-6">Remit Instructions / Details</th>
                                                     <th className="py-4 px-6 text-right">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {db.payments.map((p) => (
-                                                    <tr key={p.id} className="border-b border-white/5 text-xs text-white hover:bg-white/[0.01]">
-                                                        <td className="py-5 px-6 font-bold">{p.clientName}</td>
-                                                        <td className="py-5 px-6 font-mono text-white/60">#{p.invoiceNum}</td>
-                                                        <td className="py-5 px-6 font-mono text-white/40">{p.dueDate}</td>
-                                                        <td className="py-5 px-6 font-mono font-bold">${p.amount}</td>
-                                                        <td className="py-5 px-6">
-                                                            <span className={`inline-block px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border ${p.status === 'Paid' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-red-500/10 border-red-500/20 text-red-400'}`}>
-                                                                {p.status}
-                                                            </span>
-                                                        </td>
-                                                        <td className="py-5 px-6 font-mono text-white/60">{p.paymentDate || "-"}</td>
-                                                        <td className="py-5 px-6 text-white/60">{p.paymentMethod}</td>
-                                                        <td className="py-5 px-6 text-right">
-                                                            <button onClick={() => handleDeleteRecord('payments', p.id)} className="p-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/25 transition-all">
-                                                                <Trash2 className="w-3.5 h-3.5" />
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                ))}
+                                                {db.payments.map((p) => {
+                                                    const isSending = sendingInvoiceId === p.id;
+                                                    const canSendInvoice = ["Unpaid", "Sent", "Overdue"].includes(p.status);
+                                                    return (
+                                                        <tr key={p.id} className="border-b border-white/5 text-xs text-white hover:bg-white/[0.01]">
+                                                            <td className="py-5 px-6 font-bold">{p.clientName}</td>
+                                                            <td className="py-5 px-6 font-mono text-white/60">#{p.invoiceNum}</td>
+                                                            <td className="py-5 px-6 font-mono font-bold text-white/80">${p.amount}</td>
+                                                            <td className="py-5 px-6 font-mono text-white/40">{p.dueDate}</td>
+                                                            <td className="py-5 px-6">
+                                                                <span className={`inline-block px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border ${p.status === 'Paid' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : p.status === 'Sent' ? 'bg-blue-500/10 border-blue-500/20 text-blue-400' : 'bg-red-500/10 border-red-500/20 text-red-400'}`}>
+                                                                    {p.status}
+                                                                </span>
+                                                            </td>
+                                                            <td className="py-5 px-6">
+                                                                {p.status === 'Paid' ? (
+                                                                    <button
+                                                                        onClick={() => handleToggleTaxSettled(p.id)}
+                                                                        className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider transition-colors hover:text-accent"
+                                                                    >
+                                                                        {p.taxSettled ? (
+                                                                            <>
+                                                                                <CheckSquare className="w-4 h-4 text-accent" />
+                                                                                <span className="text-accent">Slipped to Vault</span>
+                                                                            </>
+                                                                        ) : (
+                                                                            <>
+                                                                                <Square className="w-4 h-4 text-white/20" />
+                                                                                <span className="text-white/40">Unsettled (30%)</span>
+                                                                            </>
+                                                                        )}
+                                                                    </button>
+                                                                ) : (
+                                                                    <span className="text-white/20 italic text-[10px]">-</span>
+                                                                )}
+                                                            </td>
+                                                            <td className="py-5 px-6 text-white/60">
+                                                                <div className="truncate max-w-[200px]" title={p.notes}>
+                                                                    {p.notes || `${p.paymentMethod || 'Stripe'} remittance`}
+                                                                </div>
+                                                            </td>
+                                                            <td className="py-5 px-6 text-right">
+                                                                <div className="flex justify-end gap-2">
+                                                                    {canSendInvoice && (
+                                                                        <button
+                                                                            disabled={isSending}
+                                                                            onClick={() => handleSendInvoiceEmail(p.id)}
+                                                                            className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 hover:bg-blue-500/25 transition-all flex items-center justify-center"
+                                                                            title="Send Invoice PDF Email"
+                                                                        >
+                                                                            {isSending ? (
+                                                                                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                                                                            ) : (
+                                                                                <Mail className="w-3.5 h-3.5" />
+                                                                            )}
+                                                                        </button>
+                                                                    )}
+                                                                    <button onClick={() => handleDeleteRecord('payments', p.id)} className="p-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/25 transition-all">
+                                                                        <Trash2 className="w-3.5 h-3.5" />
+                                                                    </button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    );
+                                                })}
                                                 {db.payments.length === 0 && (
                                                     <tr><td colSpan={8} className="py-12 text-center text-white/20 italic">No payments logged.</td></tr>
                                                 )}

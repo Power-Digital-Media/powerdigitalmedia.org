@@ -55,7 +55,8 @@
       "paymentDate": "2026-06-08",
       "paymentMethod": "Stripe",
       "relatedService": "Web Design & Maintenance",
-      "notes": "First retainer + setup fee included"
+      "notes": "First retainer + setup fee included",
+      "taxSettled": false
     }
   ],
   "tasks": [
