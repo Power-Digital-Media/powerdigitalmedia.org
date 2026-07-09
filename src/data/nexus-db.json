@@ -1,0 +1,53 @@
+{
+  "clients": [
+    {
+      "id": "client-1",
+      "name": "John Doe",
+      "companyName": "Acme Corp",
+      "email": "john@acme.com",
+      "phone": "(555) 123-4567",
+      "services": ["Web Design Subscription", "Marketing Retainer"],
+      "monthlyFee": 1200,
+      "totalPaid": 1200,
+      "paymentStatus": "paid",
+      "deliverablesOwed": [
+        "Create high-fidelity landing page mockup",
+        "Configure automated Capsule CRM sync"
+      ],
+      "waitingOn": [
+        "Waiting on logo SVG files",
+        "Waiting on DNS registrar credentials"
+      ],
+      "nextFollowUpDate": "2026-07-15",
+      "followUpReason": "Review landing page mockup design",
+      "notes": "Acme is a high-priority B2B account."
+    }
+  ],
+  "overhead": [
+    {
+      "id": "exp-1",
+      "name": "Capsule CRM (Growth Plan)",
+      "cost": 72,
+      "billingCycle": "monthly",
+      "category": "Software/SaaS",
+      "renewalDate": "2026-08-01"
+    },
+    {
+      "id": "exp-2",
+      "name": "Transpond Email Marketing",
+      "cost": 49,
+      "billingCycle": "monthly",
+      "category": "Software/SaaS",
+      "renewalDate": "2026-07-28"
+    }
+  ],
+  "payments": [
+    {
+      "id": "pay-1",
+      "clientId": "client-1",
+      "amount": 1200,
+      "date": "2026-07-01",
+      "description": "Invoice #101 - Monthly Web Subscription & Marketing"
+    }
+  ]
+}

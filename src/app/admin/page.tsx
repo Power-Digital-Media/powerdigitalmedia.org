@@ -122,6 +122,9 @@ export default function AdminDashboard() {
                                         <span className="text-sm font-black uppercase tracking-tighter">Admin Protocols</span>
                                     </div>
                                     <div className="space-y-4">
+                                        <Link href="/admin/clients" className="w-full py-4 rounded-xl border border-accent/20 bg-accent/5 text-accent text-[10px] font-bold uppercase tracking-widest hover:bg-accent/10 transition-all text-left px-5 flex items-center justify-between group">
+                                            Nexus Registry Console <ArrowUpRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                                        </Link>
                                         <Link href="/admin/services-setup" className="w-full py-4 rounded-xl glass-card border-white/5 text-[10px] font-bold uppercase tracking-widest hover:bg-white/5 transition-all text-left px-5 flex items-center justify-between group">
                                             Client Services Setup <ArrowUpRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                                         </Link>
