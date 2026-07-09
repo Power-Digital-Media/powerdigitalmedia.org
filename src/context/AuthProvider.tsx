@@ -120,13 +120,19 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 subscriptionTier = "custom";
                 defaultEmail = "tew@tewandcompany.com";
                 primaryPhone = "(601) 555-0580";
+            } else if (demoCompany === 'admin_bypass') {
+                companyName = "Power Digital Media";
+                monthlyRate = 0;
+                subscriptionTier = "custom";
+                defaultEmail = "damein@powerdigitalmedia.org";
+                primaryPhone = "(601) 300-2004";
             }
 
             const mockUser = {
-                uid: "demo-client-uid",
+                uid: demoCompany === 'admin_bypass' ? "admin-bypass-uid" : "demo-client-uid",
                 email: defaultEmail,
-                displayName: companyName,
-                getIdToken: async () => "demo-bypass-token"
+                displayName: demoCompany === 'admin_bypass' ? "Damein (Local Admin)" : companyName,
+                getIdToken: async () => demoCompany === 'admin_bypass' ? "local-admin-bypass-token" : "demo-bypass-token"
             } as unknown as User;
 
             setUser(mockUser);

@@ -174,6 +174,18 @@ export default function LoginPage() {
                                 )}
                             </button>
 
+                            {!isRegistering && (
+                                <button
+                                    type="button"
+                                    onClick={() => handleDemoLogin('admin_bypass')}
+                                    disabled={loading || googleLoading}
+                                    className="w-full py-5 rounded-2xl bg-cyan-950/40 border border-cyan-500/30 text-cyan-400 font-black uppercase tracking-[0.3em] text-[10px] hover:bg-cyan-900/40 hover:border-cyan-400 transition-all flex items-center justify-center gap-2 group shadow-[0_0_20px_rgba(34,211,238,0.05)]"
+                                >
+                                    Local Developer Admin Bypass
+                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                </button>
+                            )}
+
                             <div className="relative py-4">
                                 <div className="absolute inset-0 flex items-center">
                                     <div className="w-full border-t border-white/5"></div>
