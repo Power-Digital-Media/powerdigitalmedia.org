@@ -50,7 +50,7 @@ interface Client {
     phone: string;
     email: string;
     website: string;
-    status: string; // Active, Paused, Past Client, Lost, Lead
+    status: string;
     businessType: string;
     monthlyValue: number;
     setupFee: number;
@@ -58,7 +58,31 @@ interface Client {
     nextFollowUp: string;
     primaryNeed: string;
     notes: string;
+    clientStatus?: 'active' | 'paused' | 'past_client' | 'lost' | 'lead';
+    clientType?: string;
+    priorityLevel?: 'low' | 'normal' | 'high' | 'VIP';
+    paymentTerms?: string;
+    billingMethod?: string;
+    accountOwner?: string;
+    nextFollowUpDate?: string;
+    currentNeed?: string;
+    internalNotes?: string;
+    archived?: boolean;
     apiKeys?: ApiKey[];
+}
+
+interface Contact {
+    id: string;
+    clientId: string;
+    name: string;
+    role: string;
+    email: string;
+    phone: string;
+    preferredContactMethod: 'call' | 'text' | 'email' | 'Messenger';
+    decisionMaker: 'yes' | 'no';
+    billingContact: 'yes' | 'no';
+    emergencyContact: 'yes' | 'no';
+    notes?: string;
 }
 
 interface Service {
@@ -67,11 +91,17 @@ interface Service {
     serviceName: string;
     category: string;
     price: number;
-    billingType: string; // Monthly, One-Time, Yearly
+    billingType: string; // Monthly, One-Time, Yearly, Hourly
     status: string; // Proposed, Active, In Progress, Paused, Completed, Cancelled
     startDate: string;
-    endDate: string;
+    endDate?: string;
     notes: string;
+    costToYou?: number;
+    profitEstimate?: number;
+    renewalDate?: string;
+    deliverables?: string;
+    includedHours?: number;
+    overageRate?: number;
 }
 
 interface Payment {
@@ -87,6 +117,12 @@ interface Payment {
     relatedService: string;
     notes: string;
     taxSettled?: boolean; // Tracks if 30% was transferred to tax vault
+    amountBilled?: number;
+    amountPaid?: number;
+    balanceDue?: number;
+    recurring?: boolean;
+    periodStart?: string;
+    periodEnd?: string;
 }
 
 interface Task {
@@ -96,9 +132,28 @@ interface Task {
     priority: string; // Low, Medium, High, Urgent
     status: string; // Not Started, In Progress, Waiting on Client, Waiting on Vendor, Completed
     dueDate: string;
-    waitingOn: string;
+    waitingOn?: string;
+    blockerNotes?: string;
     relatedService: string;
     notes: string;
+}
+
+interface Project {
+    id: string;
+    clientId: string;
+    projectName: string;
+    projectType: string;
+    status: 'planning' | 'active' | 'waiting' | 'completed' | 'cancelled';
+    startDate: string;
+    targetLaunchDate: string;
+    actualLaunchDate?: string;
+    budget: number;
+    scopeSummary: string;
+    outOfScope?: string;
+    approvalStatus: 'not sent' | 'sent' | 'approved' | 'revision requested';
+    waitingOn?: string;
+    blockerNotes?: string;
+    notes?: string;
 }
 
 interface Platform {
@@ -107,26 +162,41 @@ interface Platform {
     platformName: string;
     type: string; // CRM, Hosting, Domain, Email Marketing, Payment Processor, etc.
     loginEmail: string;
-    plan: string;
+    planName: string;
     status: string; // Active, Paused, Cancelled
     monthlyCost: number;
     paidBy: string; // Power Digital, Client, Included
     renewalDate: string;
     accessLevel: string;
     notes: string;
+    accessStatus?: 'active' | 'needs_access' | 'blocked_by_2fa' | 'revoked' | 'unknown';
+    twoFactorEnabled?: 'yes' | 'no';
+    twoFactorMethod?: string;
+    twoFactorOwner?: string;
+    recoveryEmail?: string;
+    secretLocation?: string; // Reference to Bitwarden location
+    apiKeyLocation?: string;
+    lastVerifiedDate?: string;
 }
 
 interface DomainHosting {
     id: string;
     clientName: string;
-    domain: string;
+    domainName: string;
     registrar: string;
     hostingProvider: string;
     renewalDate: string;
-    owner: string;
+    annualCost: number;
     autoRenew: string; // Yes, No
-    cost: number;
+    paidBy: string;
+    ownerOfRecord: string;
     notes: string;
+    productionUrl?: string;
+    stagingUrl?: string;
+    repoUrl?: string;
+    framework?: string;
+    deploymentProvider?: string;
+    lastDeploymentDate?: string;
 }
 
 interface SalesLead {
@@ -156,6 +226,70 @@ interface ClientNote {
     followUpDate: string;
 }
 
+interface Campaign {
+    id: string;
+    clientId: string;
+    campaignName: string;
+    campaignType: string;
+    platform: string;
+    budget: number;
+    startDate: string;
+    endDate: string;
+    objective: string;
+    status: 'planning' | 'active' | 'paused' | 'completed';
+    creativeLinks?: string;
+    results?: string;
+    notes?: string;
+}
+
+interface Deliverable {
+    id: string;
+    clientId: string;
+    serviceId: string;
+    deliverableName: string;
+    quantity: number;
+    frequency: 'weekly' | 'monthly' | 'one-time';
+    dueDate: string;
+    status: 'not_started' | 'in_progress' | 'delivered' | 'approved';
+    deliveryUrl?: string;
+    approvalStatus: 'pending' | 'approved' | 'revision requested';
+    notes?: string;
+}
+
+interface Asset {
+    id: string;
+    clientId: string;
+    assetType: 'logo' | 'photos' | 'video' | 'contract' | 'invoice' | 'report' | 'ad_creative' | 'other';
+    assetName: string;
+    fileUrl: string;
+    usageRights: string;
+    notes?: string;
+}
+
+interface TimeEntry {
+    id: string;
+    clientId: string;
+    projectId?: string;
+    date: string;
+    hours: number;
+    rate: number;
+    billable: boolean;
+    description: string;
+    invoiced: boolean;
+}
+
+interface ComplianceItem {
+    id: string;
+    clientId: string;
+    itemType: string;
+    status: 'needed' | 'in_progress' | 'completed' | 'not_applicable';
+    policyUrl?: string;
+    optInLanguageAdded: boolean;
+    optOutLanguageAdded: boolean;
+    lastReviewedDate?: string;
+    notes?: string;
+}
+
 interface NexusDb {
     clients: Client[];
     services: Service[];
@@ -165,10 +299,17 @@ interface NexusDb {
     domainsHosting: DomainHosting[];
     salesPipeline: SalesLead[];
     notes: ClientNote[];
+    contacts: Contact[];
+    projects: Project[];
+    campaigns: Campaign[];
+    deliverables: Deliverable[];
+    assets: Asset[];
+    timeEntries: TimeEntry[];
+    complianceItems: ComplianceItem[];
     chatHistory?: ChatMessage[];
 }
 
-type TabType = 'clients' | 'services' | 'payments' | 'tasks' | 'platforms' | 'domainsHosting' | 'salesPipeline' | 'notes';
+type TabType = 'clients' | 'services' | 'payments' | 'tasks' | 'platforms' | 'domainsHosting' | 'salesPipeline' | 'notes' | 'contacts' | 'projects' | 'campaigns' | 'deliverables' | 'assets' | 'timeEntries' | 'complianceItems';
 
 interface ChatMessage {
     sender: "user" | "ai" | "system";
@@ -186,6 +327,13 @@ export default function ExcelAlignedNexusRegistry() {
         domainsHosting: [],
         salesPipeline: [],
         notes: [],
+        contacts: [],
+        projects: [],
+        campaigns: [],
+        deliverables: [],
+        assets: [],
+        timeEntries: [],
+        complianceItems: [],
         chatHistory: []
     });
     const [loading, setLoading] = useState(true);
@@ -333,6 +481,13 @@ export default function ExcelAlignedNexusRegistry() {
                     domainsHosting: payload.data.domainsHosting || [],
                     salesPipeline: payload.data.salesPipeline || [],
                     notes: payload.data.notes || [],
+                    contacts: payload.data.contacts || [],
+                    projects: payload.data.projects || [],
+                    campaigns: payload.data.campaigns || [],
+                    deliverables: payload.data.deliverables || [],
+                    assets: payload.data.assets || [],
+                    timeEntries: payload.data.timeEntries || [],
+                    complianceItems: payload.data.complianceItems || [],
                     chatHistory: payload.data.chatHistory || []
                 };
                 setDb(normalized);
@@ -525,7 +680,7 @@ export default function ExcelAlignedNexusRegistry() {
             platformName: plName,
             type: plType,
             loginEmail: plEmail,
-            plan: plPlan,
+            planName: plPlan,
             status: plStatus,
             monthlyCost: Number(plCost) || 0,
             paidBy: plPaidBy,
@@ -544,13 +699,14 @@ export default function ExcelAlignedNexusRegistry() {
         const item: DomainHosting = {
             id: `dom-${Date.now()}`,
             clientName: dClient,
-            domain: dDomain,
+            domainName: dDomain,
             registrar: dRegistrar,
             hostingProvider: dHost,
             renewalDate: dRenew || new Date().toISOString().split('T')[0],
-            owner: dOwner,
+            ownerOfRecord: dOwner,
             autoRenew: dAuto,
-            cost: Number(dCost) || 0,
+            annualCost: Number(dCost) || 0,
+            paidBy: "Client",
             notes: dNotes
         };
         const updated = { ...db, domainsHosting: [...db.domainsHosting, item] };
@@ -732,6 +888,13 @@ export default function ExcelAlignedNexusRegistry() {
                         domainsHosting: payload.data.domainsHosting || [],
                         salesPipeline: payload.data.salesPipeline || [],
                         notes: payload.data.notes || [],
+                        contacts: payload.data.contacts || [],
+                        projects: payload.data.projects || [],
+                        campaigns: payload.data.campaigns || [],
+                        deliverables: payload.data.deliverables || [],
+                        assets: payload.data.assets || [],
+                        timeEntries: payload.data.timeEntries || [],
+                        complianceItems: payload.data.complianceItems || [],
                         chatHistory: payload.data.chatHistory || []
                     };
                     setDb(normalized);
@@ -894,11 +1057,18 @@ export default function ExcelAlignedNexusRegistry() {
                         <div className="flex overflow-x-auto border-b border-white/5 pb-2 gap-6 scrollbar-hide">
                             {([
                                 { key: 'clients', label: 'Clients' },
+                                { key: 'contacts', label: 'Contacts' },
                                 { key: 'services', label: 'Services' },
-                                { key: 'payments', label: 'Payments' },
+                                { key: 'projects', label: 'Projects' },
                                 { key: 'tasks', label: 'Tasks' },
+                                { key: 'payments', label: 'Payments' },
                                 { key: 'platforms', label: 'Platforms (Overhead)' },
                                 { key: 'domainsHosting', label: 'Domains & Hosting' },
+                                { key: 'campaigns', label: 'Campaigns' },
+                                { key: 'deliverables', label: 'Deliverables' },
+                                { key: 'assets', label: 'Brand Assets' },
+                                { key: 'timeEntries', label: 'Time Tracking' },
+                                { key: 'complianceItems', label: 'Compliance' },
                                 { key: 'salesPipeline', label: 'Sales Pipeline' },
                                 { key: 'notes', label: 'Notes' }
                             ] as { key: TabType, label: string }[]).map((tab) => (
@@ -1296,7 +1466,7 @@ export default function ExcelAlignedNexusRegistry() {
                                                         <td className="py-5 px-6 font-bold">{p.clientName}</td>
                                                         <td className="py-5 px-6 font-bold">{p.platformName}</td>
                                                         <td className="py-5 px-6 text-white/60">{p.type}</td>
-                                                        <td className="py-5 px-6 font-mono text-[11px] text-white/40">{p.plan || "Standard"}</td>
+                                                        <td className="py-5 px-6 font-mono text-[11px] text-white/40">{p.planName || "Standard"}</td>
                                                         <td className="py-5 px-6 font-mono">${p.monthlyCost}/mo</td>
                                                         <td className="py-5 px-6">
                                                             <span className={`inline-block px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-widest ${p.paidBy === 'Power Digital' ? 'bg-red-500/10 text-red-400 border border-red-500/20' : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'}`}>
@@ -1339,11 +1509,11 @@ export default function ExcelAlignedNexusRegistry() {
                                                 {db.domainsHosting.map((d) => (
                                                     <tr key={d.id} className="border-b border-white/5 text-xs text-white hover:bg-white/[0.01]">
                                                         <td className="py-5 px-6 font-bold">{d.clientName}</td>
-                                                        <td className="py-5 px-6 font-mono text-accent">{d.domain}</td>
+                                                        <td className="py-5 px-6 font-mono text-accent">{d.domainName}</td>
                                                         <td className="py-5 px-6 text-white/60">{d.registrar}</td>
                                                         <td className="py-5 px-6 text-white/60">{d.hostingProvider}</td>
                                                         <td className="py-5 px-6 font-mono text-white/40">{d.renewalDate}</td>
-                                                        <td className="py-5 px-6 font-mono">${d.cost}</td>
+                                                        <td className="py-5 px-6 font-mono">${d.annualCost}</td>
                                                         <td className="py-5 px-6 font-medium text-white/60">{d.autoRenew}</td>
                                                         <td className="py-5 px-6 text-right">
                                                             <button onClick={() => handleDeleteRecord('domainsHosting', d.id)} className="p-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/25 transition-all">
@@ -1452,6 +1622,368 @@ export default function ExcelAlignedNexusRegistry() {
                                                 ))}
                                                 {db.notes.length === 0 && (
                                                     <tr><td colSpan={7} className="py-12 text-center text-white/20 italic">No notes logged.</td></tr>
+                                                )}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                )}
+
+                                {/* ─── 9. CONTACTS SHEET ─── */}
+                                {activeTab === 'contacts' && (
+                                    <div className="overflow-x-auto">
+                                        <table className="w-full text-left border-collapse">
+                                            <thead>
+                                                <tr className="border-b border-white/5 text-[9px] font-black uppercase tracking-widest text-white/40 bg-black/20">
+                                                    <th className="py-4 px-6">Client</th>
+                                                    <th className="py-4 px-6">Name & Role</th>
+                                                    <th className="py-4 px-6">Email</th>
+                                                    <th className="py-4 px-6">Phone</th>
+                                                    <th className="py-4 px-6">Pref. Method</th>
+                                                    <th className="py-4 px-6">Decision Maker?</th>
+                                                    <th className="py-4 px-6">Billing?</th>
+                                                    <th className="py-4 px-6 text-right">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {db.contacts.map((c) => {
+                                                    const client = db.clients.find(cl => cl.id === c.clientId);
+                                                    return (
+                                                        <tr key={c.id} className="border-b border-white/5 text-xs text-white hover:bg-white/[0.01]">
+                                                            <td className="py-5 px-6 font-bold">{client?.companyName || "Unknown Client"}</td>
+                                                            <td className="py-5 px-6">
+                                                                <div className="font-semibold">{c.name}</div>
+                                                                <div className="text-[10px] text-white/40">{c.role}</div>
+                                                            </td>
+                                                            <td className="py-5 px-6 text-white/60 font-mono">{c.email}</td>
+                                                            <td className="py-5 px-6 text-white/60 font-mono">{c.phone}</td>
+                                                            <td className="py-5 px-6 uppercase tracking-wider text-[10px] text-white/40">{c.preferredContactMethod}</td>
+                                                            <td className="py-5 px-6">{c.decisionMaker === 'yes' ? <span className="text-accent">✓</span> : <span className="text-white/20">-</span>}</td>
+                                                            <td className="py-5 px-6">{c.billingContact === 'yes' ? <span className="text-blue-400">✓</span> : <span className="text-white/20">-</span>}</td>
+                                                            <td className="py-5 px-6 text-right">
+                                                                <button onClick={() => handleDeleteRecord('contacts', c.id)} className="p-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/25 transition-all">
+                                                                    <Trash2 className="w-3.5 h-3.5" />
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    );
+                                                })}
+                                                {db.contacts.length === 0 && (
+                                                    <tr><td colSpan={8} className="py-12 text-center text-white/20 italic">No contacts registered.</td></tr>
+                                                )}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                )}
+
+                                {/* ─── 10. PROJECTS SHEET ─── */}
+                                {activeTab === 'projects' && (
+                                    <div className="overflow-x-auto">
+                                        <table className="w-full text-left border-collapse">
+                                            <thead>
+                                                <tr className="border-b border-white/5 text-[9px] font-black uppercase tracking-widest text-white/40 bg-black/20">
+                                                    <th className="py-4 px-6">Project Name</th>
+                                                    <th className="py-4 px-6">Status</th>
+                                                    <th className="py-4 px-6">Timeline</th>
+                                                    <th className="py-4 px-6">Budget</th>
+                                                    <th className="py-4 px-6">Scope / Details</th>
+                                                    <th className="py-4 px-6">Blocker / Waiting On</th>
+                                                    <th className="py-4 px-6 text-right">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {db.projects.map((p) => {
+                                                    const client = db.clients.find(cl => cl.id === p.clientId);
+                                                    return (
+                                                        <tr key={p.id} className="border-b border-white/5 text-xs text-white hover:bg-white/[0.01]">
+                                                            <td className="py-5 px-6">
+                                                                <div className="font-bold">{p.projectName}</div>
+                                                                <div className="text-[10px] text-white/40">{client?.companyName}</div>
+                                                            </td>
+                                                            <td className="py-5 px-6">
+                                                                <span className={`inline-block px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-widest border ${p.status === 'active' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : p.status === 'waiting' ? 'bg-amber-500/10 border-amber-500/20 text-amber-400' : 'bg-white/5 border-white/10 text-white/40'}`}>
+                                                                    {p.status}
+                                                                </span>
+                                                            </td>
+                                                            <td className="py-5 px-6 font-mono text-[10px] text-white/50">
+                                                                <div>Start: {p.startDate}</div>
+                                                                <div>Target: {p.targetLaunchDate}</div>
+                                                            </td>
+                                                            <td className="py-5 px-6 font-mono font-semibold">${p.budget}</td>
+                                                            <td className="py-5 px-6 max-w-xs truncate" title={p.scopeSummary}>{p.scopeSummary}</td>
+                                                            <td className="py-5 px-6">
+                                                                {p.waitingOn ? (
+                                                                    <div className="text-red-400 font-bold flex items-center gap-1.5" title={p.blockerNotes}>
+                                                                        <AlertTriangle className="w-3.5 h-3.5" />
+                                                                        <span>Waiting on {p.waitingOn}</span>
+                                                                    </div>
+                                                                ) : (
+                                                                    <span className="text-white/20">-</span>
+                                                                )}
+                                                            </td>
+                                                            <td className="py-5 px-6 text-right">
+                                                                <button onClick={() => handleDeleteRecord('projects', p.id)} className="p-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/25 transition-all">
+                                                                    <Trash2 className="w-3.5 h-3.5" />
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    );
+                                                })}
+                                                {db.projects.length === 0 && (
+                                                    <tr><td colSpan={7} className="py-12 text-center text-white/20 italic">No projects active.</td></tr>
+                                                )}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                )}
+
+                                {/* ─── 11. CAMPAIGNS SHEET ─── */}
+                                {activeTab === 'campaigns' && (
+                                    <div className="overflow-x-auto">
+                                        <table className="w-full text-left border-collapse">
+                                            <thead>
+                                                <tr className="border-b border-white/5 text-[9px] font-black uppercase tracking-widest text-white/40 bg-black/20">
+                                                    <th className="py-4 px-6">Campaign Name</th>
+                                                    <th className="py-4 px-6">Platform / Channel</th>
+                                                    <th className="py-4 px-6">Budget</th>
+                                                    <th className="py-4 px-6">Objective</th>
+                                                    <th className="py-4 px-6">Status</th>
+                                                    <th className="py-4 px-6">Links</th>
+                                                    <th className="py-4 px-6 text-right">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {db.campaigns.map((c) => {
+                                                    const client = db.clients.find(cl => cl.id === c.clientId);
+                                                    return (
+                                                        <tr key={c.id} className="border-b border-white/5 text-xs text-white hover:bg-white/[0.01]">
+                                                            <td className="py-5 px-6">
+                                                                <div className="font-bold">{c.campaignName}</div>
+                                                                <div className="text-[10px] text-white/40">{client?.companyName}</div>
+                                                            </td>
+                                                            <td className="py-5 px-6 text-white/80">{c.platform}</td>
+                                                            <td className="py-5 px-6 font-mono font-semibold">${c.budget}</td>
+                                                            <td className="py-5 px-6 text-white/60">{c.objective}</td>
+                                                            <td className="py-5 px-6">
+                                                                <span className="px-2 py-0.5 rounded text-[8px] font-bold uppercase bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                                                                    {c.status}
+                                                                </span>
+                                                            </td>
+                                                            <td className="py-5 px-6">
+                                                                {c.creativeLinks ? (
+                                                                    <a href={c.creativeLinks} target="_blank" rel="noopener noreferrer" className="text-accent underline hover:text-white transition-all">Creative Assets</a>
+                                                                ) : (
+                                                                    <span className="text-white/20">-</span>
+                                                                )}
+                                                            </td>
+                                                            <td className="py-5 px-6 text-right">
+                                                                <button onClick={() => handleDeleteRecord('campaigns', c.id)} className="p-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/25 transition-all">
+                                                                    <Trash2 className="w-3.5 h-3.5" />
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    );
+                                                })}
+                                                {db.campaigns.length === 0 && (
+                                                    <tr><td colSpan={7} className="py-12 text-center text-white/20 italic">No campaigns logged.</td></tr>
+                                                )}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                )}
+
+                                {/* ─── 12. DELIVERABLES SHEET ─── */}
+                                {activeTab === 'deliverables' && (
+                                    <div className="overflow-x-auto">
+                                        <table className="w-full text-left border-collapse">
+                                            <thead>
+                                                <tr className="border-b border-white/5 text-[9px] font-black uppercase tracking-widest text-white/40 bg-black/20">
+                                                    <th className="py-4 px-6">Deliverable Name</th>
+                                                    <th className="py-4 px-6">Qty & Frequency</th>
+                                                    <th className="py-4 px-6">Due Date</th>
+                                                    <th className="py-4 px-6">Status</th>
+                                                    <th className="py-4 px-6">Asset Link</th>
+                                                    <th className="py-4 px-6">Approval Status</th>
+                                                    <th className="py-4 px-6 text-right">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {db.deliverables.map((d) => {
+                                                    const client = db.clients.find(cl => cl.id === d.clientId);
+                                                    return (
+                                                        <tr key={d.id} className="border-b border-white/5 text-xs text-white hover:bg-white/[0.01]">
+                                                            <td className="py-5 px-6">
+                                                                <div className="font-bold">{d.deliverableName}</div>
+                                                                <div className="text-[10px] text-white/40">{client?.companyName}</div>
+                                                            </td>
+                                                            <td className="py-5 px-6 capitalize">{d.quantity}x {d.frequency}</td>
+                                                            <td className="py-5 px-6 font-mono text-white/40">{d.dueDate}</td>
+                                                            <td className="py-5 px-6">
+                                                                <span className={`inline-block px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-widest border ${d.status === 'delivered' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-white/5 border-white/10 text-white/40'}`}>
+                                                                    {d.status.replace('_', ' ')}
+                                                                </span>
+                                                            </td>
+                                                            <td className="py-5 px-6">
+                                                                {d.deliveryUrl ? (
+                                                                    <a href={d.deliveryUrl} target="_blank" rel="noopener noreferrer" className="text-accent underline hover:text-white">View File</a>
+                                                                ) : (
+                                                                    <span className="text-white/20">-</span>
+                                                                )}
+                                                            </td>
+                                                            <td className="py-5 px-6">
+                                                                <span className="text-[10px] font-bold uppercase tracking-wider">{d.approvalStatus}</span>
+                                                            </td>
+                                                            <td className="py-5 px-6 text-right">
+                                                                <button onClick={() => handleDeleteRecord('deliverables', d.id)} className="p-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/25 transition-all">
+                                                                    <Trash2 className="w-3.5 h-3.5" />
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    );
+                                                })}
+                                                {db.deliverables.length === 0 && (
+                                                    <tr><td colSpan={7} className="py-12 text-center text-white/20 italic">No deliverables active.</td></tr>
+                                                )}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                )}
+
+                                {/* ─── 13. ASSETS SHEET ─── */}
+                                {activeTab === 'assets' && (
+                                    <div className="overflow-x-auto">
+                                        <table className="w-full text-left border-collapse">
+                                            <thead>
+                                                <tr className="border-b border-white/5 text-[9px] font-black uppercase tracking-widest text-white/40 bg-black/20">
+                                                    <th className="py-4 px-6">Asset Name</th>
+                                                    <th className="py-4 px-6">Type</th>
+                                                    <th className="py-4 px-6">Usage Rights</th>
+                                                    <th className="py-4 px-6">File URL</th>
+                                                    <th className="py-4 px-6 text-right">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {db.assets.map((a) => {
+                                                    const client = db.clients.find(cl => cl.id === a.clientId);
+                                                    return (
+                                                        <tr key={a.id} className="border-b border-white/5 text-xs text-white hover:bg-white/[0.01]">
+                                                            <td className="py-5 px-6 font-bold">
+                                                                <div>{a.assetName}</div>
+                                                                <div className="text-[10px] text-white/40">{client?.companyName}</div>
+                                                            </td>
+                                                            <td className="py-5 px-6 uppercase text-[10px] text-white/60">{a.assetType}</td>
+                                                            <td className="py-5 px-6 text-white/50">{a.usageRights}</td>
+                                                            <td className="py-5 px-6">
+                                                                <a href={a.fileUrl} target="_blank" rel="noopener noreferrer" className="text-accent underline hover:text-white">Access File</a>
+                                                            </td>
+                                                            <td className="py-5 px-6 text-right">
+                                                                <button onClick={() => handleDeleteRecord('assets', a.id)} className="p-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/25 transition-all">
+                                                                    <Trash2 className="w-3.5 h-3.5" />
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    );
+                                                })}
+                                                {db.assets.length === 0 && (
+                                                    <tr><td colSpan={5} className="py-12 text-center text-white/20 italic">No brand assets registered.</td></tr>
+                                                )}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                )}
+
+                                {/* ─── 14. TIME TRACKING SHEET ─── */}
+                                {activeTab === 'timeEntries' && (
+                                    <div className="overflow-x-auto">
+                                        <table className="w-full text-left border-collapse">
+                                            <thead>
+                                                <tr className="border-b border-white/5 text-[9px] font-black uppercase tracking-widest text-white/40 bg-black/20">
+                                                    <th className="py-4 px-6">Date</th>
+                                                    <th className="py-4 px-6">Client</th>
+                                                    <th className="py-4 px-6">Hours</th>
+                                                    <th className="py-4 px-6">Rate</th>
+                                                    <th className="py-4 px-6">Billable?</th>
+                                                    <th className="py-4 px-6">Description</th>
+                                                    <th className="py-4 px-6">Invoiced?</th>
+                                                    <th className="py-4 px-6 text-right">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {db.timeEntries.map((t) => {
+                                                    const client = db.clients.find(cl => cl.id === t.clientId);
+                                                    return (
+                                                        <tr key={t.id} className="border-b border-white/5 text-xs text-white hover:bg-white/[0.01]">
+                                                            <td className="py-5 px-6 font-mono text-white/40">{t.date}</td>
+                                                            <td className="py-5 px-6 font-bold">{client?.companyName}</td>
+                                                            <td className="py-5 px-6 font-mono font-semibold">{t.hours} hrs</td>
+                                                            <td className="py-5 px-6 font-mono">${t.rate}/hr</td>
+                                                            <td className="py-5 px-6">{t.billable ? <span className="text-emerald-400">Yes</span> : <span className="text-white/20">No</span>}</td>
+                                                            <td className="py-5 px-6 text-white/60 max-w-xs truncate" title={t.description}>{t.description}</td>
+                                                            <td className="py-5 px-6">
+                                                                {t.invoiced ? (
+                                                                    <span className="px-2 py-0.5 rounded text-[8px] font-bold bg-accent/10 text-accent border border-accent/20">Billed</span>
+                                                                ) : (
+                                                                    <span className="px-2 py-0.5 rounded text-[8px] font-bold bg-white/5 text-white/30">Unbilled</span>
+                                                                )}
+                                                            </td>
+                                                            <td className="py-5 px-6 text-right">
+                                                                <button onClick={() => handleDeleteRecord('timeEntries', t.id)} className="p-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/25 transition-all">
+                                                                    <Trash2 className="w-3.5 h-3.5" />
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    );
+                                                })}
+                                                {db.timeEntries.length === 0 && (
+                                                    <tr><td colSpan={8} className="py-12 text-center text-white/20 italic">No time entries recorded.</td></tr>
+                                                )}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                )}
+
+                                {/* ─── 15. COMPLIANCE SHEET ─── */}
+                                {activeTab === 'complianceItems' && (
+                                    <div className="overflow-x-auto">
+                                        <table className="w-full text-left border-collapse">
+                                            <thead>
+                                                <tr className="border-b border-white/5 text-[9px] font-black uppercase tracking-widest text-white/40 bg-black/20">
+                                                    <th className="py-4 px-6">Client</th>
+                                                    <th className="py-4 px-6">Compliance Check</th>
+                                                    <th className="py-4 px-6">Status</th>
+                                                    <th className="py-4 px-6">Opt-In Added?</th>
+                                                    <th className="py-4 px-6">Opt-Out Added?</th>
+                                                    <th className="py-4 px-6">Last Reviewed</th>
+                                                    <th className="py-4 px-6 text-right">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {db.complianceItems.map((c) => {
+                                                    const client = db.clients.find(cl => cl.id === c.clientId);
+                                                    return (
+                                                        <tr key={c.id} className="border-b border-white/5 text-xs text-white hover:bg-white/[0.01]">
+                                                            <td className="py-5 px-6 font-bold">{client?.companyName}</td>
+                                                            <td className="py-5 px-6">
+                                                                <div className="font-semibold">{c.itemType}</div>
+                                                                {c.policyUrl && <a href={c.policyUrl} target="_blank" rel="noopener noreferrer" className="text-accent underline text-[10px]">View Policy Link</a>}
+                                                            </td>
+                                                            <td className="py-5 px-6">
+                                                                <span className={`inline-block px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-widest border ${c.status === 'completed' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-white/5 border-white/10 text-white/40'}`}>
+                                                                    {c.status.replace('_', ' ')}
+                                                                </span>
+                                                            </td>
+                                                            <td className="py-5 px-6">{c.optInLanguageAdded ? <span className="text-accent">✓</span> : <span className="text-white/20">-</span>}</td>
+                                                            <td className="py-5 px-6">{c.optOutLanguageAdded ? <span className="text-accent">✓</span> : <span className="text-white/20">-</span>}</td>
+                                                            <td className="py-5 px-6 font-mono text-white/40">{c.lastReviewedDate || "Never"}</td>
+                                                            <td className="py-5 px-6 text-right">
+                                                                <button onClick={() => handleDeleteRecord('complianceItems', c.id)} className="p-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/25 transition-all">
+                                                                    <Trash2 className="w-3.5 h-3.5" />
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    );
+                                                })}
+                                                {db.complianceItems.length === 0 && (
+                                                    <tr><td colSpan={7} className="py-12 text-center text-white/20 italic">No compliance entries recorded.</td></tr>
                                                 )}
                                             </tbody>
                                         </table>
@@ -2281,8 +2813,8 @@ export default function ExcelAlignedNexusRegistry() {
                                         {db.domainsHosting.filter(d => d.clientName === selectedDetailClient.companyName).map(d => (
                                             <div key={d.id} className="p-4 rounded-2xl bg-white/[0.01] border border-white/5 space-y-2">
                                                 <div className="flex justify-between items-center">
-                                                    <a href={`https://${d.domain}`} target="_blank" rel="noreferrer" className="text-xs font-black text-blue-400 hover:underline">{d.domain}</a>
-                                                    <span className="text-xs font-mono font-black text-white/80">${d.cost}/yr</span>
+                                                    <a href={`https://${d.domainName}`} target="_blank" rel="noreferrer" className="text-xs font-black text-blue-400 hover:underline">{d.domainName}</a>
+                                                    <span className="text-xs font-mono font-black text-white/80">${d.annualCost}/yr</span>
                                                 </div>
                                                 <div className="grid grid-cols-2 gap-4 text-[10px] text-white/40 font-mono">
                                                     <div>Registrar: <span className="text-white/60">{d.registrar}</span></div>
@@ -2312,6 +2844,148 @@ export default function ExcelAlignedNexusRegistry() {
                                         ))}
                                         {db.notes.filter(n => n.clientName === selectedDetailClient.companyName).length === 0 && (
                                             <p className="text-xs text-white/20 italic">No notes logged yet.</p>
+                                        )}
+                                    </div>
+
+                                    {/* SECTION 3B: CLIENT CONTACTS */}
+                                    <div className="space-y-3">
+                                        <h4 className="text-xs font-black uppercase tracking-widest text-white/40 border-b border-white/5 pb-2">Contacts</h4>
+                                        {db.contacts.filter(c => c.clientId === selectedDetailClient.id).map(c => (
+                                            <div key={c.id} className="p-4 rounded-2xl bg-white/[0.01] border border-white/5 space-y-1">
+                                                <div className="flex justify-between items-start">
+                                                    <span className="text-xs font-bold text-white">{c.name}</span>
+                                                    <span className="px-2 py-0.5 rounded text-[8px] font-bold uppercase bg-white/5 text-white/40">{c.role}</span>
+                                                </div>
+                                                <div className="text-[10px] text-white/40 font-mono">
+                                                    <div>Email: <span className="text-white/60">{c.email}</span></div>
+                                                    {c.phone && <div>Phone: <span className="text-white/60">{c.phone}</span></div>}
+                                                    <div>Decision Maker: <span className="text-accent">{c.decisionMaker}</span> | Billing: <span className="text-blue-400">{c.billingContact}</span></div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                        {db.contacts.filter(c => c.clientId === selectedDetailClient.id).length === 0 && (
+                                            <p className="text-xs text-white/20 italic">No secondary contacts listed.</p>
+                                        )}
+                                    </div>
+
+                                    {/* SECTION 3C: PROJECTS */}
+                                    <div className="space-y-3">
+                                        <h4 className="text-xs font-black uppercase tracking-widest text-white/40 border-b border-white/5 pb-2">Projects</h4>
+                                        {db.projects.filter(p => p.clientId === selectedDetailClient.id).map(p => (
+                                            <div key={p.id} className="p-4 rounded-2xl bg-white/[0.01] border border-white/5 space-y-2">
+                                                <div className="flex justify-between items-center">
+                                                    <span className="text-xs font-bold text-white">{p.projectName}</span>
+                                                    <span className="text-[9px] uppercase font-black text-accent">{p.status}</span>
+                                                </div>
+                                                <p className="text-[10px] text-white/60 leading-relaxed">"{p.scopeSummary}"</p>
+                                                {p.waitingOn && (
+                                                    <div className="text-red-400 font-bold text-[9px] flex items-center gap-1.5 mt-1">
+                                                        <AlertTriangle className="w-3.5 h-3.5 animate-pulse" />
+                                                        <span>Waiting on {p.waitingOn}: {p.blockerNotes}</span>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        ))}
+                                        {db.projects.filter(p => p.clientId === selectedDetailClient.id).length === 0 && (
+                                            <p className="text-xs text-white/20 italic">No active projects.</p>
+                                        )}
+                                    </div>
+
+                                    {/* SECTION 4B: SOFTWARE PLATFORMS & ACCESS */}
+                                    <div className="space-y-3">
+                                        <h4 className="text-xs font-black uppercase tracking-widest text-white/40 border-b border-white/5 pb-2">Platforms & Access Credentials</h4>
+                                        {db.platforms.filter(p => p.clientName === selectedDetailClient.companyName).map(p => (
+                                            <div key={p.id} className="p-4 rounded-2xl bg-white/[0.01] border border-white/5 space-y-2">
+                                                <div className="flex justify-between items-center">
+                                                    <span className="text-xs font-bold text-white">{p.platformName}</span>
+                                                    <span className={`px-2 py-0.5 rounded text-[8px] font-bold uppercase ${p.accessStatus === 'active' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-red-500/10 text-red-400'}`}>{p.accessStatus || 'Active'}</span>
+                                                </div>
+                                                <div className="text-[10px] text-white/40 font-mono space-y-1">
+                                                    <div>Login Email: <span className="text-white/60">{p.loginEmail}</span></div>
+                                                    <div>2FA Status: <span className="text-white/60">{p.twoFactorEnabled === 'yes' ? `Yes (${p.twoFactorMethod || 'SMS'} to ${p.twoFactorOwner || 'Client'})` : 'No'}</span></div>
+                                                    <div>Credential Vault Location: <span className="text-accent font-bold">{p.secretLocation || 'None registered'}</span></div>
+                                                    {p.apiKeyLocation && <div>API Key Reference: <span className="text-blue-400 font-bold">{p.apiKeyLocation}</span></div>}
+                                                </div>
+                                            </div>
+                                        ))}
+                                        {db.platforms.filter(p => p.clientName === selectedDetailClient.companyName).length === 0 && (
+                                            <p className="text-xs text-white/20 italic">No platform setups recorded.</p>
+                                        )}
+                                    </div>
+
+                                    {/* SECTION 5B: MARKETING CAMPAIGNS */}
+                                    <div className="space-y-3">
+                                        <h4 className="text-xs font-black uppercase tracking-widest text-white/40 border-b border-white/5 pb-2">Active Campaigns</h4>
+                                        {db.campaigns.filter(c => c.clientId === selectedDetailClient.id).map(c => (
+                                            <div key={c.id} className="p-4 rounded-2xl bg-white/[0.01] border border-white/5 space-y-2">
+                                                <div className="flex justify-between items-center">
+                                                    <span className="text-xs font-bold text-white">{c.campaignName}</span>
+                                                    <span className="text-[9px] uppercase font-black text-blue-400 bg-blue-500/10 px-2 py-0.5 border border-blue-500/20">{c.status}</span>
+                                                </div>
+                                                <div className="text-[10px] text-white/40 font-mono">
+                                                    <div>Budget: <span className="text-white/80 font-bold">${c.budget}</span> | Channel: <span className="text-white/60">{c.platform}</span></div>
+                                                    <div>Objective: <span className="text-white/60">{c.objective}</span></div>
+                                                    {c.results && <div className="mt-2 text-accent font-bold">Results: {c.results}</div>}
+                                                </div>
+                                            </div>
+                                        ))}
+                                        {db.campaigns.filter(c => c.clientId === selectedDetailClient.id).length === 0 && (
+                                            <p className="text-xs text-white/20 italic">No marketing campaigns registered.</p>
+                                        )}
+                                    </div>
+
+                                    {/* SECTION 5C: DELIVERABLES */}
+                                    <div className="space-y-3">
+                                        <h4 className="text-xs font-black uppercase tracking-widest text-white/40 border-b border-white/5 pb-2">Expectations & Deliverables</h4>
+                                        {db.deliverables.filter(d => d.clientId === selectedDetailClient.id).map(d => (
+                                            <div key={d.id} className="p-4 rounded-2xl bg-white/[0.01] border border-white/5 flex justify-between items-center gap-4">
+                                                <div>
+                                                    <span className="text-xs font-bold text-white">{d.deliverableName}</span>
+                                                    <div className="text-[9px] text-white/40 mt-1 capitalize">{d.quantity}x {d.frequency} | Due: {d.dueDate}</div>
+                                                </div>
+                                                <span className={`px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-widest border ${d.status === 'delivered' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-white/5 border-white/10 text-white/40'}`}>{d.status}</span>
+                                            </div>
+                                        ))}
+                                        {db.deliverables.filter(d => d.clientId === selectedDetailClient.id).length === 0 && (
+                                            <p className="text-xs text-white/20 italic">No deliverables list registered.</p>
+                                        )}
+                                    </div>
+
+                                    {/* SECTION 5D: TIME ENTRIES */}
+                                    <div className="space-y-3">
+                                        <h4 className="text-xs font-black uppercase tracking-widest text-white/40 border-b border-white/5 pb-2">Consulting Time Ledger</h4>
+                                        {db.timeEntries.filter(t => t.clientId === selectedDetailClient.id).map(t => (
+                                            <div key={t.id} className="p-4 rounded-2xl bg-white/[0.01] border border-white/5 flex justify-between items-center">
+                                                <div>
+                                                    <span className="text-xs font-bold text-white">{t.description}</span>
+                                                    <div className="text-[9px] text-white/40 mt-1 font-mono">{t.date} | Billed: {t.invoiced ? "Yes" : "No"}</div>
+                                                </div>
+                                                <span className="text-xs font-mono font-black text-white/80">{t.hours} hrs @ ${t.rate}/hr</span>
+                                            </div>
+                                        ))}
+                                        {db.timeEntries.filter(t => t.clientId === selectedDetailClient.id).length === 0 && (
+                                            <p className="text-xs text-white/20 italic">No time entries logged.</p>
+                                        )}
+                                    </div>
+
+                                    {/* SECTION 5E: COMPLIANCE STATUS */}
+                                    <div className="space-y-3">
+                                        <h4 className="text-xs font-black uppercase tracking-widest text-white/40 border-b border-white/5 pb-2">Compliance & Legal Checklists</h4>
+                                        {db.complianceItems.filter(c => c.clientId === selectedDetailClient.id).map(c => (
+                                            <div key={c.id} className="p-4 rounded-2xl bg-white/[0.01] border border-white/5 space-y-2">
+                                                <div className="flex justify-between items-center">
+                                                    <span className="text-xs font-bold text-white">{c.itemType}</span>
+                                                    <span className={`px-2 py-0.5 rounded text-[8px] font-bold uppercase ${c.status === 'completed' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-amber-500/10 text-amber-400'}`}>{c.status}</span>
+                                                </div>
+                                                <div className="text-[10px] text-white/40 font-mono space-y-1">
+                                                    <div>SMS Opt-in Added: <span className="text-white/60">{c.optInLanguageAdded ? "Yes" : "No"}</span></div>
+                                                    <div>SMS Opt-out Added: <span className="text-white/60">{c.optOutLanguageAdded ? "Yes" : "No"}</span></div>
+                                                    {c.lastReviewedDate && <div>Last Reviewed: <span className="text-white/60">{c.lastReviewedDate}</span></div>}
+                                                </div>
+                                            </div>
+                                        ))}
+                                        {db.complianceItems.filter(c => c.clientId === selectedDetailClient.id).length === 0 && (
+                                            <p className="text-xs text-white/20 italic">No compliance checklists registered.</p>
                                         )}
                                     </div>
 
