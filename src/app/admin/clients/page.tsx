@@ -26,7 +26,9 @@ import {
     Square,
     MessageSquare,
     Send,
-    Sparkles
+    Sparkles,
+    Eye,
+    Search
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import AdminGuard from "@/components/auth/AdminGuard";
@@ -180,6 +182,8 @@ export default function ExcelAlignedNexusRegistry() {
     });
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
+    // Detail Drawer
+    const [selectedDetailClient, setSelectedDetailClient] = useState<Client | null>(null);
     const [activeTab, setActiveTab] = useState<TabType>('clients');
 
     // Modals
@@ -838,48 +842,91 @@ export default function ExcelAlignedNexusRegistry() {
                             <div className="glass-card border-white/5 rounded-[2rem] bg-white/[0.01] overflow-hidden">
                                 
                                 {/* ─── 1. CLIENTS SHEET ─── */}
+                                {/* ─── 1. CLIENTS GRID CARDS ─── */}
                                 {activeTab === 'clients' && (
-                                    <div className="overflow-x-auto">
-                                        <table className="w-full text-left border-collapse">
-                                            <thead>
-                                                <tr className="border-b border-white/5 text-[9px] font-black uppercase tracking-widest text-white/40 bg-black/20">
-                                                    <th className="py-4 px-6">Client / Company Name</th>
-                                                    <th className="py-4 px-6">Owner / Contact</th>
-                                                    <th className="py-4 px-6">Email / Phone</th>
-                                                    <th className="py-4 px-6">Status</th>
-                                                    <th className="py-4 px-6">Monthly Value</th>
-                                                    <th className="py-4 px-6">Next Follow-Up</th>
-                                                    <th className="py-4 px-6 text-right">Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {db.clients.map((c) => (
-                                                    <tr key={c.id} className="border-b border-white/5 text-xs text-white hover:bg-white/[0.01]">
-                                                        <td className="py-5 px-6 font-bold">{c.companyName}</td>
-                                                        <td className="py-5 px-6">{c.name}</td>
-                                                        <td className="py-5 px-6 font-mono text-white/60">
-                                                            <div>{c.email}</div>
-                                                            <div className="text-[10px] text-white/40">{c.phone}</div>
-                                                        </td>
-                                                        <td className="py-5 px-6">
-                                                            <span className={`inline-block px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border ${c.status === 'Active' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-white/5 border-white/10 text-white/50'}`}>
+                                    <div className="p-8">
+                                        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                                            {db.clients.map((c) => {
+                                                const initials = c.companyName.split(" ").map((w: string) => w[0]).join("").substring(0, 2).toUpperCase();
+                                                const serviceCount = db.services.filter((s) => s.clientName === c.companyName).length;
+                                                const taskCount = db.tasks.filter((t) => t.clientName === c.companyName && t.status !== 'Completed').length;
+                                                
+                                                return (
+                                                    <motion.div
+                                                        key={c.id}
+                                                        initial={{ opacity: 0, y: 10 }}
+                                                        animate={{ opacity: 1, y: 0 }}
+                                                        whileHover={{ y: -4 }}
+                                                        className="p-6 rounded-3xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.02] hover:border-accent/30 transition-all flex flex-col justify-between gap-6 cursor-pointer"
+                                                        onClick={() => setSelectedDetailClient(c)}
+                                                    >
+                                                        {/* Card Header */}
+                                                        <div className="flex items-start justify-between gap-4">
+                                                            <div className="flex items-center gap-4">
+                                                                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-accent/20 to-blue-500/20 border border-accent/20 flex items-center justify-center text-sm font-black text-accent">
+                                                                    {initials}
+                                                                </div>
+                                                                <div>
+                                                                    <h4 className="font-bold text-white text-base leading-snug">{c.companyName}</h4>
+                                                                    <p className="text-[10px] text-white/40 font-bold uppercase tracking-wider mt-0.5">{c.businessType}</p>
+                                                                </div>
+                                                            </div>
+                                                            <span className={`inline-block px-2.5 py-1 rounded-full text-[8px] font-black uppercase tracking-widest border ${c.status === 'Active' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-white/5 border-white/10 text-white/50'}`}>
                                                                 {c.status}
                                                             </span>
-                                                        </td>
-                                                        <td className="py-5 px-6 font-mono">${c.monthlyValue}/mo</td>
-                                                        <td className="py-5 px-6 font-mono text-white/60">{c.nextFollowUp}</td>
-                                                        <td className="py-5 px-6 text-right">
-                                                            <button onClick={() => handleDeleteRecord('clients', c.id)} className="p-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/25 transition-all">
-                                                                <Trash2 className="w-3.5 h-3.5" />
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                ))}
-                                                {db.clients.length === 0 && (
-                                                    <tr><td colSpan={7} className="py-12 text-center text-white/20 italic">No client records found.</td></tr>
-                                                )}
-                                            </tbody>
-                                        </table>
+                                                        </div>
+
+                                                        {/* Primary Need */}
+                                                        <p className="text-xs text-white/60 font-medium italic line-clamp-2 min-h-[2.5rem]">
+                                                            "{c.primaryNeed || 'No primary need documented.'}"
+                                                        </p>
+
+                                                        {/* Card Stats */}
+                                                        <div className="grid grid-cols-3 gap-2 py-4 border-y border-white/5 text-center">
+                                                            <div>
+                                                                <div className="text-[8px] font-black uppercase tracking-widest text-white/30">MRR</div>
+                                                                <div className="text-xs font-black text-white mt-1">${c.monthlyValue}</div>
+                                                            </div>
+                                                            <div>
+                                                                <div className="text-[8px] font-black uppercase tracking-widest text-white/30">Services</div>
+                                                                <div className="text-xs font-black text-accent mt-1">{serviceCount}</div>
+                                                            </div>
+                                                            <div>
+                                                                <div className="text-[8px] font-black uppercase tracking-widest text-white/30">Tasks</div>
+                                                                <div className="text-xs font-black text-blue-400 mt-1">{taskCount}</div>
+                                                            </div>
+                                                        </div>
+
+                                                        {/* Card Footer Actions */}
+                                                        <div className="flex items-center justify-between gap-3 pt-2" onClick={(e) => e.stopPropagation()}>
+                                                            <div className="flex items-center gap-2 text-[10px] text-white/40">
+                                                                <Calendar className="w-3.5 h-3.5" />
+                                                                <span className="font-mono text-[9px]">{c.nextFollowUp}</span>
+                                                            </div>
+                                                            <div className="flex gap-2">
+                                                                <button
+                                                                    onClick={() => setSelectedDetailClient(c)}
+                                                                    className="p-2 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-all flex items-center justify-center"
+                                                                    title="View Consolidated Profile"
+                                                                >
+                                                                    <Eye className="w-3.5 h-3.5" />
+                                                                </button>
+                                                                <button
+                                                                    onClick={() => handleDeleteRecord('clients', c.id)}
+                                                                    className="p-2 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/25 transition-all"
+                                                                    title="Delete Client Record"
+                                                                >
+                                                                    <Trash2 className="w-3.5 h-3.5" />
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </motion.div>
+                                                );
+                                            })}
+                                            {db.clients.length === 0 && (
+                                                <div className="col-span-3 py-16 text-center text-white/20 italic">No client records found.</div>
+                                            )}
+                                        </div>
                                     </div>
                                 )}
 
@@ -1877,6 +1924,213 @@ export default function ExcelAlignedNexusRegistry() {
                                     >
                                         <Send className="w-4 h-4" />
                                     </button>
+                                </div>
+                            </motion.div>
+                        </>
+                    )}
+                </AnimatePresence>
+
+                {/* SLIDING CLIENT DETAIL DRAWER */}
+                <AnimatePresence>
+                    {selectedDetailClient && (
+                        <>
+                            {/* Backdrop */}
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                onClick={() => setSelectedDetailClient(null)}
+                                className="fixed inset-0 bg-black/60 backdrop-blur-xs z-[48]"
+                            />
+                            
+                            {/* Drawer Content */}
+                            <motion.div
+                                initial={{ x: "100%" }}
+                                animate={{ x: 0 }}
+                                exit={{ x: "100%" }}
+                                transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                                className="fixed right-0 top-0 h-full w-full sm:w-[550px] bg-zinc-950 border-l border-white/5 shadow-2xl z-[49] flex flex-col p-8 space-y-6 overflow-y-auto scrollbar-thin"
+                            >
+                                {/* Header */}
+                                <div className="flex items-center justify-between pb-6 border-b border-white/5">
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-accent/20 to-blue-500/20 border border-accent/20 flex items-center justify-center text-base font-black text-accent">
+                                            {selectedDetailClient.companyName.split(" ").map((w: string) => w[0]).join("").substring(0, 2).toUpperCase()}
+                                        </div>
+                                        <div>
+                                            <h3 className="text-xl font-black uppercase tracking-tighter text-white">{selectedDetailClient.companyName}</h3>
+                                            <p className="text-[10px] text-white/40 font-bold uppercase tracking-wider mt-0.5">Consolidated Profile</p>
+                                        </div>
+                                    </div>
+                                    <button onClick={() => setSelectedDetailClient(null)} className="text-white/40 hover:text-white p-1 rounded-lg hover:bg-white/5 transition-all">
+                                        <X className="w-5 h-5" />
+                                    </button>
+                                </div>
+
+                                {/* Body Information */}
+                                <div className="space-y-6">
+                                    {/* Contact Information Cards */}
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="p-4 rounded-2xl bg-white/[0.01] border border-white/5">
+                                            <span className="text-[8px] font-black uppercase tracking-widest text-white/20">Contact Owner</span>
+                                            <p className="text-xs font-bold text-white/80 mt-1">{selectedDetailClient.name}</p>
+                                        </div>
+                                        <div className="p-4 rounded-2xl bg-white/[0.01] border border-white/5">
+                                            <span className="text-[8px] font-black uppercase tracking-widest text-white/20">Primary Email</span>
+                                            <p className="text-xs font-mono text-accent mt-1 truncate">{selectedDetailClient.email}</p>
+                                        </div>
+                                        <div className="p-4 rounded-2xl bg-white/[0.01] border border-white/5">
+                                            <span className="text-[8px] font-black uppercase tracking-widest text-white/20">Phone Number</span>
+                                            <p className="text-xs font-mono text-white/80 mt-1">{selectedDetailClient.phone}</p>
+                                        </div>
+                                        <div className="p-4 rounded-2xl bg-white/[0.01] border border-white/5">
+                                            <span className="text-[8px] font-black uppercase tracking-widest text-white/20">Website Domain</span>
+                                            <a href={selectedDetailClient.website} target="_blank" rel="noreferrer" className="text-xs font-mono text-blue-400 mt-1 truncate block hover:underline">{selectedDetailClient.website}</a>
+                                        </div>
+                                    </div>
+
+                                    {/* Financial Summary */}
+                                    <div className="p-5 rounded-2xl bg-accent/[0.02] border border-accent/20 flex justify-between items-center">
+                                        <div>
+                                            <span className="text-[8px] font-black uppercase tracking-widest text-accent">Monthly Value</span>
+                                            <h4 className="text-2xl font-black text-white mt-1">${selectedDetailClient.monthlyValue}/mo</h4>
+                                        </div>
+                                        <div className="text-right">
+                                            <span className="text-[8px] font-black uppercase tracking-widest text-white/40">Setup Fee</span>
+                                            <h4 className="text-lg font-black text-white/80 mt-1">${selectedDetailClient.setupFee}</h4>
+                                        </div>
+                                    </div>
+
+                                    {/* Tabbed Profile Content */}
+                                    
+                                    {/* SECTION 1: ACTIVE SERVICES */}
+                                    <div className="space-y-3">
+                                        <h4 className="text-xs font-black uppercase tracking-widest text-white/40 border-b border-white/5 pb-2">Active Services</h4>
+                                        {db.services.filter(s => s.clientName === selectedDetailClient.companyName).map(s => (
+                                            <div key={s.id} className="p-4 rounded-2xl bg-white/[0.01] border border-white/5 flex justify-between items-start gap-4">
+                                                <div>
+                                                    <h5 className="text-xs font-bold text-white">{s.serviceName}</h5>
+                                                    <p className="text-[9px] text-white/40 mt-1 font-medium">{s.category} — {s.billingType}</p>
+                                                    {s.notes && <p className="text-[9px] text-white/30 italic mt-2">"{s.notes}"</p>}
+                                                </div>
+                                                <div className="text-right">
+                                                    <span className="text-xs font-mono font-black text-accent">${s.price}</span>
+                                                    <span className={`block mt-2 px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-widest border text-center ${s.status === 'Active' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-white/5 border-white/10 text-white/40'}`}>{s.status}</span>
+                                                </div>
+                                            </div>
+                                        ))}
+                                        {db.services.filter(s => s.clientName === selectedDetailClient.companyName).length === 0 && (
+                                            <p className="text-xs text-white/20 italic">No services listed for this client.</p>
+                                        )}
+                                    </div>
+
+                                    {/* SECTION 2: INVOICES & PAYMENTS */}
+                                    <div className="space-y-3">
+                                        <h4 className="text-xs font-black uppercase tracking-widest text-white/40 border-b border-white/5 pb-2">Invoices & Payments</h4>
+                                        {db.payments.filter(p => p.clientName === selectedDetailClient.companyName).map(p => {
+                                            const isSending = sendingInvoiceId === p.id;
+                                            const canSendInvoice = ["Unpaid", "Sent", "Overdue"].includes(p.status);
+                                            return (
+                                                <div key={p.id} className="p-4 rounded-2xl bg-white/[0.01] border border-white/5 flex justify-between items-center gap-4">
+                                                    <div>
+                                                        <div className="flex items-center gap-2">
+                                                            <span className="text-xs font-mono text-white/60">#{p.invoiceNum}</span>
+                                                            <span className={`px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-widest border ${p.status === 'Paid' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : p.status === 'Sent' ? 'bg-blue-500/10 border-blue-500/20 text-blue-400' : 'bg-red-500/10 border-red-500/20 text-red-400'}`}>{p.status}</span>
+                                                        </div>
+                                                        <span className="text-[10px] text-white/40 block mt-1">Due {p.dueDate}</span>
+                                                    </div>
+                                                    <div className="flex items-center gap-4">
+                                                        <span className="text-xs font-mono font-black text-white/80">${p.amount}</span>
+                                                        
+                                                        {p.status === 'Paid' ? (
+                                                            <button
+                                                                onClick={() => handleToggleTaxSettled(p.id)}
+                                                                className="p-2 rounded-xl bg-white/5 border border-white/5 hover:border-accent/30 transition-all text-white/60 hover:text-accent"
+                                                                title="Toggle Tax Vault Transfer"
+                                                            >
+                                                                {p.taxSettled ? <CheckSquare className="w-4 h-4 text-accent" /> : <Square className="w-4 h-4" />}
+                                                            </button>
+                                                        ) : (
+                                                            canSendInvoice && (
+                                                                <button
+                                                                    disabled={isSending}
+                                                                    onClick={() => handleSendInvoiceEmail(p.id)}
+                                                                    className="p-2 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 hover:bg-blue-500/25 transition-all flex items-center justify-center"
+                                                                    title="Email Invoice Branded Receipt"
+                                                                >
+                                                                    {isSending ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Mail className="w-3.5 h-3.5" />}
+                                                                </button>
+                                                            )
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            );
+                                        })}
+                                        {db.payments.filter(p => p.clientName === selectedDetailClient.companyName).length === 0 && (
+                                            <p className="text-xs text-white/20 italic">No invoice ledger records found.</p>
+                                        )}
+                                    </div>
+
+                                    {/* SECTION 3: PROJECT TASKS */}
+                                    <div className="space-y-3">
+                                        <h4 className="text-xs font-black uppercase tracking-widest text-white/40 border-b border-white/5 pb-2">Active Tasks</h4>
+                                        {db.tasks.filter(t => t.clientName === selectedDetailClient.companyName).map(t => (
+                                            <div key={t.id} className="p-4 rounded-2xl bg-white/[0.01] border border-white/5 space-y-2">
+                                                <div className="flex justify-between items-start">
+                                                    <h5 className="text-xs font-bold text-white">{t.taskName}</h5>
+                                                    <span className={`px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-widest border ${t.priority === 'Urgent' || t.priority === 'High' ? 'bg-red-500/10 border-red-500/20 text-red-400' : 'bg-white/5 border-white/10 text-white/40'}`}>{t.priority}</span>
+                                                </div>
+                                                <div className="flex justify-between items-center text-[10px] text-white/40 font-mono">
+                                                    <span>Status: <span className="font-bold text-white/60">{t.status}</span></span>
+                                                    <span>Due: {t.dueDate}</span>
+                                                </div>
+                                                {t.waitingOn && <p className="text-[9px] text-accent font-medium mt-1">⚠️ Blocker: {t.waitingOn}</p>}
+                                            </div>
+                                        ))}
+                                        {db.tasks.filter(t => t.clientName === selectedDetailClient.companyName).length === 0 && (
+                                            <p className="text-xs text-white/20 italic">No tasks assigned to this client.</p>
+                                        )}
+                                    </div>
+
+                                    {/* SECTION 4: DOMAINS & HOSTING */}
+                                    <div className="space-y-3">
+                                        <h4 className="text-xs font-black uppercase tracking-widest text-white/40 border-b border-white/5 pb-2">Domains & Hosting</h4>
+                                        {db.domainsHosting.filter(d => d.clientName === selectedDetailClient.companyName).map(d => (
+                                            <div key={d.id} className="p-4 rounded-2xl bg-white/[0.01] border border-white/5 space-y-2">
+                                                <div className="flex justify-between items-center">
+                                                    <a href={`https://${d.domain}`} target="_blank" rel="noreferrer" className="text-xs font-black text-blue-400 hover:underline">{d.domain}</a>
+                                                    <span className="text-xs font-mono font-black text-white/80">${d.cost}/yr</span>
+                                                </div>
+                                                <div className="grid grid-cols-2 gap-4 text-[10px] text-white/40 font-mono">
+                                                    <div>Registrar: <span className="text-white/60">{d.registrar}</span></div>
+                                                    <div>Hosting: <span className="text-white/60">{d.hostingProvider}</span></div>
+                                                    <div>Auto-Renew: <span className="text-white/60">{d.autoRenew}</span></div>
+                                                    <div>Renewal: <span className="text-white/60">{d.renewalDate}</span></div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                        {db.domainsHosting.filter(d => d.clientName === selectedDetailClient.companyName).length === 0 && (
+                                            <p className="text-xs text-white/20 italic">No domains registered.</p>
+                                        )}
+                                    </div>
+
+                                    {/* SECTION 5: NOTES HISTORY */}
+                                    <div className="space-y-3">
+                                        <h4 className="text-xs font-black uppercase tracking-widest text-white/40 border-b border-white/5 pb-2">Client Notes</h4>
+                                        {db.notes.filter(n => n.clientName === selectedDetailClient.companyName).map(n => (
+                                            <div key={n.id} className="p-4 rounded-2xl bg-white/[0.01] border border-white/5 space-y-2">
+                                                <div className="flex justify-between items-center">
+                                                    <span className="text-xs font-bold text-accent">{n.title}</span>
+                                                    <span className="text-[10px] font-mono text-white/40">{n.date}</span>
+                                                </div>
+                                                <p className="text-xs text-white/60 leading-relaxed">"{n.body}"</p>
+                                                {n.followUpNeeded === 'Yes' && <p className="text-[9px] text-blue-400 font-bold uppercase tracking-wider">🔔 Follow-up scheduled: {n.followUpDate}</p>}
+                                            </div>
+                                        ))}
+                                        {db.notes.filter(n => n.clientName === selectedDetailClient.companyName).length === 0 && (
+                                            <p className="text-xs text-white/20 italic">No notes logged yet.</p>
+                                        )}
+                                    </div>
                                 </div>
                             </motion.div>
                         </>
