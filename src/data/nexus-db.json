@@ -127,6 +127,22 @@
       "nextFollowUp": "2026-07-29",
       "primaryNeed": "Lead intake forms & CRM automation support",
       "notes": "Consultancy retainer account."
+    },
+    {
+      "id": "client-allthingsnew",
+      "name": "Aubrey Pridgen",
+      "companyName": "All Things New Ministries",
+      "phone": "",
+      "email": "",
+      "website": "https://allthingsnewministries.org",
+      "status": "Active",
+      "businessType": "Non-Profit / Ministry",
+      "monthlyValue": 500,
+      "setupFee": 0,
+      "startDate": "2026-07-01",
+      "nextFollowUp": "2026-08-01",
+      "primaryNeed": "Podcasting production and distribution",
+      "notes": "Real client setup"
     }
   ],
   "services": [
@@ -224,6 +240,17 @@
       "status": "Active",
       "startDate": "2026-06-15",
       "notes": "Workflow trigger logic and lead lists"
+    },
+    {
+      "id": "svc-allthingsnew-1",
+      "clientName": "All Things New Ministries",
+      "serviceName": "Podcasting Service",
+      "category": "Podcasting",
+      "price": 500,
+      "billingType": "Monthly",
+      "status": "Active",
+      "startDate": "2026-07-01",
+      "notes": "Podbean subscription paid on behalf of client"
     }
   ],
   "payments": [
@@ -411,6 +438,20 @@
       "renewalDate": "2026-07-25",
       "accessLevel": "Admin",
       "notes": "Sends invoices and client portal emails"
+    },
+    {
+      "id": "plat-allthingsnew-podbean",
+      "clientName": "All Things New Ministries",
+      "platformName": "Podbean (Podcast Hosting)",
+      "type": "Podcast Hosting",
+      "loginEmail": "info@allthingsnewministries.org",
+      "plan": "Unlimited Audio",
+      "status": "Active",
+      "monthlyCost": 29,
+      "paidBy": "Power Digital",
+      "renewalDate": "2026-08-01",
+      "accessLevel": "Admin",
+      "notes": "Paid by Power Digital, billed under client retainer"
     }
   ],
   "domainsHosting": [
