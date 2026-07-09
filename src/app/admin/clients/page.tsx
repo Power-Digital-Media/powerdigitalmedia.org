@@ -206,7 +206,7 @@ export default function ExcelAlignedNexusRegistry() {
     const [aiMessages, setAiMessages] = useState<ChatMessage[]>([
         {
             sender: "ai",
-            text: "Hello Damein! I am your Nexus AI Registry Agent. Tell me what you'd like to log (e.g. checks, cash, tasks, subscriptions) or ask me questions about your overhead and net profit!"
+            text: "Hello Damein! I am your PDM-Assistant. Tell me what you'd like to log (e.g. checks, cash, tasks, subscriptions) or ask me questions about your overhead and net profit!"
         }
     ]);
     const chatEndRef = useRef<HTMLDivElement>(null);
@@ -215,6 +215,7 @@ export default function ExcelAlignedNexusRegistry() {
     const [newApiKeyService, setNewApiKeyService] = useState("");
     const [newApiKeyValue, setNewApiKeyValue] = useState("");
     const [newApiKeyNotes, setNewApiKeyNotes] = useState("");
+    const [chatProjectContext, setChatProjectContext] = useState("");
 
     // Form Hooks: Client
     const [cName, setCName] = useState("");
@@ -717,7 +718,7 @@ export default function ExcelAlignedNexusRegistry() {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`
                 },
-                body: JSON.stringify({ message: text })
+                body: JSON.stringify({ message: text, projectContext: chatProjectContext })
             });
             const payload = await res.json();
             if (res.ok && payload.success) {
@@ -2014,13 +2015,30 @@ export default function ExcelAlignedNexusRegistry() {
                                             <Sparkles className="w-4 h-4 text-accent" />
                                         </div>
                                         <div>
-                                            <h3 className="text-sm font-black uppercase tracking-widest">Nexus Assistant</h3>
+                                            <h3 className="text-sm font-black uppercase tracking-widest">PDM-Assistant</h3>
                                             <span className="text-[8px] font-bold text-accent uppercase tracking-widest">Online — Gemini backed</span>
                                         </div>
                                     </div>
                                     <button onClick={() => setIsAiOpen(false)} className="text-white/40 hover:text-white p-1 rounded-lg hover:bg-white/5 transition-all">
                                         <X className="w-5 h-5" />
                                     </button>
+                                </div>
+
+                                {/* Project Context Select */}
+                                <div className="px-1 py-3 border-b border-white/5 flex flex-col gap-1.5">
+                                    <label className="text-[8px] font-black uppercase tracking-widest text-white/40">Active Project / Client Focus</label>
+                                    <select
+                                        value={chatProjectContext}
+                                        onChange={(e) => setChatProjectContext(e.target.value)}
+                                        className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-accent/40"
+                                    >
+                                        <option value="">-- General / Multi-Client Context --</option>
+                                        {db.clients.map((c) => (
+                                            <option key={c.id} value={c.companyName}>
+                                                {c.companyName}
+                                            </option>
+                                        ))}
+                                    </select>
                                 </div>
 
                                 {/* Chat Logs Viewport */}

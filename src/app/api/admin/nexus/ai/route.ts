@@ -93,7 +93,7 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: "Forbidden — admin clearance required." }, { status: 403 });
         }
 
-        const { message } = await req.json();
+        const { message, projectContext } = await req.json();
         if (!message) {
             return NextResponse.json({ error: "Missing query message prompt." }, { status: 400 });
         }
@@ -109,9 +109,14 @@ export async function POST(req: NextRequest) {
         // Format conversation history for Gemini (limit to last 20 messages for context efficiency)
         const historyContext = db.chatHistory.slice(-20).map((m: any) => `${m.sender.toUpperCase()}: ${m.text}`).join("\n");
 
-        const systemPrompt = `You are "Nexus AI", the bespoke proactive CFO and Operations Advisor for Power Digital Media.
+        const systemPrompt = `You are "PDM-Assistant", the bespoke proactive CFO and Operations Advisor for Power Digital Media.
 You are directly integrated into the client registry database. 
 Your goal is to parse the user's natural language command, determine if it requires writing or modifying the registry database, perform business intelligence audits, and formulate a response.
+
+${projectContext ? `ACTIVE CLIENT PROJECT FOCUS CONTEXT:
+The user has selected the active project focus: "${projectContext}".
+When logging payments, tasks, notes, or platforms, if the client name is not specified or is ambiguous, automatically default to "${projectContext}".
+Do not ask for confirmation, execute the action directly for "${projectContext}".` : ""}
 
 CURRENT DATABASE STATE:
 ${JSON.stringify(db, null, 2)}
