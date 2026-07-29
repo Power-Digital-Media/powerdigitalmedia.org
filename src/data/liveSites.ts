@@ -60,7 +60,7 @@ export const liveSites: LiveSite[] = [
         category: "Local Business",
         publishedAt: "Published 19 hours ago",
         description: "High-visibility B2B local business portal and consumer menu gallery for central Mississippi's premium seafood catering client.",
-        techStack: ["HTML5", "CSS3 Grid", "Vanilla JS", "Netlify Hosting"],
+        techStack: ["React", "Vite", "CSS3 Grid", "Netlify Hosting"],
         performanceScore: 98,
         accessibilityScore: 96,
         seoScore: 98,

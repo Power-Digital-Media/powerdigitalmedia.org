@@ -3,6 +3,7 @@ import { adminAuth, adminDb } from "@/lib/firebase-admin";
 import { isAdmin } from "@/lib/auth-constants";
 import fs from "fs";
 import path from "path";
+import { syncActiveClientsToTranspond } from "@/lib/crm-sync";
 
 const dbPath = path.join(process.cwd(), "src", "data", "nexus-db.json");
 
@@ -113,6 +114,11 @@ export async function POST(req: NextRequest) {
 
         // Write the data to local file and Firestore cloud
         await writeDbData(body);
+
+        // Sync active clients to Transpond in the background
+        syncActiveClientsToTranspond(body).catch(err => {
+            console.error("CRM sync failed:", err);
+        });
 
         return NextResponse.json({ success: true, message: "Database saved and backed up to cloud." });
     } catch (error: any) {

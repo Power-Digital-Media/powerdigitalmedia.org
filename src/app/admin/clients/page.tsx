@@ -50,6 +50,7 @@ interface Client {
     phone: string;
     email: string;
     website: string;
+    address?: string;
     status: string;
     businessType: string;
     monthlyValue: number;
@@ -69,6 +70,9 @@ interface Client {
     internalNotes?: string;
     archived?: boolean;
     apiKeys?: ApiKey[];
+    capsuleStatus?: string;
+    transpondStatus?: string;
+    ultatelStatus?: string;
 }
 
 interface Contact {
@@ -372,6 +376,7 @@ export default function ExcelAlignedNexusRegistry() {
     const [cPhone, setCPhone] = useState("");
     const [cEmail, setCEmail] = useState("");
     const [cWeb, setCWeb] = useState("");
+    const [cAddress, setCAddress] = useState("");
     const [cStatus, setCStatus] = useState("Active");
     const [cType, setCType] = useState("B2B");
     const [cVal, setCVal] = useState(0);
@@ -380,6 +385,9 @@ export default function ExcelAlignedNexusRegistry() {
     const [cFollowUp, setCFollowUp] = useState("");
     const [cNeed, setCNeed] = useState("");
     const [cNotes, setCNotes] = useState("");
+    const [cCapsuleStatus, setCCapsuleStatus] = useState("Not Registered");
+    const [cTranspondStatus, setCTranspondStatus] = useState("Not Registered");
+    const [cUltatelStatus, setCUltatelStatus] = useState("Not Registered");
 
     // Form Hooks: Service
     const [sClient, setSClient] = useState("");
@@ -460,6 +468,131 @@ export default function ExcelAlignedNexusRegistry() {
     const [nBody, setNBody] = useState("");
     const [nFollowUpNeeded, setNFollowUpNeeded] = useState("No");
     const [nFollowUpDate, setNFollowUpDate] = useState("");
+
+    // Plaid Integration hooks
+    const [plaidLoaded, setPlaidLoaded] = useState(false);
+    const [isSyncing, setIsSyncing] = useState(false);
+    const [syncLog, setSyncLog] = useState<string[]>([]);
+    const [showSyncLogModal, setShowSyncLogModal] = useState(false);
+
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src = "https://cdn.plaid.com/link/v2/stable/link-initialize.js";
+        script.async = true;
+        script.onload = () => setPlaidLoaded(true);
+        document.body.appendChild(script);
+        return () => {
+            if (document.body.contains(script)) {
+                document.body.removeChild(script);
+            }
+        };
+    }, []);
+
+    const handleLinkBank = async () => {
+        if (!user) return;
+        try {
+            setIsSyncing(true);
+            const token = await user.getIdToken();
+            const tokenResponse = await fetch("/api/plaid/create-link-token", {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+            const { linkToken, error } = await tokenResponse.json();
+            if (error) {
+                alert(`Plaid Error: ${error}`);
+                return;
+            }
+
+            if (linkToken === "mock-sandbox-link-token-bypass") {
+                const institution = prompt("Mock Plaid Link: Enter bank name to link (e.g. 'Capital One Spark' or 'Regions Bank'):", "Capital One Spark");
+                if (!institution) return;
+
+                const exchangeResponse = await fetch("/api/plaid/exchange-public-token", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        publicToken: "mock-public-token-bypass",
+                        institution
+                    })
+                });
+                const exData = await exchangeResponse.json();
+                if (exData.success) {
+                    alert(`✅ Mock Link: Successfully connected ${institution}!`);
+                    fetchDatabase();
+                }
+                return;
+            }
+
+            const Plaid = (window as any).Plaid;
+            if (!Plaid) {
+                alert("Plaid Link script not loaded yet. Please try again in a moment.");
+                return;
+            }
+
+            const handler = Plaid.create({
+                token: linkToken,
+                onSuccess: async (public_token: string, metadata: any) => {
+                    const exchangeResponse = await fetch("/api/plaid/exchange-public-token", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${token}`
+                        },
+                        body: JSON.stringify({
+                            publicToken: public_token,
+                            institution: metadata.institution?.name || "Linked Account"
+                        })
+                    });
+                    const exData = await exchangeResponse.json();
+                    if (exData.success) {
+                        alert(`✅ Successfully linked bank account!`);
+                        fetchDatabase();
+                    }
+                },
+                onExit: (err: any) => {
+                    if (err != null) {
+                        console.error("Plaid Link Exit Error:", err);
+                    }
+                }
+            });
+            handler.open();
+        } catch (err: any) {
+            console.error("Link bank failed:", err);
+        } finally {
+            setIsSyncing(false);
+        }
+    };
+
+    const handleSyncTransactions = async () => {
+        if (!user) return;
+        try {
+            setIsSyncing(true);
+            const token = await user.getIdToken();
+            const res = await fetch("/api/plaid/sync-transactions", {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+            const data = await res.json();
+            if (data.success) {
+                setSyncLog(data.log || []);
+                setShowSyncLogModal(true);
+                fetchDatabase();
+            } else {
+                alert(`Sync Failed: ${data.error}`);
+            }
+        } catch (err: any) {
+            console.error("Sync transactions failed:", err);
+        } finally {
+            setIsSyncing(false);
+        }
+    };
 
     const fetchDatabase = async () => {
         if (!user) return;
@@ -573,8 +706,16 @@ export default function ExcelAlignedNexusRegistry() {
         .reduce((sum, p) => sum + (Number(p.amount) || 0), 0);
 
     // TAX VAULT CALCULATIONS (30% Rule)
-    // Sum of all paid payments
+    const todayForTax = new Date();
+    const currentMonthStr = `${todayForTax.getFullYear()}-${String(todayForTax.getMonth() + 1).padStart(2, '0')}`; // e.g. "2026-07"
+
+    // Sum of paid payments collected in the current month
     const totalInboundPaid = db.payments
+        .filter(p => p.status === "Paid" && p.paymentDate && p.paymentDate.startsWith(currentMonthStr))
+        .reduce((sum, p) => sum + (Number(p.amount) || 0), 0);
+
+    // Sum of all paid payments all-time
+    const totalAllTimePaid = db.payments
         .filter(p => p.status === "Paid")
         .reduce((sum, p) => sum + (Number(p.amount) || 0), 0);
 
@@ -597,6 +738,7 @@ export default function ExcelAlignedNexusRegistry() {
             phone: cPhone,
             email: cEmail,
             website: cWeb,
+            address: cAddress,
             status: cStatus,
             businessType: cType,
             monthlyValue: Number(cVal) || 0,
@@ -604,12 +746,16 @@ export default function ExcelAlignedNexusRegistry() {
             startDate: cStart || new Date().toISOString().split('T')[0],
             nextFollowUp: cFollowUp || new Date().toISOString().split('T')[0],
             primaryNeed: cNeed,
-            notes: cNotes
+            notes: cNotes,
+            capsuleStatus: cCapsuleStatus,
+            transpondStatus: cTranspondStatus,
+            ultatelStatus: cUltatelStatus
         };
         const updated = { ...db, clients: [...db.clients, item] };
         await saveDatabase(updated);
         setOpenModal(null);
-        setCName(""); setCCompany(""); setCPhone(""); setCEmail(""); setCWeb(""); setCVal(0); setCSetup(0); setCStart(""); setCFollowUp(""); setCNeed(""); setCNotes("");
+        setCName(""); setCCompany(""); setCPhone(""); setCEmail(""); setCWeb(""); setCAddress(""); setCVal(0); setCSetup(0); setCStart(""); setCFollowUp(""); setCNeed(""); setCNotes("");
+        setCCapsuleStatus("Not Registered"); setCTranspondStatus("Not Registered"); setCUltatelStatus("Not Registered");
     };
 
     const handleAddService = async (e: React.FormEvent) => {
@@ -1026,10 +1172,12 @@ export default function ExcelAlignedNexusRegistry() {
                                 <div>
                                     <div className="flex items-center gap-2 mb-2">
                                         <TrendingUp className="w-4 h-4 text-emerald-400" />
-                                        <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Total Inbound Payments</span>
+                                        <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Collected (This Month)</span>
                                     </div>
                                     <h4 className="text-2xl font-black">${totalInboundPaid.toLocaleString()}</h4>
-                                    <p className="text-[9px] text-white/30 mt-1">Cleared Cash/Checks/Stripe</p>
+                                    <p className="text-[9px] text-white/30 mt-1">
+                                        Cleared This Month • All-Time: <span className="font-bold text-white/80">${totalAllTimePaid.toLocaleString()}</span>
+                                    </p>
                                 </div>
 
                                 <div>
@@ -1133,26 +1281,41 @@ export default function ExcelAlignedNexusRegistry() {
                                                             className="p-6 rounded-3xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.02] hover:border-accent/30 transition-all flex flex-col justify-between gap-6 cursor-pointer"
                                                             onClick={() => setSelectedDetailClient(c)}
                                                         >
-                                                            {/* Card Header */}
-                                                            <div className="flex items-start justify-between gap-4">
-                                                                <div className="flex items-center gap-4">
-                                                                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-accent/20 to-blue-500/20 border border-accent/20 flex items-center justify-center text-sm font-black text-accent">
-                                                                        {initials}
+                                                            <div className="space-y-4">
+                                                                {/* Card Header */}
+                                                                <div className="flex items-start justify-between gap-4">
+                                                                    <div className="flex items-center gap-4">
+                                                                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-accent/20 to-blue-500/20 border border-accent/20 flex items-center justify-center text-sm font-black text-accent">
+                                                                            {initials}
+                                                                        </div>
+                                                                        <div>
+                                                                            <h4 className="font-bold text-white text-base leading-snug">{c.companyName}</h4>
+                                                                            <p className="text-[10px] text-white/40 font-bold uppercase tracking-wider mt-0.5">{c.businessType}</p>
+                                                                        </div>
                                                                     </div>
-                                                                    <div>
-                                                                        <h4 className="font-bold text-white text-base leading-snug">{c.companyName}</h4>
-                                                                        <p className="text-[10px] text-white/40 font-bold uppercase tracking-wider mt-0.5">{c.businessType}</p>
-                                                                    </div>
+                                                                    <span className={`inline-block px-2.5 py-1 rounded-full text-[8px] font-black uppercase tracking-widest border ${c.status.toLowerCase() === 'active' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-red-500/10 border-red-500/20 text-red-400'}`}>
+                                                                        {c.status}
+                                                                    </span>
                                                                 </div>
-                                                                <span className={`inline-block px-2.5 py-1 rounded-full text-[8px] font-black uppercase tracking-widest border ${c.status.toLowerCase().includes('active') ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-white/5 border-white/10 text-white/50'}`}>
-                                                                    {c.status}
-                                                                </span>
-                                                            </div>
 
-                                                            {/* Primary Need */}
-                                                            <p className="text-xs text-white/60 font-medium italic line-clamp-2 min-h-[2.5rem]">
-                                                                "{c.primaryNeed || 'No primary need documented.'}"
-                                                            </p>
+                                                                {/* Primary Need */}
+                                                                <p className="text-xs text-white/60 font-medium italic line-clamp-2 min-h-[2.5rem]">
+                                                                    "{c.primaryNeed || 'No primary need documented.'}"
+                                                                </p>
+
+                                                                {/* Sync Indicators */}
+                                                                <div className="flex gap-1.5 justify-start">
+                                                                    <span className={`px-1.5 py-0.5 rounded text-[7px] font-black uppercase tracking-wider border ${c.capsuleStatus === 'Active' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-red-500/10 border-red-500/20 text-red-400'}`} title="Capsule CRM">
+                                                                        Capsule
+                                                                    </span>
+                                                                    <span className={`px-1.5 py-0.5 rounded text-[7px] font-black uppercase tracking-wider border ${c.transpondStatus === 'Active' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-red-500/10 border-red-500/20 text-red-400'}`} title="Transpond Marketing">
+                                                                        Transpond
+                                                                    </span>
+                                                                    <span className={`px-1.5 py-0.5 rounded text-[7px] font-black uppercase tracking-wider border ${c.ultatelStatus === 'Active' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-red-500/10 border-red-500/20 text-red-400'}`} title="Ultatel PBX">
+                                                                        Ultatel
+                                                                    </span>
+                                                                </div>
+                                                            </div>
 
                                                             {/* Card Stats */}
                                                             <div className="grid grid-cols-3 gap-2 py-4 border-y border-white/5 text-center">
@@ -1209,6 +1372,7 @@ export default function ExcelAlignedNexusRegistry() {
                                                             <th className="py-4 px-6">Client / Company Name</th>
                                                             <th className="py-4 px-6">Contact Owner</th>
                                                             <th className="py-4 px-6">Status</th>
+                                                            <th className="py-4 px-6">CRM & Phone Sync</th>
                                                             <th className="py-4 px-6 text-right">Monthly Retainer</th>
                                                             <th className="py-4 px-6 text-right text-emerald-400">Paid This Month</th>
                                                             <th className="py-4 px-6 text-right text-accent">Outstanding (Current Month)</th>
@@ -1227,9 +1391,22 @@ export default function ExcelAlignedNexusRegistry() {
                                                                     </td>
                                                                     <td className="py-4 px-6 text-white/60">{c.name}</td>
                                                                     <td className="py-4 px-6">
-                                                                        <span className={`inline-block px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-widest border ${c.status.toLowerCase().includes('active') ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-white/5 border-white/10 text-white/40'}`}>
+                                                                        <span className={`inline-block px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-widest border ${c.status.toLowerCase() === 'active' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-red-500/10 border-red-500/20 text-red-400'}`}>
                                                                             {c.status}
                                                                         </span>
+                                                                    </td>
+                                                                    <td className="py-4 px-6">
+                                                                        <div className="flex gap-1.5">
+                                                                            <span className={`px-1.5 py-0.5 rounded text-[7px] font-black uppercase tracking-wider border ${c.capsuleStatus === 'Active' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-red-500/10 border-red-500/20 text-red-400'}`} title="Capsule CRM">
+                                                                                Capsule
+                                                                            </span>
+                                                                            <span className={`px-1.5 py-0.5 rounded text-[7px] font-black uppercase tracking-wider border ${c.transpondStatus === 'Active' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-red-500/10 border-red-500/20 text-red-400'}`} title="Transpond Marketing">
+                                                                                Transpond
+                                                                            </span>
+                                                                            <span className={`px-1.5 py-0.5 rounded text-[7px] font-black uppercase tracking-wider border ${c.ultatelStatus === 'Active' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-red-500/10 border-red-500/20 text-red-400'}`} title="Ultatel PBX">
+                                                                                Ultatel
+                                                                            </span>
+                                                                        </div>
                                                                     </td>
                                                                     <td className="py-4 px-6 text-right font-mono font-bold">${c.monthlyValue}</td>
                                                                     <td className="py-4 px-6 text-right font-mono text-emerald-400 font-bold">${paidVal}</td>
@@ -1447,48 +1624,76 @@ export default function ExcelAlignedNexusRegistry() {
 
                                 {/* ─── 5. PLATFORMS SHEET (OVERHEAD) ─── */}
                                 {activeTab === 'platforms' && (
-                                    <div className="overflow-x-auto">
-                                        <table className="w-full text-left border-collapse">
-                                            <thead>
-                                                <tr className="border-b border-white/5 text-[9px] font-black uppercase tracking-widest text-white/40 bg-black/20">
-                                                    <th className="py-4 px-6">Account Owner</th>
-                                                    <th className="py-4 px-6">Platform Name</th>
-                                                    <th className="py-4 px-6">Type</th>
-                                                    <th className="py-4 px-6">Plan</th>
-                                                    <th className="py-4 px-6">Cost</th>
-                                                    <th className="py-4 px-6">Paid By</th>
-                                                    <th className="py-4 px-6">Login / Email</th>
-                                                    <th className="py-4 px-6 text-right">Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {db.platforms.map((p) => (
-                                                    <tr key={p.id} className="border-b border-white/5 text-xs text-white hover:bg-white/[0.01]">
-                                                        <td className="py-5 px-6 font-bold">{p.clientName}</td>
-                                                        <td className="py-5 px-6 font-bold">{p.platformName}</td>
-                                                        <td className="py-5 px-6 text-white/60">{p.type}</td>
-                                                        <td className="py-5 px-6 font-mono text-[11px] text-white/40">{p.planName || "Standard"}</td>
-                                                        <td className="py-5 px-6 font-mono">${p.monthlyCost}/mo</td>
-                                                        <td className="py-5 px-6">
-                                                            <span className={`inline-block px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-widest ${p.paidBy === 'Power Digital' ? 'bg-red-500/10 text-red-400 border border-red-500/20' : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'}`}>
-                                                                {p.paidBy}
-                                                            </span>
-                                                        </td>
-                                                        <td className="py-5 px-6 font-mono text-white/40">{p.loginEmail}</td>
-                                                        <td className="py-5 px-6 text-right">
-                                                            <button onClick={() => handleDeleteRecord('platforms', p.id)} className="p-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/25 transition-all">
-                                                                <Trash2 className="w-3.5 h-3.5" />
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                ))}
-                                                {db.platforms.length === 0 && (
-                                                    <tr><td colSpan={8} className="py-12 text-center text-white/20 italic">No platforms configured.</td></tr>
-                                                )}
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                )}
+                                     <div className="space-y-6">
+                                         {/* Plaid Actions Panel */}
+                                         <div className="p-6 rounded-[2rem] border border-white/5 bg-white/[0.01] flex flex-col md:flex-row md:items-center justify-between gap-4">
+                                             <div>
+                                                 <h4 className="font-bold text-white text-base">Automatic Transaction Syncing</h4>
+                                                 <p className="text-xs text-white/40 mt-1 max-w-xl">
+                                                     Connect your credit cards (Capital One Spark) to reconcile overhead expenses, and your bank accounts (Regions) to match deposits and track client revenue automatically.
+                                                 </p>
+                                             </div>
+                                             <div className="flex gap-3">
+                                                 <button
+                                                     onClick={handleLinkBank}
+                                                     disabled={isSyncing}
+                                                     className="px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest bg-white/5 border border-white/10 hover:bg-white/10 text-white transition-all disabled:opacity-50"
+                                                 >
+                                                     {isSyncing ? "Connecting..." : "Connect Card/Bank"}
+                                                 </button>
+                                                 <button
+                                                     onClick={handleSyncTransactions}
+                                                     disabled={isSyncing}
+                                                     className="px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest bg-accent hover:bg-accent/80 text-black font-bold transition-all disabled:opacity-50"
+                                                 >
+                                                     {isSyncing ? "Syncing..." : "Sync Transactions"}
+                                                 </button>
+                                             </div>
+                                         </div>
+
+                                         <div className="overflow-x-auto border border-white/5 rounded-2xl bg-black/40">
+                                             <table className="w-full text-left border-collapse">
+                                                 <thead>
+                                                     <tr className="border-b border-white/5 text-[9px] font-black uppercase tracking-widest text-white/40 bg-white/[0.02]">
+                                                         <th className="py-4 px-6">Account Owner</th>
+                                                         <th className="py-4 px-6">Platform Name</th>
+                                                         <th className="py-4 px-6">Type</th>
+                                                         <th className="py-4 px-6">Plan</th>
+                                                         <th className="py-4 px-6">Cost</th>
+                                                         <th className="py-4 px-6">Paid By</th>
+                                                         <th className="py-4 px-6">Login / Email</th>
+                                                         <th className="py-4 px-6 text-right">Actions</th>
+                                                     </tr>
+                                                 </thead>
+                                                 <tbody>
+                                                     {db.platforms.map((p) => (
+                                                         <tr key={p.id} className="border-b border-white/5 text-xs text-white hover:bg-white/[0.01]">
+                                                             <td className="py-5 px-6 font-bold">{p.clientName}</td>
+                                                             <td className="py-5 px-6 font-bold">{p.platformName}</td>
+                                                             <td className="py-5 px-6 text-white/60">{p.type}</td>
+                                                             <td className="py-5 px-6 font-mono text-[11px] text-white/40">{p.planName || "Standard"}</td>
+                                                             <td className="py-5 px-6 font-mono">${p.monthlyCost}/mo</td>
+                                                             <td className="py-5 px-6">
+                                                                 <span className={`inline-block px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-widest ${p.paidBy === 'Power Digital' ? 'bg-red-500/10 text-red-400 border border-red-500/20' : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'}`}>
+                                                                     {p.paidBy}
+                                                                 </span>
+                                                             </td>
+                                                             <td className="py-5 px-6 font-mono text-white/40">{p.loginEmail}</td>
+                                                             <td className="py-5 px-6 text-right">
+                                                                 <button onClick={() => handleDeleteRecord('platforms', p.id)} className="p-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/25 transition-all">
+                                                                     <Trash2 className="w-3.5 h-3.5" />
+                                                                 </button>
+                                                             </td>
+                                                         </tr>
+                                                     ))}
+                                                     {db.platforms.length === 0 && (
+                                                         <tr><td colSpan={8} className="py-12 text-center text-white/20 italic">No platforms configured.</td></tr>
+                                                     )}
+                                                 </tbody>
+                                             </table>
+                                         </div>
+                                     </div>
+                                 )}
 
                                 {/* ─── 6. DOMAINS HOSTING ─── */}
                                 {activeTab === 'domainsHosting' && (
@@ -2057,8 +2262,35 @@ export default function ExcelAlignedNexusRegistry() {
                                     <input type="text" placeholder="https://..." value={cWeb} onChange={e => setCWeb(e.target.value)} className="w-full bg-black/40 border border-white/5 rounded-xl px-4 py-3 text-xs text-white focus:outline-none" />
                                 </div>
                                 <div className="space-y-1">
+                                    <label className="text-[9px] font-black uppercase tracking-widest text-white/40">Physical Address</label>
+                                    <input type="text" placeholder="e.g. 123 Main St, Jackson, MS 39201" value={cAddress} onChange={e => setCAddress(e.target.value)} className="w-full bg-black/40 border border-white/5 rounded-xl px-4 py-3 text-xs text-white focus:outline-none" />
+                                </div>
+                                <div className="space-y-1">
                                     <label className="text-[9px] font-black uppercase tracking-widest text-white/40">Primary Need</label>
                                     <input type="text" value={cNeed} onChange={e => setCNeed(e.target.value)} className="w-full bg-black/40 border border-white/5 rounded-xl px-4 py-3 text-xs text-white focus:outline-none" />
+                                </div>
+                                <div className="grid grid-cols-3 gap-4">
+                                    <div className="space-y-1">
+                                        <label className="text-[9px] font-black uppercase tracking-widest text-white/40">Capsule CRM</label>
+                                        <select value={cCapsuleStatus} onChange={e => setCCapsuleStatus(e.target.value)} className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 text-xs text-white">
+                                            <option value="Not Registered">Not Registered</option>
+                                            <option value="Active">Active</option>
+                                        </select>
+                                    </div>
+                                    <div className="space-y-1">
+                                        <label className="text-[9px] font-black uppercase tracking-widest text-white/40">Transpond</label>
+                                        <select value={cTranspondStatus} onChange={e => setCTranspondStatus(e.target.value)} className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 text-xs text-white">
+                                            <option value="Not Registered">Not Registered</option>
+                                            <option value="Active">Active</option>
+                                        </select>
+                                    </div>
+                                    <div className="space-y-1">
+                                        <label className="text-[9px] font-black uppercase tracking-widest text-white/40">Ultatel PBX</label>
+                                        <select value={cUltatelStatus} onChange={e => setCUltatelStatus(e.target.value)} className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 text-xs text-white">
+                                            <option value="Not Registered">Not Registered</option>
+                                            <option value="Active">Active</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div className="space-y-1">
                                     <label className="text-[9px] font-black uppercase tracking-widest text-white/40">Notes</label>
@@ -2646,6 +2878,31 @@ export default function ExcelAlignedNexusRegistry() {
                     )}
                 </AnimatePresence>
 
+                {/* MODAL: PLAID SYNC LOG */}
+                {showSyncLogModal && (
+                    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-6">
+                        <div className="bg-zinc-950 border border-white/5 rounded-[2rem] w-full max-w-xl p-8 space-y-6 overflow-hidden flex flex-col max-h-[80vh]">
+                            <div className="flex items-center justify-between">
+                                <h3 className="text-lg font-black uppercase tracking-tight text-white">Transaction Sync Log</h3>
+                                <button onClick={() => setShowSyncLogModal(false)} className="text-white/40 hover:text-white transition-all text-xs font-black uppercase tracking-wider">Close</button>
+                            </div>
+                            
+                            <div className="flex-1 overflow-y-auto space-y-3 pr-2 scrollbar-thin">
+                                {syncLog.map((log, index) => (
+                                    <div key={index} className="p-4 rounded-xl border border-white/5 bg-white/[0.01] text-xs text-white/80 font-mono leading-relaxed">
+                                        {log}
+                                    </div>
+                                ))}
+                                {syncLog.length === 0 && (
+                                    <div className="text-center text-xs text-white/30 italic py-8">
+                                        No transactions were processed during this sync.
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                )}
+
                 {/* SLIDING CLIENT DETAIL DRAWER */}
                 <AnimatePresence>
                     {selectedDetailClient && (
@@ -2702,6 +2959,37 @@ export default function ExcelAlignedNexusRegistry() {
                                         <div className="p-4 rounded-2xl bg-white/[0.01] border border-white/5">
                                             <span className="text-[8px] font-black uppercase tracking-widest text-white/20">Website Domain</span>
                                             <a href={selectedDetailClient.website} target="_blank" rel="noreferrer" className="text-xs font-mono text-blue-400 mt-1 truncate block hover:underline">{selectedDetailClient.website}</a>
+                                        </div>
+                                        {selectedDetailClient.address && (
+                                            <div className="p-4 rounded-2xl bg-white/[0.01] border border-white/5 col-span-2">
+                                                <span className="text-[8px] font-black uppercase tracking-widest text-white/20">Physical Address</span>
+                                                <p className="text-xs font-bold text-white/80 mt-1">{selectedDetailClient.address}</p>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {/* CRM & Telephony Integration Indicators */}
+                                    <div className="p-4 rounded-2xl bg-white/[0.01] border border-white/5 space-y-3">
+                                        <span className="text-[8px] font-black uppercase tracking-widest text-white/20">CRM & Telephony Integrations</span>
+                                        <div className="grid grid-cols-3 gap-2">
+                                            <div className="p-3 rounded-xl bg-black/40 border border-white/5 flex flex-col items-center text-center">
+                                                <span className="text-[7px] font-black uppercase tracking-wider text-white/30">Capsule CRM</span>
+                                                <span className={`inline-block mt-1.5 px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-widest border ${selectedDetailClient.capsuleStatus === 'Active' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-white/5 border-white/10 text-white/30'}`}>
+                                                    {selectedDetailClient.capsuleStatus || 'Not Registered'}
+                                                </span>
+                                            </div>
+                                            <div className="p-3 rounded-xl bg-black/40 border border-white/5 flex flex-col items-center text-center">
+                                                <span className="text-[7px] font-black uppercase tracking-wider text-white/30">Transpond</span>
+                                                <span className={`inline-block mt-1.5 px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-widest border ${selectedDetailClient.transpondStatus === 'Active' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-white/5 border-white/10 text-white/30'}`}>
+                                                    {selectedDetailClient.transpondStatus || 'Not Registered'}
+                                                </span>
+                                            </div>
+                                            <div className="p-3 rounded-xl bg-black/40 border border-white/5 flex flex-col items-center text-center">
+                                                <span className="text-[7px] font-black uppercase tracking-wider text-white/30">Ultatel PBX</span>
+                                                <span className={`inline-block mt-1.5 px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-widest border ${selectedDetailClient.ultatelStatus === 'Active' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-white/5 border-white/10 text-white/30'}`}>
+                                                    {selectedDetailClient.ultatelStatus || 'Not Registered'}
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
 

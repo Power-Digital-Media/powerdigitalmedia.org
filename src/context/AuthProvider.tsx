@@ -80,7 +80,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 primaryPhone = "(601) 720-4574";
             } else if (demoCompany === 'ms-dirt') {
                 companyName = "Geaux Pro Outdoors";
-                monthlyRate = 550;
+                monthlyRate = 600;
                 subscriptionTier = "management";
                 defaultEmail = "office@msdirt.com";
                 primaryPhone = "(601) 896-2664";

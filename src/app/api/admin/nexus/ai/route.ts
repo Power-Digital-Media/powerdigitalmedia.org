@@ -4,6 +4,7 @@ import { isAdmin } from "@/lib/auth-constants";
 import { GoogleGenAI } from "@google/genai";
 import fs from "fs";
 import path from "path";
+import { syncActiveClientsToTranspond } from "@/lib/crm-sync";
 
 const dbPath = path.join(process.cwd(), "src", "data", "nexus-db.json");
 
@@ -203,8 +204,99 @@ MUTATION DATA SCHEMAS:
   }
 `;
 
+
+const tools: any[] = [
+    {
+        functionDeclarations: [
+            {
+                name: "fetchTranspondSubscribers",
+                description: "Retrieves subscribers from Transpond API. Useful to search for active contacts, verify tag states (e.g. client, crm not registered, etc.) or inspect synchronization.",
+                parameters: {
+                    type: "OBJECT",
+                    properties: {}
+                }
+            },
+            {
+                name: "searchTranspondContact",
+                description: "Searches for a specific contact in Transpond by email address to verify active status or tag registration.",
+                parameters: {
+                    type: "OBJECT",
+                    properties: {
+                        email: { "type": "STRING", "description": "The email address to search for." }
+                    },
+                    required: ["email"]
+                }
+            },
+            {
+                name: "syncClientToCRM",
+                description: "Triggers a sync of a specific client and their contacts to Transpond/Capsule. This will update their tags, email, phone, and company name dynamically.",
+                parameters: {
+                    type: "OBJECT",
+                    properties: {
+                        companyName: { "type": "STRING", "description": "The exact name of the company to sync." }
+                    },
+                    required: ["companyName"]
+                }
+            }
+        ]
+    }
+];
+
+async function executeTool(name: string, args: any, db: any) {
+    const transpondKey = process.env.TRANSPOND_API_KEY;
+    const transpondGroupId = Number(process.env.TRANSPOND_SOLUTIONS_GROUP_ID || 187918);
+
+    if (name === "fetchTranspondSubscribers") {
+        if (!transpondKey) return { error: "Transpond API key not configured in environment." };
+        try {
+            const res = await fetch(`https://api.transpond.io/group/${transpondGroupId}/subscribers?limit=100`, {
+                headers: { "Authorization": `Bearer ${transpondKey}` }
+            });
+            if (!res.ok) {
+                return { error: `Failed to fetch from Transpond: ${res.statusText}` };
+            }
+            const data = await res.json();
+            return { subscribers: data };
+        } catch (err: any) {
+            return { error: err.message };
+        }
+    }
+
+    if (name === "searchTranspondContact") {
+        if (!transpondKey) return { error: "Transpond API key not configured in environment." };
+        try {
+            const email = args?.email as string;
+            if (!email) return { error: "Missing email parameter." };
+            const res = await fetch(`https://api.transpond.io/subscriber/email/${encodeURIComponent(email)}`, {
+                headers: { "Authorization": `Bearer ${transpondKey}` }
+            });
+            if (res.status === 404) {
+                return { found: false, message: `Contact with email ${email} was not found in Transpond.` };
+            }
+            if (!res.ok) {
+                return { error: `Failed to search contact: ${res.statusText}` };
+            }
+            const data = await res.json();
+            return { found: true, contact: data };
+        } catch (err: any) {
+            return { error: err.message };
+        }
+    }
+
+    if (name === "syncClientToCRM") {
+        try {
+            await syncActiveClientsToTranspond(db);
+            return { success: true, message: `Successfully triggered Transpond/Capsule CRM sync for clients.` };
+        } catch (err: any) {
+            return { error: err.message };
+        }
+    }
+
+    return { error: "Unknown tool call." };
+}
+
         const ai = new GoogleGenAI({ apiKey });
-        const response = await ai.models.generateContent({
+        let response = await ai.models.generateContent({
             model: "gemini-2.5-flash",
             contents: [
                 {
@@ -214,11 +306,53 @@ MUTATION DATA SCHEMAS:
             ],
             config: {
                 temperature: 0.2,
-                responseMimeType: "application/json"
+                tools: tools
             }
         });
 
-        const rawText = response.text || "{}";
+        // Handle tool calls/function calls if the model requests them
+        if (response.functionCalls && response.functionCalls.length > 0) {
+            const call = response.functionCalls[0];
+            if (call.name) {
+                console.log(`[Nexus AI Tool Use] Executing tool: ${call.name}`, call.args);
+                const toolResult = await executeTool(call.name, call.args, db);
+
+                // Recall the model with the tool result so it can generate the final JSON response
+                response = await ai.models.generateContent({
+                model: "gemini-2.5-flash",
+                contents: [
+                    {
+                        role: "user",
+                        parts: [{ text: `${systemPrompt}\n\nUser Command: "${message}"` }]
+                    },
+                    {
+                        role: "model",
+                        parts: [{ functionCall: call }]
+                    },
+                    {
+                        role: "user",
+                        parts: [{
+                            functionResponse: {
+                                name: call.name,
+                                response: toolResult
+                            }
+                        }]
+                    }
+                ],
+                config: {
+                    temperature: 0.2
+                }
+            });
+            }
+        }
+
+        let rawText = response.text || "{}";
+        // Clean markdown wrapper if the model returned it
+        if (rawText.includes("```json")) {
+            rawText = rawText.split("```json")[1].split("```")[0];
+        } else if (rawText.includes("```")) {
+            rawText = rawText.split("```")[1].split("```")[0];
+        }
         const parsed = JSON.parse(rawText.trim());
 
         if (parsed.mutation) {
@@ -269,6 +403,11 @@ MUTATION DATA SCHEMAS:
         // Save changes to disk and Firestore backup
         await writeDbData(db);
 
+        // Sync active clients to Transpond in the background
+        syncActiveClientsToTranspond(db).catch(err => {
+            console.error("CRM sync failed inside AI assistant:", err);
+        });
+
         return NextResponse.json({
             success: true,
             reply: parsed.reply || "I've processed your command.",
@@ -279,3 +418,4 @@ MUTATION DATA SCHEMAS:
         return NextResponse.json({ error: error.message || "Failed to process AI command." }, { status: 500 });
     }
 }
+

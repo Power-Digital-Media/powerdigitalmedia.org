@@ -43,3 +43,7 @@ next-env.d.ts
 
 # Local Netlify folder
 .netlify
+
+# local scripts with sensitive data
+/scripts/create-admin-user.ts
+

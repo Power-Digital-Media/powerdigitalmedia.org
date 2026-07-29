@@ -9,6 +9,122 @@ import {
     decrementFounders100,
 } from '@/lib/firestore-helpers';
 import { Timestamp } from 'firebase-admin/firestore';
+import fs from 'fs';
+import path from 'path';
+import { adminDb } from '@/lib/firebase-admin';
+
+const registryDbPath = path.join(process.cwd(), 'src', 'data', 'nexus-db.json');
+
+async function getRegistryDb() {
+    if (!fs.existsSync(registryDbPath)) {
+        try {
+            const doc = await adminDb.collection('nexus_registry').doc('database').get();
+            if (doc.exists) {
+                return doc.data();
+            }
+        } catch (err) {
+            console.error('❌ Failed to restore registry DB from Firestore in webhook:', err);
+        }
+        return null;
+    }
+    try {
+        const raw = fs.readFileSync(registryDbPath, 'utf-8');
+        return JSON.parse(raw);
+    } catch {
+        return null;
+    }
+}
+
+async function writeRegistryDb(data: any) {
+    try {
+        fs.writeFileSync(registryDbPath, JSON.stringify(data, null, 2), 'utf-8');
+        await adminDb.collection('nexus_registry').doc('database').set(data);
+    } catch (err) {
+        console.error('❌ Failed to save registry DB in webhook:', err);
+    }
+}
+
+async function syncStripeCustomerIdToRegistryClient(clientId: string, stripeCustomerId: string) {
+    try {
+        const db = await getRegistryDb();
+        if (!db) return;
+
+        const client = db.clients.find((c: any) => c.id === clientId);
+        if (client) {
+            client.stripeCustomerId = stripeCustomerId;
+            await writeRegistryDb(db);
+            console.log(`🔗 Linked stripeCustomerId ${stripeCustomerId} to registry client ${client.companyName}`);
+        }
+    } catch (err) {
+        console.error('❌ Error syncing Stripe Customer ID to registry DB:', err);
+    }
+}
+
+async function syncStripePaymentToRegistry(
+    clientId: string,
+    invoiceId: string,
+    amount: number,
+    status: 'Paid' | 'Unpaid',
+    description: string,
+    paidDateStr?: string
+) {
+    try {
+        const db = await getRegistryDb();
+        if (!db) return;
+
+        const client = db.clients.find((c: any) => c.id === clientId);
+        if (!client) {
+            console.log(`⚠️ Registry client with ID ${clientId} not found.`);
+            return;
+        }
+
+        const clientName = client.companyName;
+
+        // Try to find if this payment already exists in registry DB
+        const payment = db.payments.find((p: any) =>
+            p.clientName === clientName &&
+            (p.invoiceNum === invoiceId ||
+             p.notes?.includes(invoiceId) ||
+             (p.amount === amount && p.status === 'Unpaid'))
+        );
+
+        const todayStr = new Date().toISOString().split('T')[0];
+
+        if (payment) {
+            payment.status = status;
+            payment.paymentDate = status === 'Paid' ? (paidDateStr || todayStr) : '';
+            payment.paymentMethod = status === 'Paid' ? 'Stripe' : '';
+            payment.amountPaid = status === 'Paid' ? amount : 0;
+            payment.balanceDue = status === 'Paid' ? 0 : amount;
+            payment.notes = `${payment.notes || ''} (Stripe synced)`.trim();
+        } else {
+            const newPayment = {
+                id: `pay-stripe-${Date.now()}`,
+                clientName: clientName,
+                invoiceNum: invoiceId.slice(-8).toUpperCase(),
+                invoiceDate: todayStr,
+                amount: amount,
+                dueDate: todayStr,
+                status: status,
+                paymentDate: status === 'Paid' ? (paidDateStr || todayStr) : '',
+                paymentMethod: status === 'Paid' ? 'Stripe' : '',
+                relatedService: description || 'Stripe Invoice Service',
+                notes: `Stripe invoice ${invoiceId} synced automatically.`,
+                taxSettled: false,
+                amountBilled: amount,
+                amountPaid: status === 'Paid' ? amount : 0,
+                balanceDue: status === 'Paid' ? 0 : amount,
+                recurring: false
+            };
+            db.payments.push(newPayment);
+        }
+
+        await writeRegistryDb(db);
+        console.log(`✅ Registry database updated with Stripe payment details for ${clientName}`);
+    } catch (err) {
+        console.error('❌ Error syncing Stripe payment to registry DB:', err);
+    }
+}
 
 export async function POST(req: Request) {
     const body = await req.text();
@@ -39,6 +155,8 @@ export async function POST(req: Request) {
                     await updateClientProfile(session.client_reference_id, {
                         stripeCustomerId: session.customer as string,
                     });
+                    // Sync the Customer ID link to local nexus-db.json registry too
+                    await syncStripeCustomerIdToRegistryClient(session.client_reference_id, session.customer as string);
                 }
 
                 // ── Founder's 100 Auto-Decrement ────────────────
@@ -63,6 +181,8 @@ export async function POST(req: Request) {
                     ? await getClientByStripeId(session.customer as string)
                     : null;
 
+                const clientId = session.client_reference_id || client?.uid || '';
+
                 if (client) {
                     await logActivity({
                         clientId: client.uid,
@@ -71,6 +191,14 @@ export async function POST(req: Request) {
                         metadata: { sessionId: session.id },
                     });
                 }
+
+                // Sync payment to registry database
+                if (clientId) {
+                    const amountPaid = (session.amount_total || 0) / 100;
+                    const desc = 'Stripe Checkout Payment';
+                    await syncStripePaymentToRegistry(clientId, session.id, amountPaid, 'Paid', desc);
+                }
+
                 break;
             }
 
@@ -103,6 +231,14 @@ export async function POST(req: Request) {
                         title: `Invoice paid — $${((invoice.amount_paid || 0) / 100).toFixed(2)}`,
                         metadata: { invoiceId: invoice.id },
                     });
+                }
+
+                // Sync payment to registry database
+                if (clientId) {
+                    const amountPaid = (invoice.amount_paid || 0) / 100;
+                    const paidDate = new Date((invoice.status_transitions?.paid_at || Date.now() / 1000) * 1000).toISOString().split('T')[0];
+                    const desc = invoice.lines?.data?.[0]?.description || 'Payment';
+                    await syncStripePaymentToRegistry(clientId, invoice.id, amountPaid, 'Paid', desc, paidDate);
                 }
 
                 console.log(`✅ Invoice ${invoice.id} paid → Firestore synced`);
@@ -141,6 +277,13 @@ export async function POST(req: Request) {
                         title: `Payment failed — $${((invoice.amount_due || 0) / 100).toFixed(2)}`,
                         metadata: { invoiceId: invoice.id },
                     });
+                }
+
+                // Sync payment fail to registry database as unpaid
+                if (clientId) {
+                    const amountDue = (invoice.amount_due || 0) / 100;
+                    const desc = invoice.lines?.data?.[0]?.description || 'Payment';
+                    await syncStripePaymentToRegistry(clientId, invoice.id, amountDue, 'Unpaid', desc);
                 }
 
                 console.log(`⚠️ Invoice ${invoice.id} payment failed → status updated`);
