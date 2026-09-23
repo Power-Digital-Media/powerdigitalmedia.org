@@ -58,10 +58,12 @@ export default function Footer() {
                         <h4 className="font-bold mb-6 uppercase tracking-wider text-xs text-accent">Services</h4>
                         <ul className="space-y-4 text-sm text-muted-foreground">
                             <li><Link href="/web-design" className="hover:text-accent transition-colors">Web Design</Link></li>
-                            <li><Link href="/custom-applications" className="hover:text-accent transition-colors">CRM & Custom Apps</Link></li>
+                            <li><Link href="/pindrop" className="hover:text-accent transition-colors">PinDrop™ Field App</Link></li>
+                            <li><Link href="/custom-applications" className="hover:text-accent transition-colors">CRM &amp; Custom Apps</Link></li>
                             <li><Link href="/business-phones" className="hover:text-accent transition-colors">Business Phones</Link></li>
                             <li><Link href="/marketing" className="hover:text-accent transition-colors">Marketing</Link></li>
                             <li><Link href="/our-work" className="hover:text-accent transition-colors">Portfolio</Link></li>
+                            <li><Link href="/review" className="hover:text-accent transition-colors">Leave a Review</Link></li>
                         </ul>
                     </div>
 

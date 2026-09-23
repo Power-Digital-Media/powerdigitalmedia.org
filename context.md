@@ -121,7 +121,14 @@ The project is currently in a **100% stable, fully compiled, and production-read
 * **Client Network SEO Authority Backlinks:**
   - Standardized and embedded clean, branded attribution backlinks (`Designed & Engineered by Power Digital Media` -> `https://powerdigitalmedia.org`) across 17 client websites/codebases (Born Again Roofing, Tbeaux, Powered by Peptides, Geaux Pro Outdoors, All Things New, Corner Pharmacy, Lungrin's Lawncare, Annie's Cafe, The Local Guide MS, Tew & Company, Black Sheep Recovery, Pastor's Provision, Marino Marketing, PinDrop SaaS, In His Grip Ministries, Simmons Memorial).
   - Positions `powerdigitalmedia.org` to rapidly absorb high-trust external entity graph signals from active Mississippi regional web properties.
+* **Dedicated PinDrop™ Contractor Landing Page (`/pindrop`):**
+  - High-converting feature page explaining the 3-step field automation pipeline (On-Site Photo Pin ➔ Automatic Google Geo-Schema ➔ Automated SMS Review Request).
+  - Highlights real-world case studies for Born Again Roofing (99+ live job pins) and Geaux Pro Outdoors (MS Dirt).
+* **Frictionless Client Review Portal (`/review`):**
+  - Dedicated direct route with 1-click Google review submission and pre-written copyable prompts.
+  - Linked in navigation and XML sitemap (`/sitemap.xml`).
 
 All developments have been verified using type-safe compilation checks (`npx tsc --noEmit` is clean) and successfully committed.
+
 
 

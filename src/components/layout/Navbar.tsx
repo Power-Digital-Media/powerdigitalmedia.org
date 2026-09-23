@@ -55,6 +55,7 @@ export default function Navbar() {
 
     const serviceLinks = [
         { name: "Web Design", href: "/web-design" },
+        { name: "PinDrop™ Field App", href: "/pindrop" },
         { name: "CRM & Custom Apps", href: "/custom-applications" },
         { name: "Business Phones", href: "/business-phones" },
         { name: "Growth Marketing", href: "/marketing" },
