@@ -134,6 +134,51 @@ export default function RootLayout({
                   "sameAs": "https://en.wikipedia.org/wiki/Jackson,_Mississippi"
                 },
                 {
+                  "@type": "City",
+                  "name": "Clinton",
+                  "sameAs": "https://en.wikipedia.org/wiki/Clinton,_Mississippi"
+                },
+                {
+                  "@type": "City",
+                  "name": "Madison",
+                  "sameAs": "https://en.wikipedia.org/wiki/Madison,_Mississippi"
+                },
+                {
+                  "@type": "City",
+                  "name": "Ridgeland",
+                  "sameAs": "https://en.wikipedia.org/wiki/Ridgeland,_Mississippi"
+                },
+                {
+                  "@type": "City",
+                  "name": "Brandon",
+                  "sameAs": "https://en.wikipedia.org/wiki/Brandon,_Mississippi"
+                },
+                {
+                  "@type": "City",
+                  "name": "Flowood",
+                  "sameAs": "https://en.wikipedia.org/wiki/Flowood,_Mississippi"
+                },
+                {
+                  "@type": "City",
+                  "name": "Pearl",
+                  "sameAs": "https://en.wikipedia.org/wiki/Pearl,_Mississippi"
+                },
+                {
+                  "@type": "City",
+                  "name": "Richland",
+                  "sameAs": "https://en.wikipedia.org/wiki/Richland,_Mississippi"
+                },
+                {
+                  "@type": "City",
+                  "name": "Flora",
+                  "sameAs": "https://en.wikipedia.org/wiki/Flora,_Mississippi"
+                },
+                {
+                  "@type": "City",
+                  "name": "Byram",
+                  "sameAs": "https://en.wikipedia.org/wiki/Byram,_Mississippi"
+                },
+                {
                   "@type": "State",
                   "name": "Mississippi"
                 }
@@ -148,25 +193,39 @@ export default function RootLayout({
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "High-Velocity Web Design"
+                    "name": "High-Velocity Web Design & Next.js Systems"
                   }
                 },
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Bespoke Custom Applications"
+                    "name": "PinDrop™ Contractor Field Automation & Geotagging"
                   }
                 },
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "High-Velocity Growth Marketing"
+                    "name": "Bespoke Custom Applications & CRM"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Local SEO & Google Business Profile Domination"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Business VoIP Phone Infrastructure"
                   }
                 }
               ],
-              "description": "Power Digital Media LLC is Jackson’s elite digital agency engineering high-performance web design, Next.js, React & Vite custom application development, and high-velocity growth marketing systems."
+              "description": "Power Digital Media LLC is Central Mississippi's elite digital engineering agency providing high-performance web design, Next.js custom applications, proprietary PinDrop™ contractor automation, and local SEO domination across Jackson, Clinton, Madison, Ridgeland, Brandon, and Flowood."
             })
           }}
         />

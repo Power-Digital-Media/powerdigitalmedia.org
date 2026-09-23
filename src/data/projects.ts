@@ -56,7 +56,7 @@ export const projects: Project[] = [
         objective: "Automate neighborhood-level SEO dominance and 5-star review acquisition directly from field workers' smartphones.",
         engineering: ["GPS Coordinate Processing", "Live Mapbox/Leaflet Layer", "Automated SMS/Email Gateway"],
         protocol: ["One-Tap Job Submission", "Exif Photo Geotagging", "Real-Time Google Schema"],
-        netlifyUrl: "https://pindropsaas.netlify.app",
+        netlifyUrl: "/pindrop",
         glowColor: "6, 182, 212" // Electric Cyan
     },
     {
