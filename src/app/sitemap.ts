@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { blogPosts } from '@/data/blogPosts';
+import { projects } from '@/data/projects';
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://powerdigitalmedia.org';
@@ -36,6 +37,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: route === '' ? 1 : 0.8,
     }));
 
+    // Project Showcase Routes
+    const projectRoutes = projects.map((project) => ({
+        url: `${baseUrl}/portfolio/${project.id}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.8,
+    }));
+
     // Blog Routes
     const blogRoutes = blogPosts.map((post) => ({
         url: `${baseUrl}/blog/${post.slug}`,
@@ -44,5 +53,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
     }));
 
-    return [...routes, ...blogRoutes];
+    return [...routes, ...projectRoutes, ...blogRoutes];
 }
