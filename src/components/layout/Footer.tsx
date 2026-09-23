@@ -2,6 +2,7 @@
 
 import { Instagram, Twitter, Youtube, Mail, Phone, MapPin, Facebook } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import BookingModal from "../ui/BookingModal";
 import BBBSeal from "../ui/BBBSeal";
@@ -18,17 +19,9 @@ export default function Footer() {
 
                     {/* Brand Column */}
                     <div className="lg:col-span-2">
-                        <Link href="/" className="flex items-center gap-2 mb-6 group w-fit">
-                            <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-accent group-hover:bg-accent/90 transition-colors">
-                                <Phone className="w-6 h-6 text-white" />
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-xl font-bold tracking-tighter leading-none">
-                                    POWER <span className="text-accent">DIGITAL</span>
-                                </span>
-                                <span className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground uppercase leading-none mt-1">
-                                    Media Studio
-                                </span>
+                        <Link href="/" className="flex items-center mb-6 group w-fit">
+                            <div className="relative flex items-center h-14 w-64">
+                                <Image src="/images/pdm-logo-transparent.png" alt="Power Digital Media LLC" fill unoptimized className="object-contain object-left group-hover:scale-105 transition-transform" />
                             </div>
                         </Link>
                         <p className="max-w-sm text-muted-foreground leading-relaxed mb-8">
