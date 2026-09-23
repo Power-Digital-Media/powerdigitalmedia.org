@@ -41,7 +41,7 @@ export const projects: Project[] = [
         objective: "Streamline daily boil price updates, local search pack dominance, and high-volume catering bookings.",
         engineering: ["Real-time Price Tracker", "Interactive Feast Calculator", "Local 3-Pack Schema"],
         protocol: ["Tactile Cajun Brand", "Instant Phone Routing", "Google Maps Integration"],
-        netlifyUrl: "https://tbeauxscrawfish.com",
+        netlifyUrl: "https://tbeauxs.com",
         glowColor: "239, 68, 68" // Crimson Red
     },
     {

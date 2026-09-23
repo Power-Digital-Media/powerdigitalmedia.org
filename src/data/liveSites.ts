@@ -54,8 +54,8 @@ export const liveSites: LiveSite[] = [
     {
         id: "tbeauxs",
         title: "Tbeaux's Crawfish",
-        domain: "tbeauxscrawfish.com",
-        url: "https://tbeauxscrawfish.com",
+        domain: "tbeauxs.com",
+        url: "https://tbeauxs.com",
         deployType: "Standard HTML/JS",
         category: "Local Business",
         publishedAt: "Active Client",
