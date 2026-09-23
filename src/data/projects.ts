@@ -77,7 +77,7 @@ export const projects: Project[] = [
         id: "the-local-guide-ms",
         title: "The Local Guide MS",
         description: "Mississippi Food & Travel Media Engine. High-definition video storytelling hub and interactive diner guide connecting local food culture, YouTube episodes, and Google Maps Local Guide routes.",
-        image: "/portfolio/the-local-guide-ms.png",
+        image: "/portfolio/the-local-guide-ms.webp",
         tags: ["Media Brand", "YouTube Hub", "Interactive Map"],
         client: "The Local Guide MS Media",
         year: "2026",

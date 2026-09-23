@@ -100,7 +100,7 @@ export const liveSites: LiveSite[] = [
         seoScore: 100,
         bestPracticesScore: 99,
         glowColor: "245, 158, 11", // Warm Amber
-        image: "/portfolio/the-local-guide-ms.png"
+        image: "/portfolio/the-local-guide-ms.webp"
     },
     {
         id: "pastors-provision",

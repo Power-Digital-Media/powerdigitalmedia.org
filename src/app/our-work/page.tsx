@@ -293,6 +293,41 @@ function SimulatedWebPreview({ site }: { site: LiveSite }) {
         );
     }
 
+    if (site.id === "the-local-guide-ms") {
+        return (
+            <div className="w-full h-full bg-[#0c0904] relative flex flex-col justify-between p-4 overflow-hidden border border-amber-500/10">
+                {/* Amber warm glow */}
+                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.15)_0%,transparent_70%)]" />
+
+                {/* Local Guide Header */}
+                <div className="flex items-center justify-between z-10 border-b border-white/5 pb-2">
+                    <span className="text-[9px] font-black text-amber-400 tracking-wider">THE LOCAL GUIDE MS</span>
+                    <span className="text-[7px] font-mono text-amber-500">FOOD &amp; TRAVEL HUB</span>
+                </div>
+
+                {/* Media Hub Mockup */}
+                <div className="my-auto z-10 text-center space-y-1.5 flex flex-col items-center">
+                    <span className="text-[7px] font-mono text-amber-400/80 uppercase tracking-widest">YOUTUBE POV ADVENTURES</span>
+                    <h4 className="text-xs font-black text-white uppercase tracking-tight leading-tight">
+                        EAT LOCAL. <br />
+                        <span className="text-amber-400">SUPPORT LOCAL.</span>
+                    </h4>
+                    {/* Media tags */}
+                    <div className="flex gap-1 pt-1">
+                        <span className="text-[6px] font-mono bg-amber-950/40 border border-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded">4K POV</span>
+                        <span className="text-[6px] font-mono bg-amber-950/40 border border-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded">META GLASSES</span>
+                        <span className="text-[6px] font-mono bg-amber-950/40 border border-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded">DINER MAP</span>
+                    </div>
+                </div>
+
+                {/* Video channel CTA */}
+                <div className="z-10 bg-amber-500 text-black rounded-lg py-1 px-2 text-center text-[7px] font-black uppercase tracking-widest mt-auto hover:bg-amber-400 transition-colors">
+                    Watch Mississippi Episodes →
+                </div>
+            </div>
+        );
+    }
+
     return null;
 }
 
