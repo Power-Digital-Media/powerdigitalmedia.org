@@ -258,6 +258,41 @@ function SimulatedWebPreview({ site }: { site: LiveSite }) {
         );
     }
 
+    if (site.id === "lungrins-lawncare") {
+        return (
+            <div className="w-full h-full bg-[#020904] relative flex flex-col justify-between p-4 overflow-hidden border border-emerald-500/10">
+                {/* Grass emerald gradient */}
+                <div className="absolute inset-0 opacity-15 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.15)_0%,transparent_70%)]" />
+
+                {/* Lawncare Header */}
+                <div className="flex items-center justify-between z-10 border-b border-white/5 pb-2">
+                    <span className="text-[9px] font-black text-emerald-400 tracking-wider">LUNGRIN&apos;S LAWNCARE</span>
+                    <span className="text-[7px] font-mono text-emerald-500/80">FLORA &amp; POCAHONTAS, MS</span>
+                </div>
+
+                {/* Lawn Maintenance Mockup */}
+                <div className="my-auto z-10 text-center space-y-1.5 flex flex-col items-center">
+                    <span className="text-[7px] font-mono text-emerald-400/70 uppercase tracking-widest">PRECISION EDGING &amp; CARE</span>
+                    <h4 className="text-xs font-black text-white uppercase tracking-tight leading-tight">
+                        COMMERCIAL &amp; RESIDENTIAL <br />
+                        <span className="text-emerald-400">TURF EXCELLENCE</span>
+                    </h4>
+                    {/* Features Tags */}
+                    <div className="flex gap-1 pt-1">
+                        <span className="text-[6px] font-mono bg-emerald-950/40 border border-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded">MOWING</span>
+                        <span className="text-[6px] font-mono bg-emerald-950/40 border border-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded">PINE STRAW</span>
+                        <span className="text-[6px] font-mono bg-emerald-950/40 border border-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded">PINDROP™</span>
+                    </div>
+                </div>
+
+                {/* Estimate CTA */}
+                <div className="z-10 bg-emerald-600 text-white rounded-lg py-1 px-2 text-center text-[7px] font-black uppercase tracking-widest mt-auto hover:bg-emerald-500 transition-colors">
+                    Request Free Lawn Estimate →
+                </div>
+            </div>
+        );
+    }
+
     return null;
 }
 

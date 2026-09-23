@@ -83,7 +83,7 @@ export const liveSites: LiveSite[] = [
         seoScore: 100,
         bestPracticesScore: 98,
         glowColor: "34, 197, 94", // Green
-        image: "/portfolio/growth-engine-real.webp"
+        image: "/portfolio/lungrins-lawncare.jpg"
     },
     {
         id: "the-local-guide-ms",
