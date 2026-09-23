@@ -42,22 +42,22 @@ export default function Home() {
             style={{ fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif' }}
             className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[8px] md:text-[9px] mb-4 md:mb-6 block"
           >
-            THE COMPLETE LOCAL BUSINESS TECHNOLOGY STACK
+            PROPRIETARY CONTRACTOR TECH &amp; HIGH-SPEED WEB INFRASTRUCTURE
           </span>
           <h1 
             style={{ fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif' }}
             className="text-4xl md:text-8xl font-black mb-6 md:mb-8 tracking-tighter leading-[0.85] uppercase"
           >
-            Jackson MS <br /> One-Stop
+            Jackson MS <br /> High-Speed Web &amp;
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-500 text-glow-cyan text-glow block mt-2">
-              Business Tech Stack
+              PinDrop™ Growth Tech
             </span>
           </h1>
           <p 
             style={{ fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif' }}
             className="text-foreground/60 max-w-2xl mx-auto text-lg leading-relaxed"
           >
-            We engineer blistering-fast websites, configure automatic lead-tracking CRMs, and set up cloud business phone systems. One local partner for your entire digital backbone.
+            We engineer blistering-fast Next.js websites powered by our exclusive PinDrop™ field mapping app, automated CRM pipelines, and cloud phone systems. Built for Mississippi service businesses and contractors that want to dominate Google search.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8 mt-6 md:mt-10">

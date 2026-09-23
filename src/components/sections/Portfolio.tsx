@@ -19,33 +19,47 @@ interface BentoMetric {
 }
 
 const bentoMetricsMap: Record<string, BentoMetric> = {
-    "all-things-new": {
-        stat: "98%",
-        statLabel: "PageSpeed Index",
-        highlights: ["Next.js cinematic engine", "Global CDN distribution", "Dynamic video compression"],
-        icon: <Sparkles className="w-5 h-5 text-green-400" />,
-        techStack: ["Next.js 14", "GSAP Cinematic", "Netlify Edge"]
+    "born-again-roofing": {
+        stat: "99+",
+        statLabel: "Live Pin Drops",
+        highlights: ["Proprietary PinDrop™ mapping", "Automatic GPS neighborhood sync", "1-Tap client SMS reviews"],
+        icon: <Zap className="w-5 h-5 text-yellow-400" />,
+        techStack: ["Next.js App Router", "PinDrop™ Engine", "Google Geo-Schema"]
+    },
+    "tbeaux": {
+        stat: "100%",
+        statLabel: "Daily Boil Sync",
+        highlights: ["Live crawfish price tracker", "High-volume feast calculator", "Direct phone & Google Maps route"],
+        icon: <TrendingUp className="w-5 h-5 text-red-400" />,
+        techStack: ["Live Price Engine", "Feast Planner", "Local 3-Pack SEO"]
+    },
+    "pindrop-saas": {
+        stat: "Proprietary",
+        statLabel: "Contractor Tech",
+        highlights: ["Exif photo & GPS auto-tagging", "Direct Google Schema push", "Zero-friction review capture"],
+        icon: <Sparkles className="w-5 h-5 text-cyan-400" />,
+        techStack: ["GPS Geotag Engine", "Automated SMS/Email", "Local Mapbox Layer"]
+    },
+    "geaux-pro-outdoors": {
+        stat: "5-Star",
+        statLabel: "Delta Coverage",
+        highlights: ["Commercial site prep portal", "PinDrop™ field verification", "Heavy machinery showcases"],
+        icon: <Activity className="w-5 h-5 text-amber-400" />,
+        techStack: ["Next.js Core", "PinDrop™ Layer", "Commercial Lead Funnel"]
+    },
+    "the-local-guide-ms": {
+        stat: "4K POV",
+        statLabel: "Media Engine",
+        highlights: ["YouTube channel integration", "Interactive Mississippi diner map", "Ray-Ban Meta video pipeline"],
+        icon: <Heart className="w-5 h-5 text-amber-500" />,
+        techStack: ["YouTube Sync API", "Interactive Map", "Media Optimization"]
     },
     "simmons-memorial": {
         stat: "99/100",
-        statLabel: "Accessibility Score",
-        highlights: ["High-accessibility protocol", "Legacy database sync", "Mobile-optimized stream"],
-        icon: <Heart className="w-5 h-5 text-orange-400" />,
-        techStack: ["Next.js Core", "A11y Compliant", "Fluid Typography"]
-    },
-    "growth-engine": {
-        stat: "5.2x",
-        statLabel: "Marketing ROAS",
-        highlights: ["Real-time CRM integrations", "Meta Lead Gen webhooks", "Pipeline telemetry tracking"],
-        icon: <TrendingUp className="w-5 h-5 text-cyan-400" />,
-        techStack: ["Capsule CRM Sync", "Transpond Email API", "Facebook Webhooks"]
-    },
-    "black-sheep-recovery": {
-        stat: "180ms",
-        statLabel: "LCP Load Speed",
-        highlights: ["Emergency CDN routing", "Semantic schema linking", "High-converting forms"],
-        icon: <Activity className="w-5 h-5 text-red-500" />,
-        techStack: ["High-Velocity Load", "SEO Entity Schema", "Responsive Tailwind"]
+        statLabel: "Accessibility",
+        highlights: ["Mobile-optimized streaming", "Multi-channel online giving", "Community ministry gateway"],
+        icon: <Heart className="w-5 h-5 text-blue-400" />,
+        techStack: ["High-Accessibility", "Giving Gateway", "Events Sync"]
     }
 };
 
@@ -56,16 +70,20 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
     // Map desktop asymmetric columns to create a beautiful geometric Bento Grid
     const getGridSpanClass = (projectId: string) => {
         switch (projectId) {
-            case "all-things-new":
+            case "born-again-roofing":
                 return "col-span-12 lg:col-span-8 h-[450px] lg:h-[550px]";
+            case "tbeaux":
+                return "col-span-12 md:col-span-6 lg:col-span-4 h-[450px] lg:h-[550px]";
+            case "pindrop-saas":
+                return "col-span-12 md:col-span-6 lg:col-span-4 h-[450px] lg:h-[550px]";
+            case "geaux-pro-outdoors":
+                return "col-span-12 lg:col-span-8 h-[450px] lg:h-[550px]";
+            case "the-local-guide-ms":
+                return "col-span-12 md:col-span-6 lg:col-span-6 h-[450px] lg:h-[520px]";
             case "simmons-memorial":
-                return "col-span-12 md:col-span-6 lg:col-span-4 h-[450px] lg:h-[550px]";
-            case "growth-engine":
-                return "col-span-12 md:col-span-6 lg:col-span-4 h-[450px] lg:h-[550px]";
-            case "black-sheep-recovery":
-                return "col-span-12 lg:col-span-8 h-[450px] lg:h-[550px]";
+                return "col-span-12 md:col-span-6 lg:col-span-6 h-[450px] lg:h-[520px]";
             default:
-                return "col-span-12 h-[450px]";
+                return "col-span-12 md:col-span-6 h-[450px]";
         }
     };
 
