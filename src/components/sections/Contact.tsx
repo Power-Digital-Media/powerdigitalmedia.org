@@ -1,7 +1,6 @@
 "use client";
 
-import { m } from "framer-motion";
-import { Send, Calendar, MessageSquare, Phone, ArrowRight, X } from "lucide-react";
+import { Send, Calendar, Phone, Mail, MapPin, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 import BookingModal from "@/components/ui/BookingModal";
 import Link from "next/link";
@@ -29,7 +28,6 @@ export default function Contact() {
                 setStatus("success");
                 const nameVal = data.get("name") as string;
                 const emailVal = data.get("email") as string;
-                // Fire-and-forget thank-you email
                 fetch("/api/contact/thank-you", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -45,168 +43,194 @@ export default function Contact() {
     };
 
     return (
-        <section id="contact" className="relative pt-28 pb-20 md:py-48 overflow-hidden">
-            {/* Ecosystem Grid Fade-In */}
-            <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
-
+        <section id="contact" className="relative py-20 md:py-32 overflow-hidden bg-[#020617] border-t border-white/5">
             <div className="container relative z-10 px-6 mx-auto">
-                <div className="max-w-6xl mx-auto">
-                    <div className="mb-16 md:mb-32 text-center">
-                        <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[9px] md:text-xs mb-4 block">Initialize Contact</span>
-                        <h2 className="text-4xl md:text-8xl font-black mb-8 tracking-tighter uppercase leading-none">Let&apos;s Connect.</h2>
-                        <p className="text-base md:text-2xl text-foreground/60 max-w-2xl mx-auto leading-relaxed text-balance font-light">
-                            Whether you&apos;re looking to launch a flagship production or deploy a <span className="text-cyan-400 font-medium whitespace-nowrap">Growth Architecture</span>, our studio is ready to execute.
+                <div className="max-w-5xl mx-auto">
+                    
+                    {/* Header */}
+                    <div className="mb-14 md:mb-20 text-center">
+                        <span className="text-cyan-400 font-bold tracking-widest uppercase text-xs mb-3 block">
+                            Let&apos;s Grow Your Business
+                        </span>
+                        <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-4 tracking-tight uppercase leading-none text-white">
+                            Get In Touch.
+                        </h2>
+                        <p className="text-base md:text-lg text-white/70 max-w-xl mx-auto leading-relaxed">
+                            Have questions about a new website, PinDrop™ for your team, or local SEO? Reach out directly to Damein Donald.
                         </p>
                     </div>
 
-                    <div className="grid gap-20 lg:grid-cols-5">
+                    <div className="grid gap-12 lg:grid-cols-5 items-start">
 
-                        {/* Left Side: Info */}
-                        <m.div
-                            initial={{ opacity: 0, x: -50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1, ease: "easeOut" }}
-                            className="lg:col-span-2 space-y-12"
-                        >
-                            <div className="space-y-10">
-                                <div>
+                        {/* Left Side: Contact Methods & Direct Info */}
+                        <div className="lg:col-span-2 space-y-6">
+                            
+                            {/* Call / Text Box */}
+                            <div className="p-6 rounded-3xl bg-slate-900/60 border border-white/10">
+                                <div className="flex items-center gap-3.5 mb-3">
+                                    <div className="w-10 h-10 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+                                        <Phone className="w-5 h-5" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-white text-base">Direct Phone &amp; Text</h4>
+                                        <span className="text-xs text-white/50">Mon - Fri, 8am - 6pm CT</span>
+                                    </div>
+                                </div>
+                                <a
+                                    href="tel:6013002004"
+                                    className="text-xl font-black text-cyan-400 hover:text-white transition-colors block pl-13"
+                                >
+                                    (601) 300-2004
+                                </a>
+                            </div>
+
+                            {/* Book 15-Min Call */}
+                            <div className="p-6 rounded-3xl bg-slate-900/60 border border-white/10">
+                                <div className="flex items-center gap-3.5 mb-3">
+                                    <div className="w-10 h-10 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                                        <Calendar className="w-5 h-5" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-white text-base">Book a 15-Min Call</h4>
+                                        <span className="text-xs text-white/50">Quick phone or video consultation</span>
+                                    </div>
+                                </div>
+                                <button
+                                    onClick={() => setIsBookingOpen(true)}
+                                    className="w-full mt-2 py-3 px-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-colors text-center"
+                                >
+                                    Select a Time on Calendar →
+                                </button>
+                            </div>
+
+                            {/* Location */}
+                            <div className="p-6 rounded-3xl bg-slate-900/40 border border-white/5 space-y-2">
+                                <div className="flex items-center gap-2 text-white/80 text-xs font-semibold">
+                                    <MapPin className="w-4 h-4 text-cyan-400" />
+                                    <span>Jackson, MS • Serving Central Mississippi</span>
+                                </div>
+                                <p className="text-white/50 text-xs pl-6">
+                                    Jackson • Madison • Brandon • Clinton • Flowood • Ridgeland
+                                </p>
+                            </div>
+
+                            {/* SMS Opt-in Disclaimer */}
+                            <p className="text-[10px] text-white/40 leading-relaxed px-2">
+                                By texting (601) 300-2004, you agree that you may receive messages from Power Digital Media LLC. Msg &amp; data rates may apply. Reply STOP to cancel at any time. View our <Link href="/privacy-policy" className="text-cyan-400 underline">Privacy Policy</Link> and <Link href="/terms-and-conditions" className="text-cyan-400 underline">Terms</Link>.
+                            </p>
+                        </div>
+
+                        {/* Right Side: Simple Contact Form */}
+                        <div className="lg:col-span-3 bg-slate-900/60 p-8 md:p-10 rounded-3xl border border-white/10 shadow-2xl">
+                            {status === "success" ? (
+                                <div className="py-12 flex flex-col items-center justify-center text-center space-y-4">
+                                    <div className="w-16 h-16 rounded-full bg-cyan-500/20 border border-cyan-500/50 flex items-center justify-center text-cyan-400">
+                                        <CheckCircle2 className="w-8 h-8" />
+                                    </div>
+                                    <h3 className="text-2xl font-black uppercase text-white">Message Sent!</h3>
+                                    <p className="text-white/70 max-w-sm text-sm">
+                                        Thanks for reaching out! Damein Donald will review your message and get back to you within 24 hours.
+                                    </p>
                                     <button
-                                        onClick={() => setIsBookingOpen(true)}
-                                        className="w-full text-left group"
+                                        onClick={() => setStatus("idle")}
+                                        className="mt-4 px-6 py-2.5 rounded-full border border-white/20 text-white text-xs font-bold uppercase tracking-wider hover:bg-white/5 transition-colors"
                                     >
-                                        <div className="flex items-center gap-4 mb-4">
-                                            <div className="w-10 h-10 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center group-hover:bg-cyan-500/20 group-hover:border-cyan-500/40 transition-all">
-                                                <Calendar className="w-5 h-5 text-cyan-400" />
-                                            </div>
-                                            <h4 className="text-xl font-bold group-hover:text-cyan-400 transition-colors">Protocol Sync</h4>
-                                        </div>
-                                        <p className="text-foreground/70 leading-relaxed pl-14">
-                                            Book a 30-minute deep dive into your content and growth goals. Zero pressure. Total clarity.
-                                        </p>
+                                        Send Another Message
                                     </button>
                                 </div>
-
-                                <div>
-                                    <div className="flex items-center gap-4 mb-4">
-                                        <div className="w-10 h-10 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
-                                            <MessageSquare className="w-5 h-5 text-cyan-400" />
-                                        </div>
-                                        <h4 className="text-xl font-bold">System Proposals</h4>
-                                    </div>
-                                    <p className="text-foreground/70 leading-relaxed pl-14">
-                                        Tailored packages for ministries, brands, and creators looking for systematic scalability.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className="pt-10 border-t border-white/5 space-y-4">
-                                <div className="flex items-center gap-4 text-sm font-bold uppercase tracking-widest text-muted-foreground">
-                                    <Phone className="w-4 h-4 text-cyan-400" />
-                                    <span>601-300-2004</span>
-                                </div>
-                                <p className="text-foreground/50 text-xs pl-8">
-                                    Broadcast-grade production available on-site or via secure remote systems.
-                                </p>
-                                {/* SMS Keyword Opt-in Disclaimer */}
-                                <p className="text-[10px] text-muted-foreground leading-relaxed pl-8">
-                                    By texting "START" to 601-300-2004, you agree that you may receive appointment reminders, support, and updates via text messages (SMS) from Power Digital Media LLC. Msg & data rates may apply. Msg frequency varies. Mobile information will not be shared with third parties/affiliates for marketing/promotional purposes. All the above categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties. Unsubscribe at any time by replying STOP. Reply HELP for support. To review our Privacy Policy, click <Link href="/privacy-policy" className="text-cyan-400 underline hover:text-cyan-300">here</Link>, and to view our Terms & Conditions, click <Link href="/terms-and-conditions" className="text-cyan-400 underline hover:text-cyan-300">here</Link>.
-                                </p>
-                            </div>
-                        </m.div>
-
-                        {/* Right Side: Form */}
-                        <m.div
-                            initial={{ opacity: 0, x: 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1, ease: "easeOut" }}
-                            className="lg:col-span-3 relative"
-                        >
-                            <div className="p-10 rounded-[40px] glass-card border-white/5 bg-cyan-500/[0.01] overflow-hidden">
-                                {status === "success" ? (
-                                    <m.div
-                                        initial={{ opacity: 0, scale: 0.9 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        className="h-full flex flex-col items-center justify-center text-center space-y-6 py-12"
-                                    >
-                                        <div className="w-20 h-20 rounded-full bg-cyan-500/20 border border-cyan-500/50 flex items-center justify-center">
-                                            <Send className="w-8 h-8 text-cyan-400" />
-                                        </div>
+                            ) : (
+                                <form onSubmit={handleSubmit} className="space-y-5">
+                                    <div className="grid gap-5 sm:grid-cols-2">
                                         <div>
-                                            <h3 className="text-2xl font-black uppercase tracking-widest mb-2">Message Deployed</h3>
-                                            <p className="text-muted-foreground">Our team has received your intel. We will initiate contact shortly.</p>
-                                        </div>
-                                        <button
-                                            onClick={() => setStatus("idle")}
-                                            className="px-8 py-3 rounded-full border border-white/10 hover:bg-white/5 transition-colors text-sm font-bold uppercase tracking-widest"
-                                        >
-                                            Send Another
-                                        </button>
-                                    </m.div>
-                                ) : (
-                                    <form
-                                        onSubmit={handleSubmit}
-                                        className="space-y-8"
-                                    >
-                                        <div className="grid gap-8 sm:grid-cols-2">
-                                            <div className="space-y-3">
-                                                <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground ml-1">Your Name</label>
-                                                <input
-                                                    type="text"
-                                                    name="name"
-                                                    required
-                                                    disabled={status === "submitting"}
-                                                    className="w-full px-6 py-4 rounded-2xl bg-white/5 border border-white/10 focus:border-cyan-500/50 focus:bg-white/[0.08] outline-none transition-all placeholder:text-muted-foreground/30 font-medium disabled:opacity-50"
-                                                    placeholder="Enter Full Name"
-                                                />
-                                            </div>
-                                            <div className="space-y-3">
-                                                <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground ml-1">Email Address</label>
-                                                <input
-                                                    type="email"
-                                                    name="email"
-                                                    required
-                                                    disabled={status === "submitting"}
-                                                    className="w-full px-6 py-4 rounded-2xl bg-white/5 border border-white/10 focus:border-cyan-500/50 focus:bg-white/[0.08] outline-none transition-all placeholder:text-muted-foreground/30 font-medium disabled:opacity-50"
-                                                    placeholder="name@company.com"
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <div className="space-y-3">
-                                            <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground ml-1">Vision Summary</label>
-                                            <textarea
-                                                rows={5}
-                                                name="message"
+                                            <label className="block text-xs font-bold uppercase tracking-wider text-white/80 mb-2">
+                                                Your Name
+                                            </label>
+                                            <input
+                                                type="text"
+                                                name="name"
                                                 required
                                                 disabled={status === "submitting"}
-                                                className="w-full px-6 py-5 rounded-2xl bg-white/5 border border-white/10 focus:border-cyan-500/50 focus:bg-white/[0.08] outline-none transition-all placeholder:text-muted-foreground/30 font-medium resize-none disabled:opacity-50"
-                                                placeholder="Tell us about your production goals..."
+                                                placeholder="John Smith"
+                                                className="w-full px-4 py-3.5 rounded-xl bg-slate-950 border border-white/10 focus:border-cyan-400 outline-none text-white text-sm placeholder:text-white/30"
                                             />
                                         </div>
+                                        <div>
+                                            <label className="block text-xs font-bold uppercase tracking-wider text-white/80 mb-2">
+                                                Email Address
+                                            </label>
+                                            <input
+                                                type="email"
+                                                name="email"
+                                                required
+                                                disabled={status === "submitting"}
+                                                placeholder="john@yourbusiness.com"
+                                                className="w-full px-4 py-3.5 rounded-xl bg-slate-950 border border-white/10 focus:border-cyan-400 outline-none text-white text-sm placeholder:text-white/30"
+                                            />
+                                        </div>
+                                    </div>
 
-                                        {status === "error" && (
-                                            <p className="text-red-400 text-sm">Failed to send message. Please try again or email us directly.</p>
-                                        )}
+                                    <div className="grid gap-5 sm:grid-cols-2">
+                                        <div>
+                                            <label className="block text-xs font-bold uppercase tracking-wider text-white/80 mb-2">
+                                                Phone Number
+                                            </label>
+                                            <input
+                                                type="tel"
+                                                name="phone"
+                                                disabled={status === "submitting"}
+                                                placeholder="(601) 000-0000"
+                                                className="w-full px-4 py-3.5 rounded-xl bg-slate-950 border border-white/10 focus:border-cyan-400 outline-none text-white text-sm placeholder:text-white/30"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs font-bold uppercase tracking-wider text-white/80 mb-2">
+                                                Company / Business Name
+                                            </label>
+                                            <input
+                                                type="text"
+                                                name="company"
+                                                disabled={status === "submitting"}
+                                                placeholder="Your Business Name"
+                                                className="w-full px-4 py-3.5 rounded-xl bg-slate-950 border border-white/10 focus:border-cyan-400 outline-none text-white text-sm placeholder:text-white/30"
+                                            />
+                                        </div>
+                                    </div>
 
-                                        <button
+                                    <div>
+                                        <label className="block text-xs font-bold uppercase tracking-wider text-white/80 mb-2">
+                                            How Can We Help You?
+                                        </label>
+                                        <textarea
+                                            rows={4}
+                                            name="message"
+                                            required
                                             disabled={status === "submitting"}
-                                            className="group w-full py-6 bg-cyan-500 text-slate-950 font-black rounded-full shadow-[0_0_30px_rgba(34,211,238,0.2)] flex items-center justify-center gap-3 hover:bg-cyan-400 hover:scale-[1.02] active:scale-[0.98] disabled:hover:scale-100 disabled:opacity-70 disabled:cursor-not-allowed transition-all text-lg uppercase tracking-widest"
-                                        >
-                                            {status === "submitting" ? "Deploying..." : "Deploy Message"}
-                                            <Send className={`w-5 h-5 transition-transform ${status === "submitting" ? "animate-pulse" : "group-hover:translate-x-1 group-hover:-translate-y-1"}`} />
-                                        </button>
-                                    </form>
-                                )}
-                            </div>
-                        </m.div>
+                                            placeholder="Tell us about your project, current website, or what you'd like to improve..."
+                                            className="w-full px-4 py-3.5 rounded-xl bg-slate-950 border border-white/10 focus:border-cyan-400 outline-none text-white text-sm placeholder:text-white/30 resize-none"
+                                        />
+                                    </div>
+
+                                    {status === "error" && (
+                                        <p className="text-red-400 text-xs">
+                                            Failed to send. Please give us a direct call at (601) 300-2004.
+                                        </p>
+                                    )}
+
+                                    <button
+                                        type="submit"
+                                        disabled={status === "submitting"}
+                                        className="w-full py-4 bg-cyan-400 text-slate-950 font-black rounded-xl hover:bg-white transition-all text-xs uppercase tracking-widest disabled:opacity-50 flex items-center justify-center gap-2"
+                                    >
+                                        {status === "submitting" ? "Sending Message..." : "Send Message"}
+                                        <Send className="w-4 h-4" />
+                                    </button>
+                                </form>
+                            )}
+                        </div>
 
                     </div>
                 </div>
             </div>
-
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-accent/5 rounded-full blur-[160px] pointer-events-none" />
 
             <BookingModal
                 isOpen={isBookingOpen}

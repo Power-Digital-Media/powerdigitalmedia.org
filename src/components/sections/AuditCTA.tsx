@@ -1,8 +1,7 @@
 "use client";
 
-import { m } from "framer-motion";
 import { useState, type FormEvent } from "react";
-import { Send, Sparkles, AlertCircle, ArrowRight } from "lucide-react";
+import { Send, Sparkles, AlertCircle, ArrowRight, CheckCircle2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function AuditCTA() {
@@ -31,119 +30,124 @@ export default function AuditCTA() {
 
                 setTimeout(() => {
                     router.push("/book?from=audit");
-                }, 1000);
+                }, 1200);
             } else {
                 setStatus("error");
             }
         } catch (err) {
-            console.error("Inline audit CTA submission error:", err);
+            console.error("Audit CTA submission error:", err);
             setStatus("error");
         }
     };
 
     return (
-        <section id="audit" className="py-24 relative overflow-hidden z-10">
-            {/* Glowing ambient elements */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/5 blur-[120px] pointer-events-none -z-10 rounded-full" />
-
-            <div className="container px-4 mx-auto">
+        <section id="audit" className="py-20 md:py-28 relative overflow-hidden bg-[#020617] border-t border-white/5">
+            <div className="container px-6 mx-auto">
                 <div className="max-w-5xl mx-auto">
-                    <m.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6 }}
-                        className="relative overflow-hidden rounded-[3rem] border border-white/10 p-8 md:p-16 glass-card bg-slate-950/20 shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
-                    >
-                        {/* Accent design border glow */}
-                        <div className="absolute inset-0 -z-10 rounded-[3rem] bg-gradient-to-br from-cyan-400/5 via-transparent to-purple-500/5 pointer-events-none" />
-
-                        <div className="grid gap-12 lg:grid-cols-12 items-center">
+                    <div className="relative overflow-hidden rounded-3xl border border-white/10 p-8 md:p-14 bg-gradient-to-b from-slate-900/60 to-slate-950/80 shadow-2xl">
+                        
+                        <div className="grid gap-10 lg:grid-cols-12 items-center">
                             
                             {/* Copy Column */}
-                            <div className="lg:col-span-6 space-y-6 text-left">
-                                <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-cyan-400/20 bg-cyan-400/5 text-cyan-400 text-[10px] font-bold uppercase tracking-widest">
+                            <div className="lg:col-span-6 space-y-5 text-left">
+                                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-cyan-400/30 bg-cyan-400/10 text-cyan-400 text-xs font-bold uppercase tracking-wider">
                                     <Sparkles className="w-3.5 h-3.5" />
-                                    Zero-Friction Conversion Boost
+                                    100% Free • No Obligation
                                 </div>
-                                <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight leading-tight">
-                                    Get a Free 10-Min <br />
-                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-                                        Video Website Audit.
+                                <h2 className="text-3xl md:text-4xl font-black tracking-tight leading-tight uppercase text-white">
+                                    Get a Free 5-Minute <br />
+                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
+                                        Website &amp; SEO Review.
                                     </span>
                                 </h2>
-                                <p className="text-sm text-slate-400 leading-relaxed max-w-md">
-                                    Our lead design architects will record a custom screencast of your website, highlighting the exact structural, speed, and conversion updates needed to double your pipeline sales.
+                                <p className="text-sm md:text-base text-white/75 leading-relaxed">
+                                    Damein Donald will personally inspect your website, test its mobile speed score, and send you a short video showing exactly why competitors in Central Mississippi might be outranking you on Google.
                                 </p>
+                                <div className="space-y-2 pt-2">
+                                    {["Mobile speed test & core web vitals check", "Google Maps 3-Pack ranking breakdown", "Actionable recommendations you can use immediately"].map(item => (
+                                        <div key={item} className="flex items-center gap-2 text-xs text-white/80">
+                                            <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                                            <span>{item}</span>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
 
                             {/* Form Column */}
-                            <div className="lg:col-span-6">
+                            <div className="lg:col-span-6 bg-slate-950/60 p-6 md:p-8 rounded-2xl border border-white/10">
                                 {status === "success" ? (
-                                    <m.div
-                                        initial={{ opacity: 0, scale: 0.95 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        className="py-8 flex flex-col items-center justify-center text-center space-y-4"
-                                    >
+                                    <div className="py-8 flex flex-col items-center justify-center text-center space-y-4">
                                         <div className="w-12 h-12 rounded-full bg-cyan-400/20 flex items-center justify-center text-cyan-400">
                                             <Send className="w-5 h-5 animate-pulse" />
                                         </div>
                                         <div>
-                                            <h4 className="text-lg font-bold text-white mb-1">Queue Position Secured!</h4>
-                                            <p className="text-xs text-muted-foreground">Redirecting you to our onboarding calendar...</p>
+                                            <h4 className="text-lg font-bold text-white mb-1">Request Received!</h4>
+                                            <p className="text-xs text-white/70">Damein will review your website and follow up with your video breakdown shortly.</p>
                                         </div>
-                                    </m.div>
+                                    </div>
                                 ) : (
                                     <form onSubmit={handleSubmit} className="space-y-4">
-                                        <div className="grid gap-4 sm:grid-cols-2">
+                                        <div>
+                                            <label className="block text-xs font-bold text-white/80 mb-1 uppercase tracking-wider">
+                                                Your Website URL
+                                            </label>
                                             <input
                                                 type="url"
                                                 name="website_url"
                                                 required
                                                 disabled={status === "submitting"}
-                                                placeholder="Website (https://yoursite.com)"
-                                                className="w-full px-4 py-4 text-xs bg-white/5 border border-white/10 focus:border-cyan-400 rounded-2xl outline-none transition-all placeholder:text-muted-foreground/30 text-white"
+                                                placeholder="https://yourbusiness.com"
+                                                className="w-full px-4 py-3.5 text-xs bg-slate-900 border border-white/10 focus:border-cyan-400 rounded-xl outline-none transition-all placeholder:text-white/30 text-white"
                                             />
+                                        </div>
+
+                                        <div>
+                                            <label className="block text-xs font-bold text-white/80 mb-1 uppercase tracking-wider">
+                                                Your Email Address
+                                            </label>
                                             <input
                                                 type="email"
                                                 name="email"
                                                 required
                                                 disabled={status === "submitting"}
-                                                placeholder="Email Address"
-                                                className="w-full px-4 py-4 text-xs bg-white/5 border border-white/10 focus:border-cyan-400 rounded-2xl outline-none transition-all placeholder:text-muted-foreground/30 text-white"
+                                                placeholder="you@company.com"
+                                                className="w-full px-4 py-3.5 text-xs bg-slate-900 border border-white/10 focus:border-cyan-400 rounded-xl outline-none transition-all placeholder:text-white/30 text-white"
                                             />
                                         </div>
 
                                         {status === "error" && (
                                             <div className="p-3 bg-red-500/10 border border-red-500/20 text-red-400 text-xs rounded-xl flex items-center gap-2">
                                                 <AlertCircle className="w-4 h-4 shrink-0" />
-                                                Submission failed. Please try again.
+                                                Submission failed. Please call (601) 300-2004 or try again.
                                             </div>
                                         )}
 
                                         <button
                                             type="submit"
                                             disabled={status === "submitting"}
-                                            className="w-full py-4 bg-white text-black font-black rounded-2xl border-glow flex items-center justify-center gap-2 hover:bg-cyan-400 hover:text-white hover:border-cyan-400 transition-all duration-300 group text-[10px] uppercase tracking-widest disabled:opacity-50 disabled:cursor-not-allowed"
+                                            className="w-full py-4 bg-cyan-400 text-slate-950 font-black rounded-xl flex items-center justify-center gap-2 hover:bg-white transition-all text-xs uppercase tracking-wider disabled:opacity-50"
                                         >
                                             {status === "submitting" ? (
                                                 <>
-                                                    <div className="w-3.5 h-3.5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
-                                                    Securing Position...
+                                                    <div className="w-3.5 h-3.5 border-2 border-slate-950/30 border-t-slate-950 rounded-full animate-spin" />
+                                                    Sending Request...
                                                 </>
                                             ) : (
                                                 <>
-                                                    Get My Free Video Audit
-                                                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                                                    Send Me My Free Audit
+                                                    <ArrowRight className="w-4 h-4" />
                                                 </>
                                             )}
                                         </button>
+                                        <p className="text-[11px] text-white/40 text-center">
+                                            No spam, no aggressive sales pitch. Just honest feedback.
+                                        </p>
                                     </form>
                                 )}
                             </div>
 
                         </div>
-                    </m.div>
+                    </div>
                 </div>
             </div>
         </section>
