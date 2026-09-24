@@ -3,8 +3,8 @@ import AboutClient from "./AboutClient";
 import "../typography.css";
 
 export const metadata: Metadata = {
-    title: "About Us | Power Digital Media — AI-Ready Web Architecture in Jackson, MS",
-    description: "Power Digital Media is a Jackson, MS infrastructure engineering firm specializing in high-velocity Next.js architecture, AI search dominance, structured data systems, and broadcast-grade media production.",
+    title: "About Us | Power Digital Media — Jackson MS Web Design & Growth Studio",
+    description: "Learn about Power Digital Media. We build hand-crafted Next.js websites, PinDrop™ contractor tech, and local SEO engines for Central Mississippi businesses.",
     alternates: {
         canonical: './',
     }

@@ -57,7 +57,6 @@ export default function Navbar() {
         { name: "Web Design", href: "/web-design" },
         { name: "PinDrop™ Field App", href: "/pindrop" },
         { name: "CRM & Custom Apps", href: "/custom-applications" },
-        { name: "Business Phones", href: "/business-phones" },
         { name: "Growth Marketing", href: "/marketing" },
     ];
 
@@ -131,7 +130,7 @@ export default function Navbar() {
                                     className="flex items-center gap-2 px-5 py-2 text-sm font-black text-accent glass-card border-accent/40 hover:bg-accent/10 transition-all rounded-full"
                                 >
                                     <Terminal className="w-4 h-4" />
-                                    Nexus HUD
+                                    Admin Studio
                                 </Link>
                             )}
                             <Link
@@ -250,7 +249,7 @@ export default function Navbar() {
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
                                     <Terminal className="w-4 h-4" />
-                                    Nexus HUD
+                                    Admin Studio
                                 </Link>
                             )}
 

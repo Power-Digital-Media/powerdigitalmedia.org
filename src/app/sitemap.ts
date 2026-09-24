@@ -14,7 +14,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/our-work',
         '/web-design',
         '/pindrop',
-        '/business-phones',
         '/custom-applications',
         '/free-audit',
         '/business-solutions',

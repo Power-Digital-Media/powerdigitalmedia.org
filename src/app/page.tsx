@@ -15,11 +15,11 @@ const BBBSeal = dynamic(() => import("@/components/ui/BBBSeal"));
 const AEOFAQ = dynamic(() => import("@/components/sections/AEOFAQ"));
 
 export const metadata = {
-  title: "Power Digital Media | Elite Web Design, Custom Apps & Growth Marketing",
-  description: "We engineer blistering-fast Next.js web architectures, bespoke custom applications, and high-converting growth marketing systems in Jackson, MS.",
+  title: "Power Digital Media | Jackson MS Web Design, Local SEO & Growth Tech",
+  description: "Websites that turn clicks into calls. We build blistering-fast Next.js websites, PinDrop™ contractor tech, and automated CRM pipelines for Mississippi businesses.",
   openGraph: {
-    title: "Power Digital Media | Elite Web Design, Custom Apps & Growth Marketing",
-    description: "We engineer blistering-fast Next.js web architectures, bespoke custom applications, and high-converting growth marketing systems in Jackson, MS.",
+    title: "Power Digital Media | Jackson MS Web Design, Local SEO & Growth Tech",
+    description: "Websites that turn clicks into calls. We build blistering-fast Next.js websites, PinDrop™ contractor tech, and automated CRM pipelines for Mississippi businesses.",
     images: ["/images/og-image.png"],
   },
 };
@@ -30,9 +30,8 @@ export default function Home() {
       <Navbar />
 
       {/* 
-        CRITICAL LCP OPTIMIZATION: 
-        We render the hardware-accelerated CyberHeroBg here
-        to eliminate hydration delays while displaying a premium 3D perspective network platform.
+        HERO SECTION:
+        High conversion, warm authority, highlighting local speed and real contractor growth tech.
       */}
       <section className="relative overflow-hidden flex flex-col justify-center min-h-0 md:min-h-screen pt-28 pb-12 md:py-0">
         <DeferredHeroBg variant="web-design" />
@@ -40,57 +39,71 @@ export default function Home() {
         <div className="container relative z-10 px-4 mx-auto text-center mt-4 md:mt-16 mb-4">
           <span 
             style={{ fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif' }}
-            className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[8px] md:text-[9px] mb-4 md:mb-6 block"
+            className="text-cyan-400 font-bold tracking-[0.3em] uppercase text-[9px] md:text-xs mb-4 md:mb-6 block"
           >
-            PROPRIETARY CONTRACTOR TECH &amp; HIGH-SPEED WEB INFRASTRUCTURE
+            Jackson, MS • Web Design, Local SEO &amp; Growth Tech
           </span>
           <h1 
             style={{ fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif' }}
-            className="text-4xl md:text-8xl font-black mb-6 md:mb-8 tracking-tighter leading-[0.85] uppercase"
+            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-6 md:mb-8 tracking-tighter leading-[0.9] uppercase"
           >
-            Jackson MS <br /> High-Speed Web &amp;
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-500 text-glow-cyan text-glow block mt-2">
-              PinDrop™ Growth Tech
+            Websites That Turn <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 text-glow-cyan text-glow inline-block mt-1">
+              Clicks Into Calls.
             </span>
           </h1>
           <p 
             style={{ fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif' }}
-            className="text-foreground/60 max-w-2xl mx-auto text-lg leading-relaxed"
+            className="text-foreground/75 max-w-2xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed font-normal"
           >
-            We engineer blistering-fast Next.js websites powered by our exclusive PinDrop™ field mapping app, automated CRM pipelines, and cloud phone systems. Built for Mississippi service businesses and contractors that want to dominate Google search.
+            We build custom, lightning-fast websites and proprietary contractor tools that outrank competitors, dominate Google Maps, and capture high-paying clients across Central Mississippi.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8 mt-6 md:mt-10">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-8 md:mt-10">
             <a
               href="/free-audit"
-              className="w-full sm:w-auto px-8 py-4 md:px-12 md:py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 hover:text-white transition-all uppercase tracking-widest text-[9px] shadow-[0_0_50px_rgba(255,255,255,0.1)] active:scale-95 text-center block"
+              className="w-full sm:w-auto px-8 py-4 md:px-10 md:py-5 bg-white text-slate-950 font-black rounded-full hover:bg-cyan-400 hover:text-slate-950 transition-all uppercase tracking-widest text-[10px] md:text-xs shadow-[0_0_40px_rgba(255,255,255,0.15)] active:scale-95 text-center block"
             >
-              Get a Free Architecture Audit
+              Get Free Website Audit
             </a>
-            <a href="/book" className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 md:px-12 md:py-5 border border-white/10 rounded-full font-black uppercase tracking-widest text-[9px] hover:bg-cyan-400 hover:text-white hover:border-cyan-400 transition-all group active:scale-95 block">
+            <a 
+              href="tel:6013002004" 
+              className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-4 md:px-10 md:py-5 border border-cyan-400/40 bg-cyan-950/20 text-cyan-400 rounded-full font-black uppercase tracking-widest text-[10px] md:text-xs hover:bg-cyan-400 hover:text-slate-950 transition-all group active:scale-95 block"
+            >
+              Call (601) 300-2004
+            </a>
+            <a 
+              href="/book" 
+              className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-6 py-4 md:px-8 md:py-5 border border-white/15 rounded-full font-bold uppercase tracking-widest text-[10px] text-white/80 hover:text-white hover:bg-white/10 transition-all group active:scale-95 block"
+            >
               <Video className="w-3.5 h-3.5 text-cyan-400 group-hover:text-white transition-colors" />
-              Schedule a Google Meet
+              Book 15-Min Call
             </a>
           </div>
 
           {/* Trust Signals Bar */}
-          <div className="mt-14 mb-8 flex flex-col items-center justify-center gap-4 opacity-80 hover:opacity-100 transition-opacity">
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <div className="flex items-center gap-3 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-950/20 backdrop-blur-sm">
+          <div className="mt-12 mb-6 flex flex-col items-center justify-center gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <div className="flex items-center gap-2.5 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-950/30 backdrop-blur-sm">
                 <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_#22d3ee]" />
-                <span className="text-xs font-bold tracking-widest uppercase text-cyan-400">Verified 90+/100 Mobile PageSpeed</span>
+                <span className="text-xs font-bold tracking-wider uppercase text-cyan-400">⚡ 95+ Mobile Speed Score</span>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-sm">
+                <span className="text-xs font-semibold text-white/80">📍 Jackson • Madison • Brandon • Clinton</span>
               </div>
               <BBBSeal variant="inline" />
             </div>
-            <p className="text-[10px] uppercase tracking-widest text-foreground/40 mt-1">Most agencies score a 40. We build blistering fast infrastructure.</p>
+            <p className="text-xs text-foreground/50 max-w-lg">
+              No bloated templates. Hand-coded Next.js speed + Google Maps optimization built to get your phone ringing.
+            </p>
           </div>
         </div>
       </section>
 
       <WakeUpCall
-        title="You run a premium business. But your digital presence looks strictly amateur."
-        subtitle="Mediocre digital architecture kills great companies."
-        paragraph="If your brand looks like everyone else's, you will be priced like everyone else. A slow, outdated website isn't just a bad look—it's actively bleeding revenue. We engineer high-velocity digital ecosystems that separate you from the noise and command absolute authority in your market."
+        title="Is Your Outdated Website Costing You High-Paying Customers?"
+        subtitle="When someone needs your service, they decide in 3 seconds whether to call you or your competitor."
+        paragraph="If your website is slow on mobile, hard to navigate, or looks like it was built a decade ago, you are handing revenue to the competition. We build fast, high-converting digital platforms that establish immediate trust, rank on Google Maps, and turn local traffic into booked jobs."
       />
       <Portfolio />
       <LocalWebDesign />

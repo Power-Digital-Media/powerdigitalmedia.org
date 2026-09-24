@@ -103,25 +103,25 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
                     <div>
                         <div className="flex items-center gap-3 mb-4">
                             <div className="h-[1px] w-8 bg-cyan-400"></div>
-                            <span className="text-cyan-400 font-mono text-sm tracking-[0.2em] uppercase">Engineering Portfolio</span>
+                            <span className="text-cyan-400 font-mono text-xs tracking-[0.2em] uppercase font-bold">Client Success Stories</span>
                         </div>
-                        <Title className="text-4xl md:text-7xl font-black text-white tracking-tighter uppercase text-glow-cyan leading-none drop-shadow-md">
-                            High-Velocity<br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-500">
-                                Digital Systems
+                        <Title className="text-3xl sm:text-4xl md:text-6xl font-black text-white tracking-tighter uppercase leading-tight">
+                            Real Results For <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400">
+                                Mississippi Businesses.
                             </span>
                         </Title>
-                        <p className="text-white/60 max-w-2xl mt-6 text-base md:text-lg leading-relaxed">
-                            A curated selection of our certified architectures built for humans, optimized for AI search engines, and integrated directly into B2B sales pipelines.
+                        <p className="text-white/70 max-w-2xl mt-5 text-base md:text-lg leading-relaxed font-normal">
+                            Every platform we engineer is hand-crafted for sub-second mobile speed, Google Map dominance, and converting visitors into paying clients.
                         </p>
                     </div>
 
-                    <button
-                        onClick={() => setIsBookingOpen(true)}
-                        className="self-start md:self-auto px-8 py-4 bg-white text-black text-xs font-black uppercase tracking-widest rounded-xl hover:bg-cyan-400 hover:text-white transition-all shadow-[0_0_30px_rgba(255,255,255,0.05)] active:scale-95 duration-300"
+                    <Link
+                        href="/free-audit"
+                        className="self-start md:self-auto px-8 py-4 bg-white text-slate-950 text-xs font-black uppercase tracking-wider rounded-xl hover:bg-cyan-400 transition-all shadow-[0_0_30px_rgba(255,255,255,0.1)] active:scale-95 duration-300 block text-center"
                     >
-                        Initiate Strategy Audit
-                    </button>
+                        Get Free Website Audit
+                    </Link>
                 </div>
 
                 {/* SOTA Bento Grid */}
@@ -249,9 +249,9 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
                                             <Link
                                                 href={`/portfolio/${project.id}`}
                                                 prefetch={false}
-                                                className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 bg-white text-black text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-cyan-400 hover:text-white transition-all duration-300"
+                                                className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 bg-white text-slate-950 text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-cyan-400 hover:text-slate-950 transition-all duration-300"
                                             >
-                                                Analyze Build
+                                                View Case Study
                                             </Link>
                                             
                                             {project.netlifyUrl && (
@@ -261,7 +261,7 @@ export default function Portfolio({ titleAs: Title = "h1" }: { titleAs?: "h1" | 
                                                     rel="noopener noreferrer"
                                                     className="flex items-center justify-center px-4 py-3 rounded-xl border border-white/10 text-[10px] font-black uppercase tracking-widest text-white hover:text-cyan-400 hover:border-cyan-400 transition-all bg-slate-900/60 backdrop-blur-md"
                                                 >
-                                                    Live Intel <ExternalLink className="w-3.5 h-3.5 ml-1.5" />
+                                                    Live Site <ExternalLink className="w-3.5 h-3.5 ml-1.5" />
                                                 </a>
                                             )}
                                         </div>

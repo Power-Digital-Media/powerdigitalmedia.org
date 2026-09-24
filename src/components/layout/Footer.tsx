@@ -25,7 +25,7 @@ export default function Footer() {
                             </div>
                         </Link>
                         <p className="max-w-sm text-muted-foreground leading-relaxed mb-8">
-                            Bespoke Web Design, Custom Applications, and High-Velocity Growth Marketing built for high-ticket brands.
+                            Custom Next.js Web Design, Proprietary PinDrop™ Contractor Tech, and High-Converting Growth Systems built in Jackson, Mississippi.
                         </p>
                         <div className="flex items-center gap-4">
                             <a href="https://instagram.com/powerdigitalmedia" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram" className="w-12 h-12 rounded-full glass-card flex items-center justify-center text-muted-foreground hover:text-accent hover:border-accent/40 transition-all">
@@ -53,8 +53,7 @@ export default function Footer() {
                             <li><Link href="/web-design" className="hover:text-accent transition-colors">Web Design</Link></li>
                             <li><Link href="/pindrop" className="hover:text-accent transition-colors">PinDrop™ Field App</Link></li>
                             <li><Link href="/custom-applications" className="hover:text-accent transition-colors">CRM &amp; Custom Apps</Link></li>
-                            <li><Link href="/business-phones" className="hover:text-accent transition-colors">Business Phones</Link></li>
-                            <li><Link href="/marketing" className="hover:text-accent transition-colors">Marketing</Link></li>
+                            <li><Link href="/marketing" className="hover:text-accent transition-colors">Growth Marketing</Link></li>
                             <li><Link href="/our-work" className="hover:text-accent transition-colors">Portfolio</Link></li>
                             <li><Link href="/review" className="hover:text-accent transition-colors">Leave a Review</Link></li>
                         </ul>
