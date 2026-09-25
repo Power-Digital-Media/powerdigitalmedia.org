@@ -201,16 +201,15 @@ export default function WebDesignPage() {
                 </div>
 
                 {/* Screenshot Frame */}
-                <div className="relative aspect-[4/3] w-full bg-slate-900 overflow-hidden">
+                <div className="relative aspect-[16/10] w-full bg-slate-950 overflow-hidden">
                   <Image
-                    src="/portfolio/born-again-roofing.webp"
+                    src="/portfolio/bornagain-hero-16-10.webp"
                     alt="Born Again Roofing - Live Next.js Web Build in Jackson, MS"
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover object-top"
                     priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent" />
                 </div>
 
                 {/* Live Metrics Over Mockup */}
