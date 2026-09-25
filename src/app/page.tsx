@@ -10,7 +10,6 @@ import GoogleReviewsSection from "@/components/sections/GoogleReviewsSection";
 const ConnectedArchitecture = dynamic(() => import("@/components/sections/ConnectedArchitecture"));
 const LocalWebDesign = dynamic(() => import("@/components/sections/LocalWebDesign"));
 const TechStack = dynamic(() => import("@/components/sections/TechStack"));
-const LatestInsights = dynamic(() => import("@/components/sections/LatestInsights"));
 const SpeedComparisonCard = dynamic(() => import("@/components/ui/SpeedComparisonCard"));
 const AEOFAQ = dynamic(() => import("@/components/sections/AEOFAQ"));
 
@@ -217,7 +216,6 @@ export default function Home() {
       {/* 5. Core Services & Technical Capabilities */}
       <DeferredServices />
       <TechStack />
-      <LatestInsights />
       <AEOFAQ />
       <DeferredFooterSections />
       
