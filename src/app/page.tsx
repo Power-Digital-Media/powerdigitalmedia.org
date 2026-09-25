@@ -3,7 +3,6 @@ import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
 import DeferredHeroBg from "@/components/ui/DeferredHeroBg";
 import { Video } from "lucide-react";
-import DeferredServices from "@/components/ui/DeferredServices";
 import DeferredFooterSections from "@/components/ui/DeferredFooterSections";
 import GoogleReviewsSection from "@/components/sections/GoogleReviewsSection";
 
@@ -210,11 +209,10 @@ export default function Home() {
       {/* 3. The 'WOW' Factor: Interactive System Architecture & 3D Phone Chassis */}
       <ConnectedArchitecture />
 
-      {/* 4. Methodology: The 3 Growth Pillars (Speed, Maps, Lead Pipelines) */}
+      {/* 4. Methodology: The 3 Growth Engines (In-App Checkout, PinDrop GPS, Automated CRM) */}
       <LocalWebDesign />
 
-      {/* 5. Core Services & Technical Capabilities */}
-      <DeferredServices />
+      {/* 5. Technical Capabilities & Authority */}
       <TechStack />
       <AEOFAQ />
       <DeferredFooterSections />
