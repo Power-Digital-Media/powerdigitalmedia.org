@@ -202,10 +202,19 @@ export default function Home() {
         </div>
       </section>
 
-      <SpeedComparisonCard />
-      <LocalWebDesign />
-      <ConnectedArchitecture />
+      {/* 1. Direct Social Proof: 100% 5-Star Verified Google Reviews Infinite Marquee */}
       <GoogleReviewsSection />
+
+      {/* 2. Disruption: Sub-Second Speed Benchmark (0.4s Next.js vs 4.8s WordPress) */}
+      <SpeedComparisonCard />
+
+      {/* 3. The 'WOW' Factor: Interactive System Architecture & 3D Phone Chassis */}
+      <ConnectedArchitecture />
+
+      {/* 4. Methodology: The 3 Growth Pillars (Speed, Maps, Lead Pipelines) */}
+      <LocalWebDesign />
+
+      {/* 5. Core Services & Technical Capabilities */}
       <DeferredServices />
       <TechStack />
       <LatestInsights />
