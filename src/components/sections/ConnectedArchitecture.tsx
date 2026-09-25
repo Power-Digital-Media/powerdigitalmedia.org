@@ -89,7 +89,7 @@ const clientArchitectures: ClientArchitecture[] = [
     url: "https://tbeauxs.com",
     heroImage: "/portfolio/tbeauxs-hero.webp",
     mobileHeroImage: "/portfolio/tbeauxs-mobile-hero-fresh.webp",
-    speedScore: "98/100 (0.4s)",
+    speedScore: "98/100 (Fast Load)",
     headline: "Zero-Redirect Square SDK & Direct Delivery Hub",
     summary:
       "Engineered an integrated ordering portal for Clinton's favorite Cajun spot. Rather than losing 15-30% fees and bouncing customers to generic Square storefronts, customers customize platters, calculate bulk catering needs, and pay in-app.",
@@ -256,7 +256,7 @@ const clientArchitectures: ClientArchitecture[] = [
     url: "https://msdirt.com",
     heroImage: "/portfolio/geauxpro-hero.webp",
     mobileHeroImage: "/portfolio/geauxpro-mobile-hero.webp",
-    speedScore: "99/100 (0.4s)",
+    speedScore: "99/100 (Fast Load)",
     headline: "Heavy Equipment Lead Engine & Video Automation",
     summary:
       "A commercial earthmoving platform engineered to capture high-value land clearing and hauling inquiries across Central Mississippi and the Delta.",
@@ -341,7 +341,7 @@ const clientArchitectures: ClientArchitecture[] = [
     url: "https://church244.com",
     heroImage: "/portfolio/church244-hero.webp",
     mobileHeroImage: "/portfolio/church244-mobile-hero.webp",
-    speedScore: "98/100 (0.4s)",
+    speedScore: "98/100 (Fast Load)",
     headline: "1-Tap Online Giving & Live Broadcast Hub",
     summary:
       "Clean digital portals designed for Central Mississippi ministries to engage congregations, process tithes with zero friction on mobile, and livestream sermons.",

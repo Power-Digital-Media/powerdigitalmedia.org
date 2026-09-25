@@ -15,10 +15,10 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 const pillars = [
   {
-    title: "Sub-Second Mobile Speed",
-    subtitle: "Opens in < 0.4s",
-    description: "Built on custom Next.js code with zero bloated templates. Your website opens instantly on any phone, keeping homeowners and local clients from bouncing.",
-    features: ["Next.js 16 Edge Architecture", "99/100 Core Web Vitals", "Instant Click-to-Call Buttons", "Zero Fragile WordPress Plugins"],
+    title: "Fast Mobile Speed",
+    subtitle: "Under 2–3s on Cell Phones",
+    description: "Built on custom Next.js code with zero bloated templates. Your website opens quickly and smoothly on any phone, keeping homeowners and local clients from bouncing.",
+    features: ["Next.js 16 Edge Architecture", "98+ PageSpeed Score", "Instant Click-to-Call Buttons", "Zero Fragile WordPress Plugins"],
     icon: Zap,
     color: "text-amber-400",
     bg: "bg-amber-500/10",
@@ -49,7 +49,7 @@ const pillars = [
 const faqs = [
   {
     q: "Do you use WordPress for your web design?",
-    a: "No. We hand-code custom Next.js websites. This ensures your site opens in under half a second, never breaks from plugin updates, and provides unmatched security."
+    a: "No. We hand-code custom Next.js websites. This ensures your site loads fast on mobile networks, never breaks from plugin updates, and provides unmatched security."
   },
   {
     q: "How long does a website build take?",
@@ -99,7 +99,7 @@ export default function WebDesignPage() {
           </h1>
 
           <p className="text-base sm:text-lg md:text-xl text-slate-300 mb-10 max-w-3xl mx-auto leading-relaxed">
-            We hand-code lightning-fast Next.js websites for Mississippi contractors and small business owners. Sub-second mobile speeds, top Google Maps rankings, and direct personal support from Damein Donald.
+            We hand-code fast, reliable Next.js websites for Mississippi contractors and small business owners. Fast mobile load speeds, top Google Maps rankings, and direct personal support from Damein Donald.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-xl mx-auto mb-12">
@@ -128,7 +128,7 @@ export default function WebDesignPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-8 border-t border-white/10 text-left">
             <div className="p-3 bg-slate-900/50 rounded-xl border border-white/5">
               <span className="text-xs text-slate-400 block font-medium">Mobile Load Speed</span>
-              <span className="text-sm font-bold text-emerald-400">⚡ &lt; 0.4s Instant</span>
+              <span className="text-sm font-bold text-emerald-400">⚡ &lt; 2–3s Fast Load</span>
             </div>
             <div className="p-3 bg-slate-900/50 rounded-xl border border-white/5">
               <span className="text-xs text-slate-400 block font-medium">Google Rating</span>

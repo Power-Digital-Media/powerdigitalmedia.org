@@ -42,7 +42,7 @@ export const projects: Project[] = [
         year: "2026",
         objective: "Turn completed roofing jobs into automated Google search rankings, inbound quote requests, and instant 5-star social proof.",
         features: [
-            "Sub-second mobile loading (0.3s PageSpeed score)",
+            "Fast mobile loading (< 2–3s on 4G/5G)",
             "Proprietary PinDrop™ live GPS job pin mapping",
             "Instant roof inspection & damage estimate form",
             "Automated post-job SMS 5-star review workflow"

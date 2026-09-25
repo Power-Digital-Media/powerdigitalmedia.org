@@ -170,7 +170,7 @@ export default function Services() {
                             </div>
                             <h3 className="text-xl font-bold text-white mb-3">Build Fast Mobile Site</h3>
                             <p className="text-white/70 text-sm leading-relaxed">
-                                We design and hand-code your custom Next.js website to load in under half a second and look great on any phone.
+                                We design and hand-code your custom Next.js website to load fast on mobile networks and look great on any phone.
                             </p>
                         </div>
 

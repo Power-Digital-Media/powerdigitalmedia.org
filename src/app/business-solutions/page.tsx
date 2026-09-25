@@ -96,7 +96,7 @@ export default function BusinessSolutionsPage() {
                                     </div>
                                     <h3 className="font-bold text-sm">Web & Apps</h3>
                                     <p className="text-xs text-muted-foreground leading-relaxed">
-                                        Bespoke Next.js apps engineered for sub-second speeds and generative search visibility.
+                                        Bespoke Next.js apps engineered for fast mobile loading and generative search visibility.
                                     </p>
                                 </div>
                                 <div className="p-5 rounded-2xl bg-white/[0.01] border border-white/5 space-y-3">

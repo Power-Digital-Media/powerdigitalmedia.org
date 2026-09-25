@@ -89,7 +89,7 @@ export default function Home() {
               {/* Key Bullet Checklist */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-white/10 w-full">
                 <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
-                  <span className="text-emerald-400 font-bold">✓</span> Opens in &lt; 0.4s on Cell Phones
+                  <span className="text-emerald-400 font-bold">✓</span> Fast Mobile Loads (&lt; 2–3s)
                 </div>
                 <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
                   <span className="text-emerald-400 font-bold">✓</span> Google Maps 3-Pack Dominance
@@ -139,7 +139,7 @@ export default function Home() {
                   <div className="flex items-center justify-between text-xs">
                     <span className="text-slate-400">Mobile Speed Score:</span>
                     <span className="font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/30">
-                      ⚡ 99/100 (0.4s)
+                      ⚡ 98+ Score (Fast Load)
                     </span>
                   </div>
                   <div className="flex items-center justify-between text-xs">
@@ -206,7 +206,7 @@ export default function Home() {
       {/* 2. The 'WOW' Factor: Interactive System Architecture & 3D Phone Showcase */}
       <ConnectedArchitecture />
 
-      {/* 3. Disruption: Sub-Second Speed Benchmark (0.4s Next.js vs 4.8s WordPress) */}
+      {/* 3. Disruption: Fast Mobile Speed Benchmark (Sub-3s Next.js vs 6+s WordPress) */}
       <SpeedComparisonCard />
 
       {/* 4. Methodology: The 3 Growth Engines (In-App Checkout, PinDrop GPS, Automated CRM) */}

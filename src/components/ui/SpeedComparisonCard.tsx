@@ -100,14 +100,14 @@ export default function SpeedComparisonCard() {
                                     </div>
                                 </div>
                                 <span className="px-3 py-1 rounded-full bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 text-xs font-bold font-mono shadow-[0_0_12px_rgba(6,182,212,0.3)]">
-                                    ⚡ 0.4s Instant Load
+                                    ⚡ Fast &lt; 2–3s Mobile Load
                                 </span>
                             </div>
 
                             <ul className="space-y-3.5 mb-8">
                                 {[
-                                    "Opens instantly (< 0.5s) on 4G/5G mobile phones",
-                                    "95+ Google Mobile PageSpeed guaranteed",
+                                    "Opens fast (under 2–3s) on mobile networks without lagging",
+                                    "95+ Google Mobile PageSpeed performance",
                                     "PinDrop™ job site GPS pins & automated 5-star Google reviews",
                                     "1-Tap direct phone calling and instant quote routing",
                                     "Direct Capsule CRM sync with zero missed leads"

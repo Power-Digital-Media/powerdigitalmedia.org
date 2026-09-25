@@ -30,7 +30,7 @@ const FAQS: FAQItem[] = [
     category: "Architecture",
     icon: Terminal,
     q: "Why does Power Digital Media build with Next.js instead of WordPress?",
-    a: "WordPress was designed in 2003 for blogging. In 2026, it is plagued by security vulnerabilities, heavy plugin bloat, and poor database latency that drags down mobile speeds. We build custom React/Next.js web architectures served on high-velocity Vercel Edge networks. This guarantees sub-second load times (< 0.4s on cell phones), 98+ PageSpeed scores, and rock-solid security."
+    a: "WordPress was designed in 2003 for blogging. In 2026, it is plagued by security vulnerabilities, heavy plugin bloat, and poor database latency that drags down mobile speeds. We build custom React/Next.js web architectures served on high-velocity Vercel Edge networks. This delivers fast, reliable load times (well under 3 seconds on cell phones), high PageSpeed scores, and rock-solid security."
   },
   {
     id: "in-app-payments-crm",

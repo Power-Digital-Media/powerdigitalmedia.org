@@ -38,7 +38,7 @@ export default function Portfolio({ titleAs: Title = "h2" }: { titleAs?: "h1" | 
                         </span>
                     </Title>
                     <p className="text-white/75 mt-5 text-base md:text-lg leading-relaxed font-normal">
-                        Every site we build is hand-coded for sub-second mobile speed, Google Map dominance, and turning casual local searchers into booked jobs.
+                        Every site we build is hand-coded for fast mobile speed, Google Map dominance, and turning casual local searchers into booked jobs.
                     </p>
                 </div>
 

@@ -42,9 +42,9 @@ const schematicNodes: SchematicNode[] = [
         icon: Globe,
         color: "text-blue-400",
         glow: "rgba(59, 130, 246, 0.4)",
-        metric: "LCP 0.4s | Speed 100/100",
+        metric: "Core Web Vitals Pass | 98+ Speed",
         description: "Bespoke Next.js Server Components distributed globally at the Edge CDN. Eliminates latency, retains traffic, and projects prestige.",
-        details: ["Sub-200ms Core Web Vitals", "Edge CDN Pre-rendering", "Bespoke Glassmorphic UI"]
+        details: ["Fast Mobile Performance", "Edge CDN Pre-rendering", "Bespoke Glassmorphic UI"]
     },
     {
         id: "engine",

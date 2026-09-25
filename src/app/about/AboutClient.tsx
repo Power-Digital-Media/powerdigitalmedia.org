@@ -11,7 +11,7 @@ import Link from "next/link";
 
 const capabilities = [
     {
-        title: "Sub-Second Mobile Web Speed",
+        title: "Fast Mobile Web Speed",
         description: "Hand-crafted with Next.js and deployed at the edge. 95+ PageSpeed scores on cell phones. Zero template code, zero broken WordPress plugins.",
         icon: Zap,
         accent: "cyan",
@@ -115,7 +115,7 @@ export default function AboutClient() {
                                         Most web agencies charge thousands to install a generic WordPress theme packed with 40 plugins that break every few months and take 6 seconds to load on a smartphone.
                                     </p>
                                     <p>
-                                        At Power Digital Media, we hand-craft modern web software on Next.js. Your site opens in under half a second, looks undeniably premium, and comes equipped with our proprietary contractor tools like <strong>PinDrop™</strong> to turn your completed jobs into automated 5-star Google reviews.
+                                        At Power Digital Media, we hand-craft modern web software on Next.js. Your site opens fast on any mobile network, looks undeniably premium, and comes equipped with our proprietary contractor tools like <strong>PinDrop™</strong> to turn your completed jobs into automated 5-star Google reviews.
                                     </p>
                                 </div>
 

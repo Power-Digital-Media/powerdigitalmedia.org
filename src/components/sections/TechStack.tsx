@@ -34,7 +34,7 @@ interface TechCategory {
 const techCategories: TechCategory[] = [
   {
     title: "High-Velocity Edge & Frontend",
-    badge: "Sub-Second Speed",
+    badge: "Fast Mobile Performance",
     badgeColor: "text-amber-400 bg-amber-500/10 border-amber-500/20",
     description: "Modern, pre-rendered React architectures deployed to global edge CDNs for instantaneous mobile delivery.",
     technologies: [

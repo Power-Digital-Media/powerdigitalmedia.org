@@ -295,7 +295,7 @@ export default function Founders100Page() {
                                 </div>
                                 <h3 className="text-lg font-bold uppercase tracking-wider">Performance & SEO Core</h3>
                                 <p className="text-sm text-slate-400 leading-relaxed font-light">
-                                    Built on Next.js App Router with server-side pre-rendering (SSR) for sub-second load times. Pre-loaded with full JSON-LD entity schema arrays and `llms.txt` config files for Google and AI search visibility.
+                                    Built on Next.js App Router with server-side pre-rendering (SSR) for fast mobile load times. Pre-loaded with full JSON-LD entity schema arrays and `llms.txt` config files for Google and AI search visibility.
                                 </p>
                             </div>
 
@@ -336,7 +336,7 @@ export default function Founders100Page() {
                                     <tr>
                                         <td className="p-6 font-medium">Core speed optimization</td>
                                         <td className="p-6">✓ Standard Next.js</td>
-                                        <td className="p-6 font-bold text-white bg-cyan-400/[0.02]">✓ Edge Runtime Rendering (Sub-second)</td>
+                                        <td className="p-6 font-bold text-white bg-cyan-400/[0.02]">✓ Edge Runtime Rendering (Fast Mobile Load)</td>
                                     </tr>
                                     <tr>
                                         <td className="p-6 font-medium">Structured Entity Schema</td>

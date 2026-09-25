@@ -38,7 +38,7 @@ const appProtocols: AppProtocol[] = [
         title: "Custom Portals & Operations",
         subtitle: "Built For Your Workflow",
         description: "Secure client portals, operations dashboards, and custom software tools built to scale. Give your clients a seamless self-service experience.",
-        features: ["Secure Client Login Areas", "Live Job Tracking & Project Status", "Stripe Invoicing & Payments", "Sub-Second Edge Performance"],
+        features: ["Secure Client Login Areas", "Live Job Tracking & Project Status", "Stripe Invoicing & Payments", "High-Performance Edge Deployment"],
         icon: BarChart3,
         color: "text-cyan-400",
         bg: "bg-cyan-500/10"
