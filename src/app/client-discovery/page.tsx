@@ -23,17 +23,17 @@ interface ServiceRoute {
 
 const services: ServiceRoute[] = [
     {
-        title: "Podcasting",
-        subtitle: "The Studio",
+        title: "PinDrop™ & Custom Apps",
+        subtitle: "The Engine",
         description:
-            "Launch or level up your podcast with studio-grade production, branding, and distribution strategy.",
-        icon: Mic2,
-        href: "/podcasting/discovery",
+            "Proprietary contractor field GPS mapping, custom web portals, and software engineered for Mississippi businesses.",
+        icon: Zap,
+        href: "/custom-applications",
         gradient: "from-cyan-500/20 via-cyan-500/5 to-transparent",
         borderColor: "border-cyan-500/30 hover:border-cyan-400/60",
         glowColor: "shadow-[0_0_40px_rgba(34,211,238,0.08)] hover:shadow-[0_0_60px_rgba(34,211,238,0.15)]",
         accentText: "text-cyan-400",
-        features: ["Show Strategy & Naming", "Broadcast-Quality Production", "Distribution & Growth"],
+        features: ["PinDrop™ Field App GPS", "Custom Business Portals", "Square SDK & CRM Sync"],
     },
     {
         title: "Marketing",

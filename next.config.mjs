@@ -32,9 +32,15 @@ const nextConfig = {
   poweredByHeader: false,
   async redirects() {
     return [
+      // 1. Retired Services, Showroom & Equipment Pages
       {
         source: '/podcasting',
         destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/podcasting/:path*',
+        destination: '/marketing',
         permanent: true,
       },
       {
@@ -42,7 +48,155 @@ const nextConfig = {
         destination: '/marketing',
         permanent: true,
       },
-      // Portfolio Slug Alias Redirects
+      {
+        source: '/production/:path*',
+        destination: '/marketing',
+        permanent: true,
+      },
+      {
+        source: '/showroom',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/showroom/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/gear',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/gear/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/equipment',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/equipment/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/pc',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/pc/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/studio',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/studio/:path*',
+        destination: '/',
+        permanent: true,
+      },
+
+      // 2. High-Traffic Shorthands & Navigation Aliases
+      {
+        source: '/portfolio',
+        destination: '/our-work',
+        permanent: true,
+      },
+      {
+        source: '/work',
+        destination: '/our-work',
+        permanent: true,
+      },
+      {
+        source: '/case-studies',
+        destination: '/our-work',
+        permanent: true,
+      },
+      {
+        source: '/case-study',
+        destination: '/our-work',
+        permanent: true,
+      },
+      {
+        source: '/services',
+        destination: '/web-design',
+        permanent: true,
+      },
+      {
+        source: '/pricing',
+        destination: '/free-audit',
+        permanent: true,
+      },
+      {
+        source: '/audit',
+        destination: '/free-audit',
+        permanent: true,
+      },
+      {
+        source: '/schedule',
+        destination: '/book',
+        permanent: true,
+      },
+      {
+        source: '/consult',
+        destination: '/book',
+        permanent: true,
+      },
+      {
+        source: '/consultation',
+        destination: '/book',
+        permanent: true,
+      },
+      {
+        source: '/websites',
+        destination: '/web-design',
+        permanent: true,
+      },
+      {
+        source: '/web-development',
+        destination: '/web-design',
+        permanent: true,
+      },
+      {
+        source: '/apps',
+        destination: '/custom-applications',
+        permanent: true,
+      },
+      {
+        source: '/custom-apps',
+        destination: '/custom-applications',
+        permanent: true,
+      },
+      {
+        source: '/pindrop-app',
+        destination: '/pindrop',
+        permanent: true,
+      },
+      {
+        source: '/phones',
+        destination: '/business-phones',
+        permanent: true,
+      },
+      {
+        source: '/telephony',
+        destination: '/business-phones',
+        permanent: true,
+      },
+      {
+        source: '/voip',
+        destination: '/business-phones',
+        permanent: true,
+      },
+
+      // 3. Portfolio Slug Alias Redirects
       {
         source: '/portfolio/born-again',
         destination: '/portfolio/born-again-roofing',
@@ -50,6 +204,11 @@ const nextConfig = {
       },
       {
         source: '/portfolio/geaux-pro',
+        destination: '/portfolio/geaux-pro-outdoors',
+        permanent: true,
+      },
+      {
+        source: '/portfolio/msdirt',
         destination: '/portfolio/geaux-pro-outdoors',
         permanent: true,
       },
@@ -78,7 +237,55 @@ const nextConfig = {
         destination: '/portfolio/blacksheep-recovery',
         permanent: true,
       },
-      // GSC 404 Redirect Fixes
+      {
+        source: '/portfolio/tbeauxs',
+        destination: '/portfolio/tbeaux',
+        permanent: true,
+      },
+      {
+        source: '/portfolio/t-beauxs',
+        destination: '/portfolio/tbeaux',
+        permanent: true,
+      },
+      {
+        source: '/portfolio/lungrin',
+        destination: '/portfolio/lungrins-lawncare',
+        permanent: true,
+      },
+      {
+        source: '/portfolio/lungrins',
+        destination: '/portfolio/lungrins-lawncare',
+        permanent: true,
+      },
+      {
+        source: '/portfolio/inhisgrip',
+        destination: '/portfolio/in-his-grip',
+        permanent: true,
+      },
+      {
+        source: '/portfolio/thelocalguide',
+        destination: '/portfolio/the-local-guide-ms',
+        permanent: true,
+      },
+      {
+        source: '/portfolio/local-guide',
+        destination: '/portfolio/the-local-guide-ms',
+        permanent: true,
+      },
+
+      // 4. Duplicate Legal & Canonical Paths
+      {
+        source: '/privacy-policy',
+        destination: '/privacy',
+        permanent: true,
+      },
+      {
+        source: '/terms-and-conditions',
+        destination: '/terms',
+        permanent: true,
+      },
+
+      // 5. GSC 404 Redirect Fixes
       {
         source: '/video-first-podcasting-2026',
         destination: '/blog/video-first-podcasting-2026',
@@ -100,7 +307,7 @@ const nextConfig = {
         permanent: true,
       },
 
-      // Soft 404 Renamed Blog Redirects
+      // 6. Soft 404 Renamed Blog Redirects
       {
         source: '/blog/the-truth-about-the-2026-benchmark-war-sovereign-clouds-role',
         destination: '/blog/sovereign-cloud-2026-control-compliance-performance',
@@ -114,17 +321,6 @@ const nextConfig = {
       {
         source: '/blog/accelerating-creative-velocity-ai-and-automation-in-2026',
         destination: '/blog/creative-workflow-management-maximizing-creative-velocity-in-2026',
-        permanent: true,
-      },
-      // Showroom Retirement Catch-All Redirects
-      {
-        source: '/showroom',
-        destination: '/',
-        permanent: true,
-      },
-      {
-        source: '/showroom/:path*',
-        destination: '/',
         permanent: true,
       },
     ];
