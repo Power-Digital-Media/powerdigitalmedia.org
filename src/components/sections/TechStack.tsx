@@ -1,131 +1,196 @@
 "use client";
 
-import { m } from "framer-motion";
-import { Zap, ArrowRight, CheckCircle2 } from "lucide-react";
-import Image from "next/image";
+import React from "react";
+import {
+  Cpu,
+  Zap,
+  ShieldCheck,
+  Globe,
+  Database,
+  CreditCard,
+  MapPin,
+  Mail,
+  Search,
+  Layers,
+  ArrowRight,
+  Server,
+  Lock,
+  Code2,
+} from "lucide-react";
 import Link from "next/link";
 
-const growthEngines = [
-    {
-        name: "Hand-Crafted High-Speed Web Design",
-        type: "Growth Engine 01",
-        description: "Say goodbye to bloated WordPress templates, broken plugins, and sluggish mobile load times. We build hand-crafted, custom Next.js websites that load in under half a second on any cell phone. Designed to make your business look like the undisputed leader in your market.",
-        image: "/portfolio/growth-engine-real.webp",
-        specs: ["95+ Mobile PageSpeed Score", "Custom Mobile-First Layouts", "Instant Click-To-Call Routing"]
-    },
-    {
-        name: "Proprietary PinDrop™ Field Tech",
-        type: "Growth Engine 02 (PDM Exclusive)",
-        description: "The secret weapon installed for our contractor clients. When your crew finishes a job, they take a photo and drop a GPS pin on their smartphone. PinDrop™ automatically publishes the project to your live website map, syncs local schema to Google, and texts the customer for a 5-star Google review.",
-        image: "/images/growth-data-overlay.webp",
-        specs: ["1-Tap GPS Job Site Pins", "Geotagged Photo Showcases", "Automated 5-Star SMS Reviews"]
-    },
-    {
-        name: "Capsule CRM & Lead Follow-Up Pipelines",
-        type: "Growth Engine 03",
-        description: "Never lose a high-paying job because you were busy on a job site. We integrate your website directly with Capsule CRM and Transpond automation so every quote request, form submission, and customer inquiry is instantly organized and followed up with automatically.",
-        image: "/images/capsule_transpond_sync.png",
-        specs: ["Instant Lead Notifications", "Automated Customer Follow-Up", "Centralized Client Pipeline"]
-    }
+interface TechCategory {
+  title: string;
+  badge: string;
+  badgeColor: string;
+  description: string;
+  technologies: {
+    name: string;
+    role: string;
+    tag: string;
+  }[];
+}
+
+const techCategories: TechCategory[] = [
+  {
+    title: "High-Velocity Edge & Frontend",
+    badge: "Sub-Second Speed",
+    badgeColor: "text-amber-400 bg-amber-500/10 border-amber-500/20",
+    description: "Modern, pre-rendered React architectures deployed to global edge CDNs for instantaneous mobile delivery.",
+    technologies: [
+      { name: "Next.js 15 / React", role: "Server-Side Rendering & App Router", tag: "Core Framework" },
+      { name: "Vercel Global Edge", role: "Distributed Edge CDN & Serverless Compute", tag: "Cloud Infrastructure" },
+      { name: "Tailwind CSS", role: "Zero-Bloat Utility Architecture", tag: "Design Engine" },
+      { name: "TypeScript", role: "Type-Safe Strict Production Reliability", tag: "Code Quality" },
+    ],
+  },
+  {
+    title: "Direct Commerce & In-App Payments",
+    badge: "Zero 3rd-Party Redirects",
+    badgeColor: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
+    description: "Native merchant tokenization keeping customers on your domain without clunky external hops.",
+    technologies: [
+      { name: "Square Web Payments SDK", role: "Native In-App Card, Apple Pay & Google Pay", tag: "Payment Processing" },
+      { name: "Stripe Connect API", role: "Direct Merchant Payouts & Recurring Giving", tag: "Subscription Engine" },
+      { name: "DoorDash Drive Dispatch", role: "Automated On-Demand Delivery Routing", tag: "Logistics API" },
+      { name: "Custom Cart Engine", role: "Headcount & Multi-Platter Calculation", tag: "Business Logic" },
+    ],
+  },
+  {
+    title: "Field Automation & CRM Pipelines",
+    badge: "Automated Lead Routing",
+    badgeColor: "text-cyan-400 bg-cyan-500/10 border-cyan-500/20",
+    description: "Synchronized operational tools that route customer inquiries straight to your phone and map jobsites.",
+    technologies: [
+      { name: "PinDrop™ Contractor GPS", role: "1-Tap Field Pins & Live Proof Maps", tag: "Field Tech" },
+      { name: "Capsule CRM REST API", role: "Automated Lead Ingestion & Pipeline Tracking", tag: "Operations Stack" },
+      { name: "Transpond Automation", role: "Instant SMS & Email Drip Follow-Up Sequences", tag: "Lead Nurture" },
+      { name: "Webhooks & Sync Engine", role: "Sub-2-Minute Notification Triggers", tag: "Event Routing" },
+    ],
+  },
+  {
+    title: "Local SEO & AI Engine Discovery",
+    badge: "#1 Metro Visibility",
+    badgeColor: "text-purple-400 bg-purple-500/10 border-purple-500/20",
+    description: "Structured data feeds and local geo-coordinates designed for Google Maps 3-pack and AI conversational search.",
+    technologies: [
+      { name: "Google Maps Platform API", role: "Interactive Boundary & Radius Mapping", tag: "Location Services" },
+      { name: "Schema.org JSON-LD", role: "GeoCoordinates & LocalBusiness Microdata", tag: "Search Schema" },
+      { name: "AEO / GEO Optimization", role: "Semantic AI Citation & Answer Engine Feeding", tag: "AI Search" },
+      { name: "Core Web Vitals Engine", role: "100/100 LCP, CLS & INP Performance Scores", tag: "Speed Index" },
+    ],
+  },
 ];
 
 export default function TechStack() {
-    return (
-        <section id="growth-engines" className="relative py-28 md:py-40 overflow-hidden">
-            <div className="container relative z-10 px-6 mx-auto">
-                <m.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="max-w-4xl mx-auto text-center mb-20 md:mb-32"
-                >
-                    <span className="text-cyan-400 font-bold tracking-[0.3em] uppercase text-[9px] md:text-xs mb-4 block">
-                        The Power Digital Media Advantage
-                    </span>
-                    <h2 className="text-3xl sm:text-5xl md:text-7xl font-black mb-6 tracking-tighter uppercase leading-tight">
-                        3 Growth Engines <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400">
-                            Built For Your Business.
+  return (
+    <section id="tech-stack" className="relative py-24 md:py-32 bg-[#040813] border-t border-white/5 overflow-hidden">
+      {/* Ambient background glows */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-cyan-500/5 rounded-full blur-[160px] pointer-events-none" />
+
+      <div className="container relative z-10 px-4 sm:px-6 mx-auto max-w-7xl">
+        
+        {/* Section Header */}
+        <div className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 mb-5">
+            <Cpu className="w-3.5 h-3.5 text-cyan-400" />
+            <span className="text-cyan-400 font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs">
+              Enterprise Architecture &amp; APIs
+            </span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 tracking-tight uppercase leading-[1.08] text-white">
+            Built On Modern Infrastructure. <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-amber-400">
+              Zero Outdated Plugins.
+            </span>
+          </h2>
+          <p className="text-base md:text-lg text-slate-300 leading-relaxed">
+            We don&apos;t build on fragile, bloated WordPress templates that break every time a plugin updates. We engineer high-performance software connected directly to official enterprise APIs.
+          </p>
+        </div>
+
+        {/* 4-Category Technology Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16">
+          {techCategories.map((category) => (
+            <div
+              key={category.title}
+              className="p-6 sm:p-8 rounded-3xl bg-slate-900/50 border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col justify-between backdrop-blur-sm group"
+            >
+              <div>
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+                  <h3 className="text-xl font-black text-white uppercase tracking-tight">
+                    {category.title}
+                  </h3>
+                  <span className={`text-[10px] font-mono font-bold uppercase px-2.5 py-1 rounded-full border ${category.badgeColor}`}>
+                    {category.badge}
+                  </span>
+                </div>
+                <p className="text-xs text-slate-300 mb-6 leading-relaxed">
+                  {category.description}
+                </p>
+
+                {/* Tech List Items */}
+                <div className="space-y-3">
+                  {category.technologies.map((tech) => (
+                    <div
+                      key={tech.name}
+                      className="p-3 rounded-xl bg-slate-950/70 border border-white/5 hover:border-cyan-500/30 transition-colors flex items-center justify-between gap-3"
+                    >
+                      <div>
+                        <span className="text-sm font-bold text-white block">
+                          {tech.name}
                         </span>
-                    </h2>
-                    <p className="text-base md:text-xl text-foreground/75 leading-relaxed max-w-2xl mx-auto font-normal">
-                        We don&apos;t just build websites. We build connected growth systems that bring in traffic, capture leads, and turn local searchers into loyal, paying clients.
-                    </p>
-                </m.div>
-
-                <div className="space-y-32 md:space-y-40">
-                    {growthEngines.map((item, index) => (
-                        <m.div
-                            key={item.name}
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                            className={`flex flex-col ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} gap-12 lg:gap-16 items-center`}
-                        >
-                            <div className="flex-1 w-full h-[280px] md:h-[460px] relative rounded-3xl overflow-hidden glass-card border border-white/10 shadow-2xl">
-                                <Image
-                                    src={item.image}
-                                    alt={item.name}
-                                    fill
-                                    sizes="(max-width: 768px) 100vw, 50vw"
-                                    className="object-cover opacity-85"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
-                            </div>
-                            <div className="flex-1 max-w-xl text-center lg:text-left flex flex-col items-center lg:items-start w-full">
-                                <span className="text-cyan-400 font-bold tracking-widest uppercase text-xs mb-3 block text-center lg:text-left w-full">
-                                    {item.type}
-                                </span>
-                                <h3 className="text-2xl sm:text-3xl md:text-4xl font-black mb-5 text-center lg:text-left w-full text-white">
-                                    {item.name}
-                                </h3>
-                                <p className="text-base md:text-lg text-foreground/80 mb-8 leading-relaxed text-left w-full">
-                                    {item.description}
-                                </p>
-                                <ul className="flex flex-wrap gap-2.5 mb-6 w-full justify-start">
-                                    {item.specs.map((spec) => (
-                                        <li key={spec} className="flex items-center gap-2 text-xs font-semibold text-white/90 bg-white/[0.04] border border-white/10 rounded-full px-4 py-2 hover:border-cyan-400/40 transition-colors">
-                                            <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0" />
-                                            <span>{spec}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </m.div>
-                    ))}
-                </div>
-
-                {/* Guarantee / Callout Card */}
-                <div className="mt-32 p-8 md:p-12 rounded-[2.5rem] glass-card border border-cyan-500/20 bg-cyan-950/20 text-center max-w-4xl mx-auto shadow-[0_0_50px_rgba(6,182,212,0.08)]">
-                    <div className="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mx-auto mb-6">
-                        <Zap className="w-7 h-7 text-cyan-400" />
+                        <span className="text-[11px] text-slate-400 block">
+                          {tech.role}
+                        </span>
+                      </div>
+                      <span className="text-[9px] font-mono uppercase tracking-wider text-cyan-300/80 bg-white/5 px-2 py-0.5 rounded border border-white/10 shrink-0">
+                        {tech.tag}
+                      </span>
                     </div>
-                    <h4 className="text-2xl md:text-3xl font-black mb-4 text-white uppercase tracking-tight">
-                        Built Local. Supported Locally.
-                    </h4>
-                    <p className="text-foreground/75 text-base md:text-lg mb-8 max-w-xl mx-auto leading-relaxed">
-                        No overseas call centers. When you work with Power Digital Media, you work directly with our local Jackson, MS team who cares about your business growing.
-                    </p>
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <Link 
-                            href="/free-audit" 
-                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-slate-950 font-black rounded-full hover:bg-cyan-400 transition-all text-xs uppercase tracking-wider shadow-lg"
-                        >
-                            Get Free Website Audit <ArrowRight className="w-4 h-4" />
-                        </Link>
-                        <a 
-                            href="tel:6014462393" 
-                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/15 rounded-full hover:bg-white/10 text-white font-bold transition-all text-xs uppercase tracking-wider"
-                        >
-                            Call (601) 446-2393
-                        </a>
-                    </div>
+                  ))}
                 </div>
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-400">
+                <span className="text-emerald-400 flex items-center gap-1 font-bold">
+                  <ShieldCheck className="w-3.5 h-3.5" /> 99.99% Cloud Uptime
+                </span>
+                <span className="text-slate-300">Enterprise Verified</span>
+              </div>
             </div>
+          ))}
+        </div>
 
-            <div className="absolute top-1/2 left-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-[140px] pointer-events-none -z-10" />
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-[140px] pointer-events-none -z-10" />
-        </section>
-    );
+        {/* Bottom Trust & Local Support Card */}
+        <div className="p-8 md:p-10 rounded-3xl bg-gradient-to-br from-slate-900/90 via-slate-950/90 to-amber-950/20 border border-white/15 max-w-4xl mx-auto text-center backdrop-blur-md shadow-2xl">
+          <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mx-auto mb-4">
+            <Zap className="w-6 h-6 text-amber-400" />
+          </div>
+          <h4 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight mb-3">
+            Direct Support by Damein Donald • Jackson, MS
+          </h4>
+          <p className="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed mb-6">
+            When you build with Power Digital Media, you get direct cell phone access to the engineer who architected your site. No offshore call centers, no ticketing delays, and no generic excuses.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/free-audit"
+              className="w-full sm:w-auto px-8 py-3.5 bg-white text-slate-950 font-black rounded-full hover:bg-amber-400 transition-all text-xs uppercase tracking-wider shadow-lg active:scale-95"
+            >
+              Get Free 5-Minute Audit
+            </Link>
+            <a
+              href="tel:6014462393"
+              className="w-full sm:w-auto px-7 py-3.5 border border-amber-400/30 bg-amber-500/10 text-amber-300 rounded-full font-bold text-xs uppercase tracking-wider hover:bg-amber-400 hover:text-slate-950 transition-all active:scale-95"
+            >
+              📞 Call (601) 446-2393
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
 }
