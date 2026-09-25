@@ -59,8 +59,11 @@ export default function Portfolio({ titleAs: Title = "h2" }: { titleAs?: "h1" | 
                                             <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
                                             <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
                                         </div>
-                                        <div className="mx-auto bg-slate-900/90 border border-white/5 rounded-md px-3 py-0.5 text-[10px] text-white/50 font-mono">
-                                            {project.client.toLowerCase().replace(/\s+/g, '')}.com
+                                        <div className="mx-auto bg-slate-900/90 border border-white/5 rounded-md px-3 py-0.5 text-[10px] text-white/50 font-mono flex items-center gap-1.5">
+                                            <span className="text-emerald-400">🔒</span>
+                                            {project.netlifyUrl
+                                                ? project.netlifyUrl.replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/.*$/, '')
+                                                : `${project.client.toLowerCase().replace(/[^a-z0-9]/g, '')}.com`}
                                         </div>
                                     </div>
 
