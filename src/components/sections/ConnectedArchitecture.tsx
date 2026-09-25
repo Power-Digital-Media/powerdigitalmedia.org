@@ -1024,23 +1024,7 @@ export default function ConnectedArchitecture() {
     clientArchitectures[0]
   );
   const [selectedNode, setSelectedNode] = useState<IntegrationNode | null>(null);
-  const [deviceMode, setDeviceMode] = useState<"desktop" | "mobile">("desktop");
-
-  // Auto-detect mobile devices and default to 9:16 phone view
-  useEffect(() => {
-    const checkScreenSize = () => {
-      if (typeof window !== "undefined") {
-        if (window.innerWidth < 1024) {
-          setDeviceMode("mobile");
-        } else {
-          setDeviceMode("desktop");
-        }
-      }
-    };
-    checkScreenSize();
-    window.addEventListener("resize", checkScreenSize);
-    return () => window.removeEventListener("resize", checkScreenSize);
-  }, []);
+  const [deviceMode, setDeviceMode] = useState<"desktop" | "mobile">("mobile");
 
   const handleSelectClient = (client: ClientArchitecture) => {
     setActiveClient(client);
