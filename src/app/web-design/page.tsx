@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Globe, Zap, Shield, Search, ArrowRight, BarChart3, CheckCircle2, PhoneCall, Video, Star } from "lucide-react";
+import { Globe, Zap, Shield, Search, ArrowRight, BarChart3, CheckCircle2, PhoneCall, Video, Star, MapPin, Sparkles } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -235,6 +235,30 @@ export default function WebDesignPage() {
                 </div>
 
               </div>
+
+              {/* Floating PinDrop™ Live Field Engine Badge */}
+              <div className="absolute -bottom-7 -left-4 sm:-left-7 p-3.5 rounded-2xl bg-gradient-to-br from-slate-900/95 via-slate-950/95 to-cyan-950/30 border border-cyan-400/30 shadow-[0_8px_25px_-5px_rgba(6,182,212,0.18),0_0_15px_rgba(6,182,212,0.08)] backdrop-blur-xl max-w-[300px] animate-float transition-all duration-300 hover:scale-105 hover:border-cyan-400/50 hover:shadow-[0_12px_30px_-4px_rgba(6,182,212,0.28)] cursor-default z-20 group">
+                {/* Subtle Ambient Cyan Glow Blur Layer */}
+                <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-cyan-500/15 via-blue-500/10 to-amber-500/15 blur-sm -z-10 opacity-50 group-hover:opacity-80 transition-opacity duration-300" />
+
+                <div className="flex items-center gap-2 text-xs mb-1.5">
+                  <span className="flex h-2 w-2 relative">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                  </span>
+                  <span className="text-[10px] font-bold text-cyan-300 bg-cyan-500/15 px-2 py-0.5 rounded-full border border-cyan-400/30 uppercase tracking-wider flex items-center gap-1">
+                    <MapPin className="w-3 h-3 text-cyan-400" /> Powered by PinDrop™
+                  </span>
+                </div>
+                <p className="text-[11px] text-white/90 font-medium leading-tight">
+                  Crews drop GPS job pins from the field—syncing neighborhood SEO to Google and triggering automated 5-star SMS review requests.
+                </p>
+                <div className="flex items-center justify-between mt-2 pt-2 border-t border-white/10 text-[10px] font-semibold text-amber-300">
+                  <span>📍 99+ Live Job Pins</span>
+                  <span className="text-emerald-400">⚡ 100% Automated</span>
+                </div>
+              </div>
+
             </div>
 
           </div>
