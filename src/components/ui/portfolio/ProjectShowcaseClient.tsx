@@ -136,6 +136,70 @@ export default function ProjectShowcaseClient({ project }: { project: Project })
                     </div>
                 </div>
 
+                {/* Custom Integrations & Architecture Highlights */}
+                {project.integrations && project.integrations.length > 0 && (
+                    <div className="mb-24">
+                        <div className="text-center mb-12">
+                            <span className="text-amber-400 font-bold tracking-widest uppercase text-xs mb-2 block">
+                                Technical Engineering &amp; Integrations
+                            </span>
+                            <h3 className="text-2xl md:text-4xl font-black uppercase tracking-tight text-white">
+                                Custom Integrations In Action
+                            </h3>
+                            <p className="text-slate-400 text-sm md:text-base max-w-2xl mx-auto mt-3">
+                                We engineer custom software and native API connections to eliminate friction and keep customers directly on your platform.
+                            </p>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-8">
+                            {project.integrations.map((item, idx) => (
+                                <motion.div
+                                    key={idx}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.6, delay: idx * 0.1 }}
+                                    className="flex flex-col justify-between rounded-3xl bg-slate-900/80 border border-white/10 overflow-hidden shadow-2xl hover:border-amber-500/40 transition-all group"
+                                >
+                                    {/* Mockup Frame Header */}
+                                    <div className="flex items-center justify-between px-4 py-3 bg-slate-950 border-b border-white/10">
+                                        <div className="flex items-center gap-1.5">
+                                            <span className="w-2 h-2 rounded-full bg-red-500/80" />
+                                            <span className="w-2 h-2 rounded-full bg-yellow-500/80" />
+                                            <span className="w-2 h-2 rounded-full bg-green-500/80" />
+                                        </div>
+                                        <span className="text-[10px] font-mono text-amber-400 font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20">
+                                            {item.badge}
+                                        </span>
+                                    </div>
+
+                                    {/* Screenshot Image */}
+                                    <div className="relative w-full aspect-[16/9] bg-slate-950 overflow-hidden">
+                                        <Image
+                                            src={item.image}
+                                            alt={item.title}
+                                            fill
+                                            className="object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
+                                        />
+                                    </div>
+
+                                    {/* Description */}
+                                    <div className="p-6 md:p-8 flex-1 flex flex-col justify-between bg-slate-900/60">
+                                        <div>
+                                            <h4 className="text-lg md:text-xl font-black text-white uppercase tracking-tight mb-2">
+                                                {item.title}
+                                            </h4>
+                                            <p className="text-slate-300 text-sm leading-relaxed">
+                                                {item.description}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
                 {/* 3. Live Embedded View (if available) */}
                 {project.netlifyUrl && (
                     <div className="mb-20">
@@ -171,10 +235,10 @@ export default function ProjectShowcaseClient({ project }: { project: Project })
                         Get Free Audit
                     </Link>
                     <a
-                        href="tel:6013002004"
+                        href="tel:6014462393"
                         className="px-5 py-2.5 border border-white/20 text-white font-bold uppercase tracking-wider text-xs rounded-full hover:bg-white/10 transition-colors hidden sm:inline-block"
                     >
-                        Call (601) 300-2004
+                        Call (601) 446-2393
                     </a>
                 </div>
             </footer>

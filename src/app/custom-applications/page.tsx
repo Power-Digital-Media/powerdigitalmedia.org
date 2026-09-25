@@ -2,7 +2,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Database, Cpu, Shield, Layers, BarChart3, Terminal as TerminalIcon, Cpu as CpuIcon, ArrowRight, Zap, Check, Video } from "lucide-react";
+import Image from "next/image";
+import { Database, Cpu, Shield, Layers, BarChart3, Terminal as TerminalIcon, Cpu as CpuIcon, ArrowRight, Zap, Check, Video, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -26,30 +27,30 @@ interface AppProtocol {
 const appProtocols: AppProtocol[] = [
     {
         title: "CRM & Lead Automation",
-        subtitle: "Sales Pipeline Systems",
-        description: "Configure Capsule CRM and Transpond email pipelines to turn raw website traffic, social media leads, and offline QR codes into organized, high-converting pipelines automatically.",
-        features: ["Capsule CRM Setup & Sync", "Transpond Automated Campaigns", "Bespoke Lead Capture Bridges", "Automated Contact Tagging"],
+        subtitle: "Never Lose A Lead",
+        description: "Configure Capsule CRM and Transpond automated email pipelines to turn raw website clicks, phone calls, and quote requests into organized client records automatically.",
+        features: ["Capsule CRM Setup & Live Sync", "Transpond Automated Follow-Ups", "Instant SMS/Email Lead Alerts", "Automated Client Tagging"],
         icon: Shield,
-        color: "text-blue-400",
-        bg: "bg-blue-500/10"
+        color: "text-emerald-400",
+        bg: "bg-emerald-500/10"
     },
     {
-        title: "Bespoke Custom Software",
-        subtitle: "Client Portals & SaaS",
-        description: "Secure client portals, operations dashboards, and multi-tenant SaaS hubs built to scale. Bridge customer data directly with your internal operations.",
-        features: ["Multi-Tenant Authentication", "Operations HUDs & Live Data", "Stripe Subscription Engine", "Sub-20ms Edge Performance"],
+        title: "Custom Portals & Operations",
+        subtitle: "Built For Your Workflow",
+        description: "Secure client portals, operations dashboards, and custom software tools built to scale. Give your clients a seamless self-service experience.",
+        features: ["Secure Client Login Areas", "Live Job Tracking & Project Status", "Stripe Invoicing & Payments", "Sub-Second Edge Performance"],
         icon: BarChart3,
         color: "text-cyan-400",
         bg: "bg-cyan-500/10"
     },
     {
-        title: "Operational API Bridges",
-        subtitle: "System Integrations",
-        description: "Secure, custom API connections bridging your forms, legacy systems, and external vendor APIs under one fast, serverless database layer.",
-        features: ["Serverless Database Hubs", "Custom Webhook Integrations", "Zapier & Custom API Bridges", "Automated Reports (PDF/CSV)"],
+        title: "System & API Integrations",
+        subtitle: "Connected Ecosystem",
+        description: "Direct, secure API connections bridging your website forms, scheduling software, and back-office tools into one unified, serverless database.",
+        features: ["Serverless Database Setup", "Custom Webhook Automation", "Eliminate Broken Zapiers", "Automated PDF/CSV Reports"],
         icon: Database,
-        color: "text-indigo-400",
-        bg: "bg-indigo-500/10"
+        color: "text-amber-400",
+        bg: "bg-amber-500/10"
     }
 ];
 
@@ -97,42 +98,44 @@ export default function CustomApplicationsPage() {
 
             <Navbar />
 
-            {/* --- Hero: The Infrastructure --- */}
-            <section className="viewport-section relative overflow-hidden flex flex-col justify-center min-h-[90vh]">
+            {/* --- Hero: Warm & Inviting Custom Apps --- */}
+            <section className="viewport-section relative overflow-hidden flex flex-col justify-center min-h-[85vh]">
                 <CyberHeroBg variant="custom-applications" />
 
-                <div className="container relative z-10 px-4 mx-auto text-center mt-32 md:mt-16 mb-24">
+                <div className="container relative z-10 px-4 mx-auto text-center mt-32 md:mt-20 mb-20">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                         className="max-w-5xl mx-auto"
                     >
-                        <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[10px] md:text-xs mb-6 block">CRM, Automation & Custom Apps</span>
-                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[0.85] uppercase">
-                            Jackson MS <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-500 text-glow-cyan">
-                                CRM & Custom Apps
+                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 mb-6">
+                            <span className="text-emerald-300 font-bold tracking-wider uppercase text-[10px] md:text-xs">
+                                ⭐ Smart Automation &amp; Custom Software
+                            </span>
+                        </div>
+                        <h1 className="text-4xl md:text-7xl lg:text-8xl font-black tracking-tight mb-8 leading-[0.95] uppercase text-white">
+                            CRM &amp; Custom Apps <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-amber-400">
+                                In Jackson, MS.
                             </span>
                         </h1>
-                        <p className="text-xl md:text-3xl text-foreground/70 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
-                            We deploy Capsule CRM and Transpond automation pipelines to track every lead, and build <span className="text-white font-medium">bespoke custom software</span> to run your entire operations.
+                        <p className="text-lg md:text-2xl text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed font-normal">
+                            Eliminate lost leads and messy spreadsheets. We connect your website forms directly to Capsule CRM, set up automated customer follow-ups, and build custom portals tailored to your business.
                         </p>
-                        <div className="flex flex-wrap justify-center gap-6">
-                            <Link href="/book" className="w-full sm:w-auto px-12 py-5 bg-white text-black font-black rounded-full hover:bg-cyan-400 hover:text-white transition-all uppercase tracking-widest text-sm shadow-[0_0_40px_rgba(255,255,255,0.2)] text-center">
-                                Initialize Platform Build
+                        <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
+                            <Link href="/book" className="w-full sm:w-auto px-10 py-5 bg-white text-slate-950 font-black rounded-full hover:bg-emerald-400 transition-all uppercase tracking-wider text-xs shadow-[0_0_35px_rgba(52,211,153,0.25)] text-center">
+                                Request a System Consultation
                             </Link>
-                            <Link href="/book" className="w-full sm:w-auto flex items-center justify-center gap-3 px-12 py-5 border border-white/20 rounded-full hover:bg-cyan-400 hover:text-white hover:border-cyan-400 transition-all font-bold uppercase tracking-widest text-sm group active:scale-95">
-                                <Video className="w-4 h-4 text-cyan-400 group-hover:text-white transition-colors" />
-                                Schedule a Google Meet
+                            <a href="tel:6014462393" className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-5 border border-emerald-400/40 bg-emerald-500/10 text-emerald-300 rounded-full font-black uppercase tracking-wider text-xs hover:bg-emerald-400 hover:text-slate-950 transition-all">
+                                Call (601) 446-2393
+                            </a>
+                            <Link href="/book" className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-5 border border-white/20 rounded-full hover:bg-white/10 transition-all font-bold uppercase tracking-wider text-xs group active:scale-95 text-white">
+                                <Video className="w-4 h-4 text-emerald-400 group-hover:text-white transition-colors" />
+                                Book 15-Min Meeting
                             </Link>
                         </div>
                     </motion.div>
-                </div>
-
-                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-50">
-                    <span className="text-[10px] uppercase tracking-[0.4em] font-bold">Scroll to Explore</span>
-                    <div className="w-px h-12 bg-gradient-to-b from-cyan-400 to-transparent animate-pulse" />
                 </div>
             </section>
 
@@ -247,6 +250,127 @@ export default function CustomApplicationsPage() {
 
                         <div className="flex-1 w-full max-w-md mx-auto">
                             <TerminalWindow />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* --- Live Integrations In Action Showcase --- */}
+            <section className="py-24 md:py-32 bg-slate-950 border-t border-b border-white/10 relative overflow-hidden">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
+
+                <div className="container px-4 mx-auto relative z-10 max-w-6xl">
+                    <div className="text-center mb-16">
+                        <span className="text-amber-400 font-bold tracking-[0.3em] uppercase text-xs mb-3 block">
+                            Engineering Proof
+                        </span>
+                        <h2 className="text-3xl md:text-6xl font-black text-white uppercase tracking-tight mb-4">
+                            Integrations In Action.
+                        </h2>
+                        <p className="text-slate-300 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+                            Real examples of custom payment engines, in-app checkout SDKs, and proprietary field software built for Mississippi businesses.
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-8 mb-12">
+                        {/* Integration Card 1: Square SDK */}
+                        <div className="rounded-3xl bg-slate-900/90 border border-white/10 overflow-hidden shadow-2xl flex flex-col justify-between group hover:border-amber-500/40 transition-all">
+                            <div>
+                                <div className="flex items-center justify-between px-5 py-3.5 bg-slate-950 border-b border-white/10">
+                                    <div className="flex items-center gap-1.5">
+                                        <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                                        <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+                                        <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+                                        <span className="text-xs text-white/40 font-mono ml-2">tbeauxs.com/menu</span>
+                                    </div>
+                                    <span className="text-[10px] font-mono text-amber-300 font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30">
+                                        Square SDK In-App Checkout
+                                    </span>
+                                </div>
+                                <div className="relative w-full aspect-[16/9] bg-slate-950">
+                                    <Image
+                                        src="/portfolio/tbeauxs-square-menu.webp"
+                                        alt="T'Beaux's Custom Menu with Square SDK In-App Checkout"
+                                        fill
+                                        className="object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
+                                    />
+                                </div>
+                                <div className="p-6 sm:p-8">
+                                    <div className="text-xs font-bold text-cyan-400 uppercase tracking-wider mb-2">
+                                        T&apos;Beaux&apos;s Seafood &amp; Catering • Clinton, MS
+                                    </div>
+                                    <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-3">
+                                        Custom Menu &amp; Direct Square SDK Payments
+                                    </h3>
+                                    <p className="text-slate-300 text-sm leading-relaxed mb-4">
+                                        Engineered a bespoke interactive menu where customers customize catfish platters, crawfish boils, and fixin&apos;s directly on the website. Payment is processed securely via the <strong>Square SDK</strong> in-app without ever kicking the customer off to a slow third-party Square storefront.
+                                    </p>
+                                    <div className="flex flex-wrap gap-2 text-[11px] font-semibold text-slate-400">
+                                        <span className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10">Zero Redirects</span>
+                                        <span className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10">Square Web SDK</span>
+                                        <span className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10">Mobile Cart Drawer</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="p-6 sm:px-8 sm:pb-8 pt-0">
+                                <a
+                                    href="https://tbeauxs.com"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400 hover:text-white transition-colors"
+                                >
+                                    Visit Live T&apos;Beaux&apos;s Site <ExternalLink className="w-3.5 h-3.5" />
+                                </a>
+                            </div>
+                        </div>
+
+                        {/* Integration Card 2: Interactive Catering Planner */}
+                        <div className="rounded-3xl bg-slate-900/90 border border-white/10 overflow-hidden shadow-2xl flex flex-col justify-between group hover:border-cyan-500/40 transition-all">
+                            <div>
+                                <div className="flex items-center justify-between px-5 py-3.5 bg-slate-950 border-b border-white/10">
+                                    <div className="flex items-center gap-1.5">
+                                        <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                                        <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+                                        <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+                                        <span className="text-xs text-white/40 font-mono ml-2">tbeauxs.com/feast-planner</span>
+                                    </div>
+                                    <span className="text-[10px] font-mono text-cyan-300 font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30">
+                                        Interactive Catering Engine
+                                    </span>
+                                </div>
+                                <div className="relative w-full aspect-[16/9] bg-slate-950">
+                                    <Image
+                                        src="/portfolio/tbeauxs-feast-planner.webp"
+                                        alt="The Cajun Feast Catering Planner Engine"
+                                        fill
+                                        className="object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
+                                    />
+                                </div>
+                                <div className="p-6 sm:p-8">
+                                    <div className="text-xs font-bold text-cyan-400 uppercase tracking-wider mb-2">
+                                        Custom Business Logic
+                                    </div>
+                                    <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-3">
+                                        The Cajun Feast Event Calculation Engine
+                                    </h3>
+                                    <p className="text-slate-300 text-sm leading-relaxed mb-4">
+                                        An interactive estimation tool for corporate events and private boils. Customers input guest count and appetite levels, and the engine automatically calculates exact crawfish poundage, jumbo shrimp, smoked sausage, and side requirements, generating instant catering quote requests.
+                                    </p>
+                                    <div className="flex flex-wrap gap-2 text-[11px] font-semibold text-slate-400">
+                                        <span className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10">Dynamic Math Engine</span>
+                                        <span className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10">Catering Quote Pipeline</span>
+                                        <span className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10">Capsule CRM Lead Sync</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="p-6 sm:px-8 sm:pb-8 pt-0">
+                                <Link
+                                    href="/portfolio/tbeaux"
+                                    className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-cyan-400 hover:text-white transition-colors"
+                                >
+                                    View Full Case Study <ArrowRight className="w-3.5 h-3.5" />
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>

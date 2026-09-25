@@ -198,36 +198,44 @@ export default function MarketingPage() {
             />
 
             {/* Hero Section */}
-            <section className="relative min-h-[90vh] lg:min-h-[100vh] flex flex-col justify-center pt-28 pb-12 md:py-0 overflow-hidden">
+            <section className="relative min-h-[85vh] flex flex-col justify-center pt-32 pb-16 md:py-0 overflow-hidden">
                 <CyberHeroBg variant="marketing" />
 
                 <div className="container relative z-10 px-4 mx-auto text-center mt-4 md:mt-16 mb-4">
-                    <span className="text-blue-400 font-bold tracking-[0.4em] uppercase text-[8px] md:text-[9px] mb-4 md:mb-6 block">
-                        LOCAL B2B PAID SOCIAL AD ACQUISITION
-                    </span>
-                    <h1 className="text-4xl md:text-8xl font-black mb-6 md:mb-8 tracking-tighter leading-[0.85] uppercase">
-                        Jackson MS <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 text-glow-blue block mt-2">
-                            Digital Marketing
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 mb-6">
+                        <span className="text-blue-300 font-bold tracking-wider uppercase text-[10px] md:text-xs">
+                            ⭐ Local Lead Generation &amp; Paid Ads
+                        </span>
+                    </div>
+                    <h1 className="text-4xl md:text-7xl lg:text-8xl font-black mb-6 md:mb-8 tracking-tight leading-[0.95] uppercase text-white">
+                        Targeted Local Ads <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-amber-400 block mt-2">
+                            In Jackson, MS.
                         </span>
                     </h1>
-                    <p className="text-foreground/60 max-w-2xl mx-auto text-lg leading-relaxed">
-                        Stop wasting money on boosted posts. We build high-converting paid social campaigns that capture qualified local leads and sync them directly into <strong className="text-blue-400 font-bold">Capsule CRM</strong> in milliseconds.
+                    <p className="text-slate-300 max-w-2xl mx-auto text-base md:text-xl leading-relaxed font-normal">
+                        Stop wasting money on boosted posts. We build high-converting paid social campaigns on Facebook and Instagram that bring in qualified quote requests and sync leads straight to your CRM.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8 mt-6 md:mt-10">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-8 md:mt-10">
                         <button
                             onClick={() => setIsBookingOpen(true)}
-                            className="w-full sm:w-auto px-8 py-4 md:px-12 md:py-5 bg-white text-black font-black rounded-full hover:bg-blue-500 hover:text-white transition-all uppercase tracking-widest text-[9px] shadow-[0_0_50px_rgba(255,255,255,0.1)] active:scale-95 text-center block"
+                            className="w-full sm:w-auto px-10 py-5 bg-white text-slate-950 font-black rounded-full hover:bg-blue-400 hover:text-slate-950 transition-all uppercase tracking-wider text-xs shadow-[0_0_35px_rgba(96,165,250,0.25)] active:scale-95 text-center block"
                         >
                             Initiate Campaign Strategy
                         </button>
+                        <a 
+                            href="tel:6014462393"
+                            className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-5 border border-blue-400/40 bg-blue-500/10 text-blue-300 rounded-full font-black uppercase tracking-wider text-xs hover:bg-blue-400 hover:text-slate-950 transition-all"
+                        >
+                            Call (601) 446-2393
+                        </a>
                         <button 
                             onClick={() => setIsBookingOpen(true)}
-                            className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 md:px-12 md:py-5 border border-white/10 rounded-full font-black uppercase tracking-widest text-[9px] hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-all group active:scale-95 block"
+                            className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-5 border border-white/20 rounded-full font-bold uppercase tracking-wider text-xs hover:bg-white/10 transition-all group active:scale-95 text-white"
                         >
                             <Video className="w-3.5 h-3.5 text-blue-400 group-hover:text-white transition-colors" />
-                            Schedule a Google Meet
+                            Book 15-Min Meeting
                         </button>
                     </div>
 
@@ -377,78 +385,90 @@ export default function MarketingPage() {
                 </div>
             </section>
 
-            {/* B2B Local Trust Review Grid */}
+            {/* Verified Customer Reviews Grid */}
             <section className="py-24 border-b border-white/5 bg-white/[0.01] relative z-10">
                 <div className="container px-4 mx-auto max-w-5xl">
                     <div className="text-center mb-16 uppercase tracking-tighter">
-                        <span className="text-blue-400 font-bold tracking-[0.4em] text-[10px] mb-4 block">Proven Reputation</span>
-                        <h2 className="text-3xl md:text-5xl font-black">Trusted Local <span className="text-white/40">Authority.</span></h2>
+                        <span className="text-blue-400 font-bold tracking-[0.4em] text-[10px] mb-4 block">Verified Reputation</span>
+                        <h2 className="text-3xl md:text-5xl font-black">100% 5-Star <span className="text-white/40">Verified Reviews.</span></h2>
                     </div>
 
                     <div className="grid gap-8 md:grid-cols-3">
                         
-                        {/* Google Review */}
-                        <div className="p-8 rounded-3xl glass-card border border-white/5 space-y-6 relative overflow-hidden">
-                            <div className="flex items-center gap-1.5 text-amber-400">
-                                <Star className="w-4 h-4 fill-amber-400" />
-                                <Star className="w-4 h-4 fill-amber-400" />
-                                <Star className="w-4 h-4 fill-amber-400" />
-                                <Star className="w-4 h-4 fill-amber-400" />
-                                <Star className="w-4 h-4 fill-amber-400" />
-                                <span className="text-xs font-bold text-white/50 ml-2">5.0 Star</span>
+                        {/* Scott Lowery Review */}
+                        <div className="p-8 rounded-3xl glass-card border border-white/5 space-y-6 relative overflow-hidden flex flex-col justify-between">
+                            <div>
+                                <div className="flex items-center justify-between mb-4">
+                                    <div className="flex items-center gap-1 text-amber-400">
+                                        <Star className="w-4 h-4 fill-amber-400" />
+                                        <Star className="w-4 h-4 fill-amber-400" />
+                                        <Star className="w-4 h-4 fill-amber-400" />
+                                        <Star className="w-4 h-4 fill-amber-400" />
+                                        <Star className="w-4 h-4 fill-amber-400" />
+                                    </div>
+                                    <span className="text-[10px] font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">Google Review</span>
+                                </div>
+                                <p className="text-xs text-slate-300 italic leading-relaxed">
+                                    &ldquo;Took my marketing program from the dumps all the way to the moon. Very responsive and results oriented. I highly recommend!!!&rdquo;
+                                </p>
                             </div>
-                            <p className="text-xs text-slate-300 italic leading-relaxed">
-                                "The speed they achieved with Next.js is incredible, and tying our landing pages straight to our Capsule CRM list has completely automated our customer follow-up strategy. Absolute pros."
-                            </p>
-                            <div className="flex items-center gap-3 pt-2">
-                                <div className="w-8 h-8 rounded-full bg-slate-800 border border-white/10 flex items-center justify-center font-black text-[10px]">G</div>
+                            <div className="flex items-center gap-3 pt-4 border-t border-white/5">
+                                <div className="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-xs">S</div>
                                 <div>
-                                    <h4 className="font-bold text-xs uppercase">Google Business Citation</h4>
-                                    <span className="text-[9px] text-slate-400 tracking-wider">Madison, MS</span>
+                                    <h4 className="font-bold text-xs uppercase text-white">Scott Lowery</h4>
+                                    <span className="text-[10px] text-slate-400">Owner, Geaux Pro Outdoors (Bentonia, MS)</span>
                                 </div>
                             </div>
                         </div>
 
-                        {/* BBB Review */}
-                        <div className="p-8 rounded-3xl glass-card border border-white/5 space-y-6 relative overflow-hidden">
-                            <div className="flex items-center gap-1.5 text-amber-400">
-                                <Star className="w-4 h-4 fill-amber-400" />
-                                <Star className="w-4 h-4 fill-amber-400" />
-                                <Star className="w-4 h-4 fill-amber-400" />
-                                <Star className="w-4 h-4 fill-amber-400" />
-                                <Star className="w-4 h-4 fill-amber-400" />
-                                <span className="text-xs font-bold text-white/50 ml-2">A+ Rating</span>
+                        {/* Jeff Johnson Review */}
+                        <div className="p-8 rounded-3xl glass-card border border-white/5 space-y-6 relative overflow-hidden flex flex-col justify-between">
+                            <div>
+                                <div className="flex items-center justify-between mb-4">
+                                    <div className="flex items-center gap-1 text-amber-400">
+                                        <Star className="w-4 h-4 fill-amber-400" />
+                                        <Star className="w-4 h-4 fill-amber-400" />
+                                        <Star className="w-4 h-4 fill-amber-400" />
+                                        <Star className="w-4 h-4 fill-amber-400" />
+                                        <Star className="w-4 h-4 fill-amber-400" />
+                                    </div>
+                                    <span className="text-[10px] font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">Google Review</span>
+                                </div>
+                                <p className="text-xs text-slate-300 italic leading-relaxed">
+                                    &ldquo;Damein was made to do this and does everything with a spirit of excellence. He’s professional and reasonable. Looking for a web guy he is him.&rdquo;
+                                </p>
                             </div>
-                            <p className="text-xs text-slate-300 italic leading-relaxed">
-                                "Power Digital Media built our marketing campaigns and automated routing setup with complete transparency. They took time to understand our local customers and designed visually stunning assets."
-                            </p>
-                            <div className="flex items-center gap-3 pt-2">
-                                <div className="w-8 h-8 rounded-full bg-slate-800 border border-white/10 flex items-center justify-center font-black text-[10px]">B</div>
+                            <div className="flex items-center gap-3 pt-4 border-t border-white/5">
+                                <div className="w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-xs">J</div>
                                 <div>
-                                    <h4 className="font-bold text-xs uppercase">BBB Business Directory</h4>
-                                    <span className="text-[9px] text-slate-400 tracking-wider">Jackson, MS</span>
+                                    <h4 className="font-bold text-xs uppercase text-white">Jeff Johnson</h4>
+                                    <span className="text-[10px] text-slate-400">Local Mississippi Client</span>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Facebook Review */}
-                        <div className="p-8 rounded-3xl glass-card border border-white/5 space-y-6 relative overflow-hidden">
-                            <div className="flex items-center gap-1.5 text-amber-400">
-                                <Star className="w-4 h-4 fill-amber-400" />
-                                <Star className="w-4 h-4 fill-amber-400" />
-                                <Star className="w-4 h-4 fill-amber-400" />
-                                <Star className="w-4 h-4 fill-amber-400" />
-                                <Star className="w-4 h-4 fill-amber-400" />
-                                <span className="text-xs font-bold text-white/50 ml-2">Recommended</span>
+                        {/* Joey Nash Review */}
+                        <div className="p-8 rounded-3xl glass-card border border-white/5 space-y-6 relative overflow-hidden flex flex-col justify-between">
+                            <div>
+                                <div className="flex items-center justify-between mb-4">
+                                    <div className="flex items-center gap-1 text-amber-400">
+                                        <Star className="w-4 h-4 fill-amber-400" />
+                                        <Star className="w-4 h-4 fill-amber-400" />
+                                        <Star className="w-4 h-4 fill-amber-400" />
+                                        <Star className="w-4 h-4 fill-amber-400" />
+                                        <Star className="w-4 h-4 fill-amber-400" />
+                                    </div>
+                                    <span className="text-[10px] font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">Google Review</span>
+                                </div>
+                                <p className="text-xs text-slate-300 italic leading-relaxed">
+                                    &ldquo;Damein is always right on time. He can figure out what im looking for quickly. Im a picky person and he is patient and professional. Highly recommend.&rdquo;
+                                </p>
                             </div>
-                            <p className="text-xs text-slate-300 italic leading-relaxed">
-                                "Unlike other agencies who just boosted posts and brought zero trackable leads, Damein set up direct Capsule lead sync and automated forms. Our ad ROI is now fully clear."
-                            </p>
-                            <div className="flex items-center gap-3 pt-2">
-                                <div className="w-8 h-8 rounded-full bg-slate-800 border border-white/10 flex items-center justify-center font-black text-[10px]">F</div>
+                            <div className="flex items-center gap-3 pt-4 border-t border-white/5">
+                                <div className="w-8 h-8 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold text-xs">J</div>
                                 <div>
-                                    <h4 className="font-bold text-xs uppercase">Facebook Recommendations</h4>
-                                    <span className="text-[9px] text-slate-400 tracking-wider">Brandon, MS</span>
+                                    <h4 className="font-bold text-xs uppercase text-white">Joey Nash</h4>
+                                    <span className="text-[10px] text-slate-400">Local Business Owner</span>
                                 </div>
                             </div>
                         </div>

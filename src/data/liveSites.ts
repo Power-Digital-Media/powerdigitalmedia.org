@@ -32,7 +32,7 @@ export const liveSites: LiveSite[] = [
         seoScore: 100,
         bestPracticesScore: 98,
         glowColor: "234, 179, 8", // Gold/Amber
-        image: "/portfolio/born-again-roofing.jpg"
+        image: "/portfolio/born-again-roofing.webp"
     },
     {
         id: "ms-dirt",
@@ -83,7 +83,7 @@ export const liveSites: LiveSite[] = [
         seoScore: 100,
         bestPracticesScore: 98,
         glowColor: "34, 197, 94", // Green
-        image: "/portfolio/lungrins-lawncare.jpg"
+        image: "/portfolio/lungrins-lawncare.webp"
     },
     {
         id: "the-local-guide-ms",

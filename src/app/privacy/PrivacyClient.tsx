@@ -296,7 +296,7 @@ export default function PrivacyClient() {
                                                 <Phone className="w-5 h-5 text-cyan-400" />
                                                 <div>
                                                     <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-mono">Direct Phone Line</p>
-                                                    <p className="font-bold text-sm">+1 (601) 300-2004</p>
+                                                    <p className="font-bold text-sm">+1 (601) 446-2393</p>
                                                 </div>
                                             </div>
                                         </div>

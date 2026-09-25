@@ -92,10 +92,10 @@ export default function Services() {
                                     Get Free Website Audit
                                 </Link>
                                 <a
-                                    href="tel:6013002004"
+                                    href="tel:6014462393"
                                     className="px-8 py-4 border border-white/20 rounded-full font-bold uppercase tracking-wider text-xs hover:bg-white/10 text-white transition-all text-center"
                                 >
-                                    Call (601) 300-2004
+                                    Call (601) 446-2393
                                 </a>
                             </div>
                         </div>
@@ -131,12 +131,12 @@ export default function Services() {
                                 <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
                                 <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
                                 <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
-                                <span className="text-[10px] text-white/50 font-mono ml-2">bornagainroofing.com</span>
+                                <span className="text-[10px] text-white/50 font-mono ml-2">msdirt.com</span>
                             </div>
                             <div className="relative w-full h-[calc(100%-33px)]">
                                 <Image
-                                    src="/portfolio/born-again-roofing.jpg"
-                                    alt="Born Again Roofing - High Speed Next.js Website"
+                                    src="/portfolio/geaux-pro-outdoors.webp"
+                                    alt="Geaux Pro Outdoors (MS Dirt) - High Speed Next.js Website"
                                     fill
                                     sizes="(max-width: 768px) 100vw, 50vw"
                                     className="object-cover object-top"
@@ -230,10 +230,10 @@ export default function Services() {
                                     See How PinDrop™ Works
                                 </Link>
                                 <a
-                                    href="tel:6013002004"
+                                    href="tel:6014462393"
                                     className="px-7 py-3.5 border border-white/20 rounded-full font-bold uppercase tracking-wider text-xs hover:bg-white/10 text-white transition-colors"
                                 >
-                                    Call (601) 300-2004
+                                    Call (601) 446-2393
                                 </a>
                             </div>
                         </div>
@@ -380,10 +380,10 @@ export default function Services() {
                             Get Free 5-Minute Audit
                         </Link>
                         <a
-                            href="tel:6013002004"
+                            href="tel:6014462393"
                             className="w-full sm:w-auto px-8 py-4 border border-white/20 rounded-full hover:bg-white/10 text-white font-bold transition-all uppercase tracking-wider text-xs"
                         >
-                            Call Damein (601) 300-2004
+                            Call Damein (601) 446-2393
                         </a>
                     </div>
                 </div>

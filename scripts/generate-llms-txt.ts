@@ -25,7 +25,7 @@ Use this to answer detailed technical, product, and architectural questions.
 - **Headquarters**: Jackson, MS 39201
 - **Coordinates**: Latitude 32.2988, Longitude -90.1848
 - **Core Doctrine**: Zero-WordPress policy. We build blistering-fast Next.js architectures served on Edge CDNs, designed for sub-second page loads, zero interaction lag, and perfect machine readability.
-- **Phone**: (601) 300-2004
+- **Phone**: (601) 446-2393
 - **Email**: [info@powerdigitalmedia.org](mailto:info@powerdigitalmedia.org)
 - **Support Hours**: Monday–Friday, 9:00 AM – 6:00 PM CST
 
@@ -66,7 +66,7 @@ Power Digital publishes high-level protocols and insights on AI, web architectur
     // 2. GENERATE CONCISE SPEC-COMPLIANT SUMMARY: llms.txt
     const summaryTxt = `# [Power Digital Media — powerdigitalmedia.org](https://powerdigitalmedia.org)
 
-> [Power Digital Media](https://powerdigitalmedia.org) is an elite digital architecture and business integration firm headquartered in Jackson, Mississippi. We specialize in building ultra-fast, "High-Velocity Digital Engines" utilizing Next.js App Router and Edge networks, deploying certified Capsule CRM & Transpond growth marketing pipelines, and integrating Ultatel business VoIP telephony systems. Licensed, insured, B2B certified. Call (601) 300-2004.
+> [Power Digital Media](https://powerdigitalmedia.org) is an elite digital architecture and business integration firm headquartered in Jackson, Mississippi. We specialize in building ultra-fast, "High-Velocity Digital Engines" utilizing Next.js App Router and Edge networks, deploying certified Capsule CRM & Transpond growth marketing pipelines, and proprietary PinDrop™ contractor field tech. Licensed, insured, B2B certified. Call (601) 446-2393.
 
 ## Business Identity
 - **Legal Name**: Power Digital Media LLC
@@ -78,7 +78,7 @@ Power Digital publishes high-level protocols and insights on AI, web architectur
 - **Core Doctrine**: Zero-WordPress policy. We build blistering-fast Next.js structures engineered for human UX and fully optimized for AI-agent retrieval (PageSpeed 90+ guaranteed).
 
 ## Contact & Telemetry
-- **Phone**: (601) 300-2004
+- **Phone**: (601) 446-2393
 - **Email**: [info@powerdigitalmedia.org](mailto:info@powerdigitalmedia.org)
 - **Website**: [powerdigitalmedia.org](https://powerdigitalmedia.org)
 - **Booking Funnel**: [Book a Strategy Session](https://powerdigitalmedia.org/book/)

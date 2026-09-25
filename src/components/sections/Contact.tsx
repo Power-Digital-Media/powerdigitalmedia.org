@@ -77,10 +77,10 @@ export default function Contact() {
                                     </div>
                                 </div>
                                 <a
-                                    href="tel:6013002004"
+                                    href="tel:6014462393"
                                     className="text-xl font-black text-cyan-400 hover:text-white transition-colors block pl-13"
                                 >
-                                    (601) 300-2004
+                                    (601) 446-2393
                                 </a>
                             </div>
 
@@ -116,7 +116,7 @@ export default function Contact() {
 
                             {/* SMS Opt-in Disclaimer */}
                             <p className="text-[10px] text-white/40 leading-relaxed px-2">
-                                By texting (601) 300-2004, you agree that you may receive messages from Power Digital Media LLC. Msg &amp; data rates may apply. Reply STOP to cancel at any time. View our <Link href="/privacy-policy" className="text-cyan-400 underline">Privacy Policy</Link> and <Link href="/terms-and-conditions" className="text-cyan-400 underline">Terms</Link>.
+                                By texting (601) 446-2393, you agree that you may receive messages from Power Digital Media LLC. Msg &amp; data rates may apply. Reply STOP to cancel at any time. View our <Link href="/privacy-policy" className="text-cyan-400 underline">Privacy Policy</Link> and <Link href="/terms-and-conditions" className="text-cyan-400 underline">Terms</Link>.
                             </p>
                         </div>
 
@@ -212,7 +212,7 @@ export default function Contact() {
 
                                     {status === "error" && (
                                         <p className="text-red-400 text-xs">
-                                            Failed to send. Please give us a direct call at (601) 300-2004.
+                                            Failed to send. Please give us a direct call at (601) 446-2393.
                                         </p>
                                     )}
 

@@ -78,26 +78,25 @@ export default function AEOFAQ() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
           {/* Header Panel */}
-          <div className="lg:col-span-5 flex flex-col gap-6 text-left">
-            <span className="text-cyan-400 font-bold tracking-[0.3em] uppercase text-[9px] block">
-              Answer Engine Optimization (AEO)
+          <div className="lg:col-span-5 flex flex-col gap-5 text-left">
+            <span className="text-amber-400 font-bold tracking-[0.2em] uppercase text-xs block">
+              Clear Answers For Business Owners
             </span>
-            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-[0.95] text-white">
-              The Architecture <br /> of Modern <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-500 text-glow-cyan">
-                Web Intelligence
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight leading-tight text-white">
+              Frequently Asked <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-cyan-400 to-emerald-400">
+                Questions.
               </span>
             </h2>
-            <p className="text-foreground/50 text-sm leading-relaxed max-w-md">
-              AI engines cite websites that are clear, structured, and easy to extract. Discover the structural principles we use to secure search engine dominance and AI recommendations in the 2026 digital ecosystem.
+            <p className="text-slate-300 text-sm md:text-base leading-relaxed max-w-md font-normal">
+              Have questions about how we build websites, rank you on Google Maps, or set up automated lead capture? Here are the most common questions from Mississippi business owners.
             </p>
-            <div className="hidden lg:flex flex-col gap-4 mt-4 p-5 bg-slate-900/40 border border-slate-900 rounded-2xl">
-              <div className="flex items-center gap-3">
-                <Terminal className="w-4 h-4 text-cyan-400" />
-                <span className="text-xs font-mono text-cyan-400 uppercase tracking-widest">AEO Node Registry</span>
+            <div className="flex flex-col gap-3 mt-2 p-5 bg-slate-900/60 border border-white/10 rounded-2xl">
+              <div className="flex items-center gap-2 text-white font-bold text-xs">
+                <span>💬 Have a different question?</span>
               </div>
-              <p className="text-[11px] text-foreground/40 leading-relaxed font-mono">
-                Running real-time JSON-LD structured schema injections. Fully crawlable by GPTBot, ClaudeBot, and Googlebot SGE algorithms.
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Call or text Damein Donald directly at <strong className="text-amber-300">(601) 446-2393</strong> for straight answers with no sales pressure.
               </p>
             </div>
           </div>

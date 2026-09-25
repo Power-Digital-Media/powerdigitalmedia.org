@@ -287,11 +287,11 @@ export default function AboutClient() {
                                 Get Free Website Audit
                             </Link>
                             <a
-                                href="tel:6013002004"
+                                href="tel:6014462393"
                                 className="w-full sm:w-auto flex items-center justify-center gap-2 px-10 py-5 border border-white/15 rounded-full font-bold uppercase tracking-widest text-[10px] text-white hover:bg-white/10 transition-all group active:scale-95"
                             >
                                 <PhoneCall className="w-3.5 h-3.5 text-cyan-400" />
-                                Call (601) 300-2004
+                                Call (601) 446-2393
                             </a>
                         </div>
                     </motion.div>

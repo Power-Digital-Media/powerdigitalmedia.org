@@ -3,25 +3,31 @@
 
 @layer base {
   :root {
-    --background: #020617;
+    --background: #080d1a;
     --foreground: #f8fafc;
 
-    --primary: #3b82f6;
-    --primary-foreground: #ffffff;
+    --primary: #06b6d4;
+    --primary-foreground: #020617;
 
     --secondary: #0f172a;
     --secondary-foreground: #f8fafc;
 
-    --accent: #3b82f6;
-    --accent-foreground: #ffffff;
-    --accent-glow: rgba(59, 130, 246, 0.5);
+    --accent: #f59e0b;
+    --accent-foreground: #020617;
+    --accent-glow: rgba(245, 158, 11, 0.3);
 
-    --muted: #64748b;
-    --muted-foreground: #94a3b8;
+    --cyan: #06b6d4;
+    --cyan-glow: rgba(6, 182, 212, 0.3);
 
-    --border: rgba(248, 250, 252, 0.1);
-    --glass: rgba(15, 23, 42, 0.6);
-    --glass-border: rgba(248, 250, 252, 0.1);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16, 185, 129, 0.3);
+
+    --muted: #94a3b8;
+    --muted-foreground: #cbd5e1;
+
+    --border: rgba(255, 255, 255, 0.08);
+    --glass: rgba(15, 23, 42, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.1);
 
     --font-sans: var(--font-inter);
     --font-heading: var(--font-space-grotesk);
@@ -57,19 +63,20 @@ body {
   overflow-x: hidden;
 }
 
-/* Cyber Studio Mesh Gradient Background */
+/* Warm, Inviting Twilight Mesh Background */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -2;
   background:
-    radial-gradient(circle at 0% 0%, rgba(30, 41, 59, 1) 0%, transparent 50%),
-    radial-gradient(circle at 100% 100%, rgba(15, 23, 42, 1) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(2, 6, 23, 1) 0%, transparent 100%);
+    radial-gradient(circle at 15% 5%, rgba(14, 28, 54, 0.8) 0%, transparent 45%),
+    radial-gradient(circle at 85% 15%, rgba(245, 158, 11, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(15, 23, 42, 0.95) 0%, transparent 60%),
+    radial-gradient(circle at 50% 50%, rgba(8, 13, 26, 1) 0%, transparent 100%);
 }
 
-/* Subtle Blue Glow in Corners */
+/* Soft Ambient Accents */
 body::after {
   content: "";
   position: fixed;
@@ -77,35 +84,8 @@ body::after {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(circle at -10% -10%, rgba(59, 130, 246, 0.05) 0%, transparent 40%),
-    radial-gradient(circle at 110% 110%, rgba(59, 130, 246, 0.05) 0%, transparent 40%);
-}
-
-.cyber-grid {
-  background-image: linear-gradient(to right, rgba(34, 211, 238, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(34, 211, 238, 0.05) 1px, transparent 1px);
-
-  .mask-gradient-v {
-    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
-  }
-
-  .mask-gradient-radial {
-    mask-image: radial-gradient(circle at center, black, transparent 70%);
-  }
-
-  background-size: 40px 40px;
-}
-
-.perspective {
-  perspective: 2000px;
-}
-
-.preserve-3d {
-  transform-style: preserve-3d;
-}
-
-.backface-hidden {
-  backface-visibility: hidden;
+    radial-gradient(circle at -5% 30%, rgba(6, 182, 212, 0.03) 0%, transparent 35%),
+    radial-gradient(circle at 105% 70%, rgba(245, 158, 11, 0.03) 0%, transparent 35%);
 }
 
 h1,
@@ -120,22 +100,22 @@ h6 {
 }
 
 .glass-card {
-  background: var(--glass);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
 }
 
-.text-glow {
-  text-shadow: 0 0 20px var(--accent-glow);
+.card-warm {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 36px -8px rgba(0, 0, 0, 0.45);
 }
 
-.text-glow-cyan {
-  text-shadow: 0 0 30px rgba(34, 211, 238, 0.4);
-}
-
-.text-glow-blue {
-  text-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+.card-warm:hover {
+  border-color: rgba(245, 158, 11, 0.35);
+  box-shadow: 0 16px 40px -10px rgba(245, 158, 11, 0.1);
 }
 
 .text-balance {
@@ -150,20 +130,16 @@ h6 {
 /* Hide scrollbar for IE, Edge and Firefox */
 .no-scrollbar {
   -ms-overflow-style: none;
-  /* IE and Edge */
   scrollbar-width: none;
-  /* Firefox */
 }
 
 @keyframes float {
   0% {
     transform: translateY(0px);
   }
-
   50% {
-    transform: translateY(-12px);
+    transform: translateY(-8px);
   }
-
   100% {
     transform: translateY(0px);
   }
@@ -171,21 +147,4 @@ h6 {
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
-}
-
-/* Zero-cost noise texture — inline SVG, no HTTP request */
-.noise-texture {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px 256px;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: 200% 0;
-  }
-
-  100% {
-    background-position: -200% 0;
-  }
 }

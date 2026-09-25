@@ -127,7 +127,7 @@ export async function POST(req: NextRequest) {
                 </div>
                 
                 <div class="footer">
-                    Power Digital Media LLC &bull; Jackson, MS &bull; (601) 300-2004<br>
+                    Power Digital Media LLC &bull; Jackson, MS &bull; (601) 446-2393<br>
                     You are receiving this B2B billing protocol request as a certified client partner.
                 </div>
             </div>

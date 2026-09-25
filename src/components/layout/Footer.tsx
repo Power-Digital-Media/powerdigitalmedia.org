@@ -67,7 +67,7 @@ export default function Footer() {
                             <li>Jackson, MS 39209</li>
                             <li className="text-xs text-slate-400">Serving Jackson, Clinton, Madison, Ridgeland, Brandon, Flowood, Pearl &amp; Central MS</li>
                             <li>info@powerdigitalmedia.org</li>
-                            <li>601-300-2004</li>
+                            <li>601-446-2393</li>
                             <li>
                                 <button
                                     onClick={() => setIsBookingOpen(true)}

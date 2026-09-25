@@ -61,15 +61,21 @@ export default function PinDropPage() {
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-16">
                         <a
                             href="/book"
-                            className="w-full sm:w-auto px-10 py-5 rounded-full bg-gradient-to-r from-yellow-400 to-amber-500 text-black font-black uppercase tracking-widest text-xs hover:scale-105 transition-all shadow-[0_0_40px_rgba(234,179,8,0.3)] text-center"
+                            className="w-full sm:w-auto px-10 py-5 rounded-full bg-gradient-to-r from-yellow-400 to-amber-500 text-black font-black uppercase tracking-wider text-xs hover:scale-105 transition-all shadow-[0_0_40px_rgba(234,179,8,0.3)] text-center"
                         >
-                            Schedule a 15-Min PinDrop Demo
+                            Schedule a 15-Min Demo
+                        </a>
+                        <a
+                            href="tel:6014462393"
+                            className="w-full sm:w-auto px-8 py-5 rounded-full border border-yellow-400/40 bg-yellow-500/10 text-yellow-300 font-black uppercase tracking-wider text-xs hover:bg-yellow-400 hover:text-slate-950 transition-all text-center"
+                        >
+                            Call (601) 446-2393
                         </a>
                         <a
                             href="/free-audit"
-                            className="w-full sm:w-auto px-10 py-5 rounded-full border border-white/20 text-white font-black uppercase tracking-widest text-xs hover:bg-white/10 transition-all text-center"
+                            className="w-full sm:w-auto px-8 py-5 rounded-full border border-white/20 text-white font-bold uppercase tracking-wider text-xs hover:bg-white/10 transition-all text-center"
                         >
-                            Get Free Contractor SEO Audit
+                            Get Free SEO Audit
                         </a>
                     </div>
 
@@ -196,7 +202,7 @@ export default function PinDropPage() {
                         </Link>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         {/* Born Again Case Study */}
                         <div className="rounded-3xl bg-slate-900/50 border border-white/10 p-8 flex flex-col justify-between">
                             <div>
@@ -254,6 +260,35 @@ export default function PinDropPage() {
                                 </a>
                             </div>
                         </div>
+
+                        {/* Lungrin's Lawncare Case Study */}
+                        <div className="rounded-3xl bg-slate-900/50 border border-white/10 p-8 flex flex-col justify-between">
+                            <div>
+                                <div className="flex items-center justify-between mb-6">
+                                    <span className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-[10px] font-mono font-bold uppercase tracking-wider border border-emerald-500/20">
+                                        Lawn Care &amp; Maintenance
+                                    </span>
+                                    <span className="text-xs text-white/40 font-mono">Flora &amp; Pocahontas, MS</span>
+                                </div>
+                                <h3 className="text-2xl font-black uppercase tracking-tight text-white mb-3">
+                                    Lungrin&apos;s Lawncare LLC
+                                </h3>
+                                <p className="text-sm text-white/60 leading-relaxed mb-6">
+                                    Precision lawn maintenance, seasonal yard cleanup, and pine straw contractor in Flora and Pocahontas. Scheduled for PinDrop™ installation to automatically log completed neighborhood projects and capture automated Google reviews.
+                                </p>
+                            </div>
+                            <div className="pt-4 border-t border-white/5 flex items-center justify-between">
+                                <div className="text-xs text-emerald-400 font-bold">PinDrop™ Deploying</div>
+                                <a
+                                    href="https://lungrinslawncare.com"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-xs text-white font-bold uppercase tracking-wider hover:text-cyan-400 transition-colors"
+                                >
+                                    Visit Site →
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -275,10 +310,10 @@ export default function PinDropPage() {
                             Book a 15-Minute Strategy Call
                         </a>
                         <a
-                            href="tel:16013002004"
+                            href="tel:6014462393"
                             className="w-full sm:w-auto px-10 py-5 rounded-full border border-white/20 text-white font-black uppercase tracking-widest text-xs hover:bg-white/10 transition-all text-center"
                         >
-                            Call (601) 300-2004
+                            Call (601) 446-2393
                         </a>
                     </div>
                 </div>

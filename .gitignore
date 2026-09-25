@@ -46,4 +46,5 @@ next-env.d.ts
 
 # local scripts with sensitive data
 /scripts/create-admin-user.ts
-
+/scratch/
+scratch_arch_screenshot.png

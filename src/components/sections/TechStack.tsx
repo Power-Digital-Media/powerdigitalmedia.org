@@ -115,10 +115,10 @@ export default function TechStack() {
                             Get Free Website Audit <ArrowRight className="w-4 h-4" />
                         </Link>
                         <a 
-                            href="tel:6013002004" 
+                            href="tel:6014462393" 
                             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/15 rounded-full hover:bg-white/10 text-white font-bold transition-all text-xs uppercase tracking-wider"
                         >
-                            Call (601) 300-2004
+                            Call (601) 446-2393
                         </a>
                     </div>
                 </div>

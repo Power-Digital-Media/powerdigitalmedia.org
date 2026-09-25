@@ -118,7 +118,7 @@ export default function AuditCTA() {
                                         {status === "error" && (
                                             <div className="p-3 bg-red-500/10 border border-red-500/20 text-red-400 text-xs rounded-xl flex items-center gap-2">
                                                 <AlertCircle className="w-4 h-4 shrink-0" />
-                                                Submission failed. Please call (601) 300-2004 or try again.
+                                                Submission failed. Please call (601) 446-2393 or try again.
                                             </div>
                                         )}
 

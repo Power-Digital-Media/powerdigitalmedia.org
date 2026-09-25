@@ -105,7 +105,7 @@ export default function RootLayout({
               "url": "https://powerdigitalmedia.org",
               "logo": "https://powerdigitalmedia.org/power-logo.png",
               "image": "https://powerdigitalmedia.org/hero-bg.webp",
-              "telephone": "+16013002004",
+              "telephone": "+16014462393",
               "priceRange": "$$$",
               "sameAs": [
                 "https://www.youtube.com/@PowerDigitalMedia",

@@ -62,6 +62,7 @@ export default function Navbar() {
 
     const mainLinks = [
         { name: "Portfolio", href: "/our-work", external: false },
+        { name: "Reviews", href: "/review", external: false },
         { name: "Blog", href: "/blog", external: false },
         { name: "About", href: "/about", external: false },
     ];
@@ -70,38 +71,34 @@ export default function Navbar() {
         <>
             {/* Navbar Bar */}
             <nav
-                className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${isScrolled ? "py-4" : "py-6"
-                    } ${isHiddenByWakeUp && !isMobileMenuOpen ? "-translate-y-full opacity-0 pointer-events-none" : "translate-y-0 opacity-100"}`}
+                className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
+                    isScrolled ? "py-3 bg-slate-950/90 backdrop-blur-md border-b border-white/10 shadow-lg" : "py-4 bg-slate-950/60 backdrop-blur-sm border-b border-white/5"
+                }`}
             >
                 <div className="container px-4 mx-auto relative z-50">
-                    <div
-                        className={`relative flex items-center justify-between px-6 py-3 rounded-full transition-all duration-300 ${isScrolled || isMobileMenuOpen
-                            ? "glass-card bg-background/80 backdrop-blur-lg border-white/10"
-                            : "bg-transparent border-transparent"
-                            }`}
-                    >
+                    <div className="flex items-center justify-between">
                         {/* Logo */}
                         <Link href="/" className="flex items-center group" onClick={() => setIsMobileMenuOpen(false)}>
-                            <div className="relative flex items-center h-14 sm:h-16 w-64 sm:w-80">
-                                <Image src="/images/pdm-logo-transparent.png" alt="Power Digital Media LLC" fill unoptimized className="object-contain object-left group-hover:scale-105 transition-transform" priority />
+                            <div className="relative flex items-center h-12 sm:h-14 w-56 sm:w-72">
+                                <Image src="/images/pdm-logo-transparent.png" alt="Power Digital Media LLC" fill unoptimized className="object-contain object-left group-hover:scale-102 transition-transform" priority />
                             </div>
                         </Link>
 
                         {/* Desktop Nav */}
-                        <div className="hidden lg:flex items-center gap-8">
+                        <div className="hidden lg:flex items-center gap-7">
                             {/* Services Dropdown */}
                             <div className="relative group/services py-2">
-                                <button className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors flex items-center gap-1">
+                                <button className="text-sm font-medium text-slate-300 hover:text-white transition-colors flex items-center gap-1">
                                     Services <ChevronDown className="w-4 h-4 opacity-70 group-hover/services:rotate-180 transition-transform duration-300" />
                                 </button>
-                                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover/services:opacity-100 group-hover/services:visible transition-all duration-300 w-48">
-                                    <div className="glass-card rounded-2xl p-2 flex flex-col border border-white/10 shadow-xl bg-background/95 backdrop-blur-xl">
+                                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover/services:opacity-100 group-hover/services:visible transition-all duration-300 w-52">
+                                    <div className="rounded-2xl p-2 flex flex-col border border-white/10 shadow-2xl bg-slate-900/95 backdrop-blur-xl">
                                         {serviceLinks.map((link) => (
                                             <Link
                                                 key={link.name}
                                                 href={link.href}
                                                 prefetch={false}
-                                                className="px-4 py-3 text-sm font-medium hover:bg-white/5 hover:text-accent rounded-xl transition-colors"
+                                                className="px-4 py-2.5 text-sm font-medium text-slate-300 hover:bg-white/5 hover:text-white rounded-xl transition-colors"
                                             >
                                                 {link.name}
                                             </Link>
@@ -117,45 +114,55 @@ export default function Navbar() {
                                     prefetch={false}
                                     target={link.external ? "_blank" : undefined}
                                     rel={link.external ? "noopener noreferrer" : undefined}
-                                    className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors"
+                                    className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
                                 >
                                     {link.name}
                                 </Link>
                             ))}
 
+                            {/* Direct Phone Number in Navbar */}
+                            <a
+                                href="tel:6014462393"
+                                className="flex items-center gap-2 px-4 py-2 text-xs font-bold text-amber-300 bg-amber-500/10 border border-amber-500/30 rounded-full hover:bg-amber-500/20 transition-all"
+                            >
+                                📞 (601) 446-2393
+                            </a>
+
+                            <Link
+                                href="/free-audit"
+                                prefetch={false}
+                                className="px-5 py-2 text-xs font-bold text-slate-950 bg-white rounded-full hover:bg-amber-400 hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)] uppercase tracking-wider"
+                            >
+                                Free Audit
+                            </Link>
+
                             {isAdmin(user?.email) && (
                                 <Link
                                     href="/admin"
                                     prefetch={false}
-                                    className="flex items-center gap-2 px-5 py-2 text-sm font-black text-accent glass-card border-accent/40 hover:bg-accent/10 transition-all rounded-full"
+                                    className="flex items-center gap-2 px-4 py-2 text-xs font-bold text-cyan-400 border border-cyan-400/30 hover:bg-cyan-400/10 transition-all rounded-full"
                                 >
-                                    <Terminal className="w-4 h-4" />
-                                    Admin Studio
+                                    <Terminal className="w-3.5 h-3.5" />
+                                    Admin
                                 </Link>
                             )}
+
                             <Link
                                 href={user ? "/dashboard" : "/login"}
                                 prefetch={false}
-                                className="flex items-center gap-2 px-5 py-2 text-sm font-bold text-white glass-card border-accent/20 hover:bg-accent/10 transition-all rounded-full"
+                                className="flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-slate-300 hover:text-white transition-all"
                             >
                                 {user ? (
                                     <>
-                                        <LayoutDashboard className="w-4 h-4 text-accent" />
+                                        <LayoutDashboard className="w-3.5 h-3.5 text-cyan-400" />
                                         Dashboard
                                     </>
                                 ) : (
                                     <>
-                                        <LogIn className="w-4 h-4 text-accent" />
+                                        <LogIn className="w-3.5 h-3.5 text-cyan-400" />
                                         Client Portal
                                     </>
                                 )}
-                            </Link>
-                            <Link
-                                href="/book"
-                                prefetch={false}
-                                className="px-5 py-2 text-sm font-bold text-white bg-accent rounded-full hover:bg-accent/90 transition-all border-glow"
-                            >
-                                Book a Call
                             </Link>
                         </div>
 
