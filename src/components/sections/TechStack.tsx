@@ -38,7 +38,7 @@ const techCategories: TechCategory[] = [
     badgeColor: "text-amber-400 bg-amber-500/10 border-amber-500/20",
     description: "Modern, pre-rendered React architectures deployed to global edge CDNs for instantaneous mobile delivery.",
     technologies: [
-      { name: "Next.js 15 / React", role: "Server-Side Rendering & App Router", tag: "Core Framework" },
+      { name: "Next.js 16 / React 19", role: "Server-Side Rendering & App Router", tag: "Core Framework" },
       { name: "Vercel Global Edge", role: "Distributed Edge CDN & Serverless Compute", tag: "Cloud Infrastructure" },
       { name: "Tailwind CSS", role: "Zero-Bloat Utility Architecture", tag: "Design Engine" },
       { name: "TypeScript", role: "Type-Safe Strict Production Reliability", tag: "Code Quality" },
@@ -84,80 +84,73 @@ const techCategories: TechCategory[] = [
 
 export default function TechStack() {
   return (
-    <section id="tech-stack" className="relative py-24 md:py-32 bg-[#040813] border-t border-white/5 overflow-hidden">
+    <section id="tech-stack" className="relative py-20 md:py-28 bg-[#040813] border-t border-white/5 overflow-hidden">
       {/* Ambient background glows */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-cyan-500/5 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="container relative z-10 px-4 sm:px-6 mx-auto max-w-7xl">
         
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 mb-5">
+        <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 mb-4">
             <Cpu className="w-3.5 h-3.5 text-cyan-400" />
             <span className="text-cyan-400 font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs">
               Enterprise Architecture &amp; APIs
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 tracking-tight uppercase leading-[1.08] text-white">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-4 tracking-tight uppercase leading-[1.08] text-white">
             Built On Modern Infrastructure. <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-amber-400">
               Zero Outdated Plugins.
             </span>
           </h2>
-          <p className="text-base md:text-lg text-slate-300 leading-relaxed">
+          <p className="text-sm md:text-base text-slate-300 leading-relaxed max-w-2xl mx-auto">
             We don&apos;t build on fragile, bloated WordPress templates that break every time a plugin updates. We engineer high-performance software connected directly to official enterprise APIs.
           </p>
         </div>
 
         {/* 4-Category Technology Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6 mb-14">
           {techCategories.map((category) => (
             <div
               key={category.title}
-              className="p-6 sm:p-8 rounded-3xl bg-slate-900/50 border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col justify-between backdrop-blur-sm group"
+              className="p-5 sm:p-6 rounded-2xl bg-slate-900/50 border border-white/10 hover:border-cyan-500/30 transition-all duration-300 flex flex-col justify-between backdrop-blur-sm group"
             >
               <div>
-                <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-                  <h3 className="text-xl font-black text-white uppercase tracking-tight">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                  <h3 className="text-lg font-black text-white uppercase tracking-tight">
                     {category.title}
                   </h3>
-                  <span className={`text-[10px] font-mono font-bold uppercase px-2.5 py-1 rounded-full border ${category.badgeColor}`}>
+                  <span className={`text-[9px] font-mono font-bold uppercase px-2.5 py-0.5 rounded-full border ${category.badgeColor}`}>
                     {category.badge}
                   </span>
                 </div>
-                <p className="text-xs text-slate-300 mb-6 leading-relaxed">
+                <p className="text-xs text-slate-300 mb-4 leading-relaxed">
                   {category.description}
                 </p>
 
                 {/* Tech List Items */}
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {category.technologies.map((tech) => (
                     <div
                       key={tech.name}
-                      className="p-3 rounded-xl bg-slate-950/70 border border-white/5 hover:border-cyan-500/30 transition-colors flex items-center justify-between gap-3"
+                      className="p-2.5 rounded-xl bg-slate-950/70 border border-white/5 hover:border-cyan-500/20 transition-colors flex items-center justify-between gap-3"
                     >
                       <div>
-                        <span className="text-sm font-bold text-white block">
+                        <span className="text-xs sm:text-sm font-bold text-white block">
                           {tech.name}
                         </span>
-                        <span className="text-[11px] text-slate-400 block">
+                        <span className="text-[10px] text-slate-400 block">
                           {tech.role}
                         </span>
                       </div>
-                      <span className="text-[9px] font-mono uppercase tracking-wider text-cyan-300/80 bg-white/5 px-2 py-0.5 rounded border border-white/10 shrink-0">
+                      <span className="text-[8px] font-mono uppercase tracking-wider text-cyan-300/80 bg-white/5 px-2 py-0.5 rounded border border-white/10 shrink-0">
                         {tech.tag}
                       </span>
                     </div>
                   ))}
                 </div>
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-400">
-                <span className="text-emerald-400 flex items-center gap-1 font-bold">
-                  <ShieldCheck className="w-3.5 h-3.5" /> 99.99% Cloud Uptime
-                </span>
-                <span className="text-slate-300">Enterprise Verified</span>
               </div>
             </div>
           ))}

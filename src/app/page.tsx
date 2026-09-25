@@ -60,7 +60,7 @@ export default function Home() {
 
               {/* Subheading */}
               <p className="text-slate-300 text-base sm:text-lg md:text-xl leading-relaxed font-normal mb-8 max-w-2xl">
-                We build custom Next.js web applications that bring in local customers and run the operations behind them — from zero-redirect Square checkout and catering calculators to PinDrop™ contractor mapping and automated CRM lead pipelines.
+                We build custom websites that attract local customers, take orders, showcase completed jobs, and automate follow-up for Mississippi businesses.
               </p>
 
               {/* Action Buttons */}
