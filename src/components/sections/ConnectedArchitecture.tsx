@@ -323,7 +323,7 @@ const clientArchitectures: ClientArchitecture[] = [
         iconColor: "text-red-500",
         iconBg: "bg-red-500/10 border-red-500/30",
         screenshot: "/portfolio/geauxpro-video-widescreen-v3.webp",
-        mobileScreenshot: "/portfolio/geauxpro-mobile-hero.webp",
+        mobileScreenshot: "/portfolio/geauxpro-video-mobile-user.webp",
         pagePath: "/video-showcase",
         techTag: "YouTube API Integration",
         displayType: "image",
