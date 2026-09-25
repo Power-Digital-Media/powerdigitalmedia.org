@@ -173,19 +173,12 @@ const clientArchitectures: ClientArchitecture[] = [
     url: "https://bornagainroofing.com",
     heroImage: "/portfolio/bornagain-hero.webp",
     mobileHeroImage: "/portfolio/bornagain-mobile-hero.webp",
-    speedScore: "99/100 (0.3s)",
+    speedScore: "99/100 (Fast Load)",
     headline: "Field GPS Project Mapping & CRM Review Pipeline",
     summary:
       "Replaced a slow legacy site with a high-velocity contractor portal. Every roofing crew is equipped with PinDrop™ to log completed jobs on the map, automatically routing customer records to Capsule CRM and dispatching 5-star review SMS requests.",
     accentColor: "text-yellow-400",
     glowRgb: "234, 179, 8",
-    testimonial: {
-      quote:
-        "Power Digital Media completely transformed our online presence and pipeline. The PinDrop map lets our crews drop pins right from the jobsite and our Google rankings jumped immediately.",
-      author: "Born Again Roofing Team",
-      role: "Brandon, MS",
-      source: "Google",
-    },
     nodes: [
       {
         id: "pindrop",
@@ -432,7 +425,7 @@ const clientArchitectures: ClientArchitecture[] = [
     url: "https://blacksheeprecoverywarfare.com",
     heroImage: "/portfolio/blacksheep-hero.webp",
     mobileHeroImage: "/portfolio/blacksheep-mobile-hero.webp",
-    speedScore: "99/100 (0.3s)",
+    speedScore: "99/100 (Fast Load)",
     headline: "Video Podcast Engine & Tactical Merch E-Commerce Hub",
     summary:
       "Engineered a high-octane digital battleground for an addiction recovery ministry. Combines video episode broadcasting, integrated merchandise ordering, direct donor funding, and instant crisis helpline directories.",

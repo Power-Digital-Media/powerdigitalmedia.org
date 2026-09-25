@@ -50,13 +50,6 @@ export const projects: Project[] = [
         netlifyUrl: "https://bornagainroofing.com",
         glowColor: "234, 179, 8",
         metricBadge: "99+ Live Job Pins",
-        testimonial: {
-            quote: "Power Digital Media completely transformed our online presence and pipeline. The PinDrop map lets our crews drop pins right from the jobsite and our Google rankings jumped immediately.",
-            author: "Born Again Roofing Team",
-            role: "Brandon, MS",
-            stars: 5,
-            source: "Google"
-        },
         integrations: [
             {
                 title: "PinDrop™ Field App & Interactive Job Map",
