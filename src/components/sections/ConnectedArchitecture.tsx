@@ -88,7 +88,7 @@ const clientArchitectures: ClientArchitecture[] = [
     domain: "tbeauxs.com",
     url: "https://tbeauxs.com",
     heroImage: "/portfolio/tbeauxs-hero.webp",
-    mobileHeroImage: "/portfolio/tbeauxs-mobile-hero.webp",
+    mobileHeroImage: "/portfolio/tbeauxs-mobile-hero-fresh.webp",
     speedScore: "98/100 (0.4s)",
     headline: "Zero-Redirect Square SDK & Direct Delivery Hub",
     summary:
