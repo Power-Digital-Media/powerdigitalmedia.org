@@ -52,15 +52,15 @@ export default function Home() {
 
               {/* Headline */}
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-[1.05] uppercase text-white mb-6">
-                High-Speed Websites Built to <br className="hidden sm:block" />
+                Custom Web Systems Built to <br className="hidden sm:block" />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-cyan-400 to-emerald-400">
-                  Grow Your Business.
+                  Power Your Entire Business.
                 </span>
               </h1>
 
               {/* Subheading */}
               <p className="text-slate-300 text-base sm:text-lg md:text-xl leading-relaxed font-normal mb-8 max-w-2xl">
-                We build clean, lightning-fast Next.js websites and Google Maps engines for Mississippi contractors and business owners. Load in under 0.4 seconds, outrank local competitors, and turn website clicks into booked phone calls.
+                We build custom Next.js web applications that bring in local customers and run the operations behind them — from zero-redirect Square checkout and catering calculators to PinDrop™ contractor mapping and automated CRM lead pipelines.
               </p>
 
               {/* Action Buttons */}
@@ -71,18 +71,18 @@ export default function Home() {
                 >
                   Get Free 5-Minute Audit
                 </a>
+                <a
+                  href="#architecture"
+                  className="flex items-center justify-center gap-2 px-6 py-4 bg-slate-900/90 border border-cyan-400/40 text-cyan-300 rounded-full font-black uppercase tracking-wider text-xs hover:bg-cyan-400 hover:text-slate-950 transition-all active:scale-95 shadow-[0_0_20px_rgba(6,182,212,0.15)]"
+                >
+                  <span>Explore Live Systems</span>
+                  <span className="text-sm">↓</span>
+                </a>
                 <a 
                   href="tel:6014462393" 
                   className="flex items-center justify-center gap-2 px-7 py-4 border border-amber-400/40 bg-amber-500/10 text-amber-300 rounded-full font-black uppercase tracking-wider text-xs hover:bg-amber-400 hover:text-slate-950 transition-all active:scale-95"
                 >
                   📞 (601) 446-2393
-                </a>
-                <a 
-                  href="/book" 
-                  className="flex items-center justify-center gap-2 px-6 py-4 border border-white/15 rounded-full font-bold uppercase tracking-wider text-xs text-slate-300 hover:text-white hover:bg-white/10 transition-all active:scale-95"
-                >
-                  <Video className="w-4 h-4 text-cyan-400" />
-                  Book Call
                 </a>
               </div>
 
@@ -203,11 +203,11 @@ export default function Home() {
       {/* 1. Direct Social Proof: 100% 5-Star Verified Google Reviews Infinite Marquee */}
       <GoogleReviewsSection />
 
-      {/* 2. Disruption: Sub-Second Speed Benchmark (0.4s Next.js vs 4.8s WordPress) */}
-      <SpeedComparisonCard />
-
-      {/* 3. The 'WOW' Factor: Interactive System Architecture & 3D Phone Chassis */}
+      {/* 2. The 'WOW' Factor: Interactive System Architecture & 3D Phone Showcase */}
       <ConnectedArchitecture />
+
+      {/* 3. Disruption: Sub-Second Speed Benchmark (0.4s Next.js vs 4.8s WordPress) */}
+      <SpeedComparisonCard />
 
       {/* 4. Methodology: The 3 Growth Engines (In-App Checkout, PinDrop GPS, Automated CRM) */}
       <LocalWebDesign />

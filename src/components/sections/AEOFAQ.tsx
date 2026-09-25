@@ -12,44 +12,44 @@ interface FAQItem {
 
 const FAQS: FAQItem[] = [
   {
+    id: "timeline-turnaround",
+    category: "Project Delivery",
+    icon: Zap,
+    q: "What is your turnaround timeline for a custom build?",
+    a: "Most custom websites and connected systems (Square checkout, PinDrop GPS, and CRM setups) are engineered, tested, and launched in 7 to 14 business days. Because everything is built in-house with Next.js and Tailwind by Damein Donald without offshore outsourcing or clunky page builders, delivery is fast, focused, and precise."
+  },
+  {
+    id: "ongoing-support-damein",
+    category: "Direct Support",
+    icon: MessageSquare,
+    q: "Who handles updates and support after the site goes live?",
+    a: "You get direct cell phone access to Damein Donald at (601) 446-2393. No ticketing queues, no offshore call centers, and no disappearing freelancers. We handle your high-velocity Vercel cloud hosting, SSL certificates, Google schema updates, and content revisions with personal, ongoing local support."
+  },
+  {
     id: "wordpress-vs-nextjs",
     category: "Architecture",
-    icon: Zap,
+    icon: Terminal,
     q: "Why does Power Digital Media build with Next.js instead of WordPress?",
-    a: "WordPress was designed in 2003 for blogging. In 2026, it is plagued by security vulnerabilities, heavy plugin bloat, and poor database latency that drags down mobile speeds. We build custom React/Next.js web architectures served on high-velocity Vercel Edge networks. This guarantees sub-second load times, 90+ mobile PageSpeed scores, zero layout shifts, and absolute security. Because the site is natively static and pre-compiled, it matches Google's and AI crawlers' primary retrieval trust signals perfectly."
+    a: "WordPress was designed in 2003 for blogging. In 2026, it is plagued by security vulnerabilities, heavy plugin bloat, and poor database latency that drags down mobile speeds. We build custom React/Next.js web architectures served on high-velocity Vercel Edge networks. This guarantees sub-second load times (< 0.4s on cell phones), 98+ PageSpeed scores, and rock-solid security."
+  },
+  {
+    id: "in-app-payments-crm",
+    category: "Integrations",
+    icon: HelpCircle,
+    q: "How do custom in-app checkouts (Square) and CRM pipelines work?",
+    a: "We write direct API integrations with your merchant account (Square Web Payments SDK, Stripe) and operations stack (Capsule CRM, Transpond). Payments deposit directly into your business bank account with zero third-party redirect hops, and new customer inquiries ping your smartphone via SMS in under 2 minutes."
   },
   {
     id: "geo-optimization",
-    category: "AI Discovery",
+    category: "Search & AI",
     icon: Sparkles,
-    q: "What is Generative Engine Optimization (GEO) and why does it matter?",
-    a: "Traditional SEO is about ranking on page one of Google for clicks. GEO (Generative Engine Optimization) is the new science of ensuring your business is actively cited, referenced, and recommended by conversational AI search engines (like ChatGPT, Claude, Gemini, and Perplexity). AI engines do not retrieve pages using traditional keyword mapping; they retrieve answers by matching the semantic density and structured credibility of your brand's data against the user's intent. If your business isn't optimized for GEO, you are completely invisible to conversational searchers."
-  },
-  {
-    id: "ai-citation-seo",
-    category: "AEO Strategy",
-    icon: Terminal,
-    q: "How does Answer Engine Optimization (AEO) get my business recommended by AI?",
-    a: "Answer Engine Optimization (AEO) designs your content to directly feed Google's AI Overviews (SGE) and voice-search systems. We do this by embedding dynamic, machine-readable JSON-LD Schema markups, utilizing question-based titles, providing clear definition paragraphs (e.g. 'X is defined as...'), and structuring technical FAQ grids. When Google's AI Overviews formulate a summary to answer a user's local question, they extract GPO's structured definitions and link directly to your domain as their verified citation source."
-  },
-  {
-    id: "growth-marketing-pipeline",
-    category: "CRM & Funnels",
-    icon: MessageSquare,
-    q: "What is the B2B Growth Pipeline (Capsule CRM + Transpond) you deploy?",
-    a: "Instead of stitching together disjointed apps with brittle third-party connectors, we deploy a unified Capsule CRM and Transpond automation engine directly into your custom website. Client bookings from your site automatically sync client records into Capsule CRM, map deal opportunities to your visual sales pipelines, and trigger immediate, personalized Transpond email autoresponders. This creates a friction-free, high-velocity marketing machine that turns raw traffic into warm B2B bookings on autopilot."
-  },
-  {
-    id: "pagespeed-rankings",
-    category: "Performance",
-    icon: HelpCircle,
-    q: "How do you guarantee a 90+ mobile PageSpeed score when other agencies fail?",
-    a: "Most agencies use visual drag-and-drop page builders that inject thousands of lines of redundant CSS/JS bloat. We write clean, semantic code from scratch. We self-host premium typography, use strict CSS grids, and run a custom pre-build media optimization pipeline that compresses heavy graphics into Next.js optimized AVIF and WebP responsive sizes. By deploying these static components on distributed global edge networks, the site bypasses server-side database bottlenecks, leading to flawless LCP, CLS, and INP metrics that rank higher on search algorithms."
+    q: "How do you get my business ranked on Google Maps and AI Search (GEO)?",
+    a: "We engineer deep localized JSON-LD structured geo-schema mapping your service radiuses across Jackson, Madison, Brandon, Clinton, and Pearl. This pairs with PinDrop™ jobsite pins and automated 5-star Google review triggers so your company dominates Google Maps 3-pack search results and gets cited by conversational AI engines like ChatGPT and Gemini."
   }
 ];
 
 export default function AEOFAQ() {
-  const [activeId, setActiveId] = useState<string | null>("wordpress-vs-nextjs");
+  const [activeId, setActiveId] = useState<string | null>("timeline-turnaround");
 
   const faqSchema = {
     "@context": "https://schema.org",
