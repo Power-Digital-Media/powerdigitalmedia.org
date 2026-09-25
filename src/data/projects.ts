@@ -20,6 +20,7 @@ export interface Project {
     netlifyUrl?: string;
     glowColor?: string;
     metricBadge?: string;
+    embedBlocked?: boolean;
     integrations?: ProjectIntegration[];
     testimonial?: {
         quote: string;
@@ -33,23 +34,61 @@ export interface Project {
 export const projects: Project[] = [
     {
         id: "born-again-roofing",
-        title: "Born Again Roofing",
-        description: "A fast, modern website built for a top-rated Brandon roofer. Features our proprietary PinDrop™ app so their crew can drop job site pins, upload before/after photos, and automatically collect 5-star Google reviews from customers.",
-        image: "/portfolio/born-again-roofing.webp",
-        tags: ["Roofing & Remodeling", "PinDrop™ Field App", "Google Maps SEO"],
+        title: "Born Again Roofing & Remodeling",
+        description: "A high-velocity digital platform and mobile field engine built for a top-rated Brandon roofer. Replaced a slow legacy site with our proprietary PinDrop™ GPS system, letting field crews drop project pins right from job sites to automatically boost Google rankings, sync leads to Capsule CRM, and capture 5-star customer reviews.",
+        image: "/portfolio/bornagain-hero.webp",
+        tags: ["Roofing & Remodeling", "PinDrop™ Field App", "Capsule CRM", "Google Maps SEO", "Transpond SMS"],
         client: "Born Again Remodeling & Roofing LLC",
         year: "2026",
-        objective: "Turn completed roofing jobs into automated Google search rankings and inbound phone calls.",
-        features: ["Sub-second mobile loading", "Live PinDrop™ project map", "Automated 5-star review requests"],
+        objective: "Turn completed roofing jobs into automated Google search rankings, inbound quote requests, and instant 5-star social proof.",
+        features: [
+            "Sub-second mobile loading (0.3s PageSpeed score)",
+            "Proprietary PinDrop™ live GPS job pin mapping",
+            "Instant roof inspection & damage estimate form",
+            "Automated post-job SMS 5-star review workflow"
+        ],
         netlifyUrl: "https://bornagainroofing.com",
         glowColor: "234, 179, 8",
-        metricBadge: "99+ Live Job Pins"
+        metricBadge: "99+ Live Job Pins",
+        testimonial: {
+            quote: "Power Digital Media completely transformed our online presence and pipeline. The PinDrop map lets our crews drop pins right from the jobsite and our Google rankings jumped immediately.",
+            author: "Born Again Roofing Team",
+            role: "Brandon, MS",
+            stars: 5,
+            source: "Google"
+        },
+        integrations: [
+            {
+                title: "PinDrop™ Field App & Interactive Job Map",
+                description: "Crews drop real-time geotagged pins directly from field trucks, instantly updating the public website map with completed jobs and neighborhood social proof.",
+                badge: "Proprietary GPS Field Tech",
+                image: "/portfolio/bornagain-pindrop-map.webp"
+            },
+            {
+                title: "Instant Roof Inspection & CRM Ingestion",
+                description: "High-converting multi-step quote form that captures customer address and storm damage details, automatically routing leads into Capsule CRM stages.",
+                badge: "Capsule CRM Telemetry",
+                image: "/portfolio/bornagain-quote-form.webp"
+            },
+            {
+                title: "Automated 5-Star Review & Warranty Flow",
+                description: "Multi-stage automated workflow sending post-completion warranty documents and requesting 5-star Google reviews via automated SMS.",
+                badge: "Transpond Automation",
+                image: "/portfolio/bornagain-reviews.webp"
+            },
+            {
+                title: "Rank #1 Local Service Schema Engine",
+                description: "Structured JSON-LD coordinates for Jackson, Brandon, Pearl, and Madison capturing local search authority across Central Mississippi.",
+                badge: "Google Local Maps Pack",
+                image: "/portfolio/bornagain-service-areas.webp"
+            }
+        ]
     },
     {
         id: "tbeaux",
         title: "T'Beaux's Seafood & Catering",
         description: "A high-traffic restaurant, catering, and online ordering website for Clinton's favorite Cajun spot. Features a custom menu with direct Square SDK payment processing (zero redirect), live daily crawfish boil price tracker, and an interactive catering feast calculator.",
-        image: "/portfolio/tbeauxs.webp",
+        image: "/portfolio/tbeauxs-hero-user-v2.webp",
         tags: ["Restaurant & Catering", "Square SDK In-App Checkout", "Live Crawfish Price Tracker", "Catering Calculator"],
         client: "T'Beaux's 54 Crawfish & Catering LLC",
         year: "2026",
@@ -65,16 +104,28 @@ export const projects: Project[] = [
         metricBadge: "Square SDK + Live Price Sync",
         integrations: [
             {
-                title: "Custom Interactive Menu & Square SDK In-App Checkout",
-                description: "Built a fully tailored Cajun menu with platters, baskets, and fixin's directly integrated into Square SDK. Customers customize orders, choose pickup times, and pay securely on tbeauxs.com without ever being kicked out to a generic third-party Square storefront.",
+                title: "Square SDK In-App Checkout & Instant Payment",
+                description: "Built a fully tailored checkout flow directly integrated with Square SDK. Customers customize orders, choose pickup times, and pay securely on tbeauxs.com without ever being redirected to a generic third-party store.",
                 badge: "Square SDK In-App Ordering",
-                image: "/portfolio/tbeauxs-square-menu.webp"
+                image: "/portfolio/tbeauxs-checkout-user-v2.webp"
+            },
+            {
+                title: "Custom Interactive Cajun Menu Engine",
+                description: "Custom digital menu with platters, baskets, and fixin's. Customers can pick sizes, customize sides, and calculate totals in real time.",
+                badge: "Custom Menu Engine",
+                image: "/portfolio/tbeauxs-menu-user-v2.webp"
             },
             {
                 title: "The Cajun Feast Catering Calculation Engine",
                 description: "An interactive guest planning engine that calculates accurate crawfish poundage, jumbo shrimp, smoked sausage, and corn/potato requirements for corporate events and backyard boils.",
                 badge: "Custom Event Logic",
-                image: "/portfolio/tbeauxs-feast-planner.webp"
+                image: "/portfolio/tbeauxs-planner-user-v2.webp"
+            },
+            {
+                title: "DoorDash Fleet Delivery Dispatch",
+                description: "Seamless delivery routing directly integrated into local fleet logistics for fast hot seafood delivery straight to Clinton customers.",
+                badge: "Fleet Dispatch",
+                image: "/portfolio/tbeauxs-delivery-user-v2.webp"
             }
         ]
     },
@@ -144,15 +195,20 @@ export const projects: Project[] = [
     {
         id: "simmons-memorial",
         title: "Church 244 & Simmons Memorial",
-        description: "Warm, welcoming digital portals for Central Mississippi ministries. Features frictionless online giving, mobile-friendly livestreaming, and community event calendars.",
-        image: "/portfolio/simmons-memorial-real.webp",
-        mobileImage: "/portfolio/Simmons_Memorial_mobile.webp",
-        tags: ["Faith & Community", "Mobile Online Giving", "Sermon Livestreams"],
+        description: "Warm, welcoming digital portals engineered for Central Mississippi ministries. Features frictionless online giving, mobile-friendly livestreaming, youth ministry hubs, and dynamic community event calendars.",
+        image: "/portfolio/church244-hero.webp",
+        tags: ["Faith & Community", "Mobile Online Giving", "Sermon Livestreams", "Church Center Sync", "Youth Ministry"],
         client: "Church 244 & Simmons Memorial",
         year: "2026",
-        objective: "Help local ministries connect with their members and accept online donations easily on mobile devices.",
-        features: ["1-tap secure online giving", "Sermon streaming archive", "Community event calendar"],
+        objective: "Help local ministries connect with their members, livestream messages, and accept online donations effortlessly on mobile devices.",
+        features: [
+            "1-tap secure online giving",
+            "YouTube Live sermon streaming archive",
+            "Church Center community event calendar",
+            "Dedicated youth ministry hub (Ages 13–19)"
+        ],
         netlifyUrl: "https://church244.com",
+        embedBlocked: true,
         glowColor: "59, 130, 246",
         metricBadge: "Online Giving & Streaming",
         testimonial: {
@@ -161,7 +217,33 @@ export const projects: Project[] = [
             role: "Pastor, Church 244 (Jackson, MS)",
             stars: 5,
             source: "Facebook"
-        }
+        },
+        integrations: [
+            {
+                title: "Sermon Livestream Archive (YouTube Live)",
+                description: "Integrated broadcast video archive allowing members to stream Sunday messages and series without intrusive ads or buffering.",
+                badge: "High-Definition Video",
+                image: "/portfolio/church244-sermons-user-v2.webp"
+            },
+            {
+                title: "Community Calendar (Church Center Sync)",
+                description: "Live event calendar integrated with Church Center for seamless registration for Youth Nights, Sunday worship, and weekly Bible studies.",
+                badge: "Church Center Sync",
+                image: "/portfolio/church244-events-user-v2.webp"
+            },
+            {
+                title: "Church 244 Youth Ministry Hub",
+                description: "Dedicated teen ministry hub featuring weekly Thursday 6:30 PM worship schedules, Bible study groups, and community social sync.",
+                badge: "Ages 13–19 Community",
+                image: "/portfolio/church244-youth-user-v2.webp"
+            },
+            {
+                title: "1-Tap Secure Online Giving Gateway",
+                description: "Frictionless tithe and donation processing engineered for rapid smartphone giving during services with instant receipts.",
+                badge: "Secure Giving Gateway",
+                image: "/portfolio/church244-giving.webp"
+            }
+        ]
     },
     {
         id: "in-his-grip",
@@ -183,5 +265,50 @@ export const projects: Project[] = [
             stars: 5,
             source: "Google"
         }
+    },
+    {
+        id: "blacksheep-recovery",
+        title: "Black Sheep Recovery Warfare",
+        description: "A high-impact media, podcast, and faith recovery platform built for a bold outreach ministry. Engineered with a custom video/audio episode player, integrated apparel & tactical merch store, direct recurring donation processing, and an emergency crisis resource directory.",
+        image: "/portfolio/blacksheep-hero.webp",
+        tags: ["Faith & Recovery", "Podcast Streaming Engine", "Custom Merch Store", "Direct Donor Portal", "Crisis Resources"],
+        client: "Black Sheep Recovery Warfare",
+        year: "2026",
+        objective: "Provide a raw, authentic digital battleground for addiction recovery, podcast broadcasting, and community support.",
+        features: [
+            "Episode streaming player with Apple/Spotify sync",
+            "Custom tactical merch and apparel store",
+            "Frictionless recurring donation & sponsorship system",
+            "Mississippi addiction crisis resource directory"
+        ],
+        netlifyUrl: "https://blacksheeprecoverywarfare.com",
+        glowColor: "249, 115, 22",
+        metricBadge: "Podcast & Merch Ecosystem",
+        integrations: [
+            {
+                title: "Podcast Broadcasting & Episode Archive",
+                description: "Seamless video/audio episode library with detailed show notes, timestamps, and one-tap streaming across Spotify, Apple Podcasts, and YouTube.",
+                badge: "Media & Podcast Engine",
+                image: "/portfolio/blacksheep-episodes.webp"
+            },
+            {
+                title: "Custom Tactical Merch & Apparel Store",
+                description: "Direct e-commerce storefront supporting size selection, product showcases, secure in-app checkout, and inventory fulfillment.",
+                badge: "Custom E-Commerce",
+                image: "/portfolio/blacksheep-merch.webp"
+            },
+            {
+                title: "Direct Donation & Ministry Sponsorship Gateway",
+                description: "Frictionless recurring and one-time donor portal designed to fund recovery outreach, community rallies, and crisis aid without high processing overhead.",
+                badge: "Direct Giving Gateway",
+                image: "/portfolio/blacksheep-donate.webp"
+            },
+            {
+                title: "Emergency Crisis & Recovery Resource Directory",
+                description: "Instant-access helpline directory and vetted recovery center roadmaps connecting individuals in active addiction to immediate help.",
+                badge: "Crisis Support Network",
+                image: "/portfolio/blacksheep-resources.webp"
+            }
+        ]
     }
 ];

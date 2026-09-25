@@ -186,5 +186,22 @@ export const liveSites: LiveSite[] = [
         bestPracticesScore: 99,
         glowColor: "6, 182, 212", // Cyan
         image: "/portfolio/growth-engine-real.webp"
+    },
+    {
+        id: "blacksheep-recovery",
+        title: "Black Sheep Recovery Warfare",
+        domain: "blacksheeprecoverywarfare.com",
+        url: "https://blacksheeprecoverywarfare.com",
+        deployType: "Next.js",
+        category: "Faith & Community",
+        publishedAt: "Active Client",
+        description: "Hard-hitting recovery warfare and podcast portal with custom merch e-commerce, episode broadcast archive, donor portal, and crisis helplines.",
+        techStack: ["React", "Vite", "Tailwind CSS", "Custom Audio/Video Engine", "E-Commerce"],
+        performanceScore: 99,
+        accessibilityScore: 100,
+        seoScore: 100,
+        bestPracticesScore: 99,
+        glowColor: "249, 115, 22", // Orange
+        image: "/portfolio/blacksheep-hero.webp"
     }
 ];

@@ -42,6 +42,42 @@ const nextConfig = {
         destination: '/marketing',
         permanent: true,
       },
+      // Portfolio Slug Alias Redirects
+      {
+        source: '/portfolio/born-again',
+        destination: '/portfolio/born-again-roofing',
+        permanent: true,
+      },
+      {
+        source: '/portfolio/geaux-pro',
+        destination: '/portfolio/geaux-pro-outdoors',
+        permanent: true,
+      },
+      {
+        source: '/portfolio/church-244',
+        destination: '/portfolio/simmons-memorial',
+        permanent: true,
+      },
+      {
+        source: '/portfolio/church244',
+        destination: '/portfolio/simmons-memorial',
+        permanent: true,
+      },
+      {
+        source: '/portfolio/blacksheep',
+        destination: '/portfolio/blacksheep-recovery',
+        permanent: true,
+      },
+      {
+        source: '/portfolio/blacksheeprecovery',
+        destination: '/portfolio/blacksheep-recovery',
+        permanent: true,
+      },
+      {
+        source: '/portfolio/blacksheeprecoverywarfare',
+        destination: '/portfolio/blacksheep-recovery',
+        permanent: true,
+      },
       // GSC 404 Redirect Fixes
       {
         source: '/video-first-podcasting-2026',

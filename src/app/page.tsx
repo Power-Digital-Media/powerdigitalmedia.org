@@ -160,18 +160,21 @@ export default function Home() {
 
               </div>
 
-              {/* Floating Verified Google Review Pill */}
-              <div className="absolute -bottom-6 -left-4 sm:-left-6 p-3 rounded-2xl bg-slate-900/95 border border-amber-500/30 shadow-2xl backdrop-blur-xl max-w-[280px]">
-                <div className="flex items-center gap-2 text-xs mb-1">
-                  <span className="text-amber-400">★★★★★</span>
-                  <span className="text-[9px] font-bold text-amber-300 bg-amber-500/15 px-2 py-0.5 rounded-full border border-amber-500/30 uppercase tracking-wider">
+              {/* Floating Verified Google Review Pill with Refined Golden Glow */}
+              <div className="absolute -bottom-7 -left-4 sm:-left-7 p-3.5 rounded-2xl bg-gradient-to-br from-slate-900/95 via-slate-950/95 to-amber-950/20 border border-amber-400/30 shadow-[0_8px_25px_-5px_rgba(245,158,11,0.18),0_0_15px_rgba(245,158,11,0.08)] backdrop-blur-xl max-w-[290px] animate-float transition-all duration-300 hover:scale-105 hover:border-amber-400/50 hover:shadow-[0_12px_30px_-4px_rgba(245,158,11,0.28)] cursor-default z-20 group">
+                {/* Subtle Ambient Golden Glow Blur Layer */}
+                <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-amber-500/15 via-yellow-500/10 to-amber-600/15 blur-sm -z-10 opacity-50 group-hover:opacity-80 transition-opacity duration-300" />
+
+                <div className="flex items-center gap-2 text-xs mb-1.5">
+                  <span className="text-amber-400 drop-shadow-[0_0_4px_rgba(251,191,36,0.4)]">★★★★★</span>
+                  <span className="text-[9px] font-bold text-amber-300 bg-amber-500/15 px-2 py-0.5 rounded-full border border-amber-400/30 uppercase tracking-wider">
                     Google Review
                   </span>
                 </div>
-                <p className="text-[11px] text-white font-medium leading-tight">
+                <p className="text-[11px] text-white/90 font-medium leading-tight">
                   &ldquo;Took my marketing program from the dumps all the way to the moon. Very responsive and results oriented.&rdquo;
                 </p>
-                <span className="text-[10px] text-amber-300 font-semibold block mt-1">
+                <span className="text-[10px] text-amber-300/90 font-semibold block mt-1.5">
                   — Scott Lowery, Owner, Geaux Pro Outdoors (Bentonia, MS)
                 </span>
               </div>

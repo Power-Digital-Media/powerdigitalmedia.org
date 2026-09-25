@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -26,6 +26,14 @@ import {
   ArrowUpRight,
   Home,
   Users,
+  Smartphone,
+  Monitor,
+  Radio,
+  ShoppingBag,
+  Heart,
+  ShieldAlert,
+  Wifi,
+  Battery,
 } from "lucide-react";
 
 interface IntegrationNode {
@@ -38,6 +46,7 @@ interface IntegrationNode {
   iconColor: string;
   iconBg: string;
   screenshot?: string;
+  mobileScreenshot?: string;
   pagePath: string;
   techTag: string;
   displayType?: "image" | "pindrop-map" | "capsule-crm" | "transpond-flow" | "google-schema";
@@ -52,11 +61,13 @@ interface ClientArchitecture {
   domain: string;
   url: string;
   heroImage: string;
+  mobileHeroImage?: string;
   speedScore: string;
   headline: string;
   summary: string;
   accentColor: string;
   glowRgb: string;
+  caseStudySlug?: string;
   testimonial?: {
     quote: string;
     author: string;
@@ -69,6 +80,7 @@ interface ClientArchitecture {
 const clientArchitectures: ClientArchitecture[] = [
   {
     id: "tbeaux",
+    caseStudySlug: "tbeaux",
     name: "T'Beaux's Seafood & Catering",
     shortName: "T'Beaux's Seafood",
     industry: "Restaurant & High-Volume Catering",
@@ -76,6 +88,7 @@ const clientArchitectures: ClientArchitecture[] = [
     domain: "tbeauxs.com",
     url: "https://tbeauxs.com",
     heroImage: "/portfolio/tbeauxs-hero.webp",
+    mobileHeroImage: "/portfolio/tbeauxs-mobile-hero.webp",
     speedScore: "98/100 (0.4s)",
     headline: "Zero-Redirect Square SDK & Direct Delivery Hub",
     summary:
@@ -94,6 +107,7 @@ const clientArchitectures: ClientArchitecture[] = [
         iconColor: "text-amber-400",
         iconBg: "bg-amber-500/10 border-amber-500/30",
         screenshot: "/portfolio/tbeauxs-checkout-user-v2.webp",
+        mobileScreenshot: "/portfolio/tbeauxs-checkout-user-phone.webp",
         pagePath: "/secure-checkout",
         techTag: "Square Web Payments SDK",
         displayType: "image",
@@ -109,6 +123,7 @@ const clientArchitectures: ClientArchitecture[] = [
         iconColor: "text-red-400",
         iconBg: "bg-red-500/10 border-red-500/30",
         screenshot: "/portfolio/tbeauxs-menu-user-v2.webp",
+        mobileScreenshot: "/portfolio/tbeauxs-menu-user-phone.webp",
         pagePath: "/menu/cajun-platters",
         techTag: "React Component Engine",
         displayType: "image",
@@ -124,6 +139,7 @@ const clientArchitectures: ClientArchitecture[] = [
         iconColor: "text-orange-400",
         iconBg: "bg-orange-500/10 border-orange-500/30",
         screenshot: "/portfolio/tbeauxs-delivery-user-v2.webp",
+        mobileScreenshot: "/portfolio/tbeauxs-delivery-mobile.webp",
         pagePath: "/delivery-dispatch",
         techTag: "DoorDash Drive Dispatch",
         displayType: "image",
@@ -139,6 +155,7 @@ const clientArchitectures: ClientArchitecture[] = [
         iconColor: "text-cyan-400",
         iconBg: "bg-cyan-500/10 border-cyan-500/30",
         screenshot: "/portfolio/tbeauxs-planner-user-v2.webp",
+        mobileScreenshot: "/portfolio/tbeauxs-planner-user-phone.webp",
         pagePath: "/feast-planner",
         techTag: "Custom Event Estimation Engine",
         displayType: "image",
@@ -147,6 +164,7 @@ const clientArchitectures: ClientArchitecture[] = [
   },
   {
     id: "born-again",
+    caseStudySlug: "born-again-roofing",
     name: "Born Again Roofing & Remodeling",
     shortName: "Born Again Roofing",
     industry: "Contracting & Storm Restoration",
@@ -154,12 +172,20 @@ const clientArchitectures: ClientArchitecture[] = [
     domain: "bornagainroofing.com",
     url: "https://bornagainroofing.com",
     heroImage: "/portfolio/bornagain-hero.webp",
+    mobileHeroImage: "/portfolio/bornagain-mobile-hero.webp",
     speedScore: "99/100 (0.3s)",
     headline: "Field GPS Project Mapping & CRM Review Pipeline",
     summary:
       "Replaced a slow legacy site with a high-velocity contractor portal. Every roofing crew is equipped with PinDrop™ to log completed jobs on the map, automatically routing customer records to Capsule CRM and dispatching 5-star review SMS requests.",
     accentColor: "text-yellow-400",
     glowRgb: "234, 179, 8",
+    testimonial: {
+      quote:
+        "Power Digital Media completely transformed our online presence and pipeline. The PinDrop map lets our crews drop pins right from the jobsite and our Google rankings jumped immediately.",
+      author: "Born Again Roofing Team",
+      role: "Brandon, MS",
+      source: "Google",
+    },
     nodes: [
       {
         id: "pindrop",
@@ -221,6 +247,7 @@ const clientArchitectures: ClientArchitecture[] = [
   },
   {
     id: "geaux-pro",
+    caseStudySlug: "geaux-pro-outdoors",
     name: "Geaux Pro Outdoors (MS Dirt)",
     shortName: "Geaux Pro Outdoors",
     industry: "Excavation, Pond Digging & Land Clearing",
@@ -228,6 +255,7 @@ const clientArchitectures: ClientArchitecture[] = [
     domain: "msdirt.com",
     url: "https://msdirt.com",
     heroImage: "/portfolio/geauxpro-hero.webp",
+    mobileHeroImage: "/portfolio/geauxpro-mobile-hero.webp",
     speedScore: "99/100 (0.4s)",
     headline: "Heavy Equipment Lead Engine & Video Automation",
     summary:
@@ -295,6 +323,7 @@ const clientArchitectures: ClientArchitecture[] = [
         iconColor: "text-red-500",
         iconBg: "bg-red-500/10 border-red-500/30",
         screenshot: "/portfolio/geauxpro-video-widescreen-v3.webp",
+        mobileScreenshot: "/portfolio/geauxpro-mobile-hero.webp",
         pagePath: "/video-showcase",
         techTag: "YouTube API Integration",
         displayType: "image",
@@ -303,6 +332,7 @@ const clientArchitectures: ClientArchitecture[] = [
   },
   {
     id: "church-244",
+    caseStudySlug: "simmons-memorial",
     name: "Church 244 & Simmons Memorial",
     shortName: "Church 244",
     industry: "Faith, Ministry & Community",
@@ -310,6 +340,7 @@ const clientArchitectures: ClientArchitecture[] = [
     domain: "church244.com",
     url: "https://church244.com",
     heroImage: "/portfolio/church244-hero.webp",
+    mobileHeroImage: "/portfolio/church244-mobile-hero.webp",
     speedScore: "98/100 (0.4s)",
     headline: "1-Tap Online Giving & Live Broadcast Hub",
     summary:
@@ -335,6 +366,7 @@ const clientArchitectures: ClientArchitecture[] = [
         iconColor: "text-cyan-400",
         iconBg: "bg-cyan-500/10 border-cyan-500/30",
         screenshot: "/portfolio/church244-giving.webp",
+        mobileScreenshot: "/portfolio/church244-giving-mobile.webp",
         pagePath: "/give-online",
         techTag: "Secure Giving Gateway",
         displayType: "image",
@@ -350,6 +382,7 @@ const clientArchitectures: ClientArchitecture[] = [
         iconColor: "text-blue-400",
         iconBg: "bg-blue-500/10 border-blue-500/30",
         screenshot: "/portfolio/church244-sermons-user-v2.webp",
+        mobileScreenshot: "/portfolio/church244-sermons-mobile.webp",
         pagePath: "/watch-sermons",
         techTag: "YouTube Live Integration",
         displayType: "image",
@@ -365,6 +398,7 @@ const clientArchitectures: ClientArchitecture[] = [
         iconColor: "text-emerald-400",
         iconBg: "bg-emerald-500/10 border-emerald-500/30",
         screenshot: "/portfolio/church244-events-user-v2.webp",
+        mobileScreenshot: "/portfolio/church244-events-mobile.webp",
         pagePath: "/events",
         techTag: "Church Center Integration",
         displayType: "image",
@@ -380,8 +414,93 @@ const clientArchitectures: ClientArchitecture[] = [
         iconColor: "text-amber-400",
         iconBg: "bg-amber-500/10 border-amber-500/30",
         screenshot: "/portfolio/church244-youth-user-v2.webp",
+        mobileScreenshot: "/portfolio/church244-events-mobile.webp",
         pagePath: "/ministries/youth",
         techTag: "Social & Community Sync",
+        displayType: "image",
+      },
+    ],
+  },
+  {
+    id: "blacksheep-recovery",
+    caseStudySlug: "blacksheep-recovery",
+    name: "Black Sheep Recovery Warfare",
+    shortName: "Black Sheep",
+    industry: "Faith, Media & Addiction Recovery",
+    location: "Jackson Metro & Mississippi",
+    domain: "blacksheeprecoverywarfare.com",
+    url: "https://blacksheeprecoverywarfare.com",
+    heroImage: "/portfolio/blacksheep-hero.webp",
+    mobileHeroImage: "/portfolio/blacksheep-mobile-hero.webp",
+    speedScore: "99/100 (0.3s)",
+    headline: "Video Podcast Engine & Tactical Merch E-Commerce Hub",
+    summary:
+      "Engineered a high-octane digital battleground for an addiction recovery ministry. Combines video episode broadcasting, integrated merchandise ordering, direct donor funding, and instant crisis helpline directories.",
+    accentColor: "text-orange-400",
+    glowRgb: "249, 115, 22",
+    nodes: [
+      {
+        id: "podcast-engine",
+        title: "Podcast Broadcast Engine",
+        category: "Media Broadcast",
+        badge: "Video & Audio Sync",
+        description:
+          "High-definition video/audio episode player with timestamps, show notes, and direct integration with Spotify and Apple Podcasts.",
+        icon: Radio,
+        iconColor: "text-orange-400",
+        iconBg: "bg-orange-500/10 border-orange-500/30",
+        screenshot: "/portfolio/blacksheep-episodes.webp",
+        mobileScreenshot: "/portfolio/blacksheep-episodes-mobile.webp",
+        pagePath: "/episodes",
+        techTag: "Media Streaming Engine",
+        displayType: "image",
+      },
+      {
+        id: "merch-store",
+        title: "Tactical Merch & Apparel Store",
+        category: "Custom E-Commerce",
+        badge: "Direct In-App Store",
+        description:
+          "Custom tactical apparel and gear store with sizing selection, cart state management, and direct in-app checkout.",
+        icon: ShoppingBag,
+        iconColor: "text-amber-400",
+        iconBg: "bg-amber-500/10 border-amber-500/30",
+        screenshot: "/portfolio/blacksheep-merch.webp",
+        mobileScreenshot: "/portfolio/blacksheep-merch-mobile.webp",
+        pagePath: "/merch",
+        techTag: "Custom E-Commerce",
+        displayType: "image",
+      },
+      {
+        id: "donor-portal",
+        title: "Direct Giving & Sponsorship Hub",
+        category: "Donation Processing",
+        badge: "Frictionless Giving",
+        description:
+          "Frictionless recurring and one-time donor portal designed to fund recovery outreach, community rallies, and crisis aid.",
+        icon: Heart,
+        iconColor: "text-red-400",
+        iconBg: "bg-red-500/10 border-red-500/30",
+        screenshot: "/portfolio/blacksheep-donate.webp",
+        mobileScreenshot: "/portfolio/blacksheep-donate-mobile.webp",
+        pagePath: "/donate",
+        techTag: "Direct Giving Gateway",
+        displayType: "image",
+      },
+      {
+        id: "crisis-directory",
+        title: "Emergency Crisis Support Network",
+        category: "Community Support",
+        badge: "24/7 Crisis Helplines",
+        description:
+          "Instant-access helpline directory and vetted recovery center roadmaps connecting individuals in active addiction to immediate local help.",
+        icon: ShieldAlert,
+        iconColor: "text-yellow-400",
+        iconBg: "bg-yellow-500/10 border-yellow-500/30",
+        screenshot: "/portfolio/blacksheep-resources.webp",
+        mobileScreenshot: "/portfolio/blacksheep-resources-mobile.webp",
+        pagePath: "/resources",
+        techTag: "Crisis Support Network",
         displayType: "image",
       },
     ],
@@ -808,11 +927,120 @@ function SystemScreenRenderer({
   }
 }
 
+function PhoneMockupFrame({
+  client,
+  selectedNode,
+}: {
+  client: ClientArchitecture;
+  selectedNode: IntegrationNode | null;
+}) {
+  const currentMobileSrc = selectedNode
+    ? selectedNode.mobileScreenshot || selectedNode.screenshot || client.mobileHeroImage || client.heroImage
+    : client.mobileHeroImage || client.heroImage;
+
+  return (
+    <div className="relative mx-auto w-full max-w-[290px] sm:max-w-[320px]">
+      {/* Outer Titanium Smartphone Chassis with Side Button Notches */}
+      <div className="relative rounded-[48px] bg-gradient-to-b from-slate-600 via-slate-800 to-slate-900 p-[3.5px] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9),0_0_35px_rgba(245,158,11,0.18)] border border-slate-500/40">
+        
+        {/* Left Side Volume Notches */}
+        <div className="absolute -left-[5.5px] top-24 w-[3px] h-9 bg-slate-600 rounded-l-sm" />
+        <div className="absolute -left-[5.5px] top-36 w-[3px] h-9 bg-slate-600 rounded-l-sm" />
+        {/* Right Side Power Notch */}
+        <div className="absolute -right-[5.5px] top-28 w-[3px] h-12 bg-slate-600 rounded-r-sm" />
+
+        {/* Inner Phone Screen Container */}
+        <div className="relative rounded-[44px] bg-slate-950 overflow-hidden border border-slate-900 aspect-[9/19] flex flex-col justify-between">
+          
+          {/* Top Speaker & Dynamic Island Status Bar */}
+          <div className="relative z-30 pt-3 px-5 pb-2 bg-slate-950/90 backdrop-blur-md flex items-center justify-between text-[10px] font-mono text-white/70 select-none border-b border-white/5">
+            <span className="font-bold text-[11px] text-white">9:41</span>
+            
+            {/* Dynamic Island / Notch */}
+            <div className="w-20 h-4 bg-black rounded-full flex items-center justify-center gap-1.5 px-2 shadow-inner border border-white/10">
+              <span className="w-1.5 h-1.5 rounded-full bg-slate-900 border border-slate-700 inline-block" />
+              <span className="w-1 h-1 rounded-full bg-blue-950 border border-blue-500/40 inline-block" />
+            </div>
+
+            <div className="flex items-center gap-1 text-[10px] text-white/70">
+              <Wifi className="w-3 h-3" />
+              <Battery className="w-3.5 h-3.5" />
+            </div>
+          </div>
+
+          {/* Mini Mobile URL Address Bar */}
+          <div className="relative z-20 px-3 py-1.5 bg-slate-900/90 border-b border-white/10 flex items-center justify-between text-[10px] font-mono">
+            <div className="flex items-center gap-1 text-slate-300 truncate max-w-[170px]">
+              <span className="text-emerald-400 text-[10px]">🔒</span>
+              <span className="text-white/40 text-[9px]">https://</span>
+              <span className="font-bold text-white text-[10px] truncate">
+                {client.domain}{selectedNode?.pagePath ? selectedNode.pagePath : ""}
+              </span>
+            </div>
+            <span className="text-[8px] font-bold text-amber-400 uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-500/10 border border-amber-500/20 shrink-0">
+              {selectedNode ? selectedNode.badge.slice(0, 14) : "9:16 Mobile"}
+            </span>
+          </div>
+
+          {/* Mobile Screen Glass (9:16 content - 100% Unobstructed Full Screen) */}
+          <div className="relative flex-1 w-full bg-slate-950 overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`${client.id}-${selectedNode ? selectedNode.id : "mobile-home"}`}
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.02 }}
+                transition={{ duration: 0.25 }}
+                className="absolute inset-0 w-full h-full"
+              >
+                {selectedNode && selectedNode.displayType && selectedNode.displayType !== "image" ? (
+                  <SystemScreenRenderer client={client} node={selectedNode} />
+                ) : (
+                  <Image
+                    src={currentMobileSrc}
+                    alt={`${client.name} Mobile View`}
+                    fill
+                    className="object-cover object-top"
+                    priority
+                  />
+                )}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* iOS Bottom Home Swipe Indicator */}
+          <div className="relative z-30 py-1.5 bg-slate-950/95 flex items-center justify-center border-t border-white/5">
+            <div className="w-24 h-1 bg-white/40 rounded-full" />
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ConnectedArchitecture() {
   const [activeClient, setActiveClient] = useState<ClientArchitecture>(
     clientArchitectures[0]
   );
   const [selectedNode, setSelectedNode] = useState<IntegrationNode | null>(null);
+  const [deviceMode, setDeviceMode] = useState<"desktop" | "mobile">("desktop");
+
+  // Auto-detect mobile devices and default to 9:16 phone view
+  useEffect(() => {
+    const checkScreenSize = () => {
+      if (typeof window !== "undefined") {
+        if (window.innerWidth < 1024) {
+          setDeviceMode("mobile");
+        } else {
+          setDeviceMode("desktop");
+        }
+      }
+    };
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
 
   const handleSelectClient = (client: ClientArchitecture) => {
     setActiveClient(client);
@@ -959,10 +1187,10 @@ export default function ConnectedArchitecture() {
               })}
             </div>
 
-            {/* Center Column: Interactive Core Engine Browser Mockup */}
+            {/* Center Column: Interactive Core Engine Browser / Smartphone Mockup */}
             <div className="lg:col-span-6 flex flex-col items-center">
-              {/* Centered View Homepage Pill Button */}
-              <div className="mb-3.5 flex items-center justify-center">
+              {/* Centered Controls: View Homepage Pill Button + Device Mode Toggle */}
+              <div className="mb-4 flex flex-wrap items-center justify-center gap-2.5 w-full">
                 <button
                   onClick={() => setSelectedNode(null)}
                   className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold transition-all duration-300 border cursor-pointer ${
@@ -979,85 +1207,116 @@ export default function ConnectedArchitecture() {
                     <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
                   )}
                 </button>
+
+                {/* Desktop (16:10) vs Smartphone (9:16) Device Toggle */}
+                <div className="inline-flex items-center p-1 rounded-full bg-slate-950/90 border border-white/15 shadow-inner">
+                  <button
+                    onClick={() => setDeviceMode("desktop")}
+                    className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-bold transition-all duration-200 cursor-pointer ${
+                      deviceMode === "desktop"
+                        ? "bg-white/20 text-white shadow-sm border border-white/20"
+                        : "text-slate-400 hover:text-white"
+                    }`}
+                  >
+                    <Monitor className="w-3.5 h-3.5" />
+                    <span>Desktop (16:10)</span>
+                  </button>
+                  <button
+                    onClick={() => setDeviceMode("mobile")}
+                    className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-bold transition-all duration-200 cursor-pointer ${
+                      deviceMode === "mobile"
+                        ? "bg-amber-400 text-slate-950 font-black shadow-[0_0_12px_rgba(245,158,11,0.4)]"
+                        : "text-slate-400 hover:text-amber-400"
+                    }`}
+                  >
+                    <Smartphone className="w-3.5 h-3.5" />
+                    <span>Mobile (9:16)</span>
+                  </button>
+                </div>
               </div>
 
-              <div className="w-full rounded-2xl bg-slate-950 border border-white/20 overflow-hidden shadow-2xl relative group">
-                {/* Browser Bar */}
-                <div className="flex items-center justify-between px-4 py-3 bg-slate-950 border-b border-white/10">
-                  <div className="flex items-center gap-1.5 min-w-0">
-                    <span className="w-2.5 h-2.5 rounded-full bg-red-500/80 shrink-0" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80 shrink-0" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-green-500/80 shrink-0" />
-                    <div className="flex items-center gap-1 ml-2 px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-xs font-mono truncate">
-                      <span className="text-slate-400">
-                        https://{selectedNode ? (selectedNode.displayType === "capsule-crm" ? "app.capsulecrm.com" : selectedNode.displayType === "transpond-flow" ? "transpond.io" : selectedNode.displayType === "google-schema" ? "google.com" : activeClient.domain) : activeClient.domain}
-                      </span>
-                      <span className="text-cyan-400 font-bold">
-                        {selectedNode ? selectedNode.pagePath : "/"}
-                      </span>
+              {/* Conditional Viewport Frame: 9:16 Smartphone Chassis vs 16:10 Desktop Browser Frame */}
+              {deviceMode === "mobile" ? (
+                <PhoneMockupFrame client={activeClient} selectedNode={selectedNode} />
+              ) : (
+                <div className="w-full rounded-2xl bg-slate-950 border border-white/20 overflow-hidden shadow-2xl relative group">
+                  {/* Browser Bar */}
+                  <div className="flex items-center justify-between px-4 py-3 bg-slate-950 border-b border-white/10">
+                    <div className="flex items-center gap-1.5 min-w-0">
+                      <span className="w-2.5 h-2.5 rounded-full bg-red-500/80 shrink-0" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80 shrink-0" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-green-500/80 shrink-0" />
+                      <div className="flex items-center gap-1 ml-2 px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-xs font-mono truncate">
+                        <span className="text-slate-400">
+                          https://{selectedNode ? (selectedNode.displayType === "capsule-crm" ? "app.capsulecrm.com" : selectedNode.displayType === "transpond-flow" ? "transpond.io" : selectedNode.displayType === "google-schema" ? "google.com" : activeClient.domain) : activeClient.domain}
+                        </span>
+                        <span className="text-cyan-400 font-bold">
+                          {selectedNode ? selectedNode.pagePath : "/"}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-center gap-2 shrink-0 ml-2">
-                    {selectedNode && (
-                      <button
-                        onClick={() => setSelectedNode(null)}
-                        className="text-[9px] font-mono text-slate-300 hover:text-white px-2 py-0.5 rounded bg-white/10 hover:bg-white/20 border border-white/15 transition-all cursor-pointer"
-                      >
-                        ← View Homepage
-                      </button>
-                    )}
-                    <span className="text-[10px] font-mono font-bold text-amber-400 uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30">
-                      {selectedNode ? selectedNode.badge : "Central Hub"}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Screenshot / System View Display with Dynamic Inspection Overlay */}
-                <div className="relative w-full aspect-[16/10] bg-slate-900 overflow-hidden">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={`${activeClient.id}-${selectedNode ? selectedNode.id : "homepage"}`}
-                      initial={{ opacity: 0, scale: 0.98 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 1.01 }}
-                      transition={{ duration: 0.35, ease: "easeOut" }}
-                      className="absolute inset-0 w-full h-full"
-                    >
-                      {selectedNode ? (
-                        <SystemScreenRenderer
-                          client={activeClient}
-                          node={selectedNode}
-                        />
-                      ) : (
-                        <Image
-                          src={activeClient.heroImage}
-                          alt={`${activeClient.name} - Homepage Hub`}
-                          fill
-                          className="object-cover object-top"
-                          priority
-                        />
+                    <div className="flex items-center gap-2 shrink-0 ml-2">
+                      {selectedNode && (
+                        <button
+                          onClick={() => setSelectedNode(null)}
+                          className="text-[9px] font-mono text-slate-300 hover:text-white px-2 py-0.5 rounded bg-white/10 hover:bg-white/20 border border-white/15 transition-all cursor-pointer"
+                        >
+                          ← View Homepage
+                        </button>
                       )}
-                    </motion.div>
-                  </AnimatePresence>
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none" />
-
-                  {/* Active Highlight Spotlight Pill */}
-                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-slate-950/90 border border-amber-500/40 backdrop-blur-md shadow-2xl">
-                    <div className="flex items-center justify-between gap-2 mb-1">
-                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1">
-                        <CheckCircle2 className="w-3 h-3 text-amber-400" />
-                        {selectedNode ? `Selected Feature: ${selectedNode.title}` : `Central Hub: ${activeClient.name}`}
-                      </span>
-                      <span className="text-[10px] font-mono text-cyan-400 font-bold">
-                        {selectedNode ? selectedNode.techTag : `${activeClient.industry}`}
+                      <span className="text-[10px] font-mono font-bold text-amber-400 uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30">
+                        {selectedNode ? selectedNode.badge : "Central Hub"}
                       </span>
                     </div>
-                    <p className="text-xs text-white leading-relaxed">
-                      {selectedNode ? selectedNode.description : activeClient.summary}
-                    </p>
+                  </div>
+
+                  {/* Screenshot / System View Display with Dynamic Inspection Overlay */}
+                  <div className="relative w-full aspect-[16/10] bg-slate-900 overflow-hidden">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={`${activeClient.id}-${selectedNode ? selectedNode.id : "homepage"}`}
+                        initial={{ opacity: 0, scale: 0.98 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 1.01 }}
+                        transition={{ duration: 0.35, ease: "easeOut" }}
+                        className="absolute inset-0 w-full h-full"
+                      >
+                        {selectedNode ? (
+                          <SystemScreenRenderer
+                            client={activeClient}
+                            node={selectedNode}
+                          />
+                        ) : (
+                          <Image
+                            src={activeClient.heroImage}
+                            alt={`${activeClient.name} - Homepage Hub`}
+                            fill
+                            className="object-cover object-top"
+                            priority
+                          />
+                        )}
+                      </motion.div>
+                    </AnimatePresence>
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none" />
+
+                    {/* Active Highlight Spotlight Pill */}
+                    <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-slate-950/90 border border-amber-500/40 backdrop-blur-md shadow-2xl">
+                      <div className="flex items-center justify-between gap-2 mb-1">
+                        <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1">
+                          <CheckCircle2 className="w-3 h-3 text-amber-400" />
+                          {selectedNode ? `Selected Feature: ${selectedNode.title}` : `Central Hub: ${activeClient.name}`}
+                        </span>
+                        <span className="text-[10px] font-mono text-cyan-400 font-bold">
+                          {selectedNode ? selectedNode.techTag : `${activeClient.industry}`}
+                        </span>
+                      </div>
+                      <p className="text-xs text-white leading-relaxed">
+                        {selectedNode ? selectedNode.description : activeClient.summary}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
 
               <div className="mt-4 flex items-center justify-center gap-2 text-xs text-slate-400">
                 <Layers className="w-3.5 h-3.5 text-amber-400" />
@@ -1145,7 +1404,7 @@ export default function ConnectedArchitecture() {
             </div>
             <div className="flex items-center gap-3 w-full sm:w-auto">
               <Link
-                href={`/portfolio/${activeClient.id}`}
+                href={`/portfolio/${activeClient.caseStudySlug || activeClient.id}`}
                 className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold uppercase tracking-wider transition-colors border border-white/15 text-center"
               >
                 Deep-Dive Case Study <ArrowRight className="w-3.5 h-3.5" />
