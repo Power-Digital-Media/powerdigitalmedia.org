@@ -53,19 +53,19 @@ const faqs = [
   },
   {
     q: "How long does a website build take?",
-    a: "Most custom builds launch in 2 to 4 weeks, depending on the size of your site and content needs. We keep you updated every step of the way."
+    a: "Most custom builds launch in 7 to 14 business days. For larger custom software platforms or multi-feature portals, builds take 2 to 4 weeks. We keep you updated every step of the way with live staging previews."
   },
   {
     q: "How much does a custom website cost in Jackson, MS?",
-    a: "Our custom web packages start at $1,500 for a high-speed professional build and scale based on custom features like PinDrop™ or CRM automation. We give you a clear, fixed quote with no hidden fees."
+    a: "Our custom web packages start at $1,500 for a complete, high-speed Next.js build. For advanced features like PinDrop™ GPS contractor mapping or custom in-app Square ordering, we provide a clear, fixed quote upfront with no recurring plugin fees or surprise charges."
   },
   {
     q: "Do you provide ongoing support after launch?",
-    a: "Yes. Damein Donald provides direct ongoing management, hosting, security updates, and content changes so you never have to worry about your website breaking."
+    a: "Yes. You get direct cell phone access to Damein Donald at (601) 446-2393. We handle your cloud hosting, security, content updates, and Google schema maintenance with personal local support."
   },
   {
     q: "Can you redesign my existing slow website?",
-    a: "Yes! We frequently rebuild slow WordPress, Wix, or Squarespace sites onto modern Next.js to double mobile speed and improve Google Maps rankings."
+    a: "Yes! We frequently rebuild slow WordPress, Wix, or Squarespace sites onto modern Next.js to significantly cut mobile load times and boost Google Maps rankings."
   }
 ];
 
@@ -79,69 +79,165 @@ export default function WebDesignPage() {
   return (
     <main className="relative min-h-screen bg-[#080d1a] text-white overflow-x-clip">
       <BreadcrumbSchema items={breadcrumbItems} />
+      
+      {/* Local Web Design Service Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Custom Web Design & Local SEO",
+            "provider": {
+              "@id": "https://powerdigitalmedia.org/#organization"
+            },
+            "description": "High-performance custom Next.js web design, Google Maps local SEO, and automated lead capture for Mississippi contractors and businesses.",
+            "category": "Web Design & Development",
+            "serviceType": "Custom Web Design",
+            "areaServed": [
+              { "@type": "City", "name": "Jackson", "containedInPlace": { "@type": "State", "name": "Mississippi" } },
+              { "@type": "City", "name": "Brandon", "containedInPlace": { "@type": "State", "name": "Mississippi" } },
+              { "@type": "City", "name": "Madison", "containedInPlace": { "@type": "State", "name": "Mississippi" } },
+              { "@type": "City", "name": "Clinton", "containedInPlace": { "@type": "State", "name": "Mississippi" } },
+              { "@type": "City", "name": "Pearl", "containedInPlace": { "@type": "State", "name": "Mississippi" } },
+              { "@type": "City", "name": "Flowood", "containedInPlace": { "@type": "State", "name": "Mississippi" } }
+            ],
+            "offers": {
+              "@type": "Offer",
+              "price": "1500",
+              "priceCurrency": "USD",
+              "priceValidUntil": "2027-01-01",
+              "availability": "https://schema.org/InStock"
+            }
+          })
+        }}
+      />
+
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-36 pb-20 md:pt-44 md:pb-28 overflow-hidden border-b border-white/5">
-        <div className="container relative z-10 px-4 sm:px-6 mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-6">
-            <span className="text-amber-400 text-xs">★★★★★</span>
-            <span className="text-amber-300 font-bold tracking-wider uppercase text-[11px]">
-              Jackson, MS Web Design &amp; Local SEO Studio
-            </span>
-          </div>
+      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden border-b border-white/5">
+        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute bottom-10 right-1/4 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[150px] pointer-events-none" />
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight mb-6 uppercase text-white leading-[1.05]">
-            Websites Built to Turn <br className="hidden sm:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-cyan-400 to-emerald-400">
-              Clicks Into Phone Calls.
-            </span>
-          </h1>
+        <div className="container relative z-10 px-4 sm:px-6 mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Left Column: Headline & Action */}
+            <div className="lg:col-span-7 text-left">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-6">
+                <span className="text-amber-400 text-xs">★★★★★</span>
+                <span className="text-amber-300 font-bold tracking-wider uppercase text-[11px]">
+                  Jackson, MS Web Design &amp; Local SEO Studio
+                </span>
+              </div>
 
-          <p className="text-base sm:text-lg md:text-xl text-slate-300 mb-10 max-w-3xl mx-auto leading-relaxed">
-            We hand-code fast, reliable Next.js websites for Mississippi contractors and small business owners. Fast mobile load speeds, top Google Maps rankings, and direct personal support from Damein Donald.
-          </p>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight mb-6 uppercase text-white leading-[1.05]">
+                Websites Built to Turn <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-cyan-400 to-emerald-400">
+                  Clicks Into Phone Calls.
+                </span>
+              </h1>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-xl mx-auto mb-12">
-            <a
-              href="/free-audit"
-              className="w-full sm:w-auto px-8 py-4 bg-white text-slate-950 font-black rounded-full hover:bg-amber-400 transition-all uppercase tracking-wider text-xs shadow-[0_0_30px_rgba(251,191,36,0.25)] text-center active:scale-95"
-            >
-              Get Free 5-Minute Audit
-            </a>
-            <a
-              href="tel:6014462393"
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 border border-amber-400/40 bg-amber-500/10 text-amber-300 rounded-full font-black uppercase tracking-wider text-xs hover:bg-amber-400 hover:text-slate-950 transition-all active:scale-95"
-            >
-              <PhoneCall className="w-3.5 h-3.5" />
-              (601) 446-2393
-            </a>
-            <Link
-              href="/book"
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-4 border border-white/15 rounded-full font-bold uppercase tracking-wider text-xs text-slate-300 hover:text-white hover:bg-white/10 transition-all"
-            >
-              <Video className="w-4 h-4 text-cyan-400" />
-              Book Call
-            </Link>
-          </div>
+              <p className="text-base sm:text-lg text-slate-300 mb-8 max-w-2xl leading-relaxed">
+                We hand-code fast, high-converting Next.js websites for Mississippi contractors and business owners. Fast mobile speeds, top Google Maps rankings, and direct cell phone support from Damein Donald.
+              </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-8 border-t border-white/10 text-left">
-            <div className="p-3 bg-slate-900/50 rounded-xl border border-white/5">
-              <span className="text-xs text-slate-400 block font-medium">Mobile Load Speed</span>
-              <span className="text-sm font-bold text-emerald-400">⚡ &lt; 2–3s Fast Load</span>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-8">
+                <a
+                  href="/free-audit"
+                  className="px-8 py-4 bg-white text-slate-950 font-black rounded-full hover:bg-amber-400 transition-all uppercase tracking-wider text-xs shadow-[0_0_30px_rgba(251,191,36,0.25)] text-center active:scale-95"
+                >
+                  Get Free 5-Minute Audit
+                </a>
+                <a
+                  href="tel:6014462393"
+                  className="flex items-center justify-center gap-2 px-7 py-4 border border-amber-400/40 bg-amber-500/10 text-amber-300 rounded-full font-black uppercase tracking-wider text-xs hover:bg-amber-400 hover:text-slate-950 transition-all active:scale-95 text-center"
+                >
+                  <PhoneCall className="w-3.5 h-3.5" />
+                  (601) 446-2393
+                </a>
+                <Link
+                  href="/book"
+                  className="flex items-center justify-center gap-2 px-6 py-4 border border-white/15 rounded-full font-bold uppercase tracking-wider text-xs text-slate-300 hover:text-white hover:bg-white/10 transition-all text-center"
+                >
+                  <Video className="w-4 h-4 text-cyan-400" />
+                  Book Call
+                </Link>
+              </div>
+
+              {/* Key Bullet Checklist */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-white/10 w-full">
+                <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
+                  <span className="text-emerald-400 font-bold">✓</span> Fast Mobile Loads (&lt; 2–3s)
+                </div>
+                <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
+                  <span className="text-cyan-400 font-bold">✓</span> Google Maps 3-Pack Schema
+                </div>
+                <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
+                  <span className="text-amber-400 font-bold">✓</span> 7–14 Day Turnaround
+                </div>
+                <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
+                  <span className="text-emerald-400 font-bold">✓</span> Direct Cell Support from Damein
+                </div>
+              </div>
             </div>
-            <div className="p-3 bg-slate-900/50 rounded-xl border border-white/5">
-              <span className="text-xs text-slate-400 block font-medium">Google Rating</span>
-              <span className="text-sm font-bold text-amber-400">⭐ 5.0 Star Verified</span>
+
+            {/* Right Column: Tangible Device Mockup */}
+            <div className="lg:col-span-5 relative w-full">
+              <div className="relative rounded-3xl border border-white/15 bg-slate-950/90 shadow-2xl overflow-hidden backdrop-blur-md">
+                
+                {/* Browser Title Bar */}
+                <div className="flex items-center justify-between px-4 py-3 bg-slate-900 border-b border-white/10">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                    <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                    <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                  </div>
+                  <div className="px-4 py-1 rounded-full bg-slate-950 border border-white/10 text-[11px] font-mono text-slate-400 flex items-center gap-1.5">
+                    <span className="text-emerald-400">🔒</span> bornagainroofing.com
+                  </div>
+                  <div className="w-6" />
+                </div>
+
+                {/* Screenshot Frame */}
+                <div className="relative aspect-[4/3] w-full bg-slate-900 overflow-hidden">
+                  <Image
+                    src="/portfolio/born-again-roofing.webp"
+                    alt="Born Again Roofing - Live Next.js Web Build in Jackson, MS"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover object-top"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent" />
+                </div>
+
+                {/* Live Metrics Over Mockup */}
+                <div className="p-4 bg-slate-950/95 border-t border-white/10 flex flex-col gap-2.5">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-slate-400">Performance Score:</span>
+                    <span className="font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/30">
+                      ⚡ 98+ (Fast Mobile Load)
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-slate-400">Local Visibility:</span>
+                    <span className="font-bold text-amber-300 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/30">
+                      📍 #1 Jackson Metro Remodeling
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-slate-400">Field Capabilities:</span>
+                    <span className="font-bold text-cyan-300 bg-cyan-500/10 px-2.5 py-0.5 rounded-full border border-cyan-500/30">
+                      📱 99+ Live GPS Job Pins
+                    </span>
+                  </div>
+                </div>
+
+              </div>
             </div>
-            <div className="p-3 bg-slate-900/50 rounded-xl border border-white/5">
-              <span className="text-xs text-slate-400 block font-medium">Code Architecture</span>
-              <span className="text-sm font-bold text-cyan-400">⚛️ 100% Next.js 16</span>
-            </div>
-            <div className="p-3 bg-slate-900/50 rounded-xl border border-white/5">
-              <span className="text-xs text-slate-400 block font-medium">Direct Support</span>
-              <span className="text-sm font-bold text-white">🤝 Damein Donald</span>
-            </div>
+
           </div>
         </div>
       </section>
