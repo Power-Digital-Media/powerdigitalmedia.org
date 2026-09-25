@@ -151,19 +151,19 @@ export default function WebDesignPage() {
                   Get Free 5-Minute Audit
                 </a>
                 <a
+                  href="#portfolio"
+                  className="flex items-center justify-center gap-2 px-6 py-4 bg-slate-900/90 border border-cyan-400/40 text-cyan-300 rounded-full font-black uppercase tracking-wider text-xs hover:bg-cyan-400 hover:text-slate-950 transition-all active:scale-95 shadow-[0_0_20px_rgba(6,182,212,0.15)] text-center"
+                >
+                  <span>Explore Live Work</span>
+                  <span className="text-sm">↓</span>
+                </a>
+                <a
                   href="tel:6014462393"
                   className="flex items-center justify-center gap-2 px-7 py-4 border border-amber-400/40 bg-amber-500/10 text-amber-300 rounded-full font-black uppercase tracking-wider text-xs hover:bg-amber-400 hover:text-slate-950 transition-all active:scale-95 text-center"
                 >
                   <PhoneCall className="w-3.5 h-3.5" />
                   (601) 446-2393
                 </a>
-                <Link
-                  href="/book"
-                  className="flex items-center justify-center gap-2 px-6 py-4 border border-white/15 rounded-full font-bold uppercase tracking-wider text-xs text-slate-300 hover:text-white hover:bg-white/10 transition-all text-center"
-                >
-                  <Video className="w-4 h-4 text-cyan-400" />
-                  Book Call
-                </Link>
               </div>
 
               {/* Key Bullet Checklist */}
