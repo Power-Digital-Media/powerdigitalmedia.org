@@ -265,10 +265,16 @@ export default function WebDesignPage() {
         </div>
       </section>
 
-      {/* Speed Comparison Section */}
+      {/* 1. Direct Social Proof: 100% 5-Star Verified Google Reviews Compact Marquee */}
+      <GoogleReviewsSection variant="compact" />
+
+      {/* 2. Portfolio Showcase: Real Mississippi Client Builds */}
+      <Portfolio titleAs="h2" />
+
+      {/* 3. Speed Comparison Section: The 3-Second Rule */}
       <SpeedComparisonCard />
 
-      {/* The 3 Pillars Section */}
+      {/* 4. The 3 Pillars Section */}
       <section className="py-20 md:py-28 relative bg-slate-950/60 border-t border-white/5">
         <div className="container px-4 sm:px-6 mx-auto">
           <div className="max-w-4xl mx-auto text-center mb-16">
@@ -324,12 +330,6 @@ export default function WebDesignPage() {
           </div>
         </div>
       </section>
-
-      {/* Portfolio Showcase */}
-      <Portfolio titleAs="h2" />
-
-      {/* Verified Google Reviews */}
-      <GoogleReviewsSection />
 
       {/* Plain English FAQ Section */}
       <section className="py-20 md:py-28 bg-[#090f20] border-t border-white/5">

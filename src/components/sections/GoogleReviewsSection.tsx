@@ -2,9 +2,91 @@ import React from "react";
 import { VERIFIED_REVIEWS, GOOGLE_REVIEW_URL, GOOGLE_PROFILE_URL, BBB_PROFILE_URL, REVIEWS_SUMMARY } from "@/data/reviews";
 import { Star, ShieldCheck, ExternalLink, MessageSquare, ThumbsUp, ArrowRight, Sparkles } from "lucide-react";
 
-export default function GoogleReviewsSection() {
+export default function GoogleReviewsSection({ variant = "full" }: { variant?: "full" | "compact" }) {
   // Seamless loop by duplicating reviews array
   const duplicatedReviews = [...VERIFIED_REVIEWS, ...VERIFIED_REVIEWS];
+
+  if (variant === "compact") {
+    return (
+      <section id="reviews" className="py-8 md:py-10 bg-[#070c18] border-b border-white/10 relative overflow-hidden select-none">
+        {/* Subtle ambient golden background glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[200px] bg-amber-500/5 rounded-full blur-[100px] pointer-events-none" />
+
+        <div className="container mx-auto px-4 text-center mb-5 relative z-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30">
+            <span className="text-amber-400 text-xs">★★★★★</span>
+            <span className="text-amber-300 font-bold uppercase tracking-wider text-[11px]">
+              100% 5-Star Verified Client Reviews • Central Mississippi
+            </span>
+          </div>
+        </div>
+
+        {/* Continuous Infinite Loop Carousel (Marquee) */}
+        <div className="relative w-full overflow-hidden py-2">
+          {/* Left and Right Edge Gradient Masks */}
+          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-[#070c18] via-[#070c18]/80 to-transparent z-20 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-[#070c18] via-[#070c18]/80 to-transparent z-20 pointer-events-none" />
+
+          {/* Scrolling Track */}
+          <div className="animate-marquee pause-on-hover flex gap-6 px-4">
+            {duplicatedReviews.map((review, idx) => (
+              <div
+                key={`${review.id}-compact-${idx}`}
+                className="w-[300px] sm:w-[360px] shrink-0 flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-slate-900/85 border border-white/10 hover:border-amber-400/50 transition-all duration-300 shadow-xl group hover:shadow-[0_15px_40px_-10px_rgba(245,158,11,0.2)] hover:-translate-y-1 cursor-grab active:cursor-grabbing backdrop-blur-md"
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-2.5">
+                    <div className="flex items-center gap-1 text-amber-400">
+                      {[...Array(review.rating)].map((_, i) => (
+                        <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                      ))}
+                    </div>
+                    <span className="text-[10px] font-bold text-slate-300 bg-white/5 px-2 py-0.5 rounded-full border border-white/10">
+                      {review.source === "Google" ? "⭐ Google" : "👍 Facebook"}
+                    </span>
+                  </div>
+
+                  {review.highlight && (
+                    <p className="text-amber-300 font-bold text-xs sm:text-sm mb-2 leading-snug group-hover:text-amber-200 transition-colors">
+                      &ldquo;{review.highlight}&rdquo;
+                    </p>
+                  )}
+
+                  <p className="text-slate-300 text-xs leading-relaxed mb-4 line-clamp-3">
+                    &ldquo;{review.text}&rdquo;
+                  </p>
+                </div>
+
+                <div className="pt-3 border-t border-white/10 flex items-center justify-between">
+                  <div className="min-w-0">
+                    <h4 className="text-xs font-bold text-white truncate">
+                      {review.author}
+                    </h4>
+                    <span className="text-[10px] text-slate-400 truncate block">
+                      {review.roleOrCompany || "Verified Client"}
+                    </span>
+                  </div>
+                  <a
+                    href={review.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-slate-500 hover:text-amber-400 transition-colors p-1"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="text-center mt-3 flex items-center justify-center gap-2 text-[11px] text-slate-400 font-mono">
+          <Sparkles className="w-3 h-3 text-amber-400" />
+          <span>Continuous Live Review Feed • Hover or Touch to Pause</span>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="reviews" className="py-20 md:py-28 bg-[#0b1329] border-t border-b border-white/10 relative overflow-hidden select-none">
