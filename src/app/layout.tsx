@@ -35,7 +35,7 @@ export const metadata: Metadata = {
         url: "/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Power Digital Media Business Tech Stack",
+        alt: "Power Digital Media - High-Velocity Web Design, Custom Apps & Field Tech in Mississippi",
       },
     ],
   },
