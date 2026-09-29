@@ -17,6 +17,7 @@ import {
     Layers,
     Globe
 } from "lucide-react";
+import PinDropDemoExplorer from "@/components/pindrop/PinDropDemoExplorer";
 
 export const metadata: Metadata = {
     title: "PinDrop™ Field Engine for Contractors | Power Digital Media",
@@ -102,14 +103,31 @@ export default function PinDropPage() {
                 </div>
             </section>
 
-            {/* The 3-Step Machine Section */}
-            <section className="py-24 md:py-32 px-4 md:px-12 max-w-[1400px] mx-auto w-full">
-                <div className="text-center mb-16 md:mb-24">
-                    <span className="text-cyan-400 font-mono text-xs uppercase tracking-[0.3em] font-bold block mb-3">
-                        The Automated Pipeline
+            {/* Interactive Demo Walkthrough Section */}
+            <section className="py-20 md:py-28 px-4 md:px-12 max-w-[1400px] mx-auto w-full">
+                <div className="text-center mb-12 md:mb-16">
+                    <span className="text-yellow-400 font-mono text-xs uppercase tracking-[0.3em] font-bold block mb-3">
+                        ⚡ Live Sandbox Walkthrough
                     </span>
                     <h2 className="text-3xl md:text-6xl font-black uppercase tracking-tight text-white">
-                        How PinDrop™ Works in the Field
+                        Experience The 4-Stage PinDrop™ Engine
+                    </h2>
+                    <p className="text-white/60 max-w-3xl mx-auto mt-4 text-sm md:text-base">
+                        Click through the interactive tabs below to see how a completed heat pump replacement in Madison, MS flows seamlessly from the technician&apos;s van into Google index rankings and 5-star reviews.
+                    </p>
+                </div>
+
+                <PinDropDemoExplorer />
+            </section>
+
+            {/* The 3-Step Machine Section */}
+            <section className="py-20 md:py-28 px-4 md:px-12 max-w-[1400px] mx-auto w-full border-t border-white/5">
+                <div className="text-center mb-16 md:mb-24">
+                    <span className="text-cyan-400 font-mono text-xs uppercase tracking-[0.3em] font-bold block mb-3">
+                        Field Mechanics
+                    </span>
+                    <h2 className="text-3xl md:text-6xl font-black uppercase tracking-tight text-white">
+                        Why It Works So Fast in the Field
                     </h2>
                     <p className="text-white/60 max-w-2xl mx-auto mt-4 text-sm md:text-base">
                         No complicated logins or messy spreadsheets. Designed specifically for busy roofers, excavators, plumbers, and field technicians.
