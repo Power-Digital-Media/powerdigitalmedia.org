@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { m, AnimatePresence } from "framer-motion";
 import { Menu, X, LayoutDashboard, LogIn, Terminal, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -186,99 +185,93 @@ export default function Navbar() {
                 </div>
             </nav>
 
-            {/* Mobile Menu Full Screen Overlay — lives OUTSIDE nav so it's never affected by nav transforms */}
-            <AnimatePresence>
-                {isMobileMenuOpen && (
-                    <m.div
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.3 }}
-                        className="fixed inset-0 z-[99] bg-background/98 backdrop-blur-2xl lg:hidden flex flex-col pt-32 pb-8 px-6 overflow-y-auto"
-                    >
-                        {/* Primary Exploration Links */}
-                        <div className="flex flex-col gap-6 flex-1">
-                            {/* Services Group */}
-                            <div className="flex flex-col gap-3">
-                                <span className="text-xs font-black tracking-widest text-accent uppercase px-4 opacity-80">Services</span>
-                                <div className="glass-card rounded-3xl p-2 flex flex-col border border-white/5">
-                                    {serviceLinks.map((link) => (
-                                        <Link
-                                            key={link.name}
-                                            href={link.href}
-                                            prefetch={false}
-                                            className="px-6 py-4 text-lg font-medium hover:bg-white/5 rounded-2xl transition-colors"
-                                            onClick={() => setIsMobileMenuOpen(false)}
-                                        >
-                                            {link.name}
-                                        </Link>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* Main Links */}
-                            <div className="flex flex-col gap-3">
-                                <span className="text-xs font-black tracking-widest text-muted-foreground uppercase px-4 opacity-80">Explore</span>
-                                <div className="glass-card rounded-3xl p-2 flex flex-col border border-white/5">
-                                    {mainLinks.map((link) => (
-                                        <Link
-                                            key={link.name}
-                                            href={link.href}
-                                            prefetch={false}
-                                            className="px-6 py-4 text-lg font-medium hover:bg-white/5 rounded-2xl transition-colors border-b border-white/5 last:border-0"
-                                            onClick={() => setIsMobileMenuOpen(false)}
-                                        >
-                                            {link.name}
-                                        </Link>
-                                    ))}
-                                </div>
+            {/* Mobile Menu Full Screen Overlay */}
+            {isMobileMenuOpen && (
+                <div
+                    className="fixed inset-0 z-[99] bg-background/98 backdrop-blur-2xl lg:hidden flex flex-col pt-32 pb-8 px-6 overflow-y-auto animate-fadeIn"
+                >
+                    {/* Primary Exploration Links */}
+                    <div className="flex flex-col gap-6 flex-1">
+                        {/* Services Group */}
+                        <div className="flex flex-col gap-3">
+                            <span className="text-xs font-black tracking-widest text-accent uppercase px-4 opacity-80">Services</span>
+                            <div className="glass-card rounded-3xl p-2 flex flex-col border border-white/5">
+                                {serviceLinks.map((link) => (
+                                    <Link
+                                        key={link.name}
+                                        href={link.href}
+                                        prefetch={false}
+                                        className="px-6 py-4 text-lg font-medium hover:bg-white/5 rounded-2xl transition-colors"
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                    >
+                                        {link.name}
+                                    </Link>
+                                ))}
                             </div>
                         </div>
 
-                        {/* Utilities & CTAs */}
-                        <div className="mt-8 flex flex-col gap-3 pt-6 border-t border-white/10 shrink-0">
-                            <div className="grid grid-cols-2 gap-3">
-                                <Link
-                                    href="/billing"
-                                    prefetch={false}
-                                    className="py-3 text-center text-sm font-medium text-muted-foreground hover:text-white glass-card border-white/5 rounded-xl"
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                >
-                                    Billing
-                                </Link>
-                                <Link
-                                    href={user ? "/dashboard" : "/login"}
-                                    prefetch={false}
-                                    className="py-3 text-center text-sm font-medium text-white glass-card border-white/5 rounded-xl flex items-center justify-center gap-2"
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                >
-                                    {user ? "Dashboard" : "Client Portal"}
-                                </Link>
+                        {/* Main Links */}
+                        <div className="flex flex-col gap-3">
+                            <span className="text-xs font-black tracking-widest text-muted-foreground uppercase px-4 opacity-80">Explore</span>
+                            <div className="glass-card rounded-3xl p-2 flex flex-col border border-white/5">
+                                {mainLinks.map((link) => (
+                                    <Link
+                                        key={link.name}
+                                        href={link.href}
+                                        prefetch={false}
+                                        className="px-6 py-4 text-lg font-medium hover:bg-white/5 rounded-2xl transition-colors border-b border-white/5 last:border-0"
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                    >
+                                        {link.name}
+                                    </Link>
+                                ))}
                             </div>
+                        </div>
+                    </div>
 
-                            {isAdmin(user?.email) && (
-                                <Link
-                                    href="/admin"
-                                    className="w-full py-3 text-center text-sm font-black text-accent bg-accent/10 border border-accent/20 rounded-xl flex items-center justify-center gap-2"
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                >
-                                    <Terminal className="w-4 h-4" />
-                                    Admin Studio
-                                </Link>
-                            )}
-
+                    {/* Utilities & CTAs */}
+                    <div className="mt-8 flex flex-col gap-3 pt-6 border-t border-white/10 shrink-0">
+                        <div className="grid grid-cols-2 gap-3">
                             <Link
-                                href="/book"
+                                href="/billing"
                                 prefetch={false}
+                                className="py-3 text-center text-sm font-medium text-muted-foreground hover:text-white glass-card border-white/5 rounded-xl"
                                 onClick={() => setIsMobileMenuOpen(false)}
-                                className="w-full py-4 text-center font-bold text-white bg-accent rounded-xl border border-accent border-glow shadow-[0_0_30px_rgba(var(--accent),0.3)] hover:shadow-[0_0_50px_rgba(var(--accent),0.5)] transition-all mt-2"
                             >
-                                Book a Call
+                                Billing
+                            </Link>
+                            <Link
+                                href={user ? "/dashboard" : "/login"}
+                                prefetch={false}
+                                className="py-3 text-center text-sm font-medium text-white glass-card border-white/5 rounded-xl flex items-center justify-center gap-2"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                {user ? "Dashboard" : "Client Portal"}
                             </Link>
                         </div>
-                    </m.div>
-                )}
-            </AnimatePresence>
+
+                        {isAdmin(user?.email) && (
+                            <Link
+                                href="/admin"
+                                className="w-full py-3 text-center text-sm font-black text-accent bg-accent/10 border border-accent/20 rounded-xl flex items-center justify-center gap-2"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                <Terminal className="w-4 h-4" />
+                                Admin Studio
+                            </Link>
+                        )}
+
+                        <Link
+                            href="/book"
+                            prefetch={false}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="w-full py-4 text-center font-bold text-white bg-accent rounded-xl border border-accent border-glow shadow-[0_0_30px_rgba(var(--accent),0.3)] hover:shadow-[0_0_50px_rgba(var(--accent),0.5)] transition-all mt-2"
+                        >
+                            Book a Call
+                        </Link>
+                    </div>
+                </div>
+            )}
         </>
     );
 }
