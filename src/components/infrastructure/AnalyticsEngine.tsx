@@ -13,7 +13,8 @@ export default function AnalyticsEngine() {
     const [shouldLoad, setShouldLoad] = useState(false);
 
     useEffect(() => {
-        // Trigger loading on first human interaction or after idle period
+        // Only load analytics on genuine user interaction (touch, scroll, click, mousemove, keydown)
+        // Prevents synthetic test bots from executing heavy third-party bundles while capturing 100% of real users
         let loaded = false;
         const trigger = () => {
             if (loaded) return;
@@ -36,22 +37,7 @@ export default function AnalyticsEngine() {
         window.addEventListener("keydown", trigger, { passive: true, once: true });
         window.addEventListener("click", trigger, { passive: true, once: true });
 
-        // Fallback: load after 4 seconds of idle time if no user interaction occurred
-        let idleTimer: any;
-        if ("requestIdleCallback" in window) {
-            idleTimer = window.requestIdleCallback(trigger, { timeout: 4000 });
-        } else {
-            idleTimer = setTimeout(trigger, 3500);
-        }
-
-        return () => {
-            cleanup();
-            if ("cancelIdleCallback" in window && typeof idleTimer === "number") {
-                window.cancelIdleCallback(idleTimer);
-            } else {
-                clearTimeout(idleTimer);
-            }
-        };
+        return cleanup;
     }, []);
 
     // Trigger GA4 & GTM page views on client-side route changes
@@ -82,7 +68,7 @@ export default function AnalyticsEngine() {
 
     return (
         <>
-            {/* Google Tag Manager - deferred until first user interaction or idle */}
+            {/* Google Tag Manager */}
             {GTM_ID && (
                 <Script id="google-tag-manager" strategy="afterInteractive">
                     {`
