@@ -6,7 +6,12 @@ export const metadata: Metadata = {
     title: "About Us | Power Digital Media — Jackson MS Web Design & Growth Studio",
     description: "Learn about Power Digital Media. We build hand-crafted Next.js websites, PinDrop™ contractor tech, and local SEO engines for Central Mississippi businesses.",
     alternates: {
-        canonical: './',
+        canonical: "https://powerdigitalmedia.org/about",
+    },
+    openGraph: {
+        title: "About Us | Power Digital Media — Jackson MS Web Design & Growth Studio",
+        description: "Learn about Power Digital Media. We build hand-crafted Next.js websites, PinDrop™ contractor tech, and local SEO engines for Central Mississippi businesses.",
+        url: "https://powerdigitalmedia.org/about",
     }
 };
 

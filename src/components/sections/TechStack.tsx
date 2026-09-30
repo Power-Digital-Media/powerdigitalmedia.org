@@ -77,7 +77,7 @@ const techCategories: TechCategory[] = [
       { name: "Google Maps Platform API", role: "Interactive Boundary & Radius Mapping", tag: "Location Services" },
       { name: "Schema.org JSON-LD", role: "GeoCoordinates & LocalBusiness Microdata", tag: "Search Schema" },
       { name: "AEO / GEO Optimization", role: "Semantic AI Citation & Answer Engine Feeding", tag: "AI Search" },
-      { name: "Core Web Vitals Engine", role: "100/100 LCP, CLS & INP Performance Scores", tag: "Speed Index" },
+      { name: "Core Web Vitals Engine", role: "Sub-2.5s LCP, 0.00 CLS & 98+ Speed Scores", tag: "Speed Index" },
     ],
   },
 ];

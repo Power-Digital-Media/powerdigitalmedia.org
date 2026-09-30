@@ -106,13 +106,22 @@ export default function RootLayout({
               "logo": "https://powerdigitalmedia.org/power-logo.png",
               "image": "https://powerdigitalmedia.org/hero-bg.webp",
               "telephone": "+16014462393",
+              "email": "info@powerdigitalmedia.org",
               "priceRange": "$$$",
               "sameAs": [
                 "https://www.youtube.com/@PowerDigitalMedia",
-                "https://www.instagram.com/PowerDigitalMedia",
-                "https://www.facebook.com/PowerDigitalMedia",
-                "https://www.google.com/search?q=Power+Digital+Media+Jackson+MS",
-                "https://www.bbb.org/us/ms/jackson/profile/web-design/power-digital-media-llc"
+                "https://www.instagram.com/powerdigitalmedia",
+                "https://www.facebook.com/powerdigitalmediallc",
+                "https://www.google.com/maps/place/Power+Digital+Media+LLC/data=!4m2!3m1!1s0x0:0x8f06b431d0d701df",
+                "https://www.bbb.org/us/ms/jackson/profile/web-design/power-digital-media-llc-0523-235907954"
+              ],
+              "openingHoursSpecification": [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                  "opens": "08:00",
+                  "closes": "18:00"
+                }
               ],
               "address": {
                 "@type": "PostalAddress",

@@ -9,10 +9,15 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Insights & Intel | Power Digital Media Blog",
-    description: "Explore the latest trends in digital media, podcasting technology, and content strategy from the experts at Power Digital Media.",
+    title: "Web Design, Local SEO & Business Tech Insights | Power Digital Media Blog",
+    description: "Actionable guides on Next.js web development, Google Business Profile rankings, Capsule CRM automation, and contractor tech in Mississippi.",
     alternates: {
         canonical: 'https://powerdigitalmedia.org/blog',
+    },
+    openGraph: {
+        title: "Web Design, Local SEO & Business Tech Insights | Power Digital Media",
+        description: "Actionable guides on Next.js web development, Google Business Profile rankings, Capsule CRM automation, and contractor tech in Mississippi.",
+        url: "https://powerdigitalmedia.org/blog",
     }
 };
 
@@ -31,17 +36,17 @@ export default function BlogPage() {
                 <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
                 <div className="container px-4 mx-auto text-center">
                     <div className="max-w-3xl mx-auto">
-                        <h1 className="text-sm font-bold tracking-[0.3em] text-accent uppercase mb-6 flex items-center justify-center gap-2">
-                            <BookOpen className="w-4 h-4" /> Your Go-To Resource
-                        </h1>
-                        <h2 className="text-5xl font-bold tracking-tight md:text-7xl mb-8 leading-[1.1]">
-                            Explore Our Dynamic <br />
+                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-950/40 text-cyan-400 text-xs font-mono font-bold uppercase tracking-wider mb-6">
+                            <BookOpen className="w-3.5 h-3.5" /> Web Design, Local SEO &amp; Business Systems
+                        </div>
+                        <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-6 leading-[1.1]">
+                            Digital Architecture &amp; <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400 text-glow">
-                                Collection of Insights.
+                                Business Growth Insights
                             </span>
-                        </h2>
-                        <p className="text-lg text-muted-foreground leading-relaxed mb-10 text-balance">
-                            Discover a wealth of information designed to inspire and inform. Join us on this journey and transform your understanding of digital content.
+                        </h1>
+                        <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-10 text-balance">
+                            Practical engineering, search visibility, and automation strategies designed for Mississippi business owners, contractors, and local enterprises.
                         </p>
                         <div className="relative max-w-lg mx-auto mb-16">
                             <input

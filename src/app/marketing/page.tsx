@@ -149,7 +149,8 @@ export default function MarketingPage() {
                             "@type": "AggregateOffer",
                             "priceCurrency": "USD",
                             "lowPrice": "1000",
-                            "highPrice": "2000+"
+                            "highPrice": "2000",
+                            "offerCount": 3
                         }
                     })
                 }}

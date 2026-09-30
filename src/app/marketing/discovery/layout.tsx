@@ -1,15 +1,15 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Web Design Project Discovery | Power Digital Media",
-    description: "Web development intake and requirements gathering form.",
+    title: "Marketing Campaign Discovery | Power Digital Media",
+    description: "Growth marketing campaign discovery and intake form.",
     robots: {
         index: false,
         follow: false,
     },
 };
 
-export default function WebDesignDiscoveryLayout({
+export default function MarketingDiscoveryLayout({
     children,
 }: {
     children: React.ReactNode;

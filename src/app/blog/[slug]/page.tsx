@@ -25,9 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const post = blogPosts.find((p) => p.slug === slug);
 
     if (!post) {
-        return {
-            title: "Post Not Found | Power Digital Media",
-        };
+        notFound();
     }
 
     const title = post.seoTitle || `${post.title} | Power Digital Media`;
@@ -71,14 +69,7 @@ export default async function BlogPostDetail({ params }: { params: Promise<{ slu
     const post = blogPosts.find((p) => p.slug === slug);
 
     if (!post) {
-        return (
-            <main className="relative min-h-screen bg-background flex flex-col items-center justify-center p-4">
-                <h1 className="text-4xl font-bold mb-4">Post Not Found</h1>
-                <Link href="/blog" className="text-accent flex items-center gap-2">
-                    <ArrowLeft className="w-4 h-4" /> Back to Blog
-                </Link>
-            </main>
-        );
+        notFound();
     }
 
     const baseUrl = "https://powerdigitalmedia.org";

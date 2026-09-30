@@ -32,6 +32,11 @@ const nextConfig = {
   poweredByHeader: false,
   async redirects() {
     return [
+      {
+        source: '/review',
+        destination: '/reviews',
+        permanent: true,
+      },
       // 1. Retired Services, Showroom & Equipment Pages
       {
         source: '/podcasting',

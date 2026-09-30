@@ -62,7 +62,7 @@ export default function BBBSeal({ variant = "badge", className = "" }: BBBSealPr
             Accredited Business
           </span>
           <span className="text-sm font-black tracking-tight text-white group-hover:text-cyan-400 transition-colors">
-            BBB Rating: A+
+            BBB Rating: A
           </span>
         </div>
       </div>

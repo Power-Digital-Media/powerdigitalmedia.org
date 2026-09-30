@@ -18,11 +18,13 @@ interface ShareButtonsProps {
 }
 
 export default function ShareButtons({ title, slug, category }: ShareButtonsProps) {
-    const [baseUrl, setBaseUrl] = useState('');
+    const [baseUrl, setBaseUrl] = useState('https://powerdigitalmedia.org');
     const [copied, setCopied] = useState(false);
 
     useEffect(() => {
-        setBaseUrl(window.location.origin);
+        if (typeof window !== 'undefined' && window.location.origin) {
+            setBaseUrl(window.location.origin);
+        }
     }, []);
 
     const url = `${baseUrl}/blog/${slug}`;

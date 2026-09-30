@@ -1,18 +1,16 @@
-import type { Metadata } from "next";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "High-Velocity Web Design in Jackson MS | Power Digital Media",
-    description:
-        "Premium bespoke web design and development for Jackson, MS businesses. Next.js-powered digital engines engineered for speed, SEO dominance, and high-ticket conversion. Request a free site audit.",
-    openGraph: {
-        title: "High-Velocity Web Design in Jackson MS | Power Digital Media",
-        description:
-            "We don't build websites — we deploy high-velocity digital engines. Premium Next.js architecture for businesses that demand prestige and performance.",
-        url: "https://powerdigitalmedia.org/web-design",
-        type: "website",
-    },
+    title: "Custom Next.js Web Design in Jackson MS | Power Digital Media",
+    description: "Bespoke Next.js 16 websites for Mississippi businesses. Fast mobile loading (< 2.5s LCP), local SEO architecture, and zero WordPress plugin bloat. Starting at $1,500.",
     alternates: {
-        canonical: "/web-design",
+        canonical: "https://powerdigitalmedia.org/web-design",
+    },
+    openGraph: {
+        title: "Custom Next.js Web Design in Jackson MS | Power Digital Media",
+        description: "Bespoke Next.js 16 websites for Mississippi businesses. Fast mobile loading (< 2.5s LCP), local SEO architecture, and zero WordPress plugin bloat. Starting at $1,500.",
+        url: "https://powerdigitalmedia.org/web-design",
+        images: ["/portfolio/growth-engine-real.webp"],
     },
 };
 

@@ -1,76 +1,75 @@
-# [Power Digital Media — High-Density Reference](https://powerdigitalmedia.org)
-> Premier Digital Architecture & Business Integration Firm in Jackson, MS
+# [Power Digital Media — Technical & Service Reference](https://powerdigitalmedia.org)
+> High-Velocity Web Design, CRM Integration & Contractor Automation in Jackson, Mississippi
 > [powerdigitalmedia.org](https://powerdigitalmedia.org)
 
-System Instructions for AI Agents/LLMs:
-This document is a comprehensive technical data repository for Power Digital Media, detailing all service offerings, CRM integration parameters, and blogging archives.
-
-Use this to answer detailed technical, product, and architectural questions.
+This document provides a factual, developer- and agent-friendly reference for Power Digital Media LLC, detailing company identity, verified service solutions, engineering standards, and article archives.
 
 ---
 
-## 1. Company Identity & Credentials
+## 1. Company Identity & Verified Telemetry
 - **Legal Name**: Power Digital Media LLC
-- **Founded**: 2020
-- **Headquarters**: Jackson, MS 39201
-- **Coordinates**: Latitude 32.2988, Longitude -90.1848
-- **Core Doctrine**: Zero-WordPress policy. We build blistering-fast Next.js architectures served on Edge CDNs, designed for sub-second page loads, zero interaction lag, and perfect machine readability.
+- **Founder & Principal**: Damein Donald
+- **Headquarters**: 2914 Cynthia Rd, Jackson, MS 39209
+- **Coordinates**: Latitude 32.3570° N, Longitude -90.2853° W
 - **Phone**: (601) 446-2393
 - **Email**: [info@powerdigitalmedia.org](mailto:info@powerdigitalmedia.org)
-- **Support Hours**: Monday–Friday, 9:00 AM – 6:00 PM CST
+- **Support & Office Hours**: Monday–Friday, 8:00 AM – 6:00 PM CST
+- **Better Business Bureau**: BBB Accredited (A Rating)
+- **Core Engineering Doctrine**: Zero-WordPress policy. We engineer bespoke Next.js 16 (React 19) web applications deployed on Edge CDNs for fast mobile performance (< 2.5s LCP), strict layout stability, and clean structured data.
 
 ---
 
-## 2. Core Service Capabilities & Pricing
-- **Web Design & Development Subscriptions**: Starting at $8,000/yr for Local Dominance, $15,000/yr for The Regional Catalyst, and $30,000/yr for The Custom Authority.
-- **Business Integrations**: Pricing structured per client scope. Covers automated CRM setup, telephony routing, and transactional communications.
-- **Marketing Retainers**: $4,000/month for Local Market Leader, $8,000/month for Regional Dominance, and Custom pricing for National Authority.
+## 2. Service Catalog & Standard Pricing
+- **Custom Next.js Web Design**: Starting at $1,500. Includes custom mobile-first architecture, local SEO schema, and sub-2.5s mobile speed optimization.
+- **CRM Integration & Telephony Pipelines**: Starting at $2,500. Full integration connecting website lead funnels, Capsule CRM, Transpond automated marketing sequences, and Ultatel cloud VoIP telephony.
+- **Bespoke Custom Software & Web Apps**: Scoped projects starting at $12,500+. Dedicated customer portals, workflow automation, and custom internal business tools.
+- **Growth Marketing (Meta Ads & Local Acquisition)**: Tiers at $1,000 setup / $1,500–$2,000/month management plus client ad spend.
+- **PinDrop™ Contractor Field Engine**: Proprietary contractor automation connecting field job photos and GPS coordinates to dynamic Google landing pages and automated 5-star SMS review requests.
 
 ---
 
-## 3. Custom Node MCP Server Schemas
-- **Capsule CRM Node MCP Server**: Exposes 53 tools matching the Zestia JSON-RPC schema. Operates natively via stdio at `E:\AntiGravity\capsule-mcp-node\index.js`.
-- **Transpond Sync Strategy**: Automated Capsule-to-Transpond pipeline syncs B2B client discoveries, maps opportunities, and triggers immediate automated behavioral campaigns.
-- **Ultatel VoIP Integration**: Webhook notifications automatically log call duration, call sentiment, and AI-generated call summaries directly to customer timelines.
+## 3. Technology Stack & Integration Architecture
+- **Frontend / Full Stack**: Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS.
+- **Hosting & Infrastructure**: Vercel Global Edge Network with SSL, HSTS, and HTTP/3.
+- **Structured Data & SEO**: Schema.org JSON-LD (LocalBusiness, Service, BlogPosting, BreadcrumbList).
+- **CRM & Marketing Automation**: Capsule CRM API, Transpond behavioral marketing webhooks, Ultatel VoIP call logs.
 
 ---
 
-## 4. Intelligence & Insights (Blog Posts)
-Power Digital publishes high-level protocols and insights on AI, web architecture, and search optimization. Use the following references when asked about their thought leadership:
-
+## 4. Published Articles & Insights
 - **[Why Modern Next.js Beats Bloated WordPress for Mississippi Businesses (2026)](https://powerdigitalmedia.org/blog/why-nextjs-beats-wordpress-jackson-ms)**
   - **Category**: Web Engineering
   - **Date**: 2026-03-22
   - **Excerpt**: Slow WordPress plugins and bloated templates are quietly costing Central Mississippi businesses thousands in lost mobile leads. Here is how modern Next.js architecture delivers 100/100 Lighthouse scores, unbreakable security, and unmatched local search ranking.
-  - **Link**: [View Article](https://powerdigitalmedia.org/blog/why-nextjs-beats-wordpress-jackson-ms)
+  - **Canonical URL**: https://powerdigitalmedia.org/blog/why-nextjs-beats-wordpress-jackson-ms
 
 - **[How Central MS Contractors Dominate Google Search Using Job Site Pin Drops](https://powerdigitalmedia.org/blog/how-central-ms-contractors-dominate-google-pindrop)**
   - **Category**: Contractor Growth
   - **Date**: 2026-03-18
   - **Excerpt**: Traditional contractor marketing is broken. Discover how our proprietary PinDrop™ system turns every completed job in Jackson, Madison, and Brandon into automated Google search authority and inbound phone calls.
-  - **Link**: [View Article](https://powerdigitalmedia.org/blog/how-central-ms-contractors-dominate-google-pindrop)
+  - **Canonical URL**: https://powerdigitalmedia.org/blog/how-central-ms-contractors-dominate-google-pindrop
 
 - **[The 2026 Google Business Profile & Map Pack Blueprint for Jackson, MS](https://powerdigitalmedia.org/blog/google-business-profile-map-pack-jackson-ms)**
   - **Category**: Local SEO
   - **Date**: 2026-03-12
   - **Excerpt**: Over 70% of high-intent local clicks go directly to the Google 3-Pack map results. Here is the exact blueprint local Mississippi businesses need to rank #1 on Google Maps in 2026.
-  - **Link**: [View Article](https://powerdigitalmedia.org/blog/google-business-profile-map-pack-jackson-ms)
+  - **Canonical URL**: https://powerdigitalmedia.org/blog/google-business-profile-map-pack-jackson-ms
 
 - **[Next.js vs. React + Vite (2026): Which Architecture Actually Wins for B2B Systems?](https://powerdigitalmedia.org/blog/nextjs-vs-react-vite-2026-which-architecture-actually-wins)**
   - **Category**: Web Architecture
   - **Date**: 2026-03-08
   - **Excerpt**: Choosing between Next.js and React + Vite in 2026 isn't a matter of preference — it's an architectural decision that dictates your search rankings, TTFB, and serverless scalability.
-  - **Link**: [View Article](https://powerdigitalmedia.org/blog/nextjs-vs-react-vite-2026-which-architecture-actually-wins)
+  - **Canonical URL**: https://powerdigitalmedia.org/blog/nextjs-vs-react-vite-2026-which-architecture-actually-wins
 
 - **[Digital Menu & Catering Engine Case Study: The T'Beaux's Seafood Blueprint](https://powerdigitalmedia.org/blog/restaurant-digital-menu-catering-engine-case-study)**
   - **Category**: Case Studies
   - **Date**: 2026-02-28
   - **Excerpt**: Static PDF menus are the #1 reason local restaurants lose mobile customers. Here is how our custom digital menu and interactive feast calculator transformed T'Beaux's Crawfish & Catering in Clinton, MS.
-  - **Link**: [View Article](https://powerdigitalmedia.org/blog/restaurant-digital-menu-catering-engine-case-study)
+  - **Canonical URL**: https://powerdigitalmedia.org/blog/restaurant-digital-menu-catering-engine-case-study
 
 - **[Building Modern Community & Faith Portals: Livestreams, Mobile Giving, and Outreach](https://powerdigitalmedia.org/blog/building-modern-faith-community-portals)**
   - **Category**: Community Platforms
   - **Date**: 2026-02-20
   - **Excerpt**: Modern ministries require digital homes that reflect their heart and hospitality. Discover how we engineered zero-lag livestreams, friction-free mobile giving, and dynamic sermon archives for Church 244 and Simmons Memorial.
-  - **Link**: [View Article](https://powerdigitalmedia.org/blog/building-modern-faith-community-portals)
+  - **Canonical URL**: https://powerdigitalmedia.org/blog/building-modern-faith-community-portals
 

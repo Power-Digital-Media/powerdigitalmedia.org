@@ -5,7 +5,7 @@ import { projects } from '@/data/projects';
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://powerdigitalmedia.org';
 
-    // Base Routes
+    // Base Canonical Routes
     const routes = [
         '',
         '/about',
@@ -23,12 +23,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/lead-leak-check',
         '/marketing',
         '/reviews',
-        '/review',
-        '/privacy',
-        '/terms',
-        '/refund-policy',
-        '/client-discovery',
-        '/web-design/discovery',
         '/community',
     ].map((route) => ({
         url: `${baseUrl}${route}`,

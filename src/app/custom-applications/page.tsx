@@ -57,7 +57,7 @@ const appProtocols: AppProtocol[] = [
 export default function CustomApplicationsPage() {
     const baseUrl = "https://powerdigitalmedia.org";
     const breadcrumbItems = [
-        { name: "Services", url: `${baseUrl}/#services` },
+        { name: "Home", url: `${baseUrl}/` },
         { name: "CRM & Custom Apps", url: `${baseUrl}/custom-applications` }
     ];
 
@@ -74,7 +74,7 @@ export default function CustomApplicationsPage() {
                         "provider": {
                             "@id": "https://powerdigitalmedia.org/#organization"
                         },
-                        "description": "Premium Capsule CRM and Transpond integration setup, automated email marketing pipelines, and custom SaaS software engineering.",
+                        "description": "Professional Capsule CRM and Transpond integration setup, automated email marketing pipelines, and custom SaaS software engineering.",
                         "category": "Software Engineering & CRM Automation",
                         "serviceType": "CRM Setup & Custom Software Development",
                         "areaServed": {
@@ -88,7 +88,7 @@ export default function CustomApplicationsPage() {
                         "offers": {
                             "@type": "AggregateOffer",
                             "priceCurrency": "USD",
-                            "lowPrice": "4500",
+                            "lowPrice": "2500",
                             "highPrice": "12500",
                             "offerCount": 2
                         }

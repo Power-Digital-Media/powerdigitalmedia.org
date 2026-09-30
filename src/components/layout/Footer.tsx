@@ -55,7 +55,7 @@ export default function Footer() {
                             <li><Link href="/custom-applications" className="hover:text-accent transition-colors">CRM &amp; Custom Apps</Link></li>
                             <li><Link href="/marketing" className="hover:text-accent transition-colors">Growth Marketing</Link></li>
                             <li><Link href="/our-work" className="hover:text-accent transition-colors">Portfolio</Link></li>
-                            <li><Link href="/review" className="hover:text-accent transition-colors">Leave a Review</Link></li>
+                            <li><Link href="/reviews" className="hover:text-accent transition-colors">Reviews &amp; Feedback</Link></li>
                         </ul>
                     </div>
 
@@ -101,8 +101,8 @@ export default function Footer() {
                                 Next.js &amp; Vercel Edge
                             </span>
                         </div>
-                        <Link href="/privacy-policy" className="hover:text-accent transition-colors">Privacy Policy</Link>
-                        <Link href="/terms-and-conditions" className="hover:text-accent transition-colors">Terms of Service</Link>
+                        <Link href="/privacy" className="hover:text-accent transition-colors">Privacy Policy</Link>
+                        <Link href="/terms" className="hover:text-accent transition-colors">Terms of Service</Link>
                         <Link href="/refund-policy" className="hover:text-accent transition-colors">Refund Policy</Link>
                     </div>
                 </div>
