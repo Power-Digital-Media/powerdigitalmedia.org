@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import AnalyticsEngine from "@/components/infrastructure/AnalyticsEngine";
 import MotionProvider from "@/components/infrastructure/MotionProvider";
 import SmoothScrollProvider from "@/components/infrastructure/SmoothScrollProvider";
-import ExitIntentPopup from "@/components/ui/ExitIntentPopup";
+
+const ExitIntentPopup = dynamic(() => import("@/components/ui/ExitIntentPopup"));
 
 const inter = Inter({
   variable: "--font-inter",
