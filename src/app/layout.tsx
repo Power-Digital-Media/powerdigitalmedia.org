@@ -5,14 +5,14 @@ import { Suspense } from "react";
 import AnalyticsEngine from "@/components/infrastructure/AnalyticsEngine";
 import MotionProvider from "@/components/infrastructure/MotionProvider";
 import SmoothScrollProvider from "@/components/infrastructure/SmoothScrollProvider";
-import Script from "next/script";
 import ExitIntentPopup from "@/components/ui/ExitIntentPopup";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  display: "optional",
+  display: "swap",
   preload: true,
+  fallback: ["system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
 });
 
 const spaceGrotesk = Space_Grotesk({
@@ -20,6 +20,7 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   display: "swap",
   preload: true,
+  fallback: ["system-ui", "sans-serif"],
 });
 
 export const metadata: Metadata = {
@@ -63,8 +64,6 @@ export const metadata: Metadata = {
     canonical: './',
   },
 };
-
-const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || "GTM-52WQVB8N";
 
 export default function RootLayout({
   children,
@@ -244,20 +243,7 @@ export default function RootLayout({
             <ExitIntentPopup />
           </SmoothScrollProvider>
         </MotionProvider>
-        {/* GTM — offloaded to Partytown web worker (off main thread) */}
-        <Script id="google-tag-manager" strategy="worker">
-          {`
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','${GTM_ID}');
-          `}
-        </Script>
-        <noscript>
-          <iframe src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`} height="0" width="0" style={{ display: "none", visibility: "hidden" }} />
-        </noscript>
       </body>
-    </html >
+    </html>
   );
 }

@@ -737,8 +737,7 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   experimental: {
-    nextScriptWorkers: true,
-    optimizeCss: true,
+        optimizeCss: true,
   },
   // Use modern browserslist
 };

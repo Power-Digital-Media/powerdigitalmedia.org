@@ -80,7 +80,14 @@ export default function Navbar() {
                         {/* Logo */}
                         <Link href="/" className="flex items-center group" onClick={() => setIsMobileMenuOpen(false)}>
                             <div className="relative flex items-center h-12 sm:h-14 w-56 sm:w-72">
-                                <Image src="/images/pdm-logo-transparent.png" alt="Power Digital Media LLC" fill unoptimized className="object-contain object-left group-hover:scale-102 transition-transform" priority />
+                                <Image
+                                    src="/images/pdm-logo-transparent.png"
+                                    alt="Power Digital Media LLC"
+                                    fill
+                                    sizes="(max-width: 640px) 224px, 288px"
+                                    className="object-contain object-left group-hover:scale-102 transition-transform"
+                                    priority
+                                />
                             </div>
                         </Link>
 

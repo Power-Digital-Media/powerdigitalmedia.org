@@ -11,81 +11,72 @@ export default function ExitIntentPopup() {
     const router = useRouter();
 
     useEffect(() => {
-        // 1. Safety Checks: Verify user hasn't already converted or closed the popup this session
-        const hasConverted = localStorage.getItem("audit_converted") === "true";
-        const hasDismissed = sessionStorage.getItem("audit_dismissed") === "true";
-
-        if (hasConverted || hasDismissed) {
-            return;
+        // Safety Checks: Verify user hasn't already converted or closed the popup this session
+        try {
+            const hasConverted = localStorage.getItem("audit_converted") === "true";
+            const hasDismissed = sessionStorage.getItem("audit_dismissed") === "true";
+            if (hasConverted || hasDismissed) return;
+        } catch {
+            // Storage access check
         }
 
-        // 2. Desktop Trigger: Exit Intent (Cursor leaves top of viewport)
-        const handleMouseLeave = (e: MouseEvent) => {
-            // Dynamic check at event execution time
-            if (sessionStorage.getItem("audit_dismissed") === "true" || localStorage.getItem("audit_converted") === "true") {
-                return;
-            }
-            // e.clientY < 20 signifies the user moving the cursor towards the address bar/tabs/close button
-            if (e.clientY < 20) {
-                setIsOpen(true);
-            }
-        };
+        // Defer listener attachments until after initial render and idle time
+        let cleanups: (() => void)[] = [];
 
-        // Bind exit-intent desktop trigger
-        document.addEventListener("mouseleave", handleMouseLeave);
+        const attachListeners = () => {
+            // 1. Desktop Trigger: Exit Intent (Cursor leaves top of viewport)
+            const handleMouseLeave = (e: MouseEvent) => {
+                if (sessionStorage.getItem("audit_dismissed") === "true" || localStorage.getItem("audit_converted") === "true") {
+                    return;
+                }
+                if (e.clientY < 20) {
+                    setIsOpen(true);
+                }
+            };
+            document.addEventListener("mouseleave", handleMouseLeave);
+            cleanups.push(() => document.removeEventListener("mouseleave", handleMouseLeave));
 
-        // 3. Mobile Trigger: Scroll Depth using IntersectionObserver (eliminates layout-thrashing Forced Reflows)
-        // Dynamically create a tiny sentinel div at 60% scroll depth client-side to prevent hydration mismatch
-        const sentinel = document.createElement("div");
-        sentinel.id = "exit-intent-sentinel";
-        sentinel.style.position = "absolute";
-        sentinel.style.top = "60%";
-        sentinel.style.left = "0";
-        sentinel.style.width = "1px";
-        sentinel.style.height = "1px";
-        sentinel.style.pointerEvents = "none";
-        sentinel.style.zIndex = "-9999";
-        
-        // Ensure body is relatively positioned so sentinel positions perfectly
-        if (document.body.style.position !== "relative") {
-            document.body.style.position = "relative";
-        }
-        document.body.appendChild(sentinel);
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                if (entries[0].isIntersecting) {
-                    const isConverted = localStorage.getItem("audit_converted") === "true";
-                    const isDismissed = sessionStorage.getItem("audit_dismissed") === "true";
-                    if (!isConverted && !isDismissed) {
+            // 2. Mobile / Tablet Trigger: Scroll depth check (passive scroll listener, no DOM mutation)
+            const handleScroll = () => {
+                const scrollY = window.scrollY;
+                const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+                if (totalHeight > 0 && scrollY / totalHeight > 0.65) {
+                    if (sessionStorage.getItem("audit_dismissed") !== "true" && localStorage.getItem("audit_converted") !== "true") {
                         setIsOpen(true);
                     }
-                    observer.disconnect();
+                    window.removeEventListener("scroll", handleScroll);
                 }
-            },
-            { threshold: 0 }
-        );
-        
-        observer.observe(sentinel);
-
-        return () => {
-            document.removeEventListener("mouseleave", handleMouseLeave);
-            observer.disconnect();
-            if (sentinel.parentNode) {
-                sentinel.parentNode.removeChild(sentinel);
-            }
+            };
+            window.addEventListener("scroll", handleScroll, { passive: true });
+            cleanups.push(() => window.removeEventListener("scroll", handleScroll));
         };
+
+        if ("requestIdleCallback" in window) {
+            const idleId = window.requestIdleCallback(attachListeners, { timeout: 3000 });
+            return () => {
+                window.cancelIdleCallback(idleId);
+                cleanups.forEach((c) => c());
+            };
+        } else {
+            const timer = setTimeout(attachListeners, 2000);
+            return () => {
+                clearTimeout(timer);
+                cleanups.forEach((c) => c());
+            };
+        }
     }, []);
 
     const handleDismiss = () => {
         setIsOpen(false);
-        sessionStorage.setItem("audit_dismissed", "true");
+        try {
+            sessionStorage.setItem("audit_dismissed", "true");
+        } catch {}
     };
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setStatus("submitting");
-        
+
         const form = e.currentTarget;
         const data = new FormData(form);
         data.append("_form_source", "website-audit-request");
@@ -94,14 +85,16 @@ export default function ExitIntentPopup() {
             const response = await fetch("/api/forms", {
                 method: "POST",
                 body: data,
-                headers: { Accept: "application/json" }
+                headers: { Accept: "application/json" },
             });
 
             if (response.ok) {
                 setStatus("success");
-                localStorage.setItem("audit_converted", "true");
+                try {
+                    localStorage.setItem("audit_converted", "true");
+                } catch {}
                 form.reset();
-                
+
                 // Wait briefly for success animation, then redirect to bookings
                 setTimeout(() => {
                     setIsOpen(false);

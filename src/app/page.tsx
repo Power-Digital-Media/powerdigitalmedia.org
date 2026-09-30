@@ -2,10 +2,9 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
 import DeferredHeroBg from "@/components/ui/DeferredHeroBg";
-import { Video } from "lucide-react";
 import DeferredFooterSections from "@/components/ui/DeferredFooterSections";
-import GoogleReviewsSection from "@/components/sections/GoogleReviewsSection";
 
+const GoogleReviewsSection = dynamic(() => import("@/components/sections/GoogleReviewsSection"));
 const ConnectedArchitecture = dynamic(() => import("@/components/sections/ConnectedArchitecture"));
 const LocalWebDesign = dynamic(() => import("@/components/sections/LocalWebDesign"));
 const TechStack = dynamic(() => import("@/components/sections/TechStack"));
@@ -127,7 +126,7 @@ export default function Home() {
                     src="/portfolio/geaux-pro-outdoors.webp"
                     alt="Geaux Pro Outdoors (MS Dirt) - Live Next.js Web Build in Mississippi"
                     fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 640px) 92vw, (max-width: 1024px) 45vw, 520px"
                     className="object-cover object-top"
                     priority
                   />
