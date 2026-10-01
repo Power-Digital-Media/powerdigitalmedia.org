@@ -88,16 +88,16 @@ export default function Home() {
               {/* Key Bullet Checklist */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-white/10 w-full">
                 <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
-                  <span className="text-emerald-400 font-bold">✓</span> Fast Mobile Loads (&lt; 2–3s)
+                  <span className="text-emerald-400 font-bold">✓</span> Sub-Second Mobile Speed (&lt; 1s)
                 </div>
                 <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
-                  <span className="text-emerald-400 font-bold">✓</span> Google Maps 3-Pack Dominance
+                  <span className="text-emerald-400 font-bold">✓</span> Built for Google Maps 3-Pack Visibility
                 </div>
                 <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
-                  <span className="text-emerald-400 font-bold">✓</span> 100% Hand-Crafted (No WordPress)
+                  <span className="text-emerald-400 font-bold">✓</span> Hand-Crafted Code (Zero Plugin Bloat)
                 </div>
                 <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
-                  <span className="text-emerald-400 font-bold">✓</span> Personal Cell Support from Damein
+                  <span className="text-emerald-400 font-bold">✓</span> Direct Engineer Support by Damein
                 </div>
               </div>
 

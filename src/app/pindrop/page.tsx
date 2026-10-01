@@ -50,7 +50,7 @@ export default function PinDropPage() {
                     <h1 className="text-4xl sm:text-6xl md:text-8xl font-black uppercase tracking-tighter leading-[0.9] mb-8">
                         Turn Every Finished Job Into <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-amber-300 to-cyan-400">
-                            Instant Google Dominance
+                            Local Search Authority &amp; Proof
                         </span>
                     </h1>
 

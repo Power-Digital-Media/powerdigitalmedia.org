@@ -225,8 +225,8 @@ const clientArchitectures: ClientArchitecture[] = [
       {
         id: "google-geo",
         title: "Google Local Geo-Schema",
-        category: "Search Engine Dominance",
-        badge: "#1 Metro Ranking",
+        category: "Search Engine Visibility",
+        badge: "Metro Local Ranking",
         description:
           "Deep JSON-LD structured schema mapping service radiuses across Jackson, Madison, Brandon, Clinton, and Flowood for high-intent homeowner search.",
         icon: Search,
@@ -883,8 +883,8 @@ function GoogleSchemaScreen({ client }: { client: ClientArchitecture }) {
       </div>
 
       <div className="mt-2.5 pt-1.5 flex items-center justify-between text-[10px] font-mono text-slate-400">
-        <span>Google Maps &amp; Organic Local Dominance</span>
-        <span className="text-emerald-400">Rank #1 in Jackson Metro</span>
+        <span>Google Maps &amp; Local Search Schema</span>
+        <span className="text-emerald-400">High-Intent Metro Coverage</span>
       </div>
     </div>
   );

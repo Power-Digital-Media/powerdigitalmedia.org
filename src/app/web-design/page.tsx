@@ -25,8 +25,8 @@ const pillars = [
     borderColor: "border-amber-500/30"
   },
   {
-    title: "Google Map Pack Dominance",
-    subtitle: "#1 Local Visibility",
+    title: "Google Map Pack Authority",
+    subtitle: "Engineered 3-Pack Visibility",
     description: "Engineered specifically for Jackson and Central Mississippi search rankings. We embed structured local business schema to help you own the Google 3-Pack.",
     features: ["Geo-Targeted Schema Markup", "Google Business Profile Sync", "Jackson & Metro Target Pages", "High-Converting Service Layouts"],
     icon: Globe,

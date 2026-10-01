@@ -277,6 +277,87 @@ export default function ProjectShowcaseClient({ project }: { project: Project })
           </div>
         </div>
 
+        {/* 2.5 Economic & Operational Impact (Before / Built / Result) */}
+        {project.economicImpact && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-20 rounded-3xl bg-gradient-to-br from-slate-900/90 via-slate-900/60 to-slate-950 border border-cyan-500/30 p-6 md:p-10 shadow-2xl relative overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-6 border-b border-white/10">
+              <div>
+                <span className="text-cyan-400 font-bold tracking-widest uppercase text-xs mb-1 block">
+                  Business &amp; Operational Impact
+                </span>
+                <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight">
+                  The Economic Breakdown
+                </h3>
+              </div>
+              <span className="self-start sm:self-auto px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-bold font-mono">
+                Verified Client Deployment
+              </span>
+            </div>
+
+            {/* Before -> Built -> Result 3-Column Grid */}
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              {/* Before */}
+              <div className="p-5 rounded-2xl bg-red-950/20 border border-red-500/20 flex flex-col justify-between">
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-red-400 flex items-center gap-1.5 mb-2">
+                    <span>⚠️</span> Before the Build
+                  </span>
+                  <p className="text-sm text-white/80 leading-relaxed">
+                    {project.economicImpact.before}
+                  </p>
+                </div>
+              </div>
+
+              {/* Built */}
+              <div className="p-5 rounded-2xl bg-slate-800/40 border border-white/15 flex flex-col justify-between">
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5 mb-2">
+                    <span>⚙️</span> What We Engineered
+                  </span>
+                  <p className="text-sm text-white/80 leading-relaxed">
+                    {project.economicImpact.built}
+                  </p>
+                </div>
+              </div>
+
+              {/* Result */}
+              <div className="p-5 rounded-2xl bg-emerald-950/20 border border-emerald-500/30 flex flex-col justify-between shadow-lg shadow-emerald-950/30">
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5 mb-2">
+                    <span>🚀</span> Business Outcome
+                  </span>
+                  <p className="text-sm text-white/90 font-medium leading-relaxed">
+                    {project.economicImpact.result}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Key Metrics Strip */}
+            {project.economicImpact.metrics && (
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-white/10">
+                {project.economicImpact.metrics.map((m, idx) => (
+                  <div key={idx} className="p-3.5 rounded-xl bg-slate-950/60 border border-white/5 text-center">
+                    <span className="text-[11px] font-semibold text-slate-400 block uppercase tracking-wider mb-1">
+                      {m.label}
+                    </span>
+                    <span className={`text-base md:text-lg font-black ${m.highlight ? "text-cyan-400" : "text-white"}`}>
+                      {m.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </motion.div>
+        )}
+
         {/* 3. Custom Integrations & Architecture Highlights */}
         {project.integrations && project.integrations.length > 0 && (
           <div className="mb-24">

@@ -53,8 +53,8 @@ export default function SpeedComparisonCard() {
                                         <AlertTriangle className="w-4 h-4" />
                                     </div>
                                     <div>
-                                        <h3 className="text-base font-bold text-white">The Typical Agency Site</h3>
-                                        <p className="text-xs text-white/50">WordPress / Clunky Templates</p>
+                                        <h3 className="text-base font-bold text-white">Bloated Template Sites</h3>
+                                        <p className="text-xs text-white/50">Plugin Stacks &amp; Slow Builders</p>
                                     </div>
                                 </div>
                                 <span className="px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-bold font-mono">
