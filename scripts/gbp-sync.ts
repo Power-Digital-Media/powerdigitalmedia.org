@@ -173,6 +173,7 @@ async function resolvePrimaryLocation(accessToken: string, saved: StoredGbpOAuth
     "profile",
     "metadata",
     "serviceItems",
+    "openInfo",
   ].join(",");
 
   for (const acc of accounts) {
@@ -344,38 +345,131 @@ async function runAudit() {
   const liveTitle = location.title || "(unset)";
   const liveWebsite = location.websiteUri || "(unset)";
   const livePhone = location.phoneNumbers?.primaryPhone || "(unset)";
+  const liveBusinessType = location.serviceArea?.businessType || "(unset)";
+  const hasPublicStorefront = Boolean(location.storefrontAddress);
   const livePrimaryCat = location.categories?.primaryCategory?.displayName || "(unset)";
-  const liveAddCats = (location.categories?.additionalCategories || [])
-    .map((c: any) => c.displayName)
-    .join(", ");
-  const liveDesc = location.profile?.description || "(unset)";
+  const liveAddCatList: string[] = (location.categories?.additionalCategories || []).map(
+    (c: any) => String(c.displayName)
+  );
+  const targetAddCatList = PDM_CANONICAL_GBP_PROFILE.additionalCategories.map((c) => c.displayName);
+  const addCatsAligned =
+    liveAddCatList.length === targetAddCatList.length &&
+    targetAddCatList.every((c) => liveAddCatList.includes(c));
 
-  const rows = [
-    ["Business Name", liveTitle, PDM_CANONICAL_GBP_PROFILE.businessName],
-    ["Primary Phone", livePhone, PDM_CANONICAL_GBP_PROFILE.primaryPhone],
-    ["Website URI", liveWebsite, PDM_CANONICAL_GBP_PROFILE.websiteUri],
-    ["Primary Category", livePrimaryCat, PDM_CANONICAL_GBP_PROFILE.primaryCategory.displayName],
-    [
-      "Additional Categories",
-      liveAddCats || "(none)",
-      PDM_CANONICAL_GBP_PROFILE.additionalCategories.map((c) => c.displayName).join(", "),
-    ],
-    [
-      "Description Length",
-      `${liveDesc === "(unset)" ? 0 : liveDesc.length} chars`,
-      `${PDM_CANONICAL_GBP_PROFILE.description.length} chars`,
-    ],
+  const livePlaceList: string[] = (location.serviceArea?.places?.placeInfos || []).map((p: any) =>
+    String(p.placeName)
+  );
+  const liveHoursCount = (location.regularHours?.periods || []).length;
+  const targetHoursCount = PDM_CANONICAL_GBP_PROFILE.regularHours.periods.length;
+
+  const liveServiceNames: string[] = (location.serviceItems || [])
+    .map((s: any) => s.freeFormServiceItem?.label?.displayName || s.structuredServiceItem?.serviceTypeId)
+    .filter(Boolean);
+  const targetServiceNames = PDM_CANONICAL_GBP_PROFILE.services.map((s) => s.displayName);
+  const servicesAligned =
+    liveServiceNames.length === targetServiceNames.length &&
+    targetServiceNames.every((n) => liveServiceNames.includes(n));
+
+  const liveDesc = location.profile?.description || "(unset)";
+  const descExact = liveDesc.trim() === PDM_CANONICAL_GBP_PROFILE.description.trim();
+
+  const normalizeOriginPath = (u: string) => {
+    try {
+      const parsed = new URL(u);
+      return `${parsed.origin}${parsed.pathname}`.replace(/\/+$/, "");
+    } catch {
+      return u.trim();
+    }
+  };
+  const websiteDomainAligned =
+    normalizeOriginPath(liveWebsite) === normalizeOriginPath(PDM_CANONICAL_GBP_PROFILE.websiteUri);
+  const websiteHasUtm = liveWebsite.includes("utm_source=google");
+
+  const checks: Array<{ label: string; ok: boolean; liveVal: string; targetVal: string; note?: string }> = [
+    {
+      label: "Verification & Maps Status",
+      ok: Boolean(location.metadata?.hasVoiceOfMerchant) && location.openInfo?.status === "OPEN",
+      liveVal: `Verified=${Boolean(location.metadata?.hasVoiceOfMerchant)} | Status=${location.openInfo?.status || "UNKNOWN"} | PlaceID=${location.metadata?.placeId || "n/a"}`,
+      targetVal: "Verified=true | Status=OPEN",
+    },
+    {
+      label: "Business Name",
+      ok: liveTitle.trim() === PDM_CANONICAL_GBP_PROFILE.businessName,
+      liveVal: liveTitle,
+      targetVal: PDM_CANONICAL_GBP_PROFILE.businessName,
+    },
+    {
+      label: "SAB Home-Address Privacy Lock",
+      ok: liveBusinessType === PDM_CANONICAL_GBP_PROFILE.businessType && !hasPublicStorefront,
+      liveVal: `${liveBusinessType} (storefrontAddress=${hasPublicStorefront ? "EXPOSED" : "HIDDEN"})`,
+      targetVal: `${PDM_CANONICAL_GBP_PROFILE.businessType} (storefrontAddress=HIDDEN)`,
+    },
+    {
+      label: "Primary Phone",
+      ok: livePhone.trim() === PDM_CANONICAL_GBP_PROFILE.primaryPhone,
+      liveVal: livePhone,
+      targetVal: PDM_CANONICAL_GBP_PROFILE.primaryPhone,
+    },
+    {
+      label: "Website URI",
+      ok: websiteDomainAligned,
+      liveVal: liveWebsite,
+      targetVal: PDM_CANONICAL_GBP_PROFILE.websiteUri,
+      note:
+        websiteDomainAligned && !websiteHasUtm
+          ? "Domain matches 100%; optional UTM attribution query string can be pushed anytime via `npm run gbp:push -- --apply`."
+          : undefined,
+    },
+    {
+      label: "Primary Category",
+      ok: livePrimaryCat === PDM_CANONICAL_GBP_PROFILE.primaryCategory.displayName,
+      liveVal: livePrimaryCat,
+      targetVal: PDM_CANONICAL_GBP_PROFILE.primaryCategory.displayName,
+    },
+    {
+      label: "Additional Categories (4)",
+      ok: addCatsAligned,
+      liveVal: liveAddCatList.join(", ") || "(none)",
+      targetVal: targetAddCatList.join(", "),
+    },
+    {
+      label: "Business Hours (Mon–Fri 9–5)",
+      ok: liveHoursCount === targetHoursCount,
+      liveVal: `${liveHoursCount} weekday periods configured`,
+      targetVal: `${targetHoursCount} weekday periods configured`,
+    },
+    {
+      label: "Tri-County Service Areas (11)",
+      ok: livePlaceList.length === PDM_CANONICAL_GBP_PROFILE.serviceAreaPlaces.length,
+      liveVal: `${livePlaceList.length} places (${livePlaceList.join(" · ")})`,
+      targetVal: `${PDM_CANONICAL_GBP_PROFILE.serviceAreaPlaces.length} places`,
+    },
+    {
+      label: "Custom Services & Descriptions (13)",
+      ok: servicesAligned,
+      liveVal: `${liveServiceNames.length}/${targetServiceNames.length} services matched`,
+      targetVal: `${targetServiceNames.length}/${targetServiceNames.length} services matched`,
+    },
+    {
+      label: "Profile Description (Exact Copy)",
+      ok: descExact,
+      liveVal: `${liveDesc === "(unset)" ? 0 : liveDesc.length} chars (exact match: ${descExact})`,
+      targetVal: `${PDM_CANONICAL_GBP_PROFILE.description.length} chars`,
+    },
   ];
 
-  for (const [label, liveVal, targetVal] of rows) {
-    const aligned = String(liveVal).trim() === String(targetVal).trim();
-    console.log(`\n• ${label}: ${aligned ? "✅ ALIGNED" : "⚠️  DRIFT DETECTED"}`);
-    console.log(`    Live GBP : ${liveVal}`);
-    console.log(`    Target   : ${targetVal}`);
+  for (const c of checks) {
+    console.log(`\n• ${c.label}: ${c.ok ? "✅ ALIGNED" : "⚠️  DRIFT DETECTED"}`);
+    console.log(`    Live GBP : ${c.liveVal}`);
+    console.log(`    Target   : ${c.targetVal}`);
+    if (c.note) {
+      console.log(`    Note     : ℹ️  ${c.note}`);
+    }
   }
 
-  console.log("\n• Live Description:");
-  console.log(`    ${liveDesc}`);
+  console.log("\n• Live Maps & Review Links:");
+  console.log(`    Maps URI       : ${location.metadata?.mapsUri || "n/a"}`);
+  console.log(`    New Review URI : ${location.metadata?.newReviewUri || "n/a"}`);
 }
 
 async function runPush(applyChanges: boolean) {

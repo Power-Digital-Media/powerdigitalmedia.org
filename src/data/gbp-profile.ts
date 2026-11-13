@@ -47,10 +47,6 @@ export const PDM_CANONICAL_GBP_PROFILE = {
 
   additionalCategories: [
     {
-      name: "categories/gcid:internet_marketing_service",
-      displayName: "Internet marketing service",
-    },
-    {
       name: "categories/gcid:marketing_agency",
       displayName: "Marketing agency",
     },
@@ -59,13 +55,17 @@ export const PDM_CANONICAL_GBP_PROFILE = {
       displayName: "Software company",
     },
     {
+      name: "categories/gcid:internet_marketing_service",
+      displayName: "Internet marketing service",
+    },
+    {
       name: "categories/gcid:business_to_business_service",
       displayName: "Business to business service",
     },
   ],
 
   /**
-   * 676 characters — safely under Google's 750-character hard limit,
+   * 691 characters — safely under Google's 750-character hard limit,
    * zero URLs/phones inside body text per Google GBP guidelines.
    */
   description:
