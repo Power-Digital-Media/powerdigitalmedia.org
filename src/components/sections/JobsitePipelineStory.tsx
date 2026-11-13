@@ -79,7 +79,7 @@ export default function JobsitePipelineStory() {
                 key={item.step}
                 type="button"
                 onClick={() => setActiveStage(item.idx)}
-                className={`text-left p-6 rounded-2xl transition-all cursor-pointer border ${
+                className={`text-left p-4 sm:p-6 rounded-2xl transition-all cursor-pointer border ${
                   selected
                     ? "bg-[#0d1322] border-amber-400/70 shadow-[0_16px_40px_-12px_rgba(245,158,11,0.22)]"
                     : "bg-[#080c16]/80 border-white/10 hover:border-white/25"
@@ -94,7 +94,7 @@ export default function JobsitePipelineStory() {
                     {item.step}
                   </span>
                   <div
-                    className={`w-9 h-9 rounded-xl flex items-center justify-center border ${
+                    className={`w-9 h-9 rounded-xl flex items-center justify-center border shrink-0 ${
                       selected
                         ? "bg-amber-400 text-slate-950 border-amber-300"
                         : "bg-white/[0.04] text-slate-300 border-white/10"
@@ -113,18 +113,18 @@ export default function JobsitePipelineStory() {
         </div>
 
         {/* Live Interactive Stage Viewport */}
-        <div className="rounded-3xl obsidian-surface p-6 sm:p-8 lg:p-10">
+        <div className="rounded-3xl obsidian-surface p-4 sm:p-8 lg:p-10">
           {activeStage === 0 && (
-            <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div className="grid lg:grid-cols-12 gap-7 lg:gap-12 items-center">
               {/* Interactive Before/After Ghost Camera Preview */}
               <div className="lg:col-span-7">
                 <div className="relative rounded-2xl overflow-hidden border border-white/15 bg-black select-none">
-                  <div className="flex items-center justify-between px-4 py-2.5 bg-[#070a12] border-b border-white/10 text-[11px] font-mono">
+                  <div className="flex flex-wrap items-center justify-between gap-2 px-3.5 sm:px-4 py-2.5 bg-[#070a12] border-b border-white/10 text-[11px] font-mono">
                     <span className="text-amber-400 font-bold flex items-center gap-1.5">
-                      <Sliders className="w-3.5 h-3.5" />
-                      PinCam™ Ghost Photo Match — Drag Slider
+                      <Sliders className="w-3.5 h-3.5 shrink-0" />
+                      <span>PinCam™ Photo Match</span>
                     </span>
-                    <span className="text-emerald-400">GPS LOCKED • MADISON, MS</span>
+                    <span className="text-emerald-400 font-bold">GPS LOCKED • MADISON, MS</span>
                   </div>
 
                   <div className="relative aspect-[16/10] w-full overflow-hidden">
@@ -133,7 +133,7 @@ export default function JobsitePipelineStory() {
                       src="/pincam/roof-after.jpg"
                       alt="Completed architectural shingle roof in Madison, MS"
                       fill
-                      sizes="(max-width: 1024px) 92vw, 680px"
+                      sizes="(max-width: 1024px) 94vw, 680px"
                       className="object-cover"
                     />
 
@@ -146,13 +146,9 @@ export default function JobsitePipelineStory() {
                         src="/pincam/roof-before.jpg"
                         alt="Storm damaged roof with blue tarp before replacement"
                         fill
-                        sizes="(max-width: 1024px) 92vw, 680px"
+                        sizes="(max-width: 1024px) 94vw, 680px"
                         className="object-cover"
                       />
-                      {/* Simulated PinCam Damage Markup Callout on Before side */}
-                      <div className="absolute top-[22%] left-[44%] px-2.5 py-1 rounded-lg bg-red-600/95 border border-white/30 text-[10px] font-mono font-extrabold text-white shadow-lg">
-                        ⚠ Wind Ridge Damage + Tarp
-                      </div>
                     </div>
 
                     {/* Vertical Split Handle */}
@@ -160,28 +156,28 @@ export default function JobsitePipelineStory() {
                       className="absolute top-0 bottom-0 w-0.5 bg-amber-400 shadow-[0_0_16px_rgba(245,158,11,0.9)] pointer-events-none"
                       style={{ left: `${ghostSplit}%` }}
                     >
-                      <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-amber-400 text-slate-950 font-black text-xs flex items-center justify-center shadow-xl border-2 border-white">
+                      <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-amber-400 text-slate-950 font-black text-xs flex items-center justify-center shadow-xl border-2 border-white">
                         ↔
                       </div>
                     </div>
 
-                    {/* Before / After Corner Badges */}
-                    <span className="absolute bottom-12 left-3 px-2.5 py-1 rounded bg-black/80 border border-red-400/40 text-[10px] font-mono font-bold text-red-300 uppercase">
-                      BEFORE • STORM INSPECTION
+                    {/* Non-Colliding Top Corner Badges */}
+                    <span className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-black/80 border border-red-400/40 text-[9px] sm:text-[10px] font-mono font-bold text-red-300 uppercase">
+                      BEFORE
                     </span>
-                    <span className="absolute bottom-12 right-3 px-2.5 py-1 rounded bg-black/80 border border-emerald-400/40 text-[10px] font-mono font-bold text-emerald-300 uppercase">
-                      AFTER • 30-YR ARCHITECTURAL
+                    <span className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded bg-black/80 border border-emerald-400/40 text-[9px] sm:text-[10px] font-mono font-bold text-emerald-300 uppercase">
+                      AFTER • 30-YR ROOF
                     </span>
+                  </div>
 
-                    {/* Authentic PinCam Verification Stamp Footer */}
-                    <div className="absolute inset-x-0 bottom-0 px-3.5 py-2 bg-black/80 backdrop-blur-md border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-[10px] font-mono text-slate-300">
-                      <span>📍 32.4618° N, 90.1154° W • Annandale, Madison MS</span>
-                      <span className="text-amber-400 font-bold">✓ PINCAM VERIFIED TIMESTAMP</span>
-                    </div>
+                  {/* Clean Verification Stamp Footer (Below Photo — Zero Obstruction) */}
+                  <div className="px-3.5 py-2 bg-[#090d16] border-t border-white/10 flex flex-wrap items-center justify-between gap-1.5 text-[10px] font-mono text-slate-300">
+                    <span>📍 32.4618° N, 90.1154° W • Annandale, Madison MS</span>
+                    <span className="text-amber-400 font-bold">✓ PINCAM VERIFIED</span>
                   </div>
 
                   {/* Accessible Range Slider Control */}
-                  <div className="px-4 py-3 bg-[#070a12] border-t border-white/10 flex items-center gap-3">
+                  <div className="px-3.5 sm:px-4 py-3 bg-[#070a12] border-t border-white/10 flex items-center gap-3">
                     <span className="text-[11px] font-mono text-slate-400 shrink-0">Before</span>
                     <input
                       type="range"
@@ -255,13 +251,13 @@ export default function JobsitePipelineStory() {
               <div className="lg:col-span-7 space-y-4">
                 {/* Real Esri Satellite Map Preview (`Local Project Pins`) */}
                 <div className="rounded-2xl overflow-hidden border border-white/15 bg-[#0b0c10] p-2">
-                  <div className="px-3 py-2 flex items-center justify-between text-[11px]">
+                  <div className="px-2.5 py-2 flex flex-wrap items-center justify-between gap-2 text-[11px]">
                     <span className="font-mono font-extrabold uppercase tracking-wider text-[#e2b047]">
-                      LIVE JOB FEED • Local Project Pins (/pins)
+                      LIVE JOB FEED • Local Project Pins
                     </span>
                     <span className="font-mono text-emerald-400">99+ Active Pins</span>
                   </div>
-                  <div className="relative h-48 sm:h-56 rounded-xl overflow-hidden border border-white/10">
+                  <div className="relative aspect-[16/10] sm:aspect-auto sm:h-56 rounded-xl overflow-hidden border border-white/10">
                     <Image
                       src="/pindrop/central-ms-satellite.jpg"
                       alt="Real PDM PinDrop Esri satellite map of Central Mississippi with gold job pins"
@@ -283,8 +279,8 @@ export default function JobsitePipelineStory() {
                         className="absolute -translate-x-1/2 -translate-y-full"
                       >
                         <svg
-                          width="26"
-                          height="33"
+                          width="24"
+                          height="30"
                           viewBox="0 0 32 40"
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
@@ -305,7 +301,7 @@ export default function JobsitePipelineStory() {
 
                 {/* Real `.pin-feed-card` Replica */}
                 <div className="rounded-2xl bg-[#12141c] border border-white/10 p-4 sm:p-5">
-                  <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/[0.06]">
+                  <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3 border-b border-white/[0.06]">
                     <div>
                       <div className="text-sm font-extrabold text-[#5c6cff]">
                         Eddie Buchanan
@@ -321,25 +317,25 @@ export default function JobsitePipelineStory() {
                   <p className="text-xs sm:text-sm text-slate-200 italic font-serif mb-3.5">
                     &ldquo;Completed full tear-off, synthetic underlayment &amp; 30-yr charcoal architectural shingles.&rdquo;
                   </p>
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="relative h-28 rounded-xl overflow-hidden border border-white/10">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="relative aspect-[16/10] sm:aspect-auto sm:h-32 rounded-xl overflow-hidden border border-white/10">
                       <Image
                         src="/pindrop/sat-madison.jpg"
                         alt="Madison MS satellite neighborhood mini-map"
                         fill
-                        sizes="280px"
+                        sizes="(max-width: 640px) 90vw, 280px"
                         className="object-cover"
                       />
                       <span className="absolute bottom-2 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-[#0b0c10]/90 border border-white/15 text-[10px] font-extrabold text-white">
                         Madison, MS
                       </span>
                     </div>
-                    <div className="relative h-28 rounded-xl overflow-hidden border border-white/10">
+                    <div className="relative aspect-[16/10] sm:aspect-auto sm:h-32 rounded-xl overflow-hidden border border-white/10">
                       <Image
                         src="/pincam/roof-after.jpg"
                         alt="Completed roof photo"
                         fill
-                        sizes="280px"
+                        sizes="(max-width: 640px) 90vw, 280px"
                         className="object-cover"
                       />
                     </div>
@@ -395,8 +391,8 @@ export default function JobsitePipelineStory() {
           {activeStage === 2 && (
             <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               <div className="lg:col-span-7">
-                <div className="rounded-2xl border border-white/15 bg-[#070a12] p-5 sm:p-7 space-y-4">
-                  <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                <div className="rounded-2xl border border-white/15 bg-[#070a12] p-4 sm:p-7 space-y-4">
+                  <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-3">
                     <span className="text-xs font-mono font-bold text-amber-400 uppercase">
                       ⚡ Live Lead-Rescue Timeline (While You&apos;re on a Job)
                     </span>
@@ -455,7 +451,7 @@ export default function JobsitePipelineStory() {
                   78% of Homeowners Hire the First Contractor Who Responds.
                 </h3>
                 <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                  When you&apos;re in an attic, on a roof, or running an excavator, missed calls cost thousands. We wire your website, business phones, <strong className="text-white">Capsule CRM</strong>, and automated SMS together so every lead gets an immediate personal response—and lands right on your phone.
+                  When you&apos;re in an attic, on a roof, or running an excavator, missed calls cost thousands. We wire your website, lead forms, <strong className="text-white">Capsule CRM</strong>, and automated SMS together so every lead gets an immediate personal response—and lands right on your phone.
                 </p>
                 <div className="flex flex-wrap items-center gap-3 pt-1">
                   <Link

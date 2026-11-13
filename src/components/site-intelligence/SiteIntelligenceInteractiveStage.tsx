@@ -635,7 +635,7 @@ export default function SiteIntelligenceInteractiveStage() {
                 return (
                   <div
                     key={site.id}
-                    className="rounded-2xl border border-slate-800 bg-slate-900/75 p-5 flex flex-col justify-between hover:border-slate-700 transition"
+                    className="rounded-2xl border border-slate-800 bg-slate-900/75 p-4 sm:p-5 flex flex-col justify-between hover:border-slate-700 transition"
                   >
                     <div>
                       <div className="flex items-start justify-between gap-3 mb-3">
@@ -719,7 +719,7 @@ export default function SiteIntelligenceInteractiveStage() {
                       </div>
                     </div>
 
-                    <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2">
+                    <div className="pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2">
                       <span className="text-[11px] font-mono text-slate-400">
                         {site.lastCheckedLabel}
                       </span>
@@ -1056,7 +1056,7 @@ export default function SiteIntelligenceInteractiveStage() {
                       <p className="text-xs text-emerald-300 font-medium">
                         Projected Impact: {prop.impact}
                       </p>
-                      <div className="p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-[11px] font-mono text-slate-400">
+                      <div className="p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-[11px] font-mono text-slate-400 break-all">
                         Staged Preview: {prop.previewUrl}
                       </div>
                     </div>

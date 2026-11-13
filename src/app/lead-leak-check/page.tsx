@@ -243,7 +243,7 @@ export default function LeadLeakCheckPage() {
                     { name: "CRM Pipeline", icon: Users },
                     { name: "Email Follow-Up", icon: Mail },
                     { name: "2-Min SMS Rescue", icon: MessageSquare },
-                    { name: "Business Phones", icon: Phone },
+                    { name: "Google Map Pack", icon: Phone },
                   ].map((channel, i) => {
                     const Icon = channel.icon;
                     return (
@@ -304,7 +304,7 @@ export default function LeadLeakCheckPage() {
 
             {/* Right Column - Lead Form Card */}
             <div className="lg:col-span-5 lg:sticky lg:top-28">
-              <div className="p-7 sm:p-9 rounded-3xl border border-white/10 bg-[#0b0c10] shadow-[0_24px_80px_rgba(0,0,0,0.65)]">
+              <div className="p-5 sm:p-9 rounded-3xl border border-white/10 bg-[#0b0c10] shadow-[0_24px_80px_rgba(0,0,0,0.65)]">
                 {status === "success" ? (
                   <div className="py-10 flex flex-col items-center justify-center text-center space-y-5">
                     <div className="w-16 h-16 rounded-2xl bg-emerald-500/15 border border-emerald-500/35 flex items-center justify-center text-emerald-400">
@@ -485,14 +485,14 @@ export default function LeadLeakCheckPage() {
                       <button
                         type="submit"
                         disabled={status === "submitting"}
-                        className="w-full py-4 bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black rounded-xl flex items-center justify-center gap-2 hover:brightness-110 transition-all text-xs uppercase tracking-wider disabled:opacity-50 cursor-pointer shadow-[0_0_28px_rgba(245,158,11,0.3)]"
+                        className="w-full px-4 py-4 bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black rounded-xl flex items-center justify-center gap-2 hover:brightness-110 transition-all text-xs uppercase tracking-wider disabled:opacity-50 cursor-pointer shadow-[0_0_28px_rgba(245,158,11,0.3)]"
                       >
                         {status === "submitting" ? (
                           "Submitting Request..."
                         ) : (
                           <>
-                            Get My Free Lead Leak Check
-                            <ArrowRight className="w-4 h-4" />
+                            <span>Get My Free Lead Leak Check</span>
+                            <ArrowRight className="w-4 h-4 shrink-0" />
                           </>
                         )}
                       </button>
@@ -510,7 +510,7 @@ export default function LeadLeakCheckPage() {
                 Jackson, Mississippi • Direct Local Support
               </span>
               <p className="text-sm text-slate-300 leading-relaxed">
-                Built by <strong className="text-white">Power Digital Media LLC</strong> — helping Mississippi contractors and local businesses win with custom Next.js websites, PDM PinDrop™ &amp; PinCam™ field apps, Capsule CRM, and cloud business phones.
+                Built by <strong className="text-white">Power Digital Media LLC</strong> — helping Mississippi contractors and local businesses win with custom Next.js websites, PDM PinDrop™ &amp; PinCam™ field apps, Capsule CRM, and 2-minute SMS lead rescue.
               </p>
             </div>
             <BBBSeal variant="badge" className="shrink-0" />

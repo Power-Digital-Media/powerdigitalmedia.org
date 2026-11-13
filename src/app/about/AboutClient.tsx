@@ -78,9 +78,9 @@ export default function AboutClient() {
                         className="max-w-4xl mx-auto"
                     >
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-6">
-                            <MapPin className="w-3.5 h-3.5 text-amber-400" />
-                            <span className="text-[11px] font-mono font-bold text-amber-300 tracking-[0.18em] uppercase">
-                                2914 Cynthia Rd • Jackson, MS • BBB A+ Accredited
+                            <MapPin className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                            <span className="text-[11px] font-mono font-bold text-amber-300 tracking-[0.16em] uppercase">
+                                Jackson, MS Studio • Central MS • BBB Accredited
                             </span>
                         </div>
                         <h1 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight mb-6 leading-[0.95] uppercase">
@@ -188,21 +188,22 @@ export default function AboutClient() {
                             initial={{ opacity: 0, x: 20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="lg:col-span-5 relative rounded-3xl overflow-hidden border border-amber-500/35 bg-[#0b0c10] aspect-[4/5] shadow-[0_28px_70px_rgba(0,0,0,0.65)] group"
+                            className="lg:col-span-5 rounded-3xl overflow-hidden border border-amber-500/35 bg-[#0b0c10] shadow-[0_28px_70px_rgba(0,0,0,0.65)] group flex flex-col"
                         >
-                            <Image
-                                src="/images/founder-booth.webp"
-                                alt="Damein Donald — Founder of Power Digital Media LLC in Jackson, Mississippi"
-                                fill
-                                sizes="(max-width: 768px) 100vw, 45vw"
-                                className="object-cover object-center group-hover:scale-[1.03] transition-transform duration-700"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#06080f] via-[#06080f]/25 to-transparent" />
-                            <div className="absolute bottom-5 left-5 right-5 p-5 rounded-2xl bg-[#0b0c10]/90 backdrop-blur-xl border border-amber-500/30">
-                                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.22em] text-amber-400 block mb-1">
+                            <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#06080f]">
+                                <Image
+                                    src="/images/founder-booth.webp"
+                                    alt="Damein Donald — Founder of Power Digital Media LLC in Jackson, Mississippi"
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, 45vw"
+                                    className="object-cover object-center group-hover:scale-[1.03] transition-transform duration-700"
+                                />
+                            </div>
+                            <div className="p-5 sm:p-6 bg-[#0b0c10] border-t border-amber-500/25">
+                                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-amber-400 block mb-1.5">
                                     Damein Donald • Founder &amp; Lead Engineer
                                 </span>
-                                <p className="text-xs text-slate-200 leading-relaxed mb-3">
+                                <p className="text-xs sm:text-sm text-slate-200 leading-relaxed mb-3.5">
                                     When you call Power Digital Media, you talk directly to the
                                     engineer building your website, your CRM pipeline, and your local
                                     rankings.
@@ -240,7 +241,7 @@ export default function AboutClient() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.45, delay: index * 0.08 }}
-                                className="p-7 rounded-3xl bg-[#0b0c10] border border-white/10 hover:border-amber-500/35 transition-all flex flex-col"
+                                className="p-5 sm:p-7 rounded-3xl bg-[#0b0c10] border border-white/10 hover:border-amber-500/35 transition-all flex flex-col"
                             >
                                 <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-center mb-5 text-amber-400">
                                     <cap.icon className="w-6 h-6" />

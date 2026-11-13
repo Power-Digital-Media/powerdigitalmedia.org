@@ -95,7 +95,7 @@ export default function AuditCTA() {
 
       <div className="container px-4 sm:px-6 mx-auto relative z-10">
         <div className="max-w-6xl mx-auto">
-          <div className="relative overflow-hidden rounded-3xl obsidian-surface p-6 sm:p-10 md:p-14">
+          <div className="relative overflow-hidden rounded-3xl obsidian-surface p-4 sm:p-10 md:p-14">
             <div className="grid gap-10 lg:grid-cols-12 items-center">
               {/* Left Copy Column */}
               <div className="lg:col-span-6 space-y-5 text-left">
@@ -142,7 +142,7 @@ export default function AuditCTA() {
               </div>
 
               {/* Right Form Column */}
-              <div className="lg:col-span-6 bg-[#060912]/90 p-6 sm:p-8 rounded-2xl border border-white/10">
+              <div className="lg:col-span-6 bg-[#060912]/90 p-4 sm:p-8 rounded-2xl border border-white/10">
                 {status === "success" ? (
                   <div className="py-6 flex flex-col items-center justify-center text-center space-y-5">
                     <div className="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/35 flex items-center justify-center text-emerald-400">

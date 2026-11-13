@@ -50,23 +50,23 @@ export default function Portfolio({ titleAs: Title = "h2" }: { titleAs?: "h1" | 
                         return (
                             <div
                                 key={project.id}
-                                className="group relative rounded-3xl overflow-hidden bg-[#0b0c10] border border-white/10 hover:border-amber-500/40 transition-all duration-500 flex flex-col justify-between p-6 sm:p-8 shadow-2xl"
+                                className="group relative rounded-3xl overflow-hidden bg-[#0b0c10] border border-white/10 hover:border-amber-500/40 transition-all duration-500 flex flex-col justify-between p-4 sm:p-8 shadow-2xl"
                             >
                                 {/* Browser Frame Preview */}
-                                <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden border border-white/10 bg-[#06080f] mb-6 shadow-md">
-                                    <div className="flex items-center gap-2 px-4 py-3 bg-[#12141c] border-b border-white/[0.08]">
-                                        <div className="flex gap-1.5">
+                                <div className="w-full rounded-2xl overflow-hidden border border-white/10 bg-[#06080f] mb-5 sm:mb-6 shadow-md">
+                                    <div className="flex items-center gap-2 px-3.5 py-2.5 bg-[#12141c] border-b border-white/[0.08]">
+                                        <div className="flex gap-1.5 shrink-0">
                                             <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
                                             <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
                                             <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
                                         </div>
-                                        <div className="mx-auto bg-[#06080f] border border-white/[0.08] rounded-md px-3 py-0.5 text-[10px] text-slate-300 font-mono flex items-center gap-1.5">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                                            {domainLabel}
+                                        <div className="mx-auto bg-[#06080f] border border-white/[0.08] rounded-md px-3 py-0.5 text-[10px] text-slate-300 font-mono flex items-center gap-1.5 min-w-0 max-w-[210px]">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
+                                            <span className="truncate">{domainLabel}</span>
                                         </div>
                                     </div>
 
-                                    <div className="relative w-full h-[calc(100%-33px)]">
+                                    <div className="relative aspect-[16/10] w-full">
                                         <Image
                                             src={project.image}
                                             alt={project.title}
@@ -139,12 +139,12 @@ export default function Portfolio({ titleAs: Title = "h2" }: { titleAs?: "h1" | 
                                         </div>
                                     )}
 
-                                    <div className="mt-auto pt-6 border-t border-white/[0.08] flex flex-wrap items-center gap-3">
+                                    <div className="mt-auto pt-5 sm:pt-6 border-t border-white/[0.08] flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
                                         <Link
                                             href={`/portfolio/${project.id}`}
-                                            className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-amber-500 hover:bg-amber-400 text-[#06080f] text-xs font-black uppercase tracking-wider rounded-xl transition-colors"
+                                            className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-amber-500 hover:bg-amber-400 text-[#06080f] text-xs font-black uppercase tracking-wider rounded-xl transition-colors whitespace-nowrap"
                                         >
-                                            View Case Study <ArrowRight className="w-3.5 h-3.5" />
+                                            View Case Study <ArrowRight className="w-3.5 h-3.5 shrink-0" />
                                         </Link>
 
                                         {project.netlifyUrl &&
@@ -153,18 +153,18 @@ export default function Portfolio({ titleAs: Title = "h2" }: { titleAs?: "h1" | 
                                                     href={project.netlifyUrl}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white/[0.04] hover:bg-white/[0.09] border border-white/15 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-colors"
+                                                    className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white/[0.04] hover:bg-white/[0.09] border border-white/15 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-colors whitespace-nowrap"
                                                 >
                                                     Live Site{" "}
-                                                    <ExternalLink className="w-3.5 h-3.5 text-amber-400" />
+                                                    <ExternalLink className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                                                 </a>
                                             ) : (
                                                 <Link
                                                     href={project.netlifyUrl}
-                                                    className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white/[0.04] hover:bg-white/[0.09] border border-white/15 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-colors"
+                                                    className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white/[0.04] hover:bg-white/[0.09] border border-white/15 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-colors whitespace-nowrap"
                                                 >
                                                     Explore App{" "}
-                                                    <ArrowRight className="w-3.5 h-3.5 text-amber-400" />
+                                                    <ArrowRight className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                                                 </Link>
                                             ))}
                                     </div>
@@ -175,7 +175,7 @@ export default function Portfolio({ titleAs: Title = "h2" }: { titleAs?: "h1" | 
                 </div>
 
                 {/* Bottom Callout Banner */}
-                <div className="mt-16 md:mt-20 p-8 md:p-12 rounded-3xl bg-[#12141c] border border-amber-500/30 text-center max-w-4xl mx-auto flex flex-col items-center shadow-2xl">
+                <div className="mt-16 md:mt-20 p-6 sm:p-8 md:p-12 rounded-3xl bg-[#12141c] border border-amber-500/30 text-center max-w-4xl mx-auto flex flex-col items-center shadow-2xl">
                     <h4 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight mb-3">
                         Want A Website That Actually Generates Calls?
                     </h4>

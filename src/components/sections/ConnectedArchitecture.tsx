@@ -524,9 +524,9 @@ function PinDropMapScreen({ client }: { client: ClientArchitecture }) {
   return (
     <div className="relative w-full h-full bg-[#0b0c10] flex flex-col overflow-hidden select-none">
       {/* Authentic PDM PinDrop Header */}
-      <div className="flex items-center justify-between px-4 py-2.5 bg-[#12141c] border-b border-white/10 z-10">
+      <div className="flex flex-wrap items-center justify-between gap-2 px-3.5 sm:px-4 py-2.5 bg-[#12141c] border-b border-white/10 z-10">
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
           <span className="text-[11px] font-black text-white uppercase tracking-wider">
             Local Project Pins • {client.shortName}
           </span>
@@ -537,14 +537,14 @@ function PinDropMapScreen({ client }: { client: ClientArchitecture }) {
       </div>
 
       {/* Real Central MS Satellite Map Canvas */}
-      <div className="relative flex-1 overflow-hidden">
+      <div className="relative aspect-[16/10] sm:aspect-auto sm:flex-1 overflow-hidden">
         <Image
           src="/pindrop/central-ms-satellite.jpg"
           alt="Central Mississippi Esri World Imagery satellite map with live PinDrop job pins"
           fill
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0b0c10]/70 via-transparent to-[#0b0c10]/30 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0b0c10]/55 via-transparent to-[#0b0c10]/20 pointer-events-none" />
 
         {/* Gold Teardrop Pins */}
         {locations.map((loc, i) => (
@@ -556,23 +556,23 @@ function PinDropMapScreen({ client }: { client: ClientArchitecture }) {
             {loc.active ? (
               <div className="relative flex flex-col items-center">
                 <span className="absolute -bottom-1 w-8 h-8 rounded-full bg-[#e2b047]/35 animate-ping" />
-                <div className="w-7 h-7 rounded-t-full rounded-br-full rotate-45 bg-[#e2b047] border-2 border-[#0b0c10] flex items-center justify-center shadow-[0_6px_18px_rgba(226,176,71,0.75)]">
+                <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-t-full rounded-br-full rotate-45 bg-[#e2b047] border-2 border-[#0b0c10] flex items-center justify-center shadow-[0_6px_18px_rgba(226,176,71,0.75)]">
                   <div className="w-2 h-2 rounded-full bg-[#0b0c10] -rotate-45" />
                 </div>
               </div>
             ) : (
-              <div className="w-5 h-5 rounded-t-full rounded-br-full rotate-45 bg-[#e2b047]/90 border-2 border-[#0b0c10] flex items-center justify-center shadow-md">
+              <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-t-full rounded-br-full rotate-45 bg-[#e2b047]/90 border-2 border-[#0b0c10] flex items-center justify-center shadow-md">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#0b0c10] -rotate-45" />
               </div>
             )}
-            <span className="absolute top-full mt-1 left-1/2 -translate-x-1/2 text-[9px] font-mono font-bold whitespace-nowrap px-1.5 py-0.5 rounded bg-[#0b0c10]/90 text-white border border-white/15">
+            <span className="hidden sm:inline-block absolute top-full mt-1 left-1/2 -translate-x-1/2 text-[9px] font-mono font-bold whitespace-nowrap px-1.5 py-0.5 rounded bg-[#0b0c10]/90 text-white border border-white/15">
               {loc.name}
             </span>
           </div>
         ))}
 
-        {/* Verified Pin Feed Card Overlay */}
-        <div className="absolute top-3 left-3 max-w-[270px] sm:max-w-[300px] p-3.5 rounded-xl bg-[#12141c]/95 border border-[#e2b047]/45 shadow-2xl backdrop-blur-md z-20">
+        {/* Desktop Overlay Card (Hidden on < sm so map stays 100% visible) */}
+        <div className="hidden sm:block absolute top-3 left-3 max-w-[290px] p-3.5 rounded-xl bg-[#12141c]/95 border border-[#e2b047]/45 shadow-2xl backdrop-blur-md z-20">
           <div className="flex items-center justify-between mb-1.5">
             <span className="text-[10px] font-mono font-bold text-[#e2b047] uppercase tracking-wider flex items-center gap-1">
               <CheckCircle2 className="w-3 h-3 text-[#e2b047]" />
@@ -593,6 +593,19 @@ function PinDropMapScreen({ client }: { client: ClientArchitecture }) {
             <div className="text-emerald-400 font-bold">5-Star SMS Sent</div>
           </div>
         </div>
+      </div>
+
+      {/* Mobile Non-Overlapping Pin Summary Strip */}
+      <div className="sm:hidden p-3 bg-[#12141c] border-t border-white/10 flex items-center justify-between gap-2">
+        <div className="min-w-0">
+          <div className="text-[10px] font-mono font-bold text-[#e2b047] uppercase">
+            ✓ {activeLoc.name} • {activeLoc.crew}
+          </div>
+          <div className="text-xs font-bold text-white truncate">{activeLoc.tag}</div>
+        </div>
+        <span className="text-[9px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/30 shrink-0">
+          Indexed
+        </span>
       </div>
     </div>
   );
@@ -651,18 +664,18 @@ function CapsuleCRMScreen({ client }: { client: ClientArchitecture }) {
       ];
 
   return (
-    <div className="relative w-full h-full bg-[#0b0c10] flex flex-col overflow-hidden select-none p-4 font-sans">
+    <div className="relative w-full h-full bg-[#0b0c10] flex flex-col overflow-hidden select-none p-3.5 sm:p-4 font-sans">
       {/* CRM Header Bar */}
-      <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+      <div className="flex flex-wrap items-center justify-between gap-2 pb-2.5 mb-2.5 border-b border-white/10">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-lg bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center">
+          <div className="w-6 h-6 rounded-lg bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center shrink-0">
             <Database className="w-3.5 h-3.5 text-emerald-400" />
           </div>
           <div>
             <span className="text-xs font-black text-white uppercase tracking-wider">
               Capsule CRM Pipeline
             </span>
-            <span className="text-[10px] text-slate-400 font-mono ml-2">
+            <span className="text-[10px] text-slate-400 font-mono ml-1.5">
               • {client.shortName}
             </span>
           </div>
@@ -675,10 +688,10 @@ function CapsuleCRMScreen({ client }: { client: ClientArchitecture }) {
       </div>
 
       {/* Kanban Board Columns */}
-      <div className="grid grid-cols-3 gap-3 flex-1 overflow-hidden">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 flex-1 overflow-hidden">
         {columns.map((col, idx) => (
           <div key={idx} className="flex flex-col bg-[#12141c] rounded-xl p-2 border border-white/10">
-            <div className="flex items-center justify-between pb-1.5 mb-2 border-b border-white/10">
+            <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-white/10">
               <span className="text-[10px] font-mono font-bold text-slate-300 uppercase tracking-wider">
                 {col.name}
               </span>
@@ -693,11 +706,11 @@ function CapsuleCRMScreen({ client }: { client: ClientArchitecture }) {
                       : "border-white/10"
                   }`}
                 >
-                  <div className="flex items-center justify-between mb-1">
+                  <div className="flex items-center justify-between gap-2 mb-1">
                     <span className="text-xs font-black text-white truncate">
                       {deal.client}
                     </span>
-                    <span className="text-[10px] font-mono font-black text-amber-400">
+                    <span className="text-[10px] font-mono font-black text-amber-400 shrink-0">
                       {deal.val}
                     </span>
                   </div>
@@ -717,8 +730,8 @@ function CapsuleCRMScreen({ client }: { client: ClientArchitecture }) {
       {/* Real-time sync ticker at bottom */}
       <div className="mt-2.5 pt-2 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-slate-400">
         <span className="flex items-center gap-1 text-emerald-400 font-bold">
-          <CheckCircle2 className="w-3 h-3" />
-          Live Hook: Website Form ➔ Capsule Deal Created Instantly
+          <CheckCircle2 className="w-3 h-3 shrink-0" />
+          <span>Website Form ➔ Capsule Deal Instant</span>
         </span>
         <span className="text-amber-400 hidden sm:inline">0 Missed Inquiries</span>
       </div>
@@ -743,58 +756,60 @@ function TranspondWorkflowScreen({ client }: { client: ClientArchitecture }) {
       ];
 
   return (
-    <div className="relative w-full h-full bg-[#0b0c10] flex flex-col overflow-hidden select-none p-4 font-sans">
+    <div className="relative w-full h-full bg-[#0b0c10] flex flex-col overflow-hidden select-none p-3.5 sm:p-4 font-sans">
       {/* Workflow Header */}
-      <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+      <div className="flex flex-wrap items-center justify-between gap-2 pb-2.5 mb-2.5 border-b border-white/10">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-lg bg-amber-500/20 border border-amber-500/40 flex items-center justify-center">
+          <div className="w-6 h-6 rounded-lg bg-amber-500/20 border border-amber-500/40 flex items-center justify-center shrink-0">
             <Mail className="w-3.5 h-3.5 text-amber-400" />
           </div>
           <div>
             <span className="text-xs font-black text-white uppercase tracking-wider">
-              Transpond Automation Engine
+              Transpond Automation
             </span>
-            <span className="text-[10px] text-slate-400 font-mono ml-2">
+            <span className="text-[10px] text-slate-400 font-mono ml-1.5">
               • {client.shortName}
             </span>
           </div>
         </div>
         <span className="text-[10px] font-mono bg-amber-500/10 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded-full font-bold">
-          ⭐ 68% Review Conversion Rate
+          ⭐ 68% Review Conversion
         </span>
       </div>
 
       {/* Sequential Automation Nodes */}
-      <div className="grid grid-cols-4 gap-2 flex-1 items-center">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 flex-1 items-stretch">
         {steps.map((step, idx) => (
-          <div key={idx} className="relative flex flex-col h-full justify-between p-2.5 rounded-xl bg-[#12141c] border border-white/10 group hover:border-amber-400 transition-colors">
-            <div className="flex items-center justify-between mb-1">
-              <span className="w-5 h-5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-400 text-[10px] font-mono font-bold flex items-center justify-center">
-                {idx + 1}
-              </span>
-              <span className="text-[8px] font-mono uppercase text-slate-400 bg-white/5 px-1 py-0.5 rounded">
-                {step.time}
-              </span>
+          <div key={idx} className="relative flex flex-col justify-between p-2.5 rounded-xl bg-[#12141c] border border-white/10 group hover:border-amber-400 transition-colors">
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <span className="w-5 h-5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-400 text-[10px] font-mono font-bold flex items-center justify-center">
+                  {idx + 1}
+                </span>
+                <span className="text-[8px] font-mono uppercase text-slate-400 bg-white/5 px-1 py-0.5 rounded">
+                  {step.time}
+                </span>
+              </div>
+              <h6 className="text-[11px] font-black text-white leading-tight mb-1">
+                {step.title}
+              </h6>
+              <p className="text-[9px] text-slate-300 line-clamp-3 leading-relaxed">
+                {step.desc}
+              </p>
             </div>
-            <h6 className="text-[11px] font-black text-white leading-tight mb-1">
-              {step.title}
-            </h6>
-            <p className="text-[9px] text-slate-300 line-clamp-3 leading-relaxed">
-              {step.desc}
-            </p>
             <div className="mt-2 pt-1 border-t border-white/10 flex items-center gap-1 text-[8px] font-mono text-emerald-400 font-bold">
-              <CheckCircle2 className="w-2.5 h-2.5" /> Automated Active
+              <CheckCircle2 className="w-2.5 h-2.5 shrink-0" /> Active
             </div>
           </div>
         ))}
       </div>
 
       {/* Bottom KPI bar */}
-      <div className="mt-2.5 pt-2 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-slate-400">
+      <div className="mt-2.5 pt-2 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-[10px] font-mono text-slate-400">
         <span className="text-amber-400 font-bold">
           ⚡ 100% Leads Contacted in &lt; 2 mins
         </span>
-        <span className="text-slate-400">Automated SMS + Email Sequence Active</span>
+        <span className="text-slate-400 hidden sm:inline">Automated SMS + Email Sequence Active</span>
       </div>
     </div>
   );
@@ -948,7 +963,7 @@ function PhoneMockupFrame({
           </div>
 
           {/* Mobile Screen Glass (9:16 content - 100% Unobstructed Full Screen) */}
-          <div className="relative flex-1 w-full bg-slate-950 overflow-hidden">
+          <div className="relative flex-1 w-full bg-slate-950 overflow-y-auto overflow-x-hidden">
             <AnimatePresence mode="wait">
               <motion.div
                 key={`${client.id}-${selectedNode ? selectedNode.id : "mobile-home"}`}
@@ -956,7 +971,7 @@ function PhoneMockupFrame({
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 1.02 }}
                 transition={{ duration: 0.25 }}
-                className="absolute inset-0 w-full h-full"
+                className="relative min-h-full w-full h-full"
               >
                 {selectedNode && selectedNode.displayType && selectedNode.displayType !== "image" ? (
                   <SystemScreenRenderer client={client} node={selectedNode} />
@@ -1034,16 +1049,17 @@ export default function ConnectedArchitecture() {
         </div>
 
         {/* Client Selection Switcher Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12 max-w-4xl mx-auto p-1.5 rounded-2xl bg-slate-900/90 border border-white/10 backdrop-blur-xl shadow-2xl">
-          {clientArchitectures.map((client) => {
+        <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10 sm:mb-12 max-w-4xl mx-auto p-1.5 rounded-2xl bg-slate-900/90 border border-white/10 backdrop-blur-xl shadow-2xl">
+          {clientArchitectures.map((client, idx) => {
             const isActive = client.id === activeClient.id;
+            const isLastOdd = idx === clientArchitectures.length - 1 && clientArchitectures.length % 2 === 1;
             return (
               <button
                 key={client.id}
                 onClick={() => handleSelectClient(client)}
-                className={`flex-1 min-w-[140px] sm:min-w-0 px-4 py-3 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider transition-all duration-300 text-center relative ${
+                className={`${isLastOdd ? "col-span-2 sm:col-span-1" : ""} sm:flex-1 px-3 sm:px-4 py-3 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider transition-all duration-300 text-center relative cursor-pointer ${
                   isActive
-                    ? "bg-white text-slate-950 shadow-lg scale-[1.02]"
+                    ? "bg-white text-slate-950 shadow-lg"
                     : "text-slate-400 hover:text-white hover:bg-white/5"
                 }`}
               >
@@ -1057,17 +1073,17 @@ export default function ConnectedArchitecture() {
         </div>
 
         {/* --- Central System Schematic Diagram --- */}
-        <div className="rounded-3xl bg-slate-900/80 border border-white/15 p-6 md:p-10 backdrop-blur-2xl shadow-2xl relative">
+        <div className="rounded-3xl bg-slate-900/80 border border-white/15 p-4 sm:p-7 md:p-10 backdrop-blur-2xl shadow-2xl relative">
           
           {/* Active Client Info Banner */}
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-8 mb-8 border-b border-white/10">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-6 sm:pb-8 mb-6 sm:mb-8 border-b border-white/10">
             <div>
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-xs font-mono uppercase tracking-widest text-slate-400">
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-1.5">
+                <span className="text-[11px] sm:text-xs font-mono uppercase tracking-widest text-slate-400">
                   {activeClient.industry}
                 </span>
-                <span className="text-slate-600">•</span>
-                <span className="text-xs font-mono text-amber-400 font-bold">
+                <span className="text-slate-600 hidden sm:inline">•</span>
+                <span className="text-[11px] sm:text-xs font-mono text-amber-400 font-bold">
                   {activeClient.location}
                 </span>
               </div>
@@ -1076,27 +1092,27 @@ export default function ConnectedArchitecture() {
               </h3>
             </div>
 
-            <div className="flex items-center gap-3">
-              <span className="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-3 py-1.5 rounded-full border border-emerald-500/30">
+            <div className="flex flex-wrap items-center gap-2.5">
+              <span className="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-3 py-1.5 rounded-full border border-emerald-500/30 whitespace-nowrap">
                 ⚡ Speed: {activeClient.speedScore}
               </span>
               <a
                 href={activeClient.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/10 hover:bg-white hover:text-slate-950 text-white text-xs font-bold uppercase tracking-wider transition-all border border-white/15"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white hover:text-slate-950 text-white text-xs font-bold uppercase tracking-wider transition-all border border-white/15 whitespace-nowrap"
               >
                 <span>{activeClient.domain}</span>
-                <ExternalLink className="w-3.5 h-3.5" />
+                <ExternalLink className="w-3.5 h-3.5 shrink-0" />
               </a>
             </div>
           </div>
 
           {/* Interactive Schematic Grid (Central Engine + 4 Branching Integration Nodes) */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
             
             {/* Left Column: 2 Connected Nodes */}
-            <div className="lg:col-span-3 flex flex-col gap-4">
+            <div className="lg:col-span-3 flex flex-col gap-3.5 sm:gap-4">
               {activeClient.nodes.slice(0, 2).map((node) => {
                 const IconComponent = node.icon;
                 const isSelected = selectedNode?.id === node.id;
@@ -1104,19 +1120,19 @@ export default function ConnectedArchitecture() {
                   <button
                     key={node.id}
                     onClick={() => handleToggleNode(node)}
-                    className={`text-left p-5 rounded-2xl border transition-all duration-300 relative group ${
+                    className={`text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 relative group cursor-pointer ${
                       isSelected
-                        ? "bg-slate-800/90 border-amber-400 shadow-[0_0_25px_rgba(245,158,11,0.2)] scale-[1.02]"
+                        ? "bg-slate-800/90 border-amber-400 shadow-[0_0_25px_rgba(245,158,11,0.2)]"
                         : "bg-slate-950/60 border-white/10 hover:border-white/30 hover:bg-slate-900/60"
                     }`}
                   >
-                    <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center justify-between gap-2 mb-3">
                       <div
-                        className={`w-10 h-10 rounded-xl flex items-center justify-center border ${node.iconBg}`}
+                        className={`w-10 h-10 rounded-xl flex items-center justify-center border shrink-0 ${node.iconBg}`}
                       >
                         <IconComponent className={`w-5 h-5 ${node.iconColor}`} />
                       </div>
-                      <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-md bg-white/5 text-slate-400 border border-white/10">
+                      <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-md bg-white/5 text-slate-400 border border-white/10 truncate">
                         {node.badge}
                       </span>
                     </div>
@@ -1141,18 +1157,18 @@ export default function ConnectedArchitecture() {
               <div className="mb-4 flex flex-wrap items-center justify-center gap-2.5 w-full">
                 <button
                   onClick={() => setSelectedNode(null)}
-                  className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold transition-all duration-300 border cursor-pointer ${
+                  className={`inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full text-[11px] sm:text-xs font-mono font-bold transition-all duration-300 border cursor-pointer ${
                     selectedNode === null
-                      ? "bg-amber-400 text-slate-950 border-amber-400 shadow-[0_0_18px_rgba(245,158,11,0.35)] scale-105"
+                      ? "bg-amber-400 text-slate-950 border-amber-400 shadow-[0_0_18px_rgba(245,158,11,0.35)]"
                       : "bg-slate-900/90 hover:bg-slate-800 text-slate-300 hover:text-white border-white/15 hover:border-amber-400/50 hover:shadow-lg"
                   }`}
                 >
-                  <Home className="w-3.5 h-3.5" />
-                  <span>{selectedNode === null ? "Currently Viewing: Core Homepage" : "← Return to Core Homepage"}</span>
+                  <Home className="w-3.5 h-3.5 shrink-0" />
+                  <span>{selectedNode === null ? "Viewing: Core Homepage" : "← Return to Core Homepage"}</span>
                   {selectedNode === null ? (
-                    <span className="w-1.5 h-1.5 rounded-full bg-slate-950 animate-ping" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-slate-950 animate-ping shrink-0" />
                   ) : (
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse shrink-0" />
                   )}
                 </button>
 
@@ -1185,41 +1201,63 @@ export default function ConnectedArchitecture() {
 
               {/* Conditional Viewport Frame: 9:16 Smartphone Chassis vs 16:10 Desktop Browser Frame */}
               {deviceMode === "mobile" ? (
-                <PhoneMockupFrame client={activeClient} selectedNode={selectedNode} />
+                <div className="w-full space-y-3">
+                  <PhoneMockupFrame client={activeClient} selectedNode={selectedNode} />
+                  <div className="p-4 rounded-2xl bg-slate-950/95 border border-amber-500/35 shadow-xl">
+                    <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
+                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1">
+                        <CheckCircle2 className="w-3 h-3 text-amber-400 shrink-0" />
+                        {selectedNode ? `Selected Feature: ${selectedNode.title}` : `Central Hub: ${activeClient.name}`}
+                      </span>
+                      <span className="text-[10px] font-mono text-amber-300 font-bold">
+                        {selectedNode ? selectedNode.techTag : activeClient.industry}
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-200 leading-relaxed">
+                      {selectedNode ? selectedNode.description : activeClient.summary}
+                    </p>
+                  </div>
+                </div>
               ) : (
                 <div className="w-full rounded-2xl bg-slate-950 border border-white/20 overflow-hidden shadow-2xl relative group">
                   {/* Browser Bar */}
-                  <div className="flex items-center justify-between px-4 py-3 bg-slate-950 border-b border-white/10">
-                    <div className="flex items-center gap-1.5 min-w-0">
+                  <div className="flex items-center justify-between gap-2 px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-950 border-b border-white/10">
+                    <div className="flex items-center gap-1.5 min-w-0 flex-1">
                       <span className="w-2.5 h-2.5 rounded-full bg-red-500/80 shrink-0" />
                       <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80 shrink-0" />
                       <span className="w-2.5 h-2.5 rounded-full bg-green-500/80 shrink-0" />
-                      <div className="flex items-center gap-1 ml-2 px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-xs font-mono truncate">
-                        <span className="text-slate-400">
-                          https://{selectedNode ? (selectedNode.displayType === "capsule-crm" ? "app.capsulecrm.com" : selectedNode.displayType === "transpond-flow" ? "transpond.io" : selectedNode.displayType === "google-schema" ? "google.com" : activeClient.domain) : activeClient.domain}
+                      <div className="flex items-center gap-1 ml-1.5 sm:ml-2 px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-[11px] sm:text-xs font-mono min-w-0 truncate">
+                        <span className="text-slate-300 truncate">
+                          {selectedNode ? (selectedNode.displayType === "capsule-crm" ? "app.capsulecrm.com" : selectedNode.displayType === "transpond-flow" ? "transpond.io" : selectedNode.displayType === "google-schema" ? "google.com" : activeClient.domain) : activeClient.domain}
                         </span>
-                        <span className="text-amber-400 font-bold">
+                        <span className="text-amber-400 font-bold shrink-0">
                           {selectedNode ? selectedNode.pagePath : "/"}
                         </span>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 shrink-0 ml-2">
+                    <div className="flex items-center gap-2 shrink-0">
                       {selectedNode && (
                         <button
                           onClick={() => setSelectedNode(null)}
-                          className="text-[9px] font-mono text-slate-300 hover:text-white px-2 py-0.5 rounded bg-white/10 hover:bg-white/20 border border-white/15 transition-all cursor-pointer"
+                          className="text-[9px] font-mono text-slate-300 hover:text-white px-2 py-0.5 rounded bg-white/10 hover:bg-white/20 border border-white/15 transition-all cursor-pointer whitespace-nowrap"
                         >
-                          ← View Homepage
+                          ← Hub
                         </button>
                       )}
-                      <span className="text-[10px] font-mono font-bold text-amber-400 uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30">
+                      <span className="hidden sm:inline-flex text-[10px] font-mono font-bold text-amber-400 uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30">
                         {selectedNode ? selectedNode.badge : "Central Hub"}
                       </span>
                     </div>
                   </div>
 
-                  {/* Screenshot / System View Display with Dynamic Inspection Overlay */}
-                  <div className="relative w-full aspect-[16/10] bg-slate-900 overflow-hidden">
+                  {/* 100% Unobstructed Screenshot / Live System View Display */}
+                  <div
+                    className={`relative w-full bg-slate-900 overflow-hidden ${
+                      selectedNode && selectedNode.displayType && selectedNode.displayType !== "image"
+                        ? "min-h-[260px] sm:aspect-[16/10]"
+                        : "aspect-[16/10]"
+                    }`}
+                  >
                     <AnimatePresence mode="wait">
                       <motion.div
                         key={`${activeClient.id}-${selectedNode ? selectedNode.id : "homepage"}`}
@@ -1227,7 +1265,11 @@ export default function ConnectedArchitecture() {
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 1.01 }}
                         transition={{ duration: 0.35, ease: "easeOut" }}
-                        className="absolute inset-0 w-full h-full"
+                        className={
+                          selectedNode && selectedNode.displayType && selectedNode.displayType !== "image"
+                            ? "relative sm:absolute sm:inset-0 w-full h-full"
+                            : "absolute inset-0 w-full h-full"
+                        }
                       >
                         {selectedNode ? (
                           <SystemScreenRenderer
@@ -1239,43 +1281,43 @@ export default function ConnectedArchitecture() {
                             src={activeClient.heroImage}
                             alt={`${activeClient.name} - Homepage Hub`}
                             fill
+                            sizes="(max-width: 1024px) 94vw, 640px"
                             className="object-cover object-top"
                             priority
                           />
                         )}
                       </motion.div>
                     </AnimatePresence>
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none" />
+                  </div>
 
-                    {/* Active Highlight Spotlight Pill */}
-                    <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-slate-950/90 border border-amber-500/40 backdrop-blur-md shadow-2xl">
-                      <div className="flex items-center justify-between gap-2 mb-1">
-                        <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1">
-                          <CheckCircle2 className="w-3 h-3 text-amber-400" />
-                          {selectedNode ? `Selected Feature: ${selectedNode.title}` : `Central Hub: ${activeClient.name}`}
-                        </span>
-                        <span className="text-[10px] font-mono text-amber-300 font-bold">
-                          {selectedNode ? selectedNode.techTag : `${activeClient.industry}`}
-                        </span>
-                      </div>
-                      <p className="text-xs text-white leading-relaxed">
-                        {selectedNode ? selectedNode.description : activeClient.summary}
-                      </p>
+                  {/* Clean Non-Overlapping Architecture Summary Dock Below Screenshot */}
+                  <div className="p-3.5 sm:p-4 bg-slate-950 border-t border-white/10">
+                    <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
+                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1">
+                        <CheckCircle2 className="w-3 h-3 text-amber-400 shrink-0" />
+                        {selectedNode ? `Selected Feature: ${selectedNode.title}` : `Central Hub: ${activeClient.name}`}
+                      </span>
+                      <span className="text-[10px] font-mono text-amber-300 font-bold">
+                        {selectedNode ? selectedNode.techTag : activeClient.industry}
+                      </span>
                     </div>
+                    <p className="text-xs text-slate-200 leading-relaxed">
+                      {selectedNode ? selectedNode.description : activeClient.summary}
+                    </p>
                   </div>
                 </div>
               )}
 
-              <div className="mt-4 flex items-center justify-center gap-2 text-xs text-slate-400">
-                <Layers className="w-3.5 h-3.5 text-amber-400" />
+              <div className="mt-4 flex items-center justify-center gap-2 text-xs text-slate-400 text-center">
+                <Layers className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                 <span>
-                  {selectedNode ? "Click card again or 'View Homepage' to return to core hub" : "Click any integration card to inspect its live system & pages"}
+                  {selectedNode ? "Tap card again or 'Return to Core Homepage' to view hub" : "Tap any integration card to inspect its live system & pages"}
                 </span>
               </div>
             </div>
 
             {/* Right Column: 2 Connected Nodes */}
-            <div className="lg:col-span-3 flex flex-col gap-4">
+            <div className="lg:col-span-3 flex flex-col gap-3.5 sm:gap-4">
               {activeClient.nodes.slice(2, 4).map((node) => {
                 const IconComponent = node.icon;
                 const isSelected = selectedNode?.id === node.id;
@@ -1283,19 +1325,19 @@ export default function ConnectedArchitecture() {
                   <button
                     key={node.id}
                     onClick={() => handleToggleNode(node)}
-                    className={`text-left p-5 rounded-2xl border transition-all duration-300 relative group ${
+                    className={`text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 relative group cursor-pointer ${
                       isSelected
-                        ? "bg-slate-800/90 border-amber-400 shadow-[0_0_25px_rgba(245,158,11,0.2)] scale-[1.02]"
+                        ? "bg-slate-800/90 border-amber-400 shadow-[0_0_25px_rgba(245,158,11,0.2)]"
                         : "bg-slate-950/60 border-white/10 hover:border-white/30 hover:bg-slate-900/60"
                     }`}
                   >
-                    <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center justify-between gap-2 mb-3">
                       <div
-                        className={`w-10 h-10 rounded-xl flex items-center justify-center border ${node.iconBg}`}
+                        className={`w-10 h-10 rounded-xl flex items-center justify-center border shrink-0 ${node.iconBg}`}
                       >
                         <IconComponent className={`w-5 h-5 ${node.iconColor}`} />
                       </div>
-                      <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-md bg-white/5 text-slate-400 border border-white/10">
+                      <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-md bg-white/5 text-slate-400 border border-white/10 truncate">
                         {node.badge}
                       </span>
                     </div>
@@ -1318,8 +1360,8 @@ export default function ConnectedArchitecture() {
 
           {/* Testimonial Banner if present for this client */}
           {activeClient.testimonial && (
-            <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white/[0.02] p-5 rounded-2xl border border-white/5">
-              <div className="flex items-center gap-3">
+            <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white/[0.02] p-4 sm:p-5 rounded-2xl border border-white/5">
+              <div className="flex flex-wrap items-center gap-3">
                 <div className="flex items-center gap-1 text-amber-400">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
@@ -1332,7 +1374,7 @@ export default function ConnectedArchitecture() {
                     <span className="text-[#1877F2] font-black">Facebook Review</span>
                   )}
                 </span>
-                <p className="text-xs italic text-white/90 hidden md:block">
+                <p className="text-xs italic text-white/90">
                   &ldquo;{activeClient.testimonial.quote}&rdquo;
                 </p>
               </div>
@@ -1346,20 +1388,20 @@ export default function ConnectedArchitecture() {
           )}
 
           {/* Bottom Action Ribbon */}
-          <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="text-xs text-slate-400">
               Need custom Square checkout, CRM sync, or field software for your business?
             </div>
-            <div className="flex items-center gap-3 w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full sm:w-auto">
               <Link
                 href={`/portfolio/${activeClient.caseStudySlug || activeClient.id}`}
-                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold uppercase tracking-wider transition-colors border border-white/15 text-center"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold uppercase tracking-wider transition-colors border border-white/15 text-center whitespace-nowrap"
               >
                 Deep-Dive Case Study <ArrowRight className="w-3.5 h-3.5" />
               </Link>
               <Link
                 href="/book"
-                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black uppercase tracking-wider transition-all shadow-lg active:scale-95 text-center"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black uppercase tracking-wider transition-all shadow-lg active:scale-95 text-center whitespace-nowrap"
               >
                 Build My System
               </Link>

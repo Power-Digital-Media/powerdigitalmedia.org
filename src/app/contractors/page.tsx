@@ -223,11 +223,11 @@ export default function ContractorsPage() {
           {/* Right: Visual Contractor Proof Card */}
           <div className="lg:col-span-5">
             <div className="obsidian-surface rounded-3xl overflow-hidden">
-              <div className="px-5 py-3.5 bg-[#070a12] border-b border-white/10 flex items-center justify-between text-xs font-mono">
+              <div className="px-4 sm:px-5 py-3 bg-[#070a12] border-b border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
                 <span className="text-amber-300 font-bold">FIELD-TO-PHONE SYSTEM</span>
                 <span className="text-emerald-400">● JACKSON METRO LIVE</span>
               </div>
-              <div className="relative aspect-[4/3] w-full bg-[#06080f]">
+              <div className="relative aspect-[16/10] w-full bg-[#06080f]">
                 <Image
                   src="/pincam/roof-after.jpg"
                   alt="Completed Madison MS architectural shingle roof captured with PinCam and synced to Google via PinDrop"
@@ -236,17 +236,17 @@ export default function ContractorsPage() {
                   sizes="(max-width: 1024px) 100vw, 480px"
                   className="object-cover"
                 />
-                <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-[#06080f] via-[#06080f]/85 to-transparent">
-                  <div className="flex items-center justify-between text-xs font-mono text-amber-300 mb-1">
-                    <span>PINCAM™ + PINDROP™ VERIFIED</span>
-                    <span>98/100 SPEED</span>
-                  </div>
-                  <p className="text-sm font-bold text-white">
-                    Every completed job becomes a permanent neighborhood billboard on Google Search &amp; Maps.
-                  </p>
-                </div>
               </div>
-              <div className="p-5 grid grid-cols-2 gap-3 bg-[#080c16] border-t border-white/10 text-xs">
+              <div className="p-4 sm:p-5 bg-[#090d16] border-t border-white/10 space-y-1.5">
+                <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono text-amber-300">
+                  <span>PINCAM™ + PINDROP™ VERIFIED</span>
+                  <span className="text-emerald-400 font-bold">98/100 SPEED</span>
+                </div>
+                <p className="text-xs sm:text-sm font-bold text-white leading-snug">
+                  Every completed job becomes a permanent neighborhood billboard on Google Search &amp; Maps.
+                </p>
+              </div>
+              <div className="p-4 sm:p-5 grid grid-cols-1 sm:grid-cols-2 gap-2.5 bg-[#080c16] border-t border-white/10 text-xs">
                 <Link
                   href="/pincam"
                   className="p-3 rounded-xl bg-white/[0.04] hover:bg-amber-500/15 border border-white/10 hover:border-amber-400/40 transition-all flex items-center justify-between font-bold text-white"

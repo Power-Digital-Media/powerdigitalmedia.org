@@ -74,7 +74,7 @@ export default function BlogPage() {
       {/* Free Audit + Newsletter Strip */}
       <section className="py-20 bg-[#0b0c10] border-t border-white/10 relative z-10">
         <div className="container px-4 sm:px-6 mx-auto max-w-5xl">
-          <div className="grid gap-10 lg:grid-cols-2 items-center p-8 sm:p-10 rounded-3xl bg-[#12141c] border border-white/10">
+          <div className="grid gap-8 sm:gap-10 lg:grid-cols-2 items-center p-5 sm:p-10 rounded-3xl bg-[#12141c] border border-white/10">
             <div className="space-y-4">
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-amber-400">
                 Want Us to Check Your Site?
@@ -93,7 +93,7 @@ export default function BlogPage() {
               </Link>
             </div>
 
-            <div className="p-6 rounded-2xl bg-[#0b0c10] border border-white/10 space-y-4">
+            <div className="p-4 sm:p-6 rounded-2xl bg-[#0b0c10] border border-white/10 space-y-4">
               <h3 className="text-lg font-bold text-white">Get New Playbooks by Email</h3>
               <p className="text-xs text-slate-400 leading-relaxed">
                 Zero spam—just actionable breakdowns on Google Maps rankings, jobsite SEO, and website conversions.

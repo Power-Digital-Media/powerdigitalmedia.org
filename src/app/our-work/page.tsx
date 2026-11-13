@@ -141,13 +141,13 @@ export default function OurWorkPage() {
                             return (
                                 <div
                                     key={site.id}
-                                    className="group relative rounded-3xl border border-white/10 bg-[#0b0c10] p-6 flex flex-col justify-between hover:border-amber-500/40 transition-all duration-300 shadow-2xl overflow-hidden"
+                                    className="group relative rounded-3xl border border-white/10 bg-[#0b0c10] p-4 sm:p-6 flex flex-col justify-between hover:border-amber-500/40 transition-all duration-300 shadow-2xl overflow-hidden"
                                 >
                                     <div>
                                         {/* Browser Frame */}
-                                        <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden border border-white/10 bg-[#06080f] mb-6">
+                                        <div className="w-full rounded-2xl overflow-hidden border border-white/10 bg-[#06080f] mb-5 sm:mb-6">
                                             <div className="flex items-center gap-1.5 px-3 py-2 bg-[#12141c] border-b border-white/[0.08]">
-                                                <div className="flex gap-1">
+                                                <div className="flex gap-1 shrink-0">
                                                     <span className="w-2 h-2 rounded-full bg-red-500/80" />
                                                     <span className="w-2 h-2 rounded-full bg-yellow-500/80" />
                                                     <span className="w-2 h-2 rounded-full bg-green-500/80" />
@@ -156,7 +156,7 @@ export default function OurWorkPage() {
                                                     {site.domain}
                                                 </span>
                                             </div>
-                                            <div className="relative w-full h-[calc(100%-26px)]">
+                                            <div className="relative aspect-[16/10] w-full">
                                                 <Image
                                                     src={screenshot}
                                                     alt={`${site.title} screenshot`}
@@ -200,14 +200,20 @@ export default function OurWorkPage() {
                                     </div>
 
                                     {/* Dual Action Footer */}
-                                    <div className="mt-auto pt-4 border-t border-white/[0.08] flex items-center gap-2.5">
+                                    <div
+                                        className={`mt-auto pt-4 border-t border-white/[0.08] ${
+                                            site.caseStudyUrl
+                                                ? "grid grid-cols-1 sm:grid-cols-2 gap-2.5"
+                                                : "flex"
+                                        }`}
+                                    >
                                         {site.caseStudyUrl && (
                                             <Link
                                                 href={site.caseStudyUrl}
-                                                className="flex-1 inline-flex items-center justify-center gap-1.5 py-3 px-4 bg-amber-500 hover:bg-amber-400 text-[#06080f] text-xs font-black uppercase tracking-wider rounded-xl transition-all"
+                                                className="inline-flex items-center justify-center gap-1.5 py-3 px-4 bg-amber-500 hover:bg-amber-400 text-[#06080f] text-xs font-black uppercase tracking-wider rounded-xl transition-all whitespace-nowrap"
                                             >
                                                 Case Study
-                                                <ArrowRight className="w-3.5 h-3.5" />
+                                                <ArrowRight className="w-3.5 h-3.5 shrink-0" />
                                             </Link>
                                         )}
 
@@ -218,20 +224,20 @@ export default function OurWorkPage() {
                                                 rel="noopener noreferrer"
                                                 className={`${
                                                     site.caseStudyUrl ? "" : "w-full"
-                                                } inline-flex items-center justify-center gap-1.5 py-3 px-4 bg-[#12141c] hover:bg-white/10 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all border border-white/10`}
+                                                } inline-flex items-center justify-center gap-1.5 py-3 px-4 bg-[#12141c] hover:bg-white/10 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all border border-white/10 whitespace-nowrap`}
                                             >
                                                 Live Site
-                                                <ExternalLink className="w-3.5 h-3.5 text-amber-400" />
+                                                <ExternalLink className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                                             </a>
                                         ) : (
                                             <Link
                                                 href={site.url}
                                                 className={`${
                                                     site.caseStudyUrl ? "" : "w-full"
-                                                } inline-flex items-center justify-center gap-1.5 py-3 px-4 bg-[#12141c] hover:bg-white/10 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all border border-white/10`}
+                                                } inline-flex items-center justify-center gap-1.5 py-3 px-4 bg-[#12141c] hover:bg-white/10 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all border border-white/10 whitespace-nowrap`}
                                             >
                                                 Interactive Demo
-                                                <ArrowRight className="w-3.5 h-3.5 text-amber-400" />
+                                                <ArrowRight className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                                             </Link>
                                         )}
                                     </div>

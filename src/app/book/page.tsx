@@ -232,7 +232,7 @@ function BookPageContent() {
                                     animate={{ opacity: 1, x: 0 }}
                                     exit={{ opacity: 0, x: 20 }}
                                     transition={{ duration: 0.35 }}
-                                    className="p-7 sm:p-10 rounded-3xl bg-[#0b0c10] border border-white/10 shadow-2xl"
+                                    className="p-5 sm:p-10 rounded-3xl bg-[#0b0c10] border border-white/10 shadow-2xl"
                                 >
                                     <h2 className="text-xl font-black uppercase tracking-tight mb-6 flex items-center gap-2.5 text-white">
                                         <Sparkles className="w-5 h-5 text-amber-400" />

@@ -41,10 +41,10 @@ export default function ProjectShowcaseClient({ project }: { project: Project })
     return (
         <main className="relative min-h-screen bg-[#06080f] text-white overflow-x-hidden">
             {/* Presentation Header */}
-            <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 md:px-8 py-4 bg-[#06080f]/92 backdrop-blur-xl border-b border-white/[0.08]">
+            <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between gap-2 px-3.5 sm:px-6 md:px-8 py-3 bg-[#06080f]/95 backdrop-blur-xl border-b border-white/[0.08]">
                 <Link
                     href="/our-work"
-                    className="group flex items-center gap-2 md:gap-3 text-xs font-bold uppercase tracking-wider text-slate-200 hover:text-amber-400 transition-colors"
+                    className="group shrink-0 flex items-center gap-2 md:gap-3 text-xs font-bold uppercase tracking-wider text-slate-200 hover:text-amber-400 transition-colors"
                 >
                     <div className="w-8 h-8 md:w-9 md:h-9 rounded-xl border border-white/10 flex items-center justify-center group-hover:border-amber-400 transition-colors bg-[#12141c]">
                         <ArrowLeft className="w-4 h-4" />
@@ -53,61 +53,61 @@ export default function ProjectShowcaseClient({ project }: { project: Project })
                     <span className="sm:hidden">Back</span>
                 </Link>
 
-                <div className="flex flex-col items-center px-2">
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-[0.18em] text-amber-400 mb-0.5 text-center">
+                <div className="flex flex-col items-center min-w-0 flex-1 px-1">
+                    <span className="text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-[0.16em] text-amber-400 mb-0.5 text-center truncate max-w-full">
                         {project.client}
                     </span>
-                    <h1 className="text-xs md:text-sm font-black uppercase tracking-tight text-center text-white line-clamp-1">
+                    <h1 className="text-xs md:text-sm font-black uppercase tracking-tight text-center text-white truncate max-w-full">
                         {project.title}
                     </h1>
                 </div>
 
-                <div className="flex items-center gap-2.5">
+                <div className="flex items-center gap-2 shrink-0">
                     {hasExternalUrl ? (
                         <a
                             href={project.netlifyUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-[#06080f] text-xs font-black uppercase tracking-wider transition-colors"
+                            className="inline-flex items-center gap-1.5 whitespace-nowrap px-3 sm:px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-[#06080f] text-[11px] sm:text-xs font-black uppercase tracking-wider transition-colors"
                         >
                             <span>Visit Site</span>
-                            <ExternalLink className="w-3.5 h-3.5" />
+                            <ExternalLink className="w-3.5 h-3.5 shrink-0" />
                         </a>
                     ) : hasInternalUrl && project.netlifyUrl ? (
                         <Link
                             href={project.netlifyUrl}
-                            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-[#06080f] text-xs font-black uppercase tracking-wider transition-colors"
+                            className="inline-flex items-center gap-1.5 whitespace-nowrap px-3 sm:px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-[#06080f] text-[11px] sm:text-xs font-black uppercase tracking-wider transition-colors"
                         >
-                            <span>Explore App</span>
-                            <ArrowRight className="w-3.5 h-3.5" />
+                            <span>Open App</span>
+                            <ArrowRight className="w-3.5 h-3.5 shrink-0" />
                         </Link>
                     ) : null}
                 </div>
             </header>
 
             {/* Main Content */}
-            <div className="pt-28 md:pt-32 pb-24 container mx-auto px-4 lg:px-12 max-w-6xl">
+            <div className="pt-24 sm:pt-28 md:pt-32 pb-24 container mx-auto px-4 lg:px-12 max-w-6xl">
                 {/* 1. Interactive Hero Browser Frame */}
                 <motion.div
                     initial={{ opacity: 0, y: 24 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="mb-16"
+                    className="mb-14 sm:mb-16"
                 >
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-3 px-1">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-3 px-0.5">
                         {canEmbed ? (
-                            <div className="flex items-center gap-2.5 text-xs font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-4 py-1.5 rounded-full">
-                                <span className="relative flex h-2.5 w-2.5">
+                            <div className="flex items-center gap-2 text-[11px] sm:text-xs font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-3.5 py-1.5 rounded-full">
+                                <span className="relative flex h-2 w-2 shrink-0">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                                 </span>
                                 <span>
-                                    Live Interactive Client Build &bull; Scroll &amp; Click Directly Below
+                                    Live Interactive Client Build &bull; Scroll &amp; Tap Below
                                 </span>
                             </div>
                         ) : (
-                            <div className="flex items-center gap-2 text-xs font-mono font-bold text-amber-300 bg-amber-500/10 border border-amber-500/25 px-4 py-1.5 rounded-full">
-                                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                            <div className="flex items-center gap-2 text-[11px] sm:text-xs font-mono font-bold text-amber-300 bg-amber-500/10 border border-amber-500/25 px-3.5 py-1.5 rounded-full">
+                                <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                                 <span>Verified Production Deployment Showcase</span>
                             </div>
                         )}
@@ -117,7 +117,7 @@ export default function ProjectShowcaseClient({ project }: { project: Project })
                                 <button
                                     type="button"
                                     onClick={() => setViewMode("interactive")}
-                                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                                         viewMode === "interactive"
                                             ? "bg-amber-500 text-[#06080f]"
                                             : "text-slate-400 hover:text-white"
@@ -129,7 +129,7 @@ export default function ProjectShowcaseClient({ project }: { project: Project })
                                 <button
                                     type="button"
                                     onClick={() => setViewMode("screenshot")}
-                                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                                         viewMode === "screenshot"
                                             ? "bg-[#12141c] text-white border border-white/15"
                                             : "text-slate-400 hover:text-white"
@@ -161,21 +161,21 @@ export default function ProjectShowcaseClient({ project }: { project: Project })
                     </div>
 
                     {/* Browser Container */}
-                    <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl border border-white/15 bg-[#0b0c10]">
-                        <div className="flex items-center justify-between px-4 py-3 bg-[#12141c] border-b border-white/[0.08]">
-                            <div className="flex items-center gap-2">
-                                <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block" />
-                                <span className="w-3 h-3 rounded-full bg-yellow-500/80 inline-block" />
-                                <span className="w-3 h-3 rounded-full bg-green-500/80 inline-block" />
+                    <div className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-white/15 bg-[#0b0c10]">
+                        <div className="flex items-center justify-between gap-2 px-3.5 sm:px-4 py-2.5 sm:py-3 bg-[#12141c] border-b border-white/[0.08]">
+                            <div className="flex items-center gap-1.5 shrink-0">
+                                <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500/80 inline-block" />
+                                <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500/80 inline-block" />
+                                <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500/80 inline-block" />
                             </div>
 
-                            <div className="flex items-center gap-2 px-4 py-1 rounded-full bg-[#06080f] border border-white/10 text-xs text-slate-300 font-mono max-w-md w-full justify-center truncate">
+                            <div className="flex items-center gap-1.5 px-3 sm:px-4 py-1 rounded-full bg-[#06080f] border border-white/10 text-[11px] sm:text-xs text-slate-300 font-mono max-w-md min-w-0 flex-1 justify-center">
                                 <Lock className="w-3 h-3 text-emerald-400 shrink-0" />
-                                <span className="text-slate-500">https://</span>
+                                <span className="text-slate-500 hidden sm:inline">https://</span>
                                 <span className="text-white font-semibold truncate">{displayUrl}</span>
                             </div>
 
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1.5 shrink-0">
                                 {canEmbed && (
                                     <button
                                         type="button"
@@ -185,7 +185,7 @@ export default function ProjectShowcaseClient({ project }: { project: Project })
                                         }}
                                         title="Reload Live Site"
                                         aria-label="Reload Live Site"
-                                        className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
+                                        className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
                                     >
                                         <RotateCw className="w-3.5 h-3.5" />
                                     </button>
@@ -205,27 +205,37 @@ export default function ProjectShowcaseClient({ project }: { project: Project })
                             </div>
                         </div>
 
-                        <div className="relative w-full h-[500px] sm:h-[620px] md:h-[700px] bg-[#06080f]">
-                            <Image
-                                src={project.image}
-                                alt={project.title}
-                                fill
-                                className="object-cover object-top"
-                                priority
-                            />
-                            {viewMode === "interactive" && canEmbed && (
+                        {viewMode === "interactive" && canEmbed ? (
+                            <div className="relative w-full h-[540px] sm:h-[620px] md:h-[700px] bg-[#06080f]">
+                                {!iframeLoaded && (
+                                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[#06080f] text-slate-400 text-xs font-mono">
+                                        <RotateCw className="w-5 h-5 text-amber-400 animate-spin" />
+                                        <span>Loading live interactive build ({displayUrl})...</span>
+                                    </div>
+                                )}
                                 <iframe
                                     key={iframeKey}
                                     src={project.netlifyUrl}
                                     title={`${project.title} Live Preview`}
                                     onLoad={() => setIframeLoaded(true)}
-                                    className={`relative z-10 w-full h-full border-0 transition-opacity duration-500 ${
-                                        iframeLoaded ? "opacity-100 bg-[#06080f]" : "opacity-0"
+                                    className={`relative z-10 w-full h-full border-0 bg-[#06080f] transition-opacity duration-300 ${
+                                        iframeLoaded ? "opacity-100" : "opacity-0"
                                     }`}
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; payment"
                                 />
-                            )}
-                        </div>
+                            </div>
+                        ) : (
+                            <div className="relative w-full aspect-[16/10] bg-[#06080f]">
+                                <Image
+                                    src={project.image}
+                                    alt={project.title}
+                                    fill
+                                    sizes="(max-width: 1024px) 96vw, 1152px"
+                                    className="object-cover object-top"
+                                    priority
+                                />
+                            </div>
+                        )}
                     </div>
                 </motion.div>
 
@@ -302,7 +312,7 @@ export default function ProjectShowcaseClient({ project }: { project: Project })
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="mb-20 rounded-3xl bg-[#0b0c10] border border-amber-500/35 p-6 md:p-10 shadow-2xl relative overflow-hidden"
+                        className="mb-20 rounded-3xl bg-[#0b0c10] border border-amber-500/35 p-5 sm:p-8 md:p-10 shadow-2xl relative overflow-hidden"
                     >
                         <div className="absolute top-0 right-0 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -431,16 +441,18 @@ export default function ProjectShowcaseClient({ project }: { project: Project })
 
                 {/* 5. Testimonial */}
                 {project.testimonial && (
-                    <div className="mb-16 p-8 md:p-12 rounded-3xl bg-[#12141c] border border-amber-500/30 shadow-2xl">
-                        <div className="flex items-center gap-1 mb-5">
-                            {[...Array(project.testimonial.stars || 5)].map((_, i) => (
-                                <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
-                            ))}
-                            <span className="ml-2 px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/25 text-[10px] font-mono text-amber-300 font-bold uppercase tracking-wider">
+                    <div className="mb-16 p-5 sm:p-8 md:p-12 rounded-3xl bg-[#12141c] border border-amber-500/30 shadow-2xl">
+                        <div className="flex flex-wrap items-center gap-2 mb-5">
+                            <div className="flex items-center gap-1">
+                                {[...Array(project.testimonial.stars || 5)].map((_, i) => (
+                                    <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+                                ))}
+                            </div>
+                            <span className="px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/25 text-[10px] font-mono text-amber-300 font-bold uppercase tracking-wider">
                                 Verified {project.testimonial.source || "Client"} Review
                             </span>
                         </div>
-                        <blockquote className="text-lg md:text-xl text-white font-medium italic leading-relaxed mb-6">
+                        <blockquote className="text-base sm:text-lg md:text-xl text-white font-medium italic leading-relaxed mb-6">
                             &ldquo;{project.testimonial.quote}&rdquo;
                         </blockquote>
                         <div>
@@ -453,7 +465,7 @@ export default function ProjectShowcaseClient({ project }: { project: Project })
                 )}
 
                 {/* Inline Conversion CTA */}
-                <div className="p-8 md:p-12 rounded-3xl bg-[#12141c] border border-amber-500/35 text-center">
+                <div className="p-6 sm:p-8 md:p-12 rounded-3xl bg-[#12141c] border border-amber-500/35 text-center">
                     <h3 className="text-2xl md:text-4xl font-black uppercase tracking-tight text-white mb-3">
                         Want Results Like {project.title}?
                     </h3>

@@ -87,13 +87,14 @@ export default function PinCamInteractiveStage() {
     <div className="w-full">
       {/* Interactive Feature Tab Selector */}
       <div
-        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 mb-8"
+        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 mb-7 sm:mb-8"
         role="tablist"
         aria-label="PinCam interactive app features"
       >
-        {TABS.map((tab) => {
+        {TABS.map((tab, idx) => {
           const Icon = tab.icon;
           const active = activeTab === tab.id;
+          const isLast = idx === TABS.length - 1;
           return (
             <button
               key={tab.id}
@@ -101,13 +102,15 @@ export default function PinCamInteractiveStage() {
               role="tab"
               aria-selected={active}
               onClick={() => setActiveTab(tab.id)}
-              className={`text-left p-4 rounded-2xl border transition-all cursor-pointer ${
+              className={`text-left p-3.5 sm:p-4 rounded-2xl border transition-all cursor-pointer ${
+                isLast ? "col-span-2 sm:col-span-1" : ""
+              } ${
                 active
                   ? "bg-[#0e1424] border-amber-400 shadow-[0_0_30px_rgba(245,158,11,0.18)]"
                   : "bg-[#080c16]/85 border-white/10 hover:border-white/25"
               }`}
             >
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center justify-between mb-1.5 sm:mb-2">
                 <span
                   className={`text-[10px] font-mono font-extrabold uppercase tracking-wider ${
                     active ? "text-amber-400" : "text-slate-500"
@@ -115,7 +118,7 @@ export default function PinCamInteractiveStage() {
                 >
                   {tab.badge}
                 </span>
-                <Icon className={`w-4 h-4 ${active ? "text-amber-400" : "text-slate-400"}`} />
+                <Icon className={`w-4 h-4 shrink-0 ${active ? "text-amber-400" : "text-slate-400"}`} />
               </div>
               <div className="text-xs sm:text-sm font-black text-white leading-tight">
                 {tab.label}
@@ -170,15 +173,15 @@ export default function PinCamInteractiveStage() {
             TAB 1: GHOST CAMERA PHOTO MATCH
         ================================================================ */}
         {activeTab === "ghost" && (
-          <div className="p-5 sm:p-8 lg:p-10 grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          <div className="p-4 sm:p-8 lg:p-10 grid lg:grid-cols-12 gap-7 sm:gap-8 lg:gap-10 items-center">
             <div className="lg:col-span-7 space-y-4">
               {/* Toggle between Live Ghost Viewfinder and Final Split Card */}
-              <div className="flex items-center justify-between gap-2">
+              <div className="flex flex-wrap items-center justify-between gap-2">
                 <div className="inline-flex p-1 rounded-xl bg-[#070a12] border border-white/10">
                   <button
                     type="button"
                     onClick={() => setViewMode("ghost_lens")}
-                    className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                    className={`px-2.5 sm:px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                       viewMode === "ghost_lens"
                         ? "bg-amber-400 text-slate-950"
                         : "text-slate-300 hover:text-white"
@@ -189,7 +192,7 @@ export default function PinCamInteractiveStage() {
                   <button
                     type="button"
                     onClick={() => setViewMode("split_compare")}
-                    className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                    className={`px-2.5 sm:px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                       viewMode === "split_compare"
                         ? "bg-amber-400 text-slate-950"
                         : "text-slate-300 hover:text-white"
@@ -198,90 +201,92 @@ export default function PinCamInteractiveStage() {
                     2. Matched Split Proof
                   </button>
                 </div>
-                <span className="text-[11px] font-mono text-amber-300">
+                <span className="text-[11px] font-mono text-amber-300 whitespace-nowrap">
                   {viewMode === "ghost_lens"
                     ? `Ghost Overlay: ${ghostOpacity}%`
                     : `Split Position: ${splitPos}%`}
                 </span>
               </div>
 
-              {/* Camera Viewfinder Frame */}
-              <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-white/15 bg-black select-none">
-                {/* Base Live Camera Feed ('After' Roof) */}
-                <Image
-                  src="/pincam/roof-after.jpg"
-                  alt="Completed architectural roof in live PinCam viewfinder"
-                  fill
-                  sizes="(max-width: 1024px) 94vw, 680px"
-                  className="object-cover"
-                  priority
-                />
+              {/* Camera Viewfinder Frame + Non-Overlapping Bottom Telemetry Dock */}
+              <div className="rounded-2xl overflow-hidden border border-white/15 bg-black select-none">
+                <div className="relative aspect-[16/10] w-full">
+                  {/* Base Live Camera Feed ('After' Roof) */}
+                  <Image
+                    src="/pincam/roof-after.jpg"
+                    alt="Completed architectural roof in live PinCam viewfinder"
+                    fill
+                    sizes="(max-width: 1024px) 94vw, 680px"
+                    className="object-cover"
+                    priority
+                  />
 
-                {viewMode === "ghost_lens" ? (
-                  <>
-                    {/* Translucent 'Before' Ghost Alignment Layer */}
-                    <div
-                      className="absolute inset-0 pointer-events-none transition-opacity duration-75"
-                      style={{ opacity: ghostOpacity / 100 }}
-                    >
-                      <Image
-                        src="/pincam/roof-before.jpg"
-                        alt="Semi-transparent before storm photo ghost overlay"
-                        fill
-                        sizes="(max-width: 1024px) 94vw, 680px"
-                        className="object-cover"
-                      />
-                    </div>
-
-                    {/* Camera Alignment Reticle & Horizon Level */}
-                    <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-                      <div className="w-48 h-px bg-amber-400/70" />
-                      <div className="h-32 w-px bg-amber-400/70 absolute" />
-                      <div className="w-16 h-16 rounded-full border border-amber-400/80 flex items-center justify-center">
-                        <span className="px-1.5 py-0.5 rounded bg-black/80 text-[9px] font-mono font-bold text-emerald-400">
-                          0.0° LEVEL
-                        </span>
+                  {viewMode === "ghost_lens" ? (
+                    <>
+                      {/* Translucent 'Before' Ghost Alignment Layer */}
+                      <div
+                        className="absolute inset-0 pointer-events-none transition-opacity duration-75"
+                        style={{ opacity: ghostOpacity / 100 }}
+                      >
+                        <Image
+                          src="/pincam/roof-before.jpg"
+                          alt="Semi-transparent before storm photo ghost overlay"
+                          fill
+                          sizes="(max-width: 1024px) 94vw, 680px"
+                          className="object-cover"
+                        />
                       </div>
-                    </div>
 
-                    <div className="absolute top-3 left-3 px-2.5 py-1 rounded-lg bg-black/80 border border-amber-400/40 text-[10px] font-mono font-bold text-amber-300">
-                      👻 GHOST PHOTO MATCH • {ghostOpacity}% OPACITY
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    {/* Split Slider Mode */}
-                    <div
-                      className="absolute inset-0 overflow-hidden"
-                      style={{ clipPath: `inset(0 ${100 - splitPos}% 0 0)` }}
-                    >
-                      <Image
-                        src="/pincam/roof-before.jpg"
-                        alt="Before storm damaged roof"
-                        fill
-                        sizes="(max-width: 1024px) 94vw, 680px"
-                        className="object-cover"
-                      />
-                    </div>
-                    <div
-                      className="absolute top-0 bottom-0 w-0.5 bg-amber-400 shadow-[0_0_16px_rgba(245,158,11,0.9)] pointer-events-none"
-                      style={{ left: `${splitPos}%` }}
-                    >
-                      <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-amber-400 text-slate-950 font-black text-xs flex items-center justify-center border-2 border-white">
-                        ↔
+                      {/* Camera Alignment Reticle & Horizon Level */}
+                      <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+                        <div className="w-40 sm:w-48 h-px bg-amber-400/70" />
+                        <div className="h-24 sm:h-32 w-px bg-amber-400/70 absolute" />
+                        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full border border-amber-400/80 flex items-center justify-center">
+                          <span className="px-1.5 py-0.5 rounded bg-black/80 text-[9px] font-mono font-bold text-emerald-400">
+                            0.0° LEVEL
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                    <span className="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/80 border border-red-400/40 text-[10px] font-mono font-bold text-red-300">
-                      BEFORE • TARP &amp; WIND DAMAGE
-                    </span>
-                    <span className="absolute top-3 right-3 px-2.5 py-1 rounded bg-black/80 border border-emerald-400/40 text-[10px] font-mono font-bold text-emerald-300">
-                      AFTER • NEW ARCHITECTURAL ROOF
-                    </span>
-                  </>
-                )}
 
-                {/* Camera HUD Bottom Bar */}
-                <div className="absolute inset-x-0 bottom-0 px-4 py-2.5 bg-black/80 backdrop-blur-md border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-slate-300">
+                      <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 px-2.5 py-1 rounded-lg bg-black/80 border border-amber-400/40 text-[10px] font-mono font-bold text-amber-300">
+                        👻 GHOST MATCH • {ghostOpacity}%
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      {/* Split Slider Mode */}
+                      <div
+                        className="absolute inset-0 overflow-hidden"
+                        style={{ clipPath: `inset(0 ${100 - splitPos}% 0 0)` }}
+                      >
+                        <Image
+                          src="/pincam/roof-before.jpg"
+                          alt="Before storm damaged roof"
+                          fill
+                          sizes="(max-width: 1024px) 94vw, 680px"
+                          className="object-cover"
+                        />
+                      </div>
+                      <div
+                        className="absolute top-0 bottom-0 w-0.5 bg-amber-400 shadow-[0_0_16px_rgba(245,158,11,0.9)] pointer-events-none"
+                        style={{ left: `${splitPos}%` }}
+                      >
+                        <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-amber-400 text-slate-950 font-black text-xs flex items-center justify-center border-2 border-white">
+                          ↔
+                        </div>
+                      </div>
+                      <span className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded bg-black/80 border border-red-400/40 text-[10px] font-mono font-bold text-red-300">
+                        BEFORE<span className="hidden sm:inline"> • TARP &amp; WIND DAMAGE</span>
+                      </span>
+                      <span className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded bg-black/80 border border-emerald-400/40 text-[10px] font-mono font-bold text-emerald-300">
+                        AFTER<span className="hidden sm:inline"> • NEW ARCHITECTURAL ROOF</span>
+                      </span>
+                    </>
+                  )}
+                </div>
+
+                {/* Camera HUD Bottom Bar (cleanly below photo so 0% of roof is covered) */}
+                <div className="px-3.5 sm:px-4 py-2.5 bg-[#060911] border-t border-white/10 flex flex-wrap items-center justify-between gap-1.5 text-[10px] font-mono text-slate-300">
                   <span>📍 32.4618° N, 90.1154° W (±4ft GPS)</span>
                   <span className="text-emerald-400 font-bold">STAGE: AFTER VERIFICATION</span>
                 </div>
@@ -360,7 +365,7 @@ export default function PinCamInteractiveStage() {
             TAB 2: PHOTO MARKUP, MEASUREMENTS & NON-DESTRUCTIVE TAG STUDIO
         ================================================================ */}
         {activeTab === "markup" && (
-          <div className="p-5 sm:p-8 lg:p-10 grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          <div className="p-4 sm:p-8 lg:p-10 grid lg:grid-cols-12 gap-7 sm:gap-8 lg:gap-10 items-center">
             <div className="lg:col-span-7 space-y-4">
               {/* Interactive Layer Toolbar */}
               <div className="flex flex-wrap items-center gap-2 p-2.5 rounded-2xl bg-[#070a12] border border-white/10">
@@ -422,134 +427,136 @@ export default function PinCamInteractiveStage() {
                 </button>
               </div>
 
-              {/* Annotated HVAC Jobsite Canvas */}
-              <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-white/15 bg-black select-none">
-                <Image
-                  src="/pincam/hvac-install.jpg"
-                  alt="HVAC condenser installation annotated inside PinCam Markup Studio"
-                  fill
-                  sizes="(max-width: 1024px) 94vw, 680px"
-                  className="object-cover"
-                />
+              {/* Annotated HVAC Jobsite Canvas + Non-Overlapping Watermark Strip */}
+              <div className="rounded-2xl overflow-hidden border border-white/15 bg-black select-none">
+                <div className="relative aspect-[16/10] w-full">
+                  <Image
+                    src="/pincam/hvac-install.jpg"
+                    alt="HVAC condenser installation annotated inside PinCam Markup Studio"
+                    fill
+                    sizes="(max-width: 1024px) 94vw, 680px"
+                    className="object-cover"
+                  />
 
-                {/* SVG Vector Annotations Overlay */}
-                <svg
-                  viewBox="0 0 800 500"
-                  className="absolute inset-0 w-full h-full pointer-events-none"
-                >
-                  {showMeasurements && (
-                    <g>
-                      {/* Concrete Pad Dimension Line */}
-                      <line
-                        x1="190"
-                        y1="430"
-                        x2="495"
-                        y2="465"
-                        stroke="#f59e0b"
-                        strokeWidth="4"
-                        strokeDasharray="8 5"
-                      />
-                      <circle cx="190" cy="430" r="6" fill="#f59e0b" />
-                      <circle cx="495" cy="465" r="6" fill="#f59e0b" />
-                      <rect
-                        x="275"
-                        y="428"
-                        width="148"
-                        height="30"
-                        rx="8"
-                        fill="#090d16"
-                        stroke="#f59e0b"
-                        strokeWidth="2"
-                      />
-                      <text
-                        x="349"
-                        y="448"
-                        textAnchor="middle"
-                        fill="#fde68a"
-                        fontSize="13"
-                        fontWeight="800"
-                        fontFamily="monospace"
-                      >
-                        36&quot; × 36&quot; LEVEL PAD
-                      </text>
-                    </g>
-                  )}
+                  {/* SVG Vector Annotations Overlay */}
+                  <svg
+                    viewBox="0 0 800 500"
+                    className="absolute inset-0 w-full h-full pointer-events-none"
+                  >
+                    {showMeasurements && (
+                      <g>
+                        {/* Concrete Pad Dimension Line */}
+                        <line
+                          x1="190"
+                          y1="430"
+                          x2="495"
+                          y2="465"
+                          stroke="#f59e0b"
+                          strokeWidth="4"
+                          strokeDasharray="8 5"
+                        />
+                        <circle cx="190" cy="430" r="6" fill="#f59e0b" />
+                        <circle cx="495" cy="465" r="6" fill="#f59e0b" />
+                        <rect
+                          x="275"
+                          y="428"
+                          width="148"
+                          height="30"
+                          rx="8"
+                          fill="#090d16"
+                          stroke="#f59e0b"
+                          strokeWidth="2"
+                        />
+                        <text
+                          x="349"
+                          y="448"
+                          textAnchor="middle"
+                          fill="#fde68a"
+                          fontSize="13"
+                          fontWeight="800"
+                          fontFamily="monospace"
+                        >
+                          36&quot; × 36&quot; LEVEL PAD
+                        </text>
+                      </g>
+                    )}
 
-                  {showArrows && (
-                    <g>
-                      {/* Disconnect Box Callout */}
-                      <circle
-                        cx="698"
-                        cy="150"
-                        r="48"
-                        fill="rgba(239,68,68,0.12)"
-                        stroke="#ef4444"
-                        strokeWidth="3.5"
-                      />
-                      <line x1="560" y1="95" x2="648" y2="132" stroke="#ef4444" strokeWidth="4" />
-                      <rect
-                        x="375"
-                        y="68"
-                        width="200"
-                        height="32"
-                        rx="8"
-                        fill="#dc2626"
-                      />
-                      <text
-                        x="475"
-                        y="89"
-                        textAnchor="middle"
-                        fill="#ffffff"
-                        fontSize="12"
-                        fontWeight="800"
-                        fontFamily="monospace"
-                      >
-                        NEW 240V EATON DISCONNECT
-                      </text>
+                    {showArrows && (
+                      <g>
+                        {/* Disconnect Box Callout */}
+                        <circle
+                          cx="698"
+                          cy="150"
+                          r="48"
+                          fill="rgba(239,68,68,0.12)"
+                          stroke="#ef4444"
+                          strokeWidth="3.5"
+                        />
+                        <line x1="560" y1="95" x2="648" y2="132" stroke="#ef4444" strokeWidth="4" />
+                        <rect
+                          x="375"
+                          y="68"
+                          width="200"
+                          height="32"
+                          rx="8"
+                          fill="#dc2626"
+                        />
+                        <text
+                          x="475"
+                          y="89"
+                          textAnchor="middle"
+                          fill="#ffffff"
+                          fontSize="12"
+                          fontWeight="800"
+                          fontFamily="monospace"
+                        >
+                          NEW 240V EATON DISCONNECT
+                        </text>
 
-                      {/* Line-Set Callout */}
-                      <line x1="565" y1="365" x2="592" y2="305" stroke="#22c55e" strokeWidth="4" />
-                      <rect
-                        x="468"
-                        y="366"
-                        width="215"
-                        height="30"
-                        rx="8"
-                        fill="#052e16"
-                        stroke="#22c55e"
-                        strokeWidth="2"
-                      />
-                      <text
-                        x="575"
-                        y="386"
-                        textAnchor="middle"
-                        fill="#86efac"
-                        fontSize="12"
-                        fontWeight="800"
-                        fontFamily="monospace"
-                      >
-                        ✓ UV-SEALED COPPER LINE-SET
-                      </text>
-                    </g>
-                  )}
-                </svg>
+                        {/* Line-Set Callout */}
+                        <line x1="565" y1="365" x2="592" y2="305" stroke="#22c55e" strokeWidth="4" />
+                        <rect
+                          x="468"
+                          y="366"
+                          width="215"
+                          height="30"
+                          rx="8"
+                          fill="#052e16"
+                          stroke="#22c55e"
+                          strokeWidth="2"
+                        />
+                        <text
+                          x="575"
+                          y="386"
+                          textAnchor="middle"
+                          fill="#86efac"
+                          fontSize="12"
+                          fontWeight="800"
+                          fontFamily="monospace"
+                        >
+                          ✓ UV-SEALED COPPER LINE-SET
+                        </text>
+                      </g>
+                    )}
+                  </svg>
 
-                {/* Pinned Crew Comment Bubble */}
-                {showCrewPin && (
-                  <div className="absolute top-[28%] left-[12%] max-w-[230px] p-3 rounded-xl bg-[#070b14]/95 border border-sky-400/50 shadow-2xl backdrop-blur-md">
-                    <div className="flex items-center gap-1.5 text-[10px] font-mono font-bold text-sky-400 mb-1">
-                      <MessageSquare className="w-3 h-3" />
-                      PIN #1 • LEAD TECH CHRIS
+                  {/* Pinned Crew Comment Bubble */}
+                  {showCrewPin && (
+                    <div className="absolute top-2.5 left-2.5 sm:top-[28%] sm:left-[12%] max-w-[195px] sm:max-w-[230px] p-2 sm:p-3 rounded-xl bg-[#070b14]/95 border border-sky-400/50 shadow-2xl backdrop-blur-md">
+                      <div className="flex items-center gap-1.5 text-[9px] sm:text-[10px] font-mono font-bold text-sky-400 mb-0.5 sm:mb-1">
+                        <MessageSquare className="w-3 h-3 shrink-0" />
+                        <span>PIN #1 • TECH CHRIS</span>
+                      </div>
+                      <p className="text-[10px] sm:text-[11px] text-white leading-snug">
+                        Subcooling dialed in at 10.2°F. Homeowner signed warranty packet.
+                      </p>
                     </div>
-                    <p className="text-[11px] text-white leading-snug">
-                      Subcooling dialed in at 10.2°F. Homeowner signed warranty packet.
-                    </p>
-                  </div>
-                )}
+                  )}
+                </div>
 
-                {/* Authentic Watermark Verification Stamp */}
+                {/* Authentic Watermark Verification Stamp (cleanly below image so 36"x36" pad is never obscured) */}
                 {showWatermark && (
-                  <div className="absolute inset-x-0 bottom-0 px-4 py-2.5 bg-black/82 backdrop-blur-md border-t border-amber-500/30 flex flex-wrap items-center justify-between gap-2 text-[10px] font-mono">
+                  <div className="px-3.5 sm:px-4 py-2.5 bg-[#060911] border-t border-amber-500/30 flex flex-wrap items-center justify-between gap-1.5 text-[10px] font-mono">
                     <span className="text-amber-300 font-bold">
                       PINCAM™ VERIFIED • STAGE: AFTER
                     </span>
@@ -590,7 +597,7 @@ export default function PinCamInteractiveStage() {
             TAB 3: DUAL-CAM PIP WALKTHROUGH RECORDER
         ================================================================ */}
         {activeTab === "pip" && (
-          <div className="p-5 sm:p-8 lg:p-10 grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          <div className="p-4 sm:p-8 lg:p-10 grid lg:grid-cols-12 gap-7 sm:gap-8 lg:gap-10 items-center">
             <div className="lg:col-span-7 space-y-4">
               <div className="flex flex-wrap items-center gap-2 p-2.5 rounded-2xl bg-[#070a12] border border-white/10">
                 <button
@@ -624,70 +631,92 @@ export default function PinCamInteractiveStage() {
                 </button>
               </div>
 
-              <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-white/15 bg-black">
-                <Image
-                  src="/pincam/roof-after.jpg"
-                  alt="Narrated jobsite walkthrough video preview"
-                  fill
-                  sizes="(max-width: 1024px) 94vw, 680px"
-                  className="object-cover"
-                />
+              <div className="rounded-2xl overflow-hidden border border-white/15 bg-black">
+                <div className="relative aspect-[16/10] w-full">
+                  <Image
+                    src="/pincam/roof-after.jpg"
+                    alt="Narrated jobsite walkthrough video preview"
+                    fill
+                    sizes="(max-width: 1024px) 94vw, 680px"
+                    className="object-cover"
+                  />
 
-                {/* REC Indicator */}
-                <div className="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-black/80 border border-red-500/50 flex items-center gap-2 text-[11px] font-mono font-bold text-white">
-                  <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
-                  REC 00:42 • NARRATED WALKTHROUGH
-                </div>
+                  {/* REC Indicator */}
+                  <div className="absolute top-2.5 left-2.5 sm:top-3.5 sm:left-3.5 px-2.5 sm:px-3 py-1 rounded-full bg-black/80 border border-red-500/50 flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-[11px] font-mono font-bold text-white">
+                    <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-red-500 animate-pulse" />
+                    <span>REC 00:42</span>
+                    <span className="hidden sm:inline">• NARRATED WALKTHROUGH</span>
+                  </div>
 
-                {/* Draggable/Corner Picture-in-Picture Window */}
-                <div
-                  className={`absolute w-36 sm:w-48 aspect-[16/10] rounded-xl overflow-hidden border-2 border-amber-400 shadow-2xl bg-slate-950 transition-all duration-300 ${
-                    pipCorner === "top-right" ? "top-3.5 right-3.5" : "bottom-20 right-3.5"
-                  }`}
-                >
-                  {pipSource === "before_photo" ? (
-                    <>
-                      <Image
-                        src="/pincam/roof-before.jpg"
-                        alt="Before reference in PiP window"
-                        fill
-                        sizes="200px"
-                        className="object-cover"
-                      />
-                      <span className="absolute bottom-1 left-1.5 px-1.5 py-0.5 rounded bg-black/80 text-[8px] font-mono font-bold text-amber-300">
-                        BEFORE REF
+                  {/* Draggable/Corner Picture-in-Picture Window */}
+                  <div
+                    className={`absolute w-28 sm:w-48 aspect-[16/10] rounded-xl overflow-hidden border-2 border-amber-400 shadow-2xl bg-slate-950 transition-all duration-300 ${
+                      pipCorner === "top-right"
+                        ? "top-2.5 right-2.5 sm:top-3.5 sm:right-3.5"
+                        : "bottom-2.5 right-2.5 sm:bottom-20 sm:right-3.5"
+                    }`}
+                  >
+                    {pipSource === "before_photo" ? (
+                      <>
+                        <Image
+                          src="/pincam/roof-before.jpg"
+                          alt="Before reference in PiP window"
+                          fill
+                          sizes="200px"
+                          className="object-cover"
+                        />
+                        <span className="absolute bottom-1 left-1.5 px-1.5 py-0.5 rounded bg-black/80 text-[8px] font-mono font-bold text-amber-300">
+                          BEFORE REF
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <Image
+                          src="/images/founder-booth.webp"
+                          alt="Crew lead narrating walkthrough in selfie PiP"
+                          fill
+                          sizes="200px"
+                          className="object-cover"
+                        />
+                        <span className="absolute bottom-1 left-1.5 px-1.5 py-0.5 rounded bg-black/80 text-[8px] font-mono font-bold text-emerald-300">
+                          CREW LEAD CAM
+                        </span>
+                      </>
+                    )}
+                  </div>
+
+                  {/* Branded Lower-Third + Live Voice Transcript (Desktop inside video; Mobile docked cleanly below) */}
+                  {showLowerThird && (
+                    <div className="hidden sm:flex absolute inset-x-3.5 bottom-3.5 p-3.5 rounded-xl bg-[#060911]/90 backdrop-blur-md border border-amber-500/35 items-center justify-between gap-2">
+                      <div>
+                        <div className="text-[10px] font-mono font-extrabold text-amber-400 uppercase">
+                          BORN AGAIN ROOFING • FINAL WALKTHROUGH
+                        </div>
+                        <p className="text-xs text-white font-medium">
+                          &ldquo;...replaced all storm-damaged ridge decking, installed ice &amp; water shield, and cleaned the driveway with a magnetic sweep.&rdquo;
+                        </p>
+                      </div>
+                      <span className="px-2.5 py-1 rounded bg-emerald-500/15 border border-emerald-500/30 text-[10px] font-mono text-emerald-300 shrink-0">
+                        AUTO-CAPTIONED
                       </span>
-                    </>
-                  ) : (
-                    <>
-                      <Image
-                        src="/images/founder-booth.webp"
-                        alt="Crew lead narrating walkthrough in selfie PiP"
-                        fill
-                        sizes="200px"
-                        className="object-cover"
-                      />
-                      <span className="absolute bottom-1 left-1.5 px-1.5 py-0.5 rounded bg-black/80 text-[8px] font-mono font-bold text-emerald-300">
-                        CREW LEAD CAM
-                      </span>
-                    </>
+                    </div>
                   )}
                 </div>
 
-                {/* Branded Lower-Third + Live Voice Transcript */}
+                {/* Mobile Non-Overlapping Lower-Third Transcript Bar */}
                 {showLowerThird && (
-                  <div className="absolute inset-x-3.5 bottom-3.5 p-3.5 rounded-xl bg-[#060911]/90 backdrop-blur-md border border-amber-500/35 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <div>
-                      <div className="text-[10px] font-mono font-extrabold text-amber-400 uppercase">
-                        BORN AGAIN ROOFING • FINAL WALKTHROUGH
-                      </div>
-                      <p className="text-xs text-white font-medium">
-                        &ldquo;...replaced all storm-damaged ridge decking, installed ice &amp; water shield, and cleaned the driveway with a magnetic sweep.&rdquo;
-                      </p>
+                  <div className="sm:hidden p-3 bg-[#060911] border-t border-amber-500/30 space-y-1.5">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-[10px] font-mono font-extrabold text-amber-400 uppercase">
+                        BORN AGAIN ROOFING • WALKTHROUGH
+                      </span>
+                      <span className="px-2 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30 text-[9px] font-mono text-emerald-300 shrink-0">
+                        AUTO-CAPTIONED
+                      </span>
                     </div>
-                    <span className="px-2.5 py-1 rounded bg-emerald-500/15 border border-emerald-500/30 text-[10px] font-mono text-emerald-300 shrink-0">
-                      AUTO-CAPTIONED
-                    </span>
+                    <p className="text-xs text-white font-medium leading-relaxed">
+                      &ldquo;...replaced all storm-damaged ridge decking, installed ice &amp; water shield, and cleaned the driveway with a magnetic sweep.&rdquo;
+                    </p>
                   </div>
                 )}
               </div>
@@ -711,15 +740,15 @@ export default function PinCamInteractiveStage() {
             TAB 4: INSTANT HOMEOWNER / ADJUSTER PDF REPORT & INVOICE
         ================================================================ */}
         {activeTab === "report" && (
-          <div className="p-5 sm:p-8 lg:p-10 grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          <div className="p-4 sm:p-8 lg:p-10 grid lg:grid-cols-12 gap-7 sm:gap-8 lg:gap-10 items-center">
             <div className="lg:col-span-7">
-              <div className="rounded-2xl bg-white text-slate-900 p-5 sm:p-7 shadow-2xl border border-white/20 space-y-5">
-                <div className="flex flex-wrap items-start justify-between gap-4 border-b border-slate-200 pb-4">
+              <div className="rounded-2xl bg-white text-slate-900 p-4 sm:p-7 shadow-2xl border border-white/20 space-y-5">
+                <div className="flex flex-wrap items-start justify-between gap-3 border-b border-slate-200 pb-4">
                   <div>
                     <div className="text-[10px] font-mono font-extrabold uppercase tracking-widest text-amber-600">
                       VERIFIED PINCAM™ COMPLETION REPORT
                     </div>
-                    <h4 className="text-xl font-black text-slate-950">
+                    <h4 className="text-lg sm:text-xl font-black text-slate-950">
                       Smith Residence — Full Roof Replacement
                     </h4>
                     <p className="text-xs text-slate-600">
@@ -731,14 +760,14 @@ export default function PinCamInteractiveStage() {
                   </span>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="space-y-1">
                     <div className="relative aspect-[16/10] rounded-xl overflow-hidden border border-slate-200">
                       <Image
                         src="/pincam/roof-before.jpg"
                         alt="Report before photo"
                         fill
-                        sizes="300px"
+                        sizes="(max-width: 640px) 90vw, 300px"
                         className="object-cover"
                       />
                     </div>
@@ -752,7 +781,7 @@ export default function PinCamInteractiveStage() {
                         src="/pincam/roof-after.jpg"
                         alt="Report after photo"
                         fill
-                        sizes="300px"
+                        sizes="(max-width: 640px) 90vw, 300px"
                         className="object-cover"
                       />
                     </div>
@@ -766,8 +795,8 @@ export default function PinCamInteractiveStage() {
                   <strong>Field Summary:</strong> Removed damaged 3-tab shingles, replaced 3 sheets of OSB decking near ridge, installed synthetic underlayment &amp; architectural shingles. Yard magnet-swept and spotless.
                 </div>
 
-                <div className="flex flex-wrap items-center justify-between gap-3 pt-1 text-xs">
-                  <span className="font-mono text-slate-500">
+                <div className="flex flex-wrap items-center justify-between gap-2 pt-1 text-xs">
+                  <span className="font-mono text-slate-500 break-all sm:break-normal">
                     Share Link: powerdigitalmedia.org/project-report/ms-4092
                   </span>
                   <span className="inline-flex items-center gap-1.5 font-extrabold text-amber-700">
@@ -796,7 +825,7 @@ export default function PinCamInteractiveStage() {
             TAB 5: REAL PINCAM MOBILE DASHBOARD + PINDROP SATELLITE SYNC
         ================================================================ */}
         {activeTab === "sync" && (
-          <div className="p-5 sm:p-8 lg:p-10 grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          <div className="p-4 sm:p-8 lg:p-10 grid lg:grid-cols-12 gap-7 sm:gap-8 lg:gap-10 items-center">
             <div className="lg:col-span-7 grid sm:grid-cols-12 gap-4 items-stretch">
               {/* Left: Authentic PinCam Native Mobile Home Screen */}
               <div className="sm:col-span-7 rounded-[26px] bg-[#090d16] border border-[#252f45] p-4 flex flex-col justify-between shadow-2xl">
@@ -897,12 +926,12 @@ export default function PinCamInteractiveStage() {
                     <MapPin className="w-3.5 h-3.5 text-amber-400" />
                     Synced to PinDrop™ Satellite Map
                   </div>
-                  <div className="relative h-32 rounded-xl overflow-hidden border border-white/10">
+                  <div className="relative aspect-[16/10] sm:aspect-auto sm:h-32 rounded-xl overflow-hidden border border-white/10">
                     <Image
                       src="/pindrop/sat-madison.jpg"
                       alt="Madison MS satellite neighborhood pin"
                       fill
-                      sizes="240px"
+                      sizes="(max-width: 640px) 90vw, 240px"
                       className="object-cover"
                     />
                     <div className="absolute inset-0 flex items-center justify-center">

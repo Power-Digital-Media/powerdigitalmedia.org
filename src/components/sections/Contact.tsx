@@ -80,7 +80,7 @@ export default function Contact({
           {/* Left Column: Direct Access Cards */}
           <div className="lg:col-span-5 space-y-4">
             {/* Call & Text Card */}
-            <div className="p-6 rounded-3xl bg-[#090d18] border border-white/10 space-y-4">
+            <div className="p-5 sm:p-6 rounded-3xl bg-[#090d18] border border-white/10 space-y-4">
               <div className="flex items-center gap-3.5">
                 <div className="w-11 h-11 rounded-2xl bg-amber-500/15 border border-amber-500/35 flex items-center justify-center text-amber-400 shrink-0">
                   <Phone className="w-5 h-5" />
@@ -116,7 +116,7 @@ export default function Contact({
             </div>
 
             {/* 15-Minute Strategy Call Card */}
-            <div className="p-6 rounded-3xl bg-[#090d18] border border-white/10">
+            <div className="p-5 sm:p-6 rounded-3xl bg-[#090d18] border border-white/10">
               <div className="flex items-center gap-3.5 mb-3">
                 <div className="w-11 h-11 rounded-2xl bg-emerald-500/15 border border-emerald-500/35 flex items-center justify-center text-emerald-400 shrink-0">
                   <Calendar className="w-5 h-5" />
@@ -136,12 +136,12 @@ export default function Contact({
             </div>
 
             {/* Headquarters & Email */}
-            <div className="p-6 rounded-3xl bg-[#090d18]/80 border border-white/10 space-y-3 text-xs">
+            <div className="p-5 sm:p-6 rounded-3xl bg-[#090d18]/80 border border-white/10 space-y-3 text-xs">
               <div className="flex items-start gap-2.5 text-slate-200">
                 <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
                 <div>
                   <div className="font-bold text-white">Power Digital Media LLC</div>
-                  <div className="text-slate-400">2914 Cynthia Rd, Jackson, MS 39209</div>
+                  <div className="text-slate-400">Jackson, MS 39209 • Service-Area Studio</div>
                   <div className="text-slate-400 mt-1">
                     Serving Jackson • Madison • Ridgeland • Brandon • Flowood • Clinton
                   </div>
@@ -173,7 +173,7 @@ export default function Contact({
           </div>
 
           {/* Right Column: Frictionless Lead Form */}
-          <div className="lg:col-span-7 obsidian-surface p-6 sm:p-9 rounded-3xl">
+          <div className="lg:col-span-7 obsidian-surface p-5 sm:p-9 rounded-3xl">
             {status === "success" ? (
               <div className="py-12 flex flex-col items-center justify-center text-center space-y-4">
                 <div className="w-16 h-16 rounded-2xl bg-emerald-500/15 border border-emerald-500/40 flex items-center justify-center text-emerald-400">

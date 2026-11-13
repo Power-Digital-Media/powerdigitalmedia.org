@@ -169,7 +169,7 @@ export default function ContractorHeroStage() {
           </Link>
         </div>
 
-        {/* Live Visual Viewport */}
+        {/* Live Visual Viewport (100% Unobstructed Screenshot) */}
         <div className="relative aspect-[16/10] w-full bg-[#05070c] overflow-hidden">
           <Image
             key={current.image}
@@ -180,32 +180,29 @@ export default function ContractorHeroStage() {
             className="object-cover object-top transition-all duration-500"
             priority={activeIndex === 0}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#06080f] via-[#06080f]/20 to-transparent" />
+        </div>
 
-          {/* Top-Left Live Location Pill inside frame */}
-          <div className="absolute top-3 left-3 px-3 py-1.5 rounded-full bg-[#06080f]/85 backdrop-blur-md border border-white/15 flex items-center gap-1.5 text-[11px] font-semibold text-white">
-            <MapPin className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-            <span>{current.location}</span>
-          </div>
-
-          {/* Bottom-Left Client Title Overlay */}
-          <div className="absolute bottom-3 left-3 right-3 flex flex-wrap items-end justify-between gap-2">
-            <div>
+        {/* Clean Non-Overlapping Identity, Telemetry & Proof Dock */}
+        <div className="p-4 sm:p-5 bg-[#070a12] border-t border-white/10 space-y-3.5">
+          {/* Client Identity & Speed Row (Moved off screenshot for 100% visual clarity) */}
+          <div className="flex flex-wrap items-start justify-between gap-2.5 pb-3 border-b border-white/[0.08]">
+            <div className="min-w-0">
               <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-amber-300">
                 Verified Mississippi Deployment
               </div>
-              <div className="text-lg sm:text-xl font-black text-white tracking-tight leading-tight">
+              <div className="text-base sm:text-xl font-black text-white tracking-tight leading-snug mt-0.5">
                 {current.clientName}
               </div>
+              <div className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-slate-300 mt-1">
+                <MapPin className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <span>{current.location}</span>
+              </div>
             </div>
-            <span className="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[11px] font-extrabold backdrop-blur-md">
+            <span className="px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/35 text-emerald-300 text-[11px] font-extrabold shrink-0">
               ⚡ {current.speedScore}
             </span>
           </div>
-        </div>
 
-        {/* Clean Non-Overlapping Telemetry & Proof Dock */}
-        <div className="p-4 sm:p-5 bg-[#070a12] border-t border-white/10 space-y-3.5">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             <div className="px-3.5 py-2.5 rounded-xl bg-amber-500/[0.08] border border-amber-500/25 flex items-center gap-2 text-xs font-bold text-amber-200">
               <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400 shrink-0" />

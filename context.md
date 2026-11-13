@@ -73,9 +73,14 @@ graph TD
 ---
 
 ## 📱 4. Mobile Conversion & UX Architecture
+* **Unobstructed `16:10` Mobile Viewport & Anti-Squeeze Card Architecture (Verified Across All 24 Public Routes @ `390×844` & `360×800`):**
+  * **Zero Text Floating Over Previews or Photos:** Every client website screenshot, satellite map, field-app viewfinder, and founder studio portrait renders in its full, uncropped `aspect-[16/10]` (or `aspect-[4/3]` blog art) aspect ratio with **zero** floating caption cards, dark gradient overlays, or overlapping badges covering the image. All telemetry, GPS stamps, client headlines, speed badges, and founder captions (`LeadArchitect.tsx`, `AboutClient.tsx`, `ContractorHeroStage.tsx`, `ConnectedArchitecture.tsx`, `JobsitePipelineStory.tsx`, `PinDropDemoExplorer.tsx`, `PinCamInteractiveStage.tsx`, `contractors/page.tsx`) dock cleanly below the media frame.
+  * **Isolated `/portfolio/[id]` Showcase (`ProjectShowcaseClient.tsx`):** `"interactive"` mode renders only the opaque live `<iframe>` (`h-[540px] sm:h-[620px] md:h-[700px]`), while `"screenshot"` mode renders an uncropped `aspect-[16/10]` HD snapshot—eliminating horizontal image cropping and iframe double-exposure bleed.
+  * **Inner Browser Frame Geometry (`Portfolio.tsx` & `/our-work`):** `aspect-[16/10]` is applied directly to the inner image container below the `33px` browser top bar so previews never lose vertical aspect ratio, paired with stacked full-width mobile CTAs (`grid-cols-1 sm:grid-cols-2` / `flex-col sm:flex-row`).
+  * **De-Squeezed Mobile Margins & App Stages:** Eliminated double/triple nested card padding (`p-4 sm:p-8` / `p-5 sm:p-9` across forms and interactive stages, recovering `+48px`–`+64px` of usable input/stage width on `360px`–`390px` phones), stacked `.pin-feed-card` satellite/photo grids (`grid-cols-1 sm:grid-cols-2`), and added `break-all` + `flex-wrap` guards so zero routes experience horizontal overflow (`scrollWidth === clientWidth`).
 * **Thumb-Zone `StickyMobileDock.tsx`:** Persistent mobile-only (`lg:hidden`) bottom dock featuring 1-tap `Call`, `Text`, and `Free Check` actions with `env(safe-area-inset-bottom)` clearance, automatically hidden on admin/auth routes and whenever mobile keyboard inputs are focused.
 * **Interactive Homepage Stages (`src/components/sections/ContractorHeroStage.tsx` & `JobsitePipelineStory.tsx`):**
-  * 4-trade interactive hero console (*Roofing & Storm*, *Excavation & Civil*, *HVAC & Trades*, *Local Commerce*) with zero overlapping floating badges.
+  * 4-trade interactive hero console (*Roofing & Storm*, *Excavation & Civil*, *HVAC & Trades*, *Local Commerce*) with full `16:10` client screenshots and non-overlapping telemetry dock below.
   * 3-step interactive field-to-phone story (`01 PinCam™ Capture` → `02 PinDrop™ Map & Auto-SEO` → `03 18-Second SMS Lead Rescue`).
 * **Unified Lead Magnet Offer:** Standardized sitewide around the **"Free 5-Minute Google Rank & Website Breakdown"** recorded personally by Damein Donald, replacing abrupt 1-second redirects with an interactive confirmation state + optional 1-click booking.
 

@@ -183,8 +183,8 @@ export default async function BlogPostDetail({
         </section>
 
         {/* Hero Image */}
-        <section className="container px-4 sm:px-6 mx-auto mb-16 max-w-5xl">
-          <div className="relative aspect-[16/9] md:aspect-[21/9] rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#0b0c10]">
+        <section className="container px-4 sm:px-6 mx-auto mb-14 sm:mb-16 max-w-5xl">
+          <div className="relative aspect-[4/3] sm:aspect-[16/9] rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#0b0c10]">
             <Image
               src={post.image}
               alt={post.title}
@@ -193,7 +193,6 @@ export default async function BlogPostDetail({
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#06080f]/70 via-transparent to-transparent" />
           </div>
         </section>
 

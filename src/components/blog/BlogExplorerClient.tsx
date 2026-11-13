@@ -107,7 +107,7 @@ export default function BlogExplorerClient({ posts }: { posts: BlogCardItem[] })
             <article key={post.slug} className="group h-full">
               <Link href={`/blog/${post.slug}`} className="flex flex-col h-full">
                 <div className="flex flex-col h-full rounded-3xl bg-[#0b0c10] border border-white/10 overflow-hidden transition-all duration-300 group-hover:border-amber-400/45 group-hover:-translate-y-1 shadow-[0_14px_40px_rgba(0,0,0,0.45)]">
-                  <div className="aspect-video relative overflow-hidden bg-[#12141c]">
+                  <div className="aspect-[4/3] relative overflow-hidden bg-[#12141c]">
                     <Image
                       src={post.image}
                       alt={post.title}
@@ -116,14 +116,16 @@ export default function BlogExplorerClient({ posts }: { posts: BlogCardItem[] })
                       unoptimized={post.image.includes("oaidalleapiprodscus")}
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-[#06080f]/85 backdrop-blur-md border border-amber-400/35 text-amber-300 text-[10px] font-mono font-bold uppercase tracking-wider">
-                      {post.category}
-                    </div>
                   </div>
 
-                  <div className="p-6 sm:p-7 flex flex-col flex-1">
-                    <div className="flex items-center gap-2 mb-3 text-xs font-mono text-slate-400">
-                      <Calendar className="w-3.5 h-3.5 text-amber-400" /> {post.date}
+                  <div className="p-5 sm:p-7 flex flex-col flex-1">
+                    <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                      <span className="px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-400/30 text-amber-300 text-[10px] font-mono font-bold uppercase tracking-wider">
+                        {post.category}
+                      </span>
+                      <span className="flex items-center gap-1.5 text-xs font-mono text-slate-400">
+                        <Calendar className="w-3.5 h-3.5 text-amber-400" /> {post.date}
+                      </span>
                     </div>
                     <h2 className="text-xl font-bold mb-3 text-white line-clamp-2 group-hover:text-amber-300 transition-colors">
                       {post.title}

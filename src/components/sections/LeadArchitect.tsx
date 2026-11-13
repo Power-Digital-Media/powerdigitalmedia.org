@@ -17,19 +17,20 @@ export default function LeadArchitect() {
 
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-          {/* Image Column */}
+          {/* Image Column (Uncropped 16:10 Studio Frame + Clean Caption Below) */}
           <div className="w-full lg:w-5/12 relative">
-            <div className="relative rounded-3xl overflow-hidden border border-white/15 bg-[#090d18] aspect-[4/3] shadow-2xl">
-              <Image
-                src="/images/founder-booth.webp"
-                alt="Damein Donald - Founder & Lead Engineer at Power Digital Media in Jackson, MS"
-                fill
-                sizes="(max-width: 768px) 94vw, 42vw"
-                className="object-cover object-center"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#05070d]/90 via-transparent to-transparent" />
+            <div className="rounded-3xl overflow-hidden border border-white/15 bg-[#090d18] shadow-2xl">
+              <div className="relative aspect-[16/10] w-full bg-[#060912]">
+                <Image
+                  src="/images/founder-booth.webp"
+                  alt="Damein Donald - Founder & Lead Engineer at Power Digital Media in Jackson, MS"
+                  fill
+                  sizes="(max-width: 768px) 94vw, 42vw"
+                  className="object-cover object-center"
+                />
+              </div>
 
-              <div className="absolute bottom-4 left-4 right-4 bg-[#070a12]/92 backdrop-blur-md border border-white/15 p-4 rounded-2xl flex items-center justify-between gap-2">
+              <div className="bg-[#070a12] border-t border-white/10 p-4 sm:p-5 flex flex-wrap items-center justify-between gap-2.5">
                 <div>
                   <div className="flex items-center gap-1.5 mb-0.5">
                     <h4 className="text-white font-bold text-sm">Damein Donald</h4>

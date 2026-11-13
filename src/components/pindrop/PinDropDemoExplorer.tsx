@@ -453,7 +453,7 @@ export default function PinDropDemoExplorer() {
   return (
     <div id="interactive-engine" className="w-full scroll-mt-28">
       {/* Top Real-App Switcher Bar */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-7">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 mb-6">
         {[
           {
             id: "live_map" as const,
@@ -486,7 +486,7 @@ export default function PinDropDemoExplorer() {
               key={tab.id}
               type="button"
               onClick={() => setActiveTab(tab.id)}
-              className={`text-left p-4 rounded-2xl border transition-all cursor-pointer ${
+              className={`text-left p-3.5 sm:p-4 rounded-2xl border transition-all cursor-pointer ${
                 active
                   ? "bg-[#12141c] border-[#e2b047] shadow-[0_0_28px_rgba(226,176,71,0.18)]"
                   : "bg-[#0b0c10] border-white/10 hover:border-white/25"
@@ -514,19 +514,19 @@ export default function PinDropDemoExplorer() {
       {/* ===================================================================
           AUTHENTIC PDM PINDROP APPLICATION WINDOW (#0b0c10 + #12141c + #e2b047)
       ==================================================================== */}
-      <div className="rounded-[28px] p-1.5 bg-gradient-to-b from-white/15 via-white/[0.05] to-white/[0.03] shadow-[0_30px_90px_rgba(0,0,0,0.85)]">
+      <div className="rounded-[28px] p-1 sm:p-1.5 bg-gradient-to-b from-white/15 via-white/[0.05] to-white/[0.03] shadow-[0_30px_90px_rgba(0,0,0,0.85)]">
         <div className="rounded-[23px] bg-[#0b0c10] border border-white/[0.07] overflow-hidden">
           {/* App Browser / Workspace Top Bar */}
-          <div className="px-4 sm:px-6 py-3.5 bg-[#090a0e] border-b border-white/[0.08] flex flex-wrap items-center justify-between gap-3">
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-1.5">
+          <div className="px-3.5 sm:px-6 py-3 bg-[#090a0e] border-b border-white/[0.08] flex flex-wrap items-center justify-between gap-2.5">
+            <div className="flex items-center gap-2.5 min-w-0 max-w-full">
+              <div className="flex items-center gap-1.5 shrink-0">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
                 <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
                 <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
               </div>
-              <div className="px-3 py-1 rounded-lg bg-[#12141c] border border-white/10 text-[11px] font-mono text-slate-300 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#e2b047]" />
-                <span>
+              <div className="px-2.5 sm:px-3 py-1 rounded-lg bg-[#12141c] border border-white/10 text-[11px] font-mono text-slate-300 flex items-center gap-2 min-w-0">
+                <span className="w-2 h-2 rounded-full bg-[#e2b047] shrink-0" />
+                <span className="truncate">
                   {activeTab === "live_map" && "yourcompany.com/pins/"}
                   {activeTab === "drop_portal" && "yourcompany.com/admin/drop-pin/"}
                   {activeTab === "seo_page" && `yourcompany.com${activePin.slug}`}
@@ -572,13 +572,13 @@ export default function PinDropDemoExplorer() {
               SCREEN 01: REAL PUBLIC `/pins` SATELLITE MAP & 2-COL FEED
           ================================================================ */}
           {activeTab === "live_map" && (
-            <div className="p-5 sm:p-8 lg:p-10">
+            <div className="p-3.5 sm:p-8 lg:p-10">
               {/* Authentic PinDrop Public Header */}
-              <div className="text-center max-w-2xl mx-auto mb-7">
+              <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-7">
                 <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-[#d1a453] block mb-2">
                   LIVE JOB FEED
                 </span>
-                <h3 className="text-3xl sm:text-5xl font-black tracking-tight text-white mb-2.5">
+                <h3 className="text-2xl sm:text-5xl font-black tracking-tight text-white mb-2">
                   Local Project Pins
                 </h3>
                 <p className="text-sm sm:text-base text-slate-400">
@@ -632,8 +632,8 @@ export default function PinDropDemoExplorer() {
               </div>
 
               {/* Authentic Double-Bezel Esri World Imagery Satellite Map */}
-              <div className="max-w-5xl mx-auto rounded-2xl p-2 bg-[#10121a] border border-white/[0.08] mb-8 shadow-2xl">
-                <div className="relative h-[320px] sm:h-[420px] rounded-xl overflow-hidden border border-white/10 bg-[#0b0c10] select-none">
+              <div className="max-w-5xl mx-auto rounded-2xl p-2 bg-[#10121a] border border-white/[0.08] mb-7 sm:mb-8 shadow-2xl">
+                <div className="relative aspect-[16/10] sm:aspect-auto sm:h-[420px] rounded-xl overflow-hidden border border-white/10 bg-[#0b0c10] select-none">
                   <div
                     className={`absolute inset-0 transition-transform duration-500 ${
                       mapZoomed ? "scale-125" : "scale-100"
@@ -682,22 +682,22 @@ export default function PinDropDemoExplorer() {
                   </div>
 
                   {/* Authentic Leaflet Top-Left [+] [-] Zoom Control */}
-                  <div className="absolute top-3.5 left-3.5 z-30 rounded-md overflow-hidden bg-white text-slate-900 shadow-lg border border-black/20 flex flex-col">
+                  <div className="absolute top-2.5 left-2.5 sm:top-3.5 sm:left-3.5 z-30 rounded-md overflow-hidden bg-white text-slate-900 shadow-lg border border-black/20 flex flex-col">
                     <button
                       type="button"
                       onClick={() => setMapZoomed(true)}
                       aria-label="Zoom in satellite map"
-                      className="w-8 h-8 flex items-center justify-center hover:bg-slate-100 border-b border-slate-300 font-bold cursor-pointer"
+                      className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center hover:bg-slate-100 border-b border-slate-300 font-bold cursor-pointer"
                     >
-                      <Plus className="w-4 h-4" />
+                      <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     </button>
                     <button
                       type="button"
                       onClick={() => setMapZoomed(false)}
                       aria-label="Zoom out satellite map"
-                      className="w-8 h-8 flex items-center justify-center hover:bg-slate-100 font-bold cursor-pointer"
+                      className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center hover:bg-slate-100 font-bold cursor-pointer"
                     >
-                      <Minus className="w-4 h-4" />
+                      <Minus className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     </button>
                   </div>
 
@@ -706,15 +706,15 @@ export default function PinDropDemoExplorer() {
                     type="button"
                     onClick={() => setMapDarkStyle((prev) => !prev)}
                     title="Toggle Satellite / Dark Map Layer"
-                    className="absolute top-3.5 right-3.5 z-30 px-3 py-2 rounded-lg bg-[#12141c]/95 hover:bg-[#1a1d29] border border-white/15 text-xs font-bold text-white flex items-center gap-1.5 shadow-lg cursor-pointer"
+                    className="absolute top-2.5 right-2.5 sm:top-3.5 sm:right-3.5 z-30 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg bg-[#12141c]/95 hover:bg-[#1a1d29] border border-white/15 text-[11px] sm:text-xs font-bold text-white flex items-center gap-1.5 shadow-lg cursor-pointer"
                   >
-                    <Layers className="w-4 h-4 text-[#e2b047]" />
+                    <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#e2b047]" />
                     <span>{mapDarkStyle ? "Dark Radar" : "Satellite"}</span>
                   </button>
 
-                  {/* Authentic Clicked-Pin Dark Popup Card */}
+                  {/* Authentic Clicked-Pin Dark Popup Card (Desktop inside map; Mobile cleanly below map) */}
                   {activePin && (
-                    <div className="absolute bottom-3.5 left-3.5 right-3.5 sm:right-auto sm:w-[350px] z-30 rounded-xl bg-[#12141c]/96 backdrop-blur-md border border-[#e2b047]/45 p-3.5 shadow-[0_14px_40px_rgba(0,0,0,0.85)]">
+                    <div className="hidden sm:block absolute bottom-3.5 left-3.5 w-[350px] z-30 rounded-xl bg-[#12141c]/96 backdrop-blur-md border border-[#e2b047]/45 p-3.5 shadow-[0_14px_40px_rgba(0,0,0,0.85)]">
                       <div className="flex items-start gap-3">
                         <div className="relative w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-white/10">
                           <Image
@@ -755,14 +755,52 @@ export default function PinDropDemoExplorer() {
                     Leaflet | © Esri World Imagery
                   </div>
                 </div>
+
+                {/* Non-overlapping Mobile Selected-Pin Summary Card below the satellite map */}
+                {activePin && (
+                  <div className="sm:hidden mt-2 rounded-xl bg-[#12141c] border border-[#e2b047]/40 p-3">
+                    <div className="flex items-start gap-3">
+                      <div className="relative w-14 h-14 rounded-lg overflow-hidden shrink-0 border border-white/10">
+                        <Image
+                          src={activePin.mainPhoto}
+                          alt={activePin.service}
+                          fill
+                          sizes="56px"
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#e2b047] truncate">
+                            {activePin.service}
+                          </span>
+                          <span className="text-[10px] text-slate-400 shrink-0">
+                            {activePin.city}
+                          </span>
+                        </div>
+                        <p className="text-xs text-slate-200 italic line-clamp-2 mt-1 font-serif">
+                          &ldquo;{activePin.quote}&rdquo;
+                        </p>
+                        <button
+                          type="button"
+                          onClick={() => setActiveTab("seo_page")}
+                          className="mt-1.5 text-[11px] font-extrabold text-[#e2b047] hover:text-amber-300 flex items-center gap-1 cursor-pointer"
+                        >
+                          <span>View Auto-Built Google Page</span>
+                          <ArrowRight className="w-3 h-3" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Authentic 2-Column `.pin-feed-card` Grid (Exact match to `src/app/pins/page.tsx`) */}
-              <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
                 {filteredPins.map((pin) => (
                   <div
                     key={pin.id}
-                    className={`rounded-2xl bg-[#12141c] p-5 sm:p-6 border transition-all flex flex-col justify-between ${
+                    className={`rounded-2xl bg-[#12141c] p-4 sm:p-6 border transition-all flex flex-col justify-between ${
                       pin.isUserDropped
                         ? "border-emerald-400/60 shadow-[0_0_30px_rgba(16,185,129,0.16)]"
                         : "border-white/[0.07] hover:border-[#d1a453]/40"
@@ -770,7 +808,7 @@ export default function PinDropDemoExplorer() {
                   >
                     <div>
                       {/* Card Header: Royal Blue Author + Date on Left | Gold Service Tag on Right */}
-                      <div className="flex items-start justify-between gap-3 pb-3.5 mb-3.5 border-b border-white/[0.06]">
+                      <div className="flex flex-wrap items-start justify-between gap-2.5 pb-3.5 mb-3.5 border-b border-white/[0.06]">
                         <div>
                           <div className="text-sm font-extrabold text-[#5c6cff] flex items-center gap-2">
                             <span>{pin.author}</span>
@@ -792,15 +830,15 @@ export default function PinDropDemoExplorer() {
                         &ldquo;{pin.quote}&rdquo;
                       </p>
 
-                      {/* Signature PinDrop Split Media Row: Left Zoomed Satellite Mini-Map | Right Job Photo + Thumbs */}
-                      <div className="grid grid-cols-2 gap-3 mb-5">
+                      {/* Signature PinDrop Split Media Row: Stacked uncropped 16:10 on mobile, 2-col on sm+ */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 sm:mb-5">
                         {/* Left: IndividualProjectMap Satellite View */}
-                        <div className="relative h-40 sm:h-44 rounded-xl overflow-hidden border border-white/10 bg-[#0b0c10]">
+                        <div className="relative aspect-[16/10] sm:aspect-auto sm:h-44 rounded-xl overflow-hidden border border-white/10 bg-[#0b0c10]">
                           <Image
                             src={pin.mapThumb}
                             alt={`Verified neighborhood satellite view in ${pin.city}`}
                             fill
-                            sizes="(max-width: 768px) 44vw, 240px"
+                            sizes="(max-width: 640px) 90vw, 240px"
                             className="object-cover"
                           />
                           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -813,12 +851,12 @@ export default function PinDropDemoExplorer() {
 
                         {/* Right: Job Photo + Secondary Thumbnails */}
                         <div className="flex flex-col gap-2">
-                          <div className="relative h-28 sm:h-32 rounded-xl overflow-hidden border border-white/10">
+                          <div className="relative aspect-[16/10] sm:aspect-auto sm:h-32 rounded-xl overflow-hidden border border-white/10">
                             <Image
                               src={pin.mainPhoto}
                               alt={`${pin.service} in ${pin.city}`}
                               fill
-                              sizes="(max-width: 768px) 44vw, 240px"
+                              sizes="(max-width: 640px) 90vw, 240px"
                               className="object-cover"
                             />
                           </div>
@@ -872,11 +910,11 @@ export default function PinDropDemoExplorer() {
               SCREEN 02: REAL `/admin/drop-pin` FIELD CHECK-IN PORTAL
           ================================================================ */}
           {activeTab === "drop_portal" && (
-            <div className="p-5 sm:p-8 lg:p-10">
+            <div className="p-3.5 sm:p-8 lg:p-10">
               <div className="max-w-3xl mx-auto">
                 {/* Authentic PDM PinDrop Portal Header */}
                 <div className="mb-6">
-                  <div className="flex items-center justify-between mb-1.5">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
                     <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#e2b047]">
                       Power Digital Media
                     </span>
@@ -884,7 +922,7 @@ export default function PinDropDemoExplorer() {
                       🎓 Interactive Crew Portal
                     </span>
                   </div>
-                  <h3 className="text-3xl sm:text-4xl font-black text-white">PDM PinDrop</h3>
+                  <h3 className="text-2xl sm:text-4xl font-black text-white">PDM PinDrop</h3>
                   <p className="text-sm text-slate-400 mt-1">
                     Field Photo Documentation, Crew Messenger &amp; Live SEO Pin Engine
                   </p>
@@ -964,7 +1002,7 @@ export default function PinDropDemoExplorer() {
                       <p className="text-xs text-slate-400 mb-3">
                         Pre-filled SMS &amp; email links open the homeowner&apos;s Google 5-star review box in one tap (15-min auto-dispatch or instant manual send):
                       </p>
-                      <div className="grid grid-cols-2 gap-2.5">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                         <div className="py-2.5 px-3 rounded-lg bg-[#e2b047]/10 border border-[#e2b047]/35 text-xs font-bold text-[#fde047] flex items-center justify-center gap-2">
                           <MessageSquare className="w-3.5 h-3.5" />
                           <span>💬 Send SMS Review Link</span>
@@ -1004,7 +1042,7 @@ export default function PinDropDemoExplorer() {
                   /* Authentic `PDM PinDrop` Check-In Form */
                   <form
                     onSubmit={handleDropLivePin}
-                    className="rounded-2xl p-5 sm:p-7 bg-[#12141c] border border-white/10 space-y-5 text-left"
+                    className="rounded-2xl p-4 sm:p-7 bg-[#12141c] border border-white/10 space-y-5 text-left"
                   >
                     {/* Smart EXIF GPS Auto-Job Match Banner */}
                     <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/40 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
@@ -1142,14 +1180,14 @@ export default function PinDropDemoExplorer() {
 
                     {/* Project Description + Voice Dictate */}
                     <div>
-                      <div className="flex items-center justify-between mb-1.5">
+                      <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
                         <label className="text-xs font-bold text-slate-300">
                           Project Description (Feeds Google Page &amp; GBP Post)
                         </label>
                         <button
                           type="button"
                           onClick={handleSimulateVoiceDictate}
-                          className="px-3 py-1 rounded-lg bg-[#181e2e] border border-[#e2b047] text-[#fde047] text-[11px] font-extrabold flex items-center gap-1.5 cursor-pointer hover:bg-[#e2b047] hover:text-[#0b0c10] transition-colors"
+                          className="px-3 py-1 rounded-lg bg-[#181e2e] border border-[#e2b047] text-[#fde047] text-[11px] font-extrabold flex items-center gap-1.5 cursor-pointer hover:bg-[#e2b047] hover:text-[#0b0c10] transition-colors shrink-0"
                         >
                           <Mic className="w-3 h-3" />
                           <span>🎙️ Voice Dictate Sample</span>
@@ -1281,8 +1319,8 @@ export default function PinDropDemoExplorer() {
               SCREEN 03: REAL `/pin-page` AUTO-SEO & ANSWER ENGINE VIEW
           ================================================================ */}
           {activeTab === "seo_page" && (
-            <div className="p-5 sm:p-8 lg:p-10">
-              <div className="max-w-5xl mx-auto grid lg:grid-cols-12 gap-8 items-start text-left">
+            <div className="p-3.5 sm:p-8 lg:p-10">
+              <div className="max-w-5xl mx-auto grid lg:grid-cols-12 gap-6 sm:gap-8 items-start text-left">
                 {/* Left: Interactive Before/After Transformation Slider */}
                 <div className="lg:col-span-7 space-y-4">
                   <div className="flex flex-wrap items-center gap-2">
@@ -1299,7 +1337,7 @@ export default function PinDropDemoExplorer() {
                   </h3>
 
                   <div className="rounded-2xl overflow-hidden border border-white/15 bg-[#12141c]">
-                    <div className="px-4 py-2.5 bg-[#090b10] border-b border-white/10 flex items-center justify-between text-[11px] font-mono">
+                    <div className="px-3.5 sm:px-4 py-2.5 bg-[#090b10] border-b border-white/10 flex flex-wrap items-center justify-between gap-1.5 text-[11px] font-mono">
                       <span className="text-[#e2b047] font-bold flex items-center gap-1.5">
                         <Sliders className="w-3.5 h-3.5" />
                         Interactive Transformation Slider
@@ -1337,10 +1375,10 @@ export default function PinDropDemoExplorer() {
                           ↔
                         </div>
                       </div>
-                      <span className="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/80 text-[10px] font-bold text-amber-300">
+                      <span className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded bg-black/80 text-[10px] font-bold text-amber-300">
                         BEFORE
                       </span>
-                      <span className="absolute top-3 right-3 px-2.5 py-1 rounded bg-black/80 text-[10px] font-bold text-emerald-300">
+                      <span className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded bg-black/80 text-[10px] font-bold text-emerald-300">
                         AFTER
                       </span>
                     </div>
@@ -1363,7 +1401,7 @@ export default function PinDropDemoExplorer() {
                   </div>
 
                   {/* Technician & Date Metadata Strip */}
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                     <div className="p-3 rounded-xl bg-[#12141c] border border-white/10">
                       <div className="text-[10px] font-mono uppercase text-slate-400">
                         Lead Tech
@@ -1436,8 +1474,8 @@ export default function PinDropDemoExplorer() {
               SCREEN 04: 7 TRADES + 1-CLICK WEBSITE EMBED WIDGET
           ================================================================ */}
           {activeTab === "embed_trades" && (
-            <div className="p-5 sm:p-8 lg:p-10">
-              <div className="max-w-5xl mx-auto grid lg:grid-cols-12 gap-8 items-start text-left">
+            <div className="p-3.5 sm:p-8 lg:p-10">
+              <div className="max-w-5xl mx-auto grid lg:grid-cols-12 gap-6 sm:gap-8 items-start text-left">
                 {/* Left: 7 Pre-Built Trade Presets */}
                 <div className="lg:col-span-6 space-y-4">
                   <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#e2b047]">
@@ -1489,17 +1527,17 @@ export default function PinDropDemoExplorer() {
                 </div>
 
                 {/* Right: Native Build OR 2-Line Embed on Any Existing Website */}
-                <div className="lg:col-span-6 space-y-4">
-                  <div className="rounded-2xl p-5 bg-[#12141c] border border-white/10 space-y-3">
-                    <div className="flex items-center justify-between">
+                <div className="lg:col-span-6 space-y-4 min-w-0">
+                  <div className="rounded-2xl p-4 sm:p-5 bg-[#12141c] border border-white/10 space-y-3">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
                       <span className="text-xs font-extrabold text-emerald-400 flex items-center gap-1.5">
-                        <Code2 className="w-4 h-4" />
-                        Works on Any Website (WordPress, Wix, Squarespace, Custom)
+                        <Code2 className="w-4 h-4 shrink-0" />
+                        <span>Works on Any Website (WordPress, Wix, Custom)</span>
                       </span>
                       <button
                         type="button"
                         onClick={handleCopyEmbed}
-                        className="px-2.5 py-1 rounded-lg bg-white/[0.06] hover:bg-white/10 text-[11px] font-mono text-slate-200 flex items-center gap-1 cursor-pointer"
+                        className="px-2.5 py-1 rounded-lg bg-white/[0.06] hover:bg-white/10 text-[11px] font-mono text-slate-200 flex items-center gap-1 cursor-pointer shrink-0"
                       >
                         {copiedEmbed ? (
                           <>
@@ -1524,7 +1562,7 @@ export default function PinDropDemoExplorer() {
 
                   {/* Real Live Proof Screenshot of Born Again Roofing `/pins/` */}
                   <div className="rounded-2xl overflow-hidden bg-[#12141c] border border-[#e2b047]/35">
-                    <div className="px-4 py-2.5 bg-[#090b10] border-b border-white/10 flex items-center justify-between text-xs">
+                    <div className="px-3.5 sm:px-4 py-2.5 bg-[#090b10] border-b border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs">
                       <span className="font-bold text-white">
                         Live Production Proof: Born Again Roofing (99+ Pins)
                       </span>
@@ -1532,13 +1570,13 @@ export default function PinDropDemoExplorer() {
                         href="https://bornagainroofing.com/pins/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[#e2b047] font-extrabold hover:underline flex items-center gap-1"
+                        className="text-[#e2b047] font-extrabold hover:underline flex items-center gap-1 shrink-0"
                       >
                         <span>Open Live Map</span>
                         <ExternalLink className="w-3 h-3" />
                       </a>
                     </div>
-                    <div className="relative h-44 w-full">
+                    <div className="relative aspect-[16/10] w-full">
                       <Image
                         src="/pindrop/bar-live-pins.jpg"
                         alt="Born Again Roofing live PinDrop satellite map and feed with 99+ pins"

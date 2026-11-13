@@ -197,7 +197,7 @@ export default function FreeAuditPage() {
 
             {/* Right Form Card */}
             <div className="lg:col-span-5">
-              <div className="p-7 sm:p-9 rounded-3xl obsidian-surface relative">
+              <div className="p-5 sm:p-9 rounded-3xl obsidian-surface relative">
                 {status === "success" ? (
                   <div className="py-8 flex flex-col items-center justify-center text-center space-y-5">
                     <div className="w-16 h-16 rounded-2xl bg-emerald-500/15 border border-emerald-500/35 flex items-center justify-center text-emerald-400">
@@ -361,14 +361,14 @@ export default function FreeAuditPage() {
                       <button
                         type="submit"
                         disabled={status === "submitting"}
-                        className="w-full py-4.5 bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black rounded-xl flex items-center justify-center gap-2 hover:brightness-110 transition-all text-xs uppercase tracking-widest shadow-[0_0_28px_rgba(245,158,11,0.3)] disabled:opacity-50 cursor-pointer"
+                        className="w-full px-4 py-4 bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black rounded-xl flex items-center justify-center gap-2 hover:brightness-110 transition-all text-xs uppercase tracking-wider shadow-[0_0_28px_rgba(245,158,11,0.3)] disabled:opacity-50 cursor-pointer"
                       >
                         {status === "submitting" ? (
                           <span>Reserving Your Video Review...</span>
                         ) : (
                           <>
                             <span>Send My Free 5-Min Video Breakdown</span>
-                            <ArrowRight className="w-4 h-4" />
+                            <ArrowRight className="w-4 h-4 shrink-0" />
                           </>
                         )}
                       </button>
