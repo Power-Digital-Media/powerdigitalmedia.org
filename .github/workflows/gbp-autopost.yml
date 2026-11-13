@@ -1,10 +1,9 @@
 name: Google Business Profile Autonomous Posts
 
 on:
-  schedule:
-    # Runs every Tuesday & Friday at 15:15 UTC (9:15 AM Central Time)
-    # Keeps Google Business Profile permanently fresh inside Google's 7-day Map Pack post window
-    - cron: '15 15 * * 2,5'
+  # Paused until Damein approves the new post style & workflow:
+  # schedule:
+  #   - cron: '15 15 * * 2,5'
   workflow_dispatch:
     inputs:
       dry_run:
