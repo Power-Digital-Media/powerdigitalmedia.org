@@ -98,15 +98,69 @@ export const PDM_CANONICAL_GBP_PROFILE = {
   services: [
     {
       categoryId: "categories/gcid:website_designer",
-      displayName: "Contractor Growth Websites & Lead Rescue",
+      displayName: "Contractor Websites & Missed-Call SMS Lead Rescue",
       description:
-        "Custom sub-2-second mobile websites engineered for roofers, HVAC pros, excavators, plumbers, electricians, and service trades—paired with instant missed-call and quote SMS follow-up.",
+        "Custom sub-2-second mobile websites engineered for roofers, HVAC pros, excavators, plumbers, electricians, and service trades—paired with instant missed-call and quote SMS follow-up across Central Mississippi.",
     },
     {
       categoryId: "categories/gcid:website_designer",
-      displayName: "Custom Next.js Website Design & Engineering",
+      displayName: "Next.js Web Architecture",
       description:
         "Hand-coded Next.js websites with zero bloated WordPress plugins, 98+ mobile PageSpeed performance, custom conversion architecture, and 100% codebase ownership.",
+    },
+    {
+      categoryId: "categories/gcid:website_designer",
+      displayName: "Generative Engine Optimization (GEO)",
+      description:
+        "Structured JSON-LD entity architecture, AI crawler indexing, and citation optimization so ChatGPT, Google AI Overviews, Perplexity, and Claude recommend your business.",
+    },
+    {
+      categoryId: "categories/gcid:website_designer",
+      displayName: "B2B Growth Pipeline Engineering",
+      description:
+        "High-intent B2B conversion architecture, custom discovery flows, and automated CRM deal routing built to turn commercial traffic into qualified sales pipeline.",
+    },
+    {
+      categoryId: "categories/gcid:website_designer",
+      displayName: "Serverless Infrastructure Optimization",
+      description:
+        "Edge-cached serverless deployment, Core Web Vitals optimization, and hardened SSL and DNS architecture engineered for sub-second mobile load times.",
+    },
+    {
+      categoryId: "categories/gcid:website_designer",
+      displayName: "Custom React Application Development",
+      description:
+        "Bespoke interactive calculators, client portals, field tools, and full-stack React and TypeScript web applications tailored to your business operations.",
+    },
+    {
+      categoryId: "categories/gcid:marketing_agency",
+      displayName: "Contractor Lead Generation & Conversion Funnels",
+      description:
+        "Full-funnel digital growth systems for home service contractors and standout local brands—combining high-converting service pages, interactive quote calculators, and automated follow-up pipelines.",
+    },
+    {
+      categoryId: "categories/gcid:marketing_agency",
+      displayName: "Social media marketing",
+      description:
+        "Precision Facebook and Instagram (Meta) ad campaigns, local video creatives, zip-code homeowner targeting, Meta Conversion API tracking, and 1-tap mobile quote funnels synced directly into your phone and CRM.",
+    },
+    {
+      categoryId: "categories/gcid:software_company",
+      displayName: "PDM PinDrop Neighborhood SEO & Review Software",
+      description:
+        "30-second mobile crew check-ins that publish GPS-verified neighborhood project pages, live website job maps, Google updates, and automated homeowner 5-star SMS review requests.",
+    },
+    {
+      categoryId: "categories/gcid:software_company",
+      displayName: "PinCam Contractor Field Camera & Inspection Reports",
+      description:
+        "iOS and Android field camera featuring Ghost Photo Match 1:1 before/after alignment, non-destructive damage markups, Dual-Cam walkthroughs, and branded homeowner and adjuster PDF reports.",
+    },
+    {
+      categoryId: "categories/gcid:software_company",
+      displayName: "PDM Site Intelligence 24/7 Website & SEO Monitoring",
+      description:
+        "Proactive 5-minute uptime and SSL monitoring, broken-link crawls, Chrome UX cellular speed telemetry, Google Search Console growth tracking, and staged human-verified site updates.",
     },
     {
       categoryId: "categories/gcid:internet_marketing_service",
@@ -115,28 +169,10 @@ export const PDM_CANONICAL_GBP_PROFILE = {
         "Google Business Profile optimization, city and subdivision landing pages, LocalBusiness JSON-LD schema, and 5-star review velocity across Jackson, Madison, Ridgeland, Brandon, Flowood, and Clinton.",
     },
     {
-      categoryId: "categories/gcid:software_company",
-      displayName: "PDM PinDrop™ Neighborhood SEO & Review Software",
-      description:
-        "30-second mobile crew check-ins that publish GPS-verified neighborhood project pages, live website job maps, Google updates, and automated homeowner 5-star SMS review requests.",
-    },
-    {
-      categoryId: "categories/gcid:software_company",
-      displayName: "PinCam™ Contractor Field Camera & Inspection Reports",
-      description:
-        "iOS and Android field camera featuring Ghost Photo Match 1:1 before/after alignment, non-destructive damage markups, Dual-Cam walkthroughs, and branded homeowner/adjuster PDF reports.",
-    },
-    {
-      categoryId: "categories/gcid:software_company",
-      displayName: "PDM Site Intelligence™ 24/7 Website & SEO Watchtower",
-      description:
-        "Proactive 5-minute uptime and SSL monitoring, broken-link crawls, Chrome UX cellular speed telemetry, Google Search Console growth tracking, and staged human-verified updates.",
-    },
-    {
       categoryId: "categories/gcid:business_to_business_service",
       displayName: "CRM Automation & Zero-Commission Online Ordering",
       description:
-        "Direct Capsule CRM pipelines, Transpond email/SMS follow-up automation, and native Square Web SDK online ordering and catering calculators with zero third-party commission fees.",
+        "Direct Capsule CRM pipelines, Transpond email and SMS follow-up automation, and native Square Web SDK online ordering and catering calculators with zero third-party commission fees.",
     },
   ] satisfies GbpServiceDefinition[],
 } as const;
