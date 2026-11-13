@@ -1,134 +1,110 @@
-import { BookOpen, Calendar, ArrowRight, Book, Share2, Search } from "lucide-react";
-import Image from "next/image";
+import { BookOpen, ArrowRight } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import NewsletterForm from "@/components/ui/NewsletterForm";
-
+import BlogExplorerClient from "@/components/blog/BlogExplorerClient";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import { blogPosts } from "@/data/blogPosts";
 import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Web Design, Local SEO & Business Tech Insights | Power Digital Media Blog",
-    description: "Actionable guides on Next.js web development, Google Business Profile rankings, Capsule CRM automation, and contractor tech in Mississippi.",
-    alternates: {
-        canonical: 'https://powerdigitalmedia.org/blog',
-    },
-    openGraph: {
-        title: "Web Design, Local SEO & Business Tech Insights | Power Digital Media",
-        description: "Actionable guides on Next.js web development, Google Business Profile rankings, Capsule CRM automation, and contractor tech in Mississippi.",
-        url: "https://powerdigitalmedia.org/blog",
-    }
+  title: "Contractor SEO, Web Design & Growth Guides | Power Digital Media Blog",
+  description:
+    "Actionable playbooks on Google Map Pack rankings, custom Next.js web design, PDM PinDrop™ & PinCam™ field apps, and CRM automation for Mississippi businesses.",
+  alternates: {
+    canonical: "https://powerdigitalmedia.org/blog",
+  },
+  openGraph: {
+    title: "Contractor SEO, Web Design & Growth Guides | Power Digital Media",
+    description:
+      "Actionable playbooks on Google Map Pack rankings, custom Next.js web design, PDM PinDrop™ & PinCam™ field apps, and CRM automation for Mississippi businesses.",
+    url: "https://powerdigitalmedia.org/blog",
+  },
 };
 
 export default function BlogPage() {
-    // Sort posts by date (newest first)
-    const sortedPosts = [...blogPosts].sort((a, b) =>
-        new Date(b.date).getTime() - new Date(a.date).getTime()
-    );
+  const sortedPosts = [...blogPosts]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .map((p) => ({
+      slug: p.slug,
+      title: p.title,
+      excerpt: p.excerpt,
+      date: p.date,
+      category: p.category,
+      image: p.image,
+    }));
 
-    return (
-        <main className="relative min-h-screen bg-background text-foreground">
-            <Navbar />
+  return (
+    <main className="relative min-h-screen bg-[#06080f] text-white overflow-hidden">
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://powerdigitalmedia.org/" },
+          { name: "Guides & Insights", url: "https://powerdigitalmedia.org/blog" },
+        ]}
+      />
+      <Navbar />
 
-            {/* Hero */}
-            <section className="relative pt-32 pb-20 overflow-hidden">
-                <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
-                <div className="container px-4 mx-auto text-center">
-                    <div className="max-w-3xl mx-auto">
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-950/40 text-cyan-400 text-xs font-mono font-bold uppercase tracking-wider mb-6">
-                            <BookOpen className="w-3.5 h-3.5" /> Web Design, Local SEO &amp; Business Systems
-                        </div>
-                        <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-6 leading-[1.1]">
-                            Digital Architecture &amp; <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400 text-glow">
-                                Business Growth Insights
-                            </span>
-                        </h1>
-                        <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-10 text-balance">
-                            Practical engineering, search visibility, and automation strategies designed for Mississippi business owners, contractors, and local enterprises.
-                        </p>
-                        <div className="relative max-w-lg mx-auto mb-16">
-                            <input
-                                type="text"
-                                placeholder="Search articles..."
-                                className="w-full px-6 py-4 rounded-full glass-card border-white/10 focus:border-accent/50 outline-none transition-all pr-12"
-                            />
-                            <Search className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                        </div>
-                    </div>
-                </div>
-            </section>
+      <div className="absolute inset-0 blueprint-grid opacity-25 pointer-events-none" aria-hidden="true" />
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-amber-500/[0.06] rounded-full blur-[150px] pointer-events-none"
+        aria-hidden="true"
+      />
 
-            {/* Blog Grid */}
-            <section className="py-24 relative z-10">
-                <div className="container px-4 mx-auto">
-                    <div className="grid gap-12 lg:grid-cols-3">
-                        {sortedPosts.map((post, index) => (
-                            <article
-                                key={post.slug}
-                                className="group cursor-pointer"
-                            >
-                                <Link href={`/blog/${post.slug}`} className="block">
-                                    <div className="glass-card rounded-[2.5rem] border-white/5 overflow-hidden transition-all duration-500 group-hover:border-accent/30 group-hover:shadow-[0_0_30px_rgba(59,130,246,0.1)]">
-                                        <div className="aspect-video relative overflow-hidden">
-                                            <Image
-                                                src={post.image}
-                                                alt={post.title}
-                                                fill
-                                                unoptimized={post.image.includes('oaidalleapiprodscus')}
-                                                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                            />
-                                            <div className={`absolute top-6 left-6 px-4 py-1.5 rounded-full backdrop-blur-md text-[10px] font-black uppercase tracking-[0.2em] border flex items-center gap-2 ${post.category === "Daily Intel"
-                                                ? "bg-accent/20 border-accent/40 text-accent"
-                                                : "bg-background/80 border-white/5 text-muted-foreground"
-                                                }`}>
-                                                {post.category === "Daily Intel" && (
-                                                    <span className="relative flex h-2 w-2">
-                                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-                                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-accent shadow-[0_0_8px_rgba(59,130,246,0.8)]"></span>
-                                                    </span>
-                                                )}
-                                                {post.category}
-                                            </div>
-                                        </div>
+      {/* Hero + Interactive Explorer */}
+      <section className="relative pt-32 pb-20 md:pt-40">
+        <div className="container px-4 sm:px-6 mx-auto max-w-7xl">
+          <div className="max-w-3xl mx-auto text-center mb-10">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-300 text-xs font-mono font-bold uppercase tracking-wider mb-5">
+              <BookOpen className="w-3.5 h-3.5 text-amber-400" /> Field-Tested Local Growth Playbooks
+            </div>
+            <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tight mb-5 leading-[1.03]">
+              Web Speed, Map Pack SEO &amp;{" "}
+              <span className="text-amber-400">Contractor Systems.</span>
+            </h1>
+            <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
+              Practical guides written in Jackson, Mississippi for roofers, HVAC pros, dirt-work operators, and local business owners who want their website to actually generate calls.
+            </p>
+          </div>
 
-                                        <div className="p-8">
-                                            <div className="flex items-center gap-2 mb-4 text-xs font-medium text-muted-foreground">
-                                                <Calendar className="w-3.5 h-3.5" /> {post.date}
-                                            </div>
-                                            <h3 className="text-2xl font-bold mb-4 line-clamp-2 group-hover:text-glow transition-all">
-                                                {post.title}
-                                            </h3>
-                                            <p className="text-muted-foreground leading-relaxed mb-8 line-clamp-3">
-                                                {post.excerpt}
-                                            </p>
+          <BlogExplorerClient posts={sortedPosts} />
+        </div>
+      </section>
 
-                                            <div className="flex items-center gap-2 text-sm font-bold text-accent uppercase tracking-widest group/btn">
-                                                Read Story <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-2" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Link>
-                            </article>
-                        ))}
-                    </div>
-                </div>
-            </section>
+      {/* Free Audit + Newsletter Strip */}
+      <section className="py-20 bg-[#0b0c10] border-t border-white/10 relative z-10">
+        <div className="container px-4 sm:px-6 mx-auto max-w-5xl">
+          <div className="grid gap-10 lg:grid-cols-2 items-center p-8 sm:p-10 rounded-3xl bg-[#12141c] border border-white/10">
+            <div className="space-y-4">
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-amber-400">
+                Want Us to Check Your Site?
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">
+                Get a Free 5-Minute Rank &amp; Speed Video
+              </h2>
+              <p className="text-sm text-slate-300 leading-relaxed">
+                Damein will record a custom screen-share showing where you rank in the Google Map Pack across Central MS—and the exact fixes that will get your phone ringing.
+              </p>
+              <Link
+                href="/free-audit"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-amber-400 text-slate-950 font-black uppercase tracking-wider text-xs hover:bg-amber-300 transition-colors"
+              >
+                Request Free Rank Check <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
 
-            {/* Newsletter / CTA */}
-            <section className="py-24 bg-accent/5 border-t border-white/5">
-                <div className="container px-4 mx-auto text-center">
-                    <Share2 className="w-12 h-12 text-accent mx-auto mb-6" />
-                    <h3 className="text-3xl font-bold mb-4">Stay Ahead of the Curve.</h3>
-                    <p className="text-muted-foreground mb-8">Join our newsletter for the latest insights in studio tech and digital strategy.</p>
-                    <div className="relative">
-                        <NewsletterForm />
-                    </div>
-                </div>
-            </section>
+            <div className="p-6 rounded-2xl bg-[#0b0c10] border border-white/10 space-y-4">
+              <h3 className="text-lg font-bold text-white">Get New Playbooks by Email</h3>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Zero spam—just actionable breakdowns on Google Maps rankings, jobsite SEO, and website conversions.
+              </p>
+              <NewsletterForm />
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <Footer />
-        </main>
-    );
+      <Footer />
+    </main>
+  );
 }

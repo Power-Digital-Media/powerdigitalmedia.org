@@ -1,225 +1,229 @@
 "use client";
 
 import { m, AnimatePresence } from "framer-motion";
-import { X, Send, Sparkles, AlertCircle } from "lucide-react";
+import { X, Send, CheckCircle2, AlertCircle, MapPin, Phone } from "lucide-react";
 import { useState, useEffect, type FormEvent } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+import FormSecurityFields from "@/components/ui/FormSecurityFields";
+import { submitVerifiedLeadForm } from "@/lib/lead-submission";
+
+const SUPPRESSED_ROUTES = new Set([
+  "/free-audit",
+  "/contact",
+  "/book",
+  "/login",
+  "/lead-leak-check",
+  "/founders100",
+]);
 
 export default function ExitIntentPopup() {
-    const [isOpen, setIsOpen] = useState(false);
-    const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
-    const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const pathname = usePathname();
 
-    useEffect(() => {
-        // Safety Checks: Verify user hasn't already converted or closed the popup this session
+  useEffect(() => {
+    if (
+      pathname &&
+      (SUPPRESSED_ROUTES.has(pathname) ||
+        pathname.startsWith("/admin") ||
+        pathname.startsWith("/dashboard") ||
+        pathname.endsWith("/discovery"))
+    ) {
+      setIsOpen(false);
+      return;
+    }
+
+    try {
+      const hasConverted = localStorage.getItem("audit_converted") === "true";
+      const hasDismissed = sessionStorage.getItem("audit_dismissed") === "true";
+      if (hasConverted || hasDismissed) return;
+    } catch {
+      // Storage unavailable
+    }
+
+    // Desktop-only exit intent after 15s on page so mobile users aren't interrupted
+    let armed = false;
+    const armTimer = setTimeout(() => {
+      armed = true;
+    }, 15000);
+
+    const handleMouseLeave = (e: MouseEvent) => {
+      if (!armed || window.innerWidth < 1024) return;
+      if (e.clientY > 16) return;
+      const active = document.activeElement;
+      if (active && (Boolean(active.closest("form")) || ["INPUT", "TEXTAREA", "SELECT"].includes(active.tagName))) {
+        return;
+      }
+      try {
+        if (sessionStorage.getItem("audit_dismissed") === "true" || localStorage.getItem("audit_converted") === "true") {
+          return;
+        }
+      } catch {
+        // Ignore storage error
+      }
+      setIsOpen(true);
+    };
+
+    document.addEventListener("mouseleave", handleMouseLeave);
+    return () => {
+      clearTimeout(armTimer);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, [pathname]);
+
+  const handleDismiss = () => {
+    setIsOpen(false);
+    try {
+      sessionStorage.setItem("audit_dismissed", "true");
+    } catch {
+      // Ignore
+    }
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("submitting");
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    try {
+      const { ok } = await submitVerifiedLeadForm({
+        formSource: "website-audit-request",
+        formData: data,
+      });
+
+      if (ok) {
+        setStatus("success");
         try {
-            const hasConverted = localStorage.getItem("audit_converted") === "true";
-            const hasDismissed = sessionStorage.getItem("audit_dismissed") === "true";
-            if (hasConverted || hasDismissed) return;
+          localStorage.setItem("audit_converted", "true");
         } catch {
-            // Storage access check
+          // Ignore
         }
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch (err) {
+      console.error("Popup lead capture error:", err);
+      setStatus("error");
+    }
+  };
 
-        // Defer listener attachments until after initial render and idle time
-        let cleanups: (() => void)[] = [];
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <div className="hidden lg:block fixed bottom-6 right-6 z-[90] w-full max-w-[410px]">
+          <m.div
+            initial={{ opacity: 0, y: 36, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 24, scale: 0.96 }}
+            transition={{ type: "spring", damping: 22, stiffness: 260 }}
+            className="relative overflow-hidden rounded-3xl border border-amber-500/35 p-7 bg-[#0b0c10]/95 backdrop-blur-xl shadow-[0_24px_70px_rgba(0,0,0,0.8)]"
+          >
+            <div className="absolute top-0 right-0 w-36 h-36 bg-amber-500/10 blur-[45px] pointer-events-none" />
 
-        const attachListeners = () => {
-            // 1. Desktop Trigger: Exit Intent (Cursor leaves top of viewport)
-            const handleMouseLeave = (e: MouseEvent) => {
-                if (sessionStorage.getItem("audit_dismissed") === "true" || localStorage.getItem("audit_converted") === "true") {
-                    return;
-                }
-                if (e.clientY < 20) {
-                    setIsOpen(true);
-                }
-            };
-            document.addEventListener("mouseleave", handleMouseLeave);
-            cleanups.push(() => document.removeEventListener("mouseleave", handleMouseLeave));
+            <button
+              onClick={handleDismiss}
+              disabled={status === "submitting"}
+              className="absolute top-4 right-4 p-1.5 rounded-full border border-white/10 hover:bg-white/10 text-slate-400 hover:text-white transition-all cursor-pointer"
+              aria-label="Dismiss"
+            >
+              <X className="w-4 h-4" />
+            </button>
 
-            // 2. Mobile / Tablet Trigger: Scroll depth check (passive scroll listener, no DOM mutation)
-            const handleScroll = () => {
-                const scrollY = window.scrollY;
-                const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-                if (totalHeight > 0 && scrollY / totalHeight > 0.65) {
-                    if (sessionStorage.getItem("audit_dismissed") !== "true" && localStorage.getItem("audit_converted") !== "true") {
-                        setIsOpen(true);
-                    }
-                    window.removeEventListener("scroll", handleScroll);
-                }
-            };
-            window.addEventListener("scroll", handleScroll, { passive: true });
-            cleanups.push(() => window.removeEventListener("scroll", handleScroll));
-        };
-
-        if ("requestIdleCallback" in window) {
-            const idleId = window.requestIdleCallback(attachListeners, { timeout: 3000 });
-            return () => {
-                window.cancelIdleCallback(idleId);
-                cleanups.forEach((c) => c());
-            };
-        } else {
-            const timer = setTimeout(attachListeners, 2000);
-            return () => {
-                clearTimeout(timer);
-                cleanups.forEach((c) => c());
-            };
-        }
-    }, []);
-
-    const handleDismiss = () => {
-        setIsOpen(false);
-        try {
-            sessionStorage.setItem("audit_dismissed", "true");
-        } catch {}
-    };
-
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setStatus("submitting");
-
-        const form = e.currentTarget;
-        const data = new FormData(form);
-        data.append("_form_source", "website-audit-request");
-
-        try {
-            const response = await fetch("/api/forms", {
-                method: "POST",
-                body: data,
-                headers: { Accept: "application/json" },
-            });
-
-            if (response.ok) {
-                setStatus("success");
-                try {
-                    localStorage.setItem("audit_converted", "true");
-                } catch {}
-                form.reset();
-
-                // Wait briefly for success animation, then redirect to bookings
-                setTimeout(() => {
-                    setIsOpen(false);
-                    router.push("/book?from=audit");
-                }, 1500);
-            } else {
-                setStatus("error");
-            }
-        } catch (err) {
-            console.error("Popup lead capture error:", err);
-            setStatus("error");
-        }
-    };
-
-    return (
-        <AnimatePresence>
-            {isOpen && (
-                <div className="fixed bottom-6 right-6 z-[90] w-full max-w-[420px] px-4 md:px-0">
-                    <m.div
-                        initial={{ opacity: 0, y: 50, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 30, scale: 0.95 }}
-                        transition={{ type: "spring", damping: 20, stiffness: 260 }}
-                        className="relative overflow-hidden rounded-[2rem] border border-white/10 p-8 glass-card bg-slate-950/80 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
-                    >
-                        {/* Glow Effects */}
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 blur-[40px] pointer-events-none -z-10" />
-                        <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-500/5 blur-[50px] pointer-events-none -z-10" />
-
-                        {/* Close button */}
-                        <button
-                            onClick={handleDismiss}
-                            disabled={status === "submitting"}
-                            className="absolute top-4 right-4 p-1.5 rounded-full border border-white/5 hover:bg-white/10 text-white/40 hover:text-white transition-all disabled:opacity-50"
-                            aria-label="Dismiss"
-                        >
-                            <X className="w-4 h-4" />
-                        </button>
-
-                        {/* Card Content */}
-                        {status === "success" ? (
-                            <m.div
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                className="flex flex-col items-center justify-center text-center py-6 space-y-4"
-                            >
-                                <div className="w-12 h-12 rounded-full bg-cyan-400/20 flex items-center justify-center text-cyan-400">
-                                    <Send className="w-5 h-5 animate-bounce" />
-                                </div>
-                                <div>
-                                    <h4 className="text-lg font-bold text-white mb-1">Audit Reserved! 🚀</h4>
-                                    <p className="text-xs text-muted-foreground">Redirecting you to schedule a quick sync call...</p>
-                                </div>
-                            </m.div>
-                        ) : (
-                            <div className="space-y-5">
-                                {/* Badge */}
-                                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-cyan-400/20 bg-cyan-400/5 text-cyan-400 text-[10px] font-bold uppercase tracking-wider">
-                                    <Sparkles className="w-3.5 h-3.5" />
-                                    Free Optimization Protocol
-                                </div>
-
-                                {/* Headline */}
-                                <div className="space-y-2">
-                                    <h3 className="text-xl font-bold tracking-tight text-white">
-                                        Wait! Is your website losing clients?
-                                    </h3>
-                                    <p className="text-xs text-slate-400 leading-relaxed">
-                                        Before you leave, enter your website and we&apos;ll record a <strong className="text-cyan-400">free 10-minute custom video audit</strong> highlighting critical speed, SEO, and layout upgrades to double your sales.
-                                    </p>
-                                </div>
-
-                                {/* Form */}
-                                <form onSubmit={handleSubmit} className="space-y-3.5">
-                                    <div className="space-y-2">
-                                        <input
-                                            type="url"
-                                            name="website_url"
-                                            required
-                                            disabled={status === "submitting"}
-                                            placeholder="https://yourbusiness.com"
-                                            className="w-full px-4 py-3 text-xs bg-white/5 border border-white/10 focus:border-cyan-400 rounded-xl outline-none transition-all placeholder:text-muted-foreground/30 text-white"
-                                        />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            required
-                                            disabled={status === "submitting"}
-                                            placeholder="john@yourbusiness.com"
-                                            className="w-full px-4 py-3 text-xs bg-white/5 border border-white/10 focus:border-cyan-400 rounded-xl outline-none transition-all placeholder:text-muted-foreground/30 text-white"
-                                        />
-                                    </div>
-
-                                    {status === "error" && (
-                                        <p className="text-[10px] text-red-400 flex items-center gap-1">
-                                            <AlertCircle className="w-3 h-3" />
-                                            Submission failed. Please try again.
-                                        </p>
-                                    )}
-
-                                    <button
-                                        type="submit"
-                                        disabled={status === "submitting"}
-                                        className="w-full py-3.5 text-xs font-bold uppercase tracking-wider text-black bg-white rounded-xl border border-white hover:bg-cyan-400 hover:border-cyan-400 hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
-                                    >
-                                        {status === "submitting" ? (
-                                            <>
-                                                <div className="w-3.5 h-3.5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
-                                                Preparing Audit...
-                                            </>
-                                        ) : (
-                                            <>
-                                                Get My Free Video Audit
-                                                <Send className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                                            </>
-                                        )}
-                                    </button>
-                                </form>
-                            </div>
-                        )}
-                    </m.div>
+            {status === "success" ? (
+              <m.div
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="flex flex-col items-center justify-center text-center py-4 space-y-3"
+              >
+                <div className="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/35 flex items-center justify-center text-emerald-400">
+                  <CheckCircle2 className="w-6 h-6" />
                 </div>
+                <h4 className="text-lg font-black uppercase tracking-tight text-white">
+                  Breakdown Queued!
+                </h4>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Damein will personally record your 5-minute Google Maps &amp; website review and send it over within 1 business day.
+                </p>
+                <button
+                  onClick={handleDismiss}
+                  className="mt-2 px-5 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-xs font-bold text-white transition-colors cursor-pointer"
+                >
+                  Close Window
+                </button>
+              </m.div>
+            ) : (
+              <div className="space-y-4">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-300 text-[10px] font-mono font-bold uppercase tracking-wider">
+                  <MapPin className="w-3 h-3 text-amber-400" />
+                  Free 5-Minute Local Rank Check
+                </div>
+
+                <div className="space-y-1.5 pr-4">
+                  <h3 className="text-xl font-black uppercase tracking-tight text-white leading-tight">
+                    Want to See Why Competitors Outrank You?
+                  </h3>
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    Drop your business name or website and Damein will send a custom <strong className="text-amber-300">5-minute screen-share video</strong> showing how to pull more calls in your city.
+                  </p>
+                </div>
+
+                <form onSubmit={handleSubmit} className="space-y-3">
+                  <FormSecurityFields />
+                  <input
+                    type="text"
+                    name="website_url"
+                    required
+                    disabled={status === "submitting"}
+                    placeholder="Business Name or Website (e.g. Ace Roofing, Brandon MS)"
+                    className="w-full px-3.5 py-3 text-xs bg-[#12141c] border border-white/15 focus:border-amber-400 rounded-xl outline-none transition-all placeholder:text-slate-500 text-white"
+                  />
+                  <input
+                    type="text"
+                    name="email"
+                    required
+                    disabled={status === "submitting"}
+                    placeholder="Best Email or Cell # to Text Your Video"
+                    className="w-full px-3.5 py-3 text-xs bg-[#12141c] border border-white/15 focus:border-amber-400 rounded-xl outline-none transition-all placeholder:text-slate-500 text-white"
+                  />
+
+                  {status === "error" && (
+                    <p className="text-[11px] text-red-400 flex items-center gap-1">
+                      <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                      Couldn&apos;t send—call or text (601) 446-2393 directly.
+                    </p>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={status === "submitting"}
+                    className="w-full py-3.5 text-xs font-black uppercase tracking-wider text-slate-950 bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 hover:brightness-110 rounded-xl transition-all flex items-center justify-center gap-2 shadow-[0_0_24px_rgba(245,158,11,0.3)] cursor-pointer disabled:opacity-50"
+                  >
+                    {status === "submitting" ? (
+                      <span>Sending Request...</span>
+                    ) : (
+                      <>
+                        <span>Send My Free 5-Min Video</span>
+                        <Send className="w-3.5 h-3.5" />
+                      </>
+                    )}
+                  </button>
+                </form>
+
+                <div className="pt-2 border-t border-white/[0.07] flex items-center justify-between text-[11px] text-slate-400">
+                  <span>No spam • Recorded in Jackson, MS</span>
+                  <a href="tel:6014462393" className="text-amber-300 hover:text-amber-200 font-bold flex items-center gap-1">
+                    <Phone className="w-3 h-3" />
+                    (601) 446-2393
+                  </a>
+                </div>
+              </div>
             )}
-        </AnimatePresence>
-    );
+          </m.div>
+        </div>
+      )}
+    </AnimatePresence>
+  );
 }

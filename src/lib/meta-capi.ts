@@ -67,8 +67,6 @@ export async function sendMetaCAPILeadEvent(data: MetaLeadData) {
                     action_source: 'website',
                     user_data: userData,
                     custom_data: {
-                        currency: 'USD',
-                        value: 0.00,
                         content_name: data.formSource || 'lead-leak-check'
                     }
                 }

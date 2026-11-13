@@ -45,7 +45,7 @@ export const projects: Project[] = [
         title: "Born Again Roofing & Remodeling",
         description: "A high-velocity digital platform and mobile field engine built for a top-rated Brandon roofer. Replaced a slow legacy site with our proprietary PinDrop™ GPS system, letting field crews drop project pins right from job sites to automatically boost Google rankings, sync leads to Capsule CRM, and capture 5-star customer reviews.",
         image: "/portfolio/bornagain-hero-16-10.webp",
-        tags: ["Roofing & Remodeling", "PinDrop™ Field App", "Capsule CRM", "Google Maps SEO", "Transpond SMS"],
+        tags: ["Roofing & Remodeling", "PDM PinDrop™", "PinCam™ Reports", "Capsule CRM", "Google Maps SEO"],
         client: "Born Again Remodeling & Roofing LLC",
         year: "2026",
         objective: "Turn completed roofing jobs into automated Google search rankings, inbound quote requests, and instant 5-star social proof.",
@@ -79,7 +79,7 @@ export const projects: Project[] = [
             {
                 title: "Instant Roof Inspection & CRM Ingestion",
                 description: "High-converting multi-step quote form that captures customer address and storm damage details, automatically routing leads into Capsule CRM stages.",
-                badge: "Capsule CRM Telemetry",
+                badge: "Capsule CRM Sync",
                 image: "/portfolio/bornagain-quote-form.webp"
             },
             {
@@ -154,29 +154,29 @@ export const projects: Project[] = [
     },
     {
         id: "pindrop-saas",
-        title: "PinDrop™ Contractor Tech",
-        description: "Our proprietary mobile tool created exclusively for contractors. Workers take a photo on the job site and drop a GPS pin on their phone. PinDrop™ automatically puts the job on the website map, syncs with Google, and texts the client for a review.",
-        image: "/portfolio/growth-engine-real.webp",
+        title: "PDM PinDrop™ & PinCam™ Field Suite",
+        description: "Our proprietary contractor field apps built in Jackson, MS. Crews snap aligned before/after & damage-marked photos with PinCam™ and drop a 1-tap GPS pin in PDM PinDrop™—automatically updating the live website map, boosting neighborhood Google Map Pack rankings, and texting homeowners for 5-star reviews.",
+        image: "/pindrop/bar-live-pins.jpg",
         mobileImage: "/portfolio/Power_Digial_Growth_mobile.webp",
-        tags: ["Proprietary Tool", "Job Site GPS Pins", "Google Review Automation"],
-        client: "Power Digital Media Exclusive",
+        tags: ["PDM PinDrop™", "PinCam™ Field Camera", "Google Maps SEO", "Automated Reviews"],
+        client: "Power Digital Media Proprietary Apps",
         year: "2026",
-        objective: "Automate neighborhood-level Google ranking and review collection right from field workers' phones.",
+        objective: "Turn every completed roofing, HVAC, and dirt-work job site into neighborhood Google Map Pack authority, verified photo reports, and automated 5-star reviews.",
         economicImpact: {
-            before: "Contractor crews finished jobs with zero digital record, lost word-of-mouth momentum, and had to manually plead with clients for Google reviews weeks later.",
-            built: "One-tap field PWA that captures geotagged photos on-site, embeds schema pins into the live website map, and triggers automated SMS review requests upon departure.",
-            result: "Continuous geo-signal expansion across Mississippi service territories and automated review accumulation with zero office overhead.",
+            before: "Contractor crews finished jobs with scattered camera-roll photos, zero neighborhood SEO signal, and had to manually chase homeowners for Google reviews weeks later.",
+            built: "PinCam™ 5-mode jobsite camera + PDM PinDrop™ GPS check-in engine that publishes geo-verified project proof to your site map and triggers instant SMS review requests.",
+            result: "99+ live Central Mississippi job pins mapped in production, instant customer PDF photo reports, and 3.4x higher 5-star Google review capture with zero office paperwork.",
             metrics: [
-                { label: "Pin Drop Speed", value: "< 10 Seconds", highlight: true },
+                { label: "Check-In Speed", value: "< 15 Seconds", highlight: true },
                 { label: "Review Capture Rate", value: "3.4x Higher" },
-                { label: "Geo-Targeting", value: "GPS Suburb Precision", highlight: true },
-                { label: "Field Hardware Needed", value: "Any Smartphone" }
+                { label: "Camera Modes", value: "5 Field Modes", highlight: true },
+                { label: "Standalone or Bundled", value: "Custom Scoped" }
             ]
         },
-        features: ["1-tap phone pin drops", "Geotagged job photos", "Automated SMS review requests"],
+        features: ["1-tap GPS jobsite pin drops", "PinCam™ ghost-aligned before/after & markups", "Instant customer PDF photo reports", "Automated SMS 5-star review requests"],
         netlifyUrl: "/pindrop",
-        glowColor: "6, 182, 212",
-        metricBadge: "Automated Google Maps SEO"
+        glowColor: "245, 158, 11",
+        metricBadge: "Proprietary Contractor Apps"
     },
     {
         id: "geaux-pro-outdoors",

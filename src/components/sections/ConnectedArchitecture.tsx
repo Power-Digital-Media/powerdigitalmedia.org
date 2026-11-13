@@ -79,6 +79,167 @@ interface ClientArchitecture {
 
 const clientArchitectures: ClientArchitecture[] = [
   {
+    id: "born-again",
+    caseStudySlug: "born-again-roofing",
+    name: "Born Again Roofing & Remodeling",
+    shortName: "Born Again Roofing",
+    industry: "Roofing & Storm Restoration",
+    location: "Jackson Metro, MS",
+    domain: "bornagainroofing.com",
+    url: "https://bornagainroofing.com",
+    heroImage: "/portfolio/bornagain-hero.webp",
+    mobileHeroImage: "/portfolio/bornagain-mobile-hero.webp",
+    speedScore: "99/100 (Fast Load)",
+    headline: "Field GPS Project Mapping & CRM Review Pipeline",
+    summary:
+      "Replaced a slow legacy site with a high-velocity contractor portal. Every roofing crew uses PDM PinDrop™ to log completed jobs on the map, automatically routing customer records to Capsule CRM and dispatching 5-star review SMS requests.",
+    accentColor: "text-amber-400",
+    glowRgb: "245, 158, 11",
+    nodes: [
+      {
+        id: "pindrop",
+        title: "PDM PinDrop™ Field Map",
+        category: "Field Automation",
+        badge: "99+ Live Job Pins",
+        description:
+          "Field crews snap a job photo on their phone and drop a GPS pin. The job publishes to the website's live satellite map and neighborhood SEO feed.",
+        icon: MapPin,
+        iconColor: "text-amber-400",
+        iconBg: "bg-amber-500/10 border-amber-500/30",
+        pagePath: "/pins",
+        techTag: "PDM PinDrop™ Engine",
+        displayType: "pindrop-map",
+      },
+      {
+        id: "capsule-crm",
+        title: "Capsule CRM Lead Pipeline",
+        category: "CRM & Operations",
+        badge: "Instant Lead Capture",
+        description:
+          "Every webform quote and phone click writes directly to Capsule CRM, creating customer cards, assigning estimators, and tracking job values.",
+        icon: Database,
+        iconColor: "text-emerald-400",
+        iconBg: "bg-emerald-500/10 border-emerald-500/30",
+        pagePath: "/pipeline/born-again-roofing",
+        techTag: "Capsule CRM REST API",
+        displayType: "capsule-crm",
+      },
+      {
+        id: "transpond-email",
+        title: "2-Min SMS & Review Follow-Ups",
+        category: "SMS & Email Follow-Up",
+        badge: "Automated SMS/Email",
+        description:
+          "Automated follow-up campaigns for pending estimates and post-completion SMS review triggers that route homeowners directly to Google reviews.",
+        icon: Mail,
+        iconColor: "text-amber-300",
+        iconBg: "bg-amber-500/10 border-amber-500/30",
+        pagePath: "/automations/roofing-nurture",
+        techTag: "Transpond + SMS Pipeline",
+        displayType: "transpond-flow",
+      },
+      {
+        id: "google-geo",
+        title: "Google Map Pack Geo-Schema",
+        category: "Search Engine Visibility",
+        badge: "Metro Local Ranking",
+        description:
+          "Deep JSON-LD structured schema mapping service radiuses across Jackson, Madison, Brandon, Clinton, and Flowood for high-intent homeowner search.",
+        icon: Search,
+        iconColor: "text-emerald-400",
+        iconBg: "bg-emerald-500/10 border-emerald-500/30",
+        pagePath: "/search?q=roofing+contractor+brandon+ms",
+        techTag: "Schema.org GeoCoordinates",
+        displayType: "google-schema",
+      },
+    ],
+  },
+  {
+    id: "geaux-pro",
+    caseStudySlug: "geaux-pro-outdoors",
+    name: "Geaux Pro Outdoors (MS Dirt)",
+    shortName: "Geaux Pro Outdoors",
+    industry: "Excavation, Pond Digging & Land Clearing",
+    location: "Bentonia & Central MS",
+    domain: "msdirt.com",
+    url: "https://msdirt.com",
+    heroImage: "/portfolio/geauxpro-hero.webp",
+    mobileHeroImage: "/portfolio/geauxpro-mobile-hero.webp",
+    speedScore: "99/100 (Fast Load)",
+    headline: "Heavy Equipment Lead Engine & Video Automation",
+    summary:
+      "A commercial earthmoving platform engineered to capture high-value land clearing and hauling inquiries across Central Mississippi and the Delta.",
+    accentColor: "text-amber-400",
+    glowRgb: "245, 158, 11",
+    testimonial: {
+      quote:
+        "Took my marketing program from the dumps all the way to the moon. Very responsive and results oriented. I highly recommend!!!",
+      author: "Scott Lowery",
+      role: "Owner, Geaux Pro Outdoors (Bentonia, MS)",
+      source: "Google",
+    },
+    nodes: [
+      {
+        id: "capsule-geaux",
+        title: "Capsule CRM Inquiry Sync",
+        category: "Commercial CRM",
+        badge: "High-Ticket Lead Tracking",
+        description:
+          "Commercial hauling requests, pond digging inquiries, and land clearing leads automatically log to Capsule CRM with acreage and equipment tags.",
+        icon: Database,
+        iconColor: "text-emerald-400",
+        iconBg: "bg-emerald-500/10 border-emerald-500/30",
+        pagePath: "/pipeline/geaux-pro-excavation",
+        techTag: "Capsule CRM Pipeline",
+        displayType: "capsule-crm",
+      },
+      {
+        id: "transpond-geaux",
+        title: "Instant SMS & Lead Nurture",
+        category: "Email & SMS",
+        badge: "Instant Quote Alerts",
+        description:
+          "Instant automated quote confirmations sent to landowners with automated follow-ups ensuring zero missed estimates.",
+        icon: Mail,
+        iconColor: "text-amber-300",
+        iconBg: "bg-amber-500/10 border-amber-500/30",
+        pagePath: "/automations/dirtwork-quotes",
+        techTag: "Transpond Lead Pipelines",
+        displayType: "transpond-flow",
+      },
+      {
+        id: "pindrop-geaux",
+        title: "PDM PinDrop™ Job Map",
+        category: "Proof Mapping",
+        badge: "Verified Machinery Pins",
+        description:
+          "Live satellite GPS project mapping showing active pond digging, site preparation, and commercial dozer work across Yazoo City and Bentonia.",
+        icon: MapPin,
+        iconColor: "text-amber-400",
+        iconBg: "bg-amber-500/10 border-amber-500/30",
+        pagePath: "/pins",
+        techTag: "PDM PinDrop™ Engine",
+        displayType: "pindrop-map",
+      },
+      {
+        id: "youtube-automation",
+        title: "YouTube Video Showcase Feed",
+        category: "Content Automation",
+        badge: "Heavy Machinery 4K Video",
+        description:
+          "Automated YouTube video feeds displaying real excavator and forestry mulching operations directly on the website for undeniable visual proof.",
+        icon: Youtube,
+        iconColor: "text-red-500",
+        iconBg: "bg-red-500/10 border-red-500/30",
+        screenshot: "/portfolio/geauxpro-video-widescreen-v3.webp",
+        mobileScreenshot: "/portfolio/geauxpro-video-mobile-user.webp",
+        pagePath: "/video-showcase",
+        techTag: "YouTube API Integration",
+        displayType: "image",
+      },
+    ],
+  },
+  {
     id: "tbeaux",
     caseStudySlug: "tbeaux",
     name: "T'Beaux's Seafood & Catering",
@@ -93,8 +254,8 @@ const clientArchitectures: ClientArchitecture[] = [
     headline: "Zero-Redirect Square SDK & Direct Delivery Hub",
     summary:
       "Engineered an integrated ordering portal for Clinton's favorite Cajun spot. Rather than losing 15-30% fees and bouncing customers to generic Square storefronts, customers customize platters, calculate bulk catering needs, and pay in-app.",
-    accentColor: "text-red-400",
-    glowRgb: "239, 68, 68",
+    accentColor: "text-amber-400",
+    glowRgb: "245, 158, 11",
     nodes: [
       {
         id: "square-sdk",
@@ -152,173 +313,12 @@ const clientArchitectures: ClientArchitecture[] = [
         description:
           "Interactive catering calculation tool that estimates exact crawfish poundage, jumbo shrimp, smoked sausage, and side requirements based on guest headcount.",
         icon: Calculator,
-        iconColor: "text-cyan-400",
-        iconBg: "bg-cyan-500/10 border-cyan-500/30",
+        iconColor: "text-emerald-400",
+        iconBg: "bg-emerald-500/10 border-emerald-500/30",
         screenshot: "/portfolio/tbeauxs-planner-user-v2.webp",
         mobileScreenshot: "/portfolio/tbeauxs-planner-user-phone.webp",
         pagePath: "/feast-planner",
         techTag: "Custom Event Estimation Engine",
-        displayType: "image",
-      },
-    ],
-  },
-  {
-    id: "born-again",
-    caseStudySlug: "born-again-roofing",
-    name: "Born Again Roofing & Remodeling",
-    shortName: "Born Again Roofing",
-    industry: "Contracting & Storm Restoration",
-    location: "Jackson Metro, MS",
-    domain: "bornagainroofing.com",
-    url: "https://bornagainroofing.com",
-    heroImage: "/portfolio/bornagain-hero.webp",
-    mobileHeroImage: "/portfolio/bornagain-mobile-hero.webp",
-    speedScore: "99/100 (Fast Load)",
-    headline: "Field GPS Project Mapping & CRM Review Pipeline",
-    summary:
-      "Replaced a slow legacy site with a high-velocity contractor portal. Every roofing crew is equipped with PinDrop™ to log completed jobs on the map, automatically routing customer records to Capsule CRM and dispatching 5-star review SMS requests.",
-    accentColor: "text-yellow-400",
-    glowRgb: "234, 179, 8",
-    nodes: [
-      {
-        id: "pindrop",
-        title: "PinDrop™ GPS Field App",
-        category: "Field Automation",
-        badge: "99+ Live Job Pins",
-        description:
-          "Field crews take a before/after photo on their phone and drop a GPS pin. The job instantly posts to the website's live interactive project map.",
-        icon: MapPin,
-        iconColor: "text-yellow-400",
-        iconBg: "bg-yellow-500/10 border-yellow-500/30",
-        pagePath: "/recent-projects-map",
-        techTag: "PinDrop™ Contractor GPS",
-        displayType: "pindrop-map",
-      },
-      {
-        id: "capsule-crm",
-        title: "Capsule CRM Lead Pipeline",
-        category: "CRM & Operations",
-        badge: "Instant Lead Capture",
-        description:
-          "Every webform quote and phone click writes directly to Capsule CRM, creating customer cards, assigning estimators, and tracking job values.",
-        icon: Database,
-        iconColor: "text-emerald-400",
-        iconBg: "bg-emerald-500/10 border-emerald-500/30",
-        pagePath: "/pipeline/born-again-roofing",
-        techTag: "Capsule CRM REST API",
-        displayType: "capsule-crm",
-      },
-      {
-        id: "transpond-email",
-        title: "Transpond Automated Follow-Ups",
-        category: "Email Marketing",
-        badge: "Automated SMS/Email",
-        description:
-          "Automated follow-up drip campaigns for pending estimates and post-completion SMS review triggers that route homeowners directly to Google reviews.",
-        icon: Mail,
-        iconColor: "text-cyan-400",
-        iconBg: "bg-cyan-500/10 border-cyan-500/30",
-        pagePath: "/automations/roofing-nurture",
-        techTag: "Transpond Automation Pipeline",
-        displayType: "transpond-flow",
-      },
-      {
-        id: "google-geo",
-        title: "Google Local Geo-Schema",
-        category: "Search Engine Visibility",
-        badge: "Metro Local Ranking",
-        description:
-          "Deep JSON-LD structured schema mapping service radiuses across Jackson, Madison, Brandon, Clinton, and Flowood for high-intent homeowner search.",
-        icon: Search,
-        iconColor: "text-blue-400",
-        iconBg: "bg-blue-500/10 border-blue-500/30",
-        pagePath: "/search?q=roofing+contractor+brandon+ms",
-        techTag: "Schema.org GeoCoordinates",
-        displayType: "google-schema",
-      },
-    ],
-  },
-  {
-    id: "geaux-pro",
-    caseStudySlug: "geaux-pro-outdoors",
-    name: "Geaux Pro Outdoors (MS Dirt)",
-    shortName: "Geaux Pro Outdoors",
-    industry: "Excavation, Pond Digging & Land Clearing",
-    location: "Bentonia & Central MS",
-    domain: "msdirt.com",
-    url: "https://msdirt.com",
-    heroImage: "/portfolio/geauxpro-hero.webp",
-    mobileHeroImage: "/portfolio/geauxpro-mobile-hero.webp",
-    speedScore: "99/100 (Fast Load)",
-    headline: "Heavy Equipment Lead Engine & Video Automation",
-    summary:
-      "A commercial earthmoving platform engineered to capture high-value land clearing and hauling inquiries across Central Mississippi and the Delta.",
-    accentColor: "text-amber-400",
-    glowRgb: "245, 158, 11",
-    testimonial: {
-      quote:
-        "Took my marketing program from the dumps all the way to the moon. Very responsive and results oriented. I highly recommend!!!",
-      author: "Scott Lowery",
-      role: "Owner, Geaux Pro Outdoors (Bentonia, MS)",
-      source: "Google",
-    },
-    nodes: [
-      {
-        id: "capsule-geaux",
-        title: "Capsule CRM Inquiry Sync",
-        category: "Commercial CRM",
-        badge: "High-Ticket Lead Tracking",
-        description:
-          "Commercial hauling requests, pond digging inquiries, and land clearing leads automatically log to Capsule CRM with acreage and equipment tags.",
-        icon: Database,
-        iconColor: "text-emerald-400",
-        iconBg: "bg-emerald-500/10 border-emerald-500/30",
-        pagePath: "/pipeline/geaux-pro-excavation",
-        techTag: "Capsule CRM Pipeline",
-        displayType: "capsule-crm",
-      },
-      {
-        id: "transpond-geaux",
-        title: "Transpond Lead Nurture",
-        category: "Email & SMS",
-        badge: "Instant Quote Alerts",
-        description:
-          "Instant automated quote confirmations sent to landowners with automated follow-ups ensuring zero missed estimates.",
-        icon: Mail,
-        iconColor: "text-cyan-400",
-        iconBg: "bg-cyan-500/10 border-cyan-500/30",
-        pagePath: "/automations/dirtwork-quotes",
-        techTag: "Transpond Lead Pipelines",
-        displayType: "transpond-flow",
-      },
-      {
-        id: "pindrop-geaux",
-        title: "PinDrop™ Project Verification",
-        category: "Proof Mapping",
-        badge: "Verified Machinery Pins",
-        description:
-          "Live GPS project mapping showing active pond digging, site preparation, and commercial dozer work across Yazoo City and Bentonia.",
-        icon: MapPin,
-        iconColor: "text-amber-400",
-        iconBg: "bg-amber-500/10 border-amber-500/30",
-        pagePath: "/machinery-projects-map",
-        techTag: "PinDrop™ Field Engine",
-        displayType: "pindrop-map",
-      },
-      {
-        id: "youtube-automation",
-        title: "YouTube Video Showcase Feed",
-        category: "Content Automation",
-        badge: "Heavy Machinery 4K Video",
-        description:
-          "Automated YouTube video feeds displaying real excavator and forestry mulching operations directly on the website for undeniable visual proof.",
-        icon: Youtube,
-        iconColor: "text-red-500",
-        iconBg: "bg-red-500/10 border-red-500/30",
-        screenshot: "/portfolio/geauxpro-video-widescreen-v3.webp",
-        mobileScreenshot: "/portfolio/geauxpro-video-mobile-user.webp",
-        pagePath: "/video-showcase",
-        techTag: "YouTube API Integration",
         displayType: "image",
       },
     ],
@@ -338,8 +338,8 @@ const clientArchitectures: ClientArchitecture[] = [
     headline: "1-Tap Online Giving & Live Broadcast Hub",
     summary:
       "Clean digital portals designed for Central Mississippi ministries to engage congregations, process tithes with zero friction on mobile, and livestream sermons.",
-    accentColor: "text-cyan-400",
-    glowRgb: "6, 182, 212",
+    accentColor: "text-amber-400",
+    glowRgb: "245, 158, 11",
     testimonial: {
       quote:
         "Power Digital Media is my go to company for all of my media needs, including our church website. He was very attentive to detail and met or surpassed every single request.",
@@ -356,8 +356,8 @@ const clientArchitectures: ClientArchitecture[] = [
         description:
           "Frictionless tithe and donation processing engineered for rapid smartphone giving during services with instant receipts.",
         icon: HeartHandshake,
-        iconColor: "text-cyan-400",
-        iconBg: "bg-cyan-500/10 border-cyan-500/30",
+        iconColor: "text-amber-400",
+        iconBg: "bg-amber-500/10 border-amber-500/30",
         screenshot: "/portfolio/church244-giving.webp",
         mobileScreenshot: "/portfolio/church244-giving-user-phone.webp",
         pagePath: "/give-online",
@@ -522,104 +522,76 @@ function PinDropMapScreen({ client }: { client: ClientArchitecture }) {
   const activeLoc = locations.find((l) => l.active) || locations[0];
 
   return (
-    <div className="relative w-full h-full bg-[#080e1a] flex flex-col overflow-hidden select-none">
-      {/* Top Telemetry Header */}
-      <div className="flex items-center justify-between px-4 py-2 bg-slate-900/90 border-b border-white/10 z-10">
+    <div className="relative w-full h-full bg-[#0b0c10] flex flex-col overflow-hidden select-none">
+      {/* Authentic PDM PinDrop Header */}
+      <div className="flex items-center justify-between px-4 py-2.5 bg-[#12141c] border-b border-white/10 z-10">
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-          <span className="text-[11px] font-mono font-bold text-white uppercase tracking-wider">
-            PinDrop™ Live Project Telemetry
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="text-[11px] font-black text-white uppercase tracking-wider">
+            Local Project Pins • {client.shortName}
           </span>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="text-[10px] font-mono bg-yellow-500/10 text-yellow-400 border border-yellow-500/30 px-2 py-0.5 rounded-full font-bold">
-            99+ Active Verified Job Pins
-          </span>
-          <span className="text-[10px] font-mono text-slate-400 hidden sm:inline">
-            Central MS Radar
-          </span>
-        </div>
+        <span className="text-[10px] font-mono bg-[#e2b047]/15 text-[#e2b047] border border-[#e2b047]/35 px-2.5 py-0.5 rounded-full font-bold">
+          {isGeaux ? "Verified MS Dirt Sites" : "99+ Verified Job Pins"}
+        </span>
       </div>
 
-      {/* Interactive Map Grid Canvas */}
-      <div className="relative flex-1 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:16px_16px] overflow-hidden">
-        {/* Topographic Map Rings / Radar Waves */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
-          <div className="w-[320px] h-[320px] rounded-full border border-yellow-500/40 animate-pulse" />
-          <div className="absolute w-[480px] h-[480px] rounded-full border border-cyan-500/20" />
-        </div>
+      {/* Real Central MS Satellite Map Canvas */}
+      <div className="relative flex-1 overflow-hidden">
+        <Image
+          src="/pindrop/central-ms-satellite.jpg"
+          alt="Central Mississippi Esri World Imagery satellite map with live PinDrop job pins"
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0b0c10]/70 via-transparent to-[#0b0c10]/30 pointer-events-none" />
 
-        {/* Map Pins */}
+        {/* Gold Teardrop Pins */}
         {locations.map((loc, i) => (
           <div
             key={i}
-            className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer z-10 group"
+            className="absolute transform -translate-x-1/2 -translate-y-full cursor-pointer z-10"
             style={{ left: loc.x, top: loc.y }}
           >
             {loc.active ? (
-              <div className="relative flex items-center justify-center">
-                <span className="absolute w-8 h-8 rounded-full bg-yellow-400/30 animate-ping" />
-                <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-yellow-500 to-amber-300 border-2 border-slate-950 flex items-center justify-center shadow-[0_0_15px_rgba(234,179,8,0.8)]">
-                  <MapPin className="w-4 h-4 text-slate-950" />
+              <div className="relative flex flex-col items-center">
+                <span className="absolute -bottom-1 w-8 h-8 rounded-full bg-[#e2b047]/35 animate-ping" />
+                <div className="w-7 h-7 rounded-t-full rounded-br-full rotate-45 bg-[#e2b047] border-2 border-[#0b0c10] flex items-center justify-center shadow-[0_6px_18px_rgba(226,176,71,0.75)]">
+                  <div className="w-2 h-2 rounded-full bg-[#0b0c10] -rotate-45" />
                 </div>
               </div>
             ) : (
-              <div className="w-5 h-5 rounded-full bg-slate-800 border border-slate-600 flex items-center justify-center hover:scale-125 transition-transform">
-                <div className="w-2 h-2 rounded-full bg-yellow-400/80" />
+              <div className="w-5 h-5 rounded-t-full rounded-br-full rotate-45 bg-[#e2b047]/90 border-2 border-[#0b0c10] flex items-center justify-center shadow-md">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#0b0c10] -rotate-45" />
               </div>
             )}
-            <span className="absolute top-full mt-1 left-1/2 -translate-x-1/2 text-[9px] font-mono whitespace-nowrap px-1.5 py-0.5 rounded bg-slate-950/80 text-slate-300 border border-white/10">
+            <span className="absolute top-full mt-1 left-1/2 -translate-x-1/2 text-[9px] font-mono font-bold whitespace-nowrap px-1.5 py-0.5 rounded bg-[#0b0c10]/90 text-white border border-white/15">
               {loc.name}
             </span>
           </div>
         ))}
 
-        {/* Open Pin Callout Card (Centered/Top-Left) */}
-        <div className="absolute top-4 left-4 max-w-[260px] sm:max-w-[300px] p-3 rounded-xl bg-slate-950/95 border border-yellow-500/50 shadow-2xl backdrop-blur-md z-20">
+        {/* Verified Pin Feed Card Overlay */}
+        <div className="absolute top-3 left-3 max-w-[270px] sm:max-w-[300px] p-3.5 rounded-xl bg-[#12141c]/95 border border-[#e2b047]/45 shadow-2xl backdrop-blur-md z-20">
           <div className="flex items-center justify-between mb-1.5">
-            <span className="text-[10px] font-mono font-bold text-yellow-400 uppercase tracking-wider flex items-center gap-1">
-              <CheckCircle2 className="w-3 h-3 text-yellow-400" />
-              Verified Completed Job
+            <span className="text-[10px] font-mono font-bold text-[#e2b047] uppercase tracking-wider flex items-center gap-1">
+              <CheckCircle2 className="w-3 h-3 text-[#e2b047]" />
+              Verified Project Pin
             </span>
-            <span className="text-[9px] font-mono text-emerald-400 bg-emerald-500/10 px-1.5 py-0.2 rounded border border-emerald-500/30">
-              Today
+            <span className="text-[9px] font-mono text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/30">
+              Indexed
             </span>
           </div>
           <h5 className="text-xs font-black text-white leading-snug mb-1">
             {activeLoc.tag}
           </h5>
           <p className="text-[10px] text-slate-300 mb-2">
-            📍 {activeLoc.name} • {activeLoc.crew}
+            {activeLoc.name} • {activeLoc.crew}
           </p>
           <div className="grid grid-cols-2 gap-1.5 pt-1.5 border-t border-white/10 text-[9px] font-mono">
-            <div className="flex items-center gap-1 text-cyan-300">
-              <span>📸 4 Geotagged Photos</span>
-            </div>
-            <div className="flex items-center gap-1 text-emerald-400">
-              <span>⭐ 5-Star SMS Sent</span>
-            </div>
+            <div className="text-amber-300 font-bold">GPS Schema Live</div>
+            <div className="text-emerald-400 font-bold">5-Star SMS Sent</div>
           </div>
-        </div>
-
-        {/* In-Truck Mobile App Inset (Bottom Right Phone Mockup) */}
-        <div className="absolute bottom-3 right-3 w-[155px] sm:w-[175px] rounded-xl bg-slate-950 border-2 border-white/20 p-2 shadow-2xl z-20">
-          <div className="flex items-center justify-between pb-1 mb-1 border-b border-white/10">
-            <span className="text-[8px] font-mono font-bold text-yellow-400 uppercase tracking-wider">
-              PinDrop™ Field App
-            </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          </div>
-          <div className="bg-slate-900 rounded-lg p-1.5 mb-1.5 text-center border border-white/5">
-            <div className="w-full h-10 bg-slate-800 rounded flex items-center justify-center text-[9px] text-slate-400 font-mono mb-1">
-              📷 Roof Photo Captured
-            </div>
-            <div className="w-full py-1 bg-yellow-400 rounded text-slate-950 text-[9px] font-black uppercase tracking-wider">
-              📍 Drop Pin
-            </div>
-          </div>
-          <p className="text-[8px] font-mono text-cyan-300 text-center">
-            ⚡ Synced to website in 0.1s
-          </p>
         </div>
       </div>
     </div>
@@ -632,7 +604,7 @@ function CapsuleCRMScreen({ client }: { client: ClientArchitecture }) {
     ? [
         {
           name: "Inbound Quote (3)",
-          color: "border-cyan-500/40",
+          color: "border-amber-500/40",
           deals: [
             { client: "Delta Land Holdings", job: "25-Acre Forestry Mulching", val: "$34,000", tag: "Website Form" },
             { client: "Yazoo Farm Co.", job: "3-Acre Pond Excavation", val: "$18,500", tag: "Phone Call" },
@@ -656,7 +628,7 @@ function CapsuleCRMScreen({ client }: { client: ClientArchitecture }) {
     : [
         {
           name: "Inbound Leads (4)",
-          color: "border-cyan-500/40",
+          color: "border-amber-500/40",
           deals: [
             { client: "John Miller (Madison)", job: "4,200 sq ft Shingle Tear-Off", val: "$16,500", tag: "Web Quote Form" },
             { client: "Sarah Jenkins (Flowood)", job: "Full Metal Roof Upgrade", val: "$22,400", tag: "Webform Inbound" },
@@ -679,7 +651,7 @@ function CapsuleCRMScreen({ client }: { client: ClientArchitecture }) {
       ];
 
   return (
-    <div className="relative w-full h-full bg-[#090e1a] flex flex-col overflow-hidden select-none p-4 font-sans">
+    <div className="relative w-full h-full bg-[#0b0c10] flex flex-col overflow-hidden select-none p-4 font-sans">
       {/* CRM Header Bar */}
       <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
         <div className="flex items-center gap-2">
@@ -705,7 +677,7 @@ function CapsuleCRMScreen({ client }: { client: ClientArchitecture }) {
       {/* Kanban Board Columns */}
       <div className="grid grid-cols-3 gap-3 flex-1 overflow-hidden">
         {columns.map((col, idx) => (
-          <div key={idx} className="flex flex-col bg-slate-900/60 rounded-xl p-2 border border-white/10">
+          <div key={idx} className="flex flex-col bg-[#12141c] rounded-xl p-2 border border-white/10">
             <div className="flex items-center justify-between pb-1.5 mb-2 border-b border-white/10">
               <span className="text-[10px] font-mono font-bold text-slate-300 uppercase tracking-wider">
                 {col.name}
@@ -715,7 +687,7 @@ function CapsuleCRMScreen({ client }: { client: ClientArchitecture }) {
               {col.deals.map((deal, dIdx) => (
                 <div
                   key={dIdx}
-                  className={`p-2.5 rounded-lg bg-slate-950/90 border transition-all ${
+                  className={`p-2.5 rounded-lg bg-[#06080f] border transition-all ${
                     idx === 0 && dIdx === 0
                       ? "border-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.25)]"
                       : "border-white/10"
@@ -732,7 +704,7 @@ function CapsuleCRMScreen({ client }: { client: ClientArchitecture }) {
                   <p className="text-[10px] text-slate-300 line-clamp-1 mb-1.5">
                     {deal.job}
                   </p>
-                  <span className="text-[8px] font-mono uppercase px-1.5 py-0.5 rounded bg-white/5 text-cyan-400 border border-cyan-500/30">
+                  <span className="text-[8px] font-mono uppercase px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/30">
                     {deal.tag}
                   </span>
                 </div>
@@ -748,7 +720,7 @@ function CapsuleCRMScreen({ client }: { client: ClientArchitecture }) {
           <CheckCircle2 className="w-3 h-3" />
           Live Hook: Website Form ➔ Capsule Deal Created Instantly
         </span>
-        <span className="text-cyan-400 hidden sm:inline">0 Missed Inquiries</span>
+        <span className="text-amber-400 hidden sm:inline">0 Missed Inquiries</span>
       </div>
     </div>
   );
@@ -771,12 +743,12 @@ function TranspondWorkflowScreen({ client }: { client: ClientArchitecture }) {
       ];
 
   return (
-    <div className="relative w-full h-full bg-[#080d19] flex flex-col overflow-hidden select-none p-4 font-sans">
+    <div className="relative w-full h-full bg-[#0b0c10] flex flex-col overflow-hidden select-none p-4 font-sans">
       {/* Workflow Header */}
       <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-lg bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center">
-            <Mail className="w-3.5 h-3.5 text-cyan-400" />
+          <div className="w-6 h-6 rounded-lg bg-amber-500/20 border border-amber-500/40 flex items-center justify-center">
+            <Mail className="w-3.5 h-3.5 text-amber-400" />
           </div>
           <div>
             <span className="text-xs font-black text-white uppercase tracking-wider">
@@ -787,7 +759,7 @@ function TranspondWorkflowScreen({ client }: { client: ClientArchitecture }) {
             </span>
           </div>
         </div>
-        <span className="text-[10px] font-mono bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 px-2 py-0.5 rounded-full font-bold">
+        <span className="text-[10px] font-mono bg-amber-500/10 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded-full font-bold">
           ⭐ 68% Review Conversion Rate
         </span>
       </div>
@@ -795,9 +767,9 @@ function TranspondWorkflowScreen({ client }: { client: ClientArchitecture }) {
       {/* Sequential Automation Nodes */}
       <div className="grid grid-cols-4 gap-2 flex-1 items-center">
         {steps.map((step, idx) => (
-          <div key={idx} className="relative flex flex-col h-full justify-between p-2.5 rounded-xl bg-slate-900/80 border border-white/10 group hover:border-cyan-400 transition-colors">
+          <div key={idx} className="relative flex flex-col h-full justify-between p-2.5 rounded-xl bg-[#12141c] border border-white/10 group hover:border-amber-400 transition-colors">
             <div className="flex items-center justify-between mb-1">
-              <span className="w-5 h-5 rounded-full bg-cyan-500/20 border border-cyan-500/40 text-cyan-400 text-[10px] font-mono font-bold flex items-center justify-center">
+              <span className="w-5 h-5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-400 text-[10px] font-mono font-bold flex items-center justify-center">
                 {idx + 1}
               </span>
               <span className="text-[8px] font-mono uppercase text-slate-400 bg-white/5 px-1 py-0.5 rounded">
@@ -871,8 +843,8 @@ function GoogleSchemaScreen({ client }: { client: ClientArchitecture }) {
         </div>
 
         {/* Schema & Structured Data Telemetry */}
-        <div className="p-2.5 rounded-lg bg-slate-950/90 border border-blue-500/30 text-[10px] font-mono">
-          <div className="flex items-center justify-between mb-1 text-cyan-300 font-bold">
+        <div className="p-2.5 rounded-lg bg-[#06080f] border border-amber-500/30 text-[10px] font-mono">
+          <div className="flex items-center justify-between mb-1 text-amber-300 font-bold">
             <span>⚡ Schema.org / LocalBusiness JSON-LD</span>
             <span className="text-emerald-400">100% Rich Results Health</span>
           </div>
@@ -1017,22 +989,21 @@ export default function ConnectedArchitecture() {
     clientArchitectures[0]
   );
   const [selectedNode, setSelectedNode] = useState<IntegrationNode | null>(null);
-  const [deviceMode, setDeviceMode] = useState<"desktop" | "mobile">("mobile");
+  const [deviceMode, setDeviceMode] = useState<"desktop" | "mobile">("desktop");
 
   const handleSelectClient = (client: ClientArchitecture) => {
     setActiveClient(client);
-    setSelectedNode(null); // Always start on the client's homepage!
+    setSelectedNode(null);
   };
 
   const handleToggleNode = (node: IntegrationNode) => {
-    // Clicking an active node returns to the homepage hub
     setSelectedNode((prev) => (prev?.id === node.id ? null : node));
   };
 
   return (
     <section
       id="architecture"
-      className="py-24 md:py-36 bg-[#070c18] border-t border-b border-white/10 relative overflow-hidden"
+      className="py-24 md:py-32 bg-[#06080f] border-t border-b border-white/10 relative overflow-hidden"
     >
       {/* Dynamic ambient backdrop glow based on active client accent */}
       <div
@@ -1155,7 +1126,7 @@ export default function ConnectedArchitecture() {
                     <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed">
                       {node.description}
                     </p>
-                    <div className="mt-3 flex items-center gap-1 text-[10px] font-mono text-cyan-400 font-semibold">
+                    <div className="mt-3 flex items-center gap-1 text-[10px] font-mono text-amber-400 font-semibold">
                       <span>{node.techTag}</span>
                       <ArrowUpRight className="w-3 h-3 opacity-70" />
                     </div>
@@ -1227,7 +1198,7 @@ export default function ConnectedArchitecture() {
                         <span className="text-slate-400">
                           https://{selectedNode ? (selectedNode.displayType === "capsule-crm" ? "app.capsulecrm.com" : selectedNode.displayType === "transpond-flow" ? "transpond.io" : selectedNode.displayType === "google-schema" ? "google.com" : activeClient.domain) : activeClient.domain}
                         </span>
-                        <span className="text-cyan-400 font-bold">
+                        <span className="text-amber-400 font-bold">
                           {selectedNode ? selectedNode.pagePath : "/"}
                         </span>
                       </div>
@@ -1283,7 +1254,7 @@ export default function ConnectedArchitecture() {
                           <CheckCircle2 className="w-3 h-3 text-amber-400" />
                           {selectedNode ? `Selected Feature: ${selectedNode.title}` : `Central Hub: ${activeClient.name}`}
                         </span>
-                        <span className="text-[10px] font-mono text-cyan-400 font-bold">
+                        <span className="text-[10px] font-mono text-amber-300 font-bold">
                           {selectedNode ? selectedNode.techTag : `${activeClient.industry}`}
                         </span>
                       </div>
@@ -1334,7 +1305,7 @@ export default function ConnectedArchitecture() {
                     <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed">
                       {node.description}
                     </p>
-                    <div className="mt-3 flex items-center gap-1 text-[10px] font-mono text-cyan-400 font-semibold">
+                    <div className="mt-3 flex items-center gap-1 text-[10px] font-mono text-amber-400 font-semibold">
                       <span>{node.techTag}</span>
                       <ArrowUpRight className="w-3 h-3 opacity-70" />
                     </div>
@@ -1365,7 +1336,7 @@ export default function ConnectedArchitecture() {
                   &ldquo;{activeClient.testimonial.quote}&rdquo;
                 </p>
               </div>
-              <span className="text-xs font-bold text-cyan-400 shrink-0">
+              <span className="text-xs font-bold text-amber-400 shrink-0">
                 — {activeClient.testimonial.author},{" "}
                 <span className="text-slate-400 font-normal">
                   {activeClient.testimonial.role}
@@ -1401,7 +1372,7 @@ export default function ConnectedArchitecture() {
         <div className="mt-12 text-center">
           <Link
             href="/our-work"
-            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-cyan-400 transition-colors py-2 px-4 rounded-full border border-white/10 hover:border-cyan-400/40"
+            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-300 hover:text-amber-400 transition-colors py-2.5 px-5 rounded-full border border-white/15 hover:border-amber-400/40"
           >
             Explore Complete 10+ Client Portfolio <ArrowRight className="w-4 h-4" />
           </Link>

@@ -1,26 +1,36 @@
 # [Power Digital Media — powerdigitalmedia.org](https://powerdigitalmedia.org)
 
-> [Power Digital Media LLC](https://powerdigitalmedia.org) is a web engineering and business systems agency headquartered in Jackson, Mississippi. Specializing in bespoke Next.js web development, local SEO architecture, Capsule CRM & Transpond automation pipelines, and proprietary PinDrop™ contractor software. BBB Accredited (A Rating). Call (601) 446-2393.
+> [Power Digital Media LLC](https://powerdigitalmedia.org) is a contractor growth engineering, custom Next.js web design, local SEO, and field-software studio headquartered in Jackson, Mississippi. Creators of **PinCam™** (contractor jobsite camera & Ghost before/after documentation app) and **PinDrop™** (field-to-Google local SEO & automated 5-star SMS review engine). BBB Accredited (A Rating) with 5.0-star verified Google client reviews. Every build, app rollout, and month-to-month growth retainer is custom-scoped case-by-case. Direct phone: (601) 446-2393.
 
 ## Business Identity
 - **Legal Name**: Power Digital Media LLC
-- **Principal**: Damein Donald
+- **Founder & Lead Architect**: Damein Donald
 - **Headquarters**: 2914 Cynthia Rd, Jackson, MS 39209
-- **Coordinates**: Latitude 32.3570° N, Longitude -90.2853° W
-- **Phone**: (601) 446-2393
+- **Coordinates**: 32.3570 N, -90.2853 W
+- **Phone / SMS**: (601) 446-2393
 - **Email**: [info@powerdigitalmedia.org](mailto:info@powerdigitalmedia.org)
-- **Website**: [powerdigitalmedia.org](https://powerdigitalmedia.org)
-- **Hours**: Monday–Friday, 8:00 AM – 6:00 PM CST
+- **Website**: [https://powerdigitalmedia.org](https://powerdigitalmedia.org)
+- **Hours**: Monday–Friday, 8:00 AM – 6:00 PM CT
 
-## Core Offerings
-- **[Web Design](https://powerdigitalmedia.org/web-design)**: Custom Next.js web applications, mobile-first UX, and Core Web Vitals optimization. Starting at $1,500.
-- **[PinDrop™ Contractor Engine](https://powerdigitalmedia.org/pindrop)**: Mobile GPS project logging, auto-generated neighborhood SEO pages, and automated review request flows.
-- **[Custom Applications](https://powerdigitalmedia.org/custom-applications)**: Custom software, client portals, and CRM integration (Capsule CRM, Transpond, Ultatel).
-- **[Growth Marketing](https://powerdigitalmedia.org/marketing)**: Paid Meta ads, lead tracking, and local customer acquisition.
-- **[Portfolio & Proof](https://powerdigitalmedia.org/our-work)**: Mississippi client projects and case studies.
-- **[Client Reviews](https://powerdigitalmedia.org/reviews)**: Verified 5.0 Google and Facebook reviews from Mississippi business owners.
-- **[Strategy Consultation](https://powerdigitalmedia.org/book)**: Book a direct 15-minute consultation with founder Damein Donald.
+## Flagship Software & Services (Custom-Scoped Case-by-Case)
+- **[Contractor Growth Systems](https://powerdigitalmedia.org/contractors)**: Turnkey sub-2-second websites, Google Map Pack SEO, PinCam™ + PinDrop™ crew apps, and 18-second SMS lead rescue for roofers, HVAC pros, excavators, plumbers, electricians, and lawn care teams.
+- **[PinCam™ Jobsite Camera App](https://powerdigitalmedia.org/pincam)**: Ghost Camera 1:1 before/after photo alignment, non-destructive damage/measurement markups, dual-cam PiP walkthroughs, instant homeowner/adjuster PDF reports, and 1-tap PinDrop™ sync.
+- **[PinDrop™ Field SEO Engine](https://powerdigitalmedia.org/pindrop)**: 30-second mobile truck check-ins that auto-publish `/projects/[slug]` neighborhood SEO pages, live website GPS map pins, Google Business Profile updates, and 15-minute homeowner SMS 5-star review requests.
+- **[Custom Next.js Web Design](https://powerdigitalmedia.org/web-design)**: Hand-coded Next.js 16 websites for contractors and standout local businesses—custom-scoped case-by-case with 100% codebase ownership and optional month-to-month managed edge care.
+- **[Local SEO & Google Maps](https://powerdigitalmedia.org/local-seo)**: Google 3-Pack optimization, neighborhood JSON-LD schema, and review velocity across Central Mississippi.
+- **[Custom Applications & CRM](https://powerdigitalmedia.org/custom-applications)** | **[Ultatel Business Phones](https://powerdigitalmedia.org/business-phones)** | **[Growth Marketing](https://powerdigitalmedia.org/marketing)**
+- **[Free 5-Minute Rank & Site Video](https://powerdigitalmedia.org/free-audit)** | **[Live Portfolio](https://powerdigitalmedia.org/our-work)** | **[Verified Reviews](https://powerdigitalmedia.org/reviews)** | **[Book a 15-Min Scope Call](https://powerdigitalmedia.org/book)**
 
-## Service Coverage
-- **Central Mississippi**: Jackson, Madison, Brandon, Flowood, Ridgeland, Clinton, Flora, Pearl, Byram, Canton.
-- **The Mississippi Delta**: Yazoo City, Bentonia, Vicksburg, Greenwood.
+## Verified Mississippi Deployments
+- **[Born Again Roofing](https://bornagainroofing.com)**: 99+ live PDM PinDrop™ GPS job pins, Capsule CRM routing & SMS 5-star review automation.
+- **[Geaux Pro Outdoors](https://msdirt.com)**: Commercial excavation & forestry mulching lead engine + PinDrop™ job map.
+- **[T'Beaux's Seafood](https://tbeauxs.com)**: 0%-commission native Square Web SDK ordering, DoorDash Drive dispatch & catering calculator.
+- **[Church 244](https://church244.com)**: 1-tap mobile giving & sermon livestream platform.
+
+## Central Mississippi Service Areas
+- **[Jackson, MS](https://powerdigitalmedia.org/locations/jackson-ms)**
+- **[Madison, MS](https://powerdigitalmedia.org/locations/madison-ms)**
+- **[Ridgeland, MS](https://powerdigitalmedia.org/locations/ridgeland-ms)**
+- **[Brandon, MS](https://powerdigitalmedia.org/locations/brandon-ms)**
+- **[Flowood, MS](https://powerdigitalmedia.org/locations/flowood-ms)**
+- **[Clinton, MS](https://powerdigitalmedia.org/locations/clinton-ms)**

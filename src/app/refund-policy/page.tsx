@@ -1,147 +1,151 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ShieldCheck, Mail, Phone, MapPin } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import "../typography.css";
 
-export const metadata = {
-    title: "Refund Policy | Power Digital Media",
-    description: "Refund and cancellation policy for Power Digital Media services including web design, podcasting, and video production.",
-    robots: {
-        index: true,
-        follow: true,
-    },
+export const metadata: Metadata = {
+  title: "Refund & Cancellation Policy | Power Digital Media",
+  description:
+    "Clear refund, milestone, and subscription cancellation policy for Power Digital Media custom websites, Local SEO, PDM PinDrop™, PinCam™, and growth retainers.",
+  alternates: {
+    canonical: "https://powerdigitalmedia.org/refund-policy",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RefundPolicyPage() {
-    return (
-        <main className="min-h-screen bg-background pt-32 pb-20">
-            <Navbar />
-            <div className="container px-4 mx-auto max-w-4xl">
-                <h1 className="text-4xl font-bold mb-8">Refund Policy</h1>
-                <div className="prose prose-invert">
-                    <p>Last Updated: April 2026</p>
+  return (
+    <main className="relative min-h-screen bg-[#06080f] text-white overflow-x-clip">
+      <Navbar />
 
-                    <p>
-                        At Power Digital Media LLC (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), we are committed
-                        to delivering high-quality digital services. We understand that circumstances may change, and we
-                        want to ensure our refund policy is transparent, fair, and clearly understood before you engage our services.
-                    </p>
+      <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" aria-hidden="true" />
 
-                    <h2>1. Service-Based Business</h2>
-                    <p>
-                        Power Digital Media provides custom creative and digital services, including but not limited to
-                        web design and development, podcast production, video production, digital marketing, and content strategy.
-                        Because our services involve significant time, labor, and creative effort, all work is custom and
-                        non-resalable in nature.
-                    </p>
+      <section className="relative pt-32 pb-12 md:pt-40 border-b border-white/10 bg-[#0b0c10]/70">
+        <div className="container px-4 sm:px-6 mx-auto max-w-4xl text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono font-bold uppercase tracking-wider mb-5">
+            <ShieldCheck className="w-4 h-4 text-amber-400" /> Transparent Client Terms
+          </div>
+          <h1 className="text-3xl sm:text-5xl font-black uppercase tracking-tight mb-4">
+            Refund &amp; <span className="text-amber-400">Cancellation Policy.</span>
+          </h1>
+          <p className="text-xs font-mono text-slate-400">
+            Power Digital Media LLC • Last Updated: April 2026
+          </p>
+        </div>
+      </section>
 
-                    <h2>2. Deposits &amp; Milestone Payments</h2>
-                    <p>
-                        All projects require a non-refundable deposit to reserve your project slot and begin work. The deposit
-                        amount is outlined in your signed service agreement or invoice and typically ranges from 25% to 50% of
-                        the total project cost. This deposit covers initial discovery, research, planning, and resource allocation.
-                    </p>
+      <section className="py-16 md:py-20 relative z-10">
+        <div className="container px-4 sm:px-6 mx-auto max-w-4xl space-y-6">
+          <div className="p-7 sm:p-10 rounded-3xl bg-[#0b0c10] border border-white/10 space-y-6 text-sm sm:text-base text-slate-300 leading-relaxed">
+            <p>
+              At Power Digital Media LLC (&ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;), we believe in straightforward, transparent pricing with zero surprises. Please review how deposits, custom milestones, and month-to-month subscriptions are handled before starting an engagement.
+            </p>
 
-                    <h2>3. Refund Eligibility</h2>
-                    <p>
-                        Refunds may be considered under the following conditions:
-                    </p>
-                    <ul>
-                        <li>
-                            <strong>Work Not Yet Started:</strong> If you cancel your project before any work has begun beyond
-                            the initial deposit scope, you may be eligible for a refund of milestone payments made (excluding
-                            the non-refundable deposit).
-                        </li>
-                        <li>
-                            <strong>Work In Progress:</strong> If work has already begun on your project, you are only eligible
-                            for a <strong>partial refund</strong> reflecting the portion of work not yet completed. The deposit
-                            and all completed work remain non-refundable. The refundable amount will be calculated based on the
-                            percentage of project milestones remaining at the time of cancellation.
-                        </li>
-                        <li>
-                            <strong>Service Not Delivered:</strong> If we fail to deliver the agreed-upon services within the
-                            timeline specified in your service agreement (and no extension has been mutually agreed upon), you
-                            may request a partial refund for the undelivered portion of work.
-                        </li>
-                        <li>
-                            <strong>Duplicate Charges:</strong> Any accidental duplicate charges will be refunded in full
-                            within 5–10 business days of notification.
-                        </li>
-                    </ul>
-                    <p>
-                        <strong>Please note:</strong> Once any project work has commenced, a full refund is not available
-                        under any circumstances. This ensures fair compensation for the time, creativity, and resources
-                        already invested in your project.
-                    </p>
-
-                    <h2>4. Non-Refundable Items</h2>
-                    <p>The following are non-refundable under any circumstances:</p>
-                    <ul>
-                        <li>Project deposits</li>
-                        <li>Work already completed and delivered (drafts, designs, code, media files)</li>
-                        <li>Third-party costs incurred on your behalf (domain registration, hosting, stock assets, software licenses)</li>
-                        <li>Rush or expedited service fees</li>
-                        <li>Consultation and strategy session fees</li>
-                    </ul>
-
-                    <h2>5. Subscription &amp; Retainer Services</h2>
-                    <p>
-                        For recurring services (monthly retainers, hosting plans, or ongoing content production), cancellation
-                        must be submitted in writing at least 14 days before the next billing cycle. No refunds will be issued
-                        for the current billing period once the cycle has begun. Services will continue through the end of the
-                        paid period.
-                    </p>
-
-                    <h2>6. How to Request a Refund</h2>
-                    <p>
-                        To request a refund, please contact us in writing at{" "}
-                        <a href="mailto:info@powerdigitalmedia.org" className="text-accent hover:underline">
-                            info@powerdigitalmedia.org
-                        </a>{" "}
-                        with the subject line &quot;Refund Request&quot; and include the following:
-                    </p>
-                    <ul>
-                        <li>Your full name and business name (if applicable)</li>
-                        <li>Invoice or project reference number</li>
-                        <li>Reason for the refund request</li>
-                        <li>Any supporting documentation</li>
-                    </ul>
-                    <p>
-                        We will review all refund requests within 5 business days and respond with a determination.
-                        Approved refunds will be processed to the original payment method within 10–15 business days.
-                    </p>
-
-                    <h2>7. Disputes</h2>
-                    <p>
-                        If you are unsatisfied with any aspect of our services, we encourage you to contact us directly
-                        before initiating a dispute with your payment provider. We are committed to resolving concerns
-                        promptly and fairly. Filing a chargeback without first contacting us may result in the suspension
-                        of your project and any associated accounts.
-                    </p>
-
-                    <h2>8. Modifications to This Policy</h2>
-                    <p>
-                        Power Digital Media reserves the right to update or modify this refund policy at any time. Changes
-                        will be posted on this page with an updated &quot;Last Updated&quot; date. Continued use of our services
-                        after changes constitutes acceptance of the revised policy.
-                    </p>
-
-                    <h2>9. Contact Us</h2>
-                    <p>
-                        If you have questions about this refund policy, please reach out:
-                    </p>
-                    <ul>
-                        <li>
-                            <strong>Email:</strong>{" "}
-                            <a href="mailto:info@powerdigitalmedia.org" className="text-accent hover:underline">
-                                info@powerdigitalmedia.org
-                            </a>
-                        </li>
-                        <li><strong>Phone:</strong> 601-446-2393</li>
-                        <li><strong>Location:</strong> Jackson, MS Metro Area</li>
-                    </ul>
-                </div>
+            <div>
+              <h2 className="text-xl font-bold uppercase text-white mb-2">
+                1. Custom Engineering &amp; Digital Services
+              </h2>
+              <p>
+                Power Digital Media builds custom Next.js websites, Local SEO &amp; Google Map Pack campaigns, paid lead-generation funnels, CRM/VoIP integrations, and proprietary field software (<strong className="text-white">PDM PinDrop™</strong> and <strong className="text-white">PinCam™</strong>). Because custom engineering, architecture, and Local SEO labor are tailored specifically to your business, completed work is non-resalable.
+              </p>
             </div>
-            <Footer />
-        </main>
-    );
+
+            <div>
+              <h2 className="text-xl font-bold uppercase text-white mb-2">
+                2. Project Deposits &amp; Milestones
+              </h2>
+              <p>
+                Custom website and software builds require an initial kickoff deposit (typically 50% of the build scope, as stated on your invoice) to reserve engineering capacity and begin architecture, copywriting, and design. Kickoff deposits cover immediate discovery and setup labor and are non-refundable once project onboarding begins.
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-xl font-bold uppercase text-white mb-2">3. Refund Eligibility</h2>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>
+                  <strong className="text-white">Before Work Starts:</strong> If you cancel a project before kickoff onboarding or design/code work has begun, milestone payments beyond the initial slot deposit are refundable.
+                </li>
+                <li>
+                  <strong className="text-white">Work In Progress:</strong> If you cancel mid-build, any unearned milestone payments for phases not yet started may be refunded on a pro-rata basis. Completed milestones and kickoff deposits remain non-refundable.
+                </li>
+                <li>
+                  <strong className="text-white">Duplicate Billing:</strong> Any accidental duplicate charge is refunded 100% within 5–10 business days of notification.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h2 className="text-xl font-bold uppercase text-white mb-2">4. Non-Refundable Items</h2>
+              <ul className="list-disc pl-6 space-y-1.5">
+                <li>Kickoff deposits once discovery or engineering work has commenced</li>
+                <li>Completed and delivered code, designs, SEO schema, or campaign setups</li>
+                <li>Third-party pass-through costs (domains, ad spend paid to Google/Meta, telecom/CRM carrier licenses)</li>
+              </ul>
+            </div>
+
+            <div>
+              <h2 className="text-xl font-bold uppercase text-white mb-2">
+                5. Month-to-Month Subscriptions, Hosting &amp; Field Apps
+              </h2>
+              <p>
+                Monthly managed hosting, Local SEO / paid ad retainers, and standalone <strong className="text-white">PDM PinDrop™ / PinCam™</strong> subscriptions operate month-to-month unless otherwise stated in a signed agreement. To cancel before your next renewal, email{" "}
+                <a href="mailto:info@powerdigitalmedia.org" className="text-amber-400 underline">
+                  info@powerdigitalmedia.org
+                </a>{" "}
+                at least 14 days prior to your next billing date. Your access and service will remain active through the end of the current paid billing cycle; partial-month refunds are not issued after a cycle renews.
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-xl font-bold uppercase text-white mb-2">
+                6. How to Request Billing Help or Cancellation
+              </h2>
+              <p>
+                Contact us directly at{" "}
+                <a href="mailto:info@powerdigitalmedia.org" className="text-amber-400 underline">
+                  info@powerdigitalmedia.org
+                </a>{" "}
+                with your name, business name, and invoice reference. We review all billing requests within 3–5 business days and always aim to resolve client concerns directly and fairly.
+              </p>
+            </div>
+
+            <div className="pt-6 border-t border-white/10 grid gap-4 sm:grid-cols-3 text-xs">
+              <div className="p-4 rounded-2xl bg-[#12141c] border border-white/10 flex items-center gap-3">
+                <Mail className="w-4 h-4 text-amber-400 shrink-0" />
+                <span>info@powerdigitalmedia.org</span>
+              </div>
+              <a
+                href="tel:6014462393"
+                className="p-4 rounded-2xl bg-[#12141c] border border-white/10 flex items-center gap-3 hover:border-amber-400/40"
+              >
+                <Phone className="w-4 h-4 text-amber-400 shrink-0" />
+                <span>(601) 446-2393</span>
+              </a>
+              <div className="p-4 rounded-2xl bg-[#12141c] border border-white/10 flex items-center gap-3">
+                <MapPin className="w-4 h-4 text-amber-400 shrink-0" />
+                <span>Jackson, MS 39209</span>
+              </div>
+            </div>
+
+            <p className="text-xs text-slate-400 pt-2">
+              Related documents:{" "}
+              <Link href="/privacy" className="text-amber-400 underline">
+                Privacy Policy
+              </Link>{" "}
+              •{" "}
+              <Link href="/terms" className="text-amber-400 underline">
+                Terms of Service
+              </Link>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </main>
+  );
 }

@@ -3,281 +3,260 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { Shield, ArrowRight, FileText, CheckCircle, Mail, Phone, Lock, Scale } from "lucide-react";
-import { motion } from "framer-motion";
-import "../typography.css";
+import { Shield, FileText, CheckCircle, Lock, Scale } from "lucide-react";
+import Link from "next/link";
 
 const SECTIONS = [
-    { id: "scope", label: "1. Scope of Agreement", icon: Shield },
-    { id: "services", label: "2. Services & SLA", icon: FileText },
-    { id: "billing", label: "3. Billing & Payments", icon: Scale },
-    { id: "ip", label: "4. Intellectual Property", icon: Lock },
-    { id: "prohibited", label: "5. Prohibited Conduct", icon: Shield },
-    { id: "sms-terms", label: "6. SMS Program Terms", icon: CheckCircle },
-    { id: "liability", label: "7. Liability Limits", icon: Scale },
-    { id: "law", label: "8. Governing Law", icon: Scale },
+  { id: "scope", label: "1. Scope of Agreement", icon: Shield },
+  { id: "services", label: "2. Services & Field Apps", icon: FileText },
+  { id: "billing", label: "3. Billing & Subscriptions", icon: Scale },
+  { id: "ip", label: "4. Code & Content Ownership", icon: Lock },
+  { id: "prohibited", label: "5. Acceptable Use", icon: Shield },
+  { id: "sms-terms", label: "6. SMS Program Terms", icon: CheckCircle },
+  { id: "liability", label: "7. Liability Limits", icon: Scale },
+  { id: "law", label: "8. Governing Law", icon: Scale },
 ];
 
 export default function TermsClient() {
-    const [activeSection, setActiveSection] = useState("scope");
+  const [activeSection, setActiveSection] = useState("scope");
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const scrollPosition = window.scrollY + 200;
-            for (const section of SECTIONS) {
-                const el = document.getElementById(section.id);
-                if (el) {
-                    const top = el.offsetTop;
-                    const height = el.offsetHeight;
-                    if (scrollPosition >= top && scrollPosition < top + height) {
-                        setActiveSection(section.id);
-                        break;
-                    }
-                }
-            }
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
-    const scrollToSection = (id: string) => {
-        const el = document.getElementById(id);
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 200;
+      for (const section of SECTIONS) {
+        const el = document.getElementById(section.id);
         if (el) {
-            window.scrollTo({
-                top: el.offsetTop - 120,
-                behavior: "smooth",
-            });
-            setActiveSection(id);
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(section.id);
+            break;
+          }
         }
+      }
     };
 
-    return (
-        <main className="relative min-h-screen bg-background text-foreground overflow-x-clip">
-            <Navbar />
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-            {/* Premium Ambient Background Glows */}
-            <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[120px] pointer-events-none" />
-            <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-[150px] pointer-events-none" />
-            <div className="absolute inset-0 cyber-grid-small opacity-5 pointer-events-none" />
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      window.scrollTo({
+        top: el.offsetTop - 120,
+        behavior: "smooth",
+      });
+      setActiveSection(id);
+    }
+  };
 
-            {/* --- Hero: Protocol Header --- */}
-            <section className="relative pt-36 pb-12 overflow-hidden border-b border-white/5 bg-white/[0.01]">
-                <div className="container px-4 mx-auto text-center">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        className="max-w-4xl mx-auto"
-                    >
-                        <span className="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[10px] mb-4 block">System Protocols</span>
-                        <h1 className="text-4xl md:text-6xl font-black tracking-tighter uppercase mb-6 leading-none">
-                            Terms of Service &{" "}
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 text-glow-cyan">
-                                User Agreements.
-                            </span>
-                        </h1>
-                        <div className="flex justify-center items-center gap-4 text-xs font-mono text-foreground/40">
-                            <span>DOCUMENT ID: PDM-TOS-2026-V1</span>
-                            <span className="w-1.5 h-1.5 rounded-full bg-white/20" />
-                            <span>LAST UPDATED: JULY 2026</span>
-                        </div>
-                    </motion.div>
+  return (
+    <main className="relative min-h-screen bg-[#06080f] text-white overflow-x-clip">
+      <Navbar />
+
+      <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" aria-hidden="true" />
+      <div
+        className="absolute top-0 right-1/4 w-[600px] h-[450px] bg-amber-500/[0.05] rounded-full blur-[150px] pointer-events-none"
+        aria-hidden="true"
+      />
+
+      {/* Header */}
+      <section className="relative pt-32 pb-12 md:pt-40 border-b border-white/10 bg-[#0b0c10]/70">
+        <div className="container px-4 sm:px-6 mx-auto text-center max-w-4xl">
+          <span className="text-amber-400 font-mono font-bold tracking-widest uppercase text-xs mb-3 block">
+            Legal &amp; Client Agreements
+          </span>
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight uppercase mb-4 leading-[1.05]">
+            Terms of Service &amp; <span className="text-amber-400">Client Terms.</span>
+          </h1>
+          <div className="flex flex-wrap justify-center items-center gap-3 text-xs font-mono text-slate-400">
+            <span>Power Digital Media LLC • Jackson, MS</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400/60" />
+            <span>Last Updated: April 2026</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Main Document Layout */}
+      <section className="py-16 md:py-20 relative z-10">
+        <div className="container px-4 sm:px-6 mx-auto max-w-7xl">
+          <div className="grid gap-10 lg:grid-cols-4 items-start">
+            {/* Sidebar ToC */}
+            <div className="lg:col-span-1 lg:sticky lg:top-28">
+              <div className="p-5 rounded-3xl border border-white/10 bg-[#0b0c10]">
+                <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-slate-400 mb-4 pl-2">
+                  Contents
+                </h2>
+                <nav className="space-y-1">
+                  {SECTIONS.map((section) => {
+                    const Icon = section.icon;
+                    const isActive = activeSection === section.id;
+                    return (
+                      <button
+                        key={section.id}
+                        type="button"
+                        onClick={() => scrollToSection(section.id)}
+                        className={`w-full flex items-center gap-3 px-3.5 py-3 rounded-xl font-medium text-xs sm:text-sm transition-colors text-left cursor-pointer ${
+                          isActive
+                            ? "bg-amber-500/15 text-amber-300 border-l-2 border-amber-400"
+                            : "text-slate-400 hover:text-white hover:bg-white/5"
+                        }`}
+                      >
+                        <Icon className={`w-4 h-4 shrink-0 ${isActive ? "text-amber-400" : "text-slate-500"}`} />
+                        <span className="truncate">{section.label}</span>
+                      </button>
+                    );
+                  })}
+                </nav>
+              </div>
+            </div>
+
+            {/* Document Content */}
+            <div className="lg:col-span-3 space-y-8">
+              <div id="scope" className="scroll-mt-32 p-7 sm:p-10 rounded-3xl border border-white/10 bg-[#0b0c10]">
+                <div className="flex items-center gap-3 mb-4">
+                  <Shield className="w-5 h-5 text-amber-400" />
+                  <h2 className="text-xl sm:text-2xl font-bold uppercase tracking-tight">1. Scope of Agreement</h2>
                 </div>
-            </section>
-
-            {/* --- Main Document Layout --- */}
-            <section className="py-20 relative z-10">
-                <div className="container px-4 mx-auto max-w-7xl">
-                    <div className="grid gap-12 lg:grid-cols-4 items-start">
-                        
-                        {/* Interactive Sidebar (ToC) */}
-                        <div className="lg:col-span-1 lg:sticky lg:top-32 space-y-4">
-                            <div className="glass-card p-6 rounded-3xl border-white/5 bg-white/[0.02] backdrop-blur-md">
-                                <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-6 pl-2">Protocol Index</h3>
-                                <nav className="space-y-1">
-                                    {SECTIONS.map((section) => {
-                                        const Icon = section.icon;
-                                        const isActive = activeSection === section.id;
-                                        return (
-                                            <button
-                                                key={section.id}
-                                                onClick={() => scrollToSection(section.id)}
-                                                className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl font-medium text-sm transition-all duration-300 ${
-                                                    isActive
-                                                        ? "bg-cyan-500/10 text-cyan-400 border-l-2 border-cyan-400"
-                                                        : "text-foreground/50 hover:text-foreground/80 hover:bg-white/5"
-                                                }`}
-                                            >
-                                                <Icon className={`w-4 h-4 shrink-0 transition-colors ${isActive ? "text-cyan-400" : "opacity-60"}`} />
-                                                <span className="truncate">{section.label}</span>
-                                            </button>
-                                        );
-                                    })}
-                                </nav>
-                            </div>
-                        </div>
-
-                        {/* Document Content */}
-                        <div className="lg:col-span-3 space-y-12">
-                            
-                            {/* Section 1 */}
-                            <div id="scope" className="scroll-mt-32">
-                                <div className="glass-card p-8 md:p-12 rounded-[2.5rem] border-white/5 bg-white/[0.01] hover:bg-white/[0.02] transition-colors duration-500">
-                                    <div className="flex items-center gap-3 mb-6">
-                                        <Shield className="w-6 h-6 text-cyan-400" />
-                                        <h2 className="text-2xl font-bold uppercase tracking-tight">1. Scope of Agreement</h2>
-                                    </div>
-                                    <div className="prose prose-invert max-w-none text-foreground/75 leading-relaxed space-y-4">
-                                        <p>
-                                            Welcome to Power Digital Media. By accessing our platform, utilizing our custom design systems, or purchasing our web design, custom development, or business integration services (including Capsule CRM, Transpond email marketing, and Ultatel VoIP systems), you agree to comply with and be bound by the following Terms of Service.
-                                        </p>
-                                        <p>
-                                            If you are entering into this agreement on behalf of a company, church, or organization, you represent that you hold the legal authority to bind that entity to these conditions.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Section 2 */}
-                            <div id="services" className="scroll-mt-32">
-                                <div className="glass-card p-8 md:p-12 rounded-[2.5rem] border-white/5 bg-white/[0.01] hover:bg-white/[0.02] transition-colors duration-500">
-                                    <div className="flex items-center gap-3 mb-6">
-                                        <FileText className="w-6 h-6 text-cyan-400" />
-                                        <h2 className="text-2xl font-bold uppercase tracking-tight">2. Description of Services & SLA</h2>
-                                    </div>
-                                    <div className="prose prose-invert max-w-none text-foreground/75 leading-relaxed space-y-4">
-                                        <p>
-                                            Power Digital Media LLC provides high-velocity digital solutions including custom Next.js development, local SEO optimization, digital booking integrations, Capsule CRM visual pipelines, Transpond automated email marketing systems, and Ultatel business phone VoIP systems.
-                                        </p>
-                                        <p>
-                                            Specific deliverables, timelines, and launch phases will be outlined in your custom Service Level Agreement (SLA). All development launches are pending client content assets and prompt design feedback.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Section 3 */}
-                            <div id="billing" className="scroll-mt-32">
-                                <div className="glass-card p-8 md:p-12 rounded-[2.5rem] border-white/5 bg-white/[0.01] hover:bg-white/[0.02] transition-colors duration-500">
-                                    <div className="flex items-center gap-3 mb-6">
-                                        <Scale className="w-6 h-6 text-cyan-400" />
-                                        <h2 className="text-2xl font-bold uppercase tracking-tight">3. Billing, Fees & Subscriptions</h2>
-                                    </div>
-                                    <div className="prose prose-invert max-w-none text-foreground/75 leading-relaxed space-y-4">
-                                        <p>
-                                            All services require advance payment parameters via our secure Stripe payment gateway:
-                                        </p>
-                                        <ul className="list-disc pl-6 space-y-2">
-                                            <li><strong>Bespoke Builds</strong>: Typically invoiced as 50% upfront deposit and 50% upon successful deployment.</li>
-                                            <li><strong>Monthly Subscriptions</strong>: Our standard Build & Manage protocol (priced at $550/month) covers serverless hosting, API maintenance, and weekly updates. Subscription fees are automatically billed recurringly.</li>
-                                            <li><strong>Cancelation Policy</strong>: Monthly maintenance cycles can be canceled at any time with 30 days written notice to info@powerdigitalmedia.org.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Section 4 */}
-                            <div id="ip" className="scroll-mt-32">
-                                <div className="glass-card p-8 md:p-12 rounded-[2.5rem] border-white/5 bg-white/[0.01] hover:bg-white/[0.02] transition-colors duration-500">
-                                    <div className="flex items-center gap-3 mb-6">
-                                        <Lock className="w-6 h-6 text-cyan-400" />
-                                        <h2 className="text-2xl font-bold uppercase tracking-tight">4. Intellectual Property & Code Ownership</h2>
-                                    </div>
-                                    <div className="prose prose-invert max-w-none text-foreground/75 leading-relaxed space-y-4">
-                                        <p>
-                                            Upon complete receipt of project payments, we transfer ownership of all custom layout graphics, logos, video assets, and text content compiled specifically for your business.
-                                        </p>
-                                        <p>
-                                            We retain rights to our underlying pre-built software blocks, generic React components, and custom serverless API routing endpoints developed prior to or independently of this agreement.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Section 5 */}
-                            <div id="prohibited" className="scroll-mt-32">
-                                <div className="glass-card p-8 md:p-12 rounded-[2.5rem] border-white/5 bg-white/[0.01] hover:bg-white/[0.02] transition-colors duration-500">
-                                    <div className="flex items-center gap-3 mb-6">
-                                        <Shield className="w-6 h-6 text-cyan-400" />
-                                        <h2 className="text-2xl font-bold uppercase tracking-tight">5. Prohibited Conduct</h2>
-                                    </div>
-                                    <div className="prose prose-invert max-w-none text-foreground/75 leading-relaxed space-y-4">
-                                        <p>You agree not to engage in any actions that compromise the security or speed of our system, including:</p>
-                                        <ul className="list-disc pl-6 space-y-2">
-                                            <li>Attempting to bypass serverless route security walls or run unauthorized vulnerability scans.</li>
-                                            <li>Using our form endpoints to distribute unsolicited spam material.</li>
-                                            <li>Reverse-engineering or scraping the dynamic portfolio or booking engine layouts.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Section 6 */}
-                            <div id="sms-terms" className="scroll-mt-32">
-                                <div className="glass-card p-8 md:p-12 rounded-[2.5rem] border-cyan-500/20 bg-cyan-950/10 hover:bg-cyan-950/20 transition-all duration-500 shadow-[0_0_30px_rgba(6,182,212,0.05)]">
-                                    <div className="flex items-center gap-3 mb-6">
-                                        <CheckCircle className="w-6 h-6 text-cyan-400" />
-                                        <h2 className="text-2xl font-bold uppercase tracking-tight text-white">6. SMS/MMS Mobile Messaging Program</h2>
-                                    </div>
-                                    <div className="prose prose-invert max-w-none leading-relaxed space-y-6">
-                                        <div className="p-6 rounded-2xl bg-black/40 border border-cyan-500/30 text-cyan-300 font-mono text-sm leading-relaxed">
-                                            &quot;By agreeing to receive reminders, updates, and support messages from Power Digital Media LLC, you understand that message frequency varies, and message/data rates may apply. Reply STOP to opt out.&quot;
-                                        </div>
-                                        <div className="text-foreground/75 space-y-4">
-                                            <p>
-                                                By inputting your phone number and consenting via checkbox in our contact forms or booking widgets, or by sending SMS messages (such as texting &quot;START&quot;) to our line, you authorize Power Digital Media LLC to dispatch transactional notifications, scheduling updates, and project status alerts via SMS.
-                                            </p>
-                                            <p>
-                                                Message and data rates from your mobile carrier may apply. You may revoke consent at any time by texting &quot;STOP&quot; in response to any message. For assistance, text &quot;HELP&quot;. We are not responsible for delayed or undelivered messages caused by network carrier transit failures.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Section 7 */}
-                            <div id="liability" className="scroll-mt-32">
-                                <div className="glass-card p-8 md:p-12 rounded-[2.5rem] border-white/5 bg-white/[0.01] hover:bg-white/[0.02] transition-colors duration-500">
-                                    <div className="flex items-center gap-3 mb-6">
-                                        <Scale className="w-6 h-6 text-cyan-400" />
-                                        <h2 className="text-2xl font-bold uppercase tracking-tight">7. Warranty Disclaimers & Liability Limits</h2>
-                                    </div>
-                                    <div className="prose prose-invert max-w-none text-foreground/75 leading-relaxed space-y-4">
-                                        <p>
-                                            Our platforms are provided on an &quot;as-is&quot; and &quot;as-available&quot; basis. We make no guarantees regarding uninterrupted uptime or absolute index positioning on search engines (which depend on dynamic third-party algorithms).
-                                        </p>
-                                        <p>
-                                            In no event shall Power Digital Media LLC be liable for any lost profits, data corruption, or indirect damages exceeding the total amount paid by you to us during the three (3) months preceding the claim.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Section 8 */}
-                            <div id="law" className="scroll-mt-32">
-                                <div className="glass-card p-8 md:p-12 rounded-[2.5rem] border-white/5 bg-white/[0.01] hover:bg-white/[0.02] transition-colors duration-500">
-                                    <div className="flex items-center gap-3 mb-6">
-                                        <Scale className="w-6 h-6 text-cyan-400" />
-                                        <h2 className="text-2xl font-bold uppercase tracking-tight">8. Governing Law</h2>
-                                    </div>
-                                    <div className="prose prose-invert max-w-none text-foreground/75 leading-relaxed space-y-4">
-                                        <p>
-                                            This agreement and all relations arising from it are governed by the laws of the State of Mississippi, without regard to conflict of law principles. Any legal actions or arbitration proceedings must be filed within courts of competent jurisdiction located in Jackson, Hinds County, Mississippi.
-                                        </p>
-                                        <p>
-                                            If you have any questions regarding these operational parameters, contact our support room at info@powerdigitalmedia.org.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
+                <div className="text-slate-300 text-sm sm:text-base leading-relaxed space-y-4">
+                  <p>
+                    Welcome to Power Digital Media LLC. By accessing <code className="text-amber-300">powerdigitalmedia.org</code>, subscribing to our proprietary field apps (<strong className="text-white">PDM PinDrop™</strong> and <strong className="text-white">PinCam™</strong>), or engaging our web design, Local SEO, paid marketing, or business integration services (including Capsule CRM, Transpond, and Ultatel VoIP systems), you agree to be bound by these Terms of Service.
+                  </p>
+                  <p>
+                    If you enter into this agreement on behalf of a business, contractor crew, church, or organization, you represent that you have authority to bind that entity to these terms.
+                  </p>
                 </div>
-            </section>
+              </div>
 
-            <Footer />
-        </main>
-    );
+              <div id="services" className="scroll-mt-32 p-7 sm:p-10 rounded-3xl border border-white/10 bg-[#0b0c10]">
+                <div className="flex items-center gap-3 mb-4">
+                  <FileText className="w-5 h-5 text-amber-400" />
+                  <h2 className="text-xl sm:text-2xl font-bold uppercase tracking-tight">
+                    2. Services, Deliverables &amp; Field Apps
+                  </h2>
+                </div>
+                <div className="text-slate-300 text-sm sm:text-base leading-relaxed space-y-4">
+                  <p>
+                    Power Digital Media LLC provides custom Next.js website development, Google Map Pack &amp; Local SEO engineering, proprietary jobsite software (<strong className="text-white">PDM PinDrop™</strong> and <strong className="text-white">PinCam™</strong>), paid acquisition funnels, Capsule CRM pipelines, Transpond email automation, and Ultatel business phone deployments.
+                  </p>
+                  <p>
+                    Project deliverables, milestones, and target launch dates are specified in your project proposal or invoice. Launch timelines depend on timely client approval and asset handoff.
+                  </p>
+                </div>
+              </div>
+
+              <div id="billing" className="scroll-mt-32 p-7 sm:p-10 rounded-3xl border border-white/10 bg-[#0b0c10]">
+                <div className="flex items-center gap-3 mb-4">
+                  <Scale className="w-5 h-5 text-amber-400" />
+                  <h2 className="text-xl sm:text-2xl font-bold uppercase tracking-tight">
+                    3. Billing, Fees &amp; Subscriptions
+                  </h2>
+                </div>
+                <div className="text-slate-300 text-sm sm:text-base leading-relaxed space-y-3">
+                  <p>Payments are processed securely via Stripe:</p>
+                  <ul className="list-disc pl-6 space-y-2">
+                    <li><strong className="text-white">Custom Website &amp; Software Builds</strong>: Typically invoiced as a 50% kickoff deposit and 50% upon launch readiness (or approved split-payment schedule).</li>
+                    <li><strong className="text-white">Monthly Hosting, Growth Retainers &amp; Field App Plans</strong>: Billed month-to-month in advance with no mandatory 12-month lock-ins unless separately contracted.</li>
+                    <li><strong className="text-white">Cancellation &amp; Refunds</strong>: Monthly subscriptions and retainers may be canceled in writing at least 14 days before the next billing cycle by emailing <a href="mailto:info@powerdigitalmedia.org" className="text-amber-400 underline">info@powerdigitalmedia.org</a>. See our <Link href="/refund-policy" className="text-amber-400 underline">Refund Policy</Link> for full details.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div id="ip" className="scroll-mt-32 p-7 sm:p-10 rounded-3xl border border-white/10 bg-[#0b0c10]">
+                <div className="flex items-center gap-3 mb-4">
+                  <Lock className="w-5 h-5 text-amber-400" />
+                  <h2 className="text-xl sm:text-2xl font-bold uppercase tracking-tight">
+                    4. Code &amp; Content Ownership
+                  </h2>
+                </div>
+                <div className="text-slate-300 text-sm sm:text-base leading-relaxed space-y-4">
+                  <p>
+                    Upon full payment of your custom website build fee, you own 100% of your custom website design, domain, brand copy, and jobsite photos/content created for your business.
+                  </p>
+                  <p>
+                    Power Digital Media LLC retains intellectual property rights to our proprietary SaaS engines (<strong className="text-white">PDM PinDrop™</strong> and <strong className="text-white">PinCam™</strong>) and reusable internal software libraries licensed to active subscribers.
+                  </p>
+                </div>
+              </div>
+
+              <div id="prohibited" className="scroll-mt-32 p-7 sm:p-10 rounded-3xl border border-white/10 bg-[#0b0c10]">
+                <div className="flex items-center gap-3 mb-4">
+                  <Shield className="w-5 h-5 text-amber-400" />
+                  <h2 className="text-xl sm:text-2xl font-bold uppercase tracking-tight">5. Acceptable Use</h2>
+                </div>
+                <div className="text-slate-300 text-sm sm:text-base leading-relaxed space-y-3">
+                  <p>You agree not to misuse our websites, APIs, or field software, including:</p>
+                  <ul className="list-disc pl-6 space-y-2">
+                    <li>Attempting unauthorized access, automated scraping, or vulnerability probing against our endpoints.</li>
+                    <li>Submitting spam, unlawful content, or non-consensual SMS/email recipient lists.</li>
+                    <li>Uploading customer photos or property details without homeowner or client authorization.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div
+                id="sms-terms"
+                className="scroll-mt-32 p-7 sm:p-10 rounded-3xl border border-amber-400/35 bg-[#12141c]"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <CheckCircle className="w-5 h-5 text-amber-400" />
+                  <h2 className="text-xl sm:text-2xl font-bold uppercase tracking-tight text-white">
+                    6. SMS/MMS Mobile Messaging Program
+                  </h2>
+                </div>
+                <div className="space-y-5 text-sm sm:text-base leading-relaxed">
+                  <div className="p-5 rounded-2xl bg-[#06080f] border border-amber-400/35 text-amber-200 font-mono text-xs sm:text-sm leading-relaxed">
+                    &ldquo;By agreeing to receive reminders, updates, and support messages from Power Digital Media LLC, you understand that message frequency varies, and message/data rates may apply. Reply STOP to opt out.&rdquo;
+                  </div>
+                  <div className="text-slate-300 space-y-3">
+                    <p>
+                      By providing your phone number and checking the SMS consent box on our forms or booking pages—or by texting &ldquo;START&rdquo; to (601) 446-2393—you authorize Power Digital Media LLC to send appointment reminders, audit delivery alerts, and client support updates via SMS.
+                    </p>
+                    <p>
+                      Message and data rates may apply. You can opt out at any time by replying &ldquo;STOP&rdquo; to any message, or reply &ldquo;HELP&rdquo; for support. Mobile carriers are not liable for delayed or undelivered messages.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div id="liability" className="scroll-mt-32 p-7 sm:p-10 rounded-3xl border border-white/10 bg-[#0b0c10]">
+                <div className="flex items-center gap-3 mb-4">
+                  <Scale className="w-5 h-5 text-amber-400" />
+                  <h2 className="text-xl sm:text-2xl font-bold uppercase tracking-tight">
+                    7. Disclaimers &amp; Limitation of Liability
+                  </h2>
+                </div>
+                <div className="text-slate-300 text-sm sm:text-base leading-relaxed space-y-4">
+                  <p>
+                    While we engineer every website and SEO campaign to best-in-class technical standards, search engine rankings and third-party ad algorithms are controlled by external platforms (Google, Meta, Bing) and cannot be guaranteed at fixed positions.
+                  </p>
+                  <p>
+                    To the maximum extent permitted by law, Power Digital Media LLC&apos;s total liability for any claim shall not exceed the fees paid by you to us during the three (3) months preceding the claim.
+                  </p>
+                </div>
+              </div>
+
+              <div id="law" className="scroll-mt-32 p-7 sm:p-10 rounded-3xl border border-white/10 bg-[#0b0c10]">
+                <div className="flex items-center gap-3 mb-4">
+                  <Scale className="w-5 h-5 text-amber-400" />
+                  <h2 className="text-xl sm:text-2xl font-bold uppercase tracking-tight">8. Governing Law</h2>
+                </div>
+                <div className="text-slate-300 text-sm sm:text-base leading-relaxed space-y-4">
+                  <p>
+                    These Terms are governed by the laws of the State of Mississippi. Any dispute arising out of these Terms shall be resolved in state or federal courts located in Hinds County, Mississippi.
+                  </p>
+                  <p>
+                    Questions? Email <a href="mailto:info@powerdigitalmedia.org" className="text-amber-400 underline">info@powerdigitalmedia.org</a> or call (601) 446-2393.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </main>
+  );
 }

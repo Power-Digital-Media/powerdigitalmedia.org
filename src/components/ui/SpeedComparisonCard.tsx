@@ -1,160 +1,163 @@
 "use client";
 
-import { useState } from "react";
-import { Zap, XCircle, CheckCircle2, PhoneCall, AlertTriangle, Sparkles, ArrowRight } from "lucide-react";
+import { Zap, XCircle, CheckCircle2, AlertTriangle, Sparkles, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export default function SpeedComparisonCard() {
-    const [viewMode, setViewMode] = useState<"comparison" | "calculator">("comparison");
-    const [monthlyVisitors, setMonthlyVisitors] = useState<number>(500);
+  return (
+    <section className="py-20 md:py-28 bg-[#06080f] border-t border-white/10 relative overflow-hidden">
+      {/* Subtle Industrial-Luxury Blueprint & Warm Glow */}
+      <div className="absolute inset-0 blueprint-grid opacity-30 pointer-events-none" aria-hidden="true" />
+      <div
+        className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[520px] h-[420px] bg-amber-500/[0.06] rounded-full blur-[150px] pointer-events-none"
+        aria-hidden="true"
+      />
 
-    // Math: Average slow site loses 53% of mobile visits over 3s. Fast site captures ~8% call conversion.
-    const estimatedLostCalls = Math.round((monthlyVisitors * 0.53 * 0.08));
-    const estimatedCapturedJobs = Math.round(monthlyVisitors * 0.08);
+      <div className="container px-4 md:px-6 mx-auto relative z-10 max-w-6xl">
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-4">
+            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+            <span className="text-[11px] font-mono font-bold text-amber-300 uppercase tracking-widest">
+              Why Mobile Speed Wins Local Jobs
+            </span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase tracking-tight leading-[1.05]">
+            The 3-Second Rule:{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-yellow-500">
+              Slow Sites Lose Calls. Fast Sites Book Crews.
+            </span>
+          </h2>
+          <p className="text-slate-300 text-base md:text-lg mt-4 leading-relaxed">
+            When a Mississippi homeowner has a roof leak, a dead AC unit, or needs dinner catered tonight, they search on their phone. If your site takes 6 seconds to load, they tap &ldquo;Back&rdquo; and call the next company on Google Maps.
+          </p>
+        </div>
 
-    return (
-        <section className="py-20 md:py-28 relative overflow-hidden">
-            {/* Ambient Warm Backdrops */}
-            <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[140px] pointer-events-none" />
-            <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[140px] pointer-events-none" />
+        {/* Side-by-Side Comparison Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-stretch">
+          {/* The Slow Template Site */}
+          <div className="rounded-3xl p-6 sm:p-8 bg-[#0b0c10] border border-red-500/20 flex flex-col justify-between relative overflow-hidden shadow-xl">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/5 rounded-full blur-2xl pointer-events-none" />
 
-            <div className="container px-4 md:px-6 mx-auto relative z-10 max-w-6xl">
-                
-                {/* Header */}
-                <div className="text-center max-w-3xl mx-auto mb-14">
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-4">
-                        <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                        <span className="text-[11px] font-bold text-amber-400 uppercase tracking-widest">
-                            Why Speed Wins Mississippi Customers
-                        </span>
-                    </div>
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase tracking-tight leading-tight">
-                        The 3-Second Rule: <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-cyan-400">
-                            Slow Sites Lose Jobs. Fast Sites Win Them.
-                        </span>
-                    </h2>
-                    <p className="text-white/75 text-base md:text-lg mt-4 leading-relaxed font-normal">
-                        When a Mississippi homeowner has a leaking roof, an air conditioning breakdown, or needs catering, they search on their phone. If your website doesn&apos;t load in 3 seconds, they hit &ldquo;back&rdquo; and call your competitor.
-                    </p>
+            <div>
+              <div className="flex items-center justify-between gap-2 mb-6 pb-4 border-b border-white/[0.07]">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-9 h-9 rounded-xl bg-red-500/10 border border-red-500/25 flex items-center justify-center text-red-400">
+                    <AlertTriangle className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-black uppercase tracking-tight text-white">
+                      Typical Agency WordPress / Wix Site
+                    </h3>
+                    <p className="text-xs text-slate-400">Heavy Plugins &amp; Generic Stock Photos</p>
+                  </div>
                 </div>
+                <span className="px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-bold font-mono shrink-0">
+                  5.8s – 8.2s Load
+                </span>
+              </div>
 
-                {/* Side-by-Side Comparison Cards */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-stretch">
-                    
-                    {/* The Slow Template Site */}
-                    <div className="rounded-3xl p-6 sm:p-8 bg-slate-900/40 border border-red-500/20 flex flex-col justify-between relative overflow-hidden shadow-xl">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/5 rounded-full blur-2xl pointer-events-none" />
-                        
-                        <div>
-                            <div className="flex items-center justify-between gap-2 mb-6 pb-4 border-b border-white/5">
-                                <div className="flex items-center gap-2">
-                                    <div className="w-9 h-9 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400">
-                                        <AlertTriangle className="w-4 h-4" />
-                                    </div>
-                                    <div>
-                                        <h3 className="text-base font-bold text-white">Bloated Template Sites</h3>
-                                        <p className="text-xs text-white/50">Plugin Stacks &amp; Slow Builders</p>
-                                    </div>
-                                </div>
-                                <span className="px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-bold font-mono">
-                                    ⏳ 5.8s - 8.2s Load
-                                </span>
-                            </div>
-
-                            <ul className="space-y-3.5 mb-8">
-                                {[
-                                    "Takes 6+ seconds to open on a cell phone",
-                                    "53% of mobile visitors leave before seeing your phone number",
-                                    "Overloaded with 30+ plugins that break constantly",
-                                    "Zero Google Map Pack schema optimization",
-                                    "Quote requests get lost in spam folders"
-                                ].map((point, idx) => (
-                                    <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-white/70">
-                                        <XCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
-                                        <span>{point}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        <div className="p-4 rounded-2xl bg-red-950/20 border border-red-500/15 text-center mt-auto">
-                            <span className="text-[11px] font-bold text-red-400 uppercase tracking-wider block mb-0.5">The Bottom Line</span>
-                            <p className="text-xs text-white/80">You pay for marketing, but visitors bounce before ever contacting you.</p>
-                        </div>
-                    </div>
-
-                    {/* The Power Digital Build */}
-                    <div className="rounded-3xl p-6 sm:p-8 bg-gradient-to-b from-slate-900/80 to-slate-950/90 border border-cyan-500/40 flex flex-col justify-between relative overflow-hidden shadow-2xl shadow-cyan-950/30">
-                        <div className="absolute top-0 right-0 w-36 h-36 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none" />
-                        
-                        <div>
-                            <div className="flex items-center justify-between gap-2 mb-6 pb-4 border-b border-cyan-500/20">
-                                <div className="flex items-center gap-2">
-                                    <div className="w-9 h-9 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400">
-                                        <Zap className="w-4 h-4" />
-                                    </div>
-                                    <div>
-                                        <h3 className="text-base font-bold text-white">Power Digital Growth Platform</h3>
-                                        <p className="text-xs text-cyan-400">Hand-Crafted Next.js 16</p>
-                                    </div>
-                                </div>
-                                <span className="px-3 py-1 rounded-full bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 text-xs font-bold font-mono shadow-[0_0_12px_rgba(6,182,212,0.3)]">
-                                    ⚡ Fast &lt; 2–3s Mobile Load
-                                </span>
-                            </div>
-
-                            <ul className="space-y-3.5 mb-8">
-                                {[
-                                    "Opens fast (under 2–3s) on mobile networks without lagging",
-                                    "95+ Google Mobile PageSpeed performance",
-                                    "PinDrop™ job site GPS pins & automated 5-star Google reviews",
-                                    "1-Tap direct phone calling and instant quote routing",
-                                    "Direct Capsule CRM sync with zero missed leads"
-                                ].map((point, idx) => (
-                                    <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-white/90 font-medium">
-                                        <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                                        <span>{point}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        <div className="p-4 rounded-2xl bg-cyan-950/40 border border-cyan-500/30 flex items-center justify-between gap-3 mt-auto">
-                            <div>
-                                <span className="text-[11px] font-bold text-cyan-400 uppercase tracking-wider block">Real Mississippi Results</span>
-                                <p className="text-xs text-white/90">More phone calls, better Google rank, zero tech headaches.</p>
-                            </div>
-                            <Link
-                                href="/free-audit"
-                                className="px-4 py-2 bg-cyan-400 text-slate-950 rounded-xl text-xs font-black uppercase tracking-wider hover:bg-white transition-all shrink-0"
-                            >
-                                Free Audit
-                            </Link>
-                        </div>
-                    </div>
-
-                </div>
-
-                {/* Quick Call Out Strip */}
-                <div className="mt-10 p-6 rounded-2xl bg-white/[0.02] border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-                    <div className="flex items-center gap-3">
-                        <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
-                        <span className="text-xs sm:text-sm text-white/80 font-medium">
-                            Wondering where your current website scores? We&apos;ll run a free speed &amp; Google Maps breakdown for you.
-                        </span>
-                    </div>
-                    <div className="flex items-center gap-3 shrink-0">
-                        <Link
-                            href="/free-audit"
-                            className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-400 hover:text-white transition-colors uppercase tracking-wider"
-                        >
-                            Request 5-Min Video Review <ArrowRight className="w-3.5 h-3.5" />
-                        </Link>
-                    </div>
-                </div>
-
+              <ul className="space-y-3.5 mb-8">
+                {[
+                  "Stalls for 6+ seconds on cellular connections",
+                  "53% of mobile callers bounce before seeing your phone number",
+                  "Zero neighborhood project proof — Google only sees one city",
+                  "Missed calls go to voicemail while you're on a roof or job site",
+                  "Bloated plugins break forms and send quote leads to spam",
+                ].map((point, idx) => (
+                  <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-slate-300">
+                    <XCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-        </section>
-    );
+
+            <div className="p-4 rounded-2xl bg-red-950/20 border border-red-500/15 text-center mt-auto">
+              <span className="text-[11px] font-mono font-bold text-red-400 uppercase tracking-wider block mb-0.5">
+                The Cost
+              </span>
+              <p className="text-xs text-slate-300">
+                You do great work in the field, while slower competitors outrank you online.
+              </p>
+            </div>
+          </div>
+
+          {/* The Power Digital Build */}
+          <div className="rounded-3xl p-6 sm:p-8 bg-gradient-to-b from-[#12141c] to-[#0b0c10] border border-amber-500/40 flex flex-col justify-between relative overflow-hidden shadow-[0_24px_70px_rgba(0,0,0,0.65)]">
+            <div className="absolute top-0 right-0 w-40 h-40 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
+
+            <div>
+              <div className="flex items-center justify-between gap-2 mb-6 pb-4 border-b border-amber-500/20">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-9 h-9 rounded-xl bg-amber-500/15 border border-amber-500/40 flex items-center justify-center text-amber-400">
+                    <Zap className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-black uppercase tracking-tight text-white">
+                      Power Digital Growth System
+                    </h3>
+                    <p className="text-xs text-amber-400 font-semibold">
+                      Custom Next.js + PinCam™ &amp; PinDrop™
+                    </p>
+                  </div>
+                </div>
+                <span className="px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/35 text-emerald-300 text-xs font-bold font-mono shrink-0">
+                  ⚡ &lt; 1.8s Mobile Load
+                </span>
+              </div>
+
+              <ul className="space-y-3.5 mb-8">
+                {[
+                  "Opens in under 2 seconds on 4G/5G phones with 95–99 PageSpeed",
+                  "PinDrop™ turns every finished job into a GPS neighborhood SEO page",
+                  "PinCam™ captures verified before/after proof & branded PDF reports",
+                  "2-Minute Missed-Call SMS Text-Back rescues callers automatically",
+                  "Direct Capsule CRM, Square 0%-fee checkout & 1-tap call routing",
+                ].map((point, idx) => (
+                  <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-white font-medium">
+                    <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mt-auto">
+              <div>
+                <span className="text-[11px] font-mono font-bold text-amber-300 uppercase tracking-wider block">
+                  Real Mississippi Results
+                </span>
+                <p className="text-xs text-slate-200">
+                  More booked estimates, stronger Map Pack rank, zero tech headaches.
+                </p>
+              </div>
+              <Link
+                href="/free-audit"
+                className="px-4 py-2.5 bg-amber-400 hover:bg-amber-300 text-slate-950 rounded-xl text-xs font-black uppercase tracking-wider transition-all shrink-0 shadow-md"
+              >
+                Free Rank Check
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Quick Call Out Strip */}
+        <div className="mt-10 p-5 sm:p-6 rounded-2xl bg-[#0b0c10] border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          <div className="flex items-center gap-3">
+            <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399] shrink-0" />
+            <span className="text-xs sm:text-sm text-slate-200 font-medium">
+              Want to see how your current website &amp; Google Business Profile stack up against local competitors?
+            </span>
+          </div>
+          <Link
+            href="/free-audit"
+            className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-amber-400 hover:text-amber-300 transition-colors uppercase tracking-wider shrink-0"
+          >
+            Get Free 5-Min Breakdown <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
 }

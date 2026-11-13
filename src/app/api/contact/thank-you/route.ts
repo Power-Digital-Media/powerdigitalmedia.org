@@ -15,6 +15,10 @@ interface ThankYouRequest {
     email: string;
     name?: string;
     template: TemplateType;
+    submissionId?: string;
+    leadEventId?: string;
+    formSource?: string;
+    internalFallbackRequired?: boolean;
 }
 
 /* ─── Template Config ─────────────────────────────────────────── */
@@ -115,7 +119,13 @@ function buildEmail(t: EmailTemplate): string {
 /* ─── POST Handler ────────────────────────────────────────────── */
 export async function POST(request: Request) {
     try {
-        const { email, name, template } = (await request.json()) as ThankYouRequest;
+        const {
+            email,
+            name,
+            template,
+            submissionId,
+            internalFallbackRequired,
+        } = (await request.json()) as ThankYouRequest;
 
         if (!email || !template) {
             return NextResponse.json(
@@ -125,16 +135,26 @@ export async function POST(request: Request) {
         }
 
         const t = getTemplate(template, name);
+        const internalRecipient =
+            process.env.PDM_INTERNAL_LEAD_FALLBACK_EMAIL ||
+            'hello@powerdigitalmedia.org';
 
         const { data, error } = await resend.emails.send({
             from: 'Power Digital Media <hello@powerdigitalmedia.org>',
             to: [email],
+            ...(internalFallbackRequired ? { bcc: [internalRecipient] } : {}),
             subject: t.subject,
             html: buildEmail(t),
         });
 
         if (error) {
-            console.error('Resend thank-you error:', error);
+            console.error(
+                JSON.stringify({
+                    event: 'RESEND_THANK_YOU_ERROR',
+                    submissionId: submissionId || null,
+                    errorName: error.name || 'resend_error',
+                })
+            );
             return NextResponse.json(
                 { error: 'Failed to send thank-you email' },
                 { status: 500 }
@@ -142,8 +162,12 @@ export async function POST(request: Request) {
         }
 
         return NextResponse.json({ success: true, id: data?.id });
-    } catch (error) {
-        console.error('Thank-you API error:', error);
+    } catch {
+        console.error(
+            JSON.stringify({
+                event: 'THANK_YOU_API_EXCEPTION',
+            })
+        );
         return NextResponse.json(
             { error: 'Internal server error' },
             { status: 500 }

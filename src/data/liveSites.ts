@@ -3,8 +3,9 @@ export interface LiveSite {
     title: string;
     domain: string;
     url: string;
-    deployType: 'Next.js' | 'Standard HTML/JS';
-    category: 'Local Business' | 'E-Commerce' | 'Faith & Community' | 'Agency';
+    caseStudyUrl?: string;
+    deployType: "Next.js" | "Standard HTML/JS";
+    category: "Contractors & Trades" | "Restaurants & Local" | "Faith & Community" | "Field Apps";
     publishedAt: string;
     description: string;
     techStack: string[];
@@ -12,95 +13,200 @@ export interface LiveSite {
     accessibilityScore: number;
     seoScore: number;
     bestPracticesScore: number;
-    glowColor: string; // Tailwind glow RGB values
-    image?: string; // Optional screenshot path
+    glowColor: string;
+    image?: string;
 }
 
 export const liveSites: LiveSite[] = [
     {
         id: "born-again-roofing",
-        title: "Born Again Roofing",
+        title: "Born Again Roofing & Remodeling",
         domain: "bornagainroofing.com",
         url: "https://bornagainroofing.com",
+        caseStudyUrl: "/portfolio/born-again-roofing",
         deployType: "Next.js",
-        category: "Local Business",
-        publishedAt: "Active Client",
-        description: "Heavy-duty roofing and remodeling platform with proprietary PinDrop™ field mapping, storm repair workflows, and automated homeowner review routing.",
-        techStack: ["Next.js", "Tailwind CSS", "PinDrop™ Engine", "Google Geo-Schema"],
+        category: "Contractors & Trades",
+        publishedAt: "Active Client • Brandon, MS",
+        description:
+            "Heavy-duty roofing and remodeling platform powered by 99+ live PDM PinDrop™ GPS pins, storm-damage CRM routing, and automated homeowner review requests.",
+        techStack: ["Next.js", "PDM PinDrop™", "Capsule CRM", "Local Map Schema"],
         performanceScore: 98,
         accessibilityScore: 99,
         seoScore: 100,
         bestPracticesScore: 98,
-        glowColor: "234, 179, 8", // Gold/Amber
-        image: "/portfolio/born-again-roofing.webp"
+        glowColor: "245, 158, 11",
+        image: "/portfolio/bornagain-hero-16-10.webp",
     },
     {
         id: "ms-dirt",
         title: "Geaux Pro Outdoors",
-        domain: "www.msdirt.com",
+        domain: "msdirt.com",
         url: "https://www.msdirt.com",
+        caseStudyUrl: "/portfolio/geaux-pro-outdoors",
         deployType: "Next.js",
-        category: "Local Business",
-        publishedAt: "Active Client",
-        description: "Blazing-fast commercial site preparation and excavation landing application for Central Mississippi's elite contractor. Features click-to-quote conversion tunnels.",
-        techStack: ["Next.js", "Tailwind CSS", "Netlify Serverless", "Lighthouse Optimized"],
+        category: "Contractors & Trades",
+        publishedAt: "Active Client • Bentonia, MS",
+        description:
+            "Commercial land clearing, pond construction, and dirt-hauling engine built for fast 4G/5G loading and instant commercial quote dispatch.",
+        techStack: ["Next.js", "Instant Quote Engine", "Geo-Targeted SEO", "97/100 Mobile"],
         performanceScore: 97,
         accessibilityScore: 98,
         seoScore: 100,
         bestPracticesScore: 97,
-        glowColor: "234, 179, 8", // Yellow / Amber
-        image: "/portfolio/geaux-pro-outdoors.webp"
+        glowColor: "245, 158, 11",
+        image: "/portfolio/geaux-pro-outdoors.webp",
+    },
+    {
+        id: "pindrop-suite",
+        title: "PDM PinDrop™ SEO Engine",
+        domain: "powerdigitalmedia.org/pindrop",
+        url: "/pindrop",
+        caseStudyUrl: "/portfolio/pindrop-saas",
+        deployType: "Next.js",
+        category: "Field Apps",
+        publishedAt: "Proprietary SaaS • Standalone or Bundled",
+        description:
+            "Real-time contractor GPS check-in engine that publishes neighborhood project pins to your website map and triggers automated 5-star SMS review requests.",
+        techStack: ["GPS Pin Mapping", "Neighborhood SEO", "SMS Review Loop", "Live Analytics"],
+        performanceScore: 99,
+        accessibilityScore: 100,
+        seoScore: 100,
+        bestPracticesScore: 99,
+        glowColor: "245, 158, 11",
+        image: "/pindrop/bar-live-pins.jpg",
+    },
+    {
+        id: "pincam-suite",
+        title: "PinCam™ Jobsite Camera",
+        domain: "powerdigitalmedia.org/pincam",
+        url: "/pincam",
+        caseStudyUrl: "/pindrop",
+        deployType: "Next.js",
+        category: "Field Apps",
+        publishedAt: "Proprietary SaaS • Standalone or Bundled",
+        description:
+            "5-mode contractor camera with ghost-aligned before/after sliders, hail & leak markups, GPS proof stamps, branded PDF customer reports, and 1-tap PinDrop™ sync.",
+        techStack: ["5 Camera Modes", "Ghost Alignment", "PDF Inspection Reports", "GPS Stamp"],
+        performanceScore: 99,
+        accessibilityScore: 100,
+        seoScore: 100,
+        bestPracticesScore: 99,
+        glowColor: "245, 158, 11",
+        image: "/portfolio/bornagain-pindrop-map.webp",
     },
     {
         id: "tbeauxs",
-        title: "Tbeaux's Crawfish",
+        title: "T'Beaux's Seafood & Catering",
         domain: "tbeauxs.com",
         url: "https://tbeauxs.com",
-        deployType: "Standard HTML/JS",
-        category: "Local Business",
-        publishedAt: "Active Client",
-        description: "High-visibility B2B local business portal and consumer menu gallery with live daily crawfish boil price tracking and feast planning calculator in Clinton, MS.",
-        techStack: ["React", "Vite", "CSS3 Grid", "Netlify Hosting"],
+        caseStudyUrl: "/portfolio/tbeaux",
+        deployType: "Next.js",
+        category: "Restaurants & Local",
+        publishedAt: "Active Client • Clinton, MS",
+        description:
+            "0%-commission Cajun menu & catering hub featuring native Square Web SDK in-app checkout, live crawfish boil pricing, and an interactive Cajun Feast calculator.",
+        techStack: ["Square Web SDK", "0% Commission", "Feast Calculator", "DoorDash Drive"],
         performanceScore: 98,
         accessibilityScore: 96,
         seoScore: 98,
         bestPracticesScore: 96,
-        glowColor: "239, 68, 68", // Bright Red
-        image: "/portfolio/tbeauxs.webp"
+        glowColor: "239, 68, 68",
+        image: "/portfolio/tbeauxs-hero.webp",
     },
     {
         id: "lungrins-lawncare",
         title: "Lungrin's Lawncare",
         domain: "lungrinslawncare.com",
         url: "https://lungrinslawncare.com",
+        caseStudyUrl: "/portfolio/lungrins-lawncare",
         deployType: "Next.js",
-        category: "Local Business",
-        publishedAt: "Active Client",
-        description: "Lawn maintenance and landscaping digital presence with real-time PinDrop™ job site verification and neighborhood mapping.",
-        techStack: ["Next.js", "Tailwind CSS", "PinDrop™ Layer", "Local SEO Schema"],
+        category: "Contractors & Trades",
+        publishedAt: "Active Client • Flora & Pocahontas, MS",
+        description:
+            "Sub-second property maintenance platform with 1-tap mobile quote forms, service radius mapping, and PDM PinDrop™ neighborhood proof.",
+        techStack: ["Next.js", "PDM PinDrop™", "1-Tap Quote Form", "Local SEO Schema"],
         performanceScore: 99,
         accessibilityScore: 98,
         seoScore: 100,
         bestPracticesScore: 98,
-        glowColor: "34, 197, 94", // Green
-        image: "/portfolio/lungrins-lawncare.webp"
+        glowColor: "16, 185, 129",
+        image: "/portfolio/lungrins-lawncare.webp",
     },
     {
         id: "the-local-guide-ms",
         title: "The Local Guide MS",
         domain: "thelocalguidems.com",
         url: "https://thelocalguidems.com",
+        caseStudyUrl: "/portfolio/the-local-guide-ms",
         deployType: "Standard HTML/JS",
-        category: "Local Business",
-        publishedAt: "Active Media Brand",
-        description: "Mississippi food and travel storytelling hub connecting POV diner videos, YouTube episodes, and Google Maps Local Guide routes.",
-        techStack: ["HTML5", "Tailwind CSS", "YouTube API", "Interactive Map"],
+        category: "Restaurants & Local",
+        publishedAt: "Active Media Brand • Mississippi",
+        description:
+            "Mississippi food and travel storytelling hub connecting 4K POV diner tours, YouTube episodes, and interactive local restaurant maps.",
+        techStack: ["4K Video Player", "Interactive Diner Map", "YouTube Sync", "99/100 Speed"],
         performanceScore: 99,
         accessibilityScore: 98,
         seoScore: 100,
         bestPracticesScore: 99,
-        glowColor: "245, 158, 11", // Warm Amber
-        image: "/portfolio/the-local-guide-ms.webp"
+        glowColor: "245, 158, 11",
+        image: "/portfolio/the-local-guide-ms.webp",
+    },
+    {
+        id: "church-244",
+        title: "Church 244",
+        domain: "church244.com",
+        url: "https://church244.com",
+        caseStudyUrl: "/portfolio/simmons-memorial",
+        deployType: "Standard HTML/JS",
+        category: "Faith & Community",
+        publishedAt: "Active Ministry • Jackson, MS",
+        description:
+            "Mobile-first congregation hub featuring 1-tap online giving, YouTube Live sermon archives, Church Center event sync, and a dedicated youth ministry portal.",
+        techStack: ["1-Tap Giving", "YouTube Live", "Church Center Sync", "Youth Portal"],
+        performanceScore: 97,
+        accessibilityScore: 99,
+        seoScore: 98,
+        bestPracticesScore: 97,
+        glowColor: "245, 158, 11",
+        image: "/portfolio/church244-hero.webp",
+    },
+    {
+        id: "blacksheep-recovery",
+        title: "Black Sheep Recovery Warfare",
+        domain: "blacksheeprecoverywarfare.com",
+        url: "https://blacksheeprecoverywarfare.com",
+        caseStudyUrl: "/portfolio/blacksheep-recovery",
+        deployType: "Next.js",
+        category: "Faith & Community",
+        publishedAt: "Active Outreach • Mississippi",
+        description:
+            "High-impact recovery outreach platform with custom episode streaming, direct in-app apparel checkout, recurring donor gateway, and 24/7 crisis resources.",
+        techStack: ["In-App Merch Store", "Episode Player", "Direct Giving", "Crisis Directory"],
+        performanceScore: 99,
+        accessibilityScore: 100,
+        seoScore: 100,
+        bestPracticesScore: 99,
+        glowColor: "249, 115, 22",
+        image: "/portfolio/blacksheep-hero.webp",
+    },
+    {
+        id: "in-his-grip",
+        title: "In His Grip Ministries",
+        domain: "in-his-grip.com",
+        url: "https://in-his-grip.com",
+        caseStudyUrl: "/portfolio/in-his-grip",
+        deployType: "Standard HTML/JS",
+        category: "Faith & Community",
+        publishedAt: "Active Ministry • Central MS",
+        description:
+            "Fast, welcoming ministry outreach hub built to coordinate community events, partner inquiries, and regional programs.",
+        techStack: ["Sub-Second Mobile", "Event Coordination", "Outreach Portal", "99/100 Speed"],
+        performanceScore: 99,
+        accessibilityScore: 98,
+        seoScore: 100,
+        bestPracticesScore: 98,
+        glowColor: "16, 185, 129",
+        image: "/portfolio/in-his-grip.webp",
     },
     {
         id: "pastors-provision",
@@ -109,99 +215,34 @@ export const liveSites: LiveSite[] = [
         url: "https://pastorsprovision.com",
         deployType: "Next.js",
         category: "Faith & Community",
-        publishedAt: "Live Portal",
-        description: "Modern gateway for regional pastoral care programs, featuring clean donation pathways, church resource indexing, and high accessibility compliance.",
-        techStack: ["Next.js", "Tailwind CSS", "Semantic Schema", "Fluid Typography"],
+        publishedAt: "Live Portal • Regional",
+        description:
+            "Regional pastoral care gateway featuring frictionless donation pathways, ministry resource indexing, and 100/100 accessibility compliance.",
+        techStack: ["Next.js", "Donation Gateway", "100/100 A11y", "Semantic Schema"],
         performanceScore: 99,
         accessibilityScore: 100,
         seoScore: 98,
         bestPracticesScore: 99,
-        glowColor: "59, 130, 246", // Vibrant Blue
-        image: "/portfolio/pastors-provision.webp"
-    },
-    {
-        id: "in-his-grip",
-        title: "In His Grip Ministries",
-        domain: "in-his-grip.com",
-        url: "https://in-his-grip.com",
-        deployType: "Standard HTML/JS",
-        category: "Faith & Community",
-        publishedAt: "Active Ministry",
-        description: "High-performance ministry homepage designed to maximize outreach and coordinate localized faith events in central Mississippi.",
-        techStack: ["HTML5", "Tailwind CSS", "Vanilla JS", "Netlify Speed Hosting"],
-        performanceScore: 99,
-        accessibilityScore: 98,
-        seoScore: 100,
-        bestPracticesScore: 98,
-        glowColor: "34, 197, 94", // Green
-        image: "/portfolio/in-his-grip.webp"
-    },
-    {
-        id: "church-244",
-        title: "Church 244",
-        domain: "church244.com",
-        url: "https://church244.com",
-        deployType: "Standard HTML/JS",
-        category: "Faith & Community",
-        publishedAt: "Active Church",
-        description: "Streamlined faith portal designed for rapid mobile interaction, enabling seamless congregation check-ins, sermon playback, and updates.",
-        techStack: ["HTML5", "Vanilla JS", "Tailwind CSS", "Netlify Edge"],
-        performanceScore: 97,
-        accessibilityScore: 99,
-        seoScore: 98,
-        bestPracticesScore: 97,
-        glowColor: "6, 182, 212", // Cyan
-        image: "/portfolio/church-244.webp"
+        glowColor: "245, 158, 11",
+        image: "/portfolio/pastors-provision.webp",
     },
     {
         id: "simmons-memorial",
         title: "Simmons Memorial",
         domain: "simmonsmemorial.org",
         url: "https://simmonsmemorial.org",
+        caseStudyUrl: "/portfolio/simmons-memorial",
         deployType: "Standard HTML/JS",
         category: "Faith & Community",
-        publishedAt: "Active Church",
-        description: "Elegant, highly accessible faith community landing page preserving historic legacy and presenting clean informational paths.",
-        techStack: ["HTML5", "CSS3 Flexbox", "Vanilla JS", "A11y Compliant"],
+        publishedAt: "Active Church • Central MS",
+        description:
+            "Accessible church community website preserving historic heritage while making service times, directions, and giving effortless on mobile.",
+        techStack: ["Mobile-First", "99/100 A11y", "Online Giving", "Fast Edge Hosting"],
         performanceScore: 98,
         accessibilityScore: 99,
         seoScore: 98,
         bestPracticesScore: 98,
-        glowColor: "99, 102, 241", // Indigo
-        image: "/portfolio/simmons-memorial-real.webp"
+        glowColor: "245, 158, 11",
+        image: "/portfolio/simmons-memorial-real.webp",
     },
-    {
-        id: "power-digital-media",
-        title: "Power Digital Media",
-        domain: "powerdigitalmedia.org",
-        url: "https://powerdigitalmedia.org",
-        deployType: "Next.js",
-        category: "Agency",
-        publishedAt: "Proprietary Hub",
-        description: "Blistering-fast agency portal representing Power Digital's core Next.js architecture, PinDrop™ field automation, and local SEO dominance.",
-        techStack: ["Next.js 16", "Tailwind CSS v4", "Lucide React", "Capsule CRM Sync"],
-        performanceScore: 99,
-        accessibilityScore: 100,
-        seoScore: 100,
-        bestPracticesScore: 99,
-        glowColor: "6, 182, 212", // Cyan
-        image: "/portfolio/growth-engine-real.webp"
-    },
-    {
-        id: "blacksheep-recovery",
-        title: "Black Sheep Recovery Warfare",
-        domain: "blacksheeprecoverywarfare.com",
-        url: "https://blacksheeprecoverywarfare.com",
-        deployType: "Next.js",
-        category: "Faith & Community",
-        publishedAt: "Active Client",
-        description: "Hard-hitting recovery warfare and podcast portal with custom merch e-commerce, episode broadcast archive, donor portal, and crisis helplines.",
-        techStack: ["React", "Vite", "Tailwind CSS", "Custom Audio/Video Engine", "E-Commerce"],
-        performanceScore: 99,
-        accessibilityScore: 100,
-        seoScore: 100,
-        bestPracticesScore: 99,
-        glowColor: "249, 115, 22", // Orange
-        image: "/portfolio/blacksheep-hero.webp"
-    }
 ];

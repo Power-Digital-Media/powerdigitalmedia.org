@@ -6,6 +6,7 @@ import { Suspense } from "react";
 import AnalyticsEngine from "@/components/infrastructure/AnalyticsEngine";
 import MotionProvider from "@/components/infrastructure/MotionProvider";
 import SmoothScrollProvider from "@/components/infrastructure/SmoothScrollProvider";
+import StickyMobileDock from "@/components/layout/StickyMobileDock";
 
 const ExitIntentPopup = dynamic(() => import("@/components/ui/ExitIntentPopup"));
 
@@ -26,8 +27,9 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Power Digital Media | Elite Web Design, Custom Apps & Growth Marketing in Jackson, MS",
-  description: "Jackson, MS elite digital agency specializing in Next.js, React & Vite web design, custom application development, and high-velocity growth marketing systems.",
+  title: "Power Digital Media | Contractor Websites, Local SEO & Field Apps in Jackson, MS",
+  description:
+    "Jackson, MS contractor & local business web studio building fast custom Next.js websites, Google Map Pack SEO, and proprietary PinCam™ + PinDrop™ jobsite apps.",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -38,14 +40,15 @@ export const metadata: Metadata = {
         url: "/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Power Digital Media - High-Velocity Web Design, Custom Apps & Field Tech in Mississippi",
+        alt: "Power Digital Media - Contractor Websites, Local SEO & Field Tech in Mississippi",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Power Digital Media | Elite Web Design, Custom Apps & Growth Marketing",
-    description: "Bespoke Web Design, Custom Applications, and High-Velocity Growth Marketing in Jackson, MS.",
+    title: "Power Digital Media | Websites, Local SEO & Field Apps in Jackson, MS",
+    description:
+      "Turn every finished job into neighborhood Google rankings, 5-star reviews, and booked calls across Central Mississippi.",
     images: ["/images/og-image.png"],
     creator: "@PowerDigitalMS",
     site: "@PowerDigitalMS",
@@ -63,7 +66,7 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL("https://powerdigitalmedia.org"),
   alternates: {
-    canonical: './',
+    canonical: "./",
   },
 };
 
@@ -75,173 +78,187 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
       <head>
-        {/* Preconnect & DNS prefetch to critical third-party origins */}
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://connect.facebook.net" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
 
-        {/* PWA Standalone Mobile Headers */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="Nexus Registry" />
+        <meta name="apple-mobile-web-app-title" content="Power Digital Media" />
         <link rel="manifest" href="/manifest.json" />
       </head>
-      <body
-        className="antialiased"
-      >
-
+      <body className="antialiased">
         <Suspense fallback={null}>
           <AnalyticsEngine />
         </Suspense>
-        {/* Organization Schema.org (GEO Optimization) */}
+
+        {/* Rich LocalBusiness + AggregateRating + Proprietary Software Entity Graph */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              "@id": "https://powerdigitalmedia.org/#organization",
-              "name": "Power Digital Media LLC",
-              "url": "https://powerdigitalmedia.org",
-              "logo": "https://powerdigitalmedia.org/power-logo.png",
-              "image": "https://powerdigitalmedia.org/hero-bg.webp",
-              "telephone": "+16014462393",
-              "email": "info@powerdigitalmedia.org",
-              "priceRange": "$$$",
-              "sameAs": [
-                "https://www.youtube.com/@PowerDigitalMedia",
-                "https://www.instagram.com/powerdigitalmedia",
-                "https://www.facebook.com/powerdigitalmediallc",
-                "https://www.google.com/maps/place/Power+Digital+Media+LLC/data=!4m2!3m1!1s0x0:0x8f06b431d0d701df",
-                "https://www.bbb.org/us/ms/jackson/profile/web-design/power-digital-media-llc-0523-235907954"
+              "@graph": [
+                {
+                  "@type": ["LocalBusiness", "ProfessionalService"],
+                  "@id": "https://powerdigitalmedia.org/#organization",
+                  name: "Power Digital Media LLC",
+                  url: "https://powerdigitalmedia.org",
+                  logo: "https://powerdigitalmedia.org/power-logo.png",
+                  image: "https://powerdigitalmedia.org/images/og-image.png",
+                  telephone: "+16014462393",
+                  email: "info@powerdigitalmedia.org",
+                  sameAs: [
+                    "https://www.youtube.com/@PowerDigitalMedia",
+                    "https://www.instagram.com/powerdigitalmedia",
+                    "https://www.facebook.com/powerdigitalmediallc",
+                    "https://www.google.com/maps/place/Power+Digital+Media+LLC/data=!4m2!3m1!1s0x0:0x8f06b431d0d701df",
+                    "https://www.bbb.org/us/ms/jackson/profile/web-design/power-digital-media-llc-0523-235907954",
+                  ],
+                  openingHoursSpecification: [
+                    {
+                      "@type": "OpeningHoursSpecification",
+                      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                      opens: "08:00",
+                      closes: "18:00",
+                    },
+                  ],
+                  address: {
+                    "@type": "PostalAddress",
+                    streetAddress: "2914 Cynthia Rd",
+                    addressLocality: "Jackson",
+                    addressRegion: "MS",
+                    postalCode: "39209",
+                    addressCountry: "US",
+                  },
+                  geo: {
+                    "@type": "GeoCoordinates",
+                    latitude: 32.357,
+                    longitude: -90.2853,
+                  },
+                  aggregateRating: {
+                    "@type": "AggregateRating",
+                    ratingValue: "5.0",
+                    reviewCount: "15",
+                    bestRating: "5",
+                    worstRating: "1",
+                  },
+                  areaServed: [
+                    { "@type": "City", name: "Jackson", sameAs: "https://en.wikipedia.org/wiki/Jackson,_Mississippi" },
+                    { "@type": "City", name: "Madison", sameAs: "https://en.wikipedia.org/wiki/Madison,_Mississippi" },
+                    { "@type": "City", name: "Ridgeland", sameAs: "https://en.wikipedia.org/wiki/Ridgeland,_Mississippi" },
+                    { "@type": "City", name: "Brandon", sameAs: "https://en.wikipedia.org/wiki/Brandon,_Mississippi" },
+                    { "@type": "City", name: "Flowood", sameAs: "https://en.wikipedia.org/wiki/Flowood,_Mississippi" },
+                    { "@type": "City", name: "Clinton", sameAs: "https://en.wikipedia.org/wiki/Clinton,_Mississippi" },
+                    { "@type": "City", name: "Pearl", sameAs: "https://en.wikipedia.org/wiki/Pearl,_Mississippi" },
+                    { "@type": "State", name: "Mississippi" },
+                  ],
+                  founder: {
+                    "@id": "https://powerdigitalmedia.org/#founder",
+                  },
+                  makesOffer: [
+                    {
+                      "@type": "Offer",
+                      itemOffered: {
+                        "@type": "Service",
+                        name: "Custom Next.js Web Design",
+                        url: "https://powerdigitalmedia.org/web-design",
+                      },
+                    },
+                    {
+                      "@type": "Offer",
+                      itemOffered: {
+                        "@type": "Service",
+                        name: "Contractor & Home Service Growth Engine",
+                        url: "https://powerdigitalmedia.org/contractors",
+                      },
+                    },
+                    {
+                      "@type": "Offer",
+                      itemOffered: {
+                        "@type": "Service",
+                        name: "Local SEO & Google Business Profile Map Pack Optimization",
+                        url: "https://powerdigitalmedia.org/local-seo",
+                      },
+                    },
+                    {
+                      "@type": "Offer",
+                      itemOffered: {
+                        "@type": "Service",
+                        name: "CRM Integration, Custom Checkout & Business Automation",
+                        url: "https://powerdigitalmedia.org/custom-applications",
+                      },
+                    },
+                    {
+                      "@type": "Offer",
+                      itemOffered: {
+                        "@type": "Service",
+                        name: "Ultatel Cloud Business Phone Systems & Missed-Call SMS Rescue",
+                        url: "https://powerdigitalmedia.org/business-phones",
+                      },
+                    },
+                    {
+                      "@type": "Offer",
+                      itemOffered: {
+                        "@type": "Service",
+                        name: "Targeted Local Lead Generation & Paid Social Funnels",
+                        url: "https://powerdigitalmedia.org/marketing",
+                      },
+                    },
+                    {
+                      "@type": "Offer",
+                      itemOffered: {
+                        "@type": "SoftwareApplication",
+                        name: "PinCam™ Contractor Jobsite Camera & Proof Studio",
+                        applicationCategory: "BusinessApplication",
+                        operatingSystem: "iOS, Android, Web",
+                        url: "https://powerdigitalmedia.org/pincam",
+                      },
+                    },
+                    {
+                      "@type": "Offer",
+                      itemOffered: {
+                        "@type": "SoftwareApplication",
+                        name: "PDM PinDrop™ Contractor GPS Neighborhood SEO & Review Engine",
+                        applicationCategory: "BusinessApplication",
+                        operatingSystem: "iOS, Android, Web",
+                        url: "https://powerdigitalmedia.org/pindrop",
+                      },
+                    },
+                  ],
+                  description:
+                    "Power Digital Media LLC builds high-converting custom Next.js websites, Google Map Pack SEO systems, and proprietary PinCam™ + PDM PinDrop™ jobsite automation apps for contractors and businesses across Jackson, Madison, Ridgeland, Brandon, Flowood, and Clinton, Mississippi.",
+                },
+                {
+                  "@type": "Person",
+                  "@id": "https://powerdigitalmedia.org/#founder",
+                  name: "Damein Donald",
+                  jobTitle: "Founder & Lead Engineer",
+                  worksFor: {
+                    "@id": "https://powerdigitalmedia.org/#organization",
+                  },
+                  url: "https://powerdigitalmedia.org/about",
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": "https://powerdigitalmedia.org/#website",
+                  url: "https://powerdigitalmedia.org",
+                  name: "Power Digital Media LLC",
+                  publisher: {
+                    "@id": "https://powerdigitalmedia.org/#organization",
+                  },
+                  inLanguage: "en-US",
+                },
               ],
-              "openingHoursSpecification": [
-                {
-                  "@type": "OpeningHoursSpecification",
-                  "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                  "opens": "08:00",
-                  "closes": "18:00"
-                }
-              ],
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "2914 Cynthia Rd",
-                "addressLocality": "Jackson",
-                "addressRegion": "MS",
-                "postalCode": "39209",
-                "addressCountry": "US"
-              },
-              "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": 32.3570,
-                "longitude": -90.2853
-              },
-              "areaServed": [
-                {
-                  "@type": "City",
-                  "name": "Jackson",
-                  "sameAs": "https://en.wikipedia.org/wiki/Jackson,_Mississippi"
-                },
-                {
-                  "@type": "City",
-                  "name": "Clinton",
-                  "sameAs": "https://en.wikipedia.org/wiki/Clinton,_Mississippi"
-                },
-                {
-                  "@type": "City",
-                  "name": "Madison",
-                  "sameAs": "https://en.wikipedia.org/wiki/Madison,_Mississippi"
-                },
-                {
-                  "@type": "City",
-                  "name": "Ridgeland",
-                  "sameAs": "https://en.wikipedia.org/wiki/Ridgeland,_Mississippi"
-                },
-                {
-                  "@type": "City",
-                  "name": "Brandon",
-                  "sameAs": "https://en.wikipedia.org/wiki/Brandon,_Mississippi"
-                },
-                {
-                  "@type": "City",
-                  "name": "Flowood",
-                  "sameAs": "https://en.wikipedia.org/wiki/Flowood,_Mississippi"
-                },
-                {
-                  "@type": "City",
-                  "name": "Pearl",
-                  "sameAs": "https://en.wikipedia.org/wiki/Pearl,_Mississippi"
-                },
-                {
-                  "@type": "City",
-                  "name": "Richland",
-                  "sameAs": "https://en.wikipedia.org/wiki/Richland,_Mississippi"
-                },
-                {
-                  "@type": "City",
-                  "name": "Flora",
-                  "sameAs": "https://en.wikipedia.org/wiki/Flora,_Mississippi"
-                },
-                {
-                  "@type": "City",
-                  "name": "Byram",
-                  "sameAs": "https://en.wikipedia.org/wiki/Byram,_Mississippi"
-                },
-                {
-                  "@type": "State",
-                  "name": "Mississippi"
-                }
-              ],
-              "founder": {
-                "@type": "Person",
-                "name": "Damein Donald",
-                "jobTitle": "Lead Infrastructure Architect"
-              },
-              "makesOffer": [
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "High-Velocity Web Design & Next.js Systems"
-                  }
-                },
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "PinDrop™ Contractor Field Automation & Geotagging"
-                  }
-                },
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "Bespoke Custom Applications & CRM"
-                  }
-                },
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "Local SEO & Google Business Profile Domination"
-                  }
-                },
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "Business VoIP Phone Infrastructure"
-                  }
-                }
-              ],
-              "description": "Power Digital Media LLC is Central Mississippi's elite digital engineering agency providing high-performance web design, Next.js custom applications, proprietary PinDrop™ contractor automation, and local SEO domination across Jackson, Clinton, Madison, Ridgeland, Brandon, and Flowood."
-            })
+            }),
           }}
         />
+
         <MotionProvider>
           <SmoothScrollProvider>
             {children}
+            <StickyMobileDock />
             <ExitIntentPopup />
           </SmoothScrollProvider>
         </MotionProvider>

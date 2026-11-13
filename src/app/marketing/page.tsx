@@ -1,600 +1,440 @@
 "use client";
+
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { 
-    TrendingUp, 
-    Zap, 
-    CheckCircle2, 
-    ArrowRight, 
-    Star, 
-    Youtube, 
-    Image as ImageIcon, 
-    Search, 
-    BarChart3, 
-    MousePointerClick, 
-    Database, 
-    MailCheck, 
-    ShieldCheck, 
-    Video 
+import {
+    TrendingUp,
+    CheckCircle2,
+    ArrowRight,
+    Star,
+    MousePointerClick,
+    Database,
+    MailCheck,
+    PhoneCall,
+    Target,
+    ShieldCheck,
+    MapPin,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import BookingModal from "@/components/ui/BookingModal";
-import { useState } from "react";
-import Image from "next/image";
-import WakeUpCall from "@/components/ui/WakeUpCall";
 import FAQAccordion from "@/components/ui/FAQAccordion";
-import CyberHeroBg from "@/components/ui/shared/CyberHeroBg";
 import Portfolio from "@/components/sections/Portfolio";
-
+import AuditCTA from "@/components/sections/AuditCTA";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 const tiers = [
     {
         id: "meta_micro",
         name: "Campaign Ignition",
-        priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_SOCIAL_MICRO || "price_social_micro_placeholder",
-        price: "1,000",
-        description: "Tactical Meta ad architecture paired with precision landing capture forms. Instantly syncs and tags names, emails, and company details in your list.",
+        badge: "One-Time Buildout",
+        scopeLabel: "Custom Funnel Launch",
+        cadence: "Scoped to Your Trade & Offer • Ad Spend Paid Direct to Meta",
+        description:
+            "Complete Facebook & Instagram lead campaign buildout paired with high-converting local capture forms and instant CRM list sync.",
         features: [
-            "Custom Thumb-Stopping Ad Creatives",
-            "Local Geotarget Audience Engineering",
-            "Meta Pixel & Conversion API Telemetry",
-            "Frictionless B2B Lead Funnel Setup",
-            "Transpond Active Sync (List 186443)"
+            "Scroll-Stopping Local Ad Creatives",
+            "Radius & Zip-Code Homeowner Targeting",
+            "Meta Pixel + Server-Side Conversion API",
+            "1-Tap Mobile Quote Capture Funnel",
+            "Direct Capsule CRM & Transpond Sync",
         ],
-        type: "one-time"
     },
     {
         id: "meta_velocity",
-        name: "Ad Dominance & CRM Sync",
-        priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_SOCIAL_VELOCITY || "price_social_velocity_placeholder",
-        price: "1,500",
-        description: "Full-scale social campaign management integrated with a native Capsule CRM database. Automatically segments and tags leads on intake.",
-        features: [
-            "Everything in 'Campaign Ignition'",
-            "Capsule CRM Client Account Integration",
-            "Automated B2B Lead-to-CRM Routing",
-            "Dynamic Customer Segment Tagging",
-            "Transpond Automated Welcome Sequences",
-            "Monthly Lead Telemetry Reports"
-        ],
-        type: "monthly",
+        name: "Local Lead Engine",
+        badge: "Most Popular",
+        scopeLabel: "Monthly Lead Retainer",
+        cadence: "Month-to-Month • Custom-Scoped by Territory",
         popular: true,
-        highlight: "border-blue-500/40 bg-blue-500/[0.03] lg:scale-105 shadow-[0_0_40px_rgba(59,130,246,0.1)]"
+        description:
+            "Ongoing monthly Meta ad management, creative refresh, and automated SMS/email speed-to-lead routing for contractors and local pros.",
+        features: [
+            "Everything in Campaign Ignition",
+            "Ongoing Creative Testing & Ad Refresh",
+            "Capsule CRM Pipeline & Deal Tracking",
+            "2-Minute Automated Lead Follow-Up",
+            "Storm / Seasonal Demand Surge Campaigns",
+            "Clear Monthly Cost-Per-Lead Reporting",
+        ],
     },
     {
         id: "meta_strategy",
-        name: "Market Takeover & Sales Automation",
-        priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_GROWTH_STRATEGY || "price_growth_strategy_placeholder",
-        price: "2,000",
-        description: "The ultimate local scaling pipeline. Integrates multi-channel ad scaling, automated email nurtures, and Capsule Sales Opportunity board tracking.",
+        name: "Market Takeover",
+        badge: "Multi-City Scale",
+        scopeLabel: "Multi-Market Retainer",
+        cadence: "Month-to-Month • Custom-Scoped for Multi-County Growth",
+        description:
+            "Aggressive multi-city paid acquisition combined with Google Maps authority, retargeting sequences, and weekly revenue strategy.",
         features: [
-            "Everything in 'Ad Dominance & CRM Sync'",
-            "Capsule Sales Opportunities Board Setup",
-            "Visual Sales Pipeline & Value Tracking",
-            "Transpond Behavioral Email Nurtures",
-            "Automated Lead Follow-Up Triggers",
-            "Weekly Strategic Revenue Consultation"
+            "Everything in Local Lead Engine",
+            "Multi-County Territory Expansion Ads",
+            "Warm Website & Video Retargeting Loops",
+            "Past-Customer Reactivation Email Blasts",
+            "Capsule Sales Opportunity Value Tracking",
+            "Bi-Weekly Strategy Call with Damein",
         ],
-        type: "monthly"
-    }
+    },
 ];
 
 export default function MarketingPage() {
     const [isBookingOpen, setIsBookingOpen] = useState(false);
-    const [isProcessing, setIsProcessing] = useState<string | null>(null);
 
-    const handleCheckout = async (tier: any) => {
-        setIsProcessing(tier.id);
-
-        // Safety check for placeholder IDs
-        if (tier.priceId.includes('placeholder')) {
-            alert(`⚠️ Stripe Not Configured\n\nThis tier is currently using a placeholder ID (${tier.id}). Please ensure the real Stripe Price ID is added to the environment variables.`);
-            setIsProcessing(null);
-            return;
-        }
-
-        try {
-            const response = await fetch("/api/checkout", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    items: [{ price: tier.priceId, quantity: 1 }],
-                    mode: tier.type === 'monthly' ? 'subscription' : 'payment',
-                    successUrl: window.location.origin + "/marketing?success=true",
-                    cancelUrl: window.location.origin + "/marketing?canceled=true",
-                }),
-            });
-
-            const data = await response.json();
-            if (data.url) {
-                window.location.href = data.url;
-            } else {
-                console.error("Stripe Error Details:", data);
-                alert(`❌ Checkout Failed: ${data.error || "Unknown error"}\n\nThis is usually due to an incorrect Price ID or missing Stripe Keys in the environment.`);
-            }
-        } catch (error) {
-            console.error("Technical handshake failed:", error);
-            alert("Secure pipe connection interrupted. Check console for details.");
-        } finally {
-            setIsProcessing(null);
-        }
-    };
+    const baseUrl = "https://powerdigitalmedia.org";
+    const breadcrumbItems = [
+        { name: "Home", url: `${baseUrl}/` },
+        { name: "Paid Ads & Lead Generation", url: `${baseUrl}/marketing` },
+    ];
 
     return (
-        <main className="relative min-h-screen bg-background overflow-x-clip text-white">
+        <main className="relative min-h-screen bg-[#06080f] overflow-x-clip text-white">
+            <BreadcrumbSchema items={breadcrumbItems} />
             <Navbar />
+
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "Service",
-                        "name": "Meta Ads & Paid Social Acquisition",
-                        "provider": {
-                            "@id": "https://powerdigitalmedia.org/#organization"
+                        name: "Meta Ads & Local Lead Generation",
+                        provider: {
+                            "@id": "https://powerdigitalmedia.org/#organization",
                         },
-                        "description": "High-performance Meta ad campaigns, local lead generation funnels, and automated CRM integration pipelines for Mississippi businesses seeking high-ticket clients.",
-                        "category": "Digital Marketing",
-                        "serviceType": "Paid Social Advertising",
-                        "areaServed": {
+                        description:
+                            "High-converting Facebook and Instagram ad campaigns, local contractor lead funnels, and automated Capsule CRM pipelines in Jackson, MS.",
+                        category: "Digital Marketing",
+                        serviceType: "Paid Social Advertising & Lead Generation",
+                        areaServed: {
                             "@type": "City",
-                            "name": "Jackson",
-                            "containedInPlace": {
+                            name: "Jackson",
+                            containedInPlace: {
                                 "@type": "State",
-                                "name": "Mississippi"
-                            }
-                        },
-                        "offers": {
-                            "@type": "AggregateOffer",
-                            "priceCurrency": "USD",
-                            "lowPrice": "1000",
-                            "highPrice": "2000",
-                            "offerCount": 3
-                        }
-                    })
-                }}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "FAQPage",
-                        "mainEntity": [
-                            {
-                                "@type": "Question",
-                                "name": "Do your marketing prices include ad spend?",
-                                "acceptedAnswer": {
-                                    "@type": "Answer",
-                                    "text": "No. Our pricing tiers ($1,000 to $2,000/month) cover campaign management, custom ad creatives, A/B testing, and CRM funnel integrations. Ad spend is paid directly to Meta."
-                                }
+                                name: "Mississippi",
                             },
-                            {
-                                "@type": "Question",
-                                "name": "What platforms do you run ads on?",
-                                "acceptedAnswer": {
-                                    "@type": "Answer",
-                                    "text": "We specialize exclusively in Meta (Facebook and Instagram) paid ads because they offer the lowest cost-per-lead and most precise geographical targeting for local Mississippi businesses."
-                                }
-                            }
-                        ]
-                    })
-                }}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "WebPage",
-                        "@id": "https://powerdigitalmedia.org/marketing/#webpage",
-                        "url": "https://powerdigitalmedia.org/marketing/",
-                        "speakable": {
-                            "@type": "SpeakableSpecification",
-                            "cssSelector": ["h1", "h2", "details > p"]
-                        }
-                    })
+                        },
+                    }),
                 }}
             />
 
-            {/* Hero Section */}
-            <section className="relative min-h-[85vh] flex flex-col justify-center pt-32 pb-16 md:py-0 overflow-hidden">
-                <CyberHeroBg variant="marketing" />
+            {/* HERO */}
+            <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden border-b border-white/[0.06] blueprint-grid">
+                <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[780px] h-[360px] bg-amber-500/10 rounded-full blur-[150px] pointer-events-none" />
 
-                <div className="container relative z-10 px-4 mx-auto text-center mt-4 md:mt-16 mb-4">
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 mb-6">
-                        <span className="text-blue-300 font-bold tracking-wider uppercase text-[10px] md:text-xs">
-                            ⭐ Local Lead Generation &amp; Paid Ads
+                <div className="container relative z-10 px-4 mx-auto max-w-5xl text-center">
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-6">
+                        <Target className="w-3.5 h-3.5 text-amber-400" />
+                        <span className="text-[11px] font-mono font-bold uppercase tracking-[0.18em] text-amber-300">
+                            Targeted Local Lead Generation • Jackson, MS
                         </span>
                     </div>
-                    <h1 className="text-4xl md:text-7xl lg:text-8xl font-black mb-6 md:mb-8 tracking-tight leading-[0.95] uppercase text-white">
-                        Targeted Local Ads <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-amber-400 block mt-2">
-                            In Jackson, MS.
-                        </span>
+
+                    <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-[0.95] text-white mb-6">
+                        Stop Donating Money To{" "}
+                        <span className="text-amber-400">&ldquo;Boosted Posts.&rdquo;</span>
                     </h1>
-                    <p className="text-slate-300 max-w-2xl mx-auto text-base md:text-xl leading-relaxed font-normal">
-                        Stop wasting money on boosted posts. We build high-converting paid social campaigns on Facebook and Instagram that bring in qualified quote requests and sync leads straight to your CRM.
+
+                    <p className="text-slate-300 max-w-3xl mx-auto text-base md:text-xl leading-relaxed mb-10">
+                        Boosting a Facebook post gets likes from people three states away—not
+                        paying jobs. We engineer precision{" "}
+                        <strong className="text-white">Facebook &amp; Instagram lead funnels</strong>{" "}
+                        targeted to Central Mississippi homeowners and sync every quote request
+                        straight into your phone and CRM.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-8 md:mt-10">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <Link
+                            href="/free-audit"
+                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-[#06080f] font-black uppercase tracking-[0.16em] text-xs transition-all shadow-[0_14px_34px_rgba(245,158,11,0.28)]"
+                        >
+                            Get Free Ad &amp; Funnel Audit
+                            <ArrowRight className="w-4 h-4" />
+                        </Link>
                         <button
+                            type="button"
                             onClick={() => setIsBookingOpen(true)}
-                            className="w-full sm:w-auto px-10 py-5 bg-white text-slate-950 font-black rounded-full hover:bg-blue-400 hover:text-slate-950 transition-all uppercase tracking-wider text-xs shadow-[0_0_35px_rgba(96,165,250,0.25)] active:scale-95 text-center block"
+                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/15 text-white font-bold uppercase tracking-[0.15em] text-xs transition-all"
                         >
-                            Initiate Campaign Strategy
+                            Book 15-Min Strategy Call
                         </button>
-                        <a 
+                        <a
                             href="tel:6014462393"
-                            className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-5 border border-blue-400/40 bg-blue-500/10 text-blue-300 rounded-full font-black uppercase tracking-wider text-xs hover:bg-blue-400 hover:text-slate-950 transition-all"
+                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl border border-white/10 text-slate-300 hover:text-amber-300 font-mono font-bold uppercase tracking-wider text-xs transition-colors"
                         >
-                            Call (601) 446-2393
+                            <PhoneCall className="w-3.5 h-3.5 text-amber-400" />
+                            (601) 446-2393
                         </a>
-                        <button 
-                            onClick={() => setIsBookingOpen(true)}
-                            className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-5 border border-white/20 rounded-full font-bold uppercase tracking-wider text-xs hover:bg-white/10 transition-all group active:scale-95 text-white"
-                        >
-                            <Video className="w-3.5 h-3.5 text-blue-400 group-hover:text-white transition-colors" />
-                            Book 15-Min Meeting
-                        </button>
                     </div>
 
-                    {/* Trust Signals Bar */}
-                    <div className="mt-14 mb-8 flex flex-col items-center justify-center gap-4 opacity-80 hover:opacity-100 transition-opacity">
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                            <div className="flex items-center gap-3 px-4 py-2 rounded-full border border-blue-500/30 bg-blue-950/20 backdrop-blur-sm">
-                                <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse shadow-[0_0_8px_#3b82f6]" />
-                                <span className="text-xs font-bold tracking-widest uppercase text-blue-400">Verified CRM Sync Pipelines</span>
-                            </div>
-                            <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/[0.02]">
-                                <span className="text-[10px] font-bold tracking-widest uppercase text-slate-300">BBB A+ ACCREDITED</span>
-                            </div>
-                        </div>
-                        <p className="text-[10px] uppercase tracking-widest text-foreground/40 mt-1">
-                            Most agencies run generic ad setups. We build automated B2B engines.
+                    {/* Trust Strip */}
+                    <div className="mt-12 pt-8 border-t border-white/[0.07] flex flex-wrap items-center justify-center gap-4 text-xs">
+                        <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0b0c10] border border-white/10 text-slate-300 font-medium">
+                            <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                            Month-to-Month • Zero Long-Term Lock-In
+                        </span>
+                        <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0b0c10] border border-white/10 text-slate-300 font-medium">
+                            <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
+                            BBB A+ Accredited Studio
+                        </span>
+                        <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0b0c10] border border-white/10 text-slate-300 font-medium">
+                            <MapPin className="w-3.5 h-3.5 text-amber-400" />
+                            Madison • Brandon • Clinton • Flowood • Pearl
+                        </span>
+                    </div>
+                </div>
+            </section>
+
+            {/* 4-STEP LEAD PIPELINE */}
+            <section className="py-24 bg-[#080a12] border-b border-white/[0.06]">
+                <div className="container px-4 mx-auto max-w-6xl">
+                    <div className="text-center max-w-3xl mx-auto mb-16">
+                        <span className="text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-amber-400 block mb-3">
+                            Speed-To-Lead Architecture
+                        </span>
+                        <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white mb-4">
+                            From Local Scroll To Booked Estimate In 4 Steps.
+                        </h2>
+                        <p className="text-slate-300 text-base md:text-lg leading-relaxed">
+                            Ad clicks mean nothing if leads sit in a spreadsheet for 48 hours. We
+                            build the ad creative, the landing capture, and the instant follow-up
+                            together.
                         </p>
                     </div>
-                </div>
-            </section>
 
-            {/* Answer Engine Optimization Block */}
-            <section className="py-16 bg-[#040406] border-y border-white/5 relative z-20">
-                <div className="container px-4 mx-auto max-w-4xl text-center">
-                    <h2 className="text-2xl md:text-3xl font-black mb-6 uppercase tracking-tight">Jackson MS Local Lead Acquisition</h2>
-                    <p className="text-slate-300 leading-relaxed font-light text-base md:text-lg">
-                        Paid acquisition is the science of placing your message directly in front of buyers at the exact moment of decision. By leveraging precision Meta advertising, local geolocation targets, custom direct-response creatives, and automated server-side data routing, we construct frictionless acquisition tunnels that drive calls, emails, and direct revenue for local Mississippi businesses.
-                    </p>
-                </div>
-            </section>
-
-            <WakeUpCall
-                title="Boosting Facebook posts is not a strategy. It's a donation to Mark Zuckerberg."
-                subtitle="Hope is not a growth mechanism."
-                paragraph="If you are running social media ads without an automated pipeline, you do not have an advertising problem—you have a funnel problem. We design scroll-stopping custom video/photo ad creatives and pair them with optimized lead captures that sync leads straight into Capsule CRM, turning ad spend into predictable revenue."
-            />
-
-            {/* Interactive Conversion Telemetry Pipeline */}
-            <section className="py-24 border-y border-white/5 bg-[#030306] relative z-10">
-                <div className="container px-4 mx-auto max-w-6xl">
-                    <div className="text-center mb-20 uppercase tracking-tighter">
-                        <span className="text-blue-400 font-bold tracking-[0.4em] text-[10px] mb-4 block">The Lead Pipeline</span>
-                        <h2 className="text-3xl md:text-5xl font-black">How We <span className="text-white/40">Sync Growth.</span></h2>
-                    </div>
-
-                    <div className="grid gap-16 lg:grid-cols-12 items-center">
-                        
-                        {/* Pipeline Checklist Column */}
-                        <div className="lg:col-span-7 space-y-6 text-left">
-                            
-                            {/* Pipeline Step 1 */}
-                            <div className="p-6 rounded-2xl glass-card border border-white/5 flex gap-5 hover:border-blue-500/30 transition-all duration-300 items-start">
-                                <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0">
-                                    <MousePointerClick className="w-5 h-5" />
-                                </div>
-                                <div className="space-y-2">
-                                    <div className="flex items-center gap-3">
-                                        <span className="text-[9px] font-bold text-blue-400 uppercase tracking-widest">Phase 01</span>
-                                        <h3 className="font-bold text-sm uppercase tracking-wide">The Scroll Hook</h3>
+                    <div className="grid gap-12 lg:grid-cols-12 items-center">
+                        <div className="lg:col-span-7 space-y-4">
+                            {[
+                                {
+                                    phase: "Step 01",
+                                    title: "Neighborhood-Specific Scroll Hooks",
+                                    desc: "Real jobsite visuals, before/after roof & dirt-work proof, and direct offers targeted to high-value Central MS zip codes.",
+                                    icon: MousePointerClick,
+                                },
+                                {
+                                    phase: "Step 02",
+                                    title: "1-Tap Mobile Quote Capture",
+                                    desc: "Frictionless native lead forms and sub-second landing pages pre-fill homeowner contact details so mobile conversion rates jump.",
+                                    icon: TrendingUp,
+                                },
+                                {
+                                    phase: "Step 03",
+                                    title: "Instant Capsule CRM Routing",
+                                    desc: "Every lead lands inside Capsule CRM in under 300ms—tagged by city, service needed, and campaign source.",
+                                    icon: Database,
+                                },
+                                {
+                                    phase: "Step 04",
+                                    title: "Automated SMS & Email Warm-Up",
+                                    desc: "Immediate confirmation text and Transpond email sequence warms up the homeowner while alerting your phone to call and close.",
+                                    icon: MailCheck,
+                                },
+                            ].map((step) => (
+                                <div
+                                    key={step.phase}
+                                    className="p-6 rounded-2xl bg-[#12141c] border border-white/[0.08] hover:border-amber-500/35 transition-all flex gap-5 items-start"
+                                >
+                                    <div className="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-center text-amber-400 shrink-0">
+                                        <step.icon className="w-5 h-5" />
                                     </div>
-                                    <p className="text-xs text-slate-400 leading-relaxed">
-                                        Thumb-stopping direct response creatives designed to disrupt personal feeds and capture attention.
-                                    </p>
-                                </div>
-                            </div>
-
-                            {/* Pipeline Step 2 */}
-                            <div className="p-6 rounded-2xl glass-card border border-white/5 flex gap-5 hover:border-indigo-500/30 transition-all duration-300 items-start">
-                                <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 shrink-0">
-                                    <TrendingUp className="w-5 h-5" />
-                                </div>
-                                <div className="space-y-2">
-                                    <div className="flex items-center gap-3">
-                                        <span className="text-[9px] font-bold text-indigo-400 uppercase tracking-widest">Phase 02</span>
-                                        <h3 className="font-bold text-sm uppercase tracking-wide">In-App Capture</h3>
+                                    <div>
+                                        <div className="flex items-center gap-2.5 mb-1">
+                                            <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-amber-400">
+                                                {step.phase}
+                                            </span>
+                                            <h3 className="font-bold text-base text-white">
+                                                {step.title}
+                                            </h3>
+                                        </div>
+                                        <p className="text-sm text-slate-300 leading-relaxed">
+                                            {step.desc}
+                                        </p>
                                     </div>
-                                    <p className="text-xs text-slate-400 leading-relaxed">
-                                        Custom Meta lead forms auto-fill prospect contact details in 1-tap, slashing mobile friction by 90%.
-                                    </p>
                                 </div>
-                            </div>
-
-                            {/* Pipeline Step 3 */}
-                            <div className="p-6 rounded-2xl glass-card border border-white/5 flex gap-5 hover:border-purple-500/30 transition-all duration-300 items-start">
-                                <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-400/20 flex items-center justify-center text-purple-400 shrink-0">
-                                    <Database className="w-5 h-5" />
-                                </div>
-                                <div className="space-y-2">
-                                    <div className="flex items-center gap-3">
-                                        <span className="text-[9px] font-bold text-purple-400 uppercase tracking-widest">Phase 03</span>
-                                        <h3 className="font-bold text-sm uppercase tracking-wide">300ms CRM Sync</h3>
-                                    </div>
-                                    <p className="text-xs text-slate-400 leading-relaxed">
-                                        Lead telemetry is instantly posted directly into Capsule CRM and tagged for immediate tracking.
-                                    </p>
-                                </div>
-                            </div>
-
-                            {/* Pipeline Step 4 */}
-                            <div className="p-6 rounded-2xl glass-card border border-white/5 flex gap-5 hover:border-cyan-500/30 transition-all duration-300 items-start">
-                                <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 shrink-0">
-                                    <MailCheck className="w-5 h-5" />
-                                </div>
-                                <div className="space-y-2">
-                                    <div className="flex items-center gap-3">
-                                        <span className="text-[9px] font-bold text-cyan-400 uppercase tracking-widest">Phase 04</span>
-                                        <h3 className="font-bold text-sm uppercase tracking-wide">Welcome Protocol</h3>
-                                    </div>
-                                    <p className="text-xs text-slate-400 leading-relaxed">
-                                        Instant welcome email triggers via Transpond list sync, warm-calling the customer automatically.
-                                    </p>
-                                </div>
-                            </div>
-
+                            ))}
                         </div>
 
-                        {/* Interactive Visual Dashboard Column */}
-                        <div className="lg:col-span-5 relative w-full flex justify-center">
-                            <motion.div 
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8 }}
-                                className="relative p-3 rounded-[3rem] border border-white/10 glass-card bg-slate-950/40 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden group max-w-md w-full"
-                            >
-                                <div className="absolute inset-0 -z-10 rounded-[3rem] bg-gradient-to-br from-blue-400/10 via-transparent to-purple-500/10 pointer-events-none" />
-                                
-                                {/* Telemetry Badge */}
-                                <div className="absolute top-6 left-6 z-20 px-3 py-1.5 rounded-full bg-slate-900/90 border border-blue-500/30 flex items-center gap-2">
-                                    <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_#22d3ee]" />
-                                    <span className="text-[9px] font-black uppercase tracking-widest text-cyan-400">TELEMETRY SCHEMA: CRM ACTIVE</span>
+                        <div className="lg:col-span-5 flex justify-center">
+                            <div className="relative p-4 rounded-3xl border border-white/10 bg-[#0b0c10] shadow-2xl max-w-md w-full">
+                                <div className="flex items-center justify-between px-3 pb-3 mb-3 border-b border-white/[0.07]">
+                                    <div className="flex items-center gap-2">
+                                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                                        <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-400">
+                                            Meta Ads → Capsule CRM Active
+                                        </span>
+                                    </div>
+                                    <span className="text-[10px] font-mono text-slate-400">
+                                        &lt;300ms Sync
+                                    </span>
                                 </div>
 
-                                <div className="relative aspect-square w-full rounded-[2.5rem] overflow-hidden bg-slate-950/80">
-                                    <Image 
-                                        src="/images/marketing_telemetry_system.png" 
-                                        alt="Automated paid social funnel telemetry showing direct Capsule CRM syncing pipelines" 
+                                <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-[#06080f] border border-white/[0.06]">
+                                    <Image
+                                        src="/images/marketing_telemetry_system.png"
+                                        alt="Automated paid social funnel routing directly into Capsule CRM"
                                         fill
-                                        sizes="(max-w-md) 100vw, 400px"
-                                        className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
+                                        sizes="(max-width: 768px) 100vw, 400px"
+                                        className="object-cover"
                                     />
                                 </div>
-                            </motion.div>
+                            </div>
                         </div>
-
                     </div>
                 </div>
             </section>
 
-            {/* Verified Customer Reviews Grid */}
-            <section className="py-24 border-b border-white/5 bg-white/[0.01] relative z-10">
-                <div className="container px-4 mx-auto max-w-5xl">
-                    <div className="text-center mb-16 uppercase tracking-tighter">
-                        <span className="text-blue-400 font-bold tracking-[0.4em] text-[10px] mb-4 block">Verified Reputation</span>
-                        <h2 className="text-3xl md:text-5xl font-black">100% 5-Star <span className="text-white/40">Verified Reviews.</span></h2>
+            {/* VERIFIED CLIENT REVIEWS */}
+            <section className="py-24 bg-[#06080f] border-b border-white/[0.06]">
+                <div className="container px-4 mx-auto max-w-6xl">
+                    <div className="text-center mb-14">
+                        <span className="text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-amber-400 block mb-3">
+                            Verified Mississippi Results
+                        </span>
+                        <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white">
+                            5.0★ Rated By Local Operators.
+                        </h2>
                     </div>
 
-                    <div className="grid gap-8 md:grid-cols-3">
-                        
-                        {/* Scott Lowery Review */}
-                        <div className="p-8 rounded-3xl glass-card border border-white/5 space-y-6 relative overflow-hidden flex flex-col justify-between">
-                            <div>
-                                <div className="flex items-center justify-between mb-4">
-                                    <div className="flex items-center gap-1 text-amber-400">
-                                        <Star className="w-4 h-4 fill-amber-400" />
-                                        <Star className="w-4 h-4 fill-amber-400" />
-                                        <Star className="w-4 h-4 fill-amber-400" />
-                                        <Star className="w-4 h-4 fill-amber-400" />
-                                        <Star className="w-4 h-4 fill-amber-400" />
-                                    </div>
-                                    <span className="text-[10px] font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">Google Review</span>
-                                </div>
-                                <p className="text-xs text-slate-300 italic leading-relaxed">
-                                    &ldquo;Took my marketing program from the dumps all the way to the moon. Very responsive and results oriented. I highly recommend!!!&rdquo;
-                                </p>
-                            </div>
-                            <div className="flex items-center gap-3 pt-4 border-t border-white/5">
-                                <div className="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-xs">S</div>
+                    <div className="grid gap-6 md:grid-cols-3">
+                        {[
+                            {
+                                quote:
+                                    "Took my marketing program from the dumps all the way to the moon. Very responsive and results oriented. I highly recommend!!!",
+                                author: "Scott Lowery",
+                                role: "Owner, Geaux Pro Outdoors (Bentonia, MS)",
+                            },
+                            {
+                                quote:
+                                    "Damein was made to do this and does everything with a spirit of excellence. He’s professional and reasonable. Looking for a web guy he is him.",
+                                author: "Jeff Johnson",
+                                role: "In His Grip Ministries (Central MS)",
+                            },
+                            {
+                                quote:
+                                    "Damein is always right on time. He can figure out what im looking for quickly. Im a picky person and he is patient and professional. Highly recommend.",
+                                author: "Joey Nash",
+                                role: "Mississippi Business Owner",
+                            },
+                        ].map((rev) => (
+                            <div
+                                key={rev.author}
+                                className="p-7 rounded-3xl bg-[#0b0c10] border border-white/10 flex flex-col justify-between"
+                            >
                                 <div>
-                                    <h4 className="font-bold text-xs uppercase text-white">Scott Lowery</h4>
-                                    <span className="text-[10px] text-slate-400">Owner, Geaux Pro Outdoors (Bentonia, MS)</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Jeff Johnson Review */}
-                        <div className="p-8 rounded-3xl glass-card border border-white/5 space-y-6 relative overflow-hidden flex flex-col justify-between">
-                            <div>
-                                <div className="flex items-center justify-between mb-4">
-                                    <div className="flex items-center gap-1 text-amber-400">
-                                        <Star className="w-4 h-4 fill-amber-400" />
-                                        <Star className="w-4 h-4 fill-amber-400" />
-                                        <Star className="w-4 h-4 fill-amber-400" />
-                                        <Star className="w-4 h-4 fill-amber-400" />
-                                        <Star className="w-4 h-4 fill-amber-400" />
+                                    <div className="flex items-center justify-between mb-4">
+                                        <div className="flex items-center gap-1 text-amber-400">
+                                            {[...Array(5)].map((_, i) => (
+                                                <Star
+                                                    key={i}
+                                                    className="w-4 h-4 fill-amber-400 text-amber-400"
+                                                />
+                                            ))}
+                                        </div>
+                                        <span className="text-[10px] font-mono font-bold text-amber-300 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/25">
+                                            Google Review
+                                        </span>
                                     </div>
-                                    <span className="text-[10px] font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">Google Review</span>
+                                    <p className="text-sm text-slate-200 italic leading-relaxed mb-6">
+                                        &ldquo;{rev.quote}&rdquo;
+                                    </p>
                                 </div>
-                                <p className="text-xs text-slate-300 italic leading-relaxed">
-                                    &ldquo;Damein was made to do this and does everything with a spirit of excellence. He’s professional and reasonable. Looking for a web guy he is him.&rdquo;
-                                </p>
-                            </div>
-                            <div className="flex items-center gap-3 pt-4 border-t border-white/5">
-                                <div className="w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-xs">J</div>
-                                <div>
-                                    <h4 className="font-bold text-xs uppercase text-white">Jeff Johnson</h4>
-                                    <span className="text-[10px] text-slate-400">Local Mississippi Client</span>
+                                <div className="pt-4 border-t border-white/[0.07]">
+                                    <div className="font-bold text-sm text-white">{rev.author}</div>
+                                    <div className="text-xs text-slate-400">{rev.role}</div>
                                 </div>
                             </div>
-                        </div>
-
-                        {/* Joey Nash Review */}
-                        <div className="p-8 rounded-3xl glass-card border border-white/5 space-y-6 relative overflow-hidden flex flex-col justify-between">
-                            <div>
-                                <div className="flex items-center justify-between mb-4">
-                                    <div className="flex items-center gap-1 text-amber-400">
-                                        <Star className="w-4 h-4 fill-amber-400" />
-                                        <Star className="w-4 h-4 fill-amber-400" />
-                                        <Star className="w-4 h-4 fill-amber-400" />
-                                        <Star className="w-4 h-4 fill-amber-400" />
-                                        <Star className="w-4 h-4 fill-amber-400" />
-                                    </div>
-                                    <span className="text-[10px] font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">Google Review</span>
-                                </div>
-                                <p className="text-xs text-slate-300 italic leading-relaxed">
-                                    &ldquo;Damein is always right on time. He can figure out what im looking for quickly. Im a picky person and he is patient and professional. Highly recommend.&rdquo;
-                                </p>
-                            </div>
-                            <div className="flex items-center gap-3 pt-4 border-t border-white/5">
-                                <div className="w-8 h-8 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold text-xs">J</div>
-                                <div>
-                                    <h4 className="font-bold text-xs uppercase text-white">Joey Nash</h4>
-                                    <span className="text-[10px] text-slate-400">Local Business Owner</span>
-                                </div>
-                            </div>
-                        </div>
-
+                        ))}
                     </div>
                 </div>
             </section>
 
-            {/* Capsule & Transpond Operational Integration Pillars */}
-            <section className="py-24 border-b border-white/5 bg-slate-950/20">
-                <div className="container px-4 mx-auto max-w-5xl">
-                    <div className="text-center mb-16 uppercase tracking-tighter">
-                        <span className="text-blue-400 font-bold tracking-[0.4em] text-[10px] mb-4 block">Operational Pillars</span>
-                        <h2 className="text-3xl md:text-5xl font-black">Our Certified <span className="text-white/40">Integrations.</span></h2>
+            {/* CUSTOM CAMPAIGN SCOPES */}
+            <section id="tiers" className="py-24 bg-[#080a12] border-b border-white/[0.06]">
+                <div className="container px-4 mx-auto max-w-6xl">
+                    <div className="text-center max-w-3xl mx-auto mb-16">
+                        <span className="text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-amber-400 block mb-3">
+                            Scoped Case-by-Case • Month-to-Month
+                        </span>
+                        <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white mb-4">
+                            Campaign Engagement Options.
+                        </h2>
+                        <p className="text-slate-300 text-base md:text-lg">
+                            Every campaign is custom-scoped around your service area, season, and growth targets. Ad spend goes 100% directly to Meta from your own ad account—no hidden media markups and no 12-month contracts.
+                        </p>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-12">
-                        
-                        {/* Pillar 1: Growth Funnels */}
-                        <div className="text-center group">
-                            <div className="w-16 h-16 rounded-[2rem] bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                                <MousePointerClick className="w-8 h-8 text-blue-400" />
-                            </div>
-                            <h3 className="text-xl font-bold uppercase tracking-widest mb-4">B2B Growth Funnels</h3>
-                            <p className="text-sm text-slate-400 leading-relaxed font-light">
-                                We design custom Next.js forms and paid ad flows that capture qualified local intent and route contact data into your pipeline within 300ms.
-                            </p>
-                        </div>
-
-                        {/* Pillar 2: Email Marketing */}
-                        <div className="text-center group">
-                            <div className="w-16 h-16 rounded-[2rem] bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                                <MailCheck className="w-8 h-8 text-indigo-400" />
-                            </div>
-                            <h3 className="text-xl font-bold uppercase tracking-widest mb-4">Email Marketing</h3>
-                            <p className="text-sm text-slate-400 leading-relaxed font-light">
-                                Powered by Transpond automation. Custom automated welcome flows, cold B2B nurture sequences, and newsletters triggered by target tags.
-                            </p>
-                        </div>
-
-                        {/* Pillar 3: Sales Opportunities */}
-                        <div className="text-center group">
-                            <div className="w-16 h-16 rounded-[2rem] bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                                <Database className="w-8 h-8 text-cyan-400" />
-                            </div>
-                            <h3 className="text-xl font-bold uppercase tracking-widest mb-4">Sales Opportunities</h3>
-                            <p className="text-sm text-slate-400 leading-relaxed font-light">
-                                Fully configured Capsule CRM sales pipelines. Track deal values, assign pipeline stages (lead, estimate, proposal), and never lose a follow-up.
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-            {/* Pricing Section */}
-            <section id="tiers" className="py-24 relative z-10">
-                <div className="container px-4 mx-auto">
-                    <div className="text-center mb-20 text-balance uppercase tracking-tighter">
-                        <span className="text-blue-400 font-bold tracking-[0.4em] text-[10px] mb-4 block">Deployment Tiers</span>
-                        <h2 className="text-4xl md:text-6xl font-black">Growth <span className="text-white/40">Funnels.</span></h2>
-                    </div>
-
-                    <div className="grid gap-8 lg:grid-cols-3 max-w-6xl mx-auto">
+                    <div className="grid gap-8 lg:grid-cols-3">
                         {tiers.map((tier, index) => (
                             <motion.div
-                                key={tier.name}
+                                key={tier.id}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className={`relative group p-8 rounded-[2.5rem] glass-card border transition-all duration-500 flex flex-col ${tier.popular ? "border-blue-500/40 bg-blue-500/[0.03] lg:scale-105 shadow-[0_0_40px_rgba(59,130,246,0.1)]" : "border-white/5 hover:border-white/20"
-                                    }`}
+                                transition={{ duration: 0.45, delay: index * 0.08 }}
+                                className={`relative p-8 rounded-3xl border flex flex-col justify-between transition-all ${
+                                    tier.popular
+                                        ? "bg-[#12141c] border-2 border-amber-500/50 shadow-[0_24px_60px_rgba(0,0,0,0.6)] lg:-translate-y-2"
+                                        : "bg-[#0b0c10] border-white/10 hover:border-white/20"
+                                }`}
                             >
                                 {tier.popular && (
-                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-500 text-white px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">
-                                        Authority Protocol
+                                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-amber-500 text-[#06080f] px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.18em]">
+                                        Most Popular For Contractors
                                     </div>
                                 )}
 
-                                <div className="mb-8">
-                                    <h3 className="text-xl font-bold mb-4 uppercase tracking-widest">{tier.name}</h3>
-                                    <div className="flex items-baseline gap-1">
-                                        <span className="text-4xl font-black">${tier.price}</span>
-                                        <span className="text-white/20 text-[10px] uppercase tracking-widest font-bold">
-                                            {tier.type === "monthly" ? "/ Month" : "Investment"} <span className="text-white/50 ml-1">+ Ad Spend</span>
+                                <div>
+                                    <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-amber-400 block mb-2">
+                                        {tier.badge}
+                                    </span>
+                                    <h3 className="text-2xl font-black uppercase tracking-tight text-white mb-4">
+                                        {tier.name}
+                                    </h3>
+                                    <div className="pb-5 mb-5 border-b border-white/[0.08]">
+                                        <span className="text-2xl font-black text-amber-400 uppercase tracking-tight block">
+                                            {tier.scopeLabel}
+                                        </span>
+                                        <span className="text-xs text-slate-400 block mt-1 font-medium">
+                                            {tier.cadence}
                                         </span>
                                     </div>
-                                    <p className="mt-4 text-sm text-slate-400 leading-relaxed font-light">
+                                    <p className="text-sm text-slate-300 leading-relaxed mb-6">
                                         {tier.description}
                                     </p>
+
+                                    <ul className="space-y-3 mb-8">
+                                        {tier.features.map((feature) => (
+                                            <li
+                                                key={feature}
+                                                className="flex items-start gap-2.5 text-xs font-medium text-slate-200"
+                                            >
+                                                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                                                <span>{feature}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </div>
 
-                                <ul className="space-y-4 mb-10 flex-grow">
-                                    {tier.features.map((feature) => (
-                                        <li key={feature} className="flex items-center gap-3 text-[10px] uppercase tracking-widest font-bold text-slate-400">
-                                            <CheckCircle2 className="w-3.5 h-3.5 text-blue-500" />
-                                            {feature}
-                                        </li>
-                                    ))}
-                                </ul>
-
-                                {/* Dual-Path Conversion CTAs */}
-                                <div className="space-y-4">
-                                    {/* Primary CTA: Schedule Strategy Onboarding */}
+                                <div className="space-y-3">
                                     <button
+                                        type="button"
                                         onClick={() => setIsBookingOpen(true)}
-                                        className="w-full py-5 rounded-2xl bg-blue-500 hover:bg-white text-white hover:text-blue-600 shadow-glow font-black uppercase tracking-widest text-[10px] transition-all duration-300 flex items-center justify-center gap-2"
+                                        className={`w-full py-4 rounded-xl font-black uppercase tracking-[0.15em] text-xs transition-all flex items-center justify-center gap-2 ${
+                                            tier.popular
+                                                ? "bg-amber-500 hover:bg-amber-400 text-[#06080f] shadow-[0_12px_28px_rgba(245,158,11,0.25)]"
+                                                : "bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-white"
+                                        }`}
                                     >
-                                        <Video className="w-3.5 h-3.5 text-cyan-400 group-hover:text-blue-500" />
-                                        Schedule Strategy Onboarding
+                                        Schedule Campaign Call
+                                        <ArrowRight className="w-3.5 h-3.5" />
                                     </button>
-
-                                    {/* Secondary CTA: Direct Stripe Checkout */}
-                                    <button
-                                        onClick={() => handleCheckout(tier)}
-                                        disabled={isProcessing !== null}
-                                        className="w-full py-3 rounded-xl bg-white/5 border border-white/5 hover:bg-white text-white/50 hover:text-black font-black uppercase tracking-widest text-[9px] transition-all duration-300 flex items-center justify-center gap-2"
+                                    <Link
+                                        href="/marketing/discovery"
+                                        className="w-full py-3 rounded-xl border border-white/[0.08] hover:border-amber-500/35 text-slate-400 hover:text-amber-300 font-bold uppercase tracking-[0.14em] text-[10px] transition-all flex items-center justify-center"
                                     >
-                                        {isProcessing === tier.id ? (
-                                            <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" />
-                                        ) : (
-                                            "Secure Online Stripe Setup"
-                                        )}
-                                    </button>
+                                        Complete 2-Min Campaign Brief
+                                    </Link>
                                 </div>
                             </motion.div>
                         ))}
@@ -602,50 +442,29 @@ export default function MarketingPage() {
                 </div>
             </section>
 
-            {/* SOTA Interactive Glassmorphic Bento Grid Portfolio Showcase */}
             <Portfolio titleAs="h2" />
 
+            <AuditCTA />
 
             <FAQAccordion
                 faqs={[
                     {
-                        question: "Do your marketing prices include ad spend?",
-                        answer: "No. Our pricing tiers ($1,000 to $2,000/month) cover marketing strategy setup, custom creative asset generation, ongoing pixel tracking management, campaign monitoring, and direct CRM sync systems. Ad spend budget is paid directly to Meta."
+                        question: "How is ad spend handled versus your campaign management?",
+                        answer:
+                            "Our campaign management is custom-scoped case-by-case around your territory, creative volume, and CRM automation—covering campaign architecture, scroll-stopping ad creatives, landing form tracking, and direct Capsule CRM sync. Your ad spend is paid directly to Meta from your own ad account with 100% transparency and zero agency media markups.",
                     },
                     {
-                        question: "What platforms do you run ads on?",
-                        answer: "We focus 100% on Meta (Facebook and Instagram) paid social campaigns. For local consumer-facing businesses and B2B services, Meta provides the highest concentration of localized search intent and lowest acquisition costs."
+                        question: "What ad platforms work best for Mississippi contractors & service pros?",
+                        answer:
+                            "Facebook and Instagram (Meta) paired with Google Local Map Pack SEO consistently deliver the lowest cost-per-quote for roofing, dirt work, HVAC, lawn care, and local restaurants across Central Mississippi.",
                     },
                     {
-                        question: "Is there a long term contract lock?",
-                        answer: "No. Our retentive campaign management packages operate on simple month-to-month contracts. We believe in earning your local partnership every single month through clear leads and active database sync."
-                    }
+                        question: "Are there 6-month or 12-month agency contracts?",
+                        answer:
+                            "Never. Our monthly management runs month-to-month. We earn our seat by putting real quote requests and booked calls into your pipeline.",
+                    },
                 ]}
             />
-
-            {/* Capsule CRM Affiliate Trust Strip */}
-            <section className="relative z-10 py-6 border-t border-white/5 bg-white/[0.01]">
-                <div className="container px-4 mx-auto flex items-center justify-center">
-                    <a
-                        href="https://get.capsulenow.io/power-digital-media-llc"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-emerald-400/30 transition-all group"
-                        title="CRM Powered by Capsule"
-                    >
-                        {/* Capsule CRM Icon */}
-                        <svg className="w-5 h-5 text-emerald-400 group-hover:drop-shadow-[0_0_8px_rgba(52,211,153,0.5)] transition-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M12 2C6.48 2 2 6 2 10.5c0 3 1.5 5.5 4 7v4.5l3.5-2c.8.2 1.6.3 2.5.3 5.52 0 10-4 10-8.5S17.52 2 12 2z" />
-                            <circle cx="8" cy="10.5" r="1" fill="currentColor" />
-                            <circle cx="12" cy="10.5" r="1" fill="currentColor" />
-                            <circle cx="16" cy="10.5" r="1" fill="currentColor" />
-                        </svg>
-                        <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted-foreground group-hover:text-emerald-400 transition-colors">
-                            CRM Powered by Capsule
-                        </span>
-                    </a>
-                </div>
-            </section>
 
             <Footer />
 

@@ -171,7 +171,7 @@ Those three highlighted businesses capture over **70% of all phone calls, direct
 Google verifies your legitimacy by cross-referencing your Name, Address, and Phone number across every major directory on the web (BBB, Yelp, YellowPages, Chamber of Commerce, Facebook). Even minor discrepancies (like "Suite A-1" vs "Ste A1") can dilute your ranking power.
 
 #### 2. Review Velocity & Sentiment Optimization
-Total review count matters, but **Review Velocity** (the consistency of receiving new reviews every week) is what keeps you in the top 3. Our clients utilize automated review collection systems (like [Power Digital Media's 1-Click Review Portal](/review)) to turn happy customers into permanent 5-star Google proof.
+Total review count matters, but **Review Velocity** (the consistency of receiving new reviews every week) is what keeps you in the top 3. Our clients utilize automated review collection systems (like [Power Digital Media's Verified Client Reviews & SMS Flows](/reviews)) to turn happy customers into permanent 5-star Google proof.
 
 #### 3. Geographic Relevance & Localized Citations
 Google requires explicit geographic signals. Stating that you serve "Jackson, MS" is no longer enough. Your website must feature valid schema markup, embedded location maps, and localized service radius signals covering the entire metro area (Clinton, Madison, Ridgeland, Brandon, Flowood, Pearl, Richland, and Byram).

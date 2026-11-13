@@ -8,7 +8,7 @@ export default function GoogleReviewsSection({ variant = "full" }: { variant?: "
 
   if (variant === "compact") {
     return (
-      <section id="reviews" className="py-8 md:py-10 bg-[#070c18] border-b border-white/10 relative overflow-hidden select-none">
+      <section id="reviews" className="py-8 md:py-10 bg-[#080a12] border-b border-white/10 relative overflow-hidden select-none">
         {/* Subtle ambient golden background glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[200px] bg-amber-500/5 rounded-full blur-[100px] pointer-events-none" />
 
@@ -24,15 +24,15 @@ export default function GoogleReviewsSection({ variant = "full" }: { variant?: "
         {/* Continuous Infinite Loop Carousel (Marquee) */}
         <div className="relative w-full overflow-hidden py-2">
           {/* Left and Right Edge Gradient Masks */}
-          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-[#070c18] via-[#070c18]/80 to-transparent z-20 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-[#070c18] via-[#070c18]/80 to-transparent z-20 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-[#080a12] via-[#080a12]/80 to-transparent z-20 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-[#080a12] via-[#080a12]/80 to-transparent z-20 pointer-events-none" />
 
           {/* Scrolling Track */}
           <div className="animate-marquee pause-on-hover flex gap-6 px-4">
             {duplicatedReviews.map((review, idx) => (
               <div
                 key={`${review.id}-compact-${idx}`}
-                className="w-[300px] sm:w-[360px] shrink-0 flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-slate-900/85 border border-white/10 hover:border-amber-400/50 transition-all duration-300 shadow-xl group hover:shadow-[0_15px_40px_-10px_rgba(245,158,11,0.2)] hover:-translate-y-1 cursor-grab active:cursor-grabbing backdrop-blur-md"
+                className="w-[300px] sm:w-[360px] shrink-0 flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-[#12141c] border border-white/10 hover:border-amber-400/50 transition-all duration-300 shadow-xl group hover:shadow-[0_15px_40px_-10px_rgba(245,158,11,0.2)] hover:-translate-y-1 cursor-grab active:cursor-grabbing"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-2.5">
@@ -89,7 +89,7 @@ export default function GoogleReviewsSection({ variant = "full" }: { variant?: "
   }
 
   return (
-    <section id="reviews" className="py-20 md:py-28 bg-[#0b1329] border-t border-b border-white/10 relative overflow-hidden select-none">
+    <section id="reviews" className="py-20 md:py-28 bg-[#080a12] border-t border-b border-white/10 relative overflow-hidden select-none">
       {/* Subtle ambient golden background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-amber-500/5 rounded-full blur-[140px] pointer-events-none" />
 
@@ -167,15 +167,15 @@ export default function GoogleReviewsSection({ variant = "full" }: { variant?: "
       {/* --- Continuous Infinite Loop Carousel (Marquee) --- */}
       <div className="relative w-full overflow-hidden py-4">
         {/* Left and Right Edge Gradient Masks for Smooth Seamless Fade */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-[#0b1329] via-[#0b1329]/80 to-transparent z-20 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-[#0b1329] via-[#0b1329]/80 to-transparent z-20 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-[#080a12] via-[#080a12]/80 to-transparent z-20 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-[#080a12] via-[#080a12]/80 to-transparent z-20 pointer-events-none" />
 
         {/* Scrolling Track with Pause on Hover / Touch */}
         <div className="animate-marquee pause-on-hover flex gap-6 px-4">
           {duplicatedReviews.map((review, idx) => (
             <div
               key={`${review.id}-${idx}`}
-              className="w-[320px] sm:w-[380px] md:w-[420px] shrink-0 flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-slate-900/85 border border-white/10 hover:border-amber-400/50 transition-all duration-300 shadow-xl group hover:shadow-[0_15px_40px_-10px_rgba(245,158,11,0.2)] hover:-translate-y-1.5 cursor-grab active:cursor-grabbing backdrop-blur-md"
+              className="w-[320px] sm:w-[380px] md:w-[420px] shrink-0 flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-[#12141c] border border-white/10 hover:border-amber-400/50 transition-all duration-300 shadow-xl group hover:shadow-[0_15px_40px_-10px_rgba(245,158,11,0.2)] hover:-translate-y-1.5 cursor-grab active:cursor-grabbing"
             >
               <div>
                 {/* Header: Stars & Platform Badge */}

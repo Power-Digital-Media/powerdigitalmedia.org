@@ -1,22 +1,24 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Free Website & Local SEO Audit | Power Digital Media Jackson MS",
-    description: "Request a comprehensive performance, mobile speed, and Google Map Pack visibility audit for your Mississippi business.",
-    alternates: {
-        canonical: "https://powerdigitalmedia.org/free-audit",
-    },
-    openGraph: {
-        title: "Free Website & Local SEO Audit | Power Digital Media",
-        description: "Request a comprehensive performance, mobile speed, and Google Map Pack visibility audit for your Mississippi business.",
-        url: "https://powerdigitalmedia.org/free-audit",
-    },
+  title: "Free 5-Minute Google Rank & Website Breakdown | Power Digital Media",
+  description:
+    "Get a personalized 5-minute video audit from Damein Donald showing where your contractor or local business ranks on Google Maps in Jackson, Madison, Brandon & Flowood—and how to pull more calls.",
+  alternates: {
+    canonical: "https://powerdigitalmedia.org/free-audit",
+  },
+  openGraph: {
+    title: "Free 5-Minute Google Rank & Website Breakdown | Power Digital Media",
+    description:
+      "See why competitors are outranking you in the Google Map Pack and where mobile leads are leaking—recorded personally by Damein Donald in Jackson, MS.",
+    url: "https://powerdigitalmedia.org/free-audit",
+  },
 };
 
 export default function FreeAuditLayout({
-    children,
+  children,
 }: {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-    return <>{children}</>;
+  return <>{children}</>;
 }

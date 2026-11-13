@@ -1,51 +1,76 @@
-import { MetadataRoute } from 'next';
-import { blogPosts } from '@/data/blogPosts';
-import { projects } from '@/data/projects';
+import { MetadataRoute } from "next";
+import { blogPosts } from "@/data/blogPosts";
+import { projects } from "@/data/projects";
+import { CENTRAL_MS_LOCATIONS } from "@/data/locations";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://powerdigitalmedia.org';
+  const baseUrl = "https://powerdigitalmedia.org";
 
-    // Base Canonical Routes
-    const routes = [
-        '',
-        '/about',
-        '/blog',
-        '/contact',
-        '/book',
-        '/our-work',
-        '/web-design',
-        '/pindrop',
-        '/custom-applications',
-        '/free-audit',
-        '/business-solutions',
-        '/business-phones',
-        '/founders100',
-        '/lead-leak-check',
-        '/marketing',
-        '/reviews',
-        '/community',
-    ].map((route) => ({
-        url: `${baseUrl}${route}`,
-        lastModified: new Date(),
-        changeFrequency: 'weekly' as const,
-        priority: route === '' ? 1 : 0.8,
-    }));
+  // Canonical Core, Product, Service, Proof, Campaign & Legal Routes
+  const routes = [
+    "",
+    "/contractors",
+    "/pindrop",
+    "/pincam",
+    "/web-design",
+    "/local-seo",
+    "/custom-applications",
+    "/marketing",
+    "/business-phones",
+    "/our-work",
+    "/reviews",
+    "/about",
+    "/free-audit",
+    "/book",
+    "/contact",
+    "/blog",
+    "/site-manager",
+    "/lead-leak-check",
+    "/business-solutions",
+    "/founders100",
+    "/community",
+    "/privacy",
+    "/terms",
+    "/refund-policy",
+  ].map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority:
+      route === ""
+        ? 1.0
+        : ["/contractors", "/pindrop", "/pincam", "/web-design", "/local-seo", "/free-audit"].includes(
+            route
+          )
+        ? 0.9
+        : ["/privacy", "/terms", "/refund-policy"].includes(route)
+        ? 0.4
+        : 0.8,
+  }));
 
-    // Project Showcase Routes
-    const projectRoutes = projects.map((project) => ({
-        url: `${baseUrl}/portfolio/${project.id}`,
-        lastModified: new Date(),
-        changeFrequency: 'weekly' as const,
-        priority: 0.8,
-    }));
+  // Central MS City Service-Area Routes
+  const locationRoutes = CENTRAL_MS_LOCATIONS.map((loc) => ({
+    url: `${baseUrl}/locations/${loc.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.85,
+  }));
 
-    // Blog Routes
-    const blogRoutes = blogPosts.map((post) => ({
-        url: `${baseUrl}/blog/${post.slug}`,
-        lastModified: new Date(post.date),
-        changeFrequency: 'monthly' as const,
-        priority: 0.7,
-    }));
+  // Live Client Case Study Routes
+  const projectRoutes = projects.map((project) => ({
+    url: `${baseUrl}/portfolio/${project.id}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
 
-    return [...routes, ...projectRoutes, ...blogRoutes];
+  // Editorial Blog Routes
+  const blogRoutes = blogPosts.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: new Date(post.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...routes, ...locationRoutes, ...projectRoutes, ...blogRoutes];
 }

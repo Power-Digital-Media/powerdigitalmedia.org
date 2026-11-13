@@ -1,280 +1,248 @@
 import dynamic from "next/dynamic";
-import Image from "next/image";
+import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
-import DeferredHeroBg from "@/components/ui/DeferredHeroBg";
+import ContractorHeroStage from "@/components/sections/ContractorHeroStage";
 import DeferredFooterSections from "@/components/ui/DeferredFooterSections";
+import {
+  Phone,
+  ArrowRight,
+  MapPin,
+  CheckCircle2,
+  ArrowUpRight,
+  ShieldCheck,
+} from "lucide-react";
 
+const JobsitePipelineStory = dynamic(() => import("@/components/sections/JobsitePipelineStory"));
 const GoogleReviewsSection = dynamic(() => import("@/components/sections/GoogleReviewsSection"));
 const ConnectedArchitecture = dynamic(() => import("@/components/sections/ConnectedArchitecture"));
-const LocalWebDesign = dynamic(() => import("@/components/sections/LocalWebDesign"));
-const TechStack = dynamic(() => import("@/components/sections/TechStack"));
 const SpeedComparisonCard = dynamic(() => import("@/components/ui/SpeedComparisonCard"));
 const AEOFAQ = dynamic(() => import("@/components/sections/AEOFAQ"));
 
 export const metadata = {
-  title: "Power Digital Media | Jackson MS Web Design, Local SEO & Growth Tech",
-  description: "Websites that turn clicks into calls. We build blistering-fast Next.js websites, PinDrop™ contractor tech, and automated CRM pipelines for Mississippi businesses.",
+  title: "Power Digital Media | Contractor Websites, Local SEO & Field Apps in Jackson, MS",
+  description:
+    "Mississippi's contractor & local business growth studio. We build sub-2s custom websites, Google Map Pack SEO, and proprietary PinCam™ + PinDrop™ jobsite apps that turn finished jobs into phone calls.",
+  alternates: {
+    canonical: "https://powerdigitalmedia.org",
+  },
   openGraph: {
-    title: "Power Digital Media | Jackson MS Web Design, Local SEO & Growth Tech",
-    description: "Websites that turn clicks into calls. We build blistering-fast Next.js websites, PinDrop™ contractor tech, and automated CRM pipelines for Mississippi businesses.",
+    title: "Power Digital Media | Websites, Local SEO & Field Apps That Pull Local Leads",
+    description:
+      "Turn every finished job into neighborhood Google rankings, 5-star reviews, and booked calls. Built in Jackson, MS by Damein Donald.",
+    url: "https://powerdigitalmedia.org",
     images: ["/images/og-image.png"],
   },
 };
 
+const METRO_CITIES = [
+  { name: "Jackson, MS", slug: "jackson-ms", tag: "Hinds County HQ" },
+  { name: "Madison, MS", slug: "madison-ms", tag: "High-Ticket Residential" },
+  { name: "Ridgeland, MS", slug: "ridgeland-ms", tag: "Commercial & Home Pros" },
+  { name: "Brandon, MS", slug: "brandon-ms", tag: "Rankin County Growth" },
+  { name: "Flowood, MS", slug: "flowood-ms", tag: "Lakeland Corridor" },
+  { name: "Clinton, MS", slug: "clinton-ms", tag: "Local Commerce & Trades" },
+];
+
 export default function Home() {
   return (
-    <main className="relative flex flex-col min-h-screen">
+    <main className="relative flex flex-col min-h-screen bg-[#06080f] text-white">
       <Navbar />
 
-      {/* 
-        HERO SECTION:
-        Rich, structured 2-column agency hero layout built for high trust, clear readability, and conversion.
-      */}
-      <section className="relative overflow-hidden pt-36 pb-20 md:pt-40 md:pb-28 bg-[#090e1a] border-b border-white/5">
-        <DeferredHeroBg variant="home" />
+      {/* =====================================================================
+          IMMERSIVE INDUSTRIAL-LUXURY HERO
+      ====================================================================== */}
+      <section className="relative overflow-hidden pt-28 pb-16 sm:pt-36 md:pt-40 md:pb-24 bg-[#06080f] border-b border-white/10">
+        {/* Architectural Blueprint Grid + Focused Copper/Amber Lighting */}
+        <div className="absolute inset-0 blueprint-grid opacity-55 pointer-events-none" aria-hidden="true" />
+        <div
+          className="absolute -top-24 left-1/4 w-[780px] h-[480px] bg-amber-500/[0.09] rounded-full blur-[150px] pointer-events-none"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute bottom-0 right-0 w-[520px] h-[420px] bg-amber-600/[0.05] rounded-full blur-[140px] pointer-events-none"
+          aria-hidden="true"
+        />
 
-        <div className="container relative z-10 px-4 sm:px-6 mx-auto">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
-            
-            {/* Left Column: Value Prop & CTAs */}
-            <div className="lg:col-span-7 flex flex-col items-start text-left">
-              
-              {/* Local Trust Pill */}
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-6">
-                <div className="flex text-amber-400 text-xs">
-                  ★★★★★
-                </div>
-                <span className="text-amber-300 font-bold tracking-wider uppercase text-[11px]">
-                  5.0 Rated Jackson, MS Web Studio • Direct Support by Damein
+        <div className="container relative z-10 px-4 sm:px-6 mx-auto max-w-7xl">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            {/* Left Column: High-Impact Contractor & Local Business Pitch */}
+            <div className="lg:col-span-6 flex flex-col items-start text-left">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-5">
+                <span className="text-amber-400 text-xs">★★★★★</span>
+                <span className="text-amber-300 font-mono font-bold tracking-wider uppercase text-[11px]">
+                  5.0★ Jackson, MS Studio • Built for Contractors &amp; Local Pros
                 </span>
               </div>
 
-              {/* Headline */}
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-[1.05] uppercase text-white mb-6">
-                Custom Web Systems Built to <br className="hidden sm:block" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-cyan-400 to-emerald-400">
-                  Power Your Entire Business.
-                </span>
+              <h1 className="text-4xl sm:text-5xl xl:text-[3.65rem] font-black tracking-tight leading-[1.02] uppercase text-white mb-5">
+                Websites &amp; Field Tech That{" "}
+                <span className="text-amber-400">Keep Your Crews Booked.</span>
               </h1>
 
-              {/* Subheading */}
-              <p className="text-slate-300 text-base sm:text-lg md:text-xl leading-relaxed font-normal mb-8 max-w-2xl">
-                We build custom websites that attract local customers, take orders, showcase completed jobs, and automate follow-up for Mississippi businesses.
+              <p className="text-slate-300 text-base sm:text-lg leading-relaxed mb-7 max-w-xl">
+                Stop losing high-value jobs to slower competitors on Google. We engineer sub-2-second custom websites,{" "}
+                <strong className="text-white">Google Map Pack rankings</strong>, and proprietary crew software for Mississippi contractors and standout local businesses.
               </p>
 
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-8">
-                <a
+              {/* Clean, High-Converting 2-Button CTA Row */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto mb-7">
+                <Link
                   href="/free-audit"
-                  className="px-8 py-4 bg-white text-slate-950 font-black rounded-full hover:bg-amber-400 transition-all uppercase tracking-wider text-xs shadow-[0_0_30px_rgba(251,191,36,0.25)] text-center block active:scale-95"
+                  className="px-7 py-4 bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black rounded-xl hover:brightness-110 transition-all uppercase tracking-wider text-xs shadow-[0_0_32px_rgba(245,158,11,0.32)] text-center flex items-center justify-center gap-2 active:scale-95"
                 >
-                  Get Free 5-Minute Audit
-                </a>
+                  <span>Get Free 5-Min Rank &amp; Site Check</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
                 <a
-                  href="#architecture"
-                  className="flex items-center justify-center gap-2 px-6 py-4 bg-slate-900/90 border border-cyan-400/40 text-cyan-300 rounded-full font-black uppercase tracking-wider text-xs hover:bg-cyan-400 hover:text-slate-950 transition-all active:scale-95 shadow-[0_0_20px_rgba(6,182,212,0.15)]"
+                  href="tel:6014462393"
+                  className="flex items-center justify-center gap-2 px-6 py-4 rounded-xl border border-white/15 bg-white/[0.04] hover:bg-white/[0.09] text-white font-bold uppercase tracking-wider text-xs transition-all active:scale-95"
                 >
-                  <span>Explore Live Systems</span>
-                  <span className="text-sm">↓</span>
-                </a>
-                <a 
-                  href="tel:6014462393" 
-                  className="flex items-center justify-center gap-2 px-7 py-4 border border-amber-400/40 bg-amber-500/10 text-amber-300 rounded-full font-black uppercase tracking-wider text-xs hover:bg-amber-400 hover:text-slate-950 transition-all active:scale-95"
-                >
-                  📞 (601) 446-2393
+                  <Phone className="w-3.5 h-3.5 text-amber-400" />
+                  <span>(601) 446-2393</span>
                 </a>
               </div>
 
-              {/* Key Bullet Checklist */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-white/10 w-full">
-                <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
-                  <span className="text-emerald-400 font-bold">✓</span> Sub-Second Mobile Speed (&lt; 1s)
+              {/* Outcome Proof Bullets (Zero Dev Jargon) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-5 border-t border-white/10 w-full text-xs font-semibold text-slate-200">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+                  <span>Rank in the Google Maps 3-Pack</span>
                 </div>
-                <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
-                  <span className="text-emerald-400 font-bold">✓</span> Built for Google Maps 3-Pack Visibility
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+                  <span>PinCam™ + PinDrop™ Jobsite Suite</span>
                 </div>
-                <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
-                  <span className="text-emerald-400 font-bold">✓</span> Hand-Crafted Code (Zero Plugin Bloat)
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+                  <span>2-Min Missed-Call SMS Text-Back</span>
                 </div>
-                <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
-                  <span className="text-emerald-400 font-bold">✓</span> Direct Engineer Support by Damein
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+                  <span>Launched in 7–14 Days • Direct Support</span>
                 </div>
               </div>
-
             </div>
 
-            {/* Right Column: Tangible Browser Mockup Showcase */}
-            <div className="lg:col-span-5 relative w-full">
-              <div className="relative rounded-3xl border border-white/15 bg-slate-950/80 shadow-2xl overflow-hidden backdrop-blur-md">
-                
-                {/* Browser Title Bar */}
-                <div className="flex items-center justify-between px-4 py-3 bg-slate-900 border-b border-white/10">
-                  <div className="flex items-center gap-1.5">
-                    <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                    <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                  </div>
-                  <div className="px-4 py-1 rounded-full bg-slate-950 border border-white/10 text-[11px] font-mono text-slate-400 flex items-center gap-1.5">
-                    <span className="text-emerald-400">🔒</span> msdirt.com
-                  </div>
-                  <div className="w-6" />
-                </div>
-
-                {/* Screenshot Frame */}
-                <div className="relative aspect-[4/3] w-full bg-slate-900 overflow-hidden">
-                  <Image
-                    src="/portfolio/geaux-pro-outdoors.webp"
-                    alt="Geaux Pro Outdoors (MS Dirt) - Live Next.js Web Build in Mississippi"
-                    fill
-                    sizes="(max-width: 640px) 92vw, (max-width: 1024px) 45vw, 520px"
-                    className="object-cover object-top"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent" />
-                </div>
-
-                {/* Floating Metrics Over Mockup */}
-                <div className="p-4 bg-slate-950/95 border-t border-white/10 flex flex-col gap-2.5">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-400">Mobile Speed Score:</span>
-                    <span className="font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/30">
-                      ⚡ 98+ Score (Fast Load)
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-400">Google Map Ranking:</span>
-                    <span className="font-bold text-amber-300 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/30">
-                      📍 #1 Central MS Dirt Work
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-400">Equipment Showcase:</span>
-                    <span className="font-bold text-cyan-300 bg-cyan-500/10 px-2.5 py-0.5 rounded-full border border-cyan-500/30">
-                      ✓ Instant Hauling Quote Engine
-                    </span>
-                  </div>
-                </div>
-
-              </div>
-
-              {/* Floating Verified Google Review Pill with Refined Golden Glow */}
-              <div className="absolute -bottom-7 -left-4 sm:-left-7 p-3.5 rounded-2xl bg-gradient-to-br from-slate-900/95 via-slate-950/95 to-amber-950/20 border border-amber-400/30 shadow-[0_8px_25px_-5px_rgba(245,158,11,0.18),0_0_15px_rgba(245,158,11,0.08)] backdrop-blur-xl max-w-[290px] animate-float transition-all duration-300 hover:scale-105 hover:border-amber-400/50 hover:shadow-[0_12px_30px_-4px_rgba(245,158,11,0.28)] cursor-default z-20 group">
-                {/* Subtle Ambient Golden Glow Blur Layer */}
-                <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-amber-500/15 via-yellow-500/10 to-amber-600/15 blur-sm -z-10 opacity-50 group-hover:opacity-80 transition-opacity duration-300" />
-
-                <div className="flex items-center gap-2 text-xs mb-1.5">
-                  <span className="text-amber-400 drop-shadow-[0_0_4px_rgba(251,191,36,0.4)]">★★★★★</span>
-                  <span className="text-[9px] font-bold text-amber-300 bg-amber-500/15 px-2 py-0.5 rounded-full border border-amber-400/30 uppercase tracking-wider">
-                    Google Review
-                  </span>
-                </div>
-                <p className="text-[11px] text-white/90 font-medium leading-tight">
-                  &ldquo;Took my marketing program from the dumps all the way to the moon. Very responsive and results oriented.&rdquo;
-                </p>
-                <span className="text-[10px] text-amber-300/90 font-semibold block mt-1.5">
-                  — Scott Lowery, Owner, Geaux Pro Outdoors (Bentonia, MS)
-                </span>
-              </div>
-
+            {/* Right Column: Interactive Trade & Live Deployment Stage */}
+            <div className="lg:col-span-6 w-full">
+              <ContractorHeroStage />
             </div>
-
           </div>
 
-          {/* Social Proof / Client Ribbon Below Hero */}
-          <div className="mt-20 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6 max-w-7xl mx-auto text-slate-400 text-xs">
-            <span className="font-bold uppercase tracking-wider text-slate-400">
-              Trusted by Central Mississippi Businesses:
+          {/* Verified Client Proof Strip */}
+          <div className="mt-14 pt-6 border-t border-white/[0.08] flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+            <span className="font-mono font-bold uppercase tracking-widest text-slate-400 flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 text-amber-400" />
+              Powering Real Mississippi Operators:
             </span>
-            <div className="flex flex-wrap items-center gap-6 sm:gap-8 font-bold text-slate-300 text-sm">
-              <span>Born Again Roofing</span>
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-bold text-slate-200 text-xs sm:text-sm">
+              <Link href="/portfolio/born-again-roofing" className="hover:text-amber-300 transition-colors">
+                Born Again Roofing (99+ Pins)
+              </Link>
               <span className="text-slate-600">•</span>
-              <span>T&apos;Beaux&apos;s Seafood</span>
+              <Link href="/portfolio/geaux-pro-outdoors" className="hover:text-amber-300 transition-colors">
+                Geaux Pro Outdoors (#1 MS Dirt)
+              </Link>
               <span className="text-slate-600">•</span>
-              <span>Geaux Pro Outdoors</span>
+              <Link href="/portfolio/tbeaux" className="hover:text-amber-300 transition-colors">
+                T&apos;Beaux&apos;s Seafood (0% Fee Ordering)
+              </Link>
               <span className="text-slate-600">•</span>
-              <span>Jackson Metro Contractors</span>
+              <Link href="/our-work" className="text-amber-400 hover:text-amber-300 transition-colors">
+                View All 10+ Builds →
+              </Link>
             </div>
           </div>
-
         </div>
       </section>
 
-      {/* 1. Direct Social Proof: 100% 5-Star Verified Google Reviews Infinite Marquee */}
+      {/* =====================================================================
+          1. IMMERSIVE 3-STAGE JOBSITE-TO-LEAD INTERACTIVE STORY
+      ====================================================================== */}
+      <JobsitePipelineStory />
+
+      {/* =====================================================================
+          2. VERIFIED 5.0★ GOOGLE & FACEBOOK REVIEWS (IMMEDIATE SOCIAL PROOF)
+      ====================================================================== */}
       <GoogleReviewsSection />
 
-      {/* 2. The 'WOW' Factor: Interactive System Architecture & 3D Phone Showcase */}
+      {/* =====================================================================
+          3. LIVE CLIENT ARCHITECTURE & STANDOUT LOCAL BUILDS (T'BEAUX'S, ETC.)
+      ====================================================================== */}
       <ConnectedArchitecture />
 
-      {/* 3. Disruption: Fast Mobile Speed Benchmark (Sub-3s Next.js vs 6+s WordPress) */}
+      {/* =====================================================================
+          5. SPEED BENCHMARK + CENTRAL MS SERVICE AREA SEO HUB
+      ====================================================================== */}
       <SpeedComparisonCard />
 
-      {/* 4. Methodology: The 3 Growth Engines (In-App Checkout, PinDrop GPS, Automated CRM) */}
-      <LocalWebDesign />
+      <section className="py-20 bg-[#05070d] border-t border-white/10">
+        <div className="container px-4 sm:px-6 mx-auto max-w-7xl">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+            <div>
+              <span className="text-amber-400 font-mono text-xs font-bold uppercase tracking-widest block mb-2">
+                Central Mississippi Local Search Coverage
+              </span>
+              <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-white">
+                Helping Local Pros Dominate Every Metro Market.
+              </h2>
+            </div>
+            <Link
+              href="/local-seo"
+              className="text-xs font-mono font-bold uppercase tracking-wider text-amber-400 hover:text-amber-300 flex items-center gap-1.5"
+            >
+              <span>See Our Google Map Pack System</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
 
-      {/* 5. Technical Capabilities & Authority */}
-      <TechStack />
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+            {METRO_CITIES.map((city) => (
+              <Link
+                key={city.slug}
+                href={`/locations/${city.slug}`}
+                className="group p-4 rounded-2xl bg-white/[0.03] hover:bg-amber-500/[0.08] border border-white/10 hover:border-amber-500/40 transition-all"
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <MapPin className="w-4 h-4 text-amber-400" />
+                  <ArrowUpRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-amber-400 transition-colors" />
+                </div>
+                <div className="font-bold text-sm text-white group-hover:text-amber-300 transition-colors">
+                  {city.name}
+                </div>
+                <div className="text-[11px] text-slate-400 mt-0.5">{city.tag}</div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* =====================================================================
+          6. FAQS + DAMEIN FOUNDER PROOF + INLINE AUDIT CTA + CONTACT + FOOTER
+      ====================================================================== */}
       <AEOFAQ />
       <DeferredFooterSections />
-      
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "ProfessionalService",
-            "name": "Power Digital Media LLC",
-            "image": "https://powerdigitalmedia.org/hero-bg.webp",
-            "url": "https://powerdigitalmedia.org",
-            "telephone": "+1-601-446-2393",
-            "priceRange": "$$$",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "2914 Cynthia Rd",
-              "addressLocality": "Jackson",
-              "addressRegion": "MS",
-              "postalCode": "39209",
-              "addressCountry": "US"
+            "@type": "WebPage",
+            "@id": "https://powerdigitalmedia.org/#webpage",
+            url: "https://powerdigitalmedia.org",
+            name: "Power Digital Media | Contractor Websites, Local SEO & Field Apps in Jackson, MS",
+            isPartOf: {
+              "@id": "https://powerdigitalmedia.org/#website",
             },
-            "geo": {
-              "@type": "GeoCoordinates",
-              "latitude": 32.3570,
-              "longitude": -90.2853
+            about: {
+              "@id": "https://powerdigitalmedia.org/#organization",
             },
-            "areaServed": [
-              { "@type": "City", "name": "Jackson" },
-              { "@type": "City", "name": "Madison" },
-              { "@type": "City", "name": "Brandon" },
-              { "@type": "City", "name": "Flowood" },
-              { "@type": "City", "name": "Clinton" },
-              { "@type": "City", "name": "Ridgeland" },
-              { "@type": "City", "name": "Pearl" }
-            ],
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "5.0",
-              "reviewCount": "5",
-              "bestRating": "5"
+            speakable: {
+              "@type": "SpeakableSpecification",
+              cssSelector: ["h1", "h2"],
             },
-            "description": "Jackson, MS web design and SEO agency building ultra-fast Next.js websites, PinDrop™ contractor technology, and automated CRM pipelines for Mississippi businesses.",
-            "openingHoursSpecification": {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": [
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday"
-              ],
-              "opens": "09:00",
-              "closes": "18:00"
-            },
-            "sameAs": [
-              "https://www.facebook.com/powerdigitalmedia",
-              "https://www.instagram.com/powerdigitalmedia",
-              "https://www.bbb.org/us/ms/jackson/profile/web-design/power-digital-media-llc-0523-235907954",
-              "https://g.page/r/Cd8B19AxtAaPEBM/review"
-            ]
-          })
+          }),
         }}
       />
     </main>

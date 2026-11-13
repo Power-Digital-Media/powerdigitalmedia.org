@@ -508,18 +508,18 @@ export default function ClientSetupPage() {
                                                     onClick={() => setServices({ ...services, ultatel: !services.ultatel })}
                                                     className={`p-6 rounded-2xl border cursor-pointer transition-all duration-300 ${
                                                         services.ultatel
-                                                            ? "bg-cyan-500/5 border-cyan-500/40 shadow-[0_0_30px_rgba(34,211,238,0.1)]"
+                                                            ? "bg-amber-500/5 border-amber-500/40 shadow-[0_0_30px_rgba(245,158,11,0.12)]"
                                                             : "bg-white/[0.01] border-white/5 hover:border-white/10"
                                                     }`}
                                                 >
                                                     <div className="flex items-center justify-between mb-4">
-                                                        <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400">
+                                                        <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400">
                                                             <Volume2 className="w-5 h-5" />
                                                         </div>
                                                         <div className={`w-5 h-5 rounded-md border flex items-center justify-center transition-all ${
-                                                            services.ultatel ? "bg-cyan-500 border-cyan-500" : "border-white/20"
+                                                            services.ultatel ? "bg-amber-500 border-amber-500" : "border-white/20"
                                                         }`}>
-                                                            {services.ultatel && <Check className="w-3.5 h-3.5 text-white" />}
+                                                            {services.ultatel && <Check className="w-3.5 h-3.5 text-slate-950" />}
                                                         </div>
                                                     </div>
                                                     <h4 className="text-sm font-bold uppercase tracking-tight text-white mb-2">Ultatel Cloud PBX</h4>
@@ -618,9 +618,9 @@ export default function ClientSetupPage() {
 
                                             {/* Ultatel Details */}
                                             {services.ultatel && (
-                                                <div className="p-6 rounded-2xl border border-cyan-500/20 bg-cyan-500/[0.01] space-y-6">
+                                                <div className="p-6 rounded-2xl border border-amber-500/20 bg-amber-500/[0.02] space-y-6">
                                                     <div className="flex items-center justify-between">
-                                                        <div className="flex items-center gap-2 text-cyan-400">
+                                                        <div className="flex items-center gap-2 text-amber-400">
                                                             <Volume2 className="w-4 h-4" />
                                                             <span className="text-xs font-black uppercase tracking-widest">Ultatel Telephony Config</span>
                                                         </div>
@@ -643,7 +643,7 @@ export default function ClientSetupPage() {
                                                             <button
                                                                 type="button"
                                                                 onClick={addExtensionUser}
-                                                                className="px-3 py-1.5 rounded-lg border border-cyan-500/20 hover:border-cyan-400/40 text-cyan-400 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1 hover:bg-cyan-500/5 transition-colors"
+                                                                className="px-3 py-1.5 rounded-lg border border-amber-500/25 hover:border-amber-400/50 text-amber-400 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1 hover:bg-amber-500/10 transition-colors"
                                                             >
                                                                 <Plus className="w-3.5 h-3.5" /> Add Seat
                                                             </button>
@@ -720,11 +720,11 @@ export default function ClientSetupPage() {
                                                     {/* Router Network Pre-requisites */}
                                                     <div className="p-4 rounded-xl bg-[#141416] border border-white/5 space-y-3">
                                                         <div className="flex items-start gap-2.5">
-                                                            <Network className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                                                            <Network className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
                                                             <div>
                                                                 <span className="text-[10px] font-black uppercase tracking-wider text-slate-300 block mb-1">Office Router Pre-requisites</span>
-                                                                <p className="text-[10px] text-slate-500 font-light leading-relaxed">
-                                                                    To support VoIP signaling, your local network must disable **SIP ALG**, whitelist the Ultatel IP `38.91.53.85`, and set the UDP inactivity timeout threshold to a minimum of **300 seconds**.
+                                                                <p className="text-[10px] text-slate-400 leading-relaxed">
+                                                                    To support VoIP signaling, your local network must disable <strong className="text-white">SIP ALG</strong>, whitelist the Ultatel IP <code className="text-amber-300">38.91.53.85</code>, and set the UDP inactivity timeout threshold to a minimum of <strong className="text-white">300 seconds</strong>.
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -733,7 +733,7 @@ export default function ClientSetupPage() {
                                                             className="flex items-center gap-3 cursor-pointer pt-2 border-t border-white/5"
                                                         >
                                                             <div className={`w-5 h-5 rounded border flex items-center justify-center transition ${
-                                                                ultatelNetworkChecked ? "bg-cyan-500 border-cyan-500 text-black" : "border-white/20"
+                                                                ultatelNetworkChecked ? "bg-amber-400 border-amber-400 text-slate-950" : "border-white/20"
                                                             }`}>
                                                                 {ultatelNetworkChecked && <Check className="w-3.5 h-3.5 font-bold" />}
                                                             </div>
@@ -790,8 +790,8 @@ export default function ClientSetupPage() {
                                                             </span>
                                                         )}
                                                         {services.ultatel && (
-                                                            <span className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-[10px] font-bold uppercase tracking-wider">
-                                                                Ultatel Phone Node
+                                                            <span className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 text-amber-300 text-[10px] font-bold uppercase tracking-wider">
+                                                                Ultatel Cloud PBX
                                                             </span>
                                                         )}
                                                     </div>
@@ -833,9 +833,9 @@ export default function ClientSetupPage() {
                                             <button
                                                 type="submit"
                                                 disabled={submitting}
-                                                className="px-10 py-4 rounded-full bg-accent text-black font-black uppercase tracking-widest text-xs flex items-center gap-2 hover:bg-cyan-400 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_40px_rgba(34,211,238,0.25)]"
+                                                className="px-10 py-4 rounded-xl bg-amber-400 text-slate-950 font-black uppercase tracking-widest text-xs flex items-center gap-2 hover:bg-amber-300 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_14px_35px_rgba(245,158,11,0.3)]"
                                             >
-                                                {submitting ? "Initializing Configurations..." : "Confirm & Setup Services"}
+                                                {submitting ? "Submitting Configuration..." : "Confirm & Setup Services"}
                                                 <Zap className="w-4 h-4" />
                                             </button>
                                         )}

@@ -37,6 +37,31 @@ const nextConfig = {
         destination: '/reviews',
         permanent: true,
       },
+      {
+        source: '/seo',
+        destination: '/local-seo',
+        permanent: true,
+      },
+      {
+        source: '/seo/:path*',
+        destination: '/local-seo',
+        permanent: true,
+      },
+      {
+        source: '/google-maps',
+        destination: '/local-seo',
+        permanent: true,
+      },
+      {
+        source: '/pincam-app',
+        destination: '/pincam',
+        permanent: true,
+      },
+      {
+        source: '/contractor',
+        destination: '/contractors',
+        permanent: true,
+      },
       // 1. Retired Services, Showroom & Equipment Pages
       {
         source: '/podcasting',
@@ -137,7 +162,27 @@ const nextConfig = {
       },
       {
         source: '/pricing',
-        destination: '/free-audit',
+        destination: '/book',
+        permanent: true,
+      },
+      {
+        source: '/billing',
+        destination: '/book',
+        permanent: true,
+      },
+      {
+        source: '/billing/:path*',
+        destination: '/book',
+        permanent: true,
+      },
+      {
+        source: '/pay',
+        destination: '/contact',
+        permanent: true,
+      },
+      {
+        source: '/pay/:path*',
+        destination: '/contact',
         permanent: true,
       },
       {

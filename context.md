@@ -11,14 +11,17 @@
 
 ## 🛠️ 1. Core Technical Stack
 * **Framework:** Next.js 16.1.x (App Router) running on **Turbopack** and hosted on **Netlify**.
-* **Styling & Motion:** Tailwind CSS (modern fluid grids, glassmorphism templates) + **GSAP (GreenSock)** for advanced scroll-driven viewport timelines and hardware-accelerated animations.
-* **Database & Integrations:**
+* **Design System ("Industrial Luxury"):** Architectural obsidian (`#06080f`), molten amber/copper (`#f59e0b`), blueprint grid depth (`.blueprint-grid`), `.obsidian-surface` panels, and high-contrast typography engineered for contractor & local business conversion.
+* **Database, Lead Persistence & Integrations:**
+  * **Durable Lead Delivery (`src/lib/durable-lead-delivery.ts` + `src/lib/firebase-admin.ts`):** Firestore durable persistence + retry outbox guaranteeing zero lost leads even during external API hiccups.
   * **Capsule CRM:** B2B lead organization & customer relationships (Damein is a certified Capsule Solutions Partner).
   * **Transpond:** Marketing automation campaigns and autoresponders (Main List ID: `186443`, Damein is a certified Transpond Solutions Partner).
-  * **Ultatel:** Business Phone Systems integration provider.
-  * **Resend SDK:** Backup serverless transactional emails (thank you and audit report autoresponders).
-* **Booking Pipeline:** Calendly scheduling widget integrated dynamically at the `/book` route.
-* **Telemetry & API Routing:** Next.js Serverless Route Handlers in `/api/forms` and `/api/webhooks/calendly` acting as a secure gateway bridge between client forms, Capsule REST models, and Transpond subscribers.
+  * **Ultatel:** Cloud VoIP Business Phone Systems integration provider.
+  * **Resend SDK:** Transactional notification & fallback email delivery.
+* **Proprietary Contractor Field Software Showcases:**
+  * **`PinCam™` (`/pincam`):** Interactive 5-mode contractor camera & proof studio (Ghost Camera Photo Match 0–90% opacity overlay, non-destructive vector markups/measurements, dual-camera PiP walkthroughs, instant homeowner/adjuster PDF reports, and 1-tap `PinDrop™` sync).
+  * **`PinDrop™` (`/pindrop`):** Interactive 5-stage field-to-Google SEO engine (30s mobile check-in, auto-published `/projects/[slug]` & `/areas-we-service/[city]` geo-schema pages, live Central MS map pins, Google Business Profile OAuth sync, and 15-min SMS 5-star review automation).
+* **Booking Pipeline:** Calendly scheduling widget integrated dynamically at `/book` + modal triggers.
 
 ---
 
@@ -26,109 +29,57 @@
 
 ```mermaid
 graph TD
-  User[Client Form Submission] -->|POST /api/forms| API[Forms Route Gateway]
+  User[Client Form Submission] -->|submitVerifiedLeadForm| API[POST /api/forms]
+  API -->|Durable Log| Firestore[Firestore Durable Lead Store]
   API -->|Verify & Parse| Capsule[Capsule CRM REST API]
   API -->|Sync Subscriber| Transpond[Transpond API List 186443]
-  API -->|Autoresponder Trigger| Resend[Resend API SDK / api/contact/thank-you]
-  Capsule <-->|Native stdio JSON-RPC| MCP[Capsule Node.js MCP Server]
+  API -->|Autoresponder / Alert| Resend[Resend API SDK]
 
   ClientBook[Client Schedules Meeting] -->|Calendly Widget| Calendly[Calendly Scheduler]
   Calendly -->|Webhook: invitee.created| WebhookAPI[Webhook: /api/webhooks/calendly]
   WebhookAPI -->|Apply Tag: Call Scheduled| Transpond
   Calendly -->|Sync Event| GoogleCal[Google Calendar]
-  GoogleCal -->|Sync Event| Capsule
 ```
 
-### 🗄️ Database & Sync Pipelines
-1. **Capsule CRM Node.js MCP Server:**
-   - **Path:** `E:\AntiGravity\capsule-mcp-node\index.js`
-   - **Protocol:** Stdio-based JSON-RPC 2.0. Eliminates Docker/WSL dependencies. Exposes **53 tools** matching the Zestia schema.
-   - **Telemetry:** Automated file logging actively buffered in `capsule-mcp.log`.
-2. **Capsule-to-Transpond Marketing Pipeline:**
-   - **Path:** `E:\AntiGravity\capsule-mcp-node\sync-strategies.js`
-   - **Status:** Tested and verified live. Seamlessly registers leads scheduling a Google Meet strategy session into your primary Transpond campaign with an immediate welcome email hook.
+### 🗄️ Form Security & Lead Normalization
+1. **Bot-Hardened Client Submissions (`src/lib/lead-submission.ts` & `src/components/ui/FormSecurityFields.tsx`):**
+   - Injects honeypot + timing verification fields across `AuditCTA.tsx`, `/free-audit`, `Contact.tsx`, and `/contact`.
+2. **Zero-Friction Mobile URL/Business Normalization:**
+   - Replaced strict HTML5 `type="url"` inputs (which silently blocked bare domains like `bornagainroofing.com` on iOS/Android keyboards) with smart `type="text"` normalization (`normalizeWebsiteOrBusiness`) plus `Name`, `Cell Phone`, and `Trade / Industry` capture.
 
 ---
 
-## 🌐 3. Critical SEO & Domain Alignments (Fixed)
-* **Active Domain:** `powerdigitalmedia.org` (All 34 outdated `.com` database, content, sitemap, and LLM text references programmatically swept and standardized to prevent crawling indexing split).
-* **Active Phone Line:** `+16014462393` / `(601) 446-2393` (NAP verified across all metadata, UI layouts, and emails).
-* **Local SEO Schema (`src/app/layout.tsx`):**
-  * Synthesized machine-readable `LocalBusiness` JSON-LD schema.
-  * Nested a perfect `5.0` `AggregateRating` based on `15` real testimonials.
-  * Embedded structured reviews from **Google, Better Business Bureau (BBB), and Facebook** to capture off-page local search authority.
-  * Configured expanded `sameAs` social and entity vectors.
+## 🌐 3. Critical SEO, Money Pages & Domain Alignments
+* **Active Domain:** `https://powerdigitalmedia.org`
+* **Active Phone / SMS Line:** `+16014462393` / `(601) 446-2393` (NAP verified across all metadata, schemas, and UI).
+* **Global Structured Data (`src/app/layout.tsx`):**
+  * `@graph` combining `LocalBusiness` + `ProfessionalService`, `AggregateRating` (`5.0` across `15` verified reviews), and `SoftwareApplication` offers for `PinCam™` and `PinDrop™`.
+  * Corrected `<meta name="apple-mobile-web-app-title">` to `"Power Digital Media"`.
+* **High-Intent Vertical & Service Money Pages:**
+  * `/contractors` — Flagship Mississippi Contractor Growth Systems page (Roofing, HVAC, Excavation/Dirt Work, Plumbing, Electrical, Lawn Care) with `Service` + `FAQPage` JSON-LD.
+  * `/local-seo` — Google Map Pack & Local SEO engineering page (with permanent `301` redirect from `/seo` and `/google-maps` in `next.config.mjs`).
+  * `/web-design` — Pure Server Component (removed unnecessary `"use client"` wrapper) with `Service` + `FAQPage` JSON-LD.
+  * `/pincam` & `/pindrop` — Twin proprietary app showcases faithfully modeling the **actual production UI** of `PDM PinDrop™` (`#0b0c10` / `#12141c` double-bezel obsidian, real Central MS Esri World Imagery satellite map + gold teardrop pins, 2-column `.pin-feed-card` cards with neighborhood satellite mini-maps, interactive `/admin/drop-pin` crew portal, `/pin-page` Answer Engine SEO detail view, and 1-line `<iframe>` embed snippet) and `PinCam™` (native Android APK + iPhone Home Screen dashboard, Ghost Photo Match, non-destructive markup, Dual-Cam PiP, PDF report, and 5-tab mobile dock). Featured inside the signature `Field Apps` dropdown in `Navbar.tsx` and `JobsitePipelineStory.tsx`, with zero legacy stock/fake `.webp` mockups.
+* **Central Mississippi 6-City Static Hubs (`src/data/locations.ts` + `src/app/locations/[city]/page.tsx`):**
+  * `/locations/jackson-ms`, `/locations/madison-ms`, `/locations/ridgeland-ms`, `/locations/brandon-ms`, `/locations/flowood-ms`, `/locations/clinton-ms` — each with unique county/ZIP coordinates, corridors, subdivisions, live local client proof, and `Service` + `FAQPage` + `BreadcrumbList` JSON-LD.
+* **Crawler, Schema & AI Discovery:**
+  * Resolved static `public/robots.txt` vs `src/app/robots.ts` HTTP `500` conflict and added explicit allow rules for `GPTBot`, `OAI-SearchBot`, `ChatGPT-User`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, and `Applebot-Extended`.
+  * Added `SpeakableSpecification` on `/`, automatic `FAQPage` JSON-LD in `FAQAccordion.tsx`, `Review` JSON-LD on `/reviews`, and updated `src/app/sitemap.ts`, `public/manifest.json`, `public/llms.txt`, and `public/llms-full.txt`.
+* **100% Case-by-Case Custom Scoping & Public Payment Policy:**
+  * Public self-checkout and pricing pages (`/billing`, `/billing/bespoke`, `/pay/*`) are retired and permanently `301`-redirected in `next.config.mjs` (`/billing*` & `/pricing` → `/book`; `/pay*` → `/contact`), while internal portal billing (`/dashboard/billing`), `/admin/*`, and `/api/*` remain active for existing clients.
+  * Zero public agency, monthly retainer, or standalone app dollar prices appear in UI copy, FAQs, discovery forms, JSON-LD schemas, or `llms*.txt`; every engagement is custom-scoped case-by-case via `/free-audit` or `/book`.
 
 ---
 
-## 📱 4. Mobile UX & Animation Optimizations (Fixed)
-* **Interactive Glassmorphic Bento Grid Portfolio:** Replaced the heavy, scrolling-hijacked GSAP horizontal carousel with a premium, vertically-scrolling asymmetric Bento Grid. Features brand-matched glowing highlights, custom technology chips, and live metric badges (e.g. `98% PageSpeed`, `400+ Hours Saved`, `5.2x ROAS`) that visually validate our engineering authority.
-* **Sleek Action Dock:** Integrated blurred semi-solid glassmorphic trays at the bottom of portfolio cards to mask underlying screenshot graphic text and prevent visual overlap glitches.
-* **Fluid Spacing & Typography:** Replaced static margins and layouts with responsive, fluid variables across the Homepage Hero, Services, and Tech Stack pages. Text headings center natively to anchor mobile screens while lists revert to crisp, left-alignment to keep bullet points vertically linear.
-* **Resend Resiliency:** Added module-level fallback strings (`|| 're_placeholder'`) to transactional route initializers. This prevents serverless routes from crashing when api keys are absent in local test environments.
-
-
----
-
-## 🚨 5. Active Roadblocks & Immediate Actions
-
-### 🔑 A. Google Identity & Workspace Resolution
-* **The Glitch:** The business email `damein@powerdigitalmedia.org` was bound as a personal Google alias on the primary Gmail address `dameindonald.cor@gmail.com`. This triggered a conflicting account flag, locking profile subscriptions and triggering a red security warning shield.
-* **The Resolution Steps:**
-  1. The user successfully updated their Google password to a secure Diceware passphrase (`Cyber-Portal-[Custom]-###`).
-  2. **Action Required:** The user must open their Google Account dashboard, click **"Review & secure"** under recovery settings to clear the warning shield.
-  3. **Action Required:** Keep the accounts strictly separate by creating **two distinct Chrome Browser Profiles**—one for personal tasks (`gmail.com`) and one for business (`powerdigitalmedia.org`)—to prevent cookie collisions.
-
-### 📍 B. Google Business Profile (GBP) Verification
-* **The Glitch:** Automated maps verification loops are blocked due to the virtual office coordinates and the active identity conflict flag.
-* **Action Required:** Submit a manual verification ticket to the Google Business Profile help desk attaching the official Mississippi LLC registration documents, a utility bill, and local Jackson NAP proof.
-
-### 📣 C. B2B Client Acquisition Pipeline Refinement
-* **The Glitch:** Casual traffic campaigns running on Meta ($5–$10/day targeting MS business owners) are yielding minimal traffic and zero engagement due to high landing-page exit friction on mobile devices and tech-jargon intimidation.
-* **The Solutions (Detailed in the [Acquisition Blueprint](file:///C:/Users/User/.gemini/antigravity/brain/b82f149b-23c4-4b75-8086-31e312a8d2e3/local_acquisition_blueprint.md)):**
-  1. **Play 1 ("The Snatch"):** Initiate value-first organic outreach. Record 3-minute personalized Loom screencasts showing local business sites breaking, and send them directly to local owners.
-  2. **Play 2 (In-App Lead Forms):** Switch paid Meta campaigns from traffic redirects to **Native Lead Generation (Instant Forms)** to drop mobile friction by 90% and capture leads inside Facebook/Instagram with auto-filled fields.
-  3. **Play 3 (GBP Domination):** Drive high-intent search traffic by ranking in the local Google Map Pack once manual verification is cleared, capturing 5-star reviews from active clients (Tbeaux Seafood, Powered by Peptides).
+## 📱 4. Mobile Conversion & UX Architecture
+* **Thumb-Zone `StickyMobileDock.tsx`:** Persistent mobile-only (`lg:hidden`) bottom dock featuring 1-tap `Call`, `Text`, and `Free Check` actions with `env(safe-area-inset-bottom)` clearance, automatically hidden on admin/auth routes and whenever mobile keyboard inputs are focused.
+* **Interactive Homepage Stages (`src/components/sections/ContractorHeroStage.tsx` & `JobsitePipelineStory.tsx`):**
+  * 4-trade interactive hero console (*Roofing & Storm*, *Excavation & Civil*, *HVAC & Trades*, *Local Commerce*) with zero overlapping floating badges.
+  * 3-step interactive field-to-phone story (`01 PinCam™ Capture` → `02 PinDrop™ Map & Auto-SEO` → `03 18-Second SMS Lead Rescue`).
+* **Unified Lead Magnet Offer:** Standardized sitewide around the **"Free 5-Minute Google Rank & Website Breakdown"** recorded personally by Damein Donald, replacing abrupt 1-second redirects with an interactive confirmation state + optional 1-click booking.
 
 ---
 
-## 🏁 6. Active Milestones & Current Progress Status
-
-The project is currently in a **100% stable, fully compiled, and production-ready state**. The latest updates resolved:
-* **SOTA Interactive Glassmorphic Bento Grid Portfolio (`src/components/sections/Portfolio.tsx`):**
-  - Completely replaced the heavy, scroll-hijacking GSAP horizontal sliding/pinning carousel with a beautiful, natural-scrolling asymmetric Bento Grid on the Home, Web Design, and Marketing pages.
-  - Configured custom geometric card spans on desktop (e.g. `col-span-8` landscape + `col-span-4` portrait) and clean vertical stacks on mobile.
-  - Implemented brand-matched dynamic hover border glows and radial highlights utilizing React state and native CSS.
-  - Embedded high-contrast B2B performance indicators and live-metric badges (`98% PageSpeed`, `400+ Hours Saved`, `5.2x ROAS`) to visually validate engineering and marketing authority.
-  - Enabled smooth cinematic mouse-hover zoom parallax on screenshot mockups.
-* **Overhauled Paid Social & Marketing Services Page (`src/app/marketing/page.tsx`):**
-  - **Bento Grid Integration:** Dynamically imported and rendered our new `<Portfolio />` Bento Grid component to display client case studies, replacing the horizontal sliding carousel and previous static 3-column placeholder.
-  - **Strategic Partner Pivot:** Redesigned the page to highlight the **certified Capsule CRM & Transpond partnership**, positioning this pipeline as the exclusive high-performance operational engine for local business deployments.
-  - **Pillars Refined:** Replaced generic cards with three certified operational pillars: **B2B Growth Funnels (Transpond + Next.js), Behavioral Email Marketing (Transpond sequences), and Sales Opportunities Management (Capsule visual pipelines)**.
-  - **Growth Tiers Updated:** Realigned all pricing packages to detail specific sync setups, Capsule contact integrations, email welcome automation, and CRM Sales Pipeline Opportunity board configurations.
-  - **Homepage Visual Matching:** Standardized the hero section to match the spacious centered design, typography, double button styles, and NAP PageSpeed-style trust bar layout of the homepage.
-  - **Telemetry Dashboard Showcase:** Moved the custom 3D isometric marketing telemetry graphic (`marketing_telemetry_system.png`) inside a floating glassmorphic dashboard mockup frame adjacent to the lead sync pipeline phases.
-
-* **Dynamic Calendly Booking & Webhook Auto-Tagging Integration:**
-  - Integrated Calendly scheduler at `/book` mapped to the single `30min` event type under user `damein-powerdigitalmedia`.
-  - Enabled dynamic prefilling of lead's Name, Email, and Phone number from Step 1 into the Calendly widget to remove form friction.
-  - Built a custom serverless Next.js endpoint (`src/app/api/webhooks/calendly/route.ts`) to listen for Calendly's `invitee.created` event.
-  - The webhook calls Transpond's API to immediately tag the invitee with `Call Scheduled`, halting automated email campaigns.
-  - Webhook subscription registered programmatically with Calendly using a local PowerShell execution script to prevent token transit safety filters from corrupting payloads.
-* Codebase-wide `.com` domain alignment to standard `.org`.
-* Safe fallback triggers for Resend email initializations to prevent route crashes.
-* Upgrade of all service landing hero secondary CTA buttons to point to the direct Google Meet booking path `/book` with pulsing interactive elements.
-* **Client Network SEO Authority Backlinks:**
-  - Standardized and embedded clean, branded attribution backlinks (`Designed & Engineered by Power Digital Media` -> `https://powerdigitalmedia.org`) across 17 client websites/codebases (Born Again Roofing, Tbeaux, Powered by Peptides, Geaux Pro Outdoors, All Things New, Corner Pharmacy, Lungrin's Lawncare, Annie's Cafe, The Local Guide MS, Tew & Company, Black Sheep Recovery, Pastor's Provision, Marino Marketing, PinDrop SaaS, In His Grip Ministries, Simmons Memorial).
-  - Positions `powerdigitalmedia.org` to rapidly absorb high-trust external entity graph signals from active Mississippi regional web properties.
-* **Dedicated PinDrop™ Contractor Landing Page (`/pindrop`):**
-  - High-converting feature page explaining the 3-step field automation pipeline (On-Site Photo Pin ➔ Automatic Google Geo-Schema ➔ Automated SMS Review Request).
-  - Highlights real-world case studies for Born Again Roofing (99+ live job pins) and Geaux Pro Outdoors (MS Dirt).
-* **Frictionless Client Review Portal (`/review`):**
-  - Dedicated direct route with 1-click Google review submission and pre-written copyable prompts.
-  - Linked in navigation and XML sitemap (`/sitemap.xml`).
-
-All developments have been verified using type-safe compilation checks (`npx tsc --noEmit` is clean) and successfully committed.
-
-
-
+## 🚨 5. External Operational Follow-Ups (Owner Actions)
+1. **Google Business Profile Manual Ticket:** Complete manual GBP verification if any virtual/address flag remains active, attaching MS LLC docs + utility bill for `2914 Cynthia Rd, Jackson, MS 39209`.
+2. **Standalone `pindrop-saas` App Polish (Next Engineering Track):** Debug & finalize remaining production workflows inside `e:\AntiGravity\pindrop-saas` (`PinCamNativeApp.tsx` / `PinDrop` SaaS backend) following deployment of `powerdigitalmedia.org`.

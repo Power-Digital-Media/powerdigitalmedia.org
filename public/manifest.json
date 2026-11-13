@@ -1,11 +1,11 @@
 {
-  "name": "Power Digital Nexus Registry",
-  "short_name": "Nexus Registry",
-  "description": "Bespoke Client, Deliverables, and Finance Registry for Power Digital Media",
-  "start_url": "/admin/clients",
+  "name": "Power Digital Media LLC",
+  "short_name": "Power Digital",
+  "description": "Custom Next.js Contractor Websites, Google Map Pack SEO & Proprietary PinCam™ + PinDrop™ Field Apps in Jackson, MS.",
+  "start_url": "/",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#000000",
+  "background_color": "#06080f",
+  "theme_color": "#f59e0b",
   "icons": [
     {
       "src": "/icon.png",
