@@ -19,13 +19,16 @@ This document provides a factual, machine-readable reference for Power Digital M
 
 ---
 
-## 2. Proprietary Contractor Field Software
+## 2. Proprietary Software & Engineering Platforms
 1. **[PinCam™ Jobsite Camera & Proof Studio](https://powerdigitalmedia.org/pincam)**
    - **Core Features**: Ghost Camera Photo Match (0–90% live translucent overlay for exact 1:1 before/after angles), non-destructive vector markup & measurement studio, dual-camera Picture-in-Picture narrated walkthroughs, offline-resilient jobsite capture, GPS/timestamp verification watermarks, instant branded PDF homeowner/adjuster inspection reports, and 1-tap sync to PinDrop™.
    - **Access Model**: Available as an integrated crew suite within Power Digital Contractor Growth Websites & Monthly Retainers (with zero per-tech seat tax), or deployed onto existing contractor domains via custom case-by-case onboarding.
 2. **[PinDrop™ Field-to-Google SEO & Review Engine](https://powerdigitalmedia.org/pindrop)**
    - **Core Features**: 30-second mobile truck check-in portal, dual satellite/street geocoding with homeowner-safe neighborhood pin fuzzing, automatic `/projects/[slug]` and `/areas-we-service/[city]` SEO page generation with `LocalBusiness` JSON-LD, direct Google Business Profile OAuth posting, embeddable live project maps, crew attribution leaderboards, and 15-minute post-job homeowner SMS 5-star Google review requests.
    - **Access Model**: Deployed either as a lightweight 5-minute standalone embed on an existing contractor website or pre-wired into a custom Next.js Contractor Growth System—scoped case-by-case to crew size and service territory.
+3. **[PDM Site Intelligence™ 24/7 Website & SEO Watchtower](https://powerdigitalmedia.org/site-intelligence)**
+   - **Core Features**: 5-minute multi-probe HTTP & latency monitoring (preventing false-positive alarms), daily SSL certificate expiry countdowns, broken-link crawls, Chrome UX Report (CrUX) cellular Core Web Vitals telemetry, Google Search Console & GA4 7d/28d/90d growth tracking (zero invented vanity scores), Rich Result schema validation, and a 2-Stage Human Approval AI optimization queue with staged previews and 1-click snapshot rollback.
+   - **Access Model**: Included behind Power Digital Media's Managed Hosting, Local SEO, and Growth Retainer engagements, and used to run the Free 5-Minute Rank & Website Video Audit.
 
 ---
 

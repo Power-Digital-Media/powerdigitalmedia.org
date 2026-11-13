@@ -16,6 +16,7 @@ import {
   Building2,
   MessageSquare,
   TrendingUp,
+  Activity,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -273,6 +274,28 @@ export default function LocalSEOPage() {
               </div>
             );
           })}
+        </div>
+
+        {/* 24/7 Watchtower Telemetry Banner */}
+        <div className="mt-8 p-6 sm:p-8 rounded-3xl bg-[#070b14] border border-cyan-500/30 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+          <div className="space-y-1.5 max-w-2xl">
+            <div className="text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 flex items-center gap-2">
+              <Activity className="w-4 h-4 text-cyan-400" /> Zero Invented Vanity Reports
+            </div>
+            <h3 className="text-xl sm:text-2xl font-black uppercase text-white">
+              Tracked Live in PDM Site Intelligence™.
+            </h3>
+            <p className="text-sm text-slate-300">
+              Our proprietary Jackson watchtower connects directly to your Google Search Console, GA4, and Chrome UX telemetry—monitoring 7d/28d/90d ranking gains, Rich Result schema health, and mobile speed around the clock.
+            </p>
+          </div>
+          <Link
+            href="/site-intelligence"
+            className="shrink-0 inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-400/40 text-cyan-200 font-bold uppercase tracking-wider text-xs transition-colors"
+          >
+            <span>Explore Watchtower Console</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
       </section>
 

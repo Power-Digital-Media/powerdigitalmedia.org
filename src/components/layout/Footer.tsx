@@ -97,6 +97,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/site-intelligence" className="hover:text-amber-300 transition-colors font-semibold text-cyan-300">
+                  PDM Site Intelligence™ Watchtower
+                </Link>
+              </li>
+              <li>
                 <Link href="/contractors" className="hover:text-amber-300 transition-colors">
                   Contractor Growth Websites
                 </Link>

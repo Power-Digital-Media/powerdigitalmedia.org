@@ -8,9 +8,10 @@
 - **Company**: Power Digital Media LLC (`https://powerdigitalmedia.org`)
 - **Founder / Principal**: Damein Donald (`(601) 446-2393`, `2914 Cynthia Rd, Jackson, MS 39209`)
 - **Primary Positioning**: Contractor-first growth engineering (Roofing, HVAC, Excavation/Dirt Work, Plumbing, Electrical, Lawn Care) + bespoke web/commerce platforms for standout Mississippi businesses (e.g., T'Beaux's Seafood).
-- **Proprietary Contractor Apps**:
+- **Proprietary Software Suite**:
   1. **`PinCam™` (`/pincam`)** — Contractor jobsite camera featuring Ghost Camera Photo Match (0–90% opacity overlay), non-destructive damage/measurement markups, dual-cam PiP walkthroughs, homeowner/adjuster PDF reports, and 1-tap `PinDrop™` sync.
   2. **`PinDrop™` (`/pindrop`)** — 30-second mobile crew check-in engine publishing `/projects/[slug]` neighborhood SEO pages, live GPS website pins, Google Business Profile posts, and 15-minute homeowner SMS 5-star review triggers.
+  3. **`PDM Site Intelligence™` (`/site-intelligence`)** — Proprietary 24/7 engineering watchtower (5-min multi-probe uptime/SSL checks, CrUX cellular speed, Google Search Console & GA4 `7d/28d/90d` growth snapshots, and 2-stage human-approved staged fixes) included behind Managed Hosting, Local SEO, and Growth Retainers (listed under `Services ▾`, keeping `Field Apps ▾` pure for crews).
 - **Approved Packaging Model (Hybrid)**: Primarily bundled as high-stickiness integrated add-ons with Contractor Growth Websites & Monthly Retainers (no per-tech seat gouging), with a secondary guided standalone integration/demo path for established contractors who already like their domain.
 
 ---

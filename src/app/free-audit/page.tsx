@@ -13,6 +13,7 @@ import {
   Phone,
   Calendar,
   Star,
+  Activity,
 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -171,6 +172,21 @@ export default function FreeAuditPage() {
                     — Scott Lowery, Owner, Geaux Pro Outdoors (Bentonia, MS)
                   </span>
                 </div>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-[#070b14] border border-cyan-500/25 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+                <div className="flex items-center gap-2.5 text-slate-300">
+                  <Activity className="w-4 h-4 text-cyan-400 shrink-0" />
+                  <span>
+                    Diagnostics powered by <strong className="text-white">PDM Site Intelligence™</strong> (CrUX cellular speed, SSL &amp; Google schema checks).
+                  </span>
+                </div>
+                <Link
+                  href="/site-intelligence"
+                  className="font-mono font-bold uppercase tracking-wider text-cyan-300 hover:text-amber-300 shrink-0"
+                >
+                  See Console →
+                </Link>
               </div>
 
               <div className="flex flex-wrap items-center gap-3 text-xs text-slate-400">

@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/contractors",
     "/pindrop",
     "/pincam",
+    "/site-intelligence",
     "/web-design",
     "/local-seo",
     "/custom-applications",
@@ -39,9 +40,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority:
       route === ""
         ? 1.0
-        : ["/contractors", "/pindrop", "/pincam", "/web-design", "/local-seo", "/free-audit"].includes(
-            route
-          )
+        : [
+            "/contractors",
+            "/pindrop",
+            "/pincam",
+            "/site-intelligence",
+            "/web-design",
+            "/local-seo",
+            "/free-audit",
+          ].includes(route)
         ? 0.9
         : ["/privacy", "/terms", "/refund-policy"].includes(route)
         ? 0.4

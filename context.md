@@ -18,9 +18,10 @@
   * **Transpond:** Marketing automation campaigns and autoresponders (Main List ID: `186443`, Damein is a certified Transpond Solutions Partner).
   * **Ultatel:** Cloud VoIP Business Phone Systems integration provider.
   * **Resend SDK:** Transactional notification & fallback email delivery.
-* **Proprietary Contractor Field Software Showcases:**
+* **Proprietary Software & Watchtower Showcases:**
   * **`PinCam™` (`/pincam`):** Interactive 5-mode contractor camera & proof studio (Ghost Camera Photo Match 0–90% opacity overlay, non-destructive vector markups/measurements, dual-camera PiP walkthroughs, instant homeowner/adjuster PDF reports, and 1-tap `PinDrop™` sync).
   * **`PinDrop™` (`/pindrop`):** Interactive 5-stage field-to-Google SEO engine (30s mobile check-in, auto-published `/projects/[slug]` & `/areas-we-service/[city]` geo-schema pages, live Central MS map pins, Google Business Profile OAuth sync, and 15-min SMS 5-star review automation).
+  * **`PDM Site Intelligence™` (`/site-intelligence`):** Authentic 4-phase interactive Watchtower console (`#070b14` + cyan/emerald/amber telemetry modeled on `pdm-site-intelligence`) showcasing 5-minute multi-probe HTTP/SSL checks, Google Search Console & GA4 `7d/28d/90d` growth deltas, CrUX cellular Core Web Vitals + Rich Result schema validation, and the 2-Stage Human Approval AI remediation queue. Positioned under `Services ▾` so `Field Apps ▾` stays 100% dedicated to field crews.
 * **Booking Pipeline:** Calendly scheduling widget integrated dynamically at `/book` + modal triggers.
 
 ---
@@ -59,6 +60,7 @@ graph TD
   * `/contractors` — Flagship Mississippi Contractor Growth Systems page (Roofing, HVAC, Excavation/Dirt Work, Plumbing, Electrical, Lawn Care) with `Service` + `FAQPage` JSON-LD.
   * `/local-seo` — Google Map Pack & Local SEO engineering page (with permanent `301` redirect from `/seo` and `/google-maps` in `next.config.mjs`).
   * `/web-design` — Pure Server Component (removed unnecessary `"use client"` wrapper) with `Service` + `FAQPage` JSON-LD.
+  * `/site-intelligence` — Authentic 4-phase Watchtower showcase (`SoftwareApplication` + `FAQPage` JSON-LD) cross-linked across `Services ▾`, `Footer`, `/web-design`, `/local-seo`, and `/free-audit` (with `301` redirects from `/watchtower` and `/site-monitoring`).
   * `/pincam` & `/pindrop` — Twin proprietary app showcases faithfully modeling the **actual production UI** of `PDM PinDrop™` (`#0b0c10` / `#12141c` double-bezel obsidian, real Central MS Esri World Imagery satellite map + gold teardrop pins, 2-column `.pin-feed-card` cards with neighborhood satellite mini-maps, interactive `/admin/drop-pin` crew portal, `/pin-page` Answer Engine SEO detail view, and 1-line `<iframe>` embed snippet) and `PinCam™` (native Android APK + iPhone Home Screen dashboard, Ghost Photo Match, non-destructive markup, Dual-Cam PiP, PDF report, and 5-tab mobile dock). Featured inside the signature `Field Apps` dropdown in `Navbar.tsx` and `JobsitePipelineStory.tsx`, with zero legacy stock/fake `.webp` mockups.
 * **Central Mississippi 6-City Static Hubs (`src/data/locations.ts` + `src/app/locations/[city]/page.tsx`):**
   * `/locations/jackson-ms`, `/locations/madison-ms`, `/locations/ridgeland-ms`, `/locations/brandon-ms`, `/locations/flowood-ms`, `/locations/clinton-ms` — each with unique county/ZIP coordinates, corridors, subdivisions, live local client proof, and `Service` + `FAQPage` + `BreadcrumbList` JSON-LD.

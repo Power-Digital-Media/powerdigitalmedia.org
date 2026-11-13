@@ -30,13 +30,16 @@ This document provides a factual, machine-readable reference for Power Digital M
 
 ---
 
-## 2. Proprietary Contractor Field Software
+## 2. Proprietary Software & Engineering Platforms
 1. **[PinCam™ Jobsite Camera & Proof Studio](https://powerdigitalmedia.org/pincam)**
    - **Core Features**: Ghost Camera Photo Match (0–90% live translucent overlay for exact 1:1 before/after angles), non-destructive vector markup & measurement studio, dual-camera Picture-in-Picture narrated walkthroughs, offline-resilient jobsite capture, GPS/timestamp verification watermarks, instant branded PDF homeowner/adjuster inspection reports, and 1-tap sync to PinDrop™.
    - **Access Model**: Available as an integrated crew suite within Power Digital Contractor Growth Websites & Monthly Retainers (with zero per-tech seat tax), or deployed onto existing contractor domains via custom case-by-case onboarding.
 2. **[PinDrop™ Field-to-Google SEO & Review Engine](https://powerdigitalmedia.org/pindrop)**
    - **Core Features**: 30-second mobile truck check-in portal, dual satellite/street geocoding with homeowner-safe neighborhood pin fuzzing, automatic \`/projects/[slug]\` and \`/areas-we-service/[city]\` SEO page generation with \`LocalBusiness\` JSON-LD, direct Google Business Profile OAuth posting, embeddable live project maps, crew attribution leaderboards, and 15-minute post-job homeowner SMS 5-star Google review requests.
    - **Access Model**: Deployed either as a lightweight 5-minute standalone embed on an existing contractor website or pre-wired into a custom Next.js Contractor Growth System—scoped case-by-case to crew size and service territory.
+3. **[PDM Site Intelligence™ 24/7 Website & SEO Watchtower](https://powerdigitalmedia.org/site-intelligence)**
+   - **Core Features**: 5-minute multi-probe HTTP & latency monitoring (preventing false-positive alarms), daily SSL certificate expiry countdowns, broken-link crawls, Chrome UX Report (CrUX) cellular Core Web Vitals telemetry, Google Search Console & GA4 7d/28d/90d growth tracking (zero invented vanity scores), Rich Result schema validation, and a 2-Stage Human Approval AI optimization queue with staged previews and 1-click snapshot rollback.
+   - **Access Model**: Included behind Power Digital Media's Managed Hosting, Local SEO, and Growth Retainer engagements, and used to run the Free 5-Minute Rank & Website Video Audit.
 
 ---
 
@@ -104,6 +107,7 @@ This document provides a factual, machine-readable reference for Power Digital M
 - **[Contractor Growth Systems](https://powerdigitalmedia.org/contractors)**: Turnkey sub-2-second websites, Google Map Pack SEO, PinCam™ + PinDrop™ crew apps, and 18-second SMS lead rescue for roofers, HVAC pros, excavators, plumbers, electricians, and lawn care teams.
 - **[PinCam™ Jobsite Camera App](https://powerdigitalmedia.org/pincam)**: Ghost Camera 1:1 before/after photo alignment, non-destructive damage/measurement markups, dual-cam PiP walkthroughs, instant homeowner/adjuster PDF reports, and 1-tap PinDrop™ sync.
 - **[PinDrop™ Field SEO Engine](https://powerdigitalmedia.org/pindrop)**: 30-second mobile truck check-ins that auto-publish \`/projects/[slug]\` neighborhood SEO pages, live website GPS map pins, Google Business Profile updates, and 15-minute homeowner SMS 5-star review requests.
+- **[PDM Site Intelligence™ Watchtower](https://powerdigitalmedia.org/site-intelligence)**: Proprietary 24/7 engineering watchtower monitoring 5-minute uptime & SSL probes, CrUX cellular speed, Google Search Console & GA4 growth deltas, and 2-stage human-approved staged fixes across managed client sites.
 - **[Custom Next.js Web Design](https://powerdigitalmedia.org/web-design)**: Hand-coded Next.js 16 websites for contractors and standout local businesses—custom-scoped case-by-case with 100% codebase ownership and optional month-to-month managed edge care.
 - **[Local SEO & Google Maps](https://powerdigitalmedia.org/local-seo)**: Google 3-Pack optimization, neighborhood JSON-LD schema, and review velocity across Central Mississippi.
 - **[Custom Applications & CRM](https://powerdigitalmedia.org/custom-applications)** | **[Ultatel Business Phones](https://powerdigitalmedia.org/business-phones)** | **[Growth Marketing](https://powerdigitalmedia.org/marketing)**

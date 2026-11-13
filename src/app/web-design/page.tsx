@@ -8,6 +8,7 @@ import {
   MapPin,
   Camera,
   ArrowRight,
+  Activity,
 } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
@@ -348,6 +349,30 @@ export default function WebDesignPage() {
                 className="px-5 py-3.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-white font-bold uppercase tracking-wider text-xs transition-colors"
               >
                 Explore PinDrop™ →
+              </Link>
+            </div>
+          </div>
+
+          {/* 24/7 PDM Site Intelligence Watchtower Callout Bar */}
+          <div className="mt-5 p-6 sm:p-8 rounded-3xl bg-[#070b14] border border-cyan-500/30 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+            <div className="space-y-1.5 max-w-2xl">
+              <div className="text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 flex items-center gap-2">
+                <Activity className="w-4 h-4 text-cyan-400" /> Included In Ongoing Managed Hosting &amp; Care
+              </div>
+              <h3 className="text-xl sm:text-2xl font-black uppercase text-white">
+                Protected 24/7 by PDM Site Intelligence™.
+              </h3>
+              <p className="text-sm text-slate-300">
+                Every managed Power Digital website is wired into our in-house watchtower—running 5-minute HTTP &amp; SSL probes, broken-link crawls, cellular Core Web Vitals checks, and 2-stage staged updates so your quote forms never silently break.
+              </p>
+            </div>
+            <div className="shrink-0">
+              <Link
+                href="/site-intelligence"
+                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-400/40 text-cyan-200 font-bold uppercase tracking-wider text-xs transition-colors"
+              >
+                <span>See Inside Watchtower</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
           </div>

@@ -226,9 +226,19 @@ export default function RootLayout({
                         url: "https://powerdigitalmedia.org/pindrop",
                       },
                     },
+                    {
+                      "@type": "Offer",
+                      itemOffered: {
+                        "@type": "SoftwareApplication",
+                        name: "PDM Site Intelligence™ 24/7 Website & SEO Watchtower",
+                        applicationCategory: "BusinessApplication",
+                        operatingSystem: "Web, Cloud",
+                        url: "https://powerdigitalmedia.org/site-intelligence",
+                      },
+                    },
                   ],
                   description:
-                    "Power Digital Media LLC builds high-converting custom Next.js websites, Google Map Pack SEO systems, and proprietary PinCam™ + PDM PinDrop™ jobsite automation apps for contractors and businesses across Jackson, Madison, Ridgeland, Brandon, Flowood, and Clinton, Mississippi.",
+                    "Power Digital Media LLC builds high-converting custom Next.js websites, Google Map Pack SEO systems, and proprietary PinCam™, PDM PinDrop™, and PDM Site Intelligence™ software for contractors and businesses across Jackson, Madison, Ridgeland, Brandon, Flowood, and Clinton, Mississippi.",
                 },
                 {
                   "@type": "Person",

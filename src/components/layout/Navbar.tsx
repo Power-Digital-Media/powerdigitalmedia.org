@@ -17,6 +17,7 @@ import {
   TrendingUp,
   Phone,
   ArrowUpRight,
+  Activity,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -96,6 +97,12 @@ export default function Navbar() {
       href: "/marketing",
       desc: "Paid lead pipelines & automated follow-up campaigns",
       icon: TrendingUp,
+    },
+    {
+      name: "PDM Site Intelligence™",
+      href: "/site-intelligence",
+      desc: "24/7 uptime, SSL, CrUX speed & Search Console watchtower",
+      icon: Activity,
     },
   ];
 

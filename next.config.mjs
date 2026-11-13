@@ -62,6 +62,16 @@ const nextConfig = {
         destination: '/contractors',
         permanent: true,
       },
+      {
+        source: '/watchtower',
+        destination: '/site-intelligence',
+        permanent: true,
+      },
+      {
+        source: '/site-monitoring',
+        destination: '/site-intelligence',
+        permanent: true,
+      },
       // 1. Retired Services, Showroom & Equipment Pages
       {
         source: '/podcasting',
