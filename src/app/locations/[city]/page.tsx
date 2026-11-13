@@ -169,7 +169,7 @@ export default async function CityLocationPage({ params }: LocationPageProps) {
           {/* Right: Geo Telemetry & Local Case Study Card */}
           <div className="lg:col-span-5">
             <div className="obsidian-surface rounded-3xl p-6 sm:p-7 space-y-5">
-              <div className="flex items-center justify-between border-b border-white/10 pb-4">
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4">
                 <div>
                   <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 font-bold block">
                     {loc.distanceFromHQ}
@@ -178,7 +178,7 @@ export default async function CityLocationPage({ params }: LocationPageProps) {
                     {loc.city} Market Telemetry
                   </h2>
                 </div>
-                <span className="text-[11px] font-mono text-slate-400">
+                <span className="text-[11px] font-mono text-slate-400 shrink-0">
                   {loc.coordinates.display}
                 </span>
               </div>

@@ -198,37 +198,37 @@ export default function LocalSEOPage() {
             <div className="space-y-2.5">
               <div className="p-4 rounded-2xl bg-emerald-500/[0.09] border border-emerald-400/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div>
-                  <div className="flex items-center gap-2">
-                    <span className="px-2 py-0.5 rounded bg-emerald-400 text-slate-950 text-[10px] font-black uppercase">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="px-2 py-0.5 rounded bg-emerald-400 text-slate-950 text-[10px] font-black uppercase shrink-0">
                       #1 Map Pack Target
                     </span>
                     <span className="font-black text-white text-sm sm:text-base">
                       Your Company + PinDrop™ Geo Proof
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 text-xs text-amber-300 mt-1">
-                    <span className="flex items-center gap-0.5">
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-amber-300 mt-1">
+                    <span className="flex items-center gap-0.5 shrink-0">
                       <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" /> 5.0
                     </span>
                     <span className="text-slate-300">• Active Weekly Job Photos • Sub-2s Website</span>
                   </div>
                 </div>
-                <span className="text-xs font-mono font-bold text-emerald-300">
+                <span className="text-xs font-mono font-bold text-emerald-300 shrink-0">
                   Tap-to-Call Winner
                 </span>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-white/[0.02] border border-white/10 flex items-center justify-between opacity-65 text-xs">
+              <div className="p-3.5 rounded-2xl bg-white/[0.02] border border-white/10 flex items-center justify-between gap-3 opacity-65 text-xs">
                 <span className="text-slate-300 font-semibold">
                   #2 Competitor (Static WordPress Site • Last Photo 2023)
                 </span>
-                <span className="font-mono text-slate-400">4.4★</span>
+                <span className="font-mono text-slate-400 shrink-0">4.4★</span>
               </div>
-              <div className="p-3.5 rounded-2xl bg-white/[0.02] border border-white/10 flex items-center justify-between opacity-50 text-xs">
+              <div className="p-3.5 rounded-2xl bg-white/[0.02] border border-white/10 flex items-center justify-between gap-3 opacity-50 text-xs">
                 <span className="text-slate-400 font-semibold">
                   #3 Competitor (No City Pages • Slow 6.4s Mobile Load)
                 </span>
-                <span className="font-mono text-slate-500">4.1★</span>
+                <span className="font-mono text-slate-500 shrink-0">4.1★</span>
               </div>
             </div>
           </div>

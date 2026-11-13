@@ -250,9 +250,9 @@ export default function PinCamPage() {
               </div>
             </div>
 
-            <div className="pt-6 mt-6 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
+            <div className="pt-6 mt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400">
               <span>Want to see how PinDrop™ handles the SEO half?</span>
-              <Link href="/pindrop" className="font-bold text-amber-400 hover:text-amber-300">
+              <Link href="/pindrop" className="font-bold text-amber-400 hover:text-amber-300 shrink-0">
                 Explore PinDrop™ →
               </Link>
             </div>

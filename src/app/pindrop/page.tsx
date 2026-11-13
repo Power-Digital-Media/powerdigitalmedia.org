@@ -274,7 +274,7 @@ export default function PinDropPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
           <div className="rounded-3xl bg-[#090d18] border border-white/10 p-7 flex flex-col justify-between">
             <div>
-              <div className="flex items-center justify-between mb-5">
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
                 <span className="px-3 py-1 rounded-full bg-amber-500/10 text-amber-300 text-[10px] font-mono font-bold uppercase tracking-wider border border-amber-500/25">
                   Roofing &amp; Storm Restoration
                 </span>
@@ -305,7 +305,7 @@ export default function PinDropPage() {
 
           <div className="rounded-3xl bg-[#090d18] border border-white/10 p-7 flex flex-col justify-between">
             <div>
-              <div className="flex items-center justify-between mb-5">
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
                 <span className="px-3 py-1 rounded-full bg-amber-500/10 text-amber-300 text-[10px] font-mono font-bold uppercase tracking-wider border border-amber-500/25">
                   Excavation &amp; Land Clearing
                 </span>
@@ -335,7 +335,7 @@ export default function PinDropPage() {
 
           <div className="rounded-3xl bg-[#090d18] border border-white/10 p-7 flex flex-col justify-between">
             <div>
-              <div className="flex items-center justify-between mb-5">
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
                 <span className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-300 text-[10px] font-mono font-bold uppercase tracking-wider border border-emerald-500/25">
                   Lawn Care &amp; Property Maintenance
                 </span>

@@ -471,7 +471,7 @@ export default function ContractorsPage() {
                   />
                 </div>
                 <div className="p-6 space-y-2.5">
-                  <div className="flex items-center justify-between text-[11px] font-mono">
+                  <div className="flex flex-wrap items-center justify-between gap-1.5 text-[11px] font-mono">
                     <span className="text-amber-300 font-bold">{cs.trade}</span>
                     <span className="text-emerald-400 font-bold">{cs.stat}</span>
                   </div>

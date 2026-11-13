@@ -245,14 +245,14 @@ export default function WebDesignPage() {
                     </div>
                   </div>
 
-                  <div className="pt-2 border-t border-white/10 flex items-center justify-between text-xs">
+                  <div className="pt-2 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs">
                     <span className="text-slate-300 flex items-center gap-1.5 font-medium">
-                      <MapPin className="w-3.5 h-3.5 text-amber-400" />
+                      <MapPin className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                       Includes PinDrop™ + PinCam™ Add-On Option
                     </span>
                     <Link
                       href="/contractors"
-                      className="font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1"
+                      className="font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1 shrink-0"
                     >
                       <span>Trade Systems</span>
                       <ArrowRight className="w-3.5 h-3.5" />

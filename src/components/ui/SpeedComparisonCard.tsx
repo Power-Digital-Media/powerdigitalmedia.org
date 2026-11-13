@@ -40,21 +40,23 @@ export default function SpeedComparisonCard() {
             <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/5 rounded-full blur-2xl pointer-events-none" />
 
             <div>
-              <div className="flex items-center justify-between gap-2 mb-6 pb-4 border-b border-white/[0.07]">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-xl bg-red-500/10 border border-red-500/25 flex items-center justify-center text-red-400">
-                    <AlertTriangle className="w-4 h-4" />
+              <div className="mb-6 pb-4 border-b border-white/[0.07] space-y-3">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="w-11 h-11 rounded-2xl bg-red-500/10 border border-red-500/25 flex items-center justify-center text-red-400 shrink-0">
+                    <AlertTriangle className="w-5 h-5" />
                   </div>
-                  <div>
-                    <h3 className="text-base font-black uppercase tracking-tight text-white">
-                      Typical Agency WordPress / Wix Site
-                    </h3>
-                    <p className="text-xs text-slate-400">Heavy Plugins &amp; Generic Stock Photos</p>
-                  </div>
+                  <span className="px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-bold font-mono shrink-0">
+                    5.8s – 8.2s Load
+                  </span>
                 </div>
-                <span className="px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-bold font-mono shrink-0">
-                  5.8s – 8.2s Load
-                </span>
+                <div>
+                  <h3 className="text-lg sm:text-xl font-black uppercase tracking-tight text-white leading-snug">
+                    Typical Agency WordPress / Wix Site
+                  </h3>
+                  <p className="text-xs text-slate-400 mt-0.5">
+                    Heavy Plugins &amp; Generic Stock Photos
+                  </p>
+                </div>
               </div>
 
               <ul className="space-y-3.5 mb-8">
@@ -88,23 +90,23 @@ export default function SpeedComparisonCard() {
             <div className="absolute top-0 right-0 w-40 h-40 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
 
             <div>
-              <div className="flex items-center justify-between gap-2 mb-6 pb-4 border-b border-amber-500/20">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-xl bg-amber-500/15 border border-amber-500/40 flex items-center justify-center text-amber-400">
-                    <Zap className="w-4 h-4" />
+              <div className="mb-6 pb-4 border-b border-amber-500/20 space-y-3">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="w-11 h-11 rounded-2xl bg-amber-500/15 border border-amber-500/40 flex items-center justify-center text-amber-400 shrink-0">
+                    <Zap className="w-5 h-5" />
                   </div>
-                  <div>
-                    <h3 className="text-base font-black uppercase tracking-tight text-white">
-                      Power Digital Growth System
-                    </h3>
-                    <p className="text-xs text-amber-400 font-semibold">
-                      Custom Next.js + PinCam™ &amp; PinDrop™
-                    </p>
-                  </div>
+                  <span className="px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/35 text-emerald-300 text-xs font-bold font-mono shrink-0">
+                    ⚡ &lt; 1.8s Mobile Load
+                  </span>
                 </div>
-                <span className="px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/35 text-emerald-300 text-xs font-bold font-mono shrink-0">
-                  ⚡ &lt; 1.8s Mobile Load
-                </span>
+                <div>
+                  <h3 className="text-lg sm:text-xl font-black uppercase tracking-tight text-white leading-snug">
+                    Power Digital Growth System
+                  </h3>
+                  <p className="text-xs text-amber-400 font-semibold mt-0.5">
+                    Custom Next.js + PinCam™ &amp; PinDrop™
+                  </p>
+                </div>
               </div>
 
               <ul className="space-y-3.5 mb-8">
@@ -134,7 +136,7 @@ export default function SpeedComparisonCard() {
               </div>
               <Link
                 href="/free-audit"
-                className="px-4 py-2.5 bg-amber-400 hover:bg-amber-300 text-slate-950 rounded-xl text-xs font-black uppercase tracking-wider transition-all shrink-0 shadow-md"
+                className="w-full sm:w-auto text-center px-4 py-2.5 bg-amber-400 hover:bg-amber-300 text-slate-950 rounded-xl text-xs font-black uppercase tracking-wider transition-all shrink-0 shadow-md"
               >
                 Free Rank Check
               </Link>
