@@ -351,8 +351,17 @@ export default function PinDropDemoExplorer() {
   const [stampPhoto, setStampPhoto] = useState(true);
   const [pinSubmitted, setPinSubmitted] = useState(false);
 
-  // View 03 Before/After Slider state
-  const [seoSplit, setSeoSplit] = useState(54);
+  // View 03 Before/After Slider state (0% Left = Before, 100% Right = After)
+  const [seoSplit, setSeoSplit] = useState(0);
+
+  const updateSeoSplitFromPointer = (clientX: number, el: HTMLDivElement) => {
+    const rect = el.getBoundingClientRect();
+    if (!rect.width) return;
+    const pct = Math.round(
+      Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100))
+    );
+    setSeoSplit(pct);
+  };
 
   // View 04 Trade & Embed state
   const [selectedTrade, setSelectedTrade] = useState(TRADE_PRESETS[0]);
@@ -1347,54 +1356,95 @@ export default function PinDropDemoExplorer() {
                       </span>
                     </div>
 
-                    <div className="relative aspect-[16/10] select-none">
+                    <div
+                      className="relative aspect-[16/10] overflow-hidden cursor-ew-resize select-none touch-pan-y"
+                      onPointerDown={(e) => {
+                        e.currentTarget.setPointerCapture(e.pointerId);
+                        updateSeoSplitFromPointer(e.clientX, e.currentTarget);
+                      }}
+                      onPointerMove={(e) => {
+                        if (!e.currentTarget.hasPointerCapture(e.pointerId)) return;
+                        updateSeoSplitFromPointer(e.clientX, e.currentTarget);
+                      }}
+                      onPointerUp={(e) => {
+                        if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+                          e.currentTarget.releasePointerCapture(e.pointerId);
+                        }
+                      }}
+                      onPointerCancel={(e) => {
+                        if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+                          e.currentTarget.releasePointerCapture(e.pointerId);
+                        }
+                      }}
+                    >
+                      {/* Base Layer: BEFORE (100% visible when slider is all the way LEFT at 0%) */}
                       <Image
-                        src={activePin.afterPhoto}
-                        alt={`Completed ${activePin.service} in ${activePin.city}`}
+                        src={activePin.beforePhoto}
+                        alt="Before project photo"
                         fill
                         sizes="(max-width: 1024px) 92vw, 620px"
-                        className="object-cover"
+                        className="object-cover pointer-events-none"
                       />
+                      <span className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded bg-black/80 text-[10px] font-bold text-amber-300 pointer-events-none">
+                        BEFORE
+                      </span>
+
+                      {/* Top Layer: AFTER (Wipes LEFT -> RIGHT as slider moves 0% -> 100%) */}
                       <div
-                        className="absolute inset-0 overflow-hidden"
+                        className="absolute inset-0 overflow-hidden pointer-events-none"
                         style={{ clipPath: `inset(0 ${100 - seoSplit}% 0 0)` }}
                       >
                         <Image
-                          src={activePin.beforePhoto}
-                          alt="Before project photo"
+                          src={activePin.afterPhoto}
+                          alt={`Completed ${activePin.service} in ${activePin.city}`}
                           fill
                           sizes="(max-width: 1024px) 92vw, 620px"
                           className="object-cover"
                         />
+                        <span className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded bg-black/80 text-[10px] font-bold text-emerald-300">
+                          AFTER
+                        </span>
                       </div>
+
+                      {/* Vertical Split Line */}
                       <div
                         className="absolute top-0 bottom-0 w-0.5 bg-[#e2b047] pointer-events-none"
                         style={{ left: `${seoSplit}%` }}
+                      />
+
+                      {/* Draggable Handle Pill */}
+                      <div
+                        className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center touch-none"
+                        style={{ left: `clamp(18px, ${seoSplit}%, calc(100% - 18px))` }}
                       >
-                        <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#e2b047] text-[#0b0c10] font-black text-xs flex items-center justify-center border-2 border-white">
-                          ↔
+                        <div className="w-8 h-8 rounded-full bg-[#e2b047] text-[#0b0c10] font-black text-xs flex items-center justify-center border-2 border-white shadow-xl">
+                          {seoSplit === 0 ? "→" : seoSplit === 100 ? "←" : "↔"}
                         </div>
                       </div>
-                      <span className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded bg-black/80 text-[10px] font-bold text-amber-300">
-                        BEFORE
-                      </span>
-                      <span className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded bg-black/80 text-[10px] font-bold text-emerald-300">
-                        AFTER
-                      </span>
                     </div>
 
                     <div className="px-4 py-3 bg-[#090b10] border-t border-white/10 flex items-center gap-3">
-                      <span className="text-[11px] font-mono text-slate-400">Before</span>
+                      <span
+                        className={`text-[11px] font-mono shrink-0 ${
+                          seoSplit < 50 ? "text-[#e2b047] font-bold" : "text-slate-400"
+                        }`}
+                      >
+                        Before
+                      </span>
                       <input
                         type="range"
-                        min={10}
-                        max={90}
+                        min={0}
+                        max={100}
                         value={seoSplit}
                         onChange={(e) => setSeoSplit(Number(e.target.value))}
-                        aria-label="Slide before and after transformation"
+                        aria-label="Slide left to right to transform before photo into after photo"
                         className="w-full accent-[#e2b047] cursor-ew-resize"
                       />
-                      <span className="text-[11px] font-mono text-[#e2b047] font-bold">
+                      <span
+                        className={`text-[11px] font-mono shrink-0 ${
+                          seoSplit >= 50 ? "text-emerald-400 font-bold" : "text-slate-400"
+                        }`}
+                      >
                         After
                       </span>
                     </div>

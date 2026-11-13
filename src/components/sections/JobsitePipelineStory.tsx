@@ -17,8 +17,17 @@ import {
 } from "lucide-react";
 
 export default function JobsitePipelineStory() {
-  const [ghostSplit, setGhostSplit] = useState(58);
+  const [ghostSplit, setGhostSplit] = useState(0);
   const [activeStage, setActiveStage] = useState<0 | 1 | 2>(0);
+
+  const updateSplitFromPointer = (clientX: number, el: HTMLDivElement) => {
+    const rect = el.getBoundingClientRect();
+    if (!rect.width) return;
+    const pct = Math.round(
+      Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100))
+    );
+    setGhostSplit(pct);
+  };
 
   return (
     <section
@@ -127,47 +136,71 @@ export default function JobsitePipelineStory() {
                     <span className="text-emerald-400 font-bold">GPS LOCKED • MADISON, MS</span>
                   </div>
 
-                  <div className="relative aspect-[16/10] w-full overflow-hidden">
-                    {/* After Layer (Full Width) */}
+                  <div
+                    className="relative aspect-[16/10] w-full overflow-hidden cursor-ew-resize touch-pan-y"
+                    onPointerDown={(e) => {
+                      e.currentTarget.setPointerCapture(e.pointerId);
+                      updateSplitFromPointer(e.clientX, e.currentTarget);
+                    }}
+                    onPointerMove={(e) => {
+                      if (!e.currentTarget.hasPointerCapture(e.pointerId)) return;
+                      updateSplitFromPointer(e.clientX, e.currentTarget);
+                    }}
+                    onPointerUp={(e) => {
+                      if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+                        e.currentTarget.releasePointerCapture(e.pointerId);
+                      }
+                    }}
+                    onPointerCancel={(e) => {
+                      if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+                        e.currentTarget.releasePointerCapture(e.pointerId);
+                      }
+                    }}
+                  >
+                    {/* Base Layer: BEFORE (100% visible when slider is all the way LEFT at 0%) */}
                     <Image
-                      src="/pincam/roof-after.jpg"
-                      alt="Completed architectural shingle roof in Madison, MS"
+                      src="/pincam/roof-before.jpg"
+                      alt="Storm damaged roof with blue tarp before replacement"
                       fill
                       sizes="(max-width: 1024px) 94vw, 680px"
-                      className="object-cover"
+                      className="object-cover pointer-events-none"
                     />
+                    <span className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded bg-black/80 border border-red-400/40 text-[9px] sm:text-[10px] font-mono font-bold text-red-300 uppercase pointer-events-none">
+                      BEFORE • STORM DAMAGE
+                    </span>
 
-                    {/* Before Layer (Clipped by slider) */}
+                    {/* Top Layer: AFTER (Wipes in from LEFT to RIGHT as slider moves 0% -> 100%) */}
                     <div
-                      className="absolute inset-0 overflow-hidden"
+                      className="absolute inset-0 overflow-hidden pointer-events-none"
                       style={{ clipPath: `inset(0 ${100 - ghostSplit}% 0 0)` }}
                     >
                       <Image
-                        src="/pincam/roof-before.jpg"
-                        alt="Storm damaged roof with blue tarp before replacement"
+                        src="/pincam/roof-after.jpg"
+                        alt="Completed architectural shingle roof in Madison, MS"
                         fill
                         sizes="(max-width: 1024px) 94vw, 680px"
                         className="object-cover"
                       />
+                      <span className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-black/80 border border-emerald-400/40 text-[9px] sm:text-[10px] font-mono font-bold text-emerald-300 uppercase">
+                        AFTER • 30-YR ROOF
+                      </span>
                     </div>
 
-                    {/* Vertical Split Handle */}
+                    {/* Vertical Split Divider Line */}
                     <div
                       className="absolute top-0 bottom-0 w-0.5 bg-amber-400 shadow-[0_0_16px_rgba(245,158,11,0.9)] pointer-events-none"
                       style={{ left: `${ghostSplit}%` }}
+                    />
+
+                    {/* Draggable Handle Pill (Clamped inside edges so 0% and 100% never clip) */}
+                    <div
+                      className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center touch-none"
+                      style={{ left: `clamp(18px, ${ghostSplit}%, calc(100% - 18px))` }}
                     >
-                      <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-amber-400 text-slate-950 font-black text-xs flex items-center justify-center shadow-xl border-2 border-white">
-                        ↔
+                      <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-amber-400 text-slate-950 font-black text-xs flex items-center justify-center shadow-xl border-2 border-white">
+                        {ghostSplit === 0 ? "→" : ghostSplit === 100 ? "←" : "↔"}
                       </div>
                     </div>
-
-                    {/* Non-Colliding Top Corner Badges */}
-                    <span className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-black/80 border border-red-400/40 text-[9px] sm:text-[10px] font-mono font-bold text-red-300 uppercase">
-                      BEFORE
-                    </span>
-                    <span className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded bg-black/80 border border-emerald-400/40 text-[9px] sm:text-[10px] font-mono font-bold text-emerald-300 uppercase">
-                      AFTER • 30-YR ROOF
-                    </span>
                   </div>
 
                   {/* Clean Verification Stamp Footer (Below Photo — Zero Obstruction) */}
@@ -178,17 +211,29 @@ export default function JobsitePipelineStory() {
 
                   {/* Accessible Range Slider Control */}
                   <div className="px-3.5 sm:px-4 py-3 bg-[#070a12] border-t border-white/10 flex items-center gap-3">
-                    <span className="text-[11px] font-mono text-slate-400 shrink-0">Before</span>
+                    <span
+                      className={`text-[11px] font-mono shrink-0 ${
+                        ghostSplit < 50 ? "text-amber-400 font-bold" : "text-slate-400"
+                      }`}
+                    >
+                      Before
+                    </span>
                     <input
                       type="range"
-                      min={8}
-                      max={92}
+                      min={0}
+                      max={100}
                       value={ghostSplit}
                       onChange={(e) => setGhostSplit(Number(e.target.value))}
-                      aria-label="Slide to compare before and after jobsite photos"
+                      aria-label="Slide left to right to transform before photo into after photo"
                       className="w-full accent-amber-400 cursor-ew-resize"
                     />
-                    <span className="text-[11px] font-mono text-amber-400 font-bold shrink-0">After</span>
+                    <span
+                      className={`text-[11px] font-mono shrink-0 ${
+                        ghostSplit >= 50 ? "text-emerald-400 font-bold" : "text-slate-400"
+                      }`}
+                    >
+                      After
+                    </span>
                   </div>
                 </div>
               </div>
