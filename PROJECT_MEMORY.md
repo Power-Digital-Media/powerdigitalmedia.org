@@ -41,5 +41,5 @@
 - **TypeScript**: Strict type definitions (use `LucideIcon` for Lucide icon components).
 - **Speed & Honesty Claims**: `< 2s` / `< 2–3s on mobile`, `98+ Speed Score`.
 - **Contact & CTAs**: Always preserve Damein's direct line `(601) 446-2393`, `/book`, and `/free-audit`.
-- **GBP API Allowlist Case ID**: `6-2776000041917` (GCP project `power-digital-media` / `978634389841`; GBP Manager account `100% verified` for `Power Digital Media LLC` + `Born Again Roofing`; permanent CLI ready in `scripts/gbp-sync.ts`).
+- **GBP Live Profile & API Allowlist**: Live GBP (`16859162098440684472`) is 100% aligned 1:1 with website (5 categories, 13 services, 11 Tri-County service areas, Ultatel-free copy, `/book` link, Cover Photo, 4 Product Cards, and Google Post). API Allowlist Case ID **`6-2776000041917`** submitted for GCP project `power-digital-media` (`978634389841`); permanent CLI ready in `scripts/gbp-sync.ts`.
 - **Follow-On Track**: Debug and polish live standalone `PinCam™` & `PinDrop™` app workflows in `e:\AntiGravity\pindrop-saas`.

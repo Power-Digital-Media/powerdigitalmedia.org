@@ -83,7 +83,7 @@ graph TD
 
 ## 🚨 5. External Operational Follow-Ups (Owner Actions)
 1. **Permanent Google Business Profile (GBP) API Sync (`src/data/gbp-profile.ts` & `scripts/gbp-sync.ts`):**
-   * Canonical Home-Office Service-Area Business (`CUSTOMER_LOCATION_ONLY`) GBP profile (`PDM_CANONICAL_GBP_PROFILE`) and CLI (`npm run gbp:auth`, `npm run gbp:audit`, `npm run gbp:push -- --apply`, `npm run gbp:post`) are wired and ready.
+   * **Live GBP Manual Optimization 100% Complete (`Power Digital Media LLC` — Store Code `16859162098440684472`):** Verified Home-Office Service-Area Business (`CUSTOMER_LOCATION_ONLY`) updated 1:1 with website: 5 categories, 13 service items with descriptions, 11 Tri-County service areas, Ultatel-free description, `https://powerdigitalmedia.org/` website + `/book` booking link, `Mon–Fri 9:00 AM–5:00 PM CT` hours, `Online appointments` enabled, `16:9` Cover Photo, 4 `4:3` Product Cards (`Contractor Growth Websites`, `PDM PinDrop`, `PinCam`, `PDM Site Intelligence`), and fresh Google Update post.
    * **GBP API Allowlist Case Submitted:** Google Support Case ID **`6-2776000041917`** (submitted for GCP Project `power-digital-media` / Project Number `978634389841`; removed stale suspended Flora duplicate so manager account is `100% verified` across `Power Digital Media LLC` and `Born Again Home Remodeling & Roofing, LLC`).
    * Once Google's approval email arrives (~7–10 business days), run `npm run gbp:auth` and `npm run gbp:audit` / `npm run gbp:push -- --apply`.
 2. **Standalone `pindrop-saas` App Polish (Next Engineering Track):** Debug & finalize remaining production workflows inside `e:\AntiGravity\pindrop-saas` (`PinCamNativeApp.tsx` / `PinDrop` SaaS backend) following deployment of `powerdigitalmedia.org`.
