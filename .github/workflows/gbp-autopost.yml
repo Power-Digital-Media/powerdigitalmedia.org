@@ -1,0 +1,65 @@
+name: Google Business Profile Autonomous Posts
+
+on:
+  schedule:
+    # Runs every Tuesday & Friday at 15:15 UTC (9:15 AM Central Time)
+    # Keeps Google Business Profile permanently fresh inside Google's 7-day Map Pack post window
+    - cron: '15 15 * * 2,5'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Preview next selected GBP post without publishing'
+        required: false
+        default: 'false'
+        type: boolean
+      force:
+        description: 'Bypass 60-hour cooldown guard and publish immediately'
+        required: false
+        default: 'false'
+        type: boolean
+      topic_id:
+        description: 'Optional explicit topic slug from src/data/gbp-autoposts.ts'
+        required: false
+        default: ''
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  publish-gbp-post:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run GBP Autonomous Post Engine
+        env:
+          CI: 'true'
+          GOOGLE_GBP_CLIENT_ID: ${{ secrets.GOOGLE_GBP_CLIENT_ID }}
+          GOOGLE_GBP_CLIENT_SECRET: ${{ secrets.GOOGLE_GBP_CLIENT_SECRET }}
+          GOOGLE_GBP_REFRESH_TOKEN: ${{ secrets.GOOGLE_GBP_REFRESH_TOKEN }}
+          GOOGLE_GBP_ACCOUNT_NAME: ${{ secrets.GOOGLE_GBP_ACCOUNT_NAME }}
+          GOOGLE_GBP_LOCATION_NAME: ${{ secrets.GOOGLE_GBP_LOCATION_NAME }}
+        run: |
+          ARGS=()
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            ARGS+=("--dry-run")
+          fi
+          if [ "${{ inputs.force }}" = "true" ]; then
+            ARGS+=("--force")
+          fi
+          if [ -n "${{ inputs.topic_id }}" ]; then
+            ARGS+=("--id" "${{ inputs.topic_id }}")
+          fi
+          npx tsx scripts/gbp-sync.ts autopost "${ARGS[@]}"

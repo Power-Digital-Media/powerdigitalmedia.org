@@ -22,7 +22,10 @@
     "gbp:auth": "tsx scripts/gbp-sync.ts auth",
     "gbp:audit": "tsx scripts/gbp-sync.ts audit",
     "gbp:push": "tsx scripts/gbp-sync.ts push",
-    "gbp:post": "tsx scripts/gbp-sync.ts post"
+    "gbp:posts": "tsx scripts/gbp-sync.ts posts",
+    "gbp:autopost": "tsx scripts/gbp-sync.ts autopost",
+    "gbp:post": "tsx scripts/gbp-sync.ts post",
+    "gbp:delete-post": "tsx scripts/gbp-sync.ts delete-post"
   },
   "dependencies": {
     "@builder.io/partytown": "^0.10.3",

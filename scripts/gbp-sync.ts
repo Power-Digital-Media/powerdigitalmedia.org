@@ -3,6 +3,7 @@ import http from "node:http";
 import path from "node:path";
 import dotenv from "dotenv";
 import { PDM_CANONICAL_GBP_PROFILE } from "../src/data/gbp-profile";
+import { PDM_GBP_AUTOPOST_ROTATION, type GbpAutoPostTemplate } from "../src/data/gbp-autoposts";
 
 dotenv.config({ path: ".env.local" });
 dotenv.config();
@@ -76,15 +77,32 @@ function resolveClientCredentials(): { clientId: string; clientSecret: string } 
 }
 
 function loadSavedAuth(): StoredGbpOAuth {
-  if (!fs.existsSync(LOCAL_TOKEN_FILE)) {
-    throw new Error(
-      "No authorized GBP OAuth token found (.gbp-oauth.local.json). Run `npm run gbp:auth` first."
-    );
+  if (fs.existsSync(LOCAL_TOKEN_FILE)) {
+    return JSON.parse(fs.readFileSync(LOCAL_TOKEN_FILE, "utf8")) as StoredGbpOAuth;
   }
-  return JSON.parse(fs.readFileSync(LOCAL_TOKEN_FILE, "utf8")) as StoredGbpOAuth;
+
+  const clientId = process.env.GOOGLE_GBP_CLIENT_ID || process.env.GOOGLE_CLIENT_ID;
+  const clientSecret = process.env.GOOGLE_GBP_CLIENT_SECRET || process.env.GOOGLE_CLIENT_SECRET;
+  const refreshToken = process.env.GOOGLE_GBP_REFRESH_TOKEN;
+  if (clientId && clientSecret && refreshToken) {
+    return {
+      clientId,
+      clientSecret,
+      refreshToken,
+      redirectUri: DEFAULT_REDIRECT_URI,
+      accountName: process.env.GOOGLE_GBP_ACCOUNT_NAME,
+      locationName: process.env.GOOGLE_GBP_LOCATION_NAME,
+      updatedAt: new Date().toISOString(),
+    };
+  }
+
+  throw new Error(
+    "No authorized GBP OAuth token found (.gbp-oauth.local.json or GOOGLE_GBP_REFRESH_TOKEN env). Run `npm run gbp:auth` first."
+  );
 }
 
 function saveAuth(payload: StoredGbpOAuth) {
+  if (process.env.CI || process.env.GITHUB_ACTIONS) return;
   fs.writeFileSync(LOCAL_TOKEN_FILE, JSON.stringify(payload, null, 2), { mode: 0o600 });
 }
 
@@ -550,38 +568,220 @@ async function runPush(applyChanges: boolean) {
   console.log(`   Updated Location: ${updated.title} (${updated.name})`);
 }
 
-async function runPost(summary: string, actionUrl: string) {
+async function fetchLivePosts(
+  accessToken: string,
+  accountName: string,
+  locationName: string,
+  pageSize = 20
+): Promise<Array<Record<string, any>>> {
+  const url = `https://mybusiness.googleapis.com/v4/${accountName}/${locationName}/localPosts?pageSize=${pageSize}`;
+  const res = await fetch(url, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+  if (!res.ok) {
+    const txt = await res.text();
+    throw new Error(explainQuotaOrApiError(res.status, txt));
+  }
+  const data = (await res.json()) as { localPosts?: Array<Record<string, any>> };
+  return data.localPosts || [];
+}
+
+async function runListPosts() {
   const saved = loadSavedAuth();
   const accessToken = await getAccessToken(saved);
   const { accountName, location } = await resolvePrimaryLocation(accessToken, saved);
+  const posts = await fetchLivePosts(accessToken, accountName, location.name, 20);
 
-  const postUrl = `https://mybusiness.googleapis.com/v4/${accountName}/${location.name}/localPosts`;
-  const payload = {
+  console.log("\n================================================================================");
+  console.log(`📣 LIVE GOOGLE BUSINESS PROFILE POSTS (${posts.length} returned)`);
+  console.log("================================================================================");
+
+  for (const p of posts) {
+    const hasDollar = /\$[0-9]/.test(String(p.summary || ""));
+    console.log(`\n• [${p.state}] ${p.createTime} ${hasDollar ? "⚠️ CONTAINS PUBLIC DOLLAR PRICE" : "✅"}`);
+    console.log(`    Resource  : ${p.name}`);
+    console.log(`    CTA       : ${p.callToAction ? `${p.callToAction.actionType} -> ${p.callToAction.url}` : "(none)"}`);
+    console.log(`    Media     : ${(p.media || []).length} item(s)`);
+    console.log(`    SearchURL : ${p.searchUrl || "n/a"}`);
+    console.log(`    Summary   : ${String(p.summary || "").replace(/\s+/g, " ").slice(0, 180)}...`);
+  }
+}
+
+async function runDeletePost(postResourceName: string) {
+  const saved = loadSavedAuth();
+  const accessToken = await getAccessToken(saved);
+  const url = `https://mybusiness.googleapis.com/v4/${postResourceName}`;
+  const res = await fetch(url, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+  if (!res.ok) {
+    const txt = await res.text();
+    throw new Error(explainQuotaOrApiError(res.status, txt));
+  }
+  console.log(`🗑️  Deleted Google Business Profile post: ${postResourceName}`);
+}
+
+async function publishLocalPost(
+  accessToken: string,
+  accountName: string,
+  locationName: string,
+  options: {
+    summary: string;
+    actionType: "LEARN_MORE" | "BOOK";
+    actionUrl: string;
+    mediaUrl?: string;
+  }
+) {
+  const postUrl = `https://mybusiness.googleapis.com/v4/${accountName}/${locationName}/localPosts`;
+  const buildBody = (includeMedia: boolean) => ({
     languageCode: "en-US",
-    summary,
+    summary: options.summary,
     topicType: "STANDARD",
     callToAction: {
-      actionType: "LEARN_MORE",
-      url: actionUrl || PDM_CANONICAL_GBP_PROFILE.auditUri,
+      actionType: options.actionType,
+      url: options.actionUrl || PDM_CANONICAL_GBP_PROFILE.auditUri,
     },
-  };
+    ...(includeMedia && options.mediaUrl
+      ? {
+          media: [
+            {
+              mediaFormat: "PHOTO",
+              sourceUrl: options.mediaUrl,
+            },
+          ],
+        }
+      : {}),
+  });
 
-  const res = await fetch(postUrl, {
+  let res = await fetch(postUrl, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(payload),
+    body: JSON.stringify(buildBody(Boolean(options.mediaUrl))),
   });
+
+  // Graceful fallback if Google's media fetcher hasn't warmed a newly deployed CDN image URL yet
+  if (!res.ok && options.mediaUrl) {
+    const firstErr = await res.text();
+    console.warn(`⚠️  GBP photo attachment skipped (${res.status}: ${firstErr.slice(0, 160)}); publishing text + CTA...`);
+    res = await fetch(postUrl, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(buildBody(false)),
+    });
+  }
 
   if (!res.ok) {
     const txt = await res.text();
     throw new Error(explainQuotaOrApiError(res.status, txt));
   }
 
-  const created = await res.json();
+  return (await res.json()) as Record<string, any>;
+}
+
+async function runPost(summary: string, actionUrl: string, mediaUrl?: string) {
+  const saved = loadSavedAuth();
+  const accessToken = await getAccessToken(saved);
+  const { accountName, location } = await resolvePrimaryLocation(accessToken, saved);
+
+  const created = await publishLocalPost(accessToken, accountName, location.name, {
+    summary,
+    actionType: "LEARN_MORE",
+    actionUrl,
+    mediaUrl,
+  });
   console.log("✅ Published live Google Business Profile update:", created.searchUrl || created.name);
+}
+
+function selectNextAutoPost(
+  livePosts: Array<Record<string, any>>,
+  targetId?: string
+): GbpAutoPostTemplate {
+  if (targetId) {
+    const explicit = PDM_GBP_AUTOPOST_ROTATION.find((t) => t.id === targetId);
+    if (!explicit) {
+      throw new Error(
+        `Unknown post --id "${targetId}". Available IDs: ${PDM_GBP_AUTOPOST_ROTATION.map((t) => t.id).join(", ")}`
+      );
+    }
+    return explicit;
+  }
+
+  // Score each template by the index of its most recent appearance in livePosts (-1 = never posted / not in last 20)
+  let oldestSeenIdx = -1;
+  let fallbackCandidate = PDM_GBP_AUTOPOST_ROTATION[0];
+
+  for (const tpl of PDM_GBP_AUTOPOST_ROTATION) {
+    const needle = tpl.signaturePhrase.toLowerCase();
+    const matchIdx = livePosts.findIndex((p) =>
+      String(p.summary || "").toLowerCase().includes(needle)
+    );
+    if (matchIdx === -1) {
+      return tpl; // Fresh unposted topic!
+    }
+    if (matchIdx > oldestSeenIdx) {
+      oldestSeenIdx = matchIdx;
+      fallbackCandidate = tpl;
+    }
+  }
+
+  return fallbackCandidate;
+}
+
+async function runAutoPost(opts: { dryRun: boolean; force: boolean; targetId?: string }) {
+  const saved = loadSavedAuth();
+  const accessToken = await getAccessToken(saved);
+  const { accountName, location } = await resolvePrimaryLocation(accessToken, saved);
+  const livePosts = await fetchLivePosts(accessToken, accountName, location.name, 20);
+
+  const cooldownHours = Number(process.env.GBP_AUTOPOST_COOLDOWN_HOURS || 60);
+  if (livePosts.length > 0 && !opts.force && !opts.dryRun) {
+    const newestTime = Date.parse(String(livePosts[0].createTime || ""));
+    if (!Number.isNaN(newestTime)) {
+      const hoursSinceLast = (Date.now() - newestTime) / (1000 * 60 * 60);
+      if (hoursSinceLast < cooldownHours) {
+        console.log(
+          `\n⏳ Cooldown active: Most recent GBP post went live ${hoursSinceLast.toFixed(
+            1
+          )}h ago (< ${cooldownHours}h threshold).`
+        );
+        console.log("   Pass `-- --force` to publish immediately anyway.");
+        return;
+      }
+    }
+  }
+
+  const nextPost = selectNextAutoPost(livePosts, opts.targetId);
+
+  console.log("\n================================================================================");
+  console.log(`🚀 GBP AUTOPOST ENGINE ${opts.dryRun ? "(DRY RUN)" : "(LIVE PUBLISH)"}`);
+  console.log("================================================================================");
+  console.log(`Selected Topic : ${nextPost.title} [${nextPost.id}]`);
+  console.log(`CTA            : ${nextPost.actionType} -> ${nextPost.actionUrl}`);
+  console.log(`Photo Asset    : ${nextPost.mediaUrl}`);
+  console.log(`Summary (${nextPost.summary.length} chars):\n  ${nextPost.summary}\n`);
+
+  if (opts.dryRun) {
+    console.log("🧪 Dry run complete — nothing published. Omit `--dry-run` (or add `--force`) to publish live.");
+    return;
+  }
+
+  const created = await publishLocalPost(accessToken, accountName, location.name, {
+    summary: nextPost.summary,
+    actionType: nextPost.actionType,
+    actionUrl: nextPost.actionUrl,
+    mediaUrl: nextPost.mediaUrl,
+  });
+
+  console.log("✅ Automated Google Business Profile post is LIVE!");
+  console.log(`   Resource  : ${created.name}`);
+  console.log(`   SearchURL : ${created.searchUrl || "n/a"}`);
 }
 
 async function main() {
@@ -601,19 +801,46 @@ async function main() {
     await runPush(apply);
     return;
   }
+  if (cmd === "posts") {
+    await runListPosts();
+    return;
+  }
+  if (cmd === "delete-post") {
+    const nameIdx = args.indexOf("--name");
+    const targetName = nameIdx >= 0 ? args[nameIdx + 1] : "";
+    if (!targetName) {
+      throw new Error("Usage: npm run gbp:delete-post -- --name accounts/.../locations/.../localPosts/...");
+    }
+    await runDeletePost(targetName);
+    return;
+  }
+  if (cmd === "autopost") {
+    const dryRun = args.includes("--dry-run");
+    const force = args.includes("--force");
+    const idIdx = args.indexOf("--id");
+    const targetId = idIdx >= 0 ? args[idIdx + 1] : undefined;
+    await runAutoPost({ dryRun, force, targetId });
+    return;
+  }
   if (cmd === "post") {
     const summaryIdx = args.indexOf("--summary");
     const urlIdx = args.indexOf("--url");
+    const mediaIdx = args.indexOf("--media");
     const summary = summaryIdx >= 0 ? args[summaryIdx + 1] : "";
     const url = urlIdx >= 0 ? args[urlIdx + 1] : PDM_CANONICAL_GBP_PROFILE.auditUri;
+    const mediaUrl = mediaIdx >= 0 ? args[mediaIdx + 1] : undefined;
     if (!summary) {
-      throw new Error('Usage: npm run gbp:post -- --summary "Your Google update text" [--url https://...]');
+      throw new Error(
+        'Usage: npm run gbp:post -- --summary "Your Google update text" [--url https://...] [--media https://...jpg]'
+      );
     }
-    await runPost(summary, url);
+    await runPost(summary, url, mediaUrl);
     return;
   }
 
-  console.log("Available commands: auth | audit | push [--apply] | post --summary \"...\"");
+  console.log(
+    'Available commands: auth | audit | push [--apply] | posts | autopost [--dry-run] [--force] [--id <slug>] | post --summary "..." | delete-post --name <id>'
+  );
 }
 
 main().catch((err) => {
