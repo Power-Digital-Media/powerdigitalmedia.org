@@ -1,18 +1,18 @@
 /**
- * Canonical Automated Google Business Profile (GBP) Post Rotation
+ * Canonical Automated Google Business Profile (GBP) Single-Feature Spotlight Lineup
  * Power Digital Media LLC — Jackson, MS & Central Mississippi Tri-County Area
  *
- * Google GBP `localPosts` Compliance Rules Enforced Here:
- * - Zero phone numbers or raw URLs inside `summary` body text (prevents Google spam-filter rejection;
- *   every post attaches a clean structured `callToAction` button instead).
+ * Design Philosophy:
+ * - Each post spotlights ONE distinct Power Digital Media feature with tight, direct copy.
+ * - Paired with a bespoke 1200x900 (4:3) commercial feature graphic in `public/gbp-posts/`.
+ * - Zero phone numbers or raw URLs inside `summary` body text (structured CTA button handles routing).
  * - Zero public dollar figures or retired offerings (100% case-by-case custom scoping).
- * - Paired with `1200x900` (4:3) `.jpg` visuals hosted at `https://powerdigitalmedia.org/gbp-posts/*`.
  */
 
 export interface GbpAutoPostTemplate {
   id: string;
   title: string;
-  /** Unique substring used to detect if this topic already exists in recent live GBP posts */
+  /** Unique substring used to detect if this feature spotlight already exists in recent live GBP posts */
   signaturePhrase: string;
   summary: string;
   actionType: "LEARN_MORE" | "BOOK";
@@ -22,135 +22,135 @@ export interface GbpAutoPostTemplate {
 
 export const PDM_GBP_AUTOPOST_ROTATION: GbpAutoPostTemplate[] = [
   {
-    id: "contractor-websites-sms-rescue",
-    title: "Mississippi Contractor Websites & Missed-Call SMS Rescue",
-    signaturePhrase: "sub-2-second Next.js contractor websites",
+    id: "pincam-ghost-photo-match",
+    title: "PinCam — Ghost Photo Match",
+    signaturePhrase: "Ghost Photo Match overlays your original",
     summary:
-      "When a homeowner in Jackson, Madison, Ridgeland, or Brandon searches for a roofer, HVAC tech, excavator, or plumber on cellular data, slow template websites lose the call before the page even finishes loading. Power Digital Media LLC engineers custom sub-2-second Next.js contractor websites paired with instant missed-call SMS text-back so leads are rescued even while you are on a roof or job site. Request your free 5-minute Google Rank & Website Breakdown recorded personally by Damein Donald.",
+      "Most before-and-after job photos fail because they were shot from two completely different angles. Inside PinCam, Ghost Photo Match overlays your original before shot right inside your live camera lens—so your crew lines up the after photo 1:1 every single time for undeniable homeowner and insurance adjuster proof.",
     actionType: "LEARN_MORE",
     actionUrl:
-      "https://powerdigitalmedia.org/contractors?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=contractor-websites-sms-rescue",
-    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/contractor-websites.jpg",
+      "https://powerdigitalmedia.org/pincam?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=pincam-ghost-photo-match",
+    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/01-ghost-photo-match.jpg",
   },
   {
-    id: "pdm-pindrop-neighborhood-seo",
-    title: "PDM PinDrop — 30-Second Jobsite Check-In to Map Pack SEO",
-    signaturePhrase: "30-second mobile crew check-in",
+    id: "missed-call-sms-rescue",
+    title: "18-Second Missed-Call SMS Rescue",
+    signaturePhrase: "texts missed callers within 18 seconds",
     summary:
-      "Most Central Mississippi contractors finish dozens of jobs across Madison, Flowood, Brandon, and Clinton every season—yet Google never sees that neighborhood proof. With PDM PinDrop, a 30-second mobile crew check-in automatically turns completed jobs into GPS-verified subdivision pages, live interactive website job maps, fresh Google Business Profile updates, and automated 5-star homeowner SMS review requests. Explore the live interactive PinDrop demo today.",
+      "When you're on a roof, in an attic, or with a customer and can't grab your phone, callers don't leave voicemails—they tap the next business on Google. Our Missed-Call SMS Rescue texts missed callers within 18 seconds automatically, starting the quote conversation right on their phone before a competitor ever picks up.",
     actionType: "LEARN_MORE",
     actionUrl:
-      "https://powerdigitalmedia.org/pindrop?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=pdm-pindrop-neighborhood-seo",
-    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/pindrop-seo.jpg",
+      "https://powerdigitalmedia.org/contractors?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=missed-call-sms-rescue",
+    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/02-missed-call-sms-rescue.jpg",
   },
   {
-    id: "pincam-field-camera-proof",
-    title: "PinCam — Ghost Photo Match & Branded Inspection PDFs",
-    signaturePhrase: "Ghost Photo Match aligns your live camera lens",
+    id: "pindrop-30s-crew-checkin",
+    title: "PDM PinDrop — 30-Second Crew Check-In",
+    signaturePhrase: "crew snaps one photo and taps check-in in 30 seconds",
     summary:
-      "Stop digging through chaotic camera rolls to prove job quality to homeowners and insurance adjusters. PinCam is Power Digital Media's native contractor field camera built for roofing, restoration, HVAC, and exterior trades. Ghost Photo Match aligns your live camera lens 1:1 over the original before photo, pairs with non-destructive damage markups and Dual-Cam walkthroughs, and exports branded PDF inspection reports in seconds.",
+      "Every finished job should help you win the next three houses on that street. With PDM PinDrop, your crew snaps one photo and taps check-in in 30 seconds—automatically publishing a GPS-verified neighborhood project page and live map pin that builds real Google Map Pack authority where you actually work.",
     actionType: "LEARN_MORE",
     actionUrl:
-      "https://powerdigitalmedia.org/pincam?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=pincam-field-camera-proof",
-    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/pincam-camera.jpg",
+      "https://powerdigitalmedia.org/pindrop?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=pindrop-30s-crew-checkin",
+    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/03-pindrop-crew-checkin.jpg",
   },
   {
-    id: "pdm-site-intelligence-watchtower",
-    title: "PDM Site Intelligence — 24/7 Website & SEO Watchtower",
-    signaturePhrase: "Introducing PDM Site Intelligence",
+    id: "site-intelligence-5min-watchtower",
+    title: "PDM Site Intelligence — 5-Minute Site Watchtower",
+    signaturePhrase: "every 5 minutes around the clock",
     summary:
-      "Introducing PDM Site Intelligence — our 24/7 website health, cellular speed, and Google Search Console watchtower engineered in Jackson, MS for contractors and standout local businesses. Every Power Digital Media build is monitored every 5 minutes for uptime, SSL health, broken links, Core Web Vitals, and local Map Pack ranking velocity—paired with PinCam and PDM PinDrop field apps to keep your crews booked. Request your free 5-minute Google Rank & Website Breakdown recorded personally by Damein Donald.",
+      "Most business owners only find out their website or quote form broke weeks after calls slow down. PDM Site Intelligence probes your live website, SSL certificate, cellular load speed, and form endpoints every 5 minutes around the clock—catching issues before they ever cost you a lead.",
     actionType: "LEARN_MORE",
     actionUrl:
-      "https://powerdigitalmedia.org/site-intelligence?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=pdm-site-intelligence-watchtower",
-    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/site-intelligence.jpg",
+      "https://powerdigitalmedia.org/site-intelligence?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=site-intelligence-5min-watchtower",
+    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/04-site-watchtower-uptime.jpg",
   },
   {
-    id: "madison-ridgeland-map-pack-seo",
-    title: "Madison & Ridgeland Google Map Pack Engineering",
-    signaturePhrase: "Reunion, Annandale, Lake Caroline, and Bridgewater",
+    id: "pindrop-automated-5star-reviews",
+    title: "PDM PinDrop — 15-Minute Automated 5-Star Reviews",
+    signaturePhrase: "15 minutes after the job wraps up",
     summary:
-      "Ranking in the Google Map Pack across Madison County takes more than a generic homepage. Power Digital Media LLC builds dedicated city and subdivision SEO architecture targeting high-intent homeowners across Madison, Ridgeland, Reunion, Annandale, Lake Caroline, and Bridgewater—backed by LocalBusiness JSON-LD schema and verified neighborhood project proof. See where your business currently ranks across Madison and Hinds County with a free breakdown.",
+      "Asking for reviews weeks later rarely works—happy customers get busy and forget. PDM PinDrop automatically sends a friendly, 1-tap Google review text 15 minutes after the job wraps up, capturing authentic 5-star homeowner reviews right at peak satisfaction so your Map Pack rating climbs steadily.",
     actionType: "LEARN_MORE",
     actionUrl:
-      "https://powerdigitalmedia.org/locations/madison-ms?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=madison-ridgeland-map-pack-seo",
-    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/central-ms-map-pack.jpg",
+      "https://powerdigitalmedia.org/pindrop?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=pindrop-automated-5star-reviews",
+    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/05-automated-5star-reviews.jpg",
   },
   {
-    id: "born-again-roofing-case-study",
-    title: "Client Spotlight: Born Again Home Remodeling & Roofing",
-    signaturePhrase: "Born Again Home Remodeling & Roofing",
+    id: "pincam-instant-pdf-reports",
+    title: "PinCam — Instant Branded PDF Job Reports",
+    signaturePhrase: "branded PDF inspection report right from the truck",
     summary:
-      "Real Central Mississippi proof beats agency promises every time. See how Power Digital Media engineered a sub-2-second custom Next.js growth platform for Born Again Home Remodeling & Roofing—complete with interactive storm-damage inspection flows, live PDM PinDrop neighborhood job maps across the Tri-County metro, and direct mobile call routing built for homeowners on 4G and 5G phones.",
+      "Stop spending late nights at the kitchen table dragging jobsite photos into Word documents. PinCam compiles your verified before-and-after photos, damage callouts, and inspection notes into a clean, branded PDF inspection report right from the truck—ready to text or email to homeowners and adjusters before you leave the driveway.",
     actionType: "LEARN_MORE",
     actionUrl:
-      "https://powerdigitalmedia.org/our-work?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=born-again-roofing-case-study",
-    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/born-again-roofing.jpg",
+      "https://powerdigitalmedia.org/pincam?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=pincam-instant-pdf-reports",
+    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/06-instant-pdf-job-reports.jpg",
   },
   {
-    id: "brandon-flowood-rankin-seo",
-    title: "Brandon, Flowood & Rankin County Local SEO Systems",
-    signaturePhrase: "Lakeland Drive, Dogwood, Castlewoods, and Reservoir",
+    id: "pincam-dual-cam-walkthroughs",
+    title: "PinCam — Dual-Cam Field Walkthroughs",
+    signaturePhrase: "records both your rear jobsite lens and front",
     summary:
-      "Want more residential and commercial estimate calls from Rankin County? We engineer hyper-local service pages, Google Business Profile alignment, and sub-second mobile websites tailored for searches along Lakeland Drive, Dogwood, Castlewoods, and Reservoir neighborhoods across Flowood, Brandon, and Pearl. Request a custom 5-minute video audit of your current Map Pack visibility.",
+      "Homeowners trust what they can see and hear directly from the pro on site. PinCam's Dual-Cam mode records both your rear jobsite lens and front narration camera in one synchronized video walkthrough—making it effortless to show storm damage, explain repair options clearly, and get faster estimate approvals.",
     actionType: "LEARN_MORE",
     actionUrl:
-      "https://powerdigitalmedia.org/locations/brandon-ms?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=brandon-flowood-rankin-seo",
-    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/pincam-roof-proof.jpg",
+      "https://powerdigitalmedia.org/pincam?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=pincam-dual-cam-walkthroughs",
+    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/07-dual-cam-walkthroughs.jpg",
   },
   {
-    id: "geaux-pro-heavy-civil-spotlight",
-    title: "Client Spotlight: Geaux Pro Outdoors Land Clearing & Civil",
-    signaturePhrase: "Geaux Pro Outdoors",
+    id: "pincam-precision-photo-markup",
+    title: "PinCam — Non-Destructive Precision Photo Markup",
+    signaturePhrase: "separate vector layer while keeping your raw original",
     summary:
-      "Land clearing, forestry mulching, drainage, and heavy dirt work require serious visual authority to win high-ticket acreage and commercial bids. Explore how Power Digital Media built the custom high-velocity web architecture and video-backed estimate funnel for Geaux Pro Outdoors—turning mobile property-owner searches into qualified site-walk requests with zero bloated WordPress plugins.",
+      "Drawing messy finger scribbles over a phone photo ruins the original evidence image. PinCam places crisp measurement lines, callout magnifiers, and directional arrows on a separate vector layer while keeping your raw original photo completely untouched underneath.",
     actionType: "LEARN_MORE",
     actionUrl:
-      "https://powerdigitalmedia.org/our-work?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=geaux-pro-heavy-civil-spotlight",
-    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/geaux-pro-outdoors.jpg",
+      "https://powerdigitalmedia.org/pincam?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=pincam-precision-photo-markup",
+    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/08-precision-photo-markup.jpg",
   },
   {
-    id: "tbeauxs-zero-commission-ordering",
-    title: "Zero-Commission Square Online Ordering & Catering Funnels",
-    signaturePhrase: "zero third-party marketplace commission fees",
+    id: "sub-second-nextjs-mobile-speed",
+    title: "Sub-Second Next.js Cellular Speed Architecture",
+    signaturePhrase: "over half of mobile visitors bounce",
     summary:
-      "Third-party delivery apps shouldn't take a massive cut of every order from local restaurants and caterers. Power Digital Media engineers custom Next.js ordering experiences and interactive catering calculators integrated natively with Square Web SDK—delivering fast mobile checkout with zero third-party marketplace commission fees, as built for T'Beaux's Cajun Kitchen & Catering.",
+      "When a homeowner taps your listing on 4G or 5G cellular data, over half of mobile visitors bounce if the site stalls on a slow template loading screen. Every Power Digital Media website is hand-engineered in Next.js with zero bloated plugins—opening in under a second so callers hit your phone instead of the back button.",
     actionType: "LEARN_MORE",
     actionUrl:
-      "https://powerdigitalmedia.org/our-work?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=tbeauxs-zero-commission-ordering",
-    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/tbeauxs-cajun-kitchen.jpg",
+      "https://powerdigitalmedia.org/web-design?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=sub-second-nextjs-mobile-speed",
+    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/09-sub-second-mobile-speed.jpg",
   },
   {
-    id: "capsule-crm-transpond-pipelines",
-    title: "Capsule CRM & Automated SMS/Email Follow-Up Pipelines",
-    signaturePhrase: "Certified Capsule CRM and Transpond Solutions Partner",
+    id: "verified-site-remediation",
+    title: "PDM Site Intelligence — Human-Verified SEO Remediation",
+    signaturePhrase: "staged and reviewed by a real engineer",
     summary:
-      "Getting a quote request is only half the battle—speed to lead wins the job. As a Certified Capsule CRM and Transpond Solutions Partner in Jackson, MS, Power Digital Media connects every website form, missed call, and booking calendar directly into structured deal pipelines with instant automated SMS and email follow-up so zero homeowner leads slip through the cracks.",
+      "Blind automated plugins can break a live business website overnight. Inside PDM Site Intelligence, whenever telemetry spots a broken link, schema warning, or Search Console ranking dip, the fix is staged and reviewed by a real engineer before a single line is deployed to your live domain.",
+    actionType: "LEARN_MORE",
+    actionUrl:
+      "https://powerdigitalmedia.org/site-intelligence?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=verified-site-remediation",
+    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/10-verified-site-remediation.jpg",
+  },
+  {
+    id: "zero-commission-square-ordering",
+    title: "Zero-Commission Direct Online & Catering Ordering",
+    signaturePhrase: "keep 100 percent of every order",
+    summary:
+      "Third-party delivery apps shouldn't take a massive cut out of every ticket you cook. We build custom mobile menus, interactive event guest calculators, and native Square checkout right inside your own website—so customers check out in seconds on their phone and you keep 100 percent of every order.",
+    actionType: "LEARN_MORE",
+    actionUrl:
+      "https://powerdigitalmedia.org/web-design?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=zero-commission-square-ordering",
+    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/11-zero-commission-ordering.jpg",
+  },
+  {
+    id: "ai-search-geo-crm-pipeline",
+    title: "AI Answer Engine Schema & Direct CRM Lead Sync",
+    signaturePhrase: "routes straight into your CRM pipeline",
+    summary:
+      "Buyers now ask ChatGPT, Google AI Overviews, and voice search who to hire—and expect an instant response once they reach out. We wire structured entity schema into your site so AI search engines recommend you first, while every quote form and call routes straight into your CRM pipeline with instant automated follow-up.",
     actionType: "BOOK",
     actionUrl:
-      "https://powerdigitalmedia.org/book?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=capsule-crm-transpond-pipelines",
-    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/crm-sms-automation.jpg",
-  },
-  {
-    id: "ai-search-geo-entity-seo",
-    title: "Generative Engine Optimization (GEO) for Local Businesses",
-    signaturePhrase: "ChatGPT, Google AI Overviews, Perplexity, and Claude",
-    summary:
-      "Homeowners and commercial buyers across Central Mississippi are increasingly asking ChatGPT, Google AI Overviews, Perplexity, and Claude who to hire before they ever click ten blue links. Every Power Digital Media website ships with deep JSON-LD entity graphs, verified service-area coordinates, and clean semantic architecture engineered so both Google Map Pack and AI answer engines cite your business first.",
-    actionType: "LEARN_MORE",
-    actionUrl:
-      "https://powerdigitalmedia.org/local-seo?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=ai-search-geo-entity-seo",
-    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/pdm-studio-cover.jpg",
-  },
-  {
-    id: "jackson-clinton-custom-nextjs",
-    title: "Custom Hand-Coded Next.js Websites in Jackson & Clinton, MS",
-    signaturePhrase: "BBB Accredited with an A Rating",
-    summary:
-      "Tired of sluggish agency WordPress templates, broken plugins, and mystery retainers? Power Digital Media LLC is BBB Accredited with an A Rating right here in Jackson, Mississippi. Every website and growth system is custom-scoped case-by-case and hand-engineered in Next.js for 95–99 mobile PageSpeed and full codebase ownership. Book a straightforward strategy call with founder Damein Donald.",
-    actionType: "BOOK",
-    actionUrl:
-      "https://powerdigitalmedia.org/book?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=jackson-clinton-custom-nextjs",
-    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/lungrins-lawncare.jpg",
+      "https://powerdigitalmedia.org/book?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=ai-search-geo-crm-pipeline",
+    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/12-ai-search-crm-pipeline.jpg",
   },
 ];

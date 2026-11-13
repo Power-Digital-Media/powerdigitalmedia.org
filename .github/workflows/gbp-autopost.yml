@@ -1,9 +1,10 @@
 name: Google Business Profile Autonomous Posts
 
 on:
-  # Paused until Damein approves the new post style & workflow:
-  # schedule:
-  #   - cron: '15 15 * * 2,5'
+  schedule:
+    # Runs every Tuesday & Friday at 15:15 UTC (9:15 AM Central Time)
+    # Spotlights 1 signature Power Digital Media feature per post
+    - cron: '15 15 * * 2,5'
   workflow_dispatch:
     inputs:
       dry_run:
