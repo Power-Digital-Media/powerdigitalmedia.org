@@ -182,9 +182,9 @@ export default function Footer() {
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
                 <span>
-                  2914 Cynthia Rd.
-                  <br />
                   Jackson, MS 39209
+                  <br />
+                  Tri-County Service Area
                 </span>
               </li>
               <li className="flex items-center gap-2.5">

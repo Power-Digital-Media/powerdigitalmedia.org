@@ -135,20 +135,29 @@ export default function Home() {
               <ShieldCheck className="w-4 h-4 text-amber-400" />
               Powering Real Mississippi Operators:
             </span>
-            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-bold text-slate-200 text-xs sm:text-sm">
-              <Link href="/portfolio/born-again-roofing" className="hover:text-amber-300 transition-colors">
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 font-bold text-slate-200 text-xs">
+              <Link
+                href="/portfolio/born-again-roofing"
+                className="px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:text-amber-300 transition-colors"
+              >
                 Born Again Roofing (99+ Pins)
               </Link>
-              <span className="text-slate-600">•</span>
-              <Link href="/portfolio/geaux-pro-outdoors" className="hover:text-amber-300 transition-colors">
+              <Link
+                href="/portfolio/geaux-pro-outdoors"
+                className="px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:text-amber-300 transition-colors"
+              >
                 Geaux Pro Outdoors (#1 MS Dirt)
               </Link>
-              <span className="text-slate-600">•</span>
-              <Link href="/portfolio/tbeaux" className="hover:text-amber-300 transition-colors">
+              <Link
+                href="/portfolio/tbeaux"
+                className="px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:text-amber-300 transition-colors"
+              >
                 T&apos;Beaux&apos;s Seafood (0% Fee Ordering)
               </Link>
-              <span className="text-slate-600">•</span>
-              <Link href="/our-work" className="text-amber-400 hover:text-amber-300 transition-colors">
+              <Link
+                href="/our-work"
+                className="px-3.5 py-1.5 rounded-full bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 transition-colors"
+              >
                 View All 10+ Builds →
               </Link>
             </div>

@@ -1031,9 +1031,9 @@ export default function ConnectedArchitecture() {
       <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-7xl">
         {/* Section Header */}
         <div className="text-center max-w-4xl mx-auto mb-14 md:mb-20">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-4">
-            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            <span className="text-amber-300 font-bold tracking-widest uppercase text-[10px] md:text-xs">
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-4">
+            <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+            <span className="text-amber-300 font-bold tracking-wider sm:tracking-widest uppercase text-[10px] md:text-xs">
               System Architecture &amp; Live Integrations
             </span>
           </div>

@@ -131,7 +131,7 @@ export default function AuditCTA() {
                     <ShieldCheck className="w-4 h-4 text-emerald-400" />
                     Delivered within 1 business day
                   </span>
-                  <span>•</span>
+                  <span className="hidden sm:inline">•</span>
                   <a
                     href="tel:6014462393"
                     className="font-bold text-amber-300 hover:text-amber-200 transition-colors"

@@ -288,36 +288,45 @@ export default function GoogleReviewsSection({ variant = "full" }: { variant?: "
           </div>
         </div>
 
-        {/* Footer Trust Links */}
-        <div className="mt-10 text-center flex flex-wrap items-center justify-center gap-6 text-xs text-slate-400">
+        {/* Footer Trust Pill Links (Zero Orphan Bullets or Raw URLs) */}
+        <div className="mt-8 grid grid-cols-1 sm:flex sm:flex-wrap items-center justify-center gap-2.5 sm:gap-3 max-w-3xl mx-auto text-xs">
           <a
             href={GOOGLE_PROFILE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-amber-300 transition-colors inline-flex items-center gap-1.5 underline decoration-white/20 underline-offset-4"
+            className="px-4 py-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-amber-400/40 text-slate-200 hover:text-amber-300 font-semibold transition-all inline-flex items-center justify-between sm:justify-center gap-2"
           >
-            <span>View Jackson, MS Google Business Profile</span>
-            <ExternalLink className="w-3 h-3" />
+            <span className="inline-flex items-center gap-2">
+              <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400 shrink-0" />
+              <span>Google Business Profile</span>
+            </span>
+            <ExternalLink className="w-3.5 h-3.5 opacity-70 shrink-0" />
           </a>
-          <span className="text-slate-700">•</span>
+
           <a
             href={GOOGLE_REVIEW_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-amber-300 transition-colors inline-flex items-center gap-1.5 underline decoration-white/20 underline-offset-4"
+            className="px-4 py-2.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-200 hover:text-amber-100 font-bold transition-all inline-flex items-center justify-between sm:justify-center gap-2"
           >
-            <span>Direct Google Review Link: g.page/r/Cd8B19AxtAaPEBM/review</span>
-            <ExternalLink className="w-3 h-3" />
+            <span className="inline-flex items-center gap-2">
+              <MessageSquare className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+              <span>Leave a Google Review</span>
+            </span>
+            <ExternalLink className="w-3.5 h-3.5 opacity-80 shrink-0" />
           </a>
-          <span className="text-slate-700">•</span>
+
           <a
             href={BBB_PROFILE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-blue-400 transition-colors inline-flex items-center gap-1.5 underline decoration-white/20 underline-offset-4"
+            className="px-4 py-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-blue-400/40 text-slate-200 hover:text-blue-300 font-semibold transition-all inline-flex items-center justify-between sm:justify-center gap-2"
           >
-            <span>Better Business Bureau (BBB) Accredited</span>
-            <ExternalLink className="w-3 h-3" />
+            <span className="inline-flex items-center gap-2">
+              <ShieldCheck className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+              <span>BBB Accredited Business</span>
+            </span>
+            <ExternalLink className="w-3.5 h-3.5 opacity-70 shrink-0" />
           </a>
         </div>
 
