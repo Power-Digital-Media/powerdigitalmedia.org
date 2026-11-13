@@ -45,8 +45,8 @@ const FAQS: FAQItem[] = [
     id: "in-app-payments-crm",
     category: "Integrations",
     icon: HelpCircle,
-    q: "Can you connect Square ordering, VoIP phones, and CRM lead tracking?",
-    a: "Yes. We wire direct integrations with Square Web Payments SDK (0% redirect fees—proven on T'Beaux's Seafood), Capsule CRM pipelines, Transpond follow-ups, and Ultatel cloud phones with 2-minute missed-call SMS text-backs.",
+    q: "Can you connect Square online ordering and CRM lead tracking?",
+    a: "Yes. We wire direct integrations with Square Web Payments SDK (0% redirect fees—proven on T'Beaux's Seafood), Capsule CRM pipelines, Transpond follow-ups, and automated 2-minute SMS lead rescue.",
   },
   {
     id: "geo-optimization",

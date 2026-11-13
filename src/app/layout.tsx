@@ -112,7 +112,7 @@ export default function RootLayout({
                   sameAs: [
                     "https://www.youtube.com/@PowerDigitalMedia",
                     "https://www.instagram.com/powerdigitalmedia",
-                    "https://www.facebook.com/powerdigitalmediallc",
+                    "https://www.facebook.com/PowerDigitalMediaLLC",
                     "https://www.google.com/maps/place/Power+Digital+Media+LLC/data=!4m2!3m1!1s0x0:0x8f06b431d0d701df",
                     "https://www.bbb.org/us/ms/jackson/profile/web-design/power-digital-media-llc-0523-235907954",
                   ],
@@ -120,8 +120,8 @@ export default function RootLayout({
                     {
                       "@type": "OpeningHoursSpecification",
                       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                      opens: "08:00",
-                      closes: "18:00",
+                      opens: "09:00",
+                      closes: "17:00",
                     },
                   ],
                   address: {
@@ -188,14 +188,6 @@ export default function RootLayout({
                         "@type": "Service",
                         name: "CRM Integration, Custom Checkout & Business Automation",
                         url: "https://powerdigitalmedia.org/custom-applications",
-                      },
-                    },
-                    {
-                      "@type": "Offer",
-                      itemOffered: {
-                        "@type": "Service",
-                        name: "Ultatel Cloud Business Phone Systems & Missed-Call SMS Rescue",
-                        url: "https://powerdigitalmedia.org/business-phones",
                       },
                     },
                     {

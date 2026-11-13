@@ -61,7 +61,7 @@ export default function Footer() {
                 <Twitter className="w-4 h-4" />
               </a>
               <a
-                href="https://www.facebook.com/powerdigitalmediallc"
+                href="https://www.facebook.com/PowerDigitalMediaLLC"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow us on Facebook"
@@ -118,7 +118,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/custom-applications" className="hover:text-amber-300 transition-colors">
-                  CRM, Online Ordering &amp; VoIP
+                  CRM &amp; Online Ordering Systems
                 </Link>
               </li>
               <li>

@@ -50,7 +50,7 @@ export default function RefundPolicyPage() {
                 1. Custom Engineering &amp; Digital Services
               </h2>
               <p>
-                Power Digital Media builds custom Next.js websites, Local SEO &amp; Google Map Pack campaigns, paid lead-generation funnels, CRM/VoIP integrations, and proprietary field software (<strong className="text-white">PDM PinDrop™</strong> and <strong className="text-white">PinCam™</strong>). Because custom engineering, architecture, and Local SEO labor are tailored specifically to your business, completed work is non-resalable.
+                Power Digital Media builds custom Next.js websites, Local SEO &amp; Google Map Pack campaigns, paid lead-generation funnels, CRM &amp; payment integrations, and proprietary software (<strong className="text-white">PDM PinDrop™</strong>, <strong className="text-white">PinCam™</strong>, and <strong className="text-white">PDM Site Intelligence™</strong>). Because custom engineering, architecture, and Local SEO labor are tailored specifically to your business, completed work is non-resalable.
               </p>
             </div>
 

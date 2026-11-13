@@ -123,7 +123,7 @@ export default function PrivacyClient() {
                     Power Digital Media LLC (&ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;) operates as a custom web design, Local SEO, contractor field-software, and business systems firm headquartered at 2914 Cynthia Rd, Jackson, Mississippi 39209. We are committed to protecting the privacy of our clients, software users, prospective leads, and website visitors.
                   </p>
                   <p>
-                    This Privacy Policy explains how we collect, store, process, and safeguard personal information gathered via <code className="text-amber-300">powerdigitalmedia.org</code>, our proprietary field applications (<strong className="text-white">PDM PinDrop™</strong> and <strong className="text-white">PinCam™</strong>), and our authorized operational integrations (Capsule CRM, Transpond, Ultatel, Stripe, and Resend).
+                    This Privacy Policy explains how we collect, store, process, and safeguard personal information gathered via <code className="text-amber-300">powerdigitalmedia.org</code>, our proprietary software (<strong className="text-white">PDM PinDrop™</strong>, <strong className="text-white">PinCam™</strong>, and <strong className="text-white">PDM Site Intelligence™</strong>), and our authorized operational integrations (Capsule CRM, Transpond, Square, Stripe, and Resend).
                   </p>
                 </div>
               </div>
@@ -212,8 +212,8 @@ export default function PrivacyClient() {
                     <li><strong className="text-white">Capsule CRM</strong>: Client profile and project pipeline management.</li>
                     <li><strong className="text-white">Transpond</strong>: Authorized email newsletters and follow-up sequences.</li>
                     <li><strong className="text-white">Resend</strong>: Transactional email delivery.</li>
-                    <li><strong className="text-white">Stripe</strong>: PCI-compliant payment processing (card numbers never touch our servers).</li>
-                    <li><strong className="text-white">Ultatel</strong>: Business cloud telephony and direct SMS routing.</li>
+                    <li><strong className="text-white">Square &amp; Stripe</strong>: PCI-compliant payment processing (card numbers never touch our servers).</li>
+                    <li><strong className="text-white">Authorized Telecom Carriers</strong>: Opt-in transactional and appointment SMS routing.</li>
                   </ul>
                 </div>
               </div>

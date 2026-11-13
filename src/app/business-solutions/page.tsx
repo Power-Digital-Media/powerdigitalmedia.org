@@ -74,7 +74,7 @@ export default function BusinessSolutionsPage() {
                   One Connected <span className="text-amber-400">Growth Stack.</span>
                 </h1>
                 <p className="text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed">
-                  Stop duct-taping five disconnected vendors together. We wire your Next.js website, Capsule CRM, Transpond follow-ups, PDM PinDrop™ field apps, and ULTATEL cloud phones into one unified system.
+                  Stop duct-taping five disconnected vendors together. We wire your Next.js website, Capsule CRM, Transpond follow-ups, PDM PinDrop™ field apps, and PDM Site Intelligence™ monitoring into one unified system.
                 </p>
               </div>
 
@@ -102,15 +102,15 @@ export default function BusinessSolutionsPage() {
                   <div className="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400">
                     <PhoneCall className="w-5 h-5" />
                   </div>
-                  <h2 className="font-bold text-sm text-white">Cloud Phones</h2>
+                  <h2 className="font-bold text-sm text-white">24/7 Watchtower</h2>
                   <p className="text-xs text-slate-400 leading-relaxed">
-                    ULTATEL cloud VoIP with 2-minute missed-call SMS rescue and local Jackson setup.
+                    PDM Site Intelligence™ uptime, SSL, speed &amp; Search Console monitoring in Jackson.
                   </p>
                 </div>
               </div>
 
               <p className="text-xs text-slate-400 pt-2">
-                Authorized Integration Partner for Capsule CRM, Transpond, and ULTATEL Cloud Communications.
+                Authorized Integration Partner for Capsule CRM &amp; Transpond Automation.
               </p>
             </div>
 
@@ -188,7 +188,7 @@ export default function BusinessSolutionsPage() {
                           Systems Needed
                         </label>
                         <div className="grid grid-cols-2 gap-2.5 p-3.5 rounded-xl bg-[#12141c] border border-white/10">
-                          {["Web Design", "PinDrop / PinCam", "VoIP Phones", "CRM & Marketing"].map(
+                          {["Web Design", "PinDrop / PinCam", "Square Ordering", "CRM & Marketing"].map(
                             (svc) => (
                               <label
                                 key={svc}

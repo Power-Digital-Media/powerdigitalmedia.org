@@ -121,7 +121,7 @@ export default function TermsClient() {
                 </div>
                 <div className="text-slate-300 text-sm sm:text-base leading-relaxed space-y-4">
                   <p>
-                    Welcome to Power Digital Media LLC. By accessing <code className="text-amber-300">powerdigitalmedia.org</code>, subscribing to our proprietary field apps (<strong className="text-white">PDM PinDrop™</strong> and <strong className="text-white">PinCam™</strong>), or engaging our web design, Local SEO, paid marketing, or business integration services (including Capsule CRM, Transpond, and Ultatel VoIP systems), you agree to be bound by these Terms of Service.
+                    Welcome to Power Digital Media LLC. By accessing <code className="text-amber-300">powerdigitalmedia.org</code>, subscribing to our proprietary software (<strong className="text-white">PDM PinDrop™</strong>, <strong className="text-white">PinCam™</strong>, and <strong className="text-white">PDM Site Intelligence™</strong>), or engaging our web design, Local SEO, paid marketing, or business integration services (including Capsule CRM, Transpond, and Square/Stripe systems), you agree to be bound by these Terms of Service.
                   </p>
                   <p>
                     If you enter into this agreement on behalf of a business, contractor crew, church, or organization, you represent that you have authority to bind that entity to these terms.
@@ -138,7 +138,7 @@ export default function TermsClient() {
                 </div>
                 <div className="text-slate-300 text-sm sm:text-base leading-relaxed space-y-4">
                   <p>
-                    Power Digital Media LLC provides custom Next.js website development, Google Map Pack &amp; Local SEO engineering, proprietary jobsite software (<strong className="text-white">PDM PinDrop™</strong> and <strong className="text-white">PinCam™</strong>), paid acquisition funnels, Capsule CRM pipelines, Transpond email automation, and Ultatel business phone deployments.
+                    Power Digital Media LLC provides custom Next.js website development, Google Map Pack &amp; Local SEO engineering, proprietary software (<strong className="text-white">PDM PinDrop™</strong>, <strong className="text-white">PinCam™</strong>, and <strong className="text-white">PDM Site Intelligence™</strong>), paid acquisition funnels, Capsule CRM pipelines, Square 0%-commission ordering, and Transpond email/SMS automation.
                   </p>
                   <p>
                     Project deliverables, milestones, and target launch dates are specified in your project proposal or invoice. Launch timelines depend on timely client approval and asset handoff.

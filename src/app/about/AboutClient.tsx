@@ -38,9 +38,9 @@ const capabilities = [
         icon: MapPin,
     },
     {
-        title: "CRM, Ordering & VoIP Sync",
+        title: "CRM, Ordering & Lead Rescue",
         description:
-            "Direct Capsule CRM pipelines, 0%-commission Square checkouts, and Ultatel missed-call SMS rescue so no lead slips through the cracks.",
+            "Direct Capsule CRM pipelines, 0%-commission Square checkouts, and automated 2-minute SMS lead follow-up so no inquiry slips through the cracks.",
         icon: Shield,
     },
 ];

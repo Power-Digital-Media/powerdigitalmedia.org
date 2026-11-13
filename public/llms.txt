@@ -10,7 +10,7 @@
 - **Phone / SMS**: (601) 446-2393
 - **Email**: [info@powerdigitalmedia.org](mailto:info@powerdigitalmedia.org)
 - **Website**: [https://powerdigitalmedia.org](https://powerdigitalmedia.org)
-- **Hours**: Monday–Friday, 8:00 AM – 6:00 PM CT
+- **Hours**: Monday–Friday, 9:00 AM – 5:00 PM CT
 
 ## Flagship Software & Services (Custom-Scoped Case-by-Case)
 - **[Contractor Growth Systems](https://powerdigitalmedia.org/contractors)**: Turnkey sub-2-second websites, Google Map Pack SEO, PinCam™ + PinDrop™ crew apps, and 18-second SMS lead rescue for roofers, HVAC pros, excavators, plumbers, electricians, and lawn care teams.
@@ -19,7 +19,7 @@
 - **[PDM Site Intelligence™ Watchtower](https://powerdigitalmedia.org/site-intelligence)**: Proprietary 24/7 engineering watchtower monitoring 5-minute uptime & SSL probes, CrUX cellular speed, Google Search Console & GA4 growth deltas, and 2-stage human-approved staged fixes across managed client sites.
 - **[Custom Next.js Web Design](https://powerdigitalmedia.org/web-design)**: Hand-coded Next.js 16 websites for contractors and standout local businesses—custom-scoped case-by-case with 100% codebase ownership and optional month-to-month managed edge care.
 - **[Local SEO & Google Maps](https://powerdigitalmedia.org/local-seo)**: Google 3-Pack optimization, neighborhood JSON-LD schema, and review velocity across Central Mississippi.
-- **[Custom Applications & CRM](https://powerdigitalmedia.org/custom-applications)** | **[Ultatel Business Phones](https://powerdigitalmedia.org/business-phones)** | **[Growth Marketing](https://powerdigitalmedia.org/marketing)**
+- **[Custom Applications & CRM](https://powerdigitalmedia.org/custom-applications)** | **[Growth Marketing](https://powerdigitalmedia.org/marketing)**
 - **[Free 5-Minute Rank & Site Video](https://powerdigitalmedia.org/free-audit)** | **[Live Portfolio](https://powerdigitalmedia.org/our-work)** | **[Verified Reviews](https://powerdigitalmedia.org/reviews)** | **[Book a 15-Min Scope Call](https://powerdigitalmedia.org/book)**
 
 ## Verified Mississippi Deployments

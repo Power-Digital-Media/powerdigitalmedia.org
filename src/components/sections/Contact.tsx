@@ -87,7 +87,7 @@ export default function Contact({
                 </div>
                 <div>
                   <h3 className="font-bold text-white text-base">Direct Call or Text</h3>
-                  <span className="text-xs text-slate-400 font-mono">Mon – Fri • 8:00 AM – 6:00 PM CT</span>
+                  <span className="text-xs text-slate-400 font-mono">Mon – Fri • 9:00 AM – 5:00 PM CT</span>
                 </div>
               </div>
 

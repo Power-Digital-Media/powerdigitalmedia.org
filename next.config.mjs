@@ -241,18 +241,28 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/business-phones',
+        destination: '/custom-applications',
+        permanent: true,
+      },
+      {
+        source: '/business-phones/:path*',
+        destination: '/custom-applications',
+        permanent: true,
+      },
+      {
         source: '/phones',
-        destination: '/business-phones',
+        destination: '/custom-applications',
         permanent: true,
       },
       {
         source: '/telephony',
-        destination: '/business-phones',
+        destination: '/custom-applications',
         permanent: true,
       },
       {
         source: '/voip',
-        destination: '/business-phones',
+        destination: '/custom-applications',
         permanent: true,
       },
 

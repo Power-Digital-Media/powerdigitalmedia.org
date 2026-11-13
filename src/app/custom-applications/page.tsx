@@ -220,7 +220,7 @@ export default function CustomApplicationsPage() {
                                         {
                                             step: "01",
                                             title: "Customer Clicks, Calls, or Orders",
-                                            desc: "Quote form, Square menu cart, or Ultatel phone line captures intent on your domain.",
+                                            desc: "Quote form, click-to-call button, or Square menu cart captures intent directly on your domain.",
                                             badge: "Next.js Edge",
                                         },
                                         {

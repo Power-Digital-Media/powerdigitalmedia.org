@@ -17,7 +17,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/local-seo",
     "/custom-applications",
     "/marketing",
-    "/business-phones",
     "/our-work",
     "/reviews",
     "/about",

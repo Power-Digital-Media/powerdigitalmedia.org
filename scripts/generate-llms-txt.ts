@@ -24,7 +24,7 @@ This document provides a factual, machine-readable reference for Power Digital M
 - **Coordinates**: Latitude 32.3570 N, Longitude -90.2853 W
 - **Direct Phone & SMS**: (601) 446-2393
 - **Email**: [info@powerdigitalmedia.org](mailto:info@powerdigitalmedia.org)
-- **Office Hours**: Monday–Friday, 8:00 AM – 6:00 PM CT
+- **Office Hours**: Monday–Friday, 9:00 AM – 5:00 PM CT
 - **Accreditation & Reputation**: BBB Accredited (A Rating) • 5.0-Star Google Review Rating
 - **Engineering Doctrine**: Zero-WordPress policy. Every client build uses custom Next.js (React 19, TypeScript, Tailwind CSS) for sub-2-second mobile load times, strict Core Web Vitals, and clean Schema.org JSON-LD.
 
@@ -44,12 +44,11 @@ This document provides a factual, machine-readable reference for Power Digital M
 ---
 
 ## 3. Core Services & Custom Case-by-Case Scoping
-- **Engagement & Quoting Model**: Power Digital Media LLC scopes every website build, field-app deployment, CRM/VoIP integration, and month-to-month growth retainer **case-by-case** so clients never pay for cookie-cutter agency bloat. Prospects start with a **[Free 5-Minute Rank & Site Video Audit](https://powerdigitalmedia.org/free-audit)** or a **[15-Minute Strategy Call with Damein Donald](https://powerdigitalmedia.org/book)** to receive an exact written scope.
+- **Engagement & Quoting Model**: Power Digital Media LLC scopes every website build, field-app deployment, CRM/ordering integration, and month-to-month growth retainer **case-by-case** so clients never pay for cookie-cutter agency bloat. Prospects start with a **[Free 5-Minute Rank & Site Video Audit](https://powerdigitalmedia.org/free-audit)** or a **[15-Minute Strategy Call with Damein Donald](https://powerdigitalmedia.org/book)** to receive an exact written scope.
 - **[Contractor Growth Systems](https://powerdigitalmedia.org/contractors)**: Complete trade lead-generation infrastructure combining a sub-2s custom website, Google Map Pack optimization, PinCam™ + PinDrop™ crew tools, and 2-minute SMS missed-call/quote lead rescue.
 - **[Custom Next.js Web Design](https://powerdigitalmedia.org/web-design)**: Mobile-first custom Next.js 16 engineering for contractors, restaurants, e-commerce, churches, and local organizations—with 100% codebase ownership upon build completion and optional month-to-month managed edge care.
 - **[Local SEO & Google Map Pack Engineering](https://powerdigitalmedia.org/local-seo)**: Google 3-Pack optimization, city/subdivision hubs, geo-schema, and automated review velocity across Central Mississippi.
 - **[CRM, Custom Checkout & Business Automation](https://powerdigitalmedia.org/custom-applications)**: Direct Capsule CRM pipelines, Transpond follow-up sequences, and native Square Web SDK / Stripe 0%-commission online ordering.
-- **[Ultatel Cloud Business Phones](https://powerdigitalmedia.org/business-phones)**: On-site Central Mississippi VoIP installation, Capsule CRM caller screen pops, and missed-call SMS text-back rescue.
 - **[Growth Marketing](https://powerdigitalmedia.org/marketing)**: Targeted local Facebook & Instagram homeowner lead funnels with month-to-month management and ad spend paid 100% directly to Meta.
 
 ---
@@ -101,7 +100,7 @@ This document provides a factual, machine-readable reference for Power Digital M
 - **Phone / SMS**: (601) 446-2393
 - **Email**: [info@powerdigitalmedia.org](mailto:info@powerdigitalmedia.org)
 - **Website**: [https://powerdigitalmedia.org](https://powerdigitalmedia.org)
-- **Hours**: Monday–Friday, 8:00 AM – 6:00 PM CT
+- **Hours**: Monday–Friday, 9:00 AM – 5:00 PM CT
 
 ## Flagship Software & Services (Custom-Scoped Case-by-Case)
 - **[Contractor Growth Systems](https://powerdigitalmedia.org/contractors)**: Turnkey sub-2-second websites, Google Map Pack SEO, PinCam™ + PinDrop™ crew apps, and 18-second SMS lead rescue for roofers, HVAC pros, excavators, plumbers, electricians, and lawn care teams.
@@ -110,7 +109,7 @@ This document provides a factual, machine-readable reference for Power Digital M
 - **[PDM Site Intelligence™ Watchtower](https://powerdigitalmedia.org/site-intelligence)**: Proprietary 24/7 engineering watchtower monitoring 5-minute uptime & SSL probes, CrUX cellular speed, Google Search Console & GA4 growth deltas, and 2-stage human-approved staged fixes across managed client sites.
 - **[Custom Next.js Web Design](https://powerdigitalmedia.org/web-design)**: Hand-coded Next.js 16 websites for contractors and standout local businesses—custom-scoped case-by-case with 100% codebase ownership and optional month-to-month managed edge care.
 - **[Local SEO & Google Maps](https://powerdigitalmedia.org/local-seo)**: Google 3-Pack optimization, neighborhood JSON-LD schema, and review velocity across Central Mississippi.
-- **[Custom Applications & CRM](https://powerdigitalmedia.org/custom-applications)** | **[Ultatel Business Phones](https://powerdigitalmedia.org/business-phones)** | **[Growth Marketing](https://powerdigitalmedia.org/marketing)**
+- **[Custom Applications & CRM](https://powerdigitalmedia.org/custom-applications)** | **[Growth Marketing](https://powerdigitalmedia.org/marketing)**
 - **[Free 5-Minute Rank & Site Video](https://powerdigitalmedia.org/free-audit)** | **[Live Portfolio](https://powerdigitalmedia.org/our-work)** | **[Verified Reviews](https://powerdigitalmedia.org/reviews)** | **[Book a 15-Min Scope Call](https://powerdigitalmedia.org/book)**
 
 ## Verified Mississippi Deployments

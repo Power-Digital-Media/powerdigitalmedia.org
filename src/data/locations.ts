@@ -180,7 +180,7 @@ export const CENTRAL_MS_LOCATIONS: CityLocationData[] = [
       "Commercial & Residential HVAC Maintenance",
       "Roof Leak Diagnostics, Coatings & Shingle Tear-Offs",
       "Kitchen/Bath Remodeling & Custom Exteriors",
-      "B2B Facility Services, VoIP & Local Retail",
+      "B2B Facility Services, Medical & Local Retail",
     ],
     featuredProof: {
       clientName: "Born Again Roofing & Metro Service Pros",
@@ -197,8 +197,8 @@ export const CENTRAL_MS_LOCATIONS: CityLocationData[] = [
         a: "Yes. We structure separate, high-converting service silos for Highland Colony / commercial property managers and 39157 homeowners so each audience sees relevant proof and quote forms.",
       },
       {
-        q: "Do you integrate CRM and business phones for Ridgeland offices?",
-        a: "Yes—we connect Capsule CRM, automated SMS lead rescue, and cloud VoIP telephony so missed calls get an automatic text response in under 20 seconds.",
+        q: "Do you integrate CRM and automated SMS lead follow-up for Ridgeland offices?",
+        a: "Yes—we connect Capsule CRM, Transpond automation, and instant SMS lead rescue so online inquiries get an automatic text response in under 20 seconds.",
       },
       {
         q: "How do I see where my business currently ranks in Ridgeland?",

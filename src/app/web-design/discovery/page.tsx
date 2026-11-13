@@ -668,7 +668,7 @@ export default function WebDesignDiscoveryPage() {
                   <div className="grid gap-3 sm:grid-cols-2">
                     {[
                       "Capsule CRM Pipeline",
-                      "ULTATEL Cloud Business Phones",
+                      "PDM PinDrop™ + PinCam™ Field Suite",
                       "Stripe / Square Payments",
                       "Transpond Email & SMS",
                       "Google Business Profile Sync",

@@ -16,7 +16,6 @@
   * **Durable Lead Delivery (`src/lib/durable-lead-delivery.ts` + `src/lib/firebase-admin.ts`):** Firestore durable persistence + retry outbox guaranteeing zero lost leads even during external API hiccups.
   * **Capsule CRM:** B2B lead organization & customer relationships (Damein is a certified Capsule Solutions Partner).
   * **Transpond:** Marketing automation campaigns and autoresponders (Main List ID: `186443`, Damein is a certified Transpond Solutions Partner).
-  * **Ultatel:** Cloud VoIP Business Phone Systems integration provider.
   * **Resend SDK:** Transactional notification & fallback email delivery.
 * **Proprietary Software & Watchtower Showcases:**
   * **`PinCam™` (`/pincam`):** Interactive 5-mode contractor camera & proof studio (Ghost Camera Photo Match 0–90% opacity overlay, non-destructive vector markups/measurements, dual-camera PiP walkthroughs, instant homeowner/adjuster PDF reports, and 1-tap `PinDrop™` sync).
@@ -83,5 +82,8 @@ graph TD
 ---
 
 ## 🚨 5. External Operational Follow-Ups (Owner Actions)
-1. **Google Business Profile Manual Ticket:** Complete manual GBP verification if any virtual/address flag remains active, attaching MS LLC docs + utility bill for `2914 Cynthia Rd, Jackson, MS 39209`.
+1. **Permanent Google Business Profile (GBP) API Sync (`src/data/gbp-profile.ts` & `scripts/gbp-sync.ts`):**
+   * Canonical Home-Office Service-Area Business (`CUSTOMER_LOCATION_ONLY`) GBP profile (`PDM_CANONICAL_GBP_PROFILE`) and CLI (`npm run gbp:auth`, `npm run gbp:audit`, `npm run gbp:push -- --apply`, `npm run gbp:post`) are wired and ready.
+   * **GBP API Allowlist Case Submitted:** Google Support Case ID **`6-2776000041917`** (submitted for GCP Project `power-digital-media` / Project Number `978634389841`; removed stale suspended Flora duplicate so manager account is `100% verified` across `Power Digital Media LLC` and `Born Again Home Remodeling & Roofing, LLC`).
+   * Once Google's approval email arrives (~7–10 business days), run `npm run gbp:auth` and `npm run gbp:audit` / `npm run gbp:push -- --apply`.
 2. **Standalone `pindrop-saas` App Polish (Next Engineering Track):** Debug & finalize remaining production workflows inside `e:\AntiGravity\pindrop-saas` (`PinCamNativeApp.tsx` / `PinDrop` SaaS backend) following deployment of `powerdigitalmedia.org`.

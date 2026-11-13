@@ -128,10 +128,10 @@ export default function CommunityLandingPage() {
                 <PhoneCall className="w-6 h-6 text-amber-400" />
               </div>
               <h2 className="text-xl font-bold uppercase tracking-tight mb-2.5">
-                3. Cloud Business Phones
+                3. Field Proof &amp; Reviews
               </h2>
               <p className="text-sm text-slate-300 leading-relaxed">
-                Deploy <strong className="text-white">ULTATEL Business Phone</strong> systems with auto-attendants, mobile app routing, and 2-minute missed-call text-back rescue.
+                Deploy <strong className="text-white">PDM PinDrop™ &amp; PinCam™</strong> to turn completed jobs into neighborhood Google rankings and 5-star homeowner reviews.
               </p>
             </div>
           </div>
@@ -269,7 +269,7 @@ export default function CommunityLandingPage() {
                           { value: "Web Design", label: "High-Speed Website & SEO" },
                           { value: "CRM & Automation", label: "CRM & Lead Follow-Up" },
                           { value: "Email Marketing", label: "PinDrop™ / Review Automation" },
-                          { value: "Ultatel Business Phone", label: "ULTATEL Business Phones" },
+                          { value: "Square Ordering", label: "0%-Commission Online Ordering" },
                         ].map((opt) => (
                           <label
                             key={opt.value}

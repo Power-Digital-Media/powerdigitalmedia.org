@@ -48,3 +48,5 @@ next-env.d.ts
 /scripts/create-admin-user.ts
 /scratch/
 scratch_arch_screenshot.png
+
+.gbp-oauth.local.json
