@@ -166,8 +166,39 @@ export interface CruxSummary {
   clsRating: CwvRating | null;
 }
 
+export interface WatchtowerScannerTelemetry {
+  connected: boolean;
+  websiteId?: string;
+  websiteName?: string;
+  domain?: string;
+  monitoringStatus?: "pending_scan" | "healthy" | "degraded" | "outage" | "paused";
+  technicalHealthScore?: number | null;
+  uptimeIntervalMinutes?: number;
+  lastCheckedAt?: string | null;
+  sslValid?: boolean | null;
+  sslIssuer?: string | null;
+  sslDaysRemaining?: number | null;
+  pagesCrawled?: number | null;
+  linksChecked?: number | null;
+  brokenLinksCount?: number | null;
+  redirectChainsCount?: number | null;
+  openTechnicalIssuesCount?: number;
+  privateGrowthInsightsCount?: number;
+  latestPhase3Summary?: {
+    auditedAt: string;
+    lighthousePerfMobile: number | null;
+    lighthousePerfDesktop: number | null;
+    lighthouseSeoMobile: number | null;
+    lighthouseAccessibilityMobile?: number | null;
+    lighthouseBestPracticesMobile?: number | null;
+    agenticBrowsingMobile?: string | null;
+    sitemapUrlsCount?: number | null;
+  } | null;
+}
+
 export interface ScannerStage1Response {
   ok: true;
+  engineSource?: "pdm-site-intelligence";
   scannedAt: string;
   http: HttpSecuritySummary;
   scores: {
@@ -196,6 +227,7 @@ export interface ScannerStage1Response {
   localSignals: LocalSignalsSummary;
   conversion: ConversionAuditSummary;
   crux: CruxSummary;
+  watchtower?: WatchtowerScannerTelemetry;
   issues: ScannerIssue[];
 }
 
@@ -233,7 +265,42 @@ export interface ScannerPageSpeedMobileMetrics {
 
 export interface ScannerPageSpeedResponse {
   ok: boolean;
+  engineSource?: "pdm-site-intelligence";
+  watchtowerSynced?: boolean;
   status: "completed" | "timeout_or_unreachable" | "quota_or_error";
   message?: string;
   mobile?: ScannerPageSpeedMobileMetrics;
+}
+
+export interface WatchtowerFleetSiteCard {
+  id: string;
+  domain: string;
+  primaryUrl: string;
+  name: string;
+  clientName: string;
+  industry: string;
+  hostingProvider: string;
+  monitoringEnabled: boolean;
+  uptimeIntervalMinutes: number;
+  monitoringStatus: string;
+  technicalHealthScore: number | null;
+  statusCode: number | null;
+  latencyMs: number | null;
+  ttfbMs: number | null;
+  sslValid: boolean | null;
+  sslIssuer: string | null;
+  sslDaysRemaining: number | null;
+  pagesCrawled: number | null;
+  linksChecked: number | null;
+  brokenLinksCount: number | null;
+  redirectChainsCount: number | null;
+  llmsTxtStatus: string | null;
+  ardManifestStatus: string | null;
+  lastCheckedAt: string | null;
+  lighthousePerfMobile: number | null;
+  lighthousePerfDesktop: number | null;
+  lighthouseSeoMobile: number | null;
+  lighthouseAccessibilityMobile: number | null;
+  agenticBrowsingMobile: string | null;
+  sitemapUrlsCount: number | null;
 }

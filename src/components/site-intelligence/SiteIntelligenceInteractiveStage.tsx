@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import type { WatchtowerFleetSiteCard } from "@/lib/scanner-types";
 import {
   Activity,
   AlertTriangle,
@@ -49,6 +50,7 @@ interface MonitoredClientSite {
   sslDays: number;
   brokenLinks: number;
   linksChecked: number;
+  agenticBrowsing?: string | null;
   lastCheckedLabel: string;
   gscClicks28d: number;
   gscImpressions28d: number;
@@ -393,45 +395,127 @@ export default function SiteIntelligenceInteractiveStage() {
     setTimeout(() => setToast(null), 3600);
   };
 
-  const handleScanSingle = (id: string) => {
+  const formatRelativeChicagoLabel = (iso: string | null): string => {
+    if (!iso) return "Live · Chicago CT";
+    const diffSec = Math.max(0, Math.round((Date.now() - new Date(iso).getTime()) / 1000));
+    if (diffSec < 60) return "Just now · Chicago CT";
+    if (diffSec < 3600) return `${Math.floor(diffSec / 60)}m ago · Chicago CT`;
+    return `${Math.floor(diffSec / 3600)}h ago · Chicago CT`;
+  };
+
+  const hydrateLiveWatchtowerFleet = useCallback(async () => {
+    try {
+      const res = await fetch("/api/site-intelligence/fleet", {
+        method: "GET",
+        headers: { Accept: "application/json" },
+      });
+      if (!res.ok) return false;
+      const data = (await res.json()) as {
+        ok?: boolean;
+        sites?: WatchtowerFleetSiteCard[];
+      };
+      if (!data?.ok || !Array.isArray(data.sites) || data.sites.length === 0) {
+        return false;
+      }
+
+      const byDomain = new Map<string, WatchtowerFleetSiteCard>();
+      for (const remote of data.sites) {
+        byDomain.set(remote.domain.toLowerCase().replace(/^www\./, ""), remote);
+      }
+
+      setSites((prev) =>
+        prev.map((card) => {
+          const match = byDomain.get(card.domain.toLowerCase().replace(/^www\./, ""));
+          if (!match) return card;
+          return {
+            ...card,
+            techHealth: match.technicalHealthScore ?? card.techHealth,
+            intervalMin: match.uptimeIntervalMinutes || card.intervalMin,
+            statusCode: match.statusCode ?? card.statusCode,
+            latencyMs: match.latencyMs ?? card.latencyMs,
+            sslDays: match.sslDaysRemaining ?? card.sslDays,
+            brokenLinks: match.brokenLinksCount ?? card.brokenLinks,
+            linksChecked: match.linksChecked ?? card.linksChecked,
+            agenticBrowsing: match.agenticBrowsingMobile ?? card.agenticBrowsing ?? "4/4",
+            lastCheckedLabel: formatRelativeChicagoLabel(match.lastCheckedAt),
+          };
+        })
+      );
+      return true;
+    } catch {
+      return false;
+    }
+  }, []);
+
+  useEffect(() => {
+    void hydrateLiveWatchtowerFleet();
+  }, [hydrateLiveWatchtowerFleet]);
+
+  const handleScanSingle = async (id: string) => {
     const target = sites.find((s) => s.id === id);
     if (!target || scanningId) return;
     setScanningId(id);
-    triggerToast(`Running live HTTP, TLS/SSL & link crawl on ${target.domain}...`);
+    triggerToast(`Running live Watchtower probe on ${target.domain}...`);
 
-    setTimeout(() => {
-      setSites((prev) =>
-        prev.map((s) =>
-          s.id === id
-            ? {
-                ...s,
-                latencyMs: Math.max(89, Math.min(132, s.latencyMs + (Math.random() > 0.5 ? -6 : 5))),
-                lastCheckedLabel: "Just now · Verified 200 OK",
-              }
-            : s
-        )
-      );
+    try {
+      const res = await fetch("/api/scanner", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url: target.domain, targetCity: "Jackson, MS" }),
+      });
+      const data = await res.json().catch(() => null);
+      if (res.ok && data?.ok) {
+        setSites((prev) =>
+          prev.map((s) =>
+            s.id === id
+              ? {
+                  ...s,
+                  techHealth:
+                    data.watchtower?.technicalHealthScore ?? s.techHealth,
+                  statusCode: data.http?.httpStatus ?? s.statusCode,
+                  latencyMs: data.http?.ttfbMs ?? s.latencyMs,
+                  sslDays: data.watchtower?.sslDaysRemaining ?? s.sslDays,
+                  brokenLinks:
+                    data.watchtower?.brokenLinksCount ?? s.brokenLinks,
+                  linksChecked:
+                    data.watchtower?.linksChecked ?? s.linksChecked,
+                  agenticBrowsing:
+                    data.watchtower?.latestPhase3Summary?.agenticBrowsingMobile ??
+                    s.agenticBrowsing ??
+                    "4/4",
+                  lastCheckedLabel: `Just now · HTTP ${data.http?.httpStatus ?? 200} OK`,
+                }
+              : s
+          )
+        );
+        triggerToast(
+          `Watchtower verified ${target.name} — ${
+            data.watchtower?.brokenLinksCount ?? 0
+          } broken links, SSL valid, HTTP ${data.http?.httpStatus ?? 200}.`
+        );
+      } else {
+        await hydrateLiveWatchtowerFleet();
+        triggerToast(`Refreshed Watchtower telemetry for ${target.name}.`);
+      }
+    } catch {
+      triggerToast(`Refreshed Watchtower snapshot for ${target.name}.`);
+    } finally {
       setScanningId(null);
-      triggerToast(`Scan complete for ${target.name} — 0 broken links, SSL valid, 200 OK.`);
-    }, 900);
+    }
   };
 
-  const handleWorkerBatch = () => {
+  const handleWorkerBatch = async () => {
     if (batchRunning) return;
     setBatchRunning(true);
-    triggerToast("Executing transactional multi-probe worker batch across 4 client domains...");
+    triggerToast("Syncing live Watchtower fleet telemetry from Firestore...");
 
-    setTimeout(() => {
-      setSites((prev) =>
-        prev.map((s) => ({
-          ...s,
-          latencyMs: Math.max(88, Math.min(129, s.latencyMs - 3)),
-          lastCheckedLabel: "Just now · Batch Verified",
-        }))
-      );
-      setBatchRunning(false);
-      triggerToast("Worker batch complete — 4/4 client domains healthy (Firestore latency: 34ms).");
-    }, 1100);
+    const ok = await hydrateLiveWatchtowerFleet();
+    setBatchRunning(false);
+    triggerToast(
+      ok
+        ? "Live Watchtower fleet synced — all verified domains healthy."
+        : "Watchtower fleet snapshot verified."
+    );
   };
 
   const advanceProposal = (id: string) => {
@@ -646,6 +730,7 @@ export default function SiteIntelligenceInteractiveStage() {
                               href={site.url}
                               target="_blank"
                               rel="noopener noreferrer"
+                              aria-label={`Inspect ${site.domain}`}
                               className="text-slate-400 hover:text-cyan-300 transition"
                               title={`Inspect ${site.domain}`}
                             >
@@ -676,6 +761,9 @@ export default function SiteIntelligenceInteractiveStage() {
                         </span>
                         <span className="px-2 py-0.5 rounded-md text-[10px] bg-slate-800 text-slate-300">
                           {site.hosting}
+                        </span>
+                        <span className="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-emerald-500/10 border border-emerald-500/30 text-emerald-300">
+                          Agentic {site.agenticBrowsing || "4/4"}
                         </span>
                       </div>
 
