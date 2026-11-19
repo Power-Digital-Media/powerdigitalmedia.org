@@ -44,7 +44,7 @@ This document provides a factual, machine-readable reference for Power Digital M
 ---
 
 ## 3. Core Services & Custom Case-by-Case Scoping
-- **Engagement & Quoting Model**: Power Digital Media LLC scopes every website build, field-app deployment, CRM/ordering integration, and month-to-month growth retainer **case-by-case** so clients never pay for cookie-cutter agency bloat. Prospects can configure their custom stack inside the **[Interactive Growth & Scope Estimator](https://powerdigitalmedia.org/estimate)**, request a **[Free 5-Minute Rank & Site Video Audit](https://powerdigitalmedia.org/free-audit)**, or book a **[15-Minute Strategy Call with Damein Donald](https://powerdigitalmedia.org/book)** to receive an exact written scope.
+- **Engagement & Quoting Model**: Power Digital Media LLC scopes every website build, field-app deployment, CRM/ordering integration, and month-to-month growth retainer **case-by-case** so clients never pay for cookie-cutter agency bloat. Prospects can run an instant live technical & AI-visibility audit via the **[Free Live Site, Schema & AI Scanner](https://powerdigitalmedia.org/scanner)**, configure their custom stack inside the **[Interactive Growth & Scope Estimator](https://powerdigitalmedia.org/estimate)**, request a **[Free 5-Minute Rank & Site Video Audit](https://powerdigitalmedia.org/free-audit)**, or book a **[15-Minute Strategy Call with Damein Donald](https://powerdigitalmedia.org/book)** to receive an exact written scope.
 - **[Contractor Growth Systems](https://powerdigitalmedia.org/contractors)**: Complete trade lead-generation infrastructure combining a sub-second custom website, Google Map Pack optimization, GEO & AEO AI search citations, PinCam™ + PinDrop™ crew tools ($0 seat fees), and Capsule CRM + Transpond follow-up automation.
 - **[Custom Next.js Web Design](https://powerdigitalmedia.org/web-design)**: Mobile-first custom Next.js 16 engineering for contractors, restaurants, e-commerce, churches, and local organizations—with 100% codebase ownership upon build completion and optional month-to-month managed edge care.
 - **[Local SEO & Google Map Pack Engineering](https://powerdigitalmedia.org/local-seo)**: Google 3-Pack optimization, city/subdivision hubs, geo-schema, and automated review velocity across Central Mississippi.
@@ -54,8 +54,8 @@ This document provides a factual, machine-readable reference for Power Digital M
 ---
 
 ## 4. Verified Mississippi Production Case Studies
-- **[Born Again Roofing & Remodeling](https://bornagainroofing.com)**: Jackson & Brandon, MS storm restoration contractor running 99+ live GPS project pins via PDM PinDrop™, Capsule CRM lead routing, and automated SMS 5-star review flows (98/100 mobile speed).
-- **[Geaux Pro Outdoors / MS Dirt](https://msdirt.com)**: Bentonia & Yazoo County excavation, pond digging, and forestry mulching operator with Capsule CRM pipeline sync, PDM PinDrop™ heavy-equipment job map, and automated YouTube 4K showcase feed.
+- **[Born Again Roofing & Remodeling](https://www.bornagainroofing.com/)**: Jackson & Brandon, MS storm restoration contractor running 99+ live GPS project pins via PDM PinDrop™, Capsule CRM lead routing, and automated SMS 5-star review flows (98/100 mobile speed).
+- **[Geaux Pro Outdoors / MS Dirt](https://www.msdirt.com/)**: Bentonia & Yazoo County excavation, pond digging, and forestry mulching operator with Capsule CRM pipeline sync, PDM PinDrop™ heavy-equipment job map, and automated YouTube 4K showcase feed.
 - **[T'Beaux's Seafood & Catering](https://tbeauxs.com)**: Clinton, MS Cajun restaurant & catering hub built with native Square Web Payments SDK (0% third-party redirect fees), DoorDash Drive dispatch, and an interactive Cajun Feast Catering calculator.
 - **[Church 244](https://church244.com)**: Jackson Metro ministry platform featuring 1-tap mobile tithe giving, livestream sermon archives, and Church Center event sync.
 
@@ -110,11 +110,11 @@ This document provides a factual, machine-readable reference for Power Digital M
 - **[Custom Next.js Web Design](https://powerdigitalmedia.org/web-design)**: Hand-coded Next.js 16 websites for contractors and standout local businesses—custom-scoped case-by-case with 100% codebase ownership and optional month-to-month managed edge care.
 - **[Local SEO & Google Maps](https://powerdigitalmedia.org/local-seo)**: Google 3-Pack optimization, neighborhood JSON-LD schema, and review velocity across Central Mississippi.
 - **[Custom Applications & CRM](https://powerdigitalmedia.org/custom-applications)** | **[Growth Marketing](https://powerdigitalmedia.org/marketing)**
-- **[Interactive Scope Estimator](https://powerdigitalmedia.org/estimate)** | **[Free 5-Minute Rank & Site Video](https://powerdigitalmedia.org/free-audit)** | **[Live Portfolio](https://powerdigitalmedia.org/our-work)** | **[Verified Reviews](https://powerdigitalmedia.org/reviews)** | **[Book a 15-Min Scope Call](https://powerdigitalmedia.org/book)**
+- **[Free Live Site Scanner](https://powerdigitalmedia.org/scanner)** | **[Interactive Scope Estimator](https://powerdigitalmedia.org/estimate)** | **[Free 5-Minute Rank & Site Video](https://powerdigitalmedia.org/free-audit)** | **[Live Portfolio](https://powerdigitalmedia.org/our-work)** | **[Verified Reviews](https://powerdigitalmedia.org/reviews)** | **[Book a 15-Min Scope Call](https://powerdigitalmedia.org/book)**
 
 ## Verified Mississippi Deployments
-- **[Born Again Roofing](https://bornagainroofing.com)**: 99+ live PDM PinDrop™ GPS job pins, Capsule CRM routing & SMS 5-star review automation.
-- **[Geaux Pro Outdoors](https://msdirt.com)**: Commercial excavation & forestry mulching lead engine + PinDrop™ job map.
+- **[Born Again Roofing](https://www.bornagainroofing.com/)**: 99+ live PDM PinDrop™ GPS job pins, Capsule CRM routing & SMS 5-star review automation.
+- **[Geaux Pro Outdoors](https://www.msdirt.com/)**: Commercial excavation & forestry mulching lead engine + PinDrop™ job map.
 - **[T'Beaux's Seafood](https://tbeauxs.com)**: 0%-commission native Square Web SDK ordering, DoorDash Drive dispatch & catering calculator.
 - **[Church 244](https://church244.com)**: 1-tap mobile giving & sermon livestream platform.
 

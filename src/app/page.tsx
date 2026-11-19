@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import ContractorHeroStage from "@/components/sections/ContractorHeroStage";
+import QuickScanBanner from "@/components/scanner/QuickScanBanner";
 import DeferredFooterSections from "@/components/ui/DeferredFooterSections";
 import {
   Phone,
@@ -20,16 +21,16 @@ const SpeedComparisonCard = dynamic(() => import("@/components/ui/SpeedCompariso
 const AEOFAQ = dynamic(() => import("@/components/sections/AEOFAQ"));
 
 export const metadata = {
-  title: "Power Digital Media | Contractor Websites, Local SEO & Field Apps in Jackson, MS",
+  title: "Jackson, MS Web Design, SEO & CRM | Power Digital Media",
   description:
-    "Mississippi's contractor & local business growth studio. We build sub-2s custom websites, Google Map Pack SEO, and proprietary PinCam™ + PinDrop™ jobsite apps that turn finished jobs into phone calls.",
+    "Custom 0.8s websites, 24/7 managed hosting, Google Map Pack SEO, and Capsule CRM systems built in Jackson, MS. Get an instant estimate or free scan.",
   alternates: {
     canonical: "https://powerdigitalmedia.org",
   },
   openGraph: {
-    title: "Power Digital Media | Websites, Local SEO & Field Apps That Pull Local Leads",
+    title: "Jackson, MS Web Design, SEO & CRM | Power Digital Media",
     description:
-      "Turn every finished job into neighborhood Google rankings, 5-star reviews, and booked calls. Built in Jackson, MS by Damein Donald.",
+      "Custom 0.8s websites, 24/7 managed hosting, Google Map Pack SEO, and Capsule CRM systems built in Jackson, MS. Get an instant estimate or free scan.",
     url: "https://powerdigitalmedia.org",
     images: ["/images/og-image.png"],
   },
@@ -171,6 +172,11 @@ export default function Home() {
       </section>
 
       {/* =====================================================================
+          0. COMPACT LIVE WATCHTOWER QUICK-SCAN BAR
+      ====================================================================== */}
+      <QuickScanBanner />
+
+      {/* =====================================================================
           1. IMMERSIVE 3-STAGE JOBSITE-TO-LEAD INTERACTIVE STORY
       ====================================================================== */}
       <JobsitePipelineStory />
@@ -250,7 +256,7 @@ export default function Home() {
             "@type": "WebPage",
             "@id": "https://powerdigitalmedia.org/#webpage",
             url: "https://powerdigitalmedia.org",
-            name: "Power Digital Media | Contractor Websites, Local SEO & Field Apps in Jackson, MS",
+            name: "Jackson, MS Web Design, SEO & CRM | Power Digital Media",
             isPartOf: {
               "@id": "https://powerdigitalmedia.org/#website",
             },

@@ -504,6 +504,7 @@ export async function handleFormsPostRequest(
         const roadblockValue = String(
             body.roadblock ||
                 body.biggest_challenge ||
+                body.critical_findings ||
                 body.message ||
                 body.notes ||
                 freeTextContent ||

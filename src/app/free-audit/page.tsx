@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import AllInOneSiteScanner from "@/components/scanner/AllInOneSiteScanner";
 import FormSecurityFields from "@/components/ui/FormSecurityFields";
 import { submitVerifiedLeadForm } from "@/lib/lead-submission";
 
@@ -94,10 +95,17 @@ export default function FreeAuditPage() {
     <main className="relative min-h-screen bg-[#06080f] text-white overflow-hidden">
       <Navbar />
 
-      <section className="relative pt-32 pb-24 md:pt-40">
-        <div className="absolute inset-0 blueprint-grid opacity-45 pointer-events-none" aria-hidden="true" />
+      {/* =====================================================================
+          1. PRIMARY INTERACTIVE HERO CONSOLE: LIVE ALL-IN-ONE SCANNER
+      ====================================================================== */}
+      <AllInOneSiteScanner isStandalonePage />
+
+      {/* =====================================================================
+          2. DAMEIN'S PERSONAL 5-MINUTE GOOGLE MAP PACK HEATMAP VIDEO REVIEW
+      ====================================================================== */}
+      <section className="relative py-20 md:py-24 border-t border-white/10 bg-[#070b14]">
         <div
-          className="absolute top-16 left-1/4 w-[560px] h-[420px] bg-amber-500/[0.08] blur-[150px] pointer-events-none rounded-full"
+          className="absolute inset-0 blueprint-grid opacity-30 pointer-events-none"
           aria-hidden="true"
         />
 
@@ -107,18 +115,23 @@ export default function FreeAuditPage() {
             <div className="lg:col-span-7 space-y-8 pt-2">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono font-bold uppercase tracking-widest">
                 <Video className="w-4 h-4 text-amber-400" />
-                Free 5-Minute Custom Video Review
+                Plus: Manual 5-Minute Google Map Pack Video
               </div>
 
               <div className="space-y-4">
-                <h1 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight leading-[1.03]">
-                  See Exactly Why Competitors Are{" "}
-                  <span className="text-amber-400">Getting Your Calls on Google.</span>
-                </h1>
+                <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight leading-[1.04]">
+                  Want Damein to Map Your{" "}
+                  <span className="text-amber-400">
+                    Neighborhood Google 3-Pack Rankings
+                  </span>{" "}
+                  Personally?
+                </h2>
                 <p className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
-                  No automated PDF junk. Damein Donald will pull up your business on Google Maps, test your mobile website speed on cellular, and text/email you a{" "}
-                  <strong className="text-white">personal 5-minute screen-recorded breakdown</strong>{" "}
-                  showing the exact fixes that will make your phone ring.
+                  Even if you don&apos;t have a website yet—or want deeper competitor intelligence beyond automated code checks—Damein Donald will pull up your business on Google Maps across Central MS and text/email you a{" "}
+                  <strong className="text-white">
+                    personal 5-minute screen-recorded heatmap &amp; action plan
+                  </strong>
+                  .
                 </p>
               </div>
 
@@ -127,9 +140,9 @@ export default function FreeAuditPage() {
                   <div className="w-9 h-9 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400">
                     <MapPin className="w-4 h-4" />
                   </div>
-                  <h2 className="font-bold text-sm text-white">Google Map Pack Check</h2>
+                  <h3 className="font-bold text-sm text-white">Google Map Pack Check</h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
-                    See where you actually rank across Jackson, Madison, Brandon, Ridgeland &amp; Clinton.
+                    See where you rank across Jackson, Madison, Flora, Brandon, Ridgeland &amp; Clinton.
                   </p>
                 </div>
 
@@ -137,9 +150,9 @@ export default function FreeAuditPage() {
                   <div className="w-9 h-9 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
                     <Zap className="w-4 h-4" />
                   </div>
-                  <h2 className="font-bold text-sm text-white">Mobile Speed &amp; Leaks</h2>
+                  <h3 className="font-bold text-sm text-white">Competitor Gap Check</h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
-                    Spot slow load times, broken quote forms, and missing call triggers costing you jobs.
+                    Compare your review velocity, categories, and speed against local top-3 rivals.
                   </p>
                 </div>
 
@@ -147,7 +160,7 @@ export default function FreeAuditPage() {
                   <div className="w-9 h-9 rounded-xl bg-sky-500/15 border border-sky-500/30 flex items-center justify-center text-sky-400">
                     <Video className="w-4 h-4" />
                   </div>
-                  <h2 className="font-bold text-sm text-white">Plain-English Action Plan</h2>
+                  <h3 className="font-bold text-sm text-white">Plain-English Action Plan</h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
                     Keep the entire checklist for free—whether we build together or you do it yourself.
                   </p>
@@ -174,18 +187,19 @@ export default function FreeAuditPage() {
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-[#070b14] border border-cyan-500/25 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+              <div className="p-4 rounded-2xl bg-[#06080f] border border-cyan-500/25 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
                 <div className="flex items-center gap-2.5 text-slate-300">
                   <Activity className="w-4 h-4 text-cyan-400 shrink-0" />
                   <span>
-                    Diagnostics powered by <strong className="text-white">PDM Site Intelligence™</strong> (CrUX cellular speed, SSL &amp; Google schema checks).
+                    Ongoing client telemetry powered 24/7 by{" "}
+                    <strong className="text-white">PDM Site Intelligence™</strong>.
                   </span>
                 </div>
                 <Link
                   href="/site-intelligence"
                   className="font-mono font-bold uppercase tracking-wider text-cyan-300 hover:text-amber-300 shrink-0"
                 >
-                  See Console →
+                  See Watchtower →
                 </Link>
               </div>
 
@@ -195,7 +209,7 @@ export default function FreeAuditPage() {
               </div>
             </div>
 
-            {/* Right Form Card */}
+            {/* Right Manual Video Request Card */}
             <div className="lg:col-span-5">
               <div className="p-5 sm:p-9 rounded-3xl obsidian-surface relative">
                 {status === "success" ? (
@@ -231,11 +245,11 @@ export default function FreeAuditPage() {
                 ) : (
                   <div className="space-y-5">
                     <div>
-                      <h2 className="text-xl sm:text-2xl font-black uppercase text-white">
-                        Request Your Free Video Review
-                      </h2>
+                      <h3 className="text-xl sm:text-2xl font-black uppercase text-white">
+                        Request Manual 5-Min Video
+                      </h3>
                       <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                        Don&apos;t have a website yet? Just enter your business name and city—we&apos;ll map your local Google opportunity.
+                        Don&apos;t have a website yet? Enter your business name &amp; city—Damein will map your local Google opportunity.
                       </p>
                     </div>
 
@@ -364,7 +378,7 @@ export default function FreeAuditPage() {
                         className="w-full px-4 py-4 bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black rounded-xl flex items-center justify-center gap-2 hover:brightness-110 transition-all text-xs uppercase tracking-wider shadow-[0_0_28px_rgba(245,158,11,0.3)] disabled:opacity-50 cursor-pointer"
                       >
                         {status === "submitting" ? (
-                          <span>Reserving Your Video Review...</span>
+                          <span>Reserving Your Video Review…</span>
                         ) : (
                           <>
                             <span>Send My Free 5-Min Video Breakdown</span>

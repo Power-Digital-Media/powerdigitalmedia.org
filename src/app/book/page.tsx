@@ -20,34 +20,34 @@ import Footer from "@/components/layout/Footer";
 import FormSecurityFields from "@/components/ui/FormSecurityFields";
 import { submitVerifiedLeadForm } from "@/lib/lead-submission";
 import { BOOKING_CONFIG } from "@/lib/booking";
-import { useSearchParams } from "next/navigation";
-import { Suspense, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 
 const BBBSeal = dynamic(() => import("@/components/ui/BBBSeal"));
 
-function BookPageContent() {
-    const searchParams = useSearchParams();
-    const fromParam = searchParams.get("from");
-    const prefilledFromFunnel = Boolean(fromParam);
-
-    const [step, setStep] = useState<1 | 2>(() => (prefilledFromFunnel ? 2 : 1));
+export default function BookPage() {
+    const [prefilledFromFunnel, setPrefilledFromFunnel] = useState(false);
+    const [step, setStep] = useState<1 | 2>(1);
     const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
     const [meetingFormat, setMeetingFormat] = useState<"phone" | "meet" | "lunch">("meet");
     const [leadInfo, setLeadInfo] = useState({
-        name: searchParams.get("name") || "",
-        email: searchParams.get("email") || "",
-        phone: searchParams.get("phone") || "",
+        name: "",
+        email: "",
+        phone: "",
     });
 
     useEffect(() => {
-        if (prefilledFromFunnel) {
+        if (typeof window === "undefined") return;
+        const sp = new URLSearchParams(window.location.search);
+        const fromParam = sp.get("from");
+        if (fromParam) {
+            setPrefilledFromFunnel(true);
             setStep(2);
         }
-        const qName = searchParams.get("name");
-        const qEmail = searchParams.get("email");
-        const qPhone = searchParams.get("phone");
+        const qName = sp.get("name");
+        const qEmail = sp.get("email");
+        const qPhone = sp.get("phone");
         if (qName || qEmail || qPhone) {
             setLeadInfo((prev) => ({
                 name: qName || prev.name,
@@ -55,7 +55,7 @@ function BookPageContent() {
                 phone: qPhone || prev.phone,
             }));
         }
-    }, [prefilledFromFunnel, searchParams]);
+    }, []);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -634,20 +634,5 @@ function BookPageContent() {
 
             <Footer />
         </main>
-    );
-}
-
-export default function BookPage() {
-    return (
-        <Suspense
-            fallback={
-                <main className="relative min-h-screen bg-[#06080f] flex items-center justify-center">
-                    <Navbar />
-                    <div className="w-8 h-8 border-2 border-amber-400/30 border-t-amber-400 rounded-full animate-spin" />
-                </main>
-            }
-        >
-            <BookPageContent />
-        </Suspense>
     );
 }

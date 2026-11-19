@@ -60,25 +60,8 @@ const FAQS: FAQItem[] = [
 export default function AEOFAQ() {
   const [activeId, setActiveId] = useState<string | null>("timeline-turnaround");
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: FAQS.map((faq) => ({
-      "@type": "Question",
-      name: faq.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.a,
-      },
-    })),
-  };
-
   return (
     <section className="py-20 md:py-24 bg-[#06080f] relative overflow-hidden border-t border-white/10" id="faq">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
 
       <div
         className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[520px] h-[420px] bg-amber-500/[0.05] rounded-full blur-[130px] pointer-events-none"

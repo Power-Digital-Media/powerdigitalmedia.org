@@ -71,7 +71,7 @@ export const CENTRAL_MS_LOCATIONS: CityLocationData[] = [
         "Custom sub-2-second Next.js website integrated with PinDrop™—showcasing 99+ verified roofing and exterior remodeling project pins across Jackson and surrounding suburbs.",
       metric: "99+ Live Metro Pins • 98/100 Speed",
       portfolioHref: "/portfolio/born-again-roofing",
-      liveUrl: "https://bornagainroofing.com",
+      liveUrl: "https://www.bornagainroofing.com/",
     },
     faqs: [
       {
@@ -130,7 +130,7 @@ export const CENTRAL_MS_LOCATIONS: CityLocationData[] = [
         "We power Madison County and northern corridor contractors—from heavy dirt work, house pads, and land clearing (msdirt.com) to precision residential turf & pine straw routes (lungrinslawncare.com).",
       metric: "Sub-2s Mobile Load • Local Schema",
       portfolioHref: "/portfolio/geaux-pro-outdoors",
-      liveUrl: "https://msdirt.com",
+      liveUrl: "https://www.msdirt.com/",
     },
     faqs: [
       {
@@ -189,7 +189,7 @@ export const CENTRAL_MS_LOCATIONS: CityLocationData[] = [
         "Active GPS job pins and neighborhood landing pages capturing residential remodeling, roof repairs, and exterior upgrades across Ridgeland and the Reservoir.",
       metric: "Verified 39157 Pins • 5.0★ Velocity",
       portfolioHref: "/portfolio/born-again-roofing",
-      liveUrl: "https://bornagainroofing.com",
+      liveUrl: "https://www.bornagainroofing.com/",
     },
     faqs: [
       {
@@ -248,7 +248,7 @@ export const CENTRAL_MS_LOCATIONS: CityLocationData[] = [
         "Dense cluster of live GPS-verified roofing and remodeling project pins across Brandon, Crossgates, and Reservoir neighborhoods—turning every finished roof into neighbor calls.",
       metric: "Dense 39042 / 39047 Pin Coverage",
       portfolioHref: "/portfolio/born-again-roofing",
-      liveUrl: "https://bornagainroofing.com",
+      liveUrl: "https://www.bornagainroofing.com/",
     },
     faqs: [
       {
@@ -484,7 +484,7 @@ export const CENTRAL_MS_LOCATIONS: CityLocationData[] = [
         "Active GPS-verified roofing and exterior project pins across Pearl, Pearson Road, and Old Brandon Road—compounding Google Map Pack visibility and 5-star homeowner reviews.",
       metric: "Verified 39208 Pins • 98/100 Mobile Speed",
       portfolioHref: "/portfolio/born-again-roofing",
-      liveUrl: "https://bornagainroofing.com",
+      liveUrl: "https://www.bornagainroofing.com/",
     },
     faqs: [
       {
@@ -543,7 +543,7 @@ export const CENTRAL_MS_LOCATIONS: CityLocationData[] = [
         "Sub-second Next.js websites, Google Map Pack optimization, and GEO/AEO structured schema engineered to capture searches from Canton Courthouse Square to Gluckstadt.",
       metric: "0.8s Architecture • 24/7 Watchtower",
       portfolioHref: "/portfolio/geaux-pro-outdoors",
-      liveUrl: "https://msdirt.com",
+      liveUrl: "https://www.msdirt.com/",
     },
     faqs: [
       {
@@ -602,7 +602,7 @@ export const CENTRAL_MS_LOCATIONS: CityLocationData[] = [
         "Fast mobile quote flows, verified GPS neighborhood pins, and automated 5-star review requests turning completed South Jackson and Byram jobs into steady homeowner phone calls.",
       metric: "Sub-Second Mobile UX • 5.0★ Review Flow",
       portfolioHref: "/portfolio/born-again-roofing",
-      liveUrl: "https://bornagainroofing.com",
+      liveUrl: "https://www.bornagainroofing.com/",
     },
     faqs: [
       {

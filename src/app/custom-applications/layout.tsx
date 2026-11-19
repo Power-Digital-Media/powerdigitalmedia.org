@@ -1,14 +1,14 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "CRM Integration & Custom Apps in Jackson MS | Power Digital Media",
-    description: "Custom business software, automated Capsule CRM & Transpond pipelines, and workflow automation built for Mississippi businesses.",
+    title: "CRM Setup & Integration in Jackson, MS | Power Digital",
+    description: "Capsule CRM setup, automated Transpond follow-ups, 0%-fee Square ordering, and custom apps for Jackson & Mississippi businesses. Book a strategy call.",
     alternates: {
         canonical: "https://powerdigitalmedia.org/custom-applications",
     },
     openGraph: {
-        title: "CRM Integration & Custom Apps in Jackson MS | Power Digital Media",
-        description: "Custom business software, automated Capsule CRM & Transpond pipelines, and workflow automation built for Mississippi businesses.",
+        title: "CRM Setup & Integration in Jackson, MS | Power Digital",
+        description: "Capsule CRM setup, automated Transpond follow-ups, 0%-fee Square ordering, and custom apps for Jackson & Mississippi businesses. Book a strategy call.",
         url: "https://powerdigitalmedia.org/custom-applications",
         images: ["/portfolio/growth-engine-real.webp"],
     },

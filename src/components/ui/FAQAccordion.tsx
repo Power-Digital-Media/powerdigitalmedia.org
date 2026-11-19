@@ -20,7 +20,6 @@ export default function FAQAccordion({
     faqs,
     title = "Frequently Asked Questions",
     eyebrow = "Straight Answers",
-    includeSchema = true,
 }: FAQAccordionProps) {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
@@ -28,30 +27,8 @@ export default function FAQAccordion({
         setOpenIndex(openIndex === index ? null : index);
     };
 
-    const faqSchema =
-        includeSchema && faqs.length > 0
-            ? {
-                  "@context": "https://schema.org",
-                  "@type": "FAQPage",
-                  mainEntity: faqs.map((faq) => ({
-                      "@type": "Question",
-                      name: faq.question,
-                      acceptedAnswer: {
-                          "@type": "Answer",
-                          text: faq.answer,
-                      },
-                  })),
-              }
-            : null;
-
     return (
         <section className="py-24 bg-[#06080f] border-t border-white/[0.06]">
-            {faqSchema && (
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-                />
-            )}
             <div className="container px-4 mx-auto max-w-4xl">
                 <div className="text-center mb-14">
                     <span className="text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-amber-400 block mb-3">

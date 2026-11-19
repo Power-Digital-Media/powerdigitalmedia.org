@@ -8,6 +8,7 @@ export default function StandaloneContactPage() {
     <main className="relative min-h-screen bg-[#06080f] text-white">
       <BreadcrumbSchema
         items={[
+          { name: "Home", url: "https://powerdigitalmedia.org/" },
           { name: "Contact", url: "https://powerdigitalmedia.org/contact" },
         ]}
       />

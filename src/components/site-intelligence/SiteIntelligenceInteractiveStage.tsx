@@ -74,7 +74,7 @@ const INITIAL_SITES: MonitoredClientSite[] = [
     id: "bar",
     name: "Born Again Roofing",
     domain: "bornagainroofing.com",
-    url: "https://bornagainroofing.com",
+    url: "https://www.bornagainroofing.com/",
     clientName: "Born Again Roofing & Remodeling",
     industry: "Roofing & Storm Restoration",
     techHealth: 98,
@@ -141,7 +141,7 @@ const INITIAL_SITES: MonitoredClientSite[] = [
     id: "gpo",
     name: "Geaux Pro Outdoors",
     domain: "msdirt.com",
-    url: "https://msdirt.com",
+    url: "https://www.msdirt.com/",
     clientName: "Geaux Pro Outdoors LLC",
     industry: "Excavation & Forestry Mulching",
     techHealth: 99,
@@ -966,7 +966,7 @@ export default function SiteIntelligenceInteractiveStage() {
                       detail: "Verified NAP, service radius & 5.0★ rating graph",
                     },
                     {
-                      entity: "FAQPage Answer Engine Graph",
+                      entity: "Service & Speakable Answer Graph",
                       detail: "Structured Q&A pairs indexed for Google & ChatGPT",
                     },
                     {

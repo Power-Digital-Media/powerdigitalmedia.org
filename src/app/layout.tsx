@@ -27,9 +27,9 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Power Digital Media | Contractor Websites, Local SEO & Field Apps in Jackson, MS",
+  title: "Jackson, MS Web Design, SEO & CRM | Power Digital Media",
   description:
-    "Jackson, MS contractor & local business web studio building fast custom Next.js websites, Google Map Pack SEO, and proprietary PinCam™ + PinDrop™ jobsite apps.",
+    "Custom 0.8s websites, 24/7 managed hosting, Google Map Pack SEO, and Capsule CRM systems built in Jackson, MS. Get an instant estimate or free scan.",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -40,15 +40,15 @@ export const metadata: Metadata = {
         url: "/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Power Digital Media - Contractor Websites, Local SEO & Field Tech in Mississippi",
+        alt: "Power Digital Media - Jackson, MS Web Design, SEO & CRM",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Power Digital Media | Websites, Local SEO & Field Apps in Jackson, MS",
+    title: "Jackson, MS Web Design, SEO & CRM | Power Digital Media",
     description:
-      "Turn every finished job into neighborhood Google rankings, 5-star reviews, and booked calls across Central Mississippi.",
+      "Custom 0.8s websites, 24/7 managed hosting, Google Map Pack SEO, and Capsule CRM systems built in Jackson, MS. Get an instant estimate or free scan.",
     images: ["/images/og-image.png"],
     creator: "@PowerDigitalMS",
     site: "@PowerDigitalMS",
@@ -248,8 +248,9 @@ export default function RootLayout({
                 {
                   "@type": "WebSite",
                   "@id": "https://powerdigitalmedia.org/#website",
-                  url: "https://powerdigitalmedia.org",
-                  name: "Power Digital Media LLC",
+                  name: "Power Digital Media",
+                  alternateName: "Power Digital Media LLC",
+                  url: "https://powerdigitalmedia.org/",
                   publisher: {
                     "@id": "https://powerdigitalmedia.org/#organization",
                   },

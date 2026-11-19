@@ -92,6 +92,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/scanner" className="hover:text-amber-300 transition-colors font-semibold text-emerald-300">
+                  Free Site Scanner
+                </Link>
+              </li>
+              <li>
                 <Link href="/pincam" className="hover:text-amber-300 transition-colors font-semibold text-white">
                   PinCam™ Field Camera App
                 </Link>

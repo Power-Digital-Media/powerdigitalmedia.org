@@ -38,7 +38,7 @@ export default function LeadLeakCheckPage() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      document.title = "Free Lead Leak Check | Power Digital Media";
+      document.title = "Free Website Lead Leak Diagnostic | Power Digital Media";
 
       const urlParams = new URLSearchParams(window.location.search);
       const utmSource = (urlParams.get("utm_source") || "").toLowerCase();

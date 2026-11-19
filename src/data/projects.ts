@@ -66,7 +66,7 @@ export const projects: Project[] = [
             "Instant roof inspection & damage estimate form",
             "Automated post-job SMS 5-star review workflow"
         ],
-        netlifyUrl: "https://bornagainroofing.com",
+        netlifyUrl: "https://www.bornagainroofing.com/",
         glowColor: "234, 179, 8",
         metricBadge: "99+ Live Job Pins",
         integrations: [
@@ -199,7 +199,7 @@ export const projects: Project[] = [
             ]
         },
         features: ["Instant hauling quote engine", "Heavy machinery showcases", "PinDrop™ verified job map"],
-        netlifyUrl: "https://msdirt.com",
+        netlifyUrl: "https://www.msdirt.com/",
         glowColor: "212, 175, 55",
         metricBadge: "Commercial Hauling Leads",
         testimonial: {

@@ -19,16 +19,16 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "PDM PinDrop™ Contractor Local SEO & Google Map Engine | Power Digital Media",
+  title: "PDM PinDrop™ | Contractor GPS SEO & Google Review App",
   description:
-    "Turn every completed job into verified GPS website pins, neighborhood Google ranking pages, Google Business Profile posts, and automated 5-star SMS reviews. Built in Jackson, MS for contractors.",
+    "Turn completed jobs into GPS website pins, neighborhood ranking pages, GBP updates, and automated 5-star SMS reviews. Built in Jackson, MS.",
   alternates: {
     canonical: "https://powerdigitalmedia.org/pindrop",
   },
   openGraph: {
-    title: "PDM PinDrop™ Field-to-Google Ranking Engine | Power Digital Media",
+    title: "PDM PinDrop™ | Contractor GPS SEO & Google Review App",
     description:
-      "Your crew checks in from the truck in 30 seconds. PinDrop™ publishes neighborhood SEO pages, syncs Google Maps, and texts homeowners for 5-star reviews automatically.",
+      "Your crew checks in from the truck in 30 seconds. PinDrop™ publishes neighborhood SEO pages, syncs Google Maps, and texts homeowners for 5-star reviews.",
     url: "https://powerdigitalmedia.org/pindrop",
     images: ["/pindrop/bar-live-pins.jpg"],
   },
@@ -41,7 +41,7 @@ export default function PinDropPage() {
     <main className="relative flex flex-col min-h-screen bg-[#06080f] text-white">
       <BreadcrumbSchema
         items={[
-          { name: "Field Apps", url: `${baseUrl}/pindrop` },
+          { name: "Home", url: `${baseUrl}/` },
           { name: "PinDrop™ SEO Engine", url: `${baseUrl}/pindrop` },
         ]}
       />
@@ -108,7 +108,7 @@ export default function PinDropPage() {
               Start 14-Day Crew Trial / Demo
             </Link>
             <a
-              href="https://bornagainroofing.com/pins/"
+              href="https://www.bornagainroofing.com/pins/"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto px-6 py-4 rounded-xl border border-amber-500/35 bg-amber-500/10 text-amber-300 font-bold uppercase tracking-wider text-xs hover:bg-amber-400 hover:text-slate-950 transition-all flex items-center justify-center gap-2"
@@ -293,7 +293,7 @@ export default function PinDropPage() {
                 99+ Live Job Pins
               </span>
               <a
-                href="https://bornagainroofing.com/pins/"
+                href="https://www.bornagainroofing.com/pins/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs text-amber-400 font-bold uppercase tracking-wider hover:text-white transition-colors"
@@ -323,7 +323,7 @@ export default function PinDropPage() {
                 Heavy Civil Showcase
               </span>
               <a
-                href="https://msdirt.com"
+                href="https://www.msdirt.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs text-amber-400 font-bold uppercase tracking-wider hover:text-white transition-colors"

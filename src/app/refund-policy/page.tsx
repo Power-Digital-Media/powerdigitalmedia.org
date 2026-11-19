@@ -3,11 +3,12 @@ import Link from "next/link";
 import { ShieldCheck, Mail, Phone, MapPin } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "Refund & Cancellation Policy | Power Digital Media",
   description:
-    "Clear refund, milestone, and subscription cancellation policy for Power Digital Media custom websites, Local SEO, PDM PinDrop™, PinCam™, and growth retainers.",
+    "Clear refund, project milestone, and month-to-month subscription cancellation policy for Power Digital Media custom websites, Local SEO, and field apps.",
   alternates: {
     canonical: "https://powerdigitalmedia.org/refund-policy",
   },
@@ -20,6 +21,12 @@ export const metadata: Metadata = {
 export default function RefundPolicyPage() {
   return (
     <main className="relative min-h-screen bg-[#06080f] text-white overflow-x-clip">
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://powerdigitalmedia.org/" },
+          { name: "Refund Policy", url: "https://powerdigitalmedia.org/refund-policy" },
+        ]}
+      />
       <Navbar />
 
       <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" aria-hidden="true" />

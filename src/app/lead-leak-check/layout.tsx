@@ -1,14 +1,15 @@
 import { Metadata } from "next";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
-    title: "Lead Leak Diagnostic & Conversion Check | Power Digital Media",
-    description: "Identify where your Mississippi business website is dropping customer leads, slow response times, and missing phone inquiries.",
+    title: "Free Website Lead Leak Diagnostic | Power Digital Media",
+    description: "Spot where your Mississippi business website is losing customer calls, slow follow-ups, and Map Pack visibility—with a free diagnostic from Jackson, MS.",
     alternates: {
         canonical: "https://powerdigitalmedia.org/lead-leak-check",
     },
     openGraph: {
-        title: "Lead Leak Diagnostic & Conversion Check | Power Digital Media",
-        description: "Identify where your Mississippi business website is dropping customer leads, slow response times, and missing phone inquiries.",
+        title: "Free Website Lead Leak Diagnostic | Power Digital Media",
+        description: "Spot where your Mississippi business website is losing customer calls, slow follow-ups, and Map Pack visibility—with a free diagnostic from Jackson, MS.",
         url: "https://powerdigitalmedia.org/lead-leak-check",
     },
 };
@@ -18,5 +19,15 @@ export default function LeadLeakCheckLayout({
 }: {
     children: React.ReactNode;
 }) {
-    return <>{children}</>;
+    return (
+        <>
+            <BreadcrumbSchema
+                items={[
+                    { name: "Home", url: "https://powerdigitalmedia.org/" },
+                    { name: "Lead Leak Diagnostic", url: "https://powerdigitalmedia.org/lead-leak-check" },
+                ]}
+            />
+            {children}
+        </>
+    );
 }

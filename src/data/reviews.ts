@@ -10,7 +10,7 @@ export interface Review {
   highlight?: string;
 }
 
-export const GOOGLE_REVIEW_URL = "https://g.page/r/Cd8B19AxtAaPEBM/review";
+export const GOOGLE_REVIEW_URL = "https://search.google.com/local/writereview?placeid=ChIJ28-Vys1Z4GsR3wHX0DG0Bo8";
 export const GOOGLE_PROFILE_URL = "https://www.google.com/maps/place/Power+Digital+Media+LLC/data=!4m2!3m1!1s0x0:0x8f06b431d0d701df";
 export const BBB_PROFILE_URL = "https://www.bbb.org/us/ms/jackson/profile/web-design/power-digital-media-llc-0523-235907954";
 export const FACEBOOK_PAGE_URL = "https://www.facebook.com/PowerDigitalMediaLLC";

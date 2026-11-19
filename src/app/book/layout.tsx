@@ -1,14 +1,15 @@
 import { Metadata } from "next";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
     title: "Book a 15-Minute Strategy Call | Power Digital Media",
-    description: "Schedule a direct consultation with Damein Donald to discuss custom Next.js web design, PinDrop™ contractor software, or CRM pipelines.",
+    description: "Schedule a direct 15-minute strategy call with Damein Donald in Jackson, MS to review custom Next.js web design, Map Pack SEO, or CRM integration.",
     alternates: {
         canonical: "https://powerdigitalmedia.org/book",
     },
     openGraph: {
         title: "Book a 15-Minute Strategy Call | Power Digital Media",
-        description: "Schedule a direct consultation with Damein Donald to discuss custom Next.js web design, PinDrop™ contractor software, or CRM pipelines.",
+        description: "Schedule a direct 15-minute strategy call with Damein Donald in Jackson, MS to review custom Next.js web design, Map Pack SEO, or CRM integration.",
         url: "https://powerdigitalmedia.org/book",
     },
 };
@@ -18,5 +19,15 @@ export default function BookLayout({
 }: {
     children: React.ReactNode;
 }) {
-    return <>{children}</>;
+    return (
+        <>
+            <BreadcrumbSchema
+                items={[
+                    { name: "Home", url: "https://powerdigitalmedia.org/" },
+                    { name: "Book Strategy Call", url: "https://powerdigitalmedia.org/book" },
+                ]}
+            />
+            {children}
+        </>
+    );
 }

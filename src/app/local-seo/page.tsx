@@ -4,6 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import DeferredFooterSections from "@/components/ui/DeferredFooterSections";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import GoogleReviewsSection from "@/components/sections/GoogleReviewsSection";
+import QuickScanBanner from "@/components/scanner/QuickScanBanner";
 import {
   MapPin,
   Search,
@@ -20,16 +21,16 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Local SEO & Google Map Pack Ranking in Jackson, MS | Power Digital Media",
+  title: "Local SEO & Google Map Pack in Jackson, MS | Power Digital",
   description:
-    "Rank in the Top 3 on Google Maps across Jackson, Madison, Ridgeland, Brandon, Flowood & Clinton. Google Business Profile optimization, neighborhood schema, PinDrop™ job pins, and automated 5-star reviews.",
+    "Google Map Pack optimization, LocalBusiness schema, PinDrop™ GPS job pins, and automated 5-star reviews across Jackson, Madison, Ridgeland & Brandon, MS.",
   alternates: {
     canonical: "https://powerdigitalmedia.org/local-seo",
   },
   openGraph: {
-    title: "Jackson MS Local SEO & Google Map Pack Domination | Power Digital Media",
+    title: "Local SEO & Google Map Pack in Jackson, MS | Power Digital",
     description:
-      "Over 70% of local service calls go to the Google 3-Pack. See how we rank Mississippi contractors and local businesses at the top of Google Maps.",
+      "Over 70% of local service calls go to the Google 3-Pack. See how we optimize Google Map Pack visibility for Mississippi contractors and local businesses.",
     url: "https://powerdigitalmedia.org/local-seo",
     images: ["/pindrop/bar-live-pins.jpg"],
   },
@@ -58,7 +59,7 @@ const SEO_PILLARS = [
     icon: Zap,
     badge: "04 • Technical Core Web Vitals",
     title: "Sub-2s Next.js Speed Advantage",
-    desc: "Slow WordPress sites bleed mobile callers and fail Core Web Vitals. Our custom Next.js builds score 98/100+ and include clean Service, FAQPage, and Breadcrumb schema.",
+    desc: "Slow WordPress sites bleed mobile callers and fail Core Web Vitals. Our custom Next.js builds score 98/100+ and include clean LocalBusiness, Service, and Breadcrumb schema.",
   },
 ];
 
@@ -101,7 +102,7 @@ export default function LocalSEOPage() {
     <main className="relative flex flex-col min-h-screen bg-[#06080f] text-white">
       <BreadcrumbSchema
         items={[
-          { name: "Services", url: `${baseUrl}/local-seo` },
+          { name: "Home", url: `${baseUrl}/` },
           { name: "Local SEO & Google Maps", url: `${baseUrl}/local-seo` },
         ]}
       />
@@ -111,30 +112,15 @@ export default function LocalSEOPage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@graph": [
-              {
-                "@type": "Service",
-                name: "Local SEO & Google Map Pack Optimization",
-                provider: {
-                  "@id": "https://powerdigitalmedia.org/#organization",
-                },
-                serviceType: "Local Search Engine Optimization",
-                description:
-                  "Google Business Profile engineering, neighborhood LocalBusiness schema, PinDrop™ GPS project authority, and automated 5-star review systems in Jackson and Central Mississippi.",
-                areaServed: CITIES.map((c) => c.name),
-              },
-              {
-                "@type": "FAQPage",
-                mainEntity: LOCAL_SEO_FAQS.map((faq) => ({
-                  "@type": "Question",
-                  name: faq.q,
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: faq.a,
-                  },
-                })),
-              },
-            ],
+            "@type": "Service",
+            name: "Local SEO & Google Map Pack Optimization",
+            provider: {
+              "@id": "https://powerdigitalmedia.org/#organization",
+            },
+            serviceType: "Local Search Engine Optimization",
+            description:
+              "Google Business Profile engineering, neighborhood LocalBusiness schema, PinDrop™ GPS project authority, and automated 5-star review systems in Jackson and Central Mississippi.",
+            areaServed: CITIES.map((c) => c.name),
           }),
         }}
       />
@@ -238,6 +224,8 @@ export default function LocalSEOPage() {
           </div>
         </div>
       </section>
+
+      <QuickScanBanner />
 
       <GoogleReviewsSection variant="compact" />
 

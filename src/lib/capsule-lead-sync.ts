@@ -4,6 +4,7 @@ const CAPSULE_TIMEOUT_MS = 4500;
 const MILESTONE_CACHE_TTL_MS = 10 * 60 * 1000;
 
 export const HIGH_INTENT_CAPSULE_OPPORTUNITY_SOURCES = new Set([
+    'all-in-one-scanner',
     'interactive-growth-estimator',
     'website-audit-request',
     'lead-leak-check',

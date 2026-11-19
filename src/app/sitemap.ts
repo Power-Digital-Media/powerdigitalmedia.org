@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Canonical Core, Product, Service, Proof, Campaign & Legal Routes
   const routes = [
     "",
+    "/scanner",
     "/estimate",
     "/contractors",
     "/pindrop",
@@ -41,6 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       route === ""
         ? 1.0
         : [
+            "/scanner",
             "/estimate",
             "/contractors",
             "/pindrop",

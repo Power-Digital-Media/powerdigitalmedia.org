@@ -18,17 +18,16 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import SiteIntelligenceInteractiveStage from "@/components/site-intelligence/SiteIntelligenceInteractiveStage";
 
 export const metadata: Metadata = {
-  title:
-    "PDM Site Intelligence™ | 24/7 Website Monitoring, Speed & SEO Watchtower | Power Digital Media",
+  title: "PDM Site Intelligence™ | 24/7 Website & SEO Monitoring",
   description:
-    "Proprietary 24/7 website uptime, SSL expiry, CrUX cellular speed, Google Search Console growth, and 2-stage human-verified AI diagnostics built in Jackson, MS by Power Digital Media.",
+    "24/7 website uptime probes, SSL expiry tracking, CrUX mobile speed telemetry, and Search Console growth monitoring built in Jackson, MS by Power Digital.",
   alternates: {
     canonical: "https://powerdigitalmedia.org/site-intelligence",
   },
   openGraph: {
-    title: "PDM Site Intelligence™ — 24/7 Website & SEO Watchtower",
+    title: "PDM Site Intelligence™ | 24/7 Website & SEO Monitoring",
     description:
-      "Every managed Power Digital website is protected around the clock by multi-probe uptime checks, CrUX cellular speed tracking, Search Console telemetry, and staged human-approved fixes.",
+      "Every managed Power Digital website is protected around the clock by multi-probe uptime checks, CrUX cellular speed tracking, and Search Console telemetry.",
     url: "https://powerdigitalmedia.org/site-intelligence",
     type: "website",
   },
@@ -60,7 +59,8 @@ export default function SiteIntelligencePage() {
     <main className="min-h-screen bg-[#06080f] text-white flex flex-col overflow-x-clip">
       <BreadcrumbSchema
         items={[
-          { name: "Services", url: `${baseUrl}/web-design` },
+          { name: "Home", url: `${baseUrl}/` },
+          { name: "Web Design", url: `${baseUrl}/web-design` },
           { name: "PDM Site Intelligence™", url: `${baseUrl}/site-intelligence` },
         ]}
       />

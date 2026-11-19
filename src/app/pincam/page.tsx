@@ -20,16 +20,16 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "PinCam™ Contractor Jobsite Camera & Proof App | Power Digital Media",
+  title: "PinCam™ | Contractor Jobsite Camera & PDF Proof App",
   description:
-    "Interactive showcase of PinCam™ by Power Digital Media: Ghost Camera before/after alignment, jobsite damage markups, dual-cam PiP walkthroughs, instant homeowner PDF reports, and 1-tap Google SEO sync.",
+    "5-mode contractor camera with Ghost before/after alignment, damage markups, instant PDF inspection reports, and 1-tap PinDrop™ SEO sync.",
   alternates: {
     canonical: "https://powerdigitalmedia.org/pincam",
   },
   openGraph: {
-    title: "PinCam™ Jobsite Camera & Field Proof App | Built in Jackson, MS",
+    title: "PinCam™ | Contractor Jobsite Camera & PDF Proof App",
     description:
-      "Capture aligned before/after job photos, draw measurements & arrows, send instant homeowner PDF reports, and publish directly to Google Maps with PinDrop™.",
+      "Capture aligned before/after job photos, draw measurements & arrows, send instant homeowner PDF reports, and sync directly with PinDrop™.",
     url: "https://powerdigitalmedia.org/pincam",
     images: ["/pincam/roof-after.jpg"],
   },
@@ -42,7 +42,7 @@ export default function PinCamPage() {
     <main className="relative flex flex-col min-h-screen bg-[#06080f] text-white">
       <BreadcrumbSchema
         items={[
-          { name: "Field Apps", url: `${baseUrl}/pincam` },
+          { name: "Home", url: `${baseUrl}/` },
           { name: "PinCam™ Camera Suite", url: `${baseUrl}/pincam` },
         ]}
       />

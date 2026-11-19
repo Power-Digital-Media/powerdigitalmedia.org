@@ -1,3 +1,5 @@
+import fs from 'fs';
+import path from 'path';
 import https from 'https';
 import { google } from 'googleapis';
 import { blogPosts } from '../src/data/blogPosts';
@@ -10,12 +12,19 @@ dotenv.config({ path: '.env.local' });
 dotenv.config();
 
 const HOST = 'powerdigitalmedia.org';
-const KEY = process.env.INDEXNOW_KEY || '93f2ea70d65b4c10a8ef18cd301e52ba';
+const DEFAULT_VERIFIED_INDEXNOW_KEY = '8f4e2c91a7b64d309e5c1f2a8b7d6e41';
+const candidateEnvKey = (process.env.INDEXNOW_KEY || '').trim();
+const KEY =
+    candidateEnvKey &&
+    fs.existsSync(path.join(process.cwd(), 'public', `${candidateEnvKey}.txt`))
+        ? candidateEnvKey
+        : DEFAULT_VERIFIED_INDEXNOW_KEY;
 const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 
 // IndexNow URLs (Canonical routes matching src/app/sitemap.ts)
 const STATIC_URLS = [
     `https://${HOST}/`,
+    `https://${HOST}/scanner`,
     `https://${HOST}/estimate`,
     `https://${HOST}/contractors`,
     `https://${HOST}/pindrop`,

@@ -1,4 +1,5 @@
 import React from "react";
+import type { Metadata } from "next";
 import {
   Globe,
   Zap,
@@ -19,6 +20,22 @@ import GoogleReviewsSection from "@/components/sections/GoogleReviewsSection";
 import SpeedComparisonCard from "@/components/ui/SpeedComparisonCard";
 import GrowthScopeEstimator from "@/components/sections/GrowthScopeEstimator";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+
+export const metadata: Metadata = {
+  title: "Jackson, MS Web Design & 0.8s Websites | Power Digital",
+  description:
+    "Custom 0.8s Next.js websites in Jackson, MS for contractors, restaurants, and local brands across Madison, Ridgeland, Brandon, Flowood & Flora.",
+  alternates: {
+    canonical: "https://powerdigitalmedia.org/web-design",
+  },
+  openGraph: {
+    title: "Jackson, MS Web Design & 0.8s Websites | Power Digital",
+    description:
+      "Custom 0.8s Next.js websites, Google Map Pack optimization, 0%-fee Square ordering, and Capsule CRM automation—engineered in Jackson, Mississippi.",
+    url: "https://powerdigitalmedia.org/web-design",
+    images: ["/portfolio/growth-engine-real.webp"],
+  },
+};
 
 const pillars = [
   {
@@ -88,7 +105,7 @@ const faqs = [
 export default function WebDesignPage() {
   const baseUrl = "https://powerdigitalmedia.org";
   const breadcrumbItems = [
-    { name: "Services", url: `${baseUrl}/web-design` },
+    { name: "Home", url: `${baseUrl}/` },
     { name: "Custom Web Design", url: `${baseUrl}/web-design` },
   ];
 
@@ -96,43 +113,32 @@ export default function WebDesignPage() {
     <main className="relative min-h-screen bg-[#06080f] text-white overflow-x-clip">
       <BreadcrumbSchema items={breadcrumbItems} />
 
-      {/* Service + FAQPage Schema */}
+      {/* Service Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@graph": [
-              {
-                "@type": "Service",
-                name: "Custom Next.js Web Design & Local SEO",
-                provider: {
-                  "@id": "https://powerdigitalmedia.org/#organization",
-                },
-                description:
-                  "High-performance custom Next.js web design, Google Maps local SEO, PinCam™ & PinDrop™ contractor apps, and automated lead capture for Mississippi contractors and standout local businesses.",
-                category: "Web Design & Development",
-                serviceType: "Custom Web Design",
-                areaServed: [
-                  { "@type": "City", name: "Jackson" },
-                  { "@type": "City", name: "Madison" },
-                  { "@type": "City", name: "Ridgeland" },
-                  { "@type": "City", name: "Brandon" },
-                  { "@type": "City", name: "Flowood" },
-                  { "@type": "City", name: "Clinton" },
-                ],
-              },
-              {
-                "@type": "FAQPage",
-                mainEntity: faqs.map((faq) => ({
-                  "@type": "Question",
-                  name: faq.q,
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: faq.a,
-                  },
-                })),
-              },
+            "@type": "Service",
+            name: "Website Design & Custom Next.js Development in Jackson, MS",
+            provider: {
+              "@id": "https://powerdigitalmedia.org/#organization",
+            },
+            description:
+              "Custom 0.8s Next.js web design, Google Map Pack optimization, GEO/AEO AI search schema, 0%-fee Square online ordering, and automated CRM lead capture for small businesses, contractors, restaurants, and local brands in Jackson and Central Mississippi.",
+            category: "Web Design & Development",
+            serviceType: "Website Design",
+            areaServed: [
+              { "@type": "City", name: "Jackson" },
+              { "@type": "City", name: "Madison" },
+              { "@type": "City", name: "Flora" },
+              { "@type": "City", name: "Ridgeland" },
+              { "@type": "City", name: "Brandon" },
+              { "@type": "City", name: "Flowood" },
+              { "@type": "City", name: "Pearl" },
+              { "@type": "City", name: "Clinton" },
+              { "@type": "City", name: "Canton" },
+              { "@type": "City", name: "Byram" },
             ],
           }),
         }}

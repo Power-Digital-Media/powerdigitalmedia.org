@@ -566,7 +566,7 @@ export default function PinDropDemoExplorer() {
                 </button>
               )}
               <a
-                href="https://bornagainroofing.com/pins/"
+                href="https://www.bornagainroofing.com/pins/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.09] border border-white/10 text-xs font-semibold text-slate-300 transition-colors"
@@ -1617,7 +1617,7 @@ export default function PinDropDemoExplorer() {
                         Live Production Proof: Born Again Roofing (99+ Pins)
                       </span>
                       <a
-                        href="https://bornagainroofing.com/pins/"
+                        href="https://www.bornagainroofing.com/pins/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-[#e2b047] font-extrabold hover:underline flex items-center gap-1 shrink-0"

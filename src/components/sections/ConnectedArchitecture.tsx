@@ -86,7 +86,7 @@ const clientArchitectures: ClientArchitecture[] = [
     industry: "Roofing & Storm Restoration",
     location: "Jackson Metro, MS",
     domain: "bornagainroofing.com",
-    url: "https://bornagainroofing.com",
+    url: "https://www.bornagainroofing.com/",
     heroImage: "/portfolio/bornagain-hero.webp",
     mobileHeroImage: "/portfolio/bornagain-mobile-hero.webp",
     speedScore: "99/100 (Fast Load)",
@@ -162,7 +162,7 @@ const clientArchitectures: ClientArchitecture[] = [
     industry: "Excavation, Pond Digging & Land Clearing",
     location: "Bentonia & Central MS",
     domain: "msdirt.com",
-    url: "https://msdirt.com",
+    url: "https://www.msdirt.com/",
     heroImage: "/portfolio/geauxpro-hero.webp",
     mobileHeroImage: "/portfolio/geauxpro-mobile-hero.webp",
     speedScore: "99/100 (Fast Load)",
@@ -834,7 +834,7 @@ function GoogleSchemaScreen({ client }: { client: ClientArchitecture }) {
         <div>
           <div className="flex items-center justify-between mb-1">
             <span className="text-[11px] font-bold text-blue-400">
-              https://bornagainroofing.com
+              https://www.bornagainroofing.com
             </span>
             <span className="text-[9px] font-mono text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/30">
               JSON-LD Verified

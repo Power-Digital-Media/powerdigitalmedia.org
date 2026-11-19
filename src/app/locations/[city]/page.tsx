@@ -37,8 +37,9 @@ export async function generateMetadata({
   const loc = getLocationBySlug(city);
   if (!loc) return {};
 
-  const title = `Web Design & Local SEO in ${loc.city}, MS | Contractor & Business Growth`;
-  const description = `Custom sub-2s websites, Google Map Pack SEO, and PinCam™ + PinDrop™ contractor apps in ${loc.city}, MS (${loc.zipCodes.join(", ")}). Built locally by Power Digital Media. Call (601) 446-2393.`;
+  const primaryZips = loc.zipCodes.slice(0, 2).join(", ");
+  const title = `Web Design & Local SEO in ${loc.city}, MS | Power Digital`;
+  const description = `Custom 0.8s websites, Google Map Pack SEO, Capsule CRM, and PinDrop™ crew apps in ${loc.city}, MS (${primaryZips}). Call (601) 446-2393.`;
 
   return {
     title,
@@ -70,6 +71,7 @@ export default async function CityLocationPage({ params }: LocationPageProps) {
     <main className="relative flex flex-col min-h-screen bg-[#06080f] text-white">
       <BreadcrumbSchema
         items={[
+          { name: "Home", url: `${baseUrl}/` },
           { name: "Service Areas", url: `${baseUrl}/local-seo` },
           { name: `${loc.city}, MS`, url: `${baseUrl}/locations/${loc.slug}` },
         ]}
@@ -80,41 +82,26 @@ export default async function CityLocationPage({ params }: LocationPageProps) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@graph": [
-              {
-                "@type": "Service",
-                name: `Custom Web Design, Local SEO & Contractor Systems in ${loc.city}, MS`,
-                provider: {
-                  "@id": "https://powerdigitalmedia.org/#organization",
-                },
-                serviceType: "Web Design & Local SEO",
-                description: loc.marketSummary,
-                areaServed: {
-                  "@type": "City",
-                  name: loc.city,
-                  containedInPlace: {
-                    "@type": "State",
-                    name: "Mississippi",
-                  },
-                  geo: {
-                    "@type": "GeoCoordinates",
-                    latitude: loc.coordinates.lat,
-                    longitude: loc.coordinates.lng,
-                  },
-                },
+            "@type": "Service",
+            name: `Custom Web Design, Local SEO & Contractor Systems in ${loc.city}, MS`,
+            provider: {
+              "@id": "https://powerdigitalmedia.org/#organization",
+            },
+            serviceType: "Web Design & Local SEO",
+            description: loc.marketSummary,
+            areaServed: {
+              "@type": "City",
+              name: loc.city,
+              containedInPlace: {
+                "@type": "State",
+                name: "Mississippi",
               },
-              {
-                "@type": "FAQPage",
-                mainEntity: loc.faqs.map((faq) => ({
-                  "@type": "Question",
-                  name: faq.q,
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: faq.a,
-                  },
-                })),
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: loc.coordinates.lat,
+                longitude: loc.coordinates.lng,
               },
-            ],
+            },
           }),
         }}
       />

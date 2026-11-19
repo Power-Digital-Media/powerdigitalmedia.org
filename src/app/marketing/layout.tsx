@@ -1,14 +1,14 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Growth Marketing & Paid Social in Jackson MS | Power Digital Media",
-    description: "High-converting Facebook & Instagram ad campaigns, automated lead funnels, and local customer acquisition for Mississippi companies.",
+    title: "Meta Ads & Lead Generation in Jackson, MS | Power Digital",
+    description: "High-converting Facebook & Instagram ad campaigns, local lead funnels, and automated Capsule CRM pipelines built for Jackson & Mississippi businesses.",
     alternates: {
         canonical: "https://powerdigitalmedia.org/marketing",
     },
     openGraph: {
-        title: "Growth Marketing & Paid Social in Jackson MS | Power Digital Media",
-        description: "High-converting Facebook & Instagram ad campaigns, automated lead funnels, and local customer acquisition for Mississippi companies.",
+        title: "Meta Ads & Lead Generation in Jackson, MS | Power Digital",
+        description: "High-converting Facebook & Instagram ad campaigns, local lead funnels, and automated Capsule CRM pipelines built for Jackson & Mississippi businesses.",
         url: "https://powerdigitalmedia.org/marketing",
         images: ["/portfolio/growth-engine-real.webp"],
     },

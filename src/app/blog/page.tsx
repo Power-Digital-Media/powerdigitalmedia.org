@@ -9,16 +9,16 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contractor SEO, Web Design & Growth Guides | Power Digital Media Blog",
+  title: "Web Design, Local SEO & CRM Guides | Power Digital Blog",
   description:
-    "Actionable playbooks on Google Map Pack rankings, custom Next.js web design, PDM PinDrop™ & PinCam™ field apps, and CRM automation for Mississippi businesses.",
+    "Actionable playbooks on Google Map Pack optimization, custom 0.8s Next.js web design, PDM PinDrop™ field apps, and CRM setup for Mississippi businesses.",
   alternates: {
     canonical: "https://powerdigitalmedia.org/blog",
   },
   openGraph: {
-    title: "Contractor SEO, Web Design & Growth Guides | Power Digital Media",
+    title: "Web Design, Local SEO & CRM Guides | Power Digital Blog",
     description:
-      "Actionable playbooks on Google Map Pack rankings, custom Next.js web design, PDM PinDrop™ & PinCam™ field apps, and CRM automation for Mississippi businesses.",
+      "Actionable playbooks on Google Map Pack optimization, custom 0.8s Next.js web design, PDM PinDrop™ field apps, and CRM setup for Mississippi businesses.",
     url: "https://powerdigitalmedia.org/blog",
   },
 };

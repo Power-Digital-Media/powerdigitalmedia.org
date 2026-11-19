@@ -19,14 +19,14 @@ import {
 } from "@/data/reviews";
 
 export const metadata: Metadata = {
-    title: "5.0★ Client Reviews & Verified Feedback | Power Digital Media Jackson MS",
+    title: "5.0★ Client Reviews in Jackson, MS | Power Digital Media",
     description:
-        "Read verified 5-star Google and Facebook reviews from Mississippi contractors, ministries, and local business owners working with Power Digital Media LLC.",
+        "Read verified 5-star Google and Facebook reviews from Mississippi contractors, restaurants, ministries, and local owners working with Power Digital.",
     alternates: {
         canonical: "https://powerdigitalmedia.org/reviews",
     },
     openGraph: {
-        title: "5.0★ Client Reviews & Verified Feedback | Power Digital Media",
+        title: "5.0★ Client Reviews in Jackson, MS | Power Digital Media",
         description:
             "Read verified 5-star reviews from Mississippi contractors and business owners or leave feedback on our Google Business Profile.",
         url: "https://powerdigitalmedia.org/reviews",

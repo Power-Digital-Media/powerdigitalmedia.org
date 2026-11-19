@@ -421,7 +421,7 @@ export default function JobsitePipelineStory() {
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                   <a
-                    href="https://bornagainroofing.com/pins/"
+                    href="https://www.bornagainroofing.com/pins/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-white font-bold text-xs uppercase tracking-wider transition-all"

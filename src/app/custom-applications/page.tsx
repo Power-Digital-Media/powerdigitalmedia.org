@@ -132,21 +132,21 @@ export default function CustomApplicationsPage() {
                             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-6">
                                 <Workflow className="w-3.5 h-3.5 text-amber-400" />
                                 <span className="text-[11px] font-mono font-bold uppercase tracking-[0.18em] text-amber-300">
-                                    CRM • Custom Checkout • Field Software
+                                    CRM Setup &amp; Integration • Custom Checkout • Field Apps
                                 </span>
                             </div>
 
                             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-[0.96] text-white mb-6">
-                                Stop Running Your Business On{" "}
-                                <span className="text-amber-400">Duct-Tape Spreadsheets.</span>
+                                CRM Setup, Integration &amp;{" "}
+                                <span className="text-amber-400">Custom Apps in Jackson, MS.</span>
                             </h1>
 
                             <p className="text-slate-300 text-base md:text-xl leading-relaxed mb-8 max-w-2xl">
-                                We wire your website directly into{" "}
-                                <strong className="text-white">Capsule CRM</strong>, build{" "}
+                                Stop running your business on duct-tape spreadsheets. We deliver turnkey{" "}
+                                <strong className="text-white">CRM setup and integration in Jackson and across Mississippi</strong>—wiring your website into{" "}
+                                <strong className="text-white">Capsule CRM</strong>, building{" "}
                                 <strong className="text-white">0%-commission online ordering</strong>,
-                                and deploy custom field apps so every call, quote, and job site flows
-                                into one clean pipeline.
+                                and deploying custom field apps so every call, quote, and job site flows into one clean pipeline.
                             </p>
 
                             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-8">

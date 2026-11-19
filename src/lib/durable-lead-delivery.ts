@@ -146,9 +146,14 @@ export function resolveTranspondGroupIdForFormSource(formSource: string): number
             10
         );
     }
-    if (formSource === 'lead-leak-check') {
+    if (
+        formSource === 'lead-leak-check' ||
+        formSource === 'all-in-one-scanner'
+    ) {
         return parseInt(
-            process.env.TRANSPOND_LEAD_LEAK_CHECK_GROUP_ID || '187977',
+            process.env.TRANSPOND_LEAD_LEAK_CHECK_GROUP_ID ||
+                process.env.TRANSPOND_GROUP_ID ||
+                '187977',
             10
         );
     }

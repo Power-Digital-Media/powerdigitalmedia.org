@@ -104,10 +104,17 @@ export default function Navbar() {
       desc: "24/7 uptime, SSL, CrUX speed & Search Console watchtower",
       icon: Activity,
     },
+    {
+      name: "Free Live Site Scanner",
+      href: "/scanner",
+      desc: "Test live Google speed, JSON-LD schema & /llms.txt AI search",
+      icon: Search,
+    },
   ];
 
   const mainLinks = [
     { name: "Contractors", href: "/contractors" },
+    { name: "Free Site Scanner", href: "/scanner" },
     { name: "Instant Estimate", href: "/estimate", highlight: true },
     { name: "Our Work", href: "/our-work" },
     { name: "Reviews", href: "/reviews" },
@@ -373,9 +380,11 @@ export default function Navbar() {
             <div className="grid grid-cols-2 gap-2.5">
               {[
                 { name: "⚡ Instant Estimate", href: "/estimate", accent: true },
+                { name: "🔍 Free Site Scanner", href: "/scanner", accent: true },
                 { name: "Client Portfolio", href: "/our-work", accent: false },
                 { name: "5.0★ Reviews", href: "/reviews", accent: false },
                 { name: "About Damein", href: "/about", accent: false },
+                { name: "5-Min Video Audit", href: "/free-audit", accent: false },
               ].map((link) => (
                 <Link
                   key={link.name}

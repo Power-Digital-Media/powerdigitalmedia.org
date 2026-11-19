@@ -1,14 +1,15 @@
 import { Metadata } from "next";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
-    title: "Mississippi Community & Small Business Initiative | Power Digital Media",
-    description: "Empowering Jackson Metro small businesses and faith communities with high-performance digital architecture and accessible web solutions.",
+    title: "Jackson, MS Small Business Initiative | Power Digital",
+    description: "Empowering Jackson Metro small businesses, contractors, and faith communities with fast Next.js websites, Google Map Pack SEO, and local support.",
     alternates: {
         canonical: "https://powerdigitalmedia.org/community",
     },
     openGraph: {
-        title: "Mississippi Community & Small Business Initiative | Power Digital Media",
-        description: "Empowering Jackson Metro small businesses and faith communities with high-performance digital architecture and accessible web solutions.",
+        title: "Jackson, MS Small Business Initiative | Power Digital",
+        description: "Empowering Jackson Metro small businesses, contractors, and faith communities with fast Next.js websites, Google Map Pack SEO, and local support.",
         url: "https://powerdigitalmedia.org/community",
     },
 };
@@ -18,5 +19,15 @@ export default function CommunityLayout({
 }: {
     children: React.ReactNode;
 }) {
-    return <>{children}</>;
+    return (
+        <>
+            <BreadcrumbSchema
+                items={[
+                    { name: "Home", url: "https://powerdigitalmedia.org/" },
+                    { name: "Community Initiative", url: "https://powerdigitalmedia.org/community" },
+                ]}
+            />
+            {children}
+        </>
+    );
 }

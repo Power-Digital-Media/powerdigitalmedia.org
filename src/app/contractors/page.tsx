@@ -24,16 +24,16 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Contractor Website Design & Local SEO in Mississippi | Power Digital Media",
+  title: "Contractor Web Design & SEO in MS | Power Digital Media",
   description:
-    "Custom websites, Google Map Pack optimization, GEO & AEO AI search visibility, PinCam™ jobsite proof, PinDrop™ neighborhood pins, and Capsule CRM pipelines built for Mississippi roofers, HVAC pros, excavators, plumbers, and trades.",
+    "Custom 0.8s websites, Google Map Pack optimization, PinCam™ + PinDrop™ crew apps, and Capsule CRM systems built for Mississippi contractors and trades.",
   alternates: {
     canonical: "https://powerdigitalmedia.org/contractors",
   },
   openGraph: {
-    title: "Mississippi Contractor Websites, Google Maps SEO & Field Apps",
+    title: "Contractor Web Design & SEO in MS | Power Digital Media",
     description:
-      "Turn every completed roof, HVAC install, or dirt-work job into top Google Map Pack rankings, 5-star homeowner reviews, and exclusive phone calls.",
+      "Turn every completed roof, HVAC install, or dirt-work job into Google Map Pack rankings, 5-star homeowner reviews, and exclusive phone calls.",
     url: "https://powerdigitalmedia.org/contractors",
     images: ["/pincam/roof-after.jpg"],
   },
@@ -112,47 +112,32 @@ export default function ContractorsPage() {
     <main className="relative flex flex-col min-h-screen bg-[#06080f] text-white">
       <BreadcrumbSchema
         items={[
-          { name: "Services", url: `${baseUrl}/contractors` },
+          { name: "Home", url: `${baseUrl}/` },
           { name: "Contractor Growth Systems", url: `${baseUrl}/contractors` },
         ]}
       />
 
-      {/* Service + FAQPage Schema */}
+      {/* Service Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@graph": [
-              {
-                "@type": "Service",
-                name: "Contractor Website Design, Local SEO & Field App Systems",
-                provider: {
-                  "@id": "https://powerdigitalmedia.org/#organization",
-                },
-                serviceType: "Contractor Web Design & Local SEO",
-                description:
-                  "Turnkey growth infrastructure for roofers, HVAC technicians, excavators, plumbers, electricians, and home service contractors across Central Mississippi.",
-                areaServed: [
-                  "Jackson, MS",
-                  "Madison, MS",
-                  "Ridgeland, MS",
-                  "Brandon, MS",
-                  "Flowood, MS",
-                  "Clinton, MS",
-                ],
-              },
-              {
-                "@type": "FAQPage",
-                mainEntity: CONTRACTOR_FAQS.map((faq) => ({
-                  "@type": "Question",
-                  name: faq.q,
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: faq.a,
-                  },
-                })),
-              },
+            "@type": "Service",
+            name: "Contractor Website Design, Local SEO & Field App Systems",
+            provider: {
+              "@id": "https://powerdigitalmedia.org/#organization",
+            },
+            serviceType: "Contractor Web Design & Local SEO",
+            description:
+              "Turnkey growth infrastructure for roofers, HVAC technicians, excavators, plumbers, electricians, and home service contractors across Central Mississippi.",
+            areaServed: [
+              "Jackson, MS",
+              "Madison, MS",
+              "Ridgeland, MS",
+              "Brandon, MS",
+              "Flowood, MS",
+              "Clinton, MS",
             ],
           }),
         }}
@@ -436,7 +421,7 @@ export default function ContractorsPage() {
               stat: "99+ Live GPS Job Pins",
               image: "/portfolio/bornagain-hero-16-10.webp",
               href: "/portfolio/born-again-roofing",
-              liveUrl: "https://bornagainroofing.com",
+              liveUrl: "https://www.bornagainroofing.com/",
             },
             {
               name: "Geaux Pro Outdoors (MS Dirt)",
@@ -445,7 +430,7 @@ export default function ContractorsPage() {
               stat: "98/100 Mobile Speed",
               image: "/portfolio/geaux-pro-outdoors.webp",
               href: "/portfolio/geaux-pro-outdoors",
-              liveUrl: "https://msdirt.com",
+              liveUrl: "https://www.msdirt.com/",
             },
             {
               name: "Lungrin's Lawncare LLC",

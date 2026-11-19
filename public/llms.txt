@@ -20,11 +20,11 @@
 - **[Custom Next.js Web Design](https://powerdigitalmedia.org/web-design)**: Hand-coded Next.js 16 websites for contractors and standout local businesses—custom-scoped case-by-case with 100% codebase ownership and optional month-to-month managed edge care.
 - **[Local SEO & Google Maps](https://powerdigitalmedia.org/local-seo)**: Google 3-Pack optimization, neighborhood JSON-LD schema, and review velocity across Central Mississippi.
 - **[Custom Applications & CRM](https://powerdigitalmedia.org/custom-applications)** | **[Growth Marketing](https://powerdigitalmedia.org/marketing)**
-- **[Interactive Scope Estimator](https://powerdigitalmedia.org/estimate)** | **[Free 5-Minute Rank & Site Video](https://powerdigitalmedia.org/free-audit)** | **[Live Portfolio](https://powerdigitalmedia.org/our-work)** | **[Verified Reviews](https://powerdigitalmedia.org/reviews)** | **[Book a 15-Min Scope Call](https://powerdigitalmedia.org/book)**
+- **[Free Live Site Scanner](https://powerdigitalmedia.org/scanner)** | **[Interactive Scope Estimator](https://powerdigitalmedia.org/estimate)** | **[Free 5-Minute Rank & Site Video](https://powerdigitalmedia.org/free-audit)** | **[Live Portfolio](https://powerdigitalmedia.org/our-work)** | **[Verified Reviews](https://powerdigitalmedia.org/reviews)** | **[Book a 15-Min Scope Call](https://powerdigitalmedia.org/book)**
 
 ## Verified Mississippi Deployments
-- **[Born Again Roofing](https://bornagainroofing.com)**: 99+ live PDM PinDrop™ GPS job pins, Capsule CRM routing & SMS 5-star review automation.
-- **[Geaux Pro Outdoors](https://msdirt.com)**: Commercial excavation & forestry mulching lead engine + PinDrop™ job map.
+- **[Born Again Roofing](https://www.bornagainroofing.com/)**: 99+ live PDM PinDrop™ GPS job pins, Capsule CRM routing & SMS 5-star review automation.
+- **[Geaux Pro Outdoors](https://www.msdirt.com/)**: Commercial excavation & forestry mulching lead engine + PinDrop™ job map.
 - **[T'Beaux's Seafood](https://tbeauxs.com)**: 0%-commission native Square Web SDK ordering, DoorDash Drive dispatch & catering calculator.
 - **[Church 244](https://church244.com)**: 1-tap mobile giving & sermon livestream platform.
 

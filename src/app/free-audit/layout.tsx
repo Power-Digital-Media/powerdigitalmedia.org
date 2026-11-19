@@ -1,16 +1,17 @@
 import { Metadata } from "next";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = {
-  title: "Free 5-Minute Google Rank & Website Breakdown | Power Digital Media",
+  title: "Free 5-Min Map Pack & Website Audit | Power Digital Media",
   description:
-    "Get a personalized 5-minute video audit from Damein Donald showing where your contractor or local business ranks on Google Maps in Jackson, Madison, Brandon & Flowood—and how to pull more calls.",
+    "Scan your live Google Mobile speed, Schema.org JSON-LD, and /llms.txt AI visibility—plus request Damein Donald's 5-minute Google Map Pack video audit.",
   alternates: {
     canonical: "https://powerdigitalmedia.org/free-audit",
   },
   openGraph: {
-    title: "Free 5-Minute Google Rank & Website Breakdown | Power Digital Media",
+    title: "Free 5-Min Map Pack & Website Audit | Power Digital Media",
     description:
-      "See why competitors are outranking you in the Google Map Pack and where mobile leads are leaking—recorded personally by Damein Donald in Jackson, MS.",
+      "Instant live website, schema, llms.txt & Google speed audit—paired with a personal 5-minute Map Pack heatmap video recorded by Damein Donald in Jackson, MS.",
     url: "https://powerdigitalmedia.org/free-audit",
   },
 };
@@ -20,5 +21,15 @@ export default function FreeAuditLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://powerdigitalmedia.org/" },
+          { name: "Free Rank & Site Audit", url: "https://powerdigitalmedia.org/free-audit" },
+        ]}
+      />
+      {children}
+    </>
+  );
 }
