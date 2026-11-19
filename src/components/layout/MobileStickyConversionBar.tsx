@@ -76,6 +76,7 @@ export default function MobileStickyConversionBar() {
 
   return (
     <div
+      role="region"
       className={`fixed inset-x-0 bottom-0 z-[90] lg:hidden pointer-events-none px-3 pb-[calc(0.65rem+env(safe-area-inset-bottom))] transition-all duration-300 ${
         inputFocused
           ? "translate-y-24 opacity-0"

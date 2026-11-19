@@ -33,7 +33,7 @@ export default function LeadArchitect() {
               <div className="bg-[#070a12] border-t border-white/10 p-4 sm:p-5 flex flex-wrap items-center justify-between gap-2.5">
                 <div>
                   <div className="flex items-center gap-1.5 mb-0.5">
-                    <h4 className="text-white font-bold text-sm">Damein Donald</h4>
+                    <div className="text-white font-bold text-sm">Damein Donald</div>
                     <div className="flex text-amber-400">
                       {[...Array(5)].map((_, i) => (
                         <Star key={i} className="w-3 h-3 fill-amber-400" />
@@ -79,21 +79,21 @@ export default function LeadArchitect() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-1">
               <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
                 <Code2 className="w-5 h-5 text-amber-400 mb-2" />
-                <h4 className="font-bold text-white text-sm">7–14 Day Launch</h4>
+                <h3 className="font-bold text-white text-sm">7–14 Day Launch</h3>
                 <p className="text-xs text-slate-400 mt-1">
                   Hand-coded in-house for speed, security, and local rankings.
                 </p>
               </div>
               <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
                 <Smartphone className="w-5 h-5 text-amber-400 mb-2" />
-                <h4 className="font-bold text-white text-sm">Proprietary Field Apps</h4>
+                <h3 className="font-bold text-white text-sm">Proprietary Field Apps</h3>
                 <p className="text-xs text-slate-400 mt-1">
                   PinCam™ + PinDrop™ wired straight into your website.
                 </p>
               </div>
               <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
                 <PhoneCall className="w-5 h-5 text-amber-400 mb-2" />
-                <h4 className="font-bold text-white text-sm">Direct Cell Support</h4>
+                <h3 className="font-bold text-white text-sm">Direct Cell Support</h3>
                 <p className="text-xs text-slate-400 mt-1">
                   Call or text me directly at (601) 446-2393 anytime.
                 </p>

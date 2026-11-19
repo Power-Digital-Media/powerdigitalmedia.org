@@ -582,9 +582,9 @@ function PinDropMapScreen({ client }: { client: ClientArchitecture }) {
               Indexed
             </span>
           </div>
-          <h5 className="text-xs font-black text-white leading-snug mb-1">
+          <div className="text-xs font-black text-white leading-snug mb-1">
             {activeLoc.tag}
-          </h5>
+          </div>
           <p className="text-[10px] text-slate-300 mb-2">
             {activeLoc.name} • {activeLoc.crew}
           </p>
@@ -790,9 +790,9 @@ function TranspondWorkflowScreen({ client }: { client: ClientArchitecture }) {
                   {step.time}
                 </span>
               </div>
-              <h6 className="text-[11px] font-black text-white leading-tight mb-1">
+              <div className="text-[11px] font-black text-white leading-tight mb-1">
                 {step.title}
-              </h6>
+              </div>
               <p className="text-[9px] text-slate-300 line-clamp-3 leading-relaxed">
                 {step.desc}
               </p>
@@ -1371,7 +1371,7 @@ export default function ConnectedArchitecture() {
                   {activeClient.testimonial.source === "Google" ? (
                     <span className="text-amber-400 font-black">Google Review</span>
                   ) : (
-                    <span className="text-[#1877F2] font-black">Facebook Review</span>
+                    <span className="text-sky-400 font-black">Facebook Review</span>
                   )}
                 </span>
                 <p className="text-xs italic text-white/90">

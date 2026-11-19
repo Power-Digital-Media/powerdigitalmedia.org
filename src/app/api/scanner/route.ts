@@ -8,6 +8,7 @@ import {
 } from "@/lib/scanner-ssrf-guard";
 import type {
   AiCrawlerRuleStatus,
+  ArdManifestCheck,
   ConversionAuditSummary,
   CruxSummary,
   CwvRating,
@@ -235,12 +236,19 @@ function evaluateLlmsFile(
       byteLength: status === 200 ? byteLength : 0,
       wordCount: 0,
       headingCount: 0,
+      markdownLinkCount: 0,
+      followsLlmsSpec: false,
       previewSnippet: "",
     };
   }
 
   const words = trimmed.split(/\s+/).filter(Boolean);
   const headings = trimmed.match(/^#{1,6}\s+\S+/gm) || [];
+  const mdLinks =
+    trimmed.match(/(?<!!)\[[^\]]+\]\(\s*(?:https?:\/\/|\/|mailto:)[^)\s]+[^)]*\)/gi) ||
+    [];
+  const markdownLinkCount = mdLinks.length;
+  const followsLlmsSpec = markdownLinkCount > 0;
   const cleanPreview = trimmed
     .replace(/\r\n/g, "\n")
     .replace(/\n{3,}/g, "\n\n")
@@ -254,7 +262,170 @@ function evaluateLlmsFile(
     byteLength,
     wordCount: words.length,
     headingCount: headings.length,
+    markdownLinkCount,
+    followsLlmsSpec,
     previewSnippet: cleanPreview + (trimmed.length > 280 ? "…" : ""),
+  };
+}
+
+const OFFICIAL_ARD_MEDIA_TYPES = new Set([
+  "application/ai-catalog+json",
+  "application/agent-card+json",
+  "application/a2a-agent-card+json",
+  "application/mcp-server-card+json",
+  "application/agent-skills+json",
+  "application/agent-skills+md",
+  "application/agent-skills+zip",
+  "application/agent-skills+gzip",
+  'text/markdown; profile="urn:air:agent-skills"',
+  "application/agent-plugins+zip",
+  "application/agent-plugins+gzip",
+  "application/ai-registry",
+  "application/ai-registry+json",
+]);
+
+function isOfficialArdMediaType(rawType: string): boolean {
+  const normalized = rawType
+    .trim()
+    .toLowerCase()
+    .replace(/\s*;\s*/g, "; ")
+    .replace(/\s*=\s*/g, "=");
+  return OFFICIAL_ARD_MEDIA_TYPES.has(normalized);
+}
+
+function evaluateArdManifest(
+  url: string,
+  status: number | null,
+  headers: Record<string, string>,
+  bodyText: string
+): ArdManifestCheck {
+  if (status !== 200) {
+    return {
+      url,
+      httpStatus: status,
+      status: "missing",
+      entryCount: 0,
+      specVersion: null,
+      errorDetail: status ? `HTTP ${status}` : "Unreachable",
+    };
+  }
+
+  const trimmed = (bodyText || "").trim();
+  const contentType = (headers["content-type"] || "").toLowerCase();
+  const looksLikeHtml =
+    /^\s*(?:<!doctype\s+html|<html[\s>]|<head[\s>]|<body[\s>]|<meta[\s>]|<script[\s>])/i.test(
+      trimmed
+    ) ||
+    (contentType.includes("text/html") && /<\/html>|<\/body>|<div[\s>]/i.test(trimmed));
+
+  if (looksLikeHtml) {
+    return {
+      url,
+      httpStatus: status,
+      status: "invalid_html_soft404",
+      entryCount: 0,
+      specVersion: null,
+      errorDetail:
+        "Endpoint returned HTML markup (SPA catch-all soft-200) instead of Agentic Resource Discovery JSON.",
+    };
+  }
+
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(trimmed);
+  } catch {
+    return {
+      url,
+      httpStatus: status,
+      status: "invalid_schema",
+      entryCount: 0,
+      specVersion: null,
+      errorDetail: "Malformed JSON syntax in /.well-known/ard.json.",
+    };
+  }
+
+  if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+    return {
+      url,
+      httpStatus: status,
+      status: "invalid_schema",
+      entryCount: 0,
+      specVersion: null,
+      errorDetail: "Root ARD payload must be a JSON object.",
+    };
+  }
+
+  const root = parsed as Record<string, unknown>;
+  const specVersion =
+    typeof root.specVersion === "string" && root.specVersion.trim()
+      ? root.specVersion.trim()
+      : null;
+  const entries = root.entries;
+
+  if (!Array.isArray(entries) || entries.length === 0) {
+    return {
+      url,
+      httpStatus: status,
+      status: "invalid_schema",
+      entryCount: 0,
+      specVersion,
+      errorDetail: "ARD manifest is missing a non-empty entries[] array.",
+    };
+  }
+
+  const allEntriesHaveRequiredFields = entries.every((item) => {
+    if (!item || typeof item !== "object" || Array.isArray(item)) return false;
+    const entry = item as Record<string, unknown>;
+    const hasUrn =
+      typeof entry.identifier === "string" &&
+      entry.identifier.trim().startsWith("urn:air:");
+    const hasDisplayName =
+      typeof entry.displayName === "string" && entry.displayName.trim().length > 0;
+    const hasType =
+      typeof entry.type === "string" && entry.type.trim().length > 0;
+    const hasTarget =
+      (typeof entry.url === "string" && entry.url.trim().length > 0) ||
+      entry.data !== undefined;
+    return hasUrn && hasDisplayName && hasType && hasTarget;
+  });
+
+  if (!allEntriesHaveRequiredFields) {
+    return {
+      url,
+      httpStatus: status,
+      status: "invalid_schema",
+      entryCount: entries.length,
+      specVersion,
+      errorDetail:
+        "Every ARD entry must define a urn:air: identifier, displayName, type, and url or data.",
+    };
+  }
+
+  const nonStandardTypeEntry = entries.find((item) => {
+    const entry = item as Record<string, unknown>;
+    return !isOfficialArdMediaType(String(entry.type));
+  }) as Record<string, unknown> | undefined;
+
+  if (nonStandardTypeEntry) {
+    return {
+      url,
+      httpStatus: status,
+      status: "invalid_schema",
+      entryCount: entries.length,
+      specVersion,
+      errorDetail: `ARD entry "${String(
+        nonStandardTypeEntry.type
+      )}" uses a non-standard media type; Lighthouse 13.6 ard-schema expects official ARD media types such as text/markdown; profile="urn:air:agent-skills" for a 1.0 score.`,
+    };
+  }
+
+  return {
+    url,
+    httpStatus: status,
+    status: "valid",
+    entryCount: entries.length,
+    specVersion: specVersion || "1.0",
+    errorDetail: null,
   };
 }
 
@@ -713,31 +884,42 @@ export async function POST(req: Request) {
     ) ||
     (normalized.url.protocol === "http:" && finalUrlObj.protocol === "https:");
 
-  // Run robots.txt, llms.txt, llms-full.txt, default sitemap.xml & CrUX in parallel
-  const [robotsFetch, llmsFetch, llmsFullFetch, defaultSitemapFetch, crux] =
-    await Promise.all([
-      safeScannerFetch(`${finalOrigin}/robots.txt`, {
-        timeoutMs: 5500,
-        maxBytes: 256 * 1024,
-        acceptHeader: "text/plain,*/*;q=0.8",
-      }),
-      safeScannerFetch(`${finalOrigin}/llms.txt`, {
-        timeoutMs: 5500,
-        maxBytes: 512 * 1024,
-        acceptHeader: "text/plain,text/markdown,*/*;q=0.8",
-      }),
-      safeScannerFetch(`${finalOrigin}/llms-full.txt`, {
-        timeoutMs: 5500,
-        maxBytes: 768 * 1024,
-        acceptHeader: "text/plain,text/markdown,*/*;q=0.8",
-      }),
-      safeScannerFetch(`${finalOrigin}/sitemap.xml`, {
-        timeoutMs: 5500,
-        maxBytes: 1024 * 1024,
-        acceptHeader: "application/xml,text/xml,*/*;q=0.8",
-      }),
-      queryCruxFieldVitals(mainFetch.finalUrl, finalOrigin),
-    ]);
+  // Run robots.txt, llms.txt, llms-full.txt, ard.json, default sitemap.xml & CrUX in parallel
+  const [
+    robotsFetch,
+    llmsFetch,
+    llmsFullFetch,
+    ardFetch,
+    defaultSitemapFetch,
+    crux,
+  ] = await Promise.all([
+    safeScannerFetch(`${finalOrigin}/robots.txt`, {
+      timeoutMs: 5500,
+      maxBytes: 256 * 1024,
+      acceptHeader: "text/plain,*/*;q=0.8",
+    }),
+    safeScannerFetch(`${finalOrigin}/llms.txt`, {
+      timeoutMs: 5500,
+      maxBytes: 512 * 1024,
+      acceptHeader: "text/plain,text/markdown,*/*;q=0.8",
+    }),
+    safeScannerFetch(`${finalOrigin}/llms-full.txt`, {
+      timeoutMs: 5500,
+      maxBytes: 768 * 1024,
+      acceptHeader: "text/plain,text/markdown,*/*;q=0.8",
+    }),
+    safeScannerFetch(`${finalOrigin}/.well-known/ard.json`, {
+      timeoutMs: 5500,
+      maxBytes: 256 * 1024,
+      acceptHeader: "application/json,*/*;q=0.8",
+    }),
+    safeScannerFetch(`${finalOrigin}/sitemap.xml`, {
+      timeoutMs: 5500,
+      maxBytes: 1024 * 1024,
+      acceptHeader: "application/xml,text/xml,*/*;q=0.8",
+    }),
+    queryCruxFieldVitals(mainFetch.finalUrl, finalOrigin),
+  ]);
 
   // Parse robots.txt
   const robotsIsPlain =
@@ -910,7 +1092,7 @@ export async function POST(req: Request) {
       visibleBodyText
     );
 
-  // GEO / AEO & llms.txt evaluation
+  // GEO / AEO, llms.txt & Agentic Resource Discovery (ARD) evaluation
   const llmsTxt = evaluateLlmsFile(
     `${finalOrigin}/llms.txt`,
     llmsFetch.status,
@@ -924,6 +1106,12 @@ export async function POST(req: Request) {
     llmsFullFetch.headers,
     llmsFullFetch.bodyText,
     llmsFullFetch.byteLength
+  );
+  const ardManifest = evaluateArdManifest(
+    `${finalOrigin}/.well-known/ard.json`,
+    ardFetch.status,
+    ardFetch.headers,
+    ardFetch.bodyText
   );
   const aiCrawlers = evaluateAiCrawlers(robotsIsPlain, parsedRobots);
 
@@ -1028,13 +1216,14 @@ export async function POST(req: Request) {
   if (isNoindex) seoScore = Math.min(seoScore, 30);
   seoScore = Math.max(0, Math.min(100, Math.round(seoScore)));
 
-  // 2. GEO / AEO & llms.txt Score (0-100)
+  // 2. GEO / AEO, llms.txt & Agentic Discovery Score (0-100)
   const allowedAiBots = aiCrawlers.filter((b) => b.status === "allowed").length;
   const hasClearNap =
     (schemaAnalysis.fields.telephone && schemaAnalysis.fields.address) ||
     (phoneSet.size > 0 && cityZoneHits >= 2);
   let geoAeoScore = 0;
-  if (llmsTxt.validPlaintext) geoAeoScore += 28;
+  if (llmsTxt.followsLlmsSpec) geoAeoScore += 28;
+  else if (llmsTxt.validPlaintext) geoAeoScore += 16;
   if (llmsFullTxt.validPlaintext) geoAeoScore += 10;
   geoAeoScore += allowedAiBots * 4; // up to +24
   if (hasClearNap) geoAeoScore += 12;
@@ -1045,6 +1234,13 @@ export async function POST(req: Request) {
   if (questionHeadings.length >= 2) geoAeoScore += 6;
   else if (questionHeadings.length === 1) geoAeoScore += 3;
   if (visibleWordCount >= 350) geoAeoScore += 4;
+  if (ardManifest.status === "valid") geoAeoScore += 8;
+  else if (
+    ardManifest.status === "invalid_html_soft404" ||
+    ardManifest.status === "invalid_schema"
+  ) {
+    geoAeoScore -= 10;
+  }
   geoAeoScore = Math.max(0, Math.min(100, Math.round(geoAeoScore)));
 
   // 3. Schema / JSON-LD Score (0-100)
@@ -1149,7 +1345,17 @@ export async function POST(req: Request) {
         ? `${finalOrigin}/llms.txt returned HTML markup instead of a clean Markdown index.`
         : `${finalOrigin}/llms.txt returned HTTP ${llmsTxt.httpStatus ?? "error"}.`,
       businessImpact:
-        "ChatGPT, Gemini, Perplexity, and Claude lack a structured, hallucination-free summary of your services, service areas, and contact info.",
+        "Fails Google Lighthouse 13.6's Agentic Browsing (llms-txt) audit and leaves ChatGPT, Gemini, Perplexity, and Claude without a verified summary of your services, locations, and contact info.",
+    });
+  } else if (!llmsTxt.followsLlmsSpec) {
+    issues.push({
+      id: "llms-txt-no-links",
+      pillar: "geoAeo",
+      severity: "warning",
+      title: "/llms.txt Lacks Markdown [Title](https://...) Links (Fails Google Agentic Browsing)",
+      detail: `${finalOrigin}/llms.txt is live plaintext (${llmsTxt.wordCount.toLocaleString()} words), but contains 0 Markdown [Label](https://...) links — Google Lighthouse 13.6's Agentic Browsing (llms-txt) audit fails with "File does not appear to contain any links."`,
+      businessImpact:
+        "Adding Markdown links to your core service, city, and booking URLs passes Google's Agentic Browsing audit and lets AI agents navigate directly to conversion pages.",
     });
   } else {
     issues.push({
@@ -1157,13 +1363,51 @@ export async function POST(req: Request) {
       pillar: "geoAeo",
       severity: "passed",
       title: "Verified /llms.txt AI Visibility Index Live",
-      detail: `Found clean Markdown index (${llmsTxt.wordCount.toLocaleString()} words, ${llmsTxt.headingCount} sections)${
+      detail: `Found spec-compliant Markdown index (${llmsTxt.wordCount.toLocaleString()} words, ${llmsTxt.headingCount} sections, ${llmsTxt.markdownLinkCount} Markdown link${
+        llmsTxt.markdownLinkCount === 1 ? "" : "s"
+      })${
         llmsFullTxt.validPlaintext
           ? ` plus /llms-full.txt (${llmsFullTxt.wordCount.toLocaleString()} words).`
           : "."
       }`,
       businessImpact:
-        "AI answer engines can directly ingest your verified services, locations, and phone number.",
+        "Passes Google Agentic Browsing's llms-txt check and feeds verified services, locations, and phone numbers to AI answer engines.",
+    });
+  }
+
+  if (ardManifest.status === "invalid_html_soft404") {
+    issues.push({
+      id: "ard-manifest-html-soft404",
+      pillar: "geoAeo",
+      severity: "critical",
+      title: "Broken /.well-known/ard.json (SPA HTML Soft-200 Breaks Google Agentic Browsing)",
+      detail: `${finalOrigin}/.well-known/ard.json returned HTTP 200 with HTML markup instead of ARD JSON — causing Google Lighthouse's ard-schema audit to score 0 instead of notApplicable.`,
+      businessImpact:
+        "Catch-all SPA rewrites on /.well-known/ard.json actively drag down your Google Agentic Browsing score; serve a valid ARD 1.0 JSON manifest or return a clean HTTP 404.",
+    });
+  } else if (ardManifest.status === "invalid_schema") {
+    issues.push({
+      id: "ard-manifest-invalid-schema",
+      pillar: "geoAeo",
+      severity: "critical",
+      title: "Invalid /.well-known/ard.json Schema (Fails Google Agentic Browsing)",
+      detail:
+        ardManifest.errorDetail ||
+        `${finalOrigin}/.well-known/ard.json is missing valid ARD 1.0 entries or urn:air: identifiers.`,
+      businessImpact:
+        "Malformed ARD manifests fail Google Lighthouse 13.6's ard-schema check and block AI agents from discovering your official tools and endpoints.",
+    });
+  } else if (ardManifest.status === "valid") {
+    issues.push({
+      id: "passed-ard-manifest",
+      pillar: "geoAeo",
+      severity: "passed",
+      title: "Verified /.well-known/ard.json Agentic Resource Discovery Manifest",
+      detail: `ARD v${ardManifest.specVersion || "1.0"} manifest verified with ${ardManifest.entryCount} urn:air: resource ${
+        ardManifest.entryCount === 1 ? "entry" : "entries"
+      } — unlocks 4/4 in Google Lighthouse Agentic Browsing.`,
+      businessImpact:
+        "Autonomous AI browsers and Google Agentic Browsing can discover your calculators, scanners, and entity docs directly.",
     });
   }
 
@@ -1481,6 +1725,7 @@ export async function POST(req: Request) {
     geoAeo: {
       llmsTxt,
       llmsFullTxt,
+      ardManifest,
       aiCrawlers,
       questionHeadingCount: questionHeadings.length,
       sampleQuestionHeadings: questionHeadings.slice(0, 5),

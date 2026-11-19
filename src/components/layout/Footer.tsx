@@ -82,9 +82,9 @@ export default function Footer() {
 
           {/* Solutions & Apps */}
           <div className="lg:col-span-3">
-            <h4 className="font-mono font-bold mb-5 uppercase tracking-widest text-[11px] text-amber-400">
+            <div className="font-mono font-bold mb-5 uppercase tracking-widest text-[11px] text-amber-400">
               Apps &amp; Services
-            </h4>
+            </div>
             <ul className="space-y-3 text-sm text-slate-400">
               <li>
                 <Link href="/estimate" className="hover:text-amber-300 transition-colors font-semibold text-amber-300">
@@ -146,9 +146,9 @@ export default function Footer() {
 
           {/* Central MS SEO Service Areas */}
           <div className="lg:col-span-2">
-            <h4 className="font-mono font-bold mb-5 uppercase tracking-widest text-[11px] text-amber-400">
+            <div className="font-mono font-bold mb-5 uppercase tracking-widest text-[11px] text-amber-400">
               Service Areas
-            </h4>
+            </div>
             <ul className="grid grid-cols-2 lg:grid-cols-1 gap-2.5 text-sm text-slate-400">
               {[
                 { name: "Jackson, MS", slug: "jackson-ms" },
@@ -176,9 +176,9 @@ export default function Footer() {
 
           {/* Direct Contact */}
           <div className="lg:col-span-3">
-            <h4 className="font-mono font-bold mb-5 uppercase tracking-widest text-[11px] text-amber-400">
+            <div className="font-mono font-bold mb-5 uppercase tracking-widest text-[11px] text-amber-400">
               Direct Jackson Studio
-            </h4>
+            </div>
             <ul className="space-y-3.5 text-sm text-slate-400">
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
@@ -208,8 +208,9 @@ export default function Footer() {
                   Free 5-Min Rank Check
                 </Link>
                 <button
+                  type="button"
                   onClick={() => setIsBookingOpen(true)}
-                  className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-white font-bold text-xs uppercase tracking-wider transition-all"
+                  className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-white font-bold text-xs uppercase tracking-wider transition-all cursor-pointer"
                 >
                   Schedule 15-Min Call
                 </button>

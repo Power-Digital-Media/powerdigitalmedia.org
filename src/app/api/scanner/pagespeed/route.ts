@@ -4,12 +4,144 @@ import {
   checkScannerRateLimit,
   normalizeScannerTargetUrl,
 } from "@/lib/scanner-ssrf-guard";
-import type { ScannerPageSpeedResponse } from "@/lib/scanner-types";
+import type {
+  AgenticBrowsingAuditItem,
+  AgenticBrowsingSummary,
+  ScannerPageSpeedResponse,
+} from "@/lib/scanner-types";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const PAGESPEED_TIMEOUT_MS = 25_500;
+
+interface LighthouseAuditNodeDetail {
+  snippet?: string;
+  nodeLabel?: string;
+  explanation?: string;
+}
+
+interface LighthouseAuditItemDetail {
+  reason?: string;
+  message?: string;
+  error?: string;
+  issue?: string;
+  node?: LighthouseAuditNodeDetail;
+}
+
+interface LighthouseRawAudit {
+  id?: string;
+  title?: string;
+  score?: number | null;
+  scoreDisplayMode?: string;
+  numericValue?: number;
+  displayValue?: string;
+  explanation?: string;
+  warnings?: string[];
+  details?: {
+    items?: LighthouseAuditItemDetail[];
+  };
+}
+
+interface LighthouseCategoryRef {
+  id: string;
+  weight?: number;
+}
+
+interface LighthouseRawCategory {
+  score?: number | null;
+  auditRefs?: LighthouseCategoryRef[];
+}
+
+function extractAgenticFailureReason(
+  id: string,
+  audit: LighthouseRawAudit
+): string {
+  if (typeof audit.explanation === "string" && audit.explanation.trim()) {
+    return audit.explanation.trim();
+  }
+  if (Array.isArray(audit.warnings) && audit.warnings[0]?.trim()) {
+    return audit.warnings[0].trim();
+  }
+
+  const items = audit.details?.items ?? [];
+  if (items.length > 0) {
+    const first = items[0];
+    const directMsg =
+      first.reason || first.message || first.error || first.issue || first.node?.explanation;
+    if (typeof directMsg === "string" && directMsg.trim()) {
+      const cleanMsg = directMsg.replace(/\s+/g, " ").trim();
+      return items.length > 1 ? `${cleanMsg} (+${items.length - 1} more)` : cleanMsg;
+    }
+    if (id === "agent-accessibility-tree") {
+      const snippet = first.node?.snippet || first.node?.nodeLabel || "";
+      return `${items.length} interactive control(s) lack an accessible label${
+        snippet ? ` (e.g. ${snippet.slice(0, 72)})` : ""
+      }.`;
+    }
+  }
+
+  if (id === "agent-accessibility-tree") {
+    return "One or more form inputs, selects, or buttons lack an accessible label.";
+  }
+  if (id === "llms-txt") {
+    return "Missing /llms.txt, HTML soft-404, or file contains zero Markdown [Title](https://...) links.";
+  }
+  if (id === "ard-schema") {
+    return "/.well-known/ard.json returned SPA HTML or failed Agentic Resource Discovery (ARD) schema validation.";
+  }
+  if (id === "cumulative-layout-shift") {
+    return audit.displayValue
+      ? `Layout shift (${audit.displayValue}) exceeded the <= 0.10 stability threshold for AI agents.`
+      : "Cumulative Layout Shift exceeded the 0.10 threshold.";
+  }
+
+  return audit.displayValue || "Failed Google Lighthouse Agentic Browsing check.";
+}
+
+function parseAgenticBrowsingCategory(
+  category: LighthouseRawCategory | undefined,
+  audits: Record<string, LighthouseRawAudit>
+): AgenticBrowsingSummary {
+  const refs = category?.auditRefs ?? [];
+  const parsedAudits: AgenticBrowsingAuditItem[] = [];
+  let passedCount = 0;
+  let totalCount = 0;
+
+  for (const ref of refs) {
+    if (!ref.id || (ref.weight ?? 0) <= 0) continue;
+    const audit = audits[ref.id];
+    if (!audit || audit.scoreDisplayMode === "notApplicable") continue;
+
+    const passed = typeof audit.score === "number" && audit.score >= 0.9;
+    totalCount += 1;
+    if (passed) passedCount += 1;
+
+    parsedAudits.push({
+      id: ref.id,
+      title: audit.title || ref.id,
+      passed,
+      displayValue: audit.displayValue || (passed ? "Passed" : "Failed"),
+      failureReason: passed ? null : extractAgenticFailureReason(ref.id, audit),
+    });
+  }
+
+  const rawScore = category?.score;
+  const scorePct =
+    typeof rawScore === "number" && Number.isFinite(rawScore)
+      ? Math.round(rawScore * 100)
+      : totalCount > 0
+      ? Math.round((passedCount / totalCount) * 100)
+      : null;
+
+  return {
+    scorePct,
+    passedCount,
+    totalCount,
+    displayFraction: totalCount > 0 ? `${passedCount}/${totalCount}` : "N/A",
+    audits: parsedAudits,
+  };
+}
 
 export async function POST(req: Request) {
   const rate = checkScannerRateLimit(req, "scanner-pagespeed");
@@ -72,6 +204,7 @@ export async function POST(req: Request) {
   psiParams.append("category", "SEO");
   psiParams.append("category", "ACCESSIBILITY");
   psiParams.append("category", "BEST_PRACTICES");
+  psiParams.append("category", "AGENTIC_BROWSING");
 
   const psiKey = (process.env.PAGESPEED_API_KEY || "").trim();
   if (psiKey) {
@@ -100,11 +233,8 @@ export async function POST(req: Request) {
 
     const data = (await res.json()) as {
       lighthouseResult?: {
-        categories?: Record<string, { score?: number | null }>;
-        audits?: Record<
-          string,
-          { numericValue?: number; displayValue?: string }
-        >;
+        categories?: Record<string, LighthouseRawCategory>;
+        audits?: Record<string, LighthouseRawAudit>;
       };
     };
 
@@ -115,6 +245,11 @@ export async function POST(req: Request) {
       typeof raw === "number" && Number.isFinite(raw)
         ? Math.round(raw * 100)
         : 0;
+
+    const agenticBrowsing = parseAgenticBrowsingCategory(
+      categories["agentic-browsing"],
+      audits
+    );
 
     const lcpMs = audits["largest-contentful-paint"]?.numericValue;
     const fcpMs = audits["first-contentful-paint"]?.numericValue;
@@ -140,6 +275,7 @@ export async function POST(req: Request) {
         seoScore: toScore(categories.seo?.score),
         accessibilityScore: toScore(categories.accessibility?.score),
         bestPracticesScore: toScore(categories["best-practices"]?.score),
+        agenticBrowsing,
         lcpSeconds,
         fcpSeconds,
         tbtMs,

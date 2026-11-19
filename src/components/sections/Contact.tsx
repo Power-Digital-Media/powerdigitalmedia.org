@@ -9,7 +9,7 @@ import {
   CheckCircle2,
   Mail,
 } from "lucide-react";
-import { useState } from "react";
+import { useId, useState } from "react";
 import BookingModal from "@/components/ui/BookingModal";
 import FormSecurityFields from "@/components/ui/FormSecurityFields";
 import { submitVerifiedLeadForm } from "@/lib/lead-submission";
@@ -24,6 +24,7 @@ export default function Contact({
   formSource = "homepage-contact",
   isStandalonePage = false,
 }: ContactProps) {
+  const formId = useId();
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
@@ -211,12 +212,17 @@ export default function Contact({
 
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5">
+                    <label
+                      htmlFor={`${formId}-name`}
+                      className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5"
+                    >
                       Your Name *
                     </label>
                     <input
+                      id={`${formId}-name`}
                       type="text"
                       name="name"
+                      autoComplete="name"
                       required
                       disabled={status === "submitting"}
                       placeholder="Mike Reynolds"
@@ -224,12 +230,17 @@ export default function Contact({
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5">
+                    <label
+                      htmlFor={`${formId}-phone`}
+                      className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5"
+                    >
                       Cell / Best Phone *
                     </label>
                     <input
+                      id={`${formId}-phone`}
                       type="tel"
                       name="phone"
+                      autoComplete="tel"
                       required
                       disabled={status === "submitting"}
                       placeholder="(601) 555-0192"
@@ -240,12 +251,17 @@ export default function Contact({
 
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5">
+                    <label
+                      htmlFor={`${formId}-email`}
+                      className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5"
+                    >
                       Email Address *
                     </label>
                     <input
+                      id={`${formId}-email`}
                       type="email"
                       name="email"
+                      autoComplete="email"
                       required
                       disabled={status === "submitting"}
                       placeholder="mike@yourcompany.com"
@@ -253,12 +269,17 @@ export default function Contact({
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5">
+                    <label
+                      htmlFor={`${formId}-company`}
+                      className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5"
+                    >
                       Company or Website
                     </label>
                     <input
+                      id={`${formId}-company`}
                       type="text"
                       name="company"
+                      autoComplete="organization"
                       disabled={status === "submitting"}
                       placeholder="Reynolds Roofing or yoursite.com"
                       className="w-full px-4 py-3.5 rounded-xl bg-[#06080f] border border-white/15 focus:border-amber-400 outline-none text-white text-sm placeholder:text-slate-500"
@@ -267,10 +288,14 @@ export default function Contact({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5">
+                  <label
+                    htmlFor={`${formId}-services`}
+                    className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5"
+                  >
                     What Are You Looking to Build or Fix?
                   </label>
                   <select
+                    id={`${formId}-services`}
                     name="services"
                     disabled={status === "submitting"}
                     defaultValue="Contractor Growth Website + Local SEO"
@@ -295,10 +320,14 @@ export default function Contact({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5">
+                  <label
+                    htmlFor={`${formId}-message`}
+                    className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5"
+                  >
                     Quick Project Details *
                   </label>
                   <textarea
+                    id={`${formId}-message`}
                     rows={4}
                     name="message"
                     required

@@ -59,9 +59,9 @@ export default function GoogleReviewsSection({ variant = "full" }: { variant?: "
 
                 <div className="pt-3 border-t border-white/10 flex items-center justify-between">
                   <div className="min-w-0">
-                    <h4 className="text-xs font-bold text-white truncate">
+                    <div className="text-xs font-bold text-white truncate">
                       {review.author}
-                    </h4>
+                    </div>
                     <span className="text-[10px] text-slate-400 truncate block">
                       {review.roleOrCompany || "Verified Client"}
                     </span>
@@ -70,9 +70,10 @@ export default function GoogleReviewsSection({ variant = "full" }: { variant?: "
                     href={review.sourceUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`View ${review.author}'s verified ${review.source} review`}
                     className="text-slate-500 hover:text-amber-400 transition-colors p-1"
                   >
-                    <ExternalLink className="w-3.5 h-3.5" />
+                    <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
                   </a>
                 </div>
               </div>
@@ -188,7 +189,7 @@ export default function GoogleReviewsSection({ variant = "full" }: { variant?: "
                   <span className="text-[11px] font-bold text-slate-300 bg-white/5 px-2.5 py-0.5 rounded-full border border-white/10 flex items-center gap-1 shrink-0">
                     {review.source === "Facebook" && (
                       <>
-                        <span className="text-[#1877F2] font-black text-xs">Facebook</span> Recommendation
+                        <span className="text-sky-400 font-black text-xs">Facebook</span> Recommendation
                       </>
                     )}
                     {review.source === "Google" && (
@@ -224,9 +225,9 @@ export default function GoogleReviewsSection({ variant = "full" }: { variant?: "
                     {review.author.charAt(0)}
                   </div>
                   <div className="min-w-0">
-                    <h4 className="text-sm font-bold text-white leading-tight truncate">
+                    <div className="text-sm font-bold text-white leading-tight truncate">
                       {review.author}
-                    </h4>
+                    </div>
                     <span className="text-[11px] text-slate-400 truncate block">
                       {review.roleOrCompany || "Verified Client"}
                     </span>
@@ -237,10 +238,11 @@ export default function GoogleReviewsSection({ variant = "full" }: { variant?: "
                   href={review.sourceUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`View ${review.author}'s verified ${review.source} review`}
                   className="text-slate-500 hover:text-amber-400 transition-colors p-2 rounded-lg hover:bg-white/5 shrink-0"
                   title="View original verified review"
                 >
-                  <ExternalLink className="w-4 h-4" />
+                  <ExternalLink className="w-4 h-4" aria-hidden="true" />
                 </a>
               </div>
             </div>

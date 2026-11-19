@@ -177,6 +177,7 @@ export default function ExitIntentPopup() {
                     name="website_url"
                     required
                     disabled={status === "submitting"}
+                    aria-label="Business Name or Website"
                     placeholder="Business Name or Website (e.g. Ace Roofing, Brandon MS)"
                     className="w-full px-3.5 py-3 text-xs bg-[#12141c] border border-white/15 focus:border-amber-400 rounded-xl outline-none transition-all placeholder:text-slate-500 text-white"
                   />
@@ -185,6 +186,7 @@ export default function ExitIntentPopup() {
                     name="email"
                     required
                     disabled={status === "submitting"}
+                    aria-label="Best email address for the 5-minute video"
                     placeholder="Enter your best email for the 5-min video"
                     className="w-full px-3.5 py-3 text-xs bg-[#12141c] border border-white/15 focus:border-amber-400 rounded-xl outline-none transition-all placeholder:text-slate-500 text-white"
                   />
@@ -192,6 +194,7 @@ export default function ExitIntentPopup() {
                     type="tel"
                     name="phone"
                     disabled={status === "submitting"}
+                    aria-label="Cell phone number to text when ready (optional)"
                     placeholder="Cell # to text when ready (optional)"
                     className="w-full px-3.5 py-3 text-xs bg-[#12141c] border border-white/15 focus:border-amber-400 rounded-xl outline-none transition-all placeholder:text-slate-500 text-white"
                   />

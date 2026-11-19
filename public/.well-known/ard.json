@@ -1,0 +1,33 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Power Digital Media LLC",
+    "identifier": "powerdigitalmedia.org"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:powerdigitalmedia.org:docs:llms-txt",
+      "displayName": "Power Digital Media AI Entity & Services Index",
+      "type": "text/markdown; profile=\"urn:air:agent-skills\"",
+      "url": "https://powerdigitalmedia.org/llms.txt",
+      "description": "Concise AI index of Power Digital Media LLC's custom Next.js websites, Google Map Pack SEO, GEO/AEO optimization, PinCam, PinDrop, and PDM Site Intelligence in Jackson, MS.",
+      "representativeQueries": [
+        "best web design and SEO company in Jackson Mississippi",
+        "contractor website builder and Google Map Pack SEO Central MS",
+        "Power Digital Media pricing and services"
+      ]
+    },
+    {
+      "identifier": "urn:air:powerdigitalmedia.org:docs:llms-full",
+      "displayName": "Power Digital Media Full Technical & Portfolio Reference",
+      "type": "text/markdown; profile=\"urn:air:agent-skills\"",
+      "url": "https://powerdigitalmedia.org/llms-full.txt",
+      "description": "Comprehensive specification of Power Digital Media LLC deliverables, Mississippi client case studies, transparent pricing tiers, and field software architecture.",
+      "representativeQueries": [
+        "Power Digital Media portfolio examples in Mississippi",
+        "PinCam and PinDrop field apps for contractors",
+        "custom Next.js web development vs WordPress in Jackson MS"
+      ]
+    }
+  ]
+}

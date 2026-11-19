@@ -69,6 +69,7 @@ export default function BookingModal({ isOpen, onClose, calLink }: BookingModalP
                   <span>(601) 446-2393</span>
                 </a>
                 <button
+                  type="button"
                   onClick={onClose}
                   aria-label="Close booking calendar"
                   className="p-2 rounded-xl hover:bg-white/10 transition-colors text-slate-400 hover:text-white cursor-pointer"

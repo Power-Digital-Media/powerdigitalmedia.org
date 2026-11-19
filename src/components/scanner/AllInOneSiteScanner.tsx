@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo, useRef, type FormEvent } from "react";
+import { useState, useEffect, useId, useMemo, useRef, type FormEvent } from "react";
 import Link from "next/link";
 import {
   Search,
@@ -117,6 +117,7 @@ export default function AllInOneSiteScanner({
   headlineOverride,
   subheadlineOverride,
 }: AllInOneSiteScannerProps) {
+  const scannerId = useId();
   const [urlInput, setUrlInput] = useState("");
   const [serviceInput, setServiceInput] = useState("");
   const [cityChoice, setCityChoice] = useState<string>("Jackson, MS");
@@ -338,6 +339,48 @@ export default function AllInOneSiteScanner({
             "Fast mobile rendering keeps high-intent callers on the page.",
         });
       }
+
+      const ab = psiMobile.agenticBrowsing;
+      if (ab && ab.totalCount > 0) {
+        if (ab.passedCount < ab.totalCount) {
+          const failedAudits = ab.audits.filter((a) => !a.passed);
+          const abSeverity = ab.passedCount === 0 ? "critical" : "warning";
+          const abIssue: ScannerIssue = {
+            id: "psi-agentic-browsing",
+            pillar: "geoAeo",
+            severity: abSeverity,
+            title: `Google Lighthouse Agentic Browsing: ${ab.displayFraction} Passed`,
+            detail: `Failed Google Agentic Browsing audit${
+              failedAudits.length === 1 ? "" : "s"
+            }: ${failedAudits
+              .map(
+                (a) => `${a.title} (${a.failureReason || a.displayValue})`
+              )
+              .join(" • ")}`,
+            businessImpact:
+              "Google Lighthouse 13.6's Agentic Browsing category tests whether AI agents can discover your /llms.txt & /.well-known/ard.json endpoints and operate every quote/contact form without unlabeled controls.",
+          };
+          if (abSeverity === "critical") {
+            list.unshift(abIssue);
+          } else {
+            const firstPassedIdx = list.findIndex((i) => i.severity === "passed");
+            if (firstPassedIdx === -1) list.push(abIssue);
+            else list.splice(firstPassedIdx, 0, abIssue);
+          }
+        } else {
+          list.push({
+            id: "psi-agentic-browsing-passed",
+            pillar: "geoAeo",
+            severity: "passed",
+            title: `Google Lighthouse Agentic Browsing: ${ab.displayFraction} Passed`,
+            detail: `Passed 100% of applicable Google Lighthouse 13.6 Agentic Browsing checks (${ab.audits
+              .map((a) => a.id)
+              .join(", ")}).`,
+            businessImpact:
+              "Autonomous AI browsers and assistants can discover your structured endpoints and operate every form control cleanly.",
+          });
+        }
+      }
     }
 
     return list;
@@ -397,8 +440,12 @@ export default function AllInOneSiteScanner({
     const speedStr = psiMobile
       ? `${psiMobile.performanceScore}/100 (${psiMobile.displayLcp} LCP)`
       : "Pending/Timed Out";
+    const agenticStr =
+      psiMobile?.agenticBrowsing && psiMobile.agenticBrowsing.totalCount > 0
+        ? psiMobile.agenticBrowsing.displayFraction
+        : "Pending/N/A";
 
-    const pillarSummary = `Overall ${overallScore}/100 | SEO ${stage1.scores.seoScore}/100 | GEO/AEO ${stage1.scores.geoAeoScore}/100 | Schema ${stage1.scores.schemaScore}/100 | Local Signals ${stage1.scores.localSignalsScore}/100 | Conversion ${stage1.scores.conversionScore}/100 | Mobile Speed ${speedStr}`;
+    const pillarSummary = `Overall ${overallScore}/100 | SEO ${stage1.scores.seoScore}/100 | GEO/AEO ${stage1.scores.geoAeoScore}/100 | Agentic Browsing ${agenticStr} | Schema ${stage1.scores.schemaScore}/100 | Local Signals ${stage1.scores.localSignalsScore}/100 | Conversion ${stage1.scores.conversionScore}/100 | Mobile Speed ${speedStr}`;
 
     const topIssueTitles = criticalAndWarningIssues
       .slice(0, 8)
@@ -457,6 +504,8 @@ export default function AllInOneSiteScanner({
   };
 
   const HeadingTag = isStandalonePage ? "h1" : "h2";
+  const SubHeadingTag = isStandalonePage ? "h2" : "h3";
+  const CardHeadingTag = isStandalonePage ? "h3" : "h4";
   const overallTheme = getScoreTheme(overallScore);
 
   const smsHref = useMemo(() => {
@@ -502,7 +551,7 @@ export default function AllInOneSiteScanner({
               <>
                 Scan Your Website,{" "}
                 <span className="text-amber-400">
-                  Google Schema, llms.txt &amp; Mobile Speed
+                  Google Schema, llms.txt &amp; Agentic Browsing
                 </span>{" "}
                 in Seconds.
               </>
@@ -511,7 +560,7 @@ export default function AllInOneSiteScanner({
 
           <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-3xl mx-auto">
             {subheadlineOverride ||
-              "Zero fake vanity grades. Test any website live against Google Lighthouse Mobile, Chrome UX cellular vitals, Schema.org JSON-LD validation, ChatGPT/Gemini/Perplexity AI crawler access (/llms.txt), and Central MS local ranking signals."}
+              "Zero fake vanity grades. Test any website live against Google Lighthouse Mobile & Agentic Browsing (X/4), /.well-known/ard.json, /llms.txt, Schema.org JSON-LD validation, Chrome UX cellular vitals, and Central MS local ranking signals."}
           </p>
         </div>
 
@@ -522,7 +571,7 @@ export default function AllInOneSiteScanner({
               {/* Website URL */}
               <div className="md:col-span-5">
                 <label
-                  htmlFor="scanner-url"
+                  htmlFor={`${scannerId}-url`}
                   className="block text-[10px] font-mono font-extrabold uppercase tracking-wider text-amber-300 mb-1.5"
                 >
                   1. Website Domain to Audit *
@@ -530,7 +579,7 @@ export default function AllInOneSiteScanner({
                 <div className="relative">
                   <Globe className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                   <input
-                    id="scanner-url"
+                    id={`${scannerId}-url`}
                     type="text"
                     value={urlInput}
                     onChange={(e) => setUrlInput(e.target.value)}
@@ -543,13 +592,13 @@ export default function AllInOneSiteScanner({
               {/* Primary Trade / Service */}
               <div className="md:col-span-4">
                 <label
-                  htmlFor="scanner-service"
+                  htmlFor={`${scannerId}-service`}
                   className="block text-[10px] font-mono font-extrabold uppercase tracking-wider text-slate-300 mb-1.5"
                 >
                   2. Primary Trade / Service (Optional)
                 </label>
                 <input
-                  id="scanner-service"
+                  id={`${scannerId}-service`}
                   type="text"
                   value={serviceInput}
                   onChange={(e) => setServiceInput(e.target.value)}
@@ -561,13 +610,13 @@ export default function AllInOneSiteScanner({
               {/* Target City */}
               <div className="md:col-span-3">
                 <label
-                  htmlFor="scanner-city"
+                  htmlFor={`${scannerId}-city`}
                   className="block text-[10px] font-mono font-extrabold uppercase tracking-wider text-slate-300 mb-1.5"
                 >
                   3. Target Market City
                 </label>
                 <select
-                  id="scanner-city"
+                  id={`${scannerId}-city`}
                   value={cityChoice}
                   onChange={(e) => setCityChoice(e.target.value)}
                   className="w-full px-3.5 py-3.5 rounded-xl bg-[#05070d] border border-white/15 focus:border-amber-400 outline-none text-sm text-white"
@@ -588,6 +637,7 @@ export default function AllInOneSiteScanner({
                   type="text"
                   value={customCity}
                   onChange={(e) => setCustomCity(e.target.value)}
+                  aria-label="Custom target market city"
                   placeholder="Enter target city (e.g. Vicksburg, MS)"
                   className="w-full px-3.5 py-2.5 rounded-xl bg-[#05070d] border border-amber-400/40 outline-none text-xs text-white placeholder:text-slate-500"
                 />
@@ -776,9 +826,9 @@ export default function AllInOneSiteScanner({
                       >
                         {overallTheme.statusLabel}
                       </span>
-                      <h3 className="text-lg sm:text-xl font-black text-white truncate">
+                      <SubHeadingTag className="text-lg sm:text-xl font-black text-white truncate">
                         {stage1.http.hostname}
-                      </h3>
+                      </SubHeadingTag>
                       <p className="text-xs text-slate-400 mt-0.5">
                         Target: <strong className="text-slate-200">{stage1.localSignals.targetServiceLabel}</strong> in{" "}
                         <strong className="text-amber-300">{stage1.localSignals.targetCityLabel}</strong>
@@ -809,12 +859,22 @@ export default function AllInOneSiteScanner({
                           : "No XML Sitemap",
                       },
                       {
-                        label: "AI / GEO & llms.txt",
+                        label: "AI / GEO & Agentic",
                         score: stage1.scores.geoAeoScore,
                         tab: "geo_aeo" as ScannerTabId,
-                        sub: stage1.geoAeo.llmsTxt.validPlaintext
-                          ? "/llms.txt Verified Live"
-                          : "No /llms.txt Found",
+                        sub:
+                          psiMobile?.agenticBrowsing &&
+                          psiMobile.agenticBrowsing.totalCount > 0
+                            ? `Agentic ${psiMobile.agenticBrowsing.displayFraction} • ${
+                                stage1.geoAeo.llmsTxt.validPlaintext
+                                  ? "/llms.txt"
+                                  : "No /llms.txt"
+                              }`
+                            : stage1.geoAeo.llmsTxt.followsLlmsSpec
+                            ? `/llms.txt (${stage1.geoAeo.llmsTxt.markdownLinkCount} links)`
+                            : stage1.geoAeo.llmsTxt.validPlaintext
+                            ? "/llms.txt (0 links)"
+                            : "No /llms.txt Found",
                       },
                       {
                         label: "Schema / JSON-LD",
@@ -891,7 +951,7 @@ export default function AllInOneSiteScanner({
                   },
                   {
                     id: "geo_aeo" as ScannerTabId,
-                    label: "AI Search, GEO/AEO & llms.txt",
+                    label: "AI Search, GEO/AEO & Agentic Browsing",
                     icon: Bot,
                   },
                   {
@@ -953,9 +1013,9 @@ export default function AllInOneSiteScanner({
 
                       <div className="rounded-3xl bg-[#090d18] border border-white/10 p-6 space-y-4">
                         <div className="flex items-center justify-between gap-2">
-                          <h4 className="text-base sm:text-lg font-black uppercase text-white">
+                          <CardHeadingTag className="text-base sm:text-lg font-black uppercase text-white">
                             Prioritized Visibility &amp; Lead-Leak Fixes ({criticalAndWarningIssues.length})
-                          </h4>
+                          </CardHeadingTag>
                           <span className="text-[11px] font-mono text-amber-300">
                             Sorted by Revenue Impact
                           </span>
@@ -1021,9 +1081,9 @@ export default function AllInOneSiteScanner({
                       {/* Passed Strengths */}
                       {passedIssues.length > 0 && (
                         <div className="rounded-3xl bg-[#090d18] border border-white/10 p-6 space-y-3">
-                          <h4 className="text-sm font-mono font-extrabold uppercase tracking-wider text-emerald-400">
+                          <CardHeadingTag className="text-sm font-mono font-extrabold uppercase tracking-wider text-emerald-400">
                             Verified Passed Checks ({passedIssues.length})
-                          </h4>
+                          </CardHeadingTag>
                           <div className="grid gap-2.5">
                             {passedIssues.map((item) => (
                               <div
@@ -1047,9 +1107,187 @@ export default function AllInOneSiteScanner({
                     </div>
                   )}
 
-                  {/* TAB 2: AI SEARCH, GEO/AEO & LLMS.TXT */}
+                  {/* TAB 2: AI SEARCH, GEO/AEO & AGENTIC BROWSING */}
                   {activeTab === "geo_aeo" && (
                     <div className="space-y-6">
+                      {/* Official Google Lighthouse Agentic Browsing (X/4) + /.well-known/ard.json Telemetry */}
+                      <div className="rounded-3xl bg-[#090d18] border border-cyan-500/35 p-6 space-y-5 shadow-[0_0_32px_rgba(34,211,238,0.06)]">
+                        <div className="flex flex-wrap items-center justify-between gap-3">
+                          <div>
+                            <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-amber-300 block">
+                              Official Google Lighthouse 13.6 • Agentic Browsing Category
+                            </span>
+                            <CardHeadingTag className="text-lg font-black uppercase text-white">
+                              Google Agentic Browsing ({psiMobile?.agenticBrowsing?.displayFraction || (psiPhase === "running" ? "Testing…" : "N/A")}) + /.well-known/ard.json
+                            </CardHeadingTag>
+                          </div>
+
+                          {psiPhase === "running" ? (
+                            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-400/40 text-xs font-mono font-extrabold text-cyan-300">
+                              <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                              Running PSI…
+                            </span>
+                          ) : psiMobile?.agenticBrowsing &&
+                            psiMobile.agenticBrowsing.totalCount > 0 ? (
+                            <span
+                              className={`px-3.5 py-1.5 rounded-full text-sm font-mono font-black border ${
+                                psiMobile.agenticBrowsing.passedCount ===
+                                psiMobile.agenticBrowsing.totalCount
+                                  ? "bg-emerald-500/15 border-emerald-400/45 text-emerald-300"
+                                  : psiMobile.agenticBrowsing.passedCount === 0
+                                  ? "bg-rose-500/15 border-rose-500/45 text-rose-300"
+                                  : "bg-amber-500/15 border-amber-400/45 text-amber-300"
+                              }`}
+                            >
+                              {psiMobile.agenticBrowsing.displayFraction} PASSED
+                            </span>
+                          ) : (
+                            <span className="px-3 py-1 rounded-full bg-white/[0.05] border border-white/10 text-xs font-mono text-slate-400">
+                              Stage 1 Probe Active
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Stage 1 /.well-known/ard.json + /llms.txt Link Spec Telemetry */}
+                        <div className="grid sm:grid-cols-2 gap-3">
+                          <div
+                            className={`p-4 rounded-2xl border ${
+                              stage1.geoAeo.ardManifest.status === "valid"
+                                ? "bg-emerald-500/[0.08] border-emerald-500/35"
+                                : stage1.geoAeo.ardManifest.status === "missing"
+                                ? "bg-[#06080f] border-white/12"
+                                : "bg-rose-500/[0.08] border-rose-500/40"
+                            }`}
+                          >
+                            <div className="flex items-center justify-between gap-2 mb-1">
+                              <span className="text-xs font-bold text-white font-mono">
+                                /.well-known/ard.json
+                              </span>
+                              <span
+                                className={`text-[10px] font-mono font-extrabold uppercase px-2 py-0.5 rounded ${
+                                  stage1.geoAeo.ardManifest.status === "valid"
+                                    ? "bg-emerald-500/20 text-emerald-300"
+                                    : stage1.geoAeo.ardManifest.status === "missing"
+                                    ? "bg-white/10 text-slate-300"
+                                    : "bg-rose-500/20 text-rose-300"
+                                }`}
+                              >
+                                {stage1.geoAeo.ardManifest.status === "valid"
+                                  ? `VALID ARD v${stage1.geoAeo.ardManifest.specVersion || "1.0"}`
+                                  : stage1.geoAeo.ardManifest.status ===
+                                    "invalid_html_soft404"
+                                  ? "HTML SOFT-200 (FAIL)"
+                                  : stage1.geoAeo.ardManifest.status ===
+                                    "invalid_schema"
+                                  ? "INVALID ARD JSON"
+                                  : "NOT PUBLISHED (404)"}
+                              </span>
+                            </div>
+                            <p className="text-[11px] text-slate-300 leading-relaxed">
+                              {stage1.geoAeo.ardManifest.status === "valid"
+                                ? `${stage1.geoAeo.ardManifest.entryCount} verified urn:air: resource ${
+                                    stage1.geoAeo.ardManifest.entryCount === 1
+                                      ? "entry"
+                                      : "entries"
+                                  } — unlocks 4/4 in Google Agentic Browsing.`
+                                : stage1.geoAeo.ardManifest.status === "missing"
+                                ? "Clean 404 (notApplicable). Publishing /.well-known/ard.json unlocks 4/4 in Google Agentic Browsing."
+                                : stage1.geoAeo.ardManifest.errorDetail ||
+                                  "Invalid Agentic Resource Discovery payload."}
+                            </p>
+                          </div>
+
+                          <div
+                            className={`p-4 rounded-2xl border ${
+                              stage1.geoAeo.llmsTxt.followsLlmsSpec
+                                ? "bg-emerald-500/[0.08] border-emerald-500/35"
+                                : stage1.geoAeo.llmsTxt.validPlaintext
+                                ? "bg-amber-500/[0.08] border-amber-500/35"
+                                : "bg-rose-500/[0.06] border-rose-500/30"
+                            }`}
+                          >
+                            <div className="flex items-center justify-between gap-2 mb-1">
+                              <span className="text-xs font-bold text-white font-mono">
+                                /llms.txt Link Graph
+                              </span>
+                              <span
+                                className={`text-[10px] font-mono font-extrabold uppercase px-2 py-0.5 rounded ${
+                                  stage1.geoAeo.llmsTxt.followsLlmsSpec
+                                    ? "bg-emerald-500/20 text-emerald-300"
+                                    : stage1.geoAeo.llmsTxt.validPlaintext
+                                    ? "bg-amber-500/20 text-amber-300"
+                                    : "bg-rose-500/20 text-rose-300"
+                                }`}
+                              >
+                                {stage1.geoAeo.llmsTxt.followsLlmsSpec
+                                  ? `${stage1.geoAeo.llmsTxt.markdownLinkCount} MD LINKS`
+                                  : stage1.geoAeo.llmsTxt.validPlaintext
+                                  ? "0 MD LINKS (FAILS)"
+                                  : "MISSING"}
+                              </span>
+                            </div>
+                            <p className="text-[11px] text-slate-300 leading-relaxed">
+                              {stage1.geoAeo.llmsTxt.followsLlmsSpec
+                                ? "Contains spec-compliant [Title](https://...) Markdown links required by Google Lighthouse llms-txt."
+                                : stage1.geoAeo.llmsTxt.validPlaintext
+                                ? "Plaintext found, but 0 Markdown links — Lighthouse 13.6 fails files without [Label](https://...) links."
+                                : "No /llms.txt Markdown index published on this domain."}
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Individual Google Lighthouse Agentic Browsing Audit Rows */}
+                        {psiMobile?.agenticBrowsing &&
+                          psiMobile.agenticBrowsing.audits.length > 0 && (
+                            <div className="space-y-2 pt-1">
+                              <div className="text-[10px] font-mono uppercase tracking-wider text-cyan-300">
+                                Live Google Lighthouse Agentic Browsing Audit Breakdown:
+                              </div>
+                              <div className="grid gap-2">
+                                {psiMobile.agenticBrowsing.audits.map((audit) => (
+                                  <div
+                                    key={audit.id}
+                                    className={`p-3.5 rounded-2xl border flex items-start justify-between gap-3 ${
+                                      audit.passed
+                                        ? "bg-[#06080f] border-emerald-500/30"
+                                        : "bg-rose-500/[0.08] border-rose-500/40"
+                                    }`}
+                                  >
+                                    <div className="min-w-0 space-y-0.5">
+                                      <div className="flex flex-wrap items-center gap-2">
+                                        <span className="text-xs font-black text-white">
+                                          {audit.title}
+                                        </span>
+                                        <span className="text-[10px] font-mono text-slate-400">
+                                          ({audit.id})
+                                        </span>
+                                      </div>
+                                      <p className="text-[11px] text-slate-300 leading-relaxed">
+                                        {audit.passed
+                                          ? audit.displayValue &&
+                                            audit.displayValue !== "Passed"
+                                            ? `Verified (${audit.displayValue})`
+                                            : "Passed official Google Agentic Browsing audit."
+                                          : audit.failureReason ||
+                                            audit.displayValue}
+                                      </p>
+                                    </div>
+                                    <span
+                                      className={`px-2.5 py-1 rounded-lg text-[10px] font-mono font-black uppercase shrink-0 ${
+                                        audit.passed
+                                          ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/30"
+                                          : "bg-rose-500/20 text-rose-300 border border-rose-500/40"
+                                      }`}
+                                    >
+                                      {audit.passed ? "PASS" : "FAIL"}
+                                    </span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                      </div>
+
                       {/* /llms.txt & /llms-full.txt Live Inspector */}
                       <div className="rounded-3xl bg-[#090d18] border border-white/10 p-6 space-y-4">
                         <div className="flex items-center justify-between gap-2">
@@ -1057,9 +1295,9 @@ export default function AllInOneSiteScanner({
                             <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-cyan-300 block">
                               Generative Engine Optimization (GEO)
                             </span>
-                            <h4 className="text-lg font-black uppercase text-white">
+                            <CardHeadingTag className="text-lg font-black uppercase text-white">
                               Live /llms.txt &amp; AI Entity Directory Check
-                            </h4>
+                            </CardHeadingTag>
                           </div>
                           <FileCode2 className="w-5 h-5 text-cyan-400 shrink-0" />
                         </div>
@@ -1075,8 +1313,10 @@ export default function AllInOneSiteScanner({
                             <div
                               key={f.label}
                               className={`p-4 rounded-2xl border ${
-                                f.data.validPlaintext
+                                f.data.followsLlmsSpec
                                   ? "bg-emerald-500/[0.08] border-emerald-500/35"
+                                  : f.data.validPlaintext
+                                  ? "bg-amber-500/[0.08] border-amber-500/35"
                                   : "bg-rose-500/[0.06] border-rose-500/30"
                               }`}
                             >
@@ -1086,13 +1326,17 @@ export default function AllInOneSiteScanner({
                                 </span>
                                 <span
                                   className={`text-[10px] font-mono font-extrabold uppercase px-2 py-0.5 rounded ${
-                                    f.data.validPlaintext
+                                    f.data.followsLlmsSpec
                                       ? "bg-emerald-500/20 text-emerald-300"
+                                      : f.data.validPlaintext
+                                      ? "bg-amber-500/20 text-amber-300"
                                       : "bg-rose-500/20 text-rose-300"
                                   }`}
                                 >
-                                  {f.data.validPlaintext
+                                  {f.data.followsLlmsSpec
                                     ? "LIVE MARKDOWN"
+                                    : f.data.validPlaintext
+                                    ? "NO MD LINKS"
                                     : f.data.isSoft404Html
                                     ? "HTML SOFT-404"
                                     : `MISSING (${f.data.httpStatus ?? "404"})`}
@@ -1100,7 +1344,7 @@ export default function AllInOneSiteScanner({
                               </div>
                               <p className="text-[11px] text-slate-300 font-mono">
                                 {f.data.validPlaintext
-                                  ? `${f.data.wordCount.toLocaleString()} words • ${f.data.headingCount} Markdown headings`
+                                  ? `${f.data.wordCount.toLocaleString()} words • ${f.data.headingCount} headings • ${f.data.markdownLinkCount} links`
                                   : "Not published on this domain"}
                               </p>
                             </div>
@@ -1125,9 +1369,9 @@ export default function AllInOneSiteScanner({
                           <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-amber-300 block">
                             robots.txt AI Access Audit
                           </span>
-                          <h4 className="text-lg font-black uppercase text-white">
+                          <CardHeadingTag className="text-lg font-black uppercase text-white">
                             6-Crawler AI Search Permission Matrix
-                          </h4>
+                          </CardHeadingTag>
                         </div>
 
                         <div className="grid sm:grid-cols-2 gap-3">
@@ -1170,9 +1414,9 @@ export default function AllInOneSiteScanner({
 
                       {/* Answer-Engine Structure Checklist */}
                       <div className="rounded-3xl bg-[#090d18] border border-white/10 p-6 space-y-3">
-                        <h4 className="text-base font-black uppercase text-white">
+                        <CardHeadingTag className="text-base font-black uppercase text-white">
                           Answer-Engine (AEO) Entity Signals
-                        </h4>
+                        </CardHeadingTag>
                         <div className="grid sm:grid-cols-2 gap-2.5 text-xs">
                           {[
                             {
@@ -1224,9 +1468,9 @@ export default function AllInOneSiteScanner({
                             <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-amber-300 block">
                               Structured Data Telemetry
                             </span>
-                            <h4 className="text-lg font-black uppercase text-white">
+                            <CardHeadingTag className="text-lg font-black uppercase text-white">
                               Schema.org JSON-LD Validator
-                            </h4>
+                            </CardHeadingTag>
                           </div>
                           <span className="px-3 py-1 rounded-full bg-white/[0.05] border border-white/10 text-xs font-mono font-bold text-slate-200">
                             {stage1.schema.validBlocks} Valid •{" "}
@@ -1368,10 +1612,10 @@ export default function AllInOneSiteScanner({
                           <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-amber-300 block">
                             Local Map Pack &amp; Keyword Signal Alignment
                           </span>
-                          <h4 className="text-lg font-black uppercase text-white">
+                          <CardHeadingTag className="text-lg font-black uppercase text-white">
                             6-Zone Alignment for &ldquo;{stage1.localSignals.targetServiceLabel}&rdquo; in{" "}
                             {stage1.localSignals.targetCityLabel}
-                          </h4>
+                          </CardHeadingTag>
                           <p className="text-xs text-slate-400 mt-1">
                             100% real HTML &amp; JSON-LD verification—never a fake SERP number. Live Google Search Console query positions &amp; neighborhood 3-Pack heatmaps are included in Damein&apos;s free 5-minute video review.
                           </p>
@@ -1432,9 +1676,9 @@ export default function AllInOneSiteScanner({
 
                       {/* Core Technical SEO Breakdown */}
                       <div className="rounded-3xl bg-[#090d18] border border-white/10 p-6 space-y-4">
-                        <h4 className="text-base font-black uppercase text-white">
+                        <CardHeadingTag className="text-base font-black uppercase text-white">
                           Technical On-Page SEO &amp; Crawlability
-                        </h4>
+                        </CardHeadingTag>
 
                         <div className="grid sm:grid-cols-2 gap-3 text-xs">
                           <div className="p-3.5 rounded-xl bg-[#06080f] border border-white/10">
@@ -1509,9 +1753,9 @@ export default function AllInOneSiteScanner({
                             <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-cyan-300 block">
                               Official Google PageSpeed Insights v5 (Mobile)
                             </span>
-                            <h4 className="text-lg font-black uppercase text-white">
+                            <CardHeadingTag className="text-lg font-black uppercase text-white">
                               Cellular Speed vs. PDM 0.8s Next.js Benchmark
-                            </h4>
+                            </CardHeadingTag>
                           </div>
                           <Zap className="w-5 h-5 text-amber-400" />
                         </div>
@@ -1535,20 +1779,34 @@ export default function AllInOneSiteScanner({
 
                         {psiMobile && (
                           <div className="space-y-4">
-                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-3">
                               {[
                                 {
                                   label: "Mobile Speed",
                                   val: psiMobile.performanceScore,
+                                  display: String(psiMobile.performanceScore),
                                 },
-                                { label: "Lighthouse SEO", val: psiMobile.seoScore },
+                                {
+                                  label: "Lighthouse SEO",
+                                  val: psiMobile.seoScore,
+                                  display: String(psiMobile.seoScore),
+                                },
                                 {
                                   label: "Accessibility",
                                   val: psiMobile.accessibilityScore,
+                                  display: String(psiMobile.accessibilityScore),
                                 },
                                 {
                                   label: "Best Practices",
                                   val: psiMobile.bestPracticesScore,
+                                  display: String(psiMobile.bestPracticesScore),
+                                },
+                                {
+                                  label: "Agentic Browsing",
+                                  val: psiMobile.agenticBrowsing?.scorePct ?? null,
+                                  display:
+                                    psiMobile.agenticBrowsing?.displayFraction ||
+                                    "N/A",
                                 },
                               ].map((m) => {
                                 const t = getScoreTheme(m.val);
@@ -1558,7 +1816,7 @@ export default function AllInOneSiteScanner({
                                     className={`p-3.5 rounded-2xl bg-[#06080f] border text-center ${t.border}`}
                                   >
                                     <div className={`text-2xl font-black ${t.text}`}>
-                                      {m.val}
+                                      {m.display}
                                     </div>
                                     <div className="text-[10px] font-mono uppercase text-slate-400 mt-0.5">
                                       {m.label}
@@ -1645,9 +1903,9 @@ export default function AllInOneSiteScanner({
 
                       {/* Lead-Leak & Attribution Checklist */}
                       <div className="rounded-3xl bg-[#090d18] border border-white/10 p-6 space-y-4">
-                        <h4 className="text-base font-black uppercase text-white">
+                        <CardHeadingTag className="text-base font-black uppercase text-white">
                           Mobile Lead-Leak &amp; Tracking Checklist
-                        </h4>
+                        </CardHeadingTag>
                         <div className="grid sm:grid-cols-2 gap-3 text-xs">
                           {[
                             {
@@ -1715,12 +1973,12 @@ export default function AllInOneSiteScanner({
 
                     <div className="p-6 sm:p-7 space-y-5">
                       <div className="space-y-2">
-                        <h3 className="text-xl sm:text-2xl font-black uppercase leading-tight text-white">
+                        <SubHeadingTag className="text-xl sm:text-2xl font-black uppercase leading-tight text-white">
                           Email Me Full Fix Plan +{" "}
                           <span className="text-amber-400">
                             Free 5-Min Damein Video Teardown
                           </span>
-                        </h3>
+                        </SubHeadingTag>
                         <p className="text-xs text-slate-300 leading-relaxed">
                           We&apos;ll send this full{" "}
                           <strong className="text-white">{stage1.http.hostname}</strong>{" "}
@@ -1735,9 +1993,9 @@ export default function AllInOneSiteScanner({
                       {leadStatus === "success" ? (
                         <div className="p-5 rounded-2xl bg-emerald-500/12 border border-emerald-500/35 text-center space-y-2.5">
                           <CheckCircle2 className="w-8 h-8 text-emerald-400 mx-auto" />
-                          <h4 className="text-base font-black uppercase text-white">
+                          <CardHeadingTag className="text-base font-black uppercase text-white">
                             Scan Report &amp; Video Teardown Queued!
-                          </h4>
+                          </CardHeadingTag>
                           <p className="text-xs text-slate-200 leading-relaxed">
                             Damein has your live{" "}
                             <strong className="text-amber-300">
@@ -1753,23 +2011,29 @@ export default function AllInOneSiteScanner({
                           <input
                             type="text"
                             name="name"
+                            autoComplete="name"
                             required
                             disabled={leadStatus === "submitting"}
+                            aria-label="Your Name"
                             placeholder="Your Name *"
                             className="w-full px-4 py-3 text-xs bg-[#06080f] border border-white/15 focus:border-amber-400 rounded-xl outline-none text-white placeholder:text-slate-500"
                           />
                           <input
                             type="email"
                             name="email"
+                            autoComplete="email"
                             required
                             disabled={leadStatus === "submitting"}
+                            aria-label="Best Email for Fix Plan and Video"
                             placeholder="Best Email for Fix Plan & Video *"
                             className="w-full px-4 py-3 text-xs bg-[#06080f] border border-white/15 focus:border-amber-400 rounded-xl outline-none text-white placeholder:text-slate-500"
                           />
                           <input
                             type="tel"
                             name="phone"
+                            autoComplete="tel"
                             disabled={leadStatus === "submitting"}
+                            aria-label="Cell Phone Number for SMS Video Link (optional)"
                             placeholder="Cell # for SMS Video Link (optional)"
                             className="w-full px-4 py-3 text-xs bg-[#06080f] border border-white/15 focus:border-amber-400 rounded-xl outline-none text-white placeholder:text-slate-500"
                           />

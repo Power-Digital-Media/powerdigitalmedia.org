@@ -24,7 +24,6 @@ export default function BBBSeal({ variant = "badge", className = "" }: BBBSealPr
         href={BBB_PROFILE_URL}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="BBB Accredited Business — Power Digital Media LLC"
         className={`group inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-white/10 bg-[#0b0c10] hover:border-amber-400/40 hover:bg-amber-500/10 transition-all duration-300 ${className}`}
       >
         <BBBIcon size={18} />
@@ -40,7 +39,6 @@ export default function BBBSeal({ variant = "badge", className = "" }: BBBSealPr
       href={BBB_PROFILE_URL}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="BBB Accredited Business — Power Digital Media LLC"
       className={`group relative flex flex-col items-center gap-3 p-5 rounded-2xl border border-white/10 bg-[#0b0c10] hover:border-amber-400/35 hover:bg-[#12141c] transition-all duration-500 w-fit ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -80,6 +78,8 @@ function BBBIcon({ size = 24, glowing = false }: { size?: number; glowing?: bool
       viewBox="0 0 48 48"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      focusable="false"
       className={`transition-all duration-500 ${
         glowing ? "drop-shadow-[0_0_8px_rgba(245,158,11,0.55)]" : ""
       }`}

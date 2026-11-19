@@ -176,6 +176,8 @@ export default function GrowthScopeEstimator({
   };
 
   const HeadingTag = isStandalonePage ? "h1" : "h2";
+  const CoreHeadingTag = isStandalonePage ? "h2" : "h3";
+  const ModHeadingTag = isStandalonePage ? "h3" : "h4";
 
   return (
     <section
@@ -406,9 +408,9 @@ export default function GrowthScopeEstimator({
                       <Activity className="w-3 h-3 text-emerald-400" />
                       Always Included Base Foundation
                     </div>
-                    <h3 className="text-lg sm:text-xl font-black uppercase text-white">
+                    <CoreHeadingTag className="text-lg sm:text-xl font-black uppercase text-white">
                       {CORE_FOUNDATION_CONFIG.title}
-                    </h3>
+                    </CoreHeadingTag>
                   </div>
                   <div className="sm:text-right shrink-0">
                     <div className="text-[11px] font-mono text-slate-400 line-through">
@@ -500,9 +502,9 @@ export default function GrowthScopeEstimator({
                           <div>
                             <div className="flex items-center gap-2">
                               <ModIcon className="w-4 h-4 text-amber-400 shrink-0" />
-                              <h4 className="text-sm sm:text-base font-black uppercase text-white">
+                              <ModHeadingTag className="text-sm sm:text-base font-black uppercase text-white">
                                 {mod.title}
-                              </h4>
+                              </ModHeadingTag>
                             </div>
                             <p className="text-[11px] font-mono text-emerald-300 mt-0.5">
                               {mod.replacesNote}
@@ -679,9 +681,9 @@ export default function GrowthScopeEstimator({
                 {status === "success" ? (
                   <div className="p-5 rounded-2xl bg-emerald-500/12 border border-emerald-500/35 text-center space-y-2.5">
                     <CheckCircle2 className="w-8 h-8 text-emerald-400 mx-auto" />
-                    <h4 className="text-base font-black uppercase text-white">
+                    <h3 className="text-base font-black uppercase text-white">
                       Custom Scope Sent to Damein!
-                    </h4>
+                    </h3>
                     <p className="text-xs text-slate-200 leading-relaxed">
                       We logged your{" "}
                       <strong className="text-amber-300">
@@ -698,16 +700,20 @@ export default function GrowthScopeEstimator({
                       <input
                         type="text"
                         name="name"
+                        autoComplete="name"
                         required
                         disabled={status === "submitting"}
+                        aria-label="Your Name"
                         placeholder="Your Name *"
                         className="w-full px-3.5 py-3 text-xs bg-[#06080f] border border-white/15 focus:border-amber-400 rounded-xl outline-none text-white placeholder:text-slate-500"
                       />
                       <input
                         type="email"
                         name="email"
+                        autoComplete="email"
                         required
                         disabled={status === "submitting"}
+                        aria-label="Best Email Address"
                         placeholder="Best Email *"
                         className="w-full px-3.5 py-3 text-xs bg-[#06080f] border border-white/15 focus:border-amber-400 rounded-xl outline-none text-white placeholder:text-slate-500"
                       />
@@ -717,14 +723,18 @@ export default function GrowthScopeEstimator({
                       <input
                         type="tel"
                         name="phone"
+                        autoComplete="tel"
                         disabled={status === "submitting"}
+                        aria-label="Cell Phone Number (optional)"
                         placeholder="Cell # (optional)"
                         className="w-full px-3.5 py-3 text-xs bg-[#06080f] border border-white/15 focus:border-amber-400 rounded-xl outline-none text-white placeholder:text-slate-500"
                       />
                       <input
                         type="text"
                         name="business_name"
+                        autoComplete="organization"
                         disabled={status === "submitting"}
+                        aria-label="Business Name (optional)"
                         placeholder="Business Name (optional)"
                         className="w-full px-3.5 py-3 text-xs bg-[#06080f] border border-white/15 focus:border-amber-400 rounded-xl outline-none text-white placeholder:text-slate-500"
                       />

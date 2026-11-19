@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useId, useState } from "react";
 import Script from "next/script";
 
 /**
@@ -15,6 +15,7 @@ import Script from "next/script";
  *    `NEXT_PUBLIC_TURNSTILE_SITE_KEY` is configured in environment variables.
  */
 export default function FormSecurityFields() {
+    const hpId = useId();
     const [loadedAt, setLoadedAt] = useState<string>("");
     const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "";
 
@@ -38,11 +39,11 @@ export default function FormSecurityFields() {
                     pointerEvents: "none",
                 }}
             >
-                <label htmlFor="_hp_company_fax" aria-hidden="true">
+                <label htmlFor={hpId} aria-hidden="true">
                     Verification token (leave blank)
                 </label>
                 <input
-                    id="_hp_company_fax"
+                    id={hpId}
                     type="text"
                     name="_hp_company_fax"
                     defaultValue=""

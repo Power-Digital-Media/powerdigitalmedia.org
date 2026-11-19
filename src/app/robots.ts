@@ -29,7 +29,7 @@ export default function robots(): MetadataRoute.Robots {
           "Google-Extended",
           "Applebot-Extended",
         ],
-        allow: ["/", "/llms.txt", "/llms-full.txt"],
+        allow: ["/", "/llms.txt", "/llms-full.txt", "/.well-known/ard.json"],
         disallow: PRIVATE_PATHS,
       },
     ],

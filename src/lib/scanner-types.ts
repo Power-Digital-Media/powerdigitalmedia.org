@@ -32,7 +32,18 @@ export interface LlmsFileCheck {
   byteLength: number;
   wordCount: number;
   headingCount: number;
+  markdownLinkCount: number;
+  followsLlmsSpec: boolean;
   previewSnippet: string;
+}
+
+export interface ArdManifestCheck {
+  url: string;
+  httpStatus: number | null;
+  status: "valid" | "missing" | "invalid_html_soft404" | "invalid_schema";
+  entryCount: number;
+  specVersion: string | null;
+  errorDetail: string | null;
 }
 
 export interface SchemaAuditSummary {
@@ -170,6 +181,7 @@ export interface ScannerStage1Response {
   geoAeo: {
     llmsTxt: LlmsFileCheck;
     llmsFullTxt: LlmsFileCheck;
+    ardManifest: ArdManifestCheck;
     aiCrawlers: AiCrawlerRuleStatus[];
     questionHeadingCount: number;
     sampleQuestionHeadings: string[];
@@ -187,11 +199,28 @@ export interface ScannerStage1Response {
   issues: ScannerIssue[];
 }
 
+export interface AgenticBrowsingAuditItem {
+  id: string;
+  title: string;
+  passed: boolean;
+  displayValue: string;
+  failureReason: string | null;
+}
+
+export interface AgenticBrowsingSummary {
+  scorePct: number | null;
+  passedCount: number;
+  totalCount: number;
+  displayFraction: string;
+  audits: AgenticBrowsingAuditItem[];
+}
+
 export interface ScannerPageSpeedMobileMetrics {
   performanceScore: number;
   seoScore: number;
   accessibilityScore: number;
   bestPracticesScore: number;
+  agenticBrowsing: AgenticBrowsingSummary;
   lcpSeconds: number | null;
   fcpSeconds: number | null;
   tbtMs: number | null;
