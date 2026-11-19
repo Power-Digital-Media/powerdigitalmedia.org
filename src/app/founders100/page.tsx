@@ -166,7 +166,7 @@ export default function Founders100Page() {
                     "LocalBusiness & Geo JSON-LD Schema",
                     "Direct Cell Access to Damein Donald",
                     "100% Codebase & Domain Ownership",
-                    "Capsule CRM & 2-Min SMS Lead Rescue Ready",
+                    "Capsule CRM & Automated Follow-Up Ready",
                     "Optional PinCam™ & PinDrop™ Crew Rollout",
                   ].map((item) => (
                     <li

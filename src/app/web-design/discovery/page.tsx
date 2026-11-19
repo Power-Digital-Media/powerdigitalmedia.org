@@ -339,6 +339,7 @@ export default function WebDesignDiscoveryPage() {
         const emailEl = document.getElementsByName("email")[0] as HTMLInputElement;
         const bizEl = document.getElementsByName("business_name")[0] as HTMLInputElement;
         const phoneEl = document.getElementsByName("phone")[0] as HTMLInputElement;
+        const webEl = document.getElementsByName("current_url")[0] as HTMLInputElement | undefined;
 
         if (emailEl?.value && nameEl?.value) {
           const partialData = new FormData();
@@ -346,6 +347,9 @@ export default function WebDesignDiscoveryPage() {
           partialData.append("email", emailEl.value);
           partialData.append("business_name", bizEl?.value || "");
           partialData.append("phone", phoneEl?.value || "");
+          if (webEl?.value) {
+            partialData.append("website", webEl.value);
+          }
           partialData.append("_form_source", "incomplete-web-design-discovery-lead");
           fetch("/api/forms", { method: "POST", body: partialData }).catch(() => {});
         }
@@ -600,7 +604,7 @@ export default function WebDesignDiscoveryPage() {
                       {[
                         "PDM PinDrop™ Live Jobsite Map",
                         "PinCam™ Before/After Proof & PDFs",
-                        "2-Minute Missed-Call SMS Rescue",
+                        "Interactive Quote Calculator & Capsule CRM",
                         "Online Booking / Calendar",
                         "0%-Fee Square Online Ordering",
                         "Photo / Project Case Study Gallery",

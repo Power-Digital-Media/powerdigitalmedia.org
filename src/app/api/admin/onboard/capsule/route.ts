@@ -116,7 +116,7 @@ export async function POST(req: NextRequest) {
         await updateClientSetup(onboardingId, {
             capsuleOrgId: orgId.toString(),
             capsuleContactId: contactId.toString(),
-            status: (!client.services.transpond && !client.services.ultatel) ? "completed" : "syncing"
+            status: !client.services.transpond ? "completed" : "syncing"
         });
 
         return NextResponse.json({

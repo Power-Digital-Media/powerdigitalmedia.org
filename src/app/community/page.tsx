@@ -294,7 +294,7 @@ export default function CommunityLandingPage() {
                       <textarea
                         name="biggest_challenge"
                         rows={3}
-                        placeholder="Getting more local calls, ranking in Google Maps, catching missed calls..."
+                        placeholder="Getting more local calls, Google Map Pack visibility, faster website quotes..."
                         className="w-full px-4 py-3.5 rounded-xl bg-[#12141c] border border-white/10 focus:border-amber-400 outline-none text-sm text-white placeholder:text-slate-500 resize-none"
                       />
                     </div>

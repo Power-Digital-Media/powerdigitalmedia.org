@@ -98,9 +98,9 @@ export const PDM_CANONICAL_GBP_PROFILE = {
   services: [
     {
       categoryId: "categories/gcid:website_designer",
-      displayName: "Contractor Websites & Missed-Call SMS Lead Rescue",
+      displayName: "Contractor Websites & Google Map Pack SEO",
       description:
-        "Custom sub-2-second mobile websites engineered for roofers, HVAC pros, excavators, plumbers, electricians, and service trades—paired with instant missed-call and quote SMS follow-up across Central Mississippi.",
+        "Custom sub-second mobile websites engineered for roofers, HVAC pros, excavators, plumbers, electricians, and service trades—paired with PinCam™ + PinDrop™ crew apps and Capsule CRM pipelines across Central Mississippi.",
     },
     {
       categoryId: "categories/gcid:website_designer",

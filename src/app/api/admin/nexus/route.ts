@@ -1,28 +1,43 @@
 import { NextRequest, NextResponse } from "next/server";
 import { adminAuth, adminDb } from "@/lib/firebase-admin";
-import { isAdmin } from "@/lib/auth-constants";
+import { isAdmin, isLocalDevBypassAllowed } from "@/lib/auth-constants";
 import fs from "fs";
 import path from "path";
 import { syncActiveClientsToTranspond } from "@/lib/crm-sync";
 
 const dbPath = path.join(process.cwd(), "src", "data", "nexus-db.json");
 
+const EMPTY_DB = {
+    clients: [],
+    services: [],
+    payments: [],
+    tasks: [],
+    platforms: [],
+    domainsHosting: [],
+    salesPipeline: [],
+    notes: [],
+};
+
 async function getDbData() {
+    // Prefer Firestore cloud registry first when local file does not exist (e.g. serverless / untracked)
     if (!fs.existsSync(dbPath)) {
         try {
-            console.log("⚠️ Local database file not found. Restoring from Firestore...");
             const doc = await adminDb.collection("nexus_registry").doc("database").get();
             if (doc.exists) {
                 const data = doc.data();
-                // Re-create the local file to caching it
-                fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), "utf-8");
+                try {
+                    fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), "utf-8");
+                } catch {
+                    // Read-only serverless filesystem — skip local cache file write
+                }
                 return data;
             }
         } catch (err) {
             console.error("❌ Failed to restore database from Firestore:", err);
         }
-        return { clients: [], services: [], payments: [], tasks: [], platforms: [], domainsHosting: [], salesPipeline: [], notes: [] };
+        return { ...EMPTY_DB };
     }
+
     const raw = fs.readFileSync(dbPath, "utf-8");
     try {
         return JSON.parse(raw);
@@ -36,15 +51,19 @@ async function getDbData() {
         } catch (cErr) {
             console.error("❌ Cloud fallback recovery failed:", cErr);
         }
-        return { clients: [], services: [], payments: [], tasks: [], platforms: [], domainsHosting: [], salesPipeline: [], notes: [] };
+        return { ...EMPTY_DB };
     }
 }
 
 async function writeDbData(data: any) {
-    // 1. Write locally
-    fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), "utf-8");
+    // 1. Write locally when writable (dev), without crashing read-only serverless runtimes
+    try {
+        fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), "utf-8");
+    } catch {
+        // Ignore read-only filesystem error in serverless deployments
+    }
 
-    // 2. Backup to Firestore cloud
+    // 2. Persist to Firestore cloud registry
     try {
         await adminDb.collection("nexus_registry").doc("database").set(data);
         console.log("☁️ Firestore cloud backup committed successfully.");
@@ -61,13 +80,13 @@ export async function GET(req: NextRequest) {
         }
 
         const idToken = authHeader.split("Bearer ")[1];
-        let decodedToken;
-        if (idToken === "local-admin-bypass-token") {
+        let decodedToken: { email?: string };
+        if (idToken === "local-admin-bypass-token" && isLocalDevBypassAllowed(req)) {
             decodedToken = { email: "damein@powerdigitalmedia.org" };
         } else {
             try {
                 decodedToken = await adminAuth.verifyIdToken(idToken);
-            } catch (err) {
+            } catch {
                 return NextResponse.json({ error: "Invalid or expired session token." }, { status: 401 });
             }
         }
@@ -92,13 +111,13 @@ export async function POST(req: NextRequest) {
         }
 
         const idToken = authHeader.split("Bearer ")[1];
-        let decodedToken;
-        if (idToken === "local-admin-bypass-token") {
+        let decodedToken: { email?: string };
+        if (idToken === "local-admin-bypass-token" && isLocalDevBypassAllowed(req)) {
             decodedToken = { email: "damein@powerdigitalmedia.org" };
         } else {
             try {
                 decodedToken = await adminAuth.verifyIdToken(idToken);
-            } catch (err) {
+            } catch {
                 return NextResponse.json({ error: "Invalid or expired session token." }, { status: 401 });
             }
         }

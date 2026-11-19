@@ -50,7 +50,7 @@ const pillars = [
     title: "Automated Lead Capture",
     subtitle: "Clicks Into Phone Calls",
     description:
-      "Connected directly to Capsule CRM and 18-second SMS follow-ups so you never lose a homeowner or customer inquiry while you're busy running your business.",
+      "Connected directly to interactive quote calculators, Capsule CRM pipelines, and automated Transpond follow-ups so you never lose a homeowner or customer inquiry.",
     features: [
       "Direct Capsule CRM Pipeline",
       "Instant SMS/Email Lead Alerts",

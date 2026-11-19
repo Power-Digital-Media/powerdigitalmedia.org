@@ -126,7 +126,7 @@ const clientArchitectures: ClientArchitecture[] = [
       },
       {
         id: "transpond-email",
-        title: "2-Min SMS & Review Follow-Ups",
+        title: "Automated Transpond & Review Flows",
         category: "SMS & Email Follow-Up",
         badge: "Automated SMS/Email",
         description:

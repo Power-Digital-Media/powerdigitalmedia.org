@@ -64,13 +64,13 @@ const techCategories: TechCategory[] = [
     technologies: [
       { name: "PinDrop™ Contractor GPS", role: "1-Tap Field Pins & Live Proof Maps", tag: "Field Tech" },
       { name: "Capsule CRM REST API", role: "Automated Lead Ingestion & Pipeline Tracking", tag: "Operations Stack" },
-      { name: "Transpond Automation", role: "Instant SMS & Email Drip Follow-Up Sequences", tag: "Lead Nurture" },
-      { name: "Webhooks & Sync Engine", role: "Sub-2-Minute Notification Triggers", tag: "Event Routing" },
+      { name: "Transpond Automation", role: "Automated Email & Nurture Follow-Up Sequences", tag: "Lead Nurture" },
+      { name: "Webhooks & Sync Engine", role: "Real-Time Quote & CRM Event Triggers", tag: "Event Routing" },
     ],
   },
   {
     title: "Local SEO & AI Engine Discovery",
-    badge: "#1 Metro Visibility",
+    badge: "Top Metro Visibility",
     badgeColor: "text-purple-400 bg-purple-500/10 border-purple-500/20",
     description: "Structured data feeds and local geo-coordinates designed for Google Maps 3-pack and AI conversational search.",
     technologies: [

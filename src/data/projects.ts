@@ -89,7 +89,7 @@ export const projects: Project[] = [
                 image: "/portfolio/bornagain-reviews.webp"
             },
             {
-                title: "Rank #1 Local Service Schema Engine",
+                title: "Google Map Pack Local Schema Engine",
                 description: "Structured JSON-LD coordinates for Jackson, Brandon, Pearl, and Madison capturing local search authority across Central Mississippi.",
                 badge: "Google Local Maps Pack",
                 image: "/portfolio/bornagain-service-areas.webp"

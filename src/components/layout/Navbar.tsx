@@ -83,13 +83,13 @@ export default function Navbar() {
     {
       name: "Local SEO & Map Pack",
       href: "/local-seo",
-      desc: "Rank #1 across Jackson, Madison, Brandon & Ridgeland",
+      desc: "Google Map Pack optimization + GEO & AEO AI search",
       icon: Search,
     },
     {
       name: "CRM & Custom Apps",
       href: "/custom-applications",
-      desc: "Square ordering, Capsule CRM & 2-min SMS follow-up",
+      desc: "0%-fee Square ordering, quote calculators & Capsule CRM",
       icon: Workflow,
     },
     {

@@ -10,6 +10,7 @@ function hashPhone(phone: string | undefined): string | null {
     if (!phone) return null;
     // Remove all non-digit characters
     const clean = phone.replace(/\D/g, '');
+    if (!clean) return null;
     let formatted = clean;
     // Fallback: If 10 digits (US number), prefix with country code '1'
     if (clean.length === 10) {
@@ -29,14 +30,20 @@ export interface MetaLeadData {
     fbc?: string;
     fbp?: string;
     formSource?: string;
+    leadEventId?: string;
 }
 
 export async function sendMetaCAPILeadEvent(data: MetaLeadData) {
-    const pixelId = process.env.META_PIXEL_ID || '781583678297161';
+    const pixelId =
+        process.env.META_PIXEL_ID ||
+        process.env.NEXT_PUBLIC_META_PIXEL_ID ||
+        '781583678297161';
     const accessToken = process.env.META_ACCESS_TOKEN;
 
     if (!accessToken) {
-        console.warn('[Meta CAPI] Missing META_ACCESS_TOKEN env variable. Skipping Conversions API event.');
+        console.warn(
+            '[Meta CAPI] Missing META_ACCESS_TOKEN env variable. Skipping Conversions API event.'
+        );
         return;
     }
 
@@ -47,7 +54,7 @@ export async function sendMetaCAPILeadEvent(data: MetaLeadData) {
         const hashedLastName = hashData(data.lastName);
 
         const userData: Record<string, any> = {
-            em: hashedEmail ? [hashedEmail] : []
+            em: hashedEmail ? [hashedEmail] : [],
         };
 
         if (hashedPhone) userData.ph = [hashedPhone];
@@ -58,38 +65,50 @@ export async function sendMetaCAPILeadEvent(data: MetaLeadData) {
         if (data.fbc) userData.fbc = data.fbc;
         if (data.fbp) userData.fbp = data.fbp;
 
-        const payload = {
-            data: [
-                {
-                    event_name: 'Lead',
-                    event_time: Math.floor(Date.now() / 1000),
-                    event_source_url: data.sourceUrl || 'https://powerdigitalmedia.org/lead-leak-check',
-                    action_source: 'website',
-                    user_data: userData,
-                    custom_data: {
-                        content_name: data.formSource || 'lead-leak-check'
-                    }
-                }
-            ]
+        const eventPayload: Record<string, any> = {
+            event_name: 'Lead',
+            event_time: Math.floor(Date.now() / 1000),
+            ...(data.leadEventId ? { event_id: data.leadEventId } : {}),
+            event_source_url:
+                data.sourceUrl || 'https://powerdigitalmedia.org/lead-leak-check',
+            action_source: 'website',
+            user_data: userData,
+            custom_data: {
+                content_name: data.formSource || 'lead-leak-check',
+            },
         };
 
-        console.log('[Meta CAPI] Sending server event to Meta payload:', JSON.stringify({
-            event_name: 'Lead',
-            event_source_url: payload.data[0].event_source_url,
-            user_data_keys: Object.keys(userData)
-        }));
+        const payload = {
+            data: [eventPayload],
+        };
 
-        const response = await fetch(`https://graph.facebook.com/v19.0/${pixelId}/events?access_token=${accessToken}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(payload)
-        });
+        console.log(
+            '[Meta CAPI] Sending server event to Meta payload:',
+            JSON.stringify({
+                event_name: 'Lead',
+                event_id: data.leadEventId || null,
+                event_source_url: eventPayload.event_source_url,
+                user_data_keys: Object.keys(userData),
+            })
+        );
+
+        const response = await fetch(
+            `https://graph.facebook.com/v21.0/${pixelId}/events?access_token=${accessToken}`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+                body: JSON.stringify(payload),
+            }
+        );
 
         const resJson = await response.json();
-        console.log(`[Meta CAPI] Meta Conversions API Response Status: ${response.status}`, resJson);
+        console.log(
+            `[Meta CAPI] Meta Conversions API Response Status: ${response.status}`,
+            resJson
+        );
         return resJson;
     } catch (err) {
         console.error('[Meta CAPI] Error sending Conversions API event:', err);

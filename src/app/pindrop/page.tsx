@@ -456,7 +456,7 @@ export default function PinDropPage() {
                     Included Add-On With a Contractor Growth Website
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
-                    We engineer your sub-2-second custom website with native PinDrop™ + PinCam™, Google Business Profile sync, and 2-minute SMS lead rescue—all under one predictable monthly partner plan.
+                    We engineer your sub-2-second custom website with native PinDrop™ + PinCam™, Google Business Profile sync, and Capsule CRM + Transpond follow-up automation—all under one predictable monthly partner plan.
                   </p>
                 </div>
 

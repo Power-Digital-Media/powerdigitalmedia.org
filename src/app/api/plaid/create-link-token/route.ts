@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Products, CountryCode } from "plaid";
 import { adminAuth } from "@/lib/firebase-admin";
-import { isAdmin } from "@/lib/auth-constants";
+import { isAdmin, isLocalDevBypassAllowed } from "@/lib/auth-constants";
 import { plaidClient } from "@/lib/plaidClient";
 
 export async function POST(req: NextRequest) {
@@ -12,8 +12,8 @@ export async function POST(req: NextRequest) {
         }
 
         const idToken = authHeader.split("Bearer ")[1];
-        let decodedToken;
-        if (idToken === "local-admin-bypass-token") {
+        let decodedToken: { email?: string };
+        if (idToken === "local-admin-bypass-token" && isLocalDevBypassAllowed(req)) {
             decodedToken = { email: "damein@powerdigitalmedia.org" };
         } else {
             try {

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { adminAuth, adminDb } from "@/lib/firebase-admin";
-import { isAdmin } from "@/lib/auth-constants";
+import { isAdmin, isLocalDevBypassAllowed } from "@/lib/auth-constants";
 import { GoogleGenAI } from "@google/genai";
 import fs from "fs";
 import path from "path";
@@ -13,8 +13,13 @@ async function getDbData() {
         try {
             const doc = await adminDb.collection("nexus_registry").doc("database").get();
             if (doc.exists) {
-                const data = doc.data();
-                fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), "utf-8");
+                const data: any = doc.data() || {};
+                if (!data.chatHistory) data.chatHistory = [];
+                try {
+                    fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), "utf-8");
+                } catch {
+                    // Read-only serverless filesystem
+                }
                 return data;
             }
         } catch (err) {
@@ -33,7 +38,11 @@ async function getDbData() {
 }
 
 async function writeDbData(data: any) {
-    fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), "utf-8");
+    try {
+        fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), "utf-8");
+    } catch {
+        // Ignore read-only filesystem error in serverless deployments
+    }
     try {
         await adminDb.collection("nexus_registry").doc("database").set(data);
     } catch (err) {
@@ -49,8 +58,8 @@ export async function GET(req: NextRequest) {
         }
 
         const idToken = authHeader.split("Bearer ")[1];
-        let decodedToken;
-        if (idToken === "local-admin-bypass-token") {
+        let decodedToken: { email?: string };
+        if (idToken === "local-admin-bypass-token" && isLocalDevBypassAllowed(req)) {
             decodedToken = { email: "damein@powerdigitalmedia.org" };
         } else {
             try {
@@ -79,8 +88,8 @@ export async function POST(req: NextRequest) {
         }
 
         const idToken = authHeader.split("Bearer ")[1];
-        let decodedToken;
-        if (idToken === "local-admin-bypass-token") {
+        let decodedToken: { email?: string };
+        if (idToken === "local-admin-bypass-token" && isLocalDevBypassAllowed(req)) {
             decodedToken = { email: "damein@powerdigitalmedia.org" };
         } else {
             try {

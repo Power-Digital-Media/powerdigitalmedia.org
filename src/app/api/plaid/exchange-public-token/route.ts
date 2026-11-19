@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { adminAuth, adminDb } from "@/lib/firebase-admin";
-import { isAdmin } from "@/lib/auth-constants";
+import { isAdmin, isLocalDevBypassAllowed } from "@/lib/auth-constants";
 import { plaidClient } from "@/lib/plaidClient";
 import fs from "fs";
 import path from "path";
+
 const plaidDbPath = path.join(process.cwd(), "src", "data", "nexus-plaid.json");
 
 async function writePlaidLink(itemId: string, accessToken: string, institution: string) {
@@ -13,8 +14,16 @@ async function writePlaidLink(itemId: string, accessToken: string, institution: 
             data = JSON.parse(fs.readFileSync(plaidDbPath, "utf-8"));
             if (!data.links) data.links = [];
         } catch {}
+    } else {
+        try {
+            const doc = await adminDb.collection("nexus_plaid_links").doc("credentials").get();
+            if (doc.exists) {
+                data = doc.data() || { links: [] };
+                if (!data.links) data.links = [];
+            }
+        } catch {}
     }
-    
+
     const idx = data.links.findIndex((l: any) => l.itemId === itemId);
     const linkEntry = {
         itemId,
@@ -29,7 +38,11 @@ async function writePlaidLink(itemId: string, accessToken: string, institution: 
         data.links.push(linkEntry);
     }
 
-    fs.writeFileSync(plaidDbPath, JSON.stringify(data, null, 2), "utf-8");
+    try {
+        fs.writeFileSync(plaidDbPath, JSON.stringify(data, null, 2), "utf-8");
+    } catch {
+        // Read-only serverless filesystem
+    }
 
     try {
         await adminDb.collection("nexus_plaid_links").doc("credentials").set(data);
@@ -46,13 +59,13 @@ export async function POST(req: NextRequest) {
         }
 
         const idToken = authHeader.split("Bearer ")[1];
-        let decodedToken;
-        if (idToken === "local-admin-bypass-token") {
+        let decodedToken: { email?: string };
+        if (idToken === "local-admin-bypass-token" && isLocalDevBypassAllowed(req)) {
             decodedToken = { email: "damein@powerdigitalmedia.org" };
         } else {
             try {
                 decodedToken = await adminAuth.verifyIdToken(idToken);
-            } catch (err) {
+            } catch {
                 return NextResponse.json({ error: "Invalid or expired session token." }, { status: 401 });
             }
         }
@@ -66,7 +79,7 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: "Missing public token parameters." }, { status: 400 });
         }
 
-        if (publicToken === "mock-public-token-bypass") {
+        if (publicToken === "mock-public-token-bypass" && isLocalDevBypassAllowed(req)) {
             const mockItemId = `item-sandbox-${Date.now()}`;
             const mockAccessToken = `access-sandbox-${Date.now()}`;
             await writePlaidLink(mockItemId, mockAccessToken, institution || "Sandbox Bank");

@@ -181,11 +181,18 @@ export default function ExitIntentPopup() {
                     className="w-full px-3.5 py-3 text-xs bg-[#12141c] border border-white/15 focus:border-amber-400 rounded-xl outline-none transition-all placeholder:text-slate-500 text-white"
                   />
                   <input
-                    type="text"
+                    type="email"
                     name="email"
                     required
                     disabled={status === "submitting"}
-                    placeholder="Best Email or Cell # to Text Your Video"
+                    placeholder="Enter your best email for the 5-min video"
+                    className="w-full px-3.5 py-3 text-xs bg-[#12141c] border border-white/15 focus:border-amber-400 rounded-xl outline-none transition-all placeholder:text-slate-500 text-white"
+                  />
+                  <input
+                    type="tel"
+                    name="phone"
+                    disabled={status === "submitting"}
+                    placeholder="Cell # to text when ready (optional)"
                     className="w-full px-3.5 py-3 text-xs bg-[#12141c] border border-white/15 focus:border-amber-400 rounded-xl outline-none transition-all placeholder:text-slate-500 text-white"
                   />
 

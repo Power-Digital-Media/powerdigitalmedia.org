@@ -288,8 +288,8 @@ export default function Contact({
                     <option value="Custom Local Business / E-Commerce Website">
                       Local Business, Restaurant, or E-Commerce Website
                     </option>
-                    <option value="2-Minute Lead Rescue CRM & Business Phones">
-                      2-Minute SMS Lead Rescue, CRM &amp; Business Phones
+                    <option value="Capsule CRM, Quote Calculators & Automation">
+                      Capsule CRM, Quote Calculators &amp; Follow-Up Automation
                     </option>
                   </select>
                 </div>

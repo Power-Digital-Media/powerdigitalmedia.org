@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Client Integration Setup | Power Digital Media",
   description:
-    "Configure your Capsule CRM, Transpond email automation, and Ultatel cloud business phone onboarding profile.",
+    "Configure your Capsule CRM and Transpond marketing automation onboarding profile.",
   robots: {
     index: false,
     follow: false,

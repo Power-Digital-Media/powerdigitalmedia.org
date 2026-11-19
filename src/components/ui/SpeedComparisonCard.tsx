@@ -64,8 +64,8 @@ export default function SpeedComparisonCard() {
                   "Stalls for 6+ seconds on cellular connections",
                   "53% of mobile callers bounce before seeing your phone number",
                   "Zero neighborhood project proof — Google only sees one city",
-                  "Missed calls go to voicemail while you're on a roof or job site",
-                  "Bloated plugins break forms and send quote leads to spam",
+                  "Static contact forms sit in spam folders with zero CRM tracking",
+                  "Bloated plugins break layouts and hurt Core Web Vitals",
                 ].map((point, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-slate-300">
                     <XCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
@@ -114,7 +114,7 @@ export default function SpeedComparisonCard() {
                   "Opens in under 2 seconds on 4G/5G phones with 95–99 PageSpeed",
                   "PinDrop™ turns every finished job into a GPS neighborhood SEO page",
                   "PinCam™ captures verified before/after proof & branded PDF reports",
-                  "2-Minute Missed-Call SMS Text-Back rescues callers automatically",
+                  "Interactive quote calculators & automated Transpond follow-up flows",
                   "Direct Capsule CRM, Square 0%-fee checkout & 1-tap call routing",
                 ].map((point, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-white font-medium">

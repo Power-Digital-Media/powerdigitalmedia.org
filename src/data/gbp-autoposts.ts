@@ -33,15 +33,15 @@ export const PDM_GBP_AUTOPOST_ROTATION: GbpAutoPostTemplate[] = [
     mediaUrl: "https://powerdigitalmedia.org/gbp-posts/01-ghost-photo-match.jpg",
   },
   {
-    id: "missed-call-sms-rescue",
-    title: "18-Second Missed-Call SMS Rescue",
-    signaturePhrase: "texts missed callers within 18 seconds",
+    id: "google-map-pack-geo-aeo",
+    title: "Google Map Pack Optimization + GEO & AEO AI Search",
+    signaturePhrase: "ChatGPT, Gemini, and Perplexity recommend",
     summary:
-      "When you're on a roof, in an attic, or with a customer and can't grab your phone, callers don't leave voicemails—they tap the next business on Google. Our Missed-Call SMS Rescue texts missed callers within 18 seconds automatically, starting the quote conversation right on their phone before a competitor ever picks up.",
+      "Customers across Jackson, Madison, Ridgeland, Flowood, Brandon, and Flora now discover local pros inside both the Google Maps 3-Pack and AI search tools. We engineer localized JSON-LD entity schema, dedicated city hubs, and generative answer engine signals so Google Map Pack results and AI platforms like ChatGPT, Gemini, and Perplexity recommend your business when buyers are ready to hire.",
     actionType: "LEARN_MORE",
     actionUrl:
-      "https://powerdigitalmedia.org/contractors?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=missed-call-sms-rescue",
-    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/02-missed-call-sms-rescue.jpg",
+      "https://powerdigitalmedia.org/local-seo?utm_source=google&utm_medium=organic&utm_campaign=gbp_autopost&utm_content=google-map-pack-geo-aeo",
+    mediaUrl: "https://powerdigitalmedia.org/gbp-posts/02-google-map-pack-geo-aeo.jpg",
   },
   {
     id: "pindrop-30s-crew-checkin",

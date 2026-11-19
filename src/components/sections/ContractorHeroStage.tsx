@@ -58,9 +58,9 @@ const SHOWCASES: ShowcaseItem[] = [
     clientName: "Geaux Pro Outdoors (MS Dirt)",
     location: "Bentonia, Yazoo & Madison, MS",
     image: "/portfolio/geaux-pro-outdoors.webp",
-    imageAlt: "Geaux Pro Outdoors (MS Dirt) #1 ranked Central MS dirt work website",
+    imageAlt: "Geaux Pro Outdoors (MS Dirt) Central MS excavation and dirt work website",
     caseStudyHref: "/portfolio/geaux-pro-outdoors",
-    liveRankBadge: "#1 Google Map Pack • MS Dirt Work",
+    liveRankBadge: "Top Google Map Pack • MS Dirt Work",
     speedScore: "98/100 Mobile",
     engineBadge: "Instant Hauling & Land Quote Engine",
     proofQuote:

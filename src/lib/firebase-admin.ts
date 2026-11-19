@@ -129,15 +129,20 @@ function createTokenProviderAuthClient(
 }
 
 function getScopedFirebaseServiceAccount(): Record<string, string> | null {
-    const raw = process.env.FIREBASE_SERVICE_ACCOUNT_KEY;
-    if (!raw) return null;
-    try {
-        const parsed = JSON.parse(raw) as Record<string, string>;
-        if (parsed.project_id === TARGET_FIREBASE_PROJECT_ID) {
-            return parsed;
+    const candidates = [
+        process.env.FIREBASE_SERVICE_ACCOUNT_KEY,
+        process.env.GOOGLE_SERVICE_ACCOUNT_KEY,
+    ];
+    for (const raw of candidates) {
+        if (!raw) continue;
+        try {
+            const parsed = JSON.parse(raw) as Record<string, string>;
+            if (parsed && parsed.project_id === TARGET_FIREBASE_PROJECT_ID) {
+                return parsed;
+            }
+        } catch {
+            // Ignore malformed JSON
         }
-    } catch {
-        // Ignore malformed JSON
     }
     return null;
 }
@@ -168,14 +173,7 @@ if (!getApps().length) {
     app = getApps()[0];
 }
 
-if (scopedServiceAccount) {
-    adminDb = getFirestore(app);
-    try {
-        adminDb.settings({ ignoreUndefinedProperties: true });
-    } catch {
-        // Settings already initialized
-    }
-} else if (hasBroker) {
+if (hasBroker) {
     const authClient = createTokenProviderAuthClient(fetchKeylessBrokerAccessToken);
     adminDb = new GcpFirestore({
         projectId: TARGET_FIREBASE_PROJECT_ID,
@@ -183,6 +181,13 @@ if (scopedServiceAccount) {
         preferRest: true,
         ignoreUndefinedProperties: true,
     }) as unknown as Firestore;
+} else if (scopedServiceAccount) {
+    adminDb = getFirestore(app);
+    try {
+        adminDb.settings({ ignoreUndefinedProperties: true });
+    } catch {
+        // Settings already initialized
+    }
 } else if (cliToken) {
     const authClient = createTokenProviderAuthClient(async () => {
         const fresh = getLocalFirebaseCliAccessToken() || cliToken;

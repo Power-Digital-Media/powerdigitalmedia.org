@@ -62,9 +62,13 @@ export default function LoginPage() {
     try {
       if (isRegistering) {
         const cred = await createUserWithEmailAndPassword(auth, email, password);
+        const idToken = await cred.user.getIdToken();
         await fetch("/api/onboard", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${idToken}`,
+          },
           body: JSON.stringify({
             uid: cred.user.uid,
             email: cred.user.email,
@@ -124,9 +128,13 @@ export default function LoginPage() {
 
     try {
       const cred = await signInWithPopup(auth, provider);
+      const idToken = await cred.user.getIdToken();
       await fetch("/api/onboard", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${idToken}`,
+        },
         body: JSON.stringify({
           uid: cred.user.uid,
           email: cred.user.email,

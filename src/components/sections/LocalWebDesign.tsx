@@ -24,9 +24,9 @@ const pillars = [
         icon: <PhoneCall className="w-6 h-6 text-emerald-400" />,
         badge: "Capsule CRM & Automated Drips",
         title: "Automated CRM & Lead Pipelines",
-        description: "Every quote request, phone click, and estimate inquiry instantly syncs with Capsule CRM and triggers Transpond SMS/email follow-up drips. 100% of leads contacted in under 2 minutes with zero manual data entry.",
+        description: "Every quote request, calculator estimate, and web inquiry instantly syncs with Capsule CRM and triggers Transpond automated follow-up sequences with zero manual data entry.",
         accent: "border-emerald-500/20 hover:border-emerald-500/40 bg-emerald-500/[0.03]",
-        tag: "Instant SMS Alerts • 2-Min Lead Response"
+        tag: "Direct Capsule Sync • Automated Transpond Drips"
     }
 ];
 

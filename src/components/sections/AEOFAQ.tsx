@@ -18,7 +18,7 @@ const FAQS: FAQItem[] = [
     category: "Launch Speed",
     icon: Zap,
     q: "How fast can you build and launch our new website?",
-    a: "Most custom websites and connected systems (PinDrop™ map embed, Square checkout, missed-call SMS, and CRM pipelines) are built, tested, and live in 7 to 14 business days. Everything is engineered in-house in Jackson, MS by Damein Donald—never outsourced overseas.",
+    a: "Most custom websites and connected systems (PinDrop™ map embed, Square checkout, interactive quote calculators, and Capsule CRM pipelines) are built, tested, and live in 7 to 14 business days. Everything is engineered in-house in Jackson, MS by Damein Donald—never outsourced overseas.",
   },
   {
     id: "pindrop-pincam-options",
@@ -46,7 +46,7 @@ const FAQS: FAQItem[] = [
     category: "Integrations",
     icon: HelpCircle,
     q: "Can you connect Square online ordering and CRM lead tracking?",
-    a: "Yes. We wire direct integrations with Square Web Payments SDK (0% redirect fees—proven on T'Beaux's Seafood), Capsule CRM pipelines, Transpond follow-ups, and automated 2-minute SMS lead rescue.",
+    a: "Yes. We wire direct integrations with Square Web Payments SDK (0% redirect fees—proven on T'Beaux's Seafood), interactive quote calculators, Capsule CRM pipelines, and automated Transpond follow-ups.",
   },
   {
     id: "geo-optimization",

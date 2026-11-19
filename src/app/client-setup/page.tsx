@@ -29,13 +29,6 @@ import Footer from "@/components/layout/Footer";
 
 /* ─── Types & Constants ─────────────────────────────────────────── */
 
-interface UltatelUser {
-    name: string;
-    email: string;
-    extension: string;
-    e911: string;
-}
-
 export default function ClientSetupPage() {
     const [step, setStep] = useState(1);
     const [submitting, setSubmitting] = useState(false);
@@ -57,19 +50,11 @@ export default function ClientSetupPage() {
     const [services, setServices] = useState({
         capsule: true,
         transpond: true,
-        ultatel: true,
     });
 
     const [capsuleSubdomain, setCapsuleSubdomain] = useState("");
     const [transpondEmail, setTranspondEmail] = useState("");
     const [transpondPassword, setTranspondPassword] = useState("");
-
-    const [ultatelUsers, setUltatelUsers] = useState<UltatelUser[]>([
-        { name: "", email: "", extension: "101", e911: "" }
-    ]);
-    const [ultatelHardwareCount, setUltatelHardwareCount] = useState(1);
-    const [ultatelPortingDetails, setUltatelPortingDetails] = useState("");
-    const [ultatelNetworkChecked, setUltatelNetworkChecked] = useState(false);
 
     /* ─── Validation Helpers ───────────────────────────────────────── */
 
@@ -93,7 +78,7 @@ export default function ClientSetupPage() {
         }
 
         if (step === 3) {
-            if (!services.capsule && !services.transpond && !services.ultatel) {
+            if (!services.capsule && !services.transpond) {
                 stepErrors.services = "Please select at least one service to configure.";
             }
         }
@@ -114,17 +99,6 @@ export default function ClientSetupPage() {
                     stepErrors.transpondPassword = "Password must include at least one special character.";
                 }
             }
-            if (services.ultatel) {
-                if (!ultatelNetworkChecked) {
-                    stepErrors.network = "You must confirm that your network matches the requirements.";
-                }
-                // Verify extensions are filled
-                ultatelUsers.forEach((user, idx) => {
-                    if (!user.name.trim() || !user.email.trim() || !user.e911.trim()) {
-                        stepErrors[`user_${idx}`] = "All user fields (Name, Email, E911 Address) are required.";
-                    }
-                });
-            }
         }
 
         setErrors(stepErrors);
@@ -141,30 +115,6 @@ export default function ClientSetupPage() {
     const handleBack = () => {
         setStep((prev) => prev - 1);
         window.scrollTo({ top: 0, behavior: "smooth" });
-    };
-
-    /* ─── Dynamic Extension Adding ─────────────────────────────────── */
-
-    const addExtensionUser = () => {
-        const nextExt = (101 + ultatelUsers.length).toString();
-        setUltatelUsers([...ultatelUsers, { name: "", email: "", extension: nextExt, e911: "" }]);
-    };
-
-    const removeExtensionUser = (index: number) => {
-        if (ultatelUsers.length <= 1) return;
-        const newUsers = ultatelUsers.filter((_, idx) => idx !== index);
-        // Re-number extensions starting at 101
-        const updated = newUsers.map((user, idx) => ({
-            ...user,
-            extension: (101 + idx).toString()
-        }));
-        setUltatelUsers(updated);
-    };
-
-    const updateExtensionUser = (index: number, field: keyof UltatelUser, value: string) => {
-        const updated = [...ultatelUsers];
-        updated[index] = { ...updated[index], [field]: value };
-        setUltatelUsers(updated);
     };
 
     /* ─── Submit Action ────────────────────────────────────────────── */
@@ -189,10 +139,6 @@ export default function ClientSetupPage() {
                 capsuleSubdomain: services.capsule ? capsuleSubdomain : undefined,
                 transpondEmail: services.transpond ? transpondEmail : undefined,
                 transpondPassword: services.transpond ? transpondPassword : undefined,
-                ultatelUsers: services.ultatel ? ultatelUsers : undefined,
-                ultatelHardwareCount: services.ultatel ? ultatelHardwareCount : undefined,
-                ultatelPortingDetails: services.ultatel ? ultatelPortingDetails : undefined,
-                ultatelNetworkChecked: services.ultatel ? ultatelNetworkChecked : undefined,
             };
 
             const response = await fetch("/api/client-setup", {
@@ -235,7 +181,7 @@ export default function ClientSetupPage() {
                             Client <span className="text-accent">Setup</span> Profile
                         </h1>
                         <p className="text-slate-400 font-light max-w-xl mx-auto text-sm md:text-base">
-                            Provide your company information to configure your business solutions. We will setup your Capsule CRM, email subscriber lists, and Ultatel voice servers.
+                            Provide your company information to configure your business solutions. We will set up your Capsule CRM pipeline and Transpond marketing automation lists.
                         </p>
                     </div>
 
@@ -502,31 +448,6 @@ export default function ClientSetupPage() {
                                                         Create a linked marketing email list, campaigns, and auto-sync bridges.
                                                     </p>
                                                 </div>
-
-                                                {/* Ultatel */}
-                                                <div
-                                                    onClick={() => setServices({ ...services, ultatel: !services.ultatel })}
-                                                    className={`p-6 rounded-2xl border cursor-pointer transition-all duration-300 ${
-                                                        services.ultatel
-                                                            ? "bg-amber-500/5 border-amber-500/40 shadow-[0_0_30px_rgba(245,158,11,0.12)]"
-                                                            : "bg-white/[0.01] border-white/5 hover:border-white/10"
-                                                    }`}
-                                                >
-                                                    <div className="flex items-center justify-between mb-4">
-                                                        <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400">
-                                                            <Volume2 className="w-5 h-5" />
-                                                        </div>
-                                                        <div className={`w-5 h-5 rounded-md border flex items-center justify-center transition-all ${
-                                                            services.ultatel ? "bg-amber-500 border-amber-500" : "border-white/20"
-                                                        }`}>
-                                                            {services.ultatel && <Check className="w-3.5 h-3.5 text-slate-950" />}
-                                                        </div>
-                                                    </div>
-                                                    <h4 className="text-sm font-bold uppercase tracking-tight text-white mb-2">Ultatel Cloud PBX</h4>
-                                                    <p className="text-[11px] text-slate-400 leading-relaxed font-light">
-                                                        Configure business cloud phone lines, user seats, auto-attendants, and AI transcripts.
-                                                    </p>
-                                                </div>
                                             </div>
                                         </motion.div>
                                     )}
@@ -615,136 +536,6 @@ export default function ClientSetupPage() {
                                                     </div>
                                                 </div>
                                             )}
-
-                                            {/* Ultatel Details */}
-                                            {services.ultatel && (
-                                                <div className="p-6 rounded-2xl border border-amber-500/20 bg-amber-500/[0.02] space-y-6">
-                                                    <div className="flex items-center justify-between">
-                                                        <div className="flex items-center gap-2 text-amber-400">
-                                                            <Volume2 className="w-4 h-4" />
-                                                            <span className="text-xs font-black uppercase tracking-widest">Ultatel Telephony Config</span>
-                                                        </div>
-                                                        <div className="flex items-center gap-3">
-                                                            <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Desk Phones Needed</label>
-                                                            <input
-                                                                type="number"
-                                                                min="0"
-                                                                value={ultatelHardwareCount}
-                                                                onChange={(e) => setUltatelHardwareCount(parseInt(e.target.value) || 0)}
-                                                                className="w-16 px-3 py-2 rounded-lg bg-[#0b0b0c] border border-white/5 focus:border-accent text-center text-white outline-none"
-                                                            />
-                                                        </div>
-                                                    </div>
-
-                                                    {/* Extension Matrix */}
-                                                    <div className="space-y-4">
-                                                        <div className="flex items-center justify-between border-b border-white/5 pb-2">
-                                                            <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">User Seat & Extension Allocation</label>
-                                                            <button
-                                                                type="button"
-                                                                onClick={addExtensionUser}
-                                                                className="px-3 py-1.5 rounded-lg border border-amber-500/25 hover:border-amber-400/50 text-amber-400 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1 hover:bg-amber-500/10 transition-colors"
-                                                            >
-                                                                <Plus className="w-3.5 h-3.5" /> Add Seat
-                                                            </button>
-                                                        </div>
-
-                                                        {ultatelUsers.map((user, idx) => (
-                                                            <div key={idx} className="p-4 rounded-xl bg-black/40 border border-white/5 grid gap-4 md:grid-cols-12 items-end relative group">
-                                                                <div className="md:col-span-3 space-y-1">
-                                                                    <label className="text-[9px] uppercase tracking-wider text-slate-500">Extension</label>
-                                                                    <input
-                                                                        type="text"
-                                                                        readOnly
-                                                                        value={user.extension}
-                                                                        className="w-full px-3 py-2 rounded-lg bg-white/[0.02] border border-white/5 text-slate-400 text-center text-xs outline-none"
-                                                                    />
-                                                                </div>
-                                                                <div className="md:col-span-3 space-y-1">
-                                                                    <label className="text-[9px] uppercase tracking-wider text-slate-500">User Full Name</label>
-                                                                    <input
-                                                                        type="text"
-                                                                        value={user.name}
-                                                                        onChange={(e) => updateExtensionUser(idx, "name", e.target.value)}
-                                                                        placeholder="Damein Donald"
-                                                                        className="w-full px-3 py-2 rounded-lg bg-[#0b0b0c] border border-white/5 focus:border-accent text-white text-xs outline-none transition"
-                                                                    />
-                                                                </div>
-                                                                <div className="md:col-span-3 space-y-1">
-                                                                    <label className="text-[9px] uppercase tracking-wider text-slate-500">Corporate Email</label>
-                                                                    <input
-                                                                        type="email"
-                                                                        value={user.email}
-                                                                        onChange={(e) => updateExtensionUser(idx, "email", e.target.value)}
-                                                                        placeholder="damein@company.com"
-                                                                        className="w-full px-3 py-2 rounded-lg bg-[#0b0b0c] border border-white/5 focus:border-accent text-white text-xs outline-none transition"
-                                                                    />
-                                                                </div>
-                                                                <div className="md:col-span-3 space-y-1 relative">
-                                                                    <label className="text-[9px] uppercase tracking-wider text-slate-500">E911 Physical Address</label>
-                                                                    <input
-                                                                        type="text"
-                                                                        value={user.e911}
-                                                                        onChange={(e) => updateExtensionUser(idx, "e911", e.target.value)}
-                                                                        placeholder="HQ Address"
-                                                                        className="w-full px-3 py-2 rounded-lg bg-[#0b0b0c] border border-white/5 focus:border-accent text-white text-xs outline-none transition pr-8"
-                                                                    />
-                                                                    {ultatelUsers.length > 1 && (
-                                                                        <button
-                                                                            type="button"
-                                                                            onClick={() => removeExtensionUser(idx)}
-                                                                            className="absolute right-2 bottom-2 text-slate-600 hover:text-red-400 transition-colors"
-                                                                        >
-                                                                            <Trash2 className="w-3.5 h-3.5" />
-                                                                        </button>
-                                                                    )}
-                                                                </div>
-                                                                {errors[`user_${idx}`] && (
-                                                                    <p className="text-red-400 text-[9px] md:col-span-12 mt-1">{errors[`user_${idx}`]}</p>
-                                                                )}
-                                                            </div>
-                                                        ))}
-                                                    </div>
-
-                                                    {/* Porting Details */}
-                                                    <div className="space-y-2">
-                                                        <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Phone Numbers & Porting Info</label>
-                                                        <textarea
-                                                            value={ultatelPortingDetails}
-                                                            onChange={(e) => setUltatelPortingDetails(e.target.value)}
-                                                            className="w-full px-5 py-4 rounded-xl bg-[#0b0b0c] border border-white/5 focus:border-accent text-white text-xs outline-none transition h-20 resize-none"
-                                                            placeholder="List any existing numbers you wish to port from your previous carrier, or specify if you need new DIDs."
-                                                        />
-                                                    </div>
-
-                                                    {/* Router Network Pre-requisites */}
-                                                    <div className="p-4 rounded-xl bg-[#141416] border border-white/5 space-y-3">
-                                                        <div className="flex items-start gap-2.5">
-                                                            <Network className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                                                            <div>
-                                                                <span className="text-[10px] font-black uppercase tracking-wider text-slate-300 block mb-1">Office Router Pre-requisites</span>
-                                                                <p className="text-[10px] text-slate-400 leading-relaxed">
-                                                                    To support VoIP signaling, your local network must disable <strong className="text-white">SIP ALG</strong>, whitelist the Ultatel IP <code className="text-amber-300">38.91.53.85</code>, and set the UDP inactivity timeout threshold to a minimum of <strong className="text-white">300 seconds</strong>.
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            onClick={() => setUltatelNetworkChecked(!ultatelNetworkChecked)}
-                                                            className="flex items-center gap-3 cursor-pointer pt-2 border-t border-white/5"
-                                                        >
-                                                            <div className={`w-5 h-5 rounded border flex items-center justify-center transition ${
-                                                                ultatelNetworkChecked ? "bg-amber-400 border-amber-400 text-slate-950" : "border-white/20"
-                                                            }`}>
-                                                                {ultatelNetworkChecked && <Check className="w-3.5 h-3.5 font-bold" />}
-                                                            </div>
-                                                            <span className="text-[10px] uppercase font-bold text-slate-300 select-none">
-                                                                I approve that our network meets these standards
-                                                            </span>
-                                                        </div>
-                                                        {errors.network && <p className="text-red-400 text-[10px]">{errors.network}</p>}
-                                                    </div>
-                                                </div>
-                                            )}
                                         </motion.div>
                                     )}
 
@@ -789,11 +580,6 @@ export default function ClientSetupPage() {
                                                                 Transpond Campaign
                                                             </span>
                                                         )}
-                                                        {services.ultatel && (
-                                                            <span className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 text-amber-300 text-[10px] font-bold uppercase tracking-wider">
-                                                                Ultatel Cloud PBX
-                                                            </span>
-                                                        )}
                                                     </div>
                                                 </div>
                                             </div>
@@ -801,7 +587,7 @@ export default function ClientSetupPage() {
                                             <div className="p-4 rounded-xl bg-accent/5 border border-accent/10 text-slate-500 text-[10px] leading-relaxed flex gap-3 font-light">
                                                 <Info className="w-4 h-4 text-accent shrink-0 mt-0.5" />
                                                 <p>
-                                                    Power Digital Media invoices for custom configuration, setup services, and local integration labor. Monthly user seat licenses, outbound calling charges, and phone hardware are billed directly by the respective platforms (Capsule, Transpond, or Ultatel) per their standard service terms.
+                                                    Power Digital Media invoices for custom configuration, setup services, and local integration labor. Monthly platform seat or subscriber licenses are billed directly by the respective platforms (Capsule CRM or Transpond) per their standard service terms.
                                                 </p>
                                             </div>
                                         </motion.div>

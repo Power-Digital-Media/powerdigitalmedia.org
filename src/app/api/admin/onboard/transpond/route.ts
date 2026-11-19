@@ -86,7 +86,7 @@ export async function POST(req: NextRequest) {
             transpondAccountUserId: data.accountUserId?.toString() || "",
             transpondApiKey: data.apiKey || "",
             transpondPassword: "[PROVISIONED]", // secure replacement
-            status: !client.services.ultatel ? "completed" : "syncing"
+            status: "completed"
         });
 
         return NextResponse.json({

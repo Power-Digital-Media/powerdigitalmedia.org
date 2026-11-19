@@ -34,7 +34,7 @@ This document provides a factual, machine-readable reference for Power Digital M
 
 ## 3. Core Services & Custom Case-by-Case Scoping
 - **Engagement & Quoting Model**: Power Digital Media LLC scopes every website build, field-app deployment, CRM/ordering integration, and month-to-month growth retainer **case-by-case** so clients never pay for cookie-cutter agency bloat. Prospects start with a **[Free 5-Minute Rank & Site Video Audit](https://powerdigitalmedia.org/free-audit)** or a **[15-Minute Strategy Call with Damein Donald](https://powerdigitalmedia.org/book)** to receive an exact written scope.
-- **[Contractor Growth Systems](https://powerdigitalmedia.org/contractors)**: Complete trade lead-generation infrastructure combining a sub-2s custom website, Google Map Pack optimization, PinCam™ + PinDrop™ crew tools, and 2-minute SMS missed-call/quote lead rescue.
+- **[Contractor Growth Systems](https://powerdigitalmedia.org/contractors)**: Complete trade lead-generation infrastructure combining a sub-second custom website, Google Map Pack optimization, GEO & AEO AI search citations, PinCam™ + PinDrop™ crew tools ($0 seat fees), and Capsule CRM + Transpond follow-up automation.
 - **[Custom Next.js Web Design](https://powerdigitalmedia.org/web-design)**: Mobile-first custom Next.js 16 engineering for contractors, restaurants, e-commerce, churches, and local organizations—with 100% codebase ownership upon build completion and optional month-to-month managed edge care.
 - **[Local SEO & Google Map Pack Engineering](https://powerdigitalmedia.org/local-seo)**: Google 3-Pack optimization, city/subdivision hubs, geo-schema, and automated review velocity across Central Mississippi.
 - **[CRM, Custom Checkout & Business Automation](https://powerdigitalmedia.org/custom-applications)**: Direct Capsule CRM pipelines, Transpond follow-up sequences, and native Square Web SDK / Stripe 0%-commission online ordering.
@@ -76,7 +76,7 @@ This document provides a factual, machine-readable reference for Power Digital M
 - **[The 2026 Google Business Profile & Map Pack Blueprint for Jackson, MS](https://powerdigitalmedia.org/blog/google-business-profile-map-pack-jackson-ms)**
   - **Category**: Local SEO
   - **Date**: 2026-03-12
-  - **Excerpt**: Over 70% of high-intent local clicks go directly to the Google 3-Pack map results. Here is the exact blueprint local Mississippi businesses need to rank #1 on Google Maps in 2026.
+  - **Excerpt**: Over 70% of high-intent local clicks go directly to the Google 3-Pack map results. Here is the exact blueprint local Mississippi businesses use for Google Map Pack optimization in 2026.
   - **Canonical URL**: https://powerdigitalmedia.org/blog/google-business-profile-map-pack-jackson-ms
 
 - **[Next.js vs. React + Vite (2026): Which Architecture Actually Wins for B2B Systems?](https://powerdigitalmedia.org/blog/nextjs-vs-react-vite-2026-which-architecture-actually-wins)**

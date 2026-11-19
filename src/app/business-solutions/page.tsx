@@ -243,7 +243,7 @@ export default function BusinessSolutionsPage() {
             Want Us to Check Your Lead Leaks First?
           </h2>
           <p className="text-slate-300 text-sm sm:text-base max-w-xl mx-auto">
-            Request a free manual check of your website speed, Google Map Pack rankings, and missed-call handling.
+            Request a free manual check of your website speed, Google Map Pack visibility, AI search readiness, and quote lead routing.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-1">
             <Link

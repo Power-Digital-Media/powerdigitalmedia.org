@@ -13,7 +13,7 @@
 - **Hours**: Monday–Friday, 9:00 AM – 5:00 PM CT
 
 ## Flagship Software & Services (Custom-Scoped Case-by-Case)
-- **[Contractor Growth Systems](https://powerdigitalmedia.org/contractors)**: Turnkey sub-2-second websites, Google Map Pack SEO, PinCam™ + PinDrop™ crew apps, and 18-second SMS lead rescue for roofers, HVAC pros, excavators, plumbers, electricians, and lawn care teams.
+- **[Contractor Growth Systems](https://powerdigitalmedia.org/contractors)**: Turnkey sub-second websites, Google Map Pack optimization, GEO & AEO AI search visibility, PinCam™ + PinDrop™ crew apps ($0 seat fees), interactive quote calculators, and Capsule CRM pipelines for roofers, HVAC pros, excavators, plumbers, electricians, and lawn care teams.
 - **[PinCam™ Jobsite Camera App](https://powerdigitalmedia.org/pincam)**: Ghost Camera 1:1 before/after photo alignment, non-destructive damage/measurement markups, dual-cam PiP walkthroughs, instant homeowner/adjuster PDF reports, and 1-tap PinDrop™ sync.
 - **[PinDrop™ Field SEO Engine](https://powerdigitalmedia.org/pindrop)**: 30-second mobile truck check-ins that auto-publish `/projects/[slug]` neighborhood SEO pages, live website GPS map pins, Google Business Profile updates, and 15-minute homeowner SMS 5-star review requests.
 - **[PDM Site Intelligence™ Watchtower](https://powerdigitalmedia.org/site-intelligence)**: Proprietary 24/7 engineering watchtower monitoring 5-minute uptime & SSL probes, CrUX cellular speed, Google Search Console & GA4 growth deltas, and 2-stage human-approved staged fixes across managed client sites.

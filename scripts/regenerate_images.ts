@@ -12,7 +12,7 @@ dotenv.config();
 const openai = process.env.OPENAI_API_KEY ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY }) : null;
 
 async function generateImage(title: string, category: string, slug: string) {
-    // Fallback images (same as claudebot.ts)
+    // Fallback images by editorial category
     const fallbacks: Record<string, string> = {
         'Studio Tech': "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1200&q=80",
         'Compute Core': "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=1200&q=80",

@@ -17,23 +17,12 @@ export interface ClientSetup {
     services: {
         capsule: boolean;
         transpond: boolean;
-        ultatel: boolean;
     };
     
     // Details for provisioning
     capsuleSubdomain?: string;
     transpondEmail?: string;
     transpondPassword?: string;
-    
-    ultatelUsers?: Array<{
-        name: string;
-        email: string;
-        extension: string;
-        e911: string;
-    }>;
-    ultatelHardwareCount?: number;
-    ultatelPortingDetails?: string;
-    ultatelNetworkChecked?: boolean;
     
     // Status tracking
     status: 'pending' | 'syncing' | 'completed' | 'failed';
@@ -45,9 +34,6 @@ export interface ClientSetup {
     transpondAccountMasterId?: string;
     transpondAccountUserId?: string;
     transpondApiKey?: string;
-    ultatelWebhookId?: string;
-    ultatelApiKey?: string;
-    ultatelPbxId?: string;
     
     createdAt: FirebaseFirestore.Timestamp;
     updatedAt: FirebaseFirestore.Timestamp;

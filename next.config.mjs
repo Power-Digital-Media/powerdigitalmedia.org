@@ -358,17 +358,17 @@ const nextConfig = {
       // 5. GSC 404 Redirect Fixes
       {
         source: '/video-first-podcasting-2026',
-        destination: '/blog/video-first-podcasting-2026',
+        destination: '/marketing',
         permanent: true,
       },
       {
         source: '/evaluating-llm-benchmarks-insights-from-benchmark2',
-        destination: '/blog/evaluating-llm-benchmarks-insights-from-benchmark2',
+        destination: '/custom-applications',
         permanent: true,
       },
       {
         source: '/evaluating-llm-benchmarks-insights-from-benchmark2/',
-        destination: '/blog/evaluating-llm-benchmarks-insights-from-benchmark2',
+        destination: '/custom-applications',
         permanent: true,
       },
       {
@@ -782,17 +782,17 @@ const nextConfig = {
       // 7. Soft 404 Renamed Blog Redirects
       {
         source: '/blog/the-truth-about-the-2026-benchmark-war-sovereign-clouds-role',
-        destination: '/blog/sovereign-cloud-2026-control-compliance-performance',
+        destination: '/custom-applications',
         permanent: true,
       },
       {
         source: '/blog/mastering-modern-studio-tech-february-2026-insights',
-        destination: '/blog/studio-tech-advancements-february-2026-insights',
+        destination: '/blog',
         permanent: true,
       },
       {
         source: '/blog/accelerating-creative-velocity-ai-and-automation-in-2026',
-        destination: '/blog/creative-workflow-management-maximizing-creative-velocity-in-2026',
+        destination: '/blog',
         permanent: true,
       },
     ];

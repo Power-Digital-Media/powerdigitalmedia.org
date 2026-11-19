@@ -16,13 +16,15 @@ export async function POST(req: Request) {
 
         const enableTax = process.env.STRIPE_TAX_ENABLED === 'true';
 
+        const siteBase = process.env.NEXT_PUBLIC_SITE_URL || 'https://powerdigitalmedia.org';
+
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             line_items: items,
             mode: sessionMode as any,
             customer_email: customerEmail,
-            success_url: successUrl || `${process.env.NEXT_PUBLIC_SITE_URL}/billing?success=true`,
-            cancel_url: cancelUrl || `${process.env.NEXT_PUBLIC_SITE_URL}/billing?canceled=true`,
+            success_url: successUrl || `${siteBase}/dashboard/billing?success=true`,
+            cancel_url: cancelUrl || `${siteBase}/dashboard/billing?canceled=true`,
             ...(enableTax && { automatic_tax: { enabled: true } }),
             billing_address_collection: 'required',
             invoice_creation: sessionMode === 'payment' ? { enabled: true } : undefined,

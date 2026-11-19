@@ -1,6 +1,8 @@
 import https from 'https';
 import { google } from 'googleapis';
 import { blogPosts } from '../src/data/blogPosts';
+import { projects } from '../src/data/projects';
+import { CENTRAL_MS_LOCATIONS } from '../src/data/locations';
 import dotenv from 'dotenv';
 
 // Load environment variables from .env.local or .env
@@ -11,18 +13,48 @@ const HOST = 'powerdigitalmedia.org';
 const KEY = process.env.INDEXNOW_KEY || '93f2ea70d65b4c10a8ef18cd301e52ba';
 const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 
-// IndexNow URLs (Sitemap full scan)
+// IndexNow URLs (Canonical routes matching src/app/sitemap.ts)
 const STATIC_URLS = [
     `https://${HOST}/`,
-    `https://${HOST}/blog`,
+    `https://${HOST}/contractors`,
+    `https://${HOST}/pindrop`,
+    `https://${HOST}/pincam`,
+    `https://${HOST}/site-intelligence`,
     `https://${HOST}/web-design`,
+    `https://${HOST}/local-seo`,
     `https://${HOST}/custom-applications`,
     `https://${HOST}/marketing`,
-    `https://${HOST}/community`
+    `https://${HOST}/our-work`,
+    `https://${HOST}/reviews`,
+    `https://${HOST}/about`,
+    `https://${HOST}/free-audit`,
+    `https://${HOST}/book`,
+    `https://${HOST}/contact`,
+    `https://${HOST}/blog`,
+    `https://${HOST}/site-manager`,
+    `https://${HOST}/lead-leak-check`,
+    `https://${HOST}/business-solutions`,
+    `https://${HOST}/founders100`,
+    `https://${HOST}/community`,
+    `https://${HOST}/privacy`,
+    `https://${HOST}/terms`,
+    `https://${HOST}/refund-policy`,
 ];
 
-const BLOG_URLS = blogPosts.map(post => `https://${HOST}/blog/${post.slug}`);
-const URL_LIST = [...STATIC_URLS, ...BLOG_URLS];
+const LOCATION_URLS = CENTRAL_MS_LOCATIONS.map(
+    (loc) => `https://${HOST}/locations/${loc.slug}`
+);
+const PORTFOLIO_URLS = projects.map(
+    (project) => `https://${HOST}/portfolio/${project.id}`
+);
+const BLOG_URLS = blogPosts.map((post) => `https://${HOST}/blog/${post.slug}`);
+
+const URL_LIST = [
+    ...STATIC_URLS,
+    ...LOCATION_URLS,
+    ...PORTFOLIO_URLS,
+    ...BLOG_URLS,
+];
 
 // 1. Bing / Yahoo IndexNow Ping
 function pingIndexNow() {
@@ -32,7 +64,7 @@ function pingIndexNow() {
         host: HOST,
         key: KEY,
         keyLocation: KEY_LOCATION,
-        urlList: URL_LIST
+        urlList: URL_LIST,
     });
 
     const options = {
@@ -42,8 +74,8 @@ function pingIndexNow() {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Content-Length': Buffer.byteLength(data)
-        }
+            'Content-Length': Buffer.byteLength(data),
+        },
     };
 
     const req = https.request(options, (res) => {
@@ -71,7 +103,9 @@ async function pingGoogleIndexing() {
     const serviceAccountKeyString = process.env.GOOGLE_SERVICE_ACCOUNT_KEY;
 
     if (!serviceAccountKeyString) {
-        console.log('⚠️ GOOGLE_SERVICE_ACCOUNT_KEY env var is not set. Skipping Google Indexing API pings.');
+        console.log(
+            '⚠️ GOOGLE_SERVICE_ACCOUNT_KEY env var is not set. Skipping Google Indexing API pings.'
+        );
         return;
     }
 
@@ -80,31 +114,30 @@ async function pingGoogleIndexing() {
         const auth = new google.auth.JWT({
             email: credentials.client_email,
             key: credentials.private_key,
-            scopes: ['https://www.googleapis.com/auth/indexing']
+            scopes: ['https://www.googleapis.com/auth/indexing'],
         });
 
         const indexing = google.indexing({
             version: 'v3',
-            auth: auth
+            auth: auth,
         });
 
         // Filter blog posts published in the last 7 days
         const oneWeekAgo = new Date();
         oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
         const recentBlogUrls = blogPosts
-            .filter(post => new Date(post.date) >= oneWeekAgo)
-            .map(post => `https://${HOST}/blog/${post.slug}`);
+            .filter((post) => new Date(post.date) >= oneWeekAgo)
+            .map((post) => `https://${HOST}/blog/${post.slug}`);
 
         const googleUrlsToPing = [
-            `https://${HOST}/`,
-            `https://${HOST}/community`,
-            `https://${HOST}/web-design`,
-            `https://${HOST}/custom-applications`,
-            `https://${HOST}/marketing`,
-            ...recentBlogUrls
+            ...STATIC_URLS,
+            ...LOCATION_URLS,
+            ...recentBlogUrls,
         ];
 
-        console.log(`📋 Found ${googleUrlsToPing.length} URLs to submit to Google Indexing API:`);
+        console.log(
+            `📋 Found ${googleUrlsToPing.length} URLs to submit to Google Indexing API:`
+        );
         for (const url of googleUrlsToPing) {
             console.log(`   - ${url}`);
         }
@@ -114,16 +147,24 @@ async function pingGoogleIndexing() {
                 const response = await indexing.urlNotifications.publish({
                     requestBody: {
                         url: url,
-                        type: 'URL_UPDATED'
-                    }
+                        type: 'URL_UPDATED',
+                    },
                 });
-                console.log(`   ✅ Google Indexing API Success: ${url} (Status: ${response.status})`);
+                console.log(
+                    `   ✅ Google Indexing API Success: ${url} (Status: ${response.status})`
+                );
             } catch (err: any) {
-                console.error(`   ❌ Google Indexing API Failed for ${url}:`, err.message);
+                console.error(
+                    `   ❌ Google Indexing API Failed for ${url}:`,
+                    err.message
+                );
             }
         }
     } catch (err: any) {
-        console.error('❌ Google Indexing API Authentication Failed:', err.message);
+        console.error(
+            '❌ Google Indexing API Authentication Failed:',
+            err.message
+        );
     }
 }
 

@@ -25,7 +25,7 @@ import {
 export const metadata: Metadata = {
   title: "Contractor Website Design & Local SEO in Mississippi | Power Digital Media",
   description:
-    "Custom websites, Google Map Pack SEO, PinCam™ jobsite proof, PinDrop™ neighborhood pins, and 2-minute SMS lead rescue built exclusively for Mississippi roofers, HVAC pros, excavators, plumbers, and trades.",
+    "Custom websites, Google Map Pack optimization, GEO & AEO AI search visibility, PinCam™ jobsite proof, PinDrop™ neighborhood pins, and Capsule CRM pipelines built for Mississippi roofers, HVAC pros, excavators, plumbers, and trades.",
   alternates: {
     canonical: "https://powerdigitalmedia.org/contractors",
   },
@@ -95,8 +95,8 @@ const CONTRACTOR_FAQS = [
     a: "Yes—because we built them for crews in boots, not office marketers. A check-in takes under 30 seconds from any iPhone or Android, works even when rural cell bars drop, and requires zero complicated logins.",
   },
   {
-    q: "What happens if I miss a homeowner call while I'm on a roof or running equipment?",
-    a: "Our 2-minute Lead Rescue pipeline texts the homeowner back within seconds of a missed call or web quote request, logs the lead in your CRM, and alerts your cell so they don't call the next contractor on Google.",
+    q: "How do quote requests and leads get tracked while I'm out running crews?",
+    a: "Every interactive quote calculator and inspection request syncs directly into Capsule CRM, creates a tracked opportunity card, triggers automated Transpond follow-ups, and alerts your cell immediately so no homeowner inquiry slips through the cracks.",
   },
   {
     q: "How fast can we launch before storm or peak cooling season?",
@@ -185,7 +185,7 @@ export default function ContractorsPage() {
               Stop paying shared-lead marketplaces to bid against five other trucks. We engineer sub-2-second contractor websites wired directly to{" "}
               <strong className="text-white">PinCam™</strong> jobsite cameras,{" "}
               <strong className="text-white">PinDrop™</strong> neighborhood Google pins, and{" "}
-              <strong className="text-white">18-second SMS lead rescue</strong> so high-intent homeowners call you first.
+              <strong className="text-white">Capsule CRM + automated follow-ups</strong> so high-intent homeowners hire you first.
             </p>
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-1">
@@ -316,12 +316,12 @@ export default function ContractorsPage() {
             {
               step: "Pillar 03",
               icon: Clock,
-              title: "18-Second SMS Lead Rescue & CRM",
-              desc: "78% of homeowners hire the first contractor who responds. When a quote form lands or a call is missed on the job, our pipeline texts the homeowner immediately and alerts your phone.",
+              title: "Capsule CRM & Quote Automation",
+              desc: "78% of homeowners hire the contractor with the clearest, fastest quote process. Every interactive estimate form syncs directly into Capsule CRM, triggers automated Transpond follow-ups, and alerts your phone immediately.",
               bullets: [
-                "Instant SMS greeting keeps homeowners from calling competitors",
+                "Interactive trade quote calculators & inspection intake",
                 "Every lead logged cleanly in Capsule CRM + mobile alerts",
-                "Automated follow-up sequences for open estimates",
+                "Automated Transpond follow-up sequences for open estimates",
               ],
             },
           ].map((pillar) => {

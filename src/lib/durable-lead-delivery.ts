@@ -2,6 +2,7 @@ import crypto from 'node:crypto';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { JWT } from 'google-auth-library';
 
 export type ChannelDeliveryStatus =
     | 'pending'
@@ -39,6 +40,7 @@ export interface MinimizedLeadData {
     email: string;
     phone: string;
     company: string;
+    website?: string;
     servicesInterested: string;
     roadblockSummary: string;
     pagePath: string;
@@ -154,6 +156,7 @@ export function buildMinimizedLeadData(params: {
     email: string;
     phone: string;
     company: string;
+    website?: string;
     servicesInterested: string;
     roadblockSummary: string;
     pagePath: string;
@@ -164,6 +167,7 @@ export function buildMinimizedLeadData(params: {
         email: (params.email || '').trim().toLowerCase().slice(0, MAX_FIELD_LENGTH),
         phone: (params.phone || '').trim().slice(0, 40),
         company: (params.company || '').trim().slice(0, MAX_FIELD_LENGTH),
+        website: (params.website || '').trim().slice(0, MAX_FIELD_LENGTH),
         servicesInterested: (params.servicesInterested || '').trim().slice(0, MAX_FIELD_LENGTH),
         roadblockSummary: (params.roadblockSummary || '').trim().slice(0, MAX_SUMMARY_LENGTH),
         pagePath: (params.pagePath || '/').trim().slice(0, MAX_FIELD_LENGTH),
@@ -383,6 +387,40 @@ async function getFirestoreRestAccessToken(): Promise<string> {
             expiresAtMs: Date.now() + expiresIn * 1000,
         };
         return data.access_token;
+    }
+
+    // Scoped service-account fallback (only when project_id matches FIRESTORE_PROJECT_ID)
+    for (const rawKey of [
+        process.env.FIREBASE_SERVICE_ACCOUNT_KEY,
+        process.env.GOOGLE_SERVICE_ACCOUNT_KEY,
+    ]) {
+        if (!rawKey) continue;
+        try {
+            const parsed = JSON.parse(rawKey) as Record<string, string>;
+            if (
+                parsed &&
+                parsed.project_id === FIRESTORE_PROJECT_ID &&
+                parsed.client_email &&
+                parsed.private_key
+            ) {
+                const jwt = new JWT({
+                    email: parsed.client_email,
+                    key: parsed.private_key,
+                    scopes: ['https://www.googleapis.com/auth/datastore'],
+                });
+                const tokenRes = await jwt.authorize();
+                if (tokenRes.access_token) {
+                    cachedFirestoreToken = {
+                        token: tokenRes.access_token,
+                        expiresAtMs:
+                            tokenRes.expiry_date || Date.now() + 3300 * 1000,
+                    };
+                    return tokenRes.access_token;
+                }
+            }
+        } catch {
+            // Continue to next credential fallback
+        }
     }
 
     // Local development fallback: Firebase CLI OAuth token
@@ -626,6 +664,7 @@ export interface ExecuteDurableLeadWorkflowInput {
     explicitIdempotencyKey?: string | null;
     formSource: string;
     minimizedLead: MinimizedLeadData;
+    fullSummaryText?: string;
     payloadContentFingerprint?: string;
     clientIp: string;
     riskScore: number;
@@ -639,6 +678,120 @@ export interface ExecuteDurableLeadWorkflowInput {
     fetchImpl?: typeof fetch;
     retryOptions?: BoundedRetryOptions;
     nowMs?: number;
+}
+
+function escapeHtmlForLeadAlert(raw: string | undefined): string {
+    if (!raw) return '';
+    return raw
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+async function dispatchTranspondInternalLeadSummary(params: {
+    submissionId: string;
+    leadEventId: string;
+    formSource: string;
+    lead: MinimizedLeadData;
+    fullSummaryText?: string;
+    fetcher: typeof fetch;
+}): Promise<void> {
+    const transpondKey = (process.env.TRANSPOND_API_KEY || '').trim();
+    if (!transpondKey) return;
+
+    const toAddress =
+        (process.env.ALERT_RECIPIENT_EMAIL || '').trim() ||
+        'damein@powerdigitalmedia.org';
+    const fromAddress =
+        (process.env.TRANSPOND_FROM_EMAIL || '').trim() ||
+        'hello@powerdigitalmedia.org';
+    const fullName =
+        `${params.lead.firstName} ${params.lead.lastName}`.trim() || 'Prospect';
+
+    const rows: Array<[string, string]> = [
+        ['Name', escapeHtmlForLeadAlert(fullName)],
+        ['Email', escapeHtmlForLeadAlert(params.lead.email)],
+        ['Phone', escapeHtmlForLeadAlert(params.lead.phone || '—')],
+        ['Company', escapeHtmlForLeadAlert(params.lead.company || '—')],
+        ['Website', escapeHtmlForLeadAlert(params.lead.website || '—')],
+        ['Form Source', escapeHtmlForLeadAlert(params.formSource)],
+        ['Services Interested', escapeHtmlForLeadAlert(params.lead.servicesInterested || '—')],
+        ['Page Path', escapeHtmlForLeadAlert(params.lead.pagePath || '/')],
+        ['Submission ID', escapeHtmlForLeadAlert(params.submissionId)],
+    ];
+
+    const tableHtml = rows
+        .map(
+            ([label, val]) =>
+                `<tr><td style="padding:8px 12px;border-bottom:1px solid #1e293b;color:#94a3b8;font-size:12px;font-weight:700;width:165px;">${label}</td><td style="padding:8px 12px;border-bottom:1px solid #1e293b;color:#f8fafc;font-size:13px;">${val}</td></tr>`
+        )
+        .join('');
+
+    const notesBody =
+        params.fullSummaryText ||
+        params.lead.roadblockSummary ||
+        'No additional notes provided.';
+
+    const html = `<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body style="margin:0;padding:24px;background:#06080f;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#f8fafc;">
+  <div style="max-width:640px;margin:0 auto;background:#0b0f19;border:1px solid #f59e0b44;border-radius:16px;padding:28px;">
+    <p style="margin:0 0 6px;color:#f59e0b;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;">Power Digital Media — Verified Inbound Lead</p>
+    <h2 style="margin:0 0 18px;color:#ffffff;font-size:20px;">${escapeHtmlForLeadAlert(fullName)}${params.lead.company ? ` — ${escapeHtmlForLeadAlert(params.lead.company)}` : ''}</h2>
+    <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">${tableHtml}</table>
+    <div style="background:#111827;border:1px solid #1f2937;border-radius:12px;padding:16px;">
+      <p style="margin:0 0 8px;color:#fbbf24;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Message &amp; Questionnaire Details</p>
+      <pre style="margin:0;color:#e2e8f0;font-family:inherit;font-size:13px;line-height:1.6;white-space:pre-wrap;">${escapeHtmlForLeadAlert(notesBody)}</pre>
+    </div>
+  </div>
+</body>
+</html>`;
+
+    try {
+        const res = await params.fetcher('https://api.transpond.io/transaction', {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${transpondKey}`,
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+            },
+            body: JSON.stringify({
+                fromAddress,
+                fromName: 'Power Digital Media Leads',
+                replyAddress: params.lead.email || fromAddress,
+                toAddress,
+                subject: `🔔 New Lead (${params.formSource}): ${fullName}${params.lead.company ? ` — ${params.lead.company}` : ''}`,
+                html,
+            }),
+        });
+
+        if (!res.ok) {
+            const errText = await res.text().catch(() => '');
+            console.warn(
+                JSON.stringify({
+                    event: 'TRANSPOND_INTERNAL_ALERT_TX_WARNING',
+                    submissionId: params.submissionId,
+                    formSource: params.formSource,
+                    status: res.status,
+                    reason: redactPiiFromText(errText),
+                })
+            );
+        }
+    } catch (err: unknown) {
+        console.warn(
+            JSON.stringify({
+                event: 'TRANSPOND_INTERNAL_ALERT_TX_NETWORK_WARNING',
+                submissionId: params.submissionId,
+                formSource: params.formSource,
+                reason: redactPiiFromText(
+                    err instanceof Error ? err.message : String(err)
+                ),
+            })
+        );
+    }
 }
 
 export interface ExecuteDurableLeadWorkflowResult {
@@ -881,6 +1034,18 @@ export async function executeDurableLeadWorkflow(
         updatedAt: new Date().toISOString(),
     };
 
+    // STEP 3B: Dispatch internal lead summary alert to ALERT_RECIPIENT_EMAIL via Transpond Transactional API
+    if (input.formSource !== 'blog-newsletter') {
+        await dispatchTranspondInternalLeadSummary({
+            submissionId,
+            leadEventId: activeLeadEventId,
+            formSource: input.formSource,
+            lead: input.minimizedLead,
+            fullSummaryText: input.fullSummaryText,
+            fetcher,
+        });
+    }
+
     // STEP 4: Deliver via Resend backup/co-responder channel (Requirements B.3, B.4)
     // Note: Even if `bypassBackupAutoresponderWhenPrimarySucceeds` is true for a specialized funnel,
     // we NEVER bypass Resend when Transpond fails!
@@ -914,7 +1079,9 @@ export async function executeDurableLeadWorkflow(
                         internalFallbackRequired: !transpondOutcome.delivered,
                         minimizedLeadSummary: !transpondOutcome.delivered
                             ? {
+                                  phone: input.minimizedLead.phone,
                                   company: input.minimizedLead.company,
+                                  website: input.minimizedLead.website,
                                   servicesInterested:
                                       input.minimizedLead.servicesInterested,
                                   roadblockSummary:

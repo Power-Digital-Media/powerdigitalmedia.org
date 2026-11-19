@@ -55,7 +55,7 @@ const tiers = [
             "Everything in Campaign Ignition",
             "Ongoing Creative Testing & Ad Refresh",
             "Capsule CRM Pipeline & Deal Tracking",
-            "2-Minute Automated Lead Follow-Up",
+            "Automated Transpond Lead Follow-Up",
             "Storm / Seasonal Demand Surge Campaigns",
             "Clear Monthly Cost-Per-Lead Reporting",
         ],
@@ -433,7 +433,7 @@ export default function MarketingPage() {
                                         href="/marketing/discovery"
                                         className="w-full py-3 rounded-xl border border-white/[0.08] hover:border-amber-500/35 text-slate-400 hover:text-amber-300 font-bold uppercase tracking-[0.14em] text-[10px] transition-all flex items-center justify-center"
                                     >
-                                        Complete 2-Min Campaign Brief
+                                        Complete Campaign Brief
                                     </Link>
                                 </div>
                             </motion.div>

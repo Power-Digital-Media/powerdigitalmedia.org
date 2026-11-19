@@ -7,7 +7,7 @@ import { classifyBrowserSignature } from "@/lib/lead-submission";
 
 export default function AnalyticsEngine() {
     const pathname = usePathname();
-    const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
+    const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID || "781583678297161";
     const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-DSZ3N77EHQ";
     const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || "GTM-52WQVB8N";
 

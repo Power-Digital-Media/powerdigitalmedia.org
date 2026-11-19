@@ -106,15 +106,15 @@ export default function Home() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-5 border-t border-white/10 w-full text-xs font-semibold text-slate-200">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>Rank in the Google Maps 3-Pack</span>
+                  <span>Google Map Pack + GEO &amp; AEO Search</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>PinCam™ + PinDrop™ Jobsite Suite</span>
+                  <span>PinCam™ + PinDrop™ ($0 Seat Fees)</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>2-Min Missed-Call SMS Text-Back</span>
+                  <span>Capsule CRM &amp; Instant Quote Calculators</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
@@ -146,7 +146,7 @@ export default function Home() {
                 href="/portfolio/geaux-pro-outdoors"
                 className="px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:text-amber-300 transition-colors"
               >
-                Geaux Pro Outdoors (#1 MS Dirt)
+                Geaux Pro Outdoors (MS Dirt)
               </Link>
               <Link
                 href="/portfolio/tbeaux"

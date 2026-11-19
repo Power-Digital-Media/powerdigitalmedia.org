@@ -36,12 +36,9 @@ export default function AdminServicesSetupDashboard() {
     const [requests, setRequests] = useState<ClientSetup[]>([]);
     const [selectedRequest, setSelectedRequest] = useState<ClientSetup | null>(null);
     const [loading, setLoading] = useState(true);
-    const [actionLoading, setActionLoading] = useState<string | null>(null); // 'capsule' | 'transpond' | 'ultatel'
+    const [actionLoading, setActionLoading] = useState<string | null>(null); // 'capsule' | 'transpond'
     const [actionError, setActionError] = useState<string | null>(null);
     const [actionSuccess, setActionSuccess] = useState<string | null>(null);
-
-    // Inputs for provisioning
-    const [ultatelInputKey, setUltatelInputKey] = useState("");
 
     const fetchRequests = async () => {
         if (!user) return;
@@ -152,41 +149,6 @@ export default function AdminServicesSetupDashboard() {
                 await fetchRequests();
             } else {
                 setActionError(data.error || "Failed to register Transpond account.");
-            }
-        } catch (err: any) {
-            setActionError(err.message || "A network error occurred.");
-        } finally {
-            setActionLoading(null);
-        }
-    };
-
-    const handleProvisionUltatel = async () => {
-        if (!selectedRequest || !user || !ultatelInputKey.trim()) return;
-        setActionLoading("ultatel");
-        setActionError(null);
-        setActionSuccess(null);
-
-        try {
-            const token = await user.getIdToken();
-            const res = await fetch("/api/admin/onboard/ultatel", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`
-                },
-                body: JSON.stringify({
-                    onboardingId: selectedRequest.id,
-                    ultatelApiKey: ultatelInputKey.trim()
-                })
-            });
-
-            const data = await res.json();
-            if (res.ok) {
-                setActionSuccess(`Ultatel integration verified & webhook bound successfully! PBX ID: ${data.pbxId}`);
-                setUltatelInputKey("");
-                await fetchRequests();
-            } else {
-                setActionError(data.error || "Failed to verify PBX connection.");
             }
         } catch (err: any) {
             setActionError(err.message || "A network error occurred.");
@@ -442,91 +404,6 @@ export default function AdminServicesSetupDashboard() {
                                                                 </>
                                                             )}
                                                         </button>
-                                                    </div>
-                                                )}
-
-                                                {/* Ultatel step */}
-                                                {selectedRequest.services?.ultatel && (
-                                                    <div className="p-5 rounded-2xl border border-white/5 bg-white/[0.01] space-y-4">
-                                                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                                                            <div className="space-y-2">
-                                                                <div className="flex items-center gap-2">
-                                                                    <div className="w-6 h-6 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400">
-                                                                        <Volume2 className="w-3.5 h-3.5" />
-                                                                    </div>
-                                                                    <span className="text-xs font-bold text-white uppercase tracking-tight">Ultatel Cloud PBX Node</span>
-                                                                </div>
-                                                                <div className="text-[10px] font-mono text-slate-500 space-y-1">
-                                                                    <p>Users Seats: <span className="text-white">{(selectedRequest.ultatelUsers || []).length}</span></p>
-                                                                    <p>Hardware Desk Phones: <span className="text-white">{selectedRequest.ultatelHardwareCount}</span></p>
-                                                                    {selectedRequest.ultatelPortingDetails && (
-                                                                        <p className="truncate max-w-sm">Port DIDs: <span className="text-slate-400 font-light">{selectedRequest.ultatelPortingDetails}</span></p>
-                                                                    )}
-                                                                    {selectedRequest.ultatelWebhookId && (
-                                                                        <p className="text-emerald-400 font-bold flex items-center gap-1">
-                                                                            <Check className="w-3 h-3" /> Webhook ID: {selectedRequest.ultatelWebhookId} (PBX ID: {selectedRequest.ultatelPbxId})
-                                                                        </p>
-                                                                    )}
-                                                                </div>
-                                                            </div>
-
-                                                            {!selectedRequest.ultatelWebhookId && (
-                                                                <div className="flex flex-col gap-2 items-end">
-                                                                    <div className="flex items-center gap-2">
-                                                                        <Key className="w-3.5 h-3.5 text-slate-500" />
-                                                                        <input
-                                                                            type="text"
-                                                                            value={ultatelInputKey}
-                                                                            onChange={(e) => setUltatelInputKey(e.target.value)}
-                                                                            placeholder="ut-client-key..."
-                                                                            className="px-3 py-1.5 rounded-lg bg-[#0b0b0c] border border-white/5 focus:border-accent text-white text-[10px] outline-none w-48 font-mono"
-                                                                        />
-                                                                    </div>
-                                                                    <button
-                                                                        onClick={handleProvisionUltatel}
-                                                                        disabled={actionLoading !== null || !ultatelInputKey.trim()}
-                                                                        className="px-5 py-2.5 rounded-full bg-cyan-600 hover:bg-cyan-500 text-white text-[10px] font-bold uppercase tracking-wider flex items-center gap-2 transition-all shadow-lg active:scale-95 disabled:opacity-40"
-                                                                    >
-                                                                        {actionLoading === "ultatel" ? (
-                                                                            <>
-                                                                                <Loader2 className="w-3.5 h-3.5 animate-spin" /> Verifying...
-                                                                            </>
-                                                                        ) : (
-                                                                            <>
-                                                                                Bind Webhook <ArrowUpRight className="w-3 h-3" />
-                                                                            </>
-                                                                        )}
-                                                                    </button>
-                                                                </div>
-                                                            )}
-                                                        </div>
-
-                                                        {/* Extension seat details */}
-                                                        <div className="rounded-xl border border-white/5 bg-black/30 p-4 space-y-3">
-                                                            <div className="text-[9px] font-black uppercase tracking-widest text-slate-500">Seat Configuration Details</div>
-                                                            <div className="overflow-x-auto">
-                                                                <table className="w-full text-[10px] font-mono text-left">
-                                                                    <thead>
-                                                                        <tr className="border-b border-white/5 text-slate-500">
-                                                                            <th className="pb-1.5">Ext</th>
-                                                                            <th className="pb-1.5">User</th>
-                                                                            <th className="pb-1.5">Email</th>
-                                                                            <th className="pb-1.5">E911 Address</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        {(selectedRequest.ultatelUsers || []).map((user, idx) => (
-                                                                            <tr key={idx} className="border-b border-white/[0.02] text-slate-400">
-                                                                                <td className="py-1.5 font-bold text-accent">{user.extension}</td>
-                                                                                <td className="py-1.5 text-white">{user.name}</td>
-                                                                                <td className="py-1.5">{user.email}</td>
-                                                                                <td className="py-1.5 truncate max-w-[150px]">{user.e911}</td>
-                                                                            </tr>
-                                                                        ))}
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                 )}
                                             </div>

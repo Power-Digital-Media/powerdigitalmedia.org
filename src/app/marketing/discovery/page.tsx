@@ -376,7 +376,7 @@ export default function MarketingDiscoveryPage() {
                     "Meta Lead Ads (Facebook + Instagram)",
                     "Google Search & Map Pack SEO",
                     "PDM PinDrop™ + Review Velocity",
-                    "2-Minute SMS Lead Follow-Up",
+                    "Capsule CRM & Automated Follow-Up",
                     "Dedicated High-Speed Landing Page",
                     "Full Month-to-Month Growth Retainer",
                   ].map((service) => (

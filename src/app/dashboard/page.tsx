@@ -77,12 +77,16 @@ export default function DashboardPage() {
     }, [user]);
 
     const handleOpenPortal = async () => {
-        if (!clientProfile?.stripeCustomerId) return;
+        if (!clientProfile?.stripeCustomerId || !user) return;
         setPortalLoading(true);
         try {
+            const token = await user.getIdToken();
             const res = await fetch("/api/customer-portal", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
                 body: JSON.stringify({
                     customerId: clientProfile.stripeCustomerId,
                     returnUrl: window.location.href,

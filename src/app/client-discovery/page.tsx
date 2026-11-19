@@ -35,7 +35,7 @@ const services: ServiceRoute[] = [
     title: "Paid Leads & Marketing",
     subtitle: "Ads & Pipeline",
     description:
-      "Targeted Meta & Google Search ad funnels wired straight into Capsule CRM and 2-minute SMS speed-to-lead.",
+      "Targeted Meta & Google Search ad funnels wired straight into Capsule CRM and automated Transpond follow-ups.",
     icon: TrendingUp,
     href: "/marketing/discovery",
     features: [

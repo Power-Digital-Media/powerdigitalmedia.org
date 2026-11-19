@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { UltatelClient } from '@/lib/ultatel';
 import { sendMetaCAPILeadEvent } from '@/lib/meta-capi';
+import { syncVerifiedLeadToCapsule } from '@/lib/capsule-lead-sync';
 import {
     buildMinimizedLeadData,
     executeDurableLeadWorkflow,
@@ -348,8 +348,82 @@ export async function handleFormsPostRequest(
             }
         }
 
-        // If this was an incomplete Step 1 discovery capture, return partialCapture: true and leadVerified: false
+        // If this was an incomplete Step 1 discovery capture, persist abandoned Step-1 lead to Transpond first, then return partialCapture: true and leadVerified: false
         if (isPartialCapture) {
+            const isQaPartial = emailDomain === 'powerdigitalmedia.test';
+            const transpondKey = (process.env.TRANSPOND_API_KEY || '').trim();
+            if (!isQaPartial && transpondKey) {
+                const partialParts = name.split(/\s+/);
+                const partialFirst = partialParts[0] || '';
+                const partialLast = partialParts.slice(1).join(' ') || '';
+                const partialCompany = String(
+                    body.business_name ||
+                        body.company ||
+                        body.organisation ||
+                        body.prospect_company ||
+                        ''
+                ).trim();
+                const partialWebsite = String(
+                    body.website ||
+                        body.website_url ||
+                        body.current_url ||
+                        body.current_website ||
+                        ''
+                ).trim();
+                const partialPhone = String(
+                    body.phone || body.prospect_phone || ''
+                ).trim();
+                const partialGroupId = parseInt(
+                    process.env.TRANSPOND_GROUP_ID || '186443',
+                    10
+                );
+                const partialNotes = [
+                    `### Abandoned Step-1 Discovery Capture (${formSource})`,
+                    `* **Name:** ${name}`,
+                    `* **Email:** ${rawEmail}`,
+                    partialPhone ? `* **Phone:** ${partialPhone}` : '',
+                    partialCompany ? `* **Business:** ${partialCompany}` : '',
+                    partialWebsite ? `* **Website:** ${partialWebsite}` : '',
+                ]
+                    .filter(Boolean)
+                    .join('\n');
+
+                try {
+                    await fetcher('https://api.transpond.io/subscriber', {
+                        method: 'POST',
+                        headers: {
+                            Authorization: `Bearer ${transpondKey}`,
+                            'Content-Type': 'application/json',
+                            Accept: 'application/json',
+                        },
+                        body: JSON.stringify({
+                            emailAddress: rawEmail,
+                            firstName: partialFirst,
+                            lastName: partialLast,
+                            groupId: partialGroupId,
+                            notes: partialNotes,
+                            tags: ['abandoned-web-discovery', formSource],
+                            customFields: {
+                                _capsule_firstName: partialFirst,
+                                _capsule_lastName: partialLast,
+                                _capsule_name: name,
+                                _capsule_person: true,
+                                _capsule_phone: partialPhone,
+                                BUSINESSNAME: partialCompany,
+                            },
+                        }),
+                        signal: AbortSignal.timeout(4000),
+                    });
+                } catch {
+                    console.warn(
+                        JSON.stringify({
+                            event: 'PARTIAL_DISCOVERY_TRANSPOND_WARNING',
+                            formSource,
+                        })
+                    );
+                }
+            }
+
             return NextResponse.json({
                 success: true,
                 leadVerified: false,
@@ -456,6 +530,13 @@ export async function handleFormsPostRequest(
             ? body.services.join(', ')
             : String(body.services || body.services_interested || '');
         const phoneValue = String(body.phone || body.prospect_phone || '');
+        const websiteValue = String(
+            body.website_url ||
+                body.website ||
+                body.current_url ||
+                body.current_website ||
+                ''
+        );
         const pagePathValue = String(body.page_path || '/');
 
         const transpondPayload = {
@@ -483,6 +564,7 @@ export async function handleFormsPostRequest(
             email,
             phone: phoneValue,
             company: companyValue,
+            website: websiteValue,
             servicesInterested: servicesValue,
             roadblockSummary: roadblockValue,
             pagePath: pagePathValue,
@@ -537,6 +619,7 @@ export async function handleFormsPostRequest(
             explicitIdempotencyKey,
             formSource,
             minimizedLead,
+            fullSummaryText: summaryText,
             payloadContentFingerprint,
             clientIp,
             riskScore: riskEvaluation.riskScore,
@@ -569,33 +652,33 @@ export async function handleFormsPostRequest(
             );
         }
 
-        // Only trigger auxiliary SMS & Meta CAPI on first non-replay live acceptance
+        // Only trigger non-blocking Capsule CRM sync & Meta CAPI on first non-replay live acceptance
         if (!isQaTestSubmission && !workflowResult.idempotentReplay) {
-            const optedIn =
-                body.sms_opt_in === 'on' ||
-                body.sms_opt_in === true ||
-                body.sms_opt_in === 'true' ||
-                body.sms_opt_in === '1';
-
-            if (phoneValue && optedIn) {
-                try {
-                    const ultClient = new UltatelClient();
-                    const smsMessage = `Hi ${
-                        firstName || 'there'
-                    }, thanks for connecting with Power Digital Media! We've received your request and will reach out shortly. Reply STOP to opt out.`;
-                    await ultClient.sendSMS({
-                        to: phoneValue,
-                        text: smsMessage,
-                    });
-                } catch {
+            if (formSource !== 'blog-newsletter') {
+                syncVerifiedLeadToCapsule({
+                    submissionId: workflowResult.submissionId,
+                    formSource,
+                    email,
+                    firstName,
+                    lastName,
+                    phone: phoneValue,
+                    company: companyValue,
+                    website: websiteValue,
+                    summaryText,
+                    roadblockSummary: roadblockValue,
+                    servicesInterested: servicesValue,
+                    pagePath: pagePathValue,
+                    extraTags: customTags.map(String),
+                    fetchImpl: fetcher,
+                }).catch(() =>
                     console.warn(
                         JSON.stringify({
-                            event: 'ULTATEL_SMS_NON_FATAL_WARNING',
+                            event: 'CAPSULE_SYNC_NON_FATAL_WARNING',
                             submissionId: workflowResult.submissionId,
                             formSource,
                         })
-                    );
-                }
+                    )
+                );
             }
 
             const cookieHeader = req.headers.get('cookie') || '';
@@ -603,12 +686,14 @@ export async function handleFormsPostRequest(
                 cookieHeader
                     .split(';')
                     .find((c) => c.trim().startsWith('_fbc='))
-                    ?.split('=')[1] || '';
+                    ?.split('=')[1] ||
+                String(body._fbc || '').trim();
             const fbp =
                 cookieHeader
                     .split(';')
                     .find((c) => c.trim().startsWith('_fbp='))
-                    ?.split('=')[1] || '';
+                    ?.split('=')[1] ||
+                String(body._fbp || '').trim();
 
             const referer = req.headers.get('referer') || '';
             const sourceUrl = body.page_path
@@ -626,6 +711,7 @@ export async function handleFormsPostRequest(
                 fbc,
                 fbp,
                 formSource,
+                leadEventId: workflowResult.leadEventId,
             }).catch(() =>
                 console.warn(
                     JSON.stringify({

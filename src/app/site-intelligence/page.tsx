@@ -70,30 +70,15 @@ export default function SiteIntelligencePage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@graph": [
-              {
-                "@type": "SoftwareApplication",
-                name: "PDM Site Intelligence™ Watchtower & SEO Telemetry Platform",
-                applicationCategory: "BusinessApplication",
-                operatingSystem: "Web, Cloud",
-                creator: {
-                  "@id": "https://powerdigitalmedia.org/#organization",
-                },
-                description:
-                  "Proprietary multi-client website monitoring and growth intelligence platform featuring 5-minute multi-probe HTTP & SSL checks, broken-link crawls, Chrome UX Report (CrUX) cellular telemetry, Google Search Console & GA4 growth snapshots, and 2-stage human-approved optimization workflows.",
-              },
-              {
-                "@type": "FAQPage",
-                mainEntity: WATCHTOWER_FAQS.map((faq) => ({
-                  "@type": "Question",
-                  name: faq.q,
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: faq.a,
-                  },
-                })),
-              },
-            ],
+            "@type": "SoftwareApplication",
+            name: "PDM Site Intelligence™ Watchtower & SEO Telemetry Platform",
+            applicationCategory: "BusinessApplication",
+            operatingSystem: "Web, Cloud",
+            creator: {
+              "@id": "https://powerdigitalmedia.org/#organization",
+            },
+            description:
+              "Proprietary multi-client website monitoring and growth intelligence platform featuring 5-minute multi-probe HTTP & SSL checks, broken-link crawls, Chrome UX Report (CrUX) cellular telemetry, Google Search Console & GA4 growth snapshots, and 2-stage human-approved optimization workflows.",
           }),
         }}
       />

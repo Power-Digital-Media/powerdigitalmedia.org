@@ -121,6 +121,16 @@ export function emitVerifiedGenerateLeadEvent(params: {
     // Do NOT also call window.dataLayer.push({ event: 'generate_lead' }) to prevent duplicate GTM/GA4 triggers.
     window.gtag("event", "generate_lead", eventPayload);
 
+    // Also fire Meta Pixel Lead event with matching eventID so Meta CAPI deduplicates browser + server events.
+    if (typeof window.fbq === "function") {
+        window.fbq(
+            "track",
+            "Lead",
+            { content_name: params.formSource },
+            { eventID: params.leadEventId }
+        );
+    }
+
     window.__pdmEmittedLeadEvents = window.__pdmEmittedLeadEvents || [];
     window.__pdmEmittedLeadEvents.push({
         event: "generate_lead",

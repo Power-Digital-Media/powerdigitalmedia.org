@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { adminAuth, adminDb } from "@/lib/firebase-admin";
+import { isLocalDevBypassAllowed } from "@/lib/auth-constants";
 import { google } from "googleapis";
 
 // Mapping of client company/emails to their production domains for white-label analytics
@@ -112,7 +113,7 @@ export async function GET(req: NextRequest) {
         const idToken = authHeader.split("Bearer ")[1];
         let company = "agency";
 
-        if (idToken === "demo-bypass-token") {
+        if (idToken === "demo-bypass-token" && isLocalDevBypassAllowed(req)) {
             company = req.headers.get("X-Demo-Company") || "agency";
         } else {
             let decodedToken;

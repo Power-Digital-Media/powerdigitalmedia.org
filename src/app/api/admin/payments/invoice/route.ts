@@ -1,58 +1,135 @@
 import { NextRequest, NextResponse } from "next/server";
-import { adminAuth } from "@/lib/firebase-admin";
-import { isAdmin } from "@/lib/auth-constants";
+import { adminAuth, adminDb } from "@/lib/firebase-admin";
+import { isAdmin, isLocalDevBypassAllowed } from "@/lib/auth-constants";
 import { Resend } from "resend";
 import fs from "fs";
 import path from "path";
 
-const resend = new Resend(process.env.RESEND_API_KEY || "re_placeholder_key_to_prevent_startup_crash");
+const resend = new Resend(
+    process.env.RESEND_API_KEY || "re_placeholder_key_to_prevent_startup_crash"
+);
 const dbPath = path.join(process.cwd(), "src", "data", "nexus-db.json");
 
-function getDbData() {
+const EMPTY_DB = {
+    clients: [],
+    services: [],
+    payments: [],
+    tasks: [],
+    platforms: [],
+    domainsHosting: [],
+    salesPipeline: [],
+    notes: [],
+};
+
+async function getDbData() {
     if (!fs.existsSync(dbPath)) {
-        return { clients: [], services: [], payments: [], tasks: [], platforms: [], domainsHosting: [], salesPipeline: [], notes: [] };
+        try {
+            const doc = await adminDb
+                .collection("nexus_registry")
+                .doc("database")
+                .get();
+            if (doc.exists) {
+                return doc.data() || { ...EMPTY_DB };
+            }
+        } catch (err) {
+            console.error("[Invoice API] Failed to load Firestore registry:", err);
+        }
+        return { ...EMPTY_DB };
     }
-    return JSON.parse(fs.readFileSync(dbPath, "utf-8"));
+    try {
+        return JSON.parse(fs.readFileSync(dbPath, "utf-8"));
+    } catch {
+        try {
+            const doc = await adminDb
+                .collection("nexus_registry")
+                .doc("database")
+                .get();
+            if (doc.exists) {
+                return doc.data() || { ...EMPTY_DB };
+            }
+        } catch {}
+        return { ...EMPTY_DB };
+    }
 }
 
-function writeDbData(data: any) {
-    fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), "utf-8");
+async function writeDbData(data: any) {
+    try {
+        fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), "utf-8");
+    } catch {
+        // Ignore read-only filesystem error in serverless deployments
+    }
+    try {
+        await adminDb.collection("nexus_registry").doc("database").set(data);
+    } catch (err) {
+        console.error("[Invoice API] Firestore backup failed:", err);
+    }
 }
 
 export async function POST(req: NextRequest) {
     try {
         const authHeader = req.headers.get("Authorization");
         if (!authHeader || !authHeader.startsWith("Bearer ")) {
-            return NextResponse.json({ error: "Unauthorized access — missing token." }, { status: 401 });
+            return NextResponse.json(
+                { error: "Unauthorized access — missing token." },
+                { status: 401 }
+            );
         }
 
         const idToken = authHeader.split("Bearer ")[1];
-        let decodedToken;
-        try {
-            decodedToken = await adminAuth.verifyIdToken(idToken);
-        } catch (err) {
-            return NextResponse.json({ error: "Invalid or expired session token." }, { status: 401 });
+        let decodedToken: { email?: string };
+        if (
+            idToken === "local-admin-bypass-token" &&
+            isLocalDevBypassAllowed(req)
+        ) {
+            decodedToken = { email: "damein@powerdigitalmedia.org" };
+        } else {
+            try {
+                decodedToken = await adminAuth.verifyIdToken(idToken);
+            } catch {
+                return NextResponse.json(
+                    { error: "Invalid or expired session token." },
+                    { status: 401 }
+                );
+            }
         }
 
         if (!isAdmin(decodedToken.email)) {
-            return NextResponse.json({ error: "Forbidden — admin clearance required." }, { status: 403 });
+            return NextResponse.json(
+                { error: "Forbidden — admin clearance required." },
+                { status: 403 }
+            );
         }
 
         const { paymentId } = await req.json();
         if (!paymentId) {
-            return NextResponse.json({ error: "Missing invoice payment identifier." }, { status: 400 });
+            return NextResponse.json(
+                { error: "Missing invoice payment identifier." },
+                { status: 400 }
+            );
         }
 
-        const db = getDbData();
-        const paymentIdx = db.payments.findIndex((p: any) => p.id === paymentId);
+        const db: any = await getDbData();
+        const paymentIdx = (db.payments || []).findIndex(
+            (p: any) => p.id === paymentId
+        );
         if (paymentIdx === -1) {
-            return NextResponse.json({ error: "Invoice payment record not found." }, { status: 404 });
+            return NextResponse.json(
+                { error: "Invoice payment record not found." },
+                { status: 404 }
+            );
         }
 
         const payment = db.payments[paymentIdx];
-        const client = db.clients.find((c: any) => c.companyName === payment.clientName);
+        const client = (db.clients || []).find(
+            (c: any) => c.companyName === payment.clientName
+        );
         if (!client) {
-            return NextResponse.json({ error: `Client profile for company '${payment.clientName}' not found.` }, { status: 404 });
+            return NextResponse.json(
+                {
+                    error: `Client profile for company '${payment.clientName}' not found.`,
+                },
+                { status: 404 }
+            );
         }
 
         // Generate HTML Invoice template
@@ -69,9 +146,9 @@ export async function POST(req: NextRequest) {
                 .divider { height: 1px; background: #eaedf0; margin: 30px 0; }
                 .header-meta { display: flex; justify-content: space-between; font-size: 12px; color: #7f8c8d; }
                 .invoice-title { font-size: 28px; font-weight: 900; margin: 10px 0 20px 0; color: #1e293b; }
-                .table { w-full; border-collapse: collapse; margin-top: 20px; }
-                .table th { font-size: 10px; text-transform: uppercase; tracking: 1px; color: #94a3b8; padding: 12px 0; border-bottom: 2px solid #f1f5f9; text-align: left; }
-                .table td { py: 16px; border-bottom: 1px solid #f1f5f9; font-size: 14px; color: #334155; }
+                .table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+                .table th { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #94a3b8; padding: 12px 0; border-bottom: 2px solid #f1f5f9; text-align: left; }
+                .table td { padding: 16px 0; border-bottom: 1px solid #f1f5f9; font-size: 14px; color: #334155; }
                 .amount-due { font-size: 24px; font-weight: 800; color: #3b82f6; margin-top: 30px; text-align: right; }
                 .instructions { font-size: 12px; line-height: 1.6; color: #64748b; background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px dashed #e2e8f0; margin-top: 30px; }
                 .instructions strong { color: #334155; }
@@ -108,7 +185,7 @@ export async function POST(req: NextRequest) {
                     </thead>
                     <tbody>
                         <tr style="border-bottom: 1px solid #f1f5f9; font-size: 14px; color: #334155;">
-                            <td style="padding: 15px 0;">${payment.relatedService || 'B2B Design & Integration Retainer'}</td>
+                            <td style="padding: 15px 0;">${payment.relatedService || "B2B Design & Integration Retainer"}</td>
                             <td style="padding: 15px 0; text-align: right; font-weight: bold;">$${payment.amount}</td>
                         </tr>
                     </tbody>
@@ -121,13 +198,13 @@ export async function POST(req: NextRequest) {
                     Please remit payment via one of the following methods:
                     <ul style="margin: 10px 0 0 15px; padding: 0;">
                         <li><strong>Bank Transfer:</strong> Please reply to this email for routing & account numbers.</li>
-                        <li><strong>Check:</strong> Make checks payable to <strong>Power Digital Media LLC</strong> and mail to: <em>39201 Jackson, MS</em>.</li>
+                        <li><strong>Check:</strong> Make checks payable to <strong>Power Digital Media LLC</strong> and mail to: <em>2914 Cynthia Rd, Jackson, MS 39209</em>.</li>
                         <li><strong>Cash App / Card:</strong> Contact us directly to trigger an instant secure card payment link.</li>
                     </ul>
                 </div>
                 
                 <div class="footer">
-                    Power Digital Media LLC &bull; Jackson, MS &bull; (601) 446-2393<br>
+                    Power Digital Media LLC &bull; 2914 Cynthia Rd, Jackson, MS 39209 &bull; (601) 446-2393<br>
                     You are receiving this B2B billing protocol request as a certified client partner.
                 </div>
             </div>
@@ -140,25 +217,34 @@ export async function POST(req: NextRequest) {
             from: "Power Digital Media <hello@powerdigitalmedia.org>",
             to: [client.email],
             subject: `[Invoice #${payment.invoiceNum}] Power Digital Media Billing Request`,
-            html: invoiceHtml
+            html: invoiceHtml,
         });
 
         if (error) {
             console.error("[Invoice API] Resend failed:", error);
-            return NextResponse.json({ error: "Failed to dispatch email invoice via Resend." }, { status: 520 });
+            return NextResponse.json(
+                { error: "Failed to dispatch email invoice via Resend." },
+                { status: 520 }
+            );
         }
 
-        // Update payment record in database
+        // Update payment record in local cache & Firestore nexus_registry/database
         db.payments[paymentIdx] = {
             ...payment,
             status: "Sent",
-            notes: `${payment.notes || ''} (Emailed to ${client.email} on ${new Date().toISOString().split('T')[0]})`.trim()
+            notes: `${payment.notes || ""} (Emailed to ${client.email} on ${new Date().toISOString().split("T")[0]})`.trim(),
         };
-        writeDbData(db);
+        await writeDbData(db);
 
-        return NextResponse.json({ success: true, message: `Invoice #${payment.invoiceNum} successfully emailed to ${client.email}.` });
+        return NextResponse.json({
+            success: true,
+            message: `Invoice #${payment.invoiceNum} successfully emailed to ${client.email}.`,
+        });
     } catch (error: any) {
         console.error("[Invoice API] POST failed:", error);
-        return NextResponse.json({ error: error.message || "Failed to dispatch invoice." }, { status: 500 });
+        return NextResponse.json(
+            { error: error.message || "Failed to dispatch invoice." },
+            { status: 500 }
+        );
     }
 }

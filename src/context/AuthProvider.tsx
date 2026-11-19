@@ -14,10 +14,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [activity, setActivity] = useState<ActivityItem[]>([]);
     const [profileLoading, setProfileLoading] = useState(true);
 
-    const fetchProfile = useCallback(async (uid: string) => {
+    const fetchProfile = useCallback(async (firebaseUser: User) => {
         try {
             setProfileLoading(true);
-            const res = await fetch(`/api/dashboard?uid=${uid}`);
+            const idToken = await firebaseUser.getIdToken();
+            const res = await fetch(`/api/dashboard?uid=${encodeURIComponent(firebaseUser.uid)}`, {
+                headers: {
+                    Authorization: `Bearer ${idToken}`,
+                },
+            });
 
             if (res.status === 404) {
                 // Profile doesn't exist yet — trigger onboarding
@@ -57,13 +62,26 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     const refreshProfile = useCallback(async () => {
         if (user?.uid) {
-            await fetchProfile(user.uid);
+            await fetchProfile(user);
         }
     }, [user, fetchProfile]);
 
     useEffect(() => {
-        const demoCompany = typeof window !== 'undefined' ? localStorage.getItem('pdm_demo_company') : null;
-        if (demoCompany) {
+        const isLocalDevHost =
+            process.env.NODE_ENV === 'development' &&
+            typeof window !== 'undefined' &&
+            (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+
+        if (!isLocalDevHost && typeof window !== 'undefined') {
+            try {
+                localStorage.removeItem('pdm_demo_company');
+            } catch {
+                // Ignore storage errors
+            }
+        }
+
+        const demoCompany = isLocalDevHost ? localStorage.getItem('pdm_demo_company') : null;
+        if (isLocalDevHost && demoCompany) {
             console.log("⚡ Sandbox Active: Loading mock credentials for", demoCompany);
             
             let companyName = "Power Digital Media";
@@ -363,7 +381,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             setLoading(false);
 
             if (firebaseUser) {
-                await fetchProfile(firebaseUser.uid);
+                await fetchProfile(firebaseUser);
             } else {
                 setClientProfile(null);
                 setInvoices([]);

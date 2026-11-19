@@ -38,9 +38,9 @@ const capabilities = [
         icon: MapPin,
     },
     {
-        title: "CRM, Ordering & Lead Rescue",
+        title: "CRM, Ordering & Quote Automation",
         description:
-            "Direct Capsule CRM pipelines, 0%-commission Square checkouts, and automated 2-minute SMS lead follow-up so no inquiry slips through the cracks.",
+            "Direct Capsule CRM pipelines, 0%-commission Square checkouts, interactive quote calculators, and automated Transpond follow-ups so no inquiry slips through the cracks.",
         icon: Shield,
     },
 ];
@@ -55,9 +55,9 @@ const theyDeliver = [
 
 const weEngineer = [
     "Custom Next.js builds with 95+ Mobile PageSpeed",
-    "Proprietary PDM PinDrop™ & PinCam™ jobsite apps",
-    "Central MS Google Maps 3-Pack & AI Search optimization",
-    "2-minute missed-call SMS rescue + Capsule CRM sync",
+    "Proprietary PDM PinDrop™ & PinCam™ jobsite apps ($0 seat fees)",
+    "Google Map Pack optimization + GEO & AEO AI Search citations",
+    "Interactive quote calculators + Capsule CRM & Transpond sync",
     "Direct phone & in-person access to Damein in Jackson, MS",
 ];
 

@@ -6,16 +6,20 @@ import { CreditCard, ExternalLink, ShieldCheck, History, Download, Zap, Loader2,
 import { useState } from "react";
 
 export default function DashboardBillingPage() {
-    const { clientProfile, invoices, profileLoading } = useAuth();
+    const { user, clientProfile, invoices, profileLoading } = useAuth();
     const [portalLoading, setPortalLoading] = useState(false);
 
     const handleOpenPortal = async () => {
-        if (!clientProfile?.stripeCustomerId) return;
+        if (!clientProfile?.stripeCustomerId || !user) return;
         setPortalLoading(true);
         try {
+            const token = await user.getIdToken();
             const res = await fetch("/api/customer-portal", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
                 body: JSON.stringify({
                     customerId: clientProfile.stripeCustomerId,
                     returnUrl: window.location.href,

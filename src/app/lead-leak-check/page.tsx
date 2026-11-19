@@ -123,8 +123,8 @@ export default function LeadLeakCheckPage() {
 
   const leakPoints = [
     {
-      title: "Calls go unanswered on the jobsite",
-      desc: "No automatic 2-minute SMS text-back when you're on a roof, under a house, or on another line.",
+      title: "Mobile visitors bounce without an instant quote path",
+      desc: "Slow template sites make homeowners hunt for basic pricing or service info while they're ready to book.",
     },
     {
       title: "Contact forms only send a plain email",
@@ -136,7 +136,7 @@ export default function LeadLeakCheckPage() {
     },
     {
       title: "Zero instant quote confirmation",
-      desc: "Prospects never get an immediate text confirming you received their request.",
+      desc: "Prospects never get an immediate confirmation showing you received their request.",
     },
     {
       title: "Past customers aren't leaving Google reviews",
@@ -150,9 +150,9 @@ export default function LeadLeakCheckPage() {
 
   const notificationItems = [
     {
-      type: "Missed-Call SMS Rescue",
+      type: "Instant Quote Calculator",
       time: "Just now",
-      message: "Auto-text sent to (601) 555-0182",
+      message: "Estimate scoped & synced to CRM",
       icon: Phone,
       color: "text-amber-300 bg-amber-500/10 border-amber-500/25",
     },
@@ -204,7 +204,7 @@ export default function LeadLeakCheckPage() {
                   Are You Losing <span className="text-amber-400">Customers</span> Before You Ever Talk to Them?
                 </h1>
                 <p className="text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed">
-                  Power Digital Media helps Mississippi contractors and local businesses catch every missed call, website quote, Facebook message, and follow-up in under 2 minutes.
+                  Power Digital Media helps Mississippi contractors and local businesses capture every website quote, Google Map Pack click, AI search inquiry, and CRM follow-up automatically.
                 </p>
               </div>
 
@@ -240,9 +240,9 @@ export default function LeadLeakCheckPage() {
                 <div className="flex flex-wrap gap-2.5">
                   {[
                     { name: "Website Forms", icon: Monitor },
-                    { name: "CRM Pipeline", icon: Users },
+                    { name: "Capsule CRM", icon: Users },
                     { name: "Email Follow-Up", icon: Mail },
-                    { name: "2-Min SMS Rescue", icon: MessageSquare },
+                    { name: "GEO & AI Search", icon: MessageSquare },
                     { name: "Google Map Pack", icon: Phone },
                   ].map((channel, i) => {
                     const Icon = channel.icon;
@@ -445,8 +445,8 @@ export default function LeadLeakCheckPage() {
                           <option value="My website is not bringing leads">
                             My website isn&apos;t bringing calls
                           </option>
-                          <option value="Missed calls">Catching missed calls</option>
-                          <option value="Email/text marketing">Google reviews &amp; text follow-ups</option>
+                          <option value="Quote conversion">Converting visitors into quotes</option>
+                          <option value="Email/text marketing">Google reviews &amp; automated follow-ups</option>
                           <option value="Not sure">Not sure — check everything</option>
                         </select>
                       </div>
@@ -510,7 +510,7 @@ export default function LeadLeakCheckPage() {
                 Jackson, Mississippi • Direct Local Support
               </span>
               <p className="text-sm text-slate-300 leading-relaxed">
-                Built by <strong className="text-white">Power Digital Media LLC</strong> — helping Mississippi contractors and local businesses win with custom Next.js websites, PDM PinDrop™ &amp; PinCam™ field apps, Capsule CRM, and 2-minute SMS lead rescue.
+                Built by <strong className="text-white">Power Digital Media LLC</strong> — helping Mississippi contractors and local businesses win with custom Next.js websites, Google Map Pack optimization, PDM PinDrop™ &amp; PinCam™ field apps, and Capsule CRM automation.
               </p>
             </div>
             <BBBSeal variant="badge" className="shrink-0" />

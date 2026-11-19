@@ -30,9 +30,8 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files (never commit secrets)
 .env*
-!.env.production
 
 # vercel
 .vercel
@@ -44,8 +43,9 @@ next-env.d.ts
 # Local Netlify folder
 .netlify
 
-# local scripts with sensitive data
+# local scripts and credentials with sensitive data
 /scripts/create-admin-user.ts
+/src/data/nexus-plaid.json
 /scratch/
 scratch_arch_screenshot.png
 

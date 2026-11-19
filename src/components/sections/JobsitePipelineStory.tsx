@@ -75,9 +75,9 @@ export default function JobsitePipelineStory() {
             },
             {
               idx: 2 as const,
-              step: "STEP 03 • WHILE YOU'RE ON A LADDER",
-              title: "Lock In Calls in Under 2 Minutes",
-              desc: "Missed calls & quote forms trigger instant SMS text-backs and sync straight into your CRM pipeline.",
+              step: "STEP 03 • AUTOMATED CRM & FOLLOW-UPS",
+              title: "Route Every Quote Into Capsule CRM",
+              desc: "Interactive quote calculators & web forms sync straight into Capsule CRM with automated Transpond follow-ups.",
               icon: PhoneIncoming,
             },
           ].map((item) => {
@@ -439,31 +439,31 @@ export default function JobsitePipelineStory() {
                 <div className="rounded-2xl border border-white/15 bg-[#070a12] p-4 sm:p-7 space-y-4">
                   <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-3">
                     <span className="text-xs font-mono font-bold text-amber-400 uppercase">
-                      ⚡ Live Lead-Rescue Timeline (While You&apos;re on a Job)
+                      ⚡ Live Quote-to-CRM Pipeline (Zero Dropped Leads)
                     </span>
-                    <span className="text-[11px] font-mono text-emerald-400">Response: 18 Seconds</span>
+                    <span className="text-[11px] font-mono text-emerald-400">Direct API Sync</span>
                   </div>
 
                   {[
                     {
                       time: "2:14:02 PM",
-                      badge: "INBOUND LEAD",
-                      title: "Homeowner in Brandon, MS taps 'Get Roof / AC Quote' on mobile",
-                      detail: "Site loads in 1.4s on cellular — zero slow WordPress bounce.",
+                      badge: "INBOUND QUOTE",
+                      title: "Homeowner in Brandon, MS submits interactive roof / AC quote form",
+                      detail: "Sub-second Next.js 16 load on cellular — zero slow WordPress bounce.",
                       color: "border-amber-500/30 bg-amber-500/10 text-amber-300",
                     },
                     {
-                      time: "2:14:09 PM",
-                      badge: "CAPSULE CRM + ALERT",
-                      title: "Damein's pipeline creates a deal card & pings your cell via SMS",
-                      detail: "Full name, address, service needed, and clickable callback button on your phone.",
+                      time: "2:14:04 PM",
+                      badge: "CAPSULE CRM + DEAL",
+                      title: "Pipeline creates a contact card, opens a deal & alerts your phone",
+                      detail: "Full name, service city, project scope, and clickable callback details logged cleanly.",
                       color: "border-sky-500/30 bg-sky-500/10 text-sky-300",
                     },
                     {
-                      time: "2:14:20 PM",
-                      badge: "AUTO SMS TO CUSTOMER",
-                      title: "Instant text-back stops them from calling the next company on Google",
-                      detail: "“Hey Mike! Got your request — we're finishing a job nearby in Brandon and will call you in 10 mins.”",
+                      time: "2:14:06 PM",
+                      badge: "TRANSPOND FOLLOW-UP",
+                      title: "Automated confirmation engages the homeowner before they keep shopping",
+                      detail: "“Hey Mike! Got your Brandon roof inspection request — our estimator is reviewing your address now.”",
                       color: "border-emerald-500/30 bg-emerald-500/10 text-emerald-300",
                     },
                   ].map((row) => (
@@ -490,13 +490,13 @@ export default function JobsitePipelineStory() {
 
               <div className="lg:col-span-5 space-y-6">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-bold">
-                  Speed-to-Lead Automation
+                  CRM &amp; Automated Follow-Up
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-black text-white leading-tight uppercase">
                   78% of Homeowners Hire the First Contractor Who Responds.
                 </h3>
                 <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                  When you&apos;re in an attic, on a roof, or running an excavator, missed calls cost thousands. We wire your website, lead forms, <strong className="text-white">Capsule CRM</strong>, and automated SMS together so every lead gets an immediate personal response—and lands right on your phone.
+                  When you&apos;re in an attic, on a roof, or running an excavator, scattered inbox leads cost thousands. We wire your interactive quote calculators, lead forms, <strong className="text-white">Capsule CRM</strong>, and automated Transpond sequences together so every inquiry is logged, tagged, and followed up automatically.
                 </p>
                 <div className="flex flex-wrap items-center gap-3 pt-1">
                   <Link

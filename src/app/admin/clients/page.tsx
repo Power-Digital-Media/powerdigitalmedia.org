@@ -72,7 +72,6 @@ interface Client {
     apiKeys?: ApiKey[];
     capsuleStatus?: string;
     transpondStatus?: string;
-    ultatelStatus?: string;
 }
 
 interface Contact {
@@ -387,7 +386,6 @@ export default function ExcelAlignedNexusRegistry() {
     const [cNotes, setCNotes] = useState("");
     const [cCapsuleStatus, setCCapsuleStatus] = useState("Not Registered");
     const [cTranspondStatus, setCTranspondStatus] = useState("Not Registered");
-    const [cUltatelStatus, setCUltatelStatus] = useState("Not Registered");
 
     // Form Hooks: Service
     const [sClient, setSClient] = useState("");
@@ -748,14 +746,13 @@ export default function ExcelAlignedNexusRegistry() {
             primaryNeed: cNeed,
             notes: cNotes,
             capsuleStatus: cCapsuleStatus,
-            transpondStatus: cTranspondStatus,
-            ultatelStatus: cUltatelStatus
+            transpondStatus: cTranspondStatus
         };
         const updated = { ...db, clients: [...db.clients, item] };
         await saveDatabase(updated);
         setOpenModal(null);
         setCName(""); setCCompany(""); setCPhone(""); setCEmail(""); setCWeb(""); setCAddress(""); setCVal(0); setCSetup(0); setCStart(""); setCFollowUp(""); setCNeed(""); setCNotes("");
-        setCCapsuleStatus("Not Registered"); setCTranspondStatus("Not Registered"); setCUltatelStatus("Not Registered");
+        setCCapsuleStatus("Not Registered"); setCTranspondStatus("Not Registered");
     };
 
     const handleAddService = async (e: React.FormEvent) => {
@@ -1311,9 +1308,6 @@ export default function ExcelAlignedNexusRegistry() {
                                                                     <span className={`px-1.5 py-0.5 rounded text-[7px] font-black uppercase tracking-wider border ${c.transpondStatus === 'Active' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-red-500/10 border-red-500/20 text-red-400'}`} title="Transpond Marketing">
                                                                         Transpond
                                                                     </span>
-                                                                    <span className={`px-1.5 py-0.5 rounded text-[7px] font-black uppercase tracking-wider border ${c.ultatelStatus === 'Active' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-red-500/10 border-red-500/20 text-red-400'}`} title="Ultatel PBX">
-                                                                        Ultatel
-                                                                    </span>
                                                                 </div>
                                                             </div>
 
@@ -1372,7 +1366,7 @@ export default function ExcelAlignedNexusRegistry() {
                                                             <th className="py-4 px-6">Client / Company Name</th>
                                                             <th className="py-4 px-6">Contact Owner</th>
                                                             <th className="py-4 px-6">Status</th>
-                                                            <th className="py-4 px-6">CRM & Phone Sync</th>
+                                                            <th className="py-4 px-6">CRM &amp; Email Sync</th>
                                                             <th className="py-4 px-6 text-right">Monthly Retainer</th>
                                                             <th className="py-4 px-6 text-right text-emerald-400">Paid This Month</th>
                                                             <th className="py-4 px-6 text-right text-accent">Outstanding (Current Month)</th>
@@ -1402,9 +1396,6 @@ export default function ExcelAlignedNexusRegistry() {
                                                                             </span>
                                                                             <span className={`px-1.5 py-0.5 rounded text-[7px] font-black uppercase tracking-wider border ${c.transpondStatus === 'Active' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-red-500/10 border-red-500/20 text-red-400'}`} title="Transpond Marketing">
                                                                                 Transpond
-                                                                            </span>
-                                                                            <span className={`px-1.5 py-0.5 rounded text-[7px] font-black uppercase tracking-wider border ${c.ultatelStatus === 'Active' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-red-500/10 border-red-500/20 text-red-400'}`} title="Ultatel PBX">
-                                                                                Ultatel
                                                                             </span>
                                                                         </div>
                                                                     </td>
@@ -2284,13 +2275,6 @@ export default function ExcelAlignedNexusRegistry() {
                                             <option value="Active">Active</option>
                                         </select>
                                     </div>
-                                    <div className="space-y-1">
-                                        <label className="text-[9px] font-black uppercase tracking-widest text-white/40">Ultatel PBX</label>
-                                        <select value={cUltatelStatus} onChange={e => setCUltatelStatus(e.target.value)} className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-3 text-xs text-white">
-                                            <option value="Not Registered">Not Registered</option>
-                                            <option value="Active">Active</option>
-                                        </select>
-                                    </div>
                                 </div>
                                 <div className="space-y-1">
                                     <label className="text-[9px] font-black uppercase tracking-widest text-white/40">Notes</label>
@@ -2982,12 +2966,6 @@ export default function ExcelAlignedNexusRegistry() {
                                                 <span className="text-[7px] font-black uppercase tracking-wider text-white/30">Transpond</span>
                                                 <span className={`inline-block mt-1.5 px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-widest border ${selectedDetailClient.transpondStatus === 'Active' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-white/5 border-white/10 text-white/30'}`}>
                                                     {selectedDetailClient.transpondStatus || 'Not Registered'}
-                                                </span>
-                                            </div>
-                                            <div className="p-3 rounded-xl bg-black/40 border border-white/5 flex flex-col items-center text-center">
-                                                <span className="text-[7px] font-black uppercase tracking-wider text-white/30">Ultatel PBX</span>
-                                                <span className={`inline-block mt-1.5 px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-widest border ${selectedDetailClient.ultatelStatus === 'Active' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-white/5 border-white/10 text-white/30'}`}>
-                                                    {selectedDetailClient.ultatelStatus || 'Not Registered'}
                                                 </span>
                                             </div>
                                         </div>

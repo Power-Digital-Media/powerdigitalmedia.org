@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { adminAuth, adminDb } from "@/lib/firebase-admin";
-import { isAdmin } from "@/lib/auth-constants";
+import { isAdmin, isLocalDevBypassAllowed } from "@/lib/auth-constants";
 import fs from "fs";
 import path from "path";
 import { syncActiveClientsToTranspond } from "@/lib/crm-sync";
@@ -13,11 +13,20 @@ async function getDbData() {
         const doc = await adminDb.collection("nexus_registry").doc("database").get();
         return doc.exists ? doc.data() : { clients: [], services: [], payments: [], tasks: [], platforms: [], domainsHosting: [] };
     }
-    return JSON.parse(fs.readFileSync(dbPath, "utf-8"));
+    try {
+        return JSON.parse(fs.readFileSync(dbPath, "utf-8"));
+    } catch {
+        const doc = await adminDb.collection("nexus_registry").doc("database").get();
+        return doc.exists ? doc.data() : { clients: [], services: [], payments: [], tasks: [], platforms: [], domainsHosting: [] };
+    }
 }
 
 async function writeDbData(data: any) {
-    fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), "utf-8");
+    try {
+        fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), "utf-8");
+    } catch {
+        // Read-only serverless filesystem
+    }
     try {
         await adminDb.collection("nexus_registry").doc("database").set(data);
     } catch (err) {
@@ -33,8 +42,8 @@ export async function POST(req: NextRequest) {
         }
 
         const idToken = authHeader.split("Bearer ")[1];
-        let decodedToken;
-        if (idToken === "local-admin-bypass-token") {
+        let decodedToken: { email?: string };
+        if (idToken === "local-admin-bypass-token" && isLocalDevBypassAllowed(req)) {
             decodedToken = { email: "damein@powerdigitalmedia.org" };
         } else {
             try {
@@ -48,13 +57,24 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: "Forbidden — admin clearance required." }, { status: 403 });
         }
 
-        const db = await getDbData();
+        const db: any = await getDbData();
         let links: any[] = [];
         if (fs.existsSync(plaidDbPath)) {
             try {
                 const plaidData = JSON.parse(fs.readFileSync(plaidDbPath, "utf-8"));
                 links = plaidData.links || [];
             } catch {}
+        }
+        if (links.length === 0) {
+            try {
+                const credDoc = await adminDb.collection("nexus_plaid_links").doc("credentials").get();
+                if (credDoc.exists) {
+                    const credData = credDoc.data();
+                    links = credData?.links || [];
+                }
+            } catch (credErr) {
+                console.error("⚠️ Failed to load Plaid credentials from Firestore:", credErr);
+            }
         }
 
         const reconciliationLog: string[] = [];

@@ -43,8 +43,8 @@ const capabilities: CapabilityCard[] = [
             "Every website quote request, phone call, and inspection booking syncs directly into Capsule CRM with automated Transpond SMS and email follow-ups.",
         features: [
             "Capsule CRM Pipeline & Stage Design",
-            "2-Minute Missed-Call & Form SMS Replies",
-            "Transpond Automated Email Sequences",
+            "Instant Quote Calculator & Form Routing",
+            "Transpond Automated Email & SMS Sequences",
             "Source & Neighborhood Lead Tagging",
         ],
         icon: Shield,
@@ -231,9 +231,9 @@ export default function CustomApplicationsPage() {
                                         },
                                         {
                                             step: "03",
-                                            title: "2-Minute SMS & Email Follow-Up",
-                                            desc: "Sends immediate confirmation text/email so leads never call the next contractor on Google.",
-                                            badge: "Transpond + SMS",
+                                            title: "Automated Transpond Follow-Up",
+                                            desc: "Sends immediate confirmation & estimate follow-ups so prospects stay engaged.",
+                                            badge: "Transpond Automation",
                                         },
                                         {
                                             step: "04",
@@ -523,7 +523,7 @@ export default function CustomApplicationsPage() {
                                 </h3>
                                 <p className="text-slate-300 text-sm leading-relaxed mb-6">
                                     Complete Capsule CRM &amp; Transpond setup wired directly to your
-                                    website forms, quote calculators, and missed-call SMS workflows.
+                                    website forms, interactive quote calculators, and automated nurture workflows.
                                 </p>
                                 <div className="pb-6 mb-6 border-b border-white/[0.08]">
                                     <span className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight block">

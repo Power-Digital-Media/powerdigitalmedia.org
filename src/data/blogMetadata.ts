@@ -597,8 +597,8 @@ export const blogMetadata: BlogMetadata[] = [
     "category": "Daily Intel",
     "image": "/blog-images/daily-intel-january-31-software-surge-1770819872030.webp",
     "author": {
-      "name": "ClaudeBot",
-      "role": "Autonomous Intelligence"
+      "name": "Power Digital Media",
+      "role": "Editorial Team"
     }
   },
   {
@@ -609,8 +609,8 @@ export const blogMetadata: BlogMetadata[] = [
     "category": "Daily Intel",
     "image": "/blog-images/daily-intel-january-2026-gear-drop-1770819890185.webp",
     "author": {
-      "name": "ClaudeBot",
-      "role": "Autonomous Intelligence"
+      "name": "Power Digital Media",
+      "role": "Editorial Team"
     }
   },
   {
@@ -657,8 +657,8 @@ export const blogMetadata: BlogMetadata[] = [
     "category": "Daily Intel",
     "image": "/blog-images/direct-neural-intelligence-briefing-studio-tech-innovations-and-integration-1770819976791.webp",
     "author": {
-      "name": "ClaudeBot",
-      "role": "Autonomous Intelligence"
+      "name": "Power Digital Media",
+      "role": "Editorial Team"
     }
   },
   {
@@ -669,8 +669,8 @@ export const blogMetadata: BlogMetadata[] = [
     "category": "Daily Intel",
     "image": "/blog-images/direct-neural-intelligence-briefing-studio-tech-innovations-1770819996600.webp",
     "author": {
-      "name": "ClaudeBot",
-      "role": "Autonomous Intelligence"
+      "name": "Power Digital Media",
+      "role": "Editorial Team"
     }
   },
   {
@@ -681,8 +681,8 @@ export const blogMetadata: BlogMetadata[] = [
     "category": "Daily Intel",
     "image": "/blog-images/studio-tech-trends-and-innovations-february-2026-1770820016036.webp",
     "author": {
-      "name": "ClaudeBot",
-      "role": "Autonomous Intelligence"
+      "name": "Power Digital Media",
+      "role": "Editorial Team"
     }
   },
   {
@@ -693,8 +693,8 @@ export const blogMetadata: BlogMetadata[] = [
     "category": "AI Tech",
     "image": "/blog-images/ai-model-showdown-gpt-5-3-vs-gemini-3-2026-1770820033983.webp",
     "author": {
-      "name": "ClaudeBot",
-      "role": "Autonomous Intelligence"
+      "name": "Power Digital Media",
+      "role": "Editorial Team"
     }
   },
   {
@@ -765,8 +765,8 @@ export const blogMetadata: BlogMetadata[] = [
     "category": "Daily Intel",
     "image": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1200&auto=format&fit=crop",
     "author": {
-      "name": "ClaudeBot",
-      "role": "Autonomous Intelligence"
+      "name": "Power Digital Media",
+      "role": "Editorial Team"
     }
   },
   {
@@ -777,8 +777,8 @@ export const blogMetadata: BlogMetadata[] = [
     "category": "Hardware",
     "image": "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=1200&auto=format&fit=crop",
     "author": {
-      "name": "ClaudeBot",
-      "role": "Autonomous Intelligence"
+      "name": "Power Digital Media",
+      "role": "Editorial Team"
     }
   },
   {
@@ -789,8 +789,8 @@ export const blogMetadata: BlogMetadata[] = [
     "category": "Software",
     "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop",
     "author": {
-      "name": "ClaudeBot",
-      "role": "Autonomous Intelligence"
+      "name": "Power Digital Media",
+      "role": "Editorial Team"
     }
   },
   {
@@ -801,8 +801,8 @@ export const blogMetadata: BlogMetadata[] = [
     "category": "AI Tech",
     "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop",
     "author": {
-      "name": "ClaudeBot",
-      "role": "Autonomous Intelligence"
+      "name": "Power Digital Media",
+      "role": "Editorial Team"
     }
   },
   {
@@ -813,8 +813,8 @@ export const blogMetadata: BlogMetadata[] = [
     "category": "Strategy",
     "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop",
     "author": {
-      "name": "ClaudeBot",
-      "role": "Autonomous Intelligence"
+      "name": "Power Digital Media",
+      "role": "Editorial Team"
     }
   },
   {

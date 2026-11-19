@@ -345,8 +345,8 @@ export default function FreeAuditPage() {
                           <option value="Restaurant / Online Ordering Website">
                             Restaurant / Local Commerce Website
                           </option>
-                          <option value="CRM & Missed-Call Automation">
-                            CRM &amp; Missed-Call Text Automation
+                          <option value="Capsule CRM & Quote Automation">
+                            Capsule CRM &amp; Quote Follow-Up Automation
                           </option>
                         </select>
                       </div>
