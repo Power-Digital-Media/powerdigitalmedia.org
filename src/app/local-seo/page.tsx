@@ -84,10 +84,14 @@ const LOCAL_SEO_FAQS = [
 const CITIES = [
   { name: "Jackson, MS", slug: "jackson-ms", note: "Fondren, Belhaven, West Jackson & Metro HQ" },
   { name: "Madison, MS", slug: "madison-ms", note: "Annandale, Reunion, Hwy 463 & Gluckstadt" },
+  { name: "Flora, MS", slug: "flora-ms", note: "Hwy 49 Corridor, Kearney Park & Cox Ferry" },
   { name: "Ridgeland, MS", slug: "ridgeland-ms", note: "Highland Colony, Renaissance & Reservoir" },
   { name: "Brandon, MS", slug: "brandon-ms", note: "Crossgates, Castlewoods & 39042/39047" },
   { name: "Flowood, MS", slug: "flowood-ms", note: "Lakeland Dr Corridor, Dogwood & Commercial" },
+  { name: "Pearl, MS", slug: "pearl-ms", note: "I-20, Airport Rd & Hwy 80 Trade Corridor" },
   { name: "Clinton, MS", slug: "clinton-ms", note: "Olde Towne, Lovett, Hwy 80 & I-20 West" },
+  { name: "Canton, MS", slug: "canton-ms", note: "Courthouse Square, Hwy 51 & Nissan Pkwy" },
+  { name: "Byram, MS", slug: "byram-ms", note: "I-55 South, Siwell Rd & Terry Rd Growth" },
 ];
 
 export default function LocalSEOPage() {
@@ -200,7 +204,7 @@ export default function LocalSEOPage() {
                 <div>
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="px-2 py-0.5 rounded bg-emerald-400 text-slate-950 text-[10px] font-black uppercase shrink-0">
-                      #1 Map Pack Target
+                      Top 3 Map Pack Target
                     </span>
                     <span className="font-black text-white text-sm sm:text-base">
                       Your Company + PinDrop™ Geo Proof
@@ -321,7 +325,7 @@ export default function LocalSEOPage() {
             </Link>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid sm:grid-cols-2 gap-4">
             {CITIES.map((city) => (
               <Link
                 key={city.slug}

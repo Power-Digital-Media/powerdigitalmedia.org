@@ -6,7 +6,7 @@ import { Suspense } from "react";
 import AnalyticsEngine from "@/components/infrastructure/AnalyticsEngine";
 import MotionProvider from "@/components/infrastructure/MotionProvider";
 import SmoothScrollProvider from "@/components/infrastructure/SmoothScrollProvider";
-import StickyMobileDock from "@/components/layout/StickyMobileDock";
+import MobileStickyConversionBar from "@/components/layout/MobileStickyConversionBar";
 
 const ExitIntentPopup = dynamic(() => import("@/components/ui/ExitIntentPopup"));
 
@@ -147,11 +147,14 @@ export default function RootLayout({
                   areaServed: [
                     { "@type": "City", name: "Jackson", sameAs: "https://en.wikipedia.org/wiki/Jackson,_Mississippi" },
                     { "@type": "City", name: "Madison", sameAs: "https://en.wikipedia.org/wiki/Madison,_Mississippi" },
+                    { "@type": "City", name: "Flora", sameAs: "https://en.wikipedia.org/wiki/Flora,_Mississippi" },
                     { "@type": "City", name: "Ridgeland", sameAs: "https://en.wikipedia.org/wiki/Ridgeland,_Mississippi" },
                     { "@type": "City", name: "Brandon", sameAs: "https://en.wikipedia.org/wiki/Brandon,_Mississippi" },
                     { "@type": "City", name: "Flowood", sameAs: "https://en.wikipedia.org/wiki/Flowood,_Mississippi" },
-                    { "@type": "City", name: "Clinton", sameAs: "https://en.wikipedia.org/wiki/Clinton,_Mississippi" },
                     { "@type": "City", name: "Pearl", sameAs: "https://en.wikipedia.org/wiki/Pearl,_Mississippi" },
+                    { "@type": "City", name: "Clinton", sameAs: "https://en.wikipedia.org/wiki/Clinton,_Mississippi" },
+                    { "@type": "City", name: "Canton", sameAs: "https://en.wikipedia.org/wiki/Canton,_Mississippi" },
+                    { "@type": "City", name: "Byram", sameAs: "https://en.wikipedia.org/wiki/Byram,_Mississippi" },
                     { "@type": "State", name: "Mississippi" },
                   ],
                   founder: {
@@ -260,7 +263,7 @@ export default function RootLayout({
         <MotionProvider>
           <SmoothScrollProvider>
             {children}
-            <StickyMobileDock />
+            <MobileStickyConversionBar />
             <ExitIntentPopup />
           </SmoothScrollProvider>
         </MotionProvider>

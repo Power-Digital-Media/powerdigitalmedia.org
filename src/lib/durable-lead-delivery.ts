@@ -122,6 +122,40 @@ const MAX_SUMMARY_LENGTH = 2000;
 const MAX_FIELD_LENGTH = 250;
 
 /**
+ * Resolves the canonical Transpond subscriber group ID for a given website form source.
+ */
+export function resolveTranspondGroupIdForFormSource(formSource: string): number {
+    const defaultGroupId = parseInt(process.env.TRANSPOND_GROUP_ID || '186443', 10);
+    if (formSource === 'community-event') {
+        return 187780;
+    }
+    if (formSource === 'founders-100-reservation') {
+        return parseInt(
+            process.env.TRANSPOND_FOUNDERS100_GROUP_ID || '187913',
+            10
+        );
+    }
+    if (
+        formSource === 'unified-solutions-lead' ||
+        formSource === 'interactive-growth-estimator'
+    ) {
+        return parseInt(
+            process.env.TRANSPOND_SOLUTIONS_GROUP_ID ||
+                process.env.TRANSPOND_GROUP_ID ||
+                '187918',
+            10
+        );
+    }
+    if (formSource === 'lead-leak-check') {
+        return parseInt(
+            process.env.TRANSPOND_LEAD_LEAK_CHECK_GROUP_ID || '187977',
+            10
+        );
+    }
+    return defaultGroupId;
+}
+
+/**
  * Scrubs any email address, phone number, or bearer token from strings before logging or storing in alerts.
  */
 export function redactPiiFromText(input: string): string {

@@ -87,6 +87,11 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3 text-sm text-slate-400">
               <li>
+                <Link href="/estimate" className="hover:text-amber-300 transition-colors font-semibold text-amber-300">
+                  Instant Scope Estimator
+                </Link>
+              </li>
+              <li>
                 <Link href="/pincam" className="hover:text-amber-300 transition-colors font-semibold text-white">
                   PinCam™ Field Camera App
                 </Link>
@@ -139,37 +144,28 @@ export default function Footer() {
             <h4 className="font-mono font-bold mb-5 uppercase tracking-widest text-[11px] text-amber-400">
               Service Areas
             </h4>
-            <ul className="space-y-3 text-sm text-slate-400">
-              <li>
-                <Link href="/locations/jackson-ms" className="hover:text-amber-300 transition-colors">
-                  Jackson, MS
-                </Link>
-              </li>
-              <li>
-                <Link href="/locations/madison-ms" className="hover:text-amber-300 transition-colors">
-                  Madison, MS
-                </Link>
-              </li>
-              <li>
-                <Link href="/locations/ridgeland-ms" className="hover:text-amber-300 transition-colors">
-                  Ridgeland, MS
-                </Link>
-              </li>
-              <li>
-                <Link href="/locations/brandon-ms" className="hover:text-amber-300 transition-colors">
-                  Brandon, MS
-                </Link>
-              </li>
-              <li>
-                <Link href="/locations/flowood-ms" className="hover:text-amber-300 transition-colors">
-                  Flowood, MS
-                </Link>
-              </li>
-              <li>
-                <Link href="/locations/clinton-ms" className="hover:text-amber-300 transition-colors">
-                  Clinton, MS
-                </Link>
-              </li>
+            <ul className="grid grid-cols-2 lg:grid-cols-1 gap-2.5 text-sm text-slate-400">
+              {[
+                { name: "Jackson, MS", slug: "jackson-ms" },
+                { name: "Madison, MS", slug: "madison-ms" },
+                { name: "Flora, MS", slug: "flora-ms" },
+                { name: "Ridgeland, MS", slug: "ridgeland-ms" },
+                { name: "Brandon, MS", slug: "brandon-ms" },
+                { name: "Flowood, MS", slug: "flowood-ms" },
+                { name: "Pearl, MS", slug: "pearl-ms" },
+                { name: "Clinton, MS", slug: "clinton-ms" },
+                { name: "Canton, MS", slug: "canton-ms" },
+                { name: "Byram, MS", slug: "byram-ms" },
+              ].map((loc) => (
+                <li key={loc.slug}>
+                  <Link
+                    href={`/locations/${loc.slug}`}
+                    className="hover:text-amber-300 transition-colors"
+                  >
+                    {loc.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

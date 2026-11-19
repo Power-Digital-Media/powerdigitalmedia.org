@@ -20,7 +20,7 @@
 - **[Custom Next.js Web Design](https://powerdigitalmedia.org/web-design)**: Hand-coded Next.js 16 websites for contractors and standout local businesses—custom-scoped case-by-case with 100% codebase ownership and optional month-to-month managed edge care.
 - **[Local SEO & Google Maps](https://powerdigitalmedia.org/local-seo)**: Google 3-Pack optimization, neighborhood JSON-LD schema, and review velocity across Central Mississippi.
 - **[Custom Applications & CRM](https://powerdigitalmedia.org/custom-applications)** | **[Growth Marketing](https://powerdigitalmedia.org/marketing)**
-- **[Free 5-Minute Rank & Site Video](https://powerdigitalmedia.org/free-audit)** | **[Live Portfolio](https://powerdigitalmedia.org/our-work)** | **[Verified Reviews](https://powerdigitalmedia.org/reviews)** | **[Book a 15-Min Scope Call](https://powerdigitalmedia.org/book)**
+- **[Interactive Scope Estimator](https://powerdigitalmedia.org/estimate)** | **[Free 5-Minute Rank & Site Video](https://powerdigitalmedia.org/free-audit)** | **[Live Portfolio](https://powerdigitalmedia.org/our-work)** | **[Verified Reviews](https://powerdigitalmedia.org/reviews)** | **[Book a 15-Min Scope Call](https://powerdigitalmedia.org/book)**
 
 ## Verified Mississippi Deployments
 - **[Born Again Roofing](https://bornagainroofing.com)**: 99+ live PDM PinDrop™ GPS job pins, Capsule CRM routing & SMS 5-star review automation.
@@ -35,3 +35,7 @@
 - **[Brandon, MS](https://powerdigitalmedia.org/locations/brandon-ms)**
 - **[Flowood, MS](https://powerdigitalmedia.org/locations/flowood-ms)**
 - **[Clinton, MS](https://powerdigitalmedia.org/locations/clinton-ms)**
+- **[Flora, MS](https://powerdigitalmedia.org/locations/flora-ms)**
+- **[Pearl, MS](https://powerdigitalmedia.org/locations/pearl-ms)**
+- **[Canton, MS](https://powerdigitalmedia.org/locations/canton-ms)**
+- **[Byram, MS](https://powerdigitalmedia.org/locations/byram-ms)**

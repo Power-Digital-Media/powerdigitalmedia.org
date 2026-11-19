@@ -33,7 +33,7 @@ This document provides a factual, machine-readable reference for Power Digital M
 ---
 
 ## 3. Core Services & Custom Case-by-Case Scoping
-- **Engagement & Quoting Model**: Power Digital Media LLC scopes every website build, field-app deployment, CRM/ordering integration, and month-to-month growth retainer **case-by-case** so clients never pay for cookie-cutter agency bloat. Prospects start with a **[Free 5-Minute Rank & Site Video Audit](https://powerdigitalmedia.org/free-audit)** or a **[15-Minute Strategy Call with Damein Donald](https://powerdigitalmedia.org/book)** to receive an exact written scope.
+- **Engagement & Quoting Model**: Power Digital Media LLC scopes every website build, field-app deployment, CRM/ordering integration, and month-to-month growth retainer **case-by-case** so clients never pay for cookie-cutter agency bloat. Prospects can configure their custom stack inside the **[Interactive Growth & Scope Estimator](https://powerdigitalmedia.org/estimate)**, request a **[Free 5-Minute Rank & Site Video Audit](https://powerdigitalmedia.org/free-audit)**, or book a **[15-Minute Strategy Call with Damein Donald](https://powerdigitalmedia.org/book)** to receive an exact written scope.
 - **[Contractor Growth Systems](https://powerdigitalmedia.org/contractors)**: Complete trade lead-generation infrastructure combining a sub-second custom website, Google Map Pack optimization, GEO & AEO AI search citations, PinCam™ + PinDrop™ crew tools ($0 seat fees), and Capsule CRM + Transpond follow-up automation.
 - **[Custom Next.js Web Design](https://powerdigitalmedia.org/web-design)**: Mobile-first custom Next.js 16 engineering for contractors, restaurants, e-commerce, churches, and local organizations—with 100% codebase ownership upon build completion and optional month-to-month managed edge care.
 - **[Local SEO & Google Map Pack Engineering](https://powerdigitalmedia.org/local-seo)**: Google 3-Pack optimization, city/subdivision hubs, geo-schema, and automated review velocity across Central Mississippi.
@@ -57,6 +57,10 @@ This document provides a factual, machine-readable reference for Power Digital M
 - **[Brandon, MS (39042, 39047)](https://powerdigitalmedia.org/locations/brandon-ms)**: Rank Across Crossgates, Castlewoods & 39047 Reservoir With Verified Job Proof.
 - **[Flowood, MS (39232)](https://powerdigitalmedia.org/locations/flowood-ms)**: High-Converting Web Engineering & Local Search Along Flowood's Lakeland Corridor.
 - **[Clinton, MS (39056)](https://powerdigitalmedia.org/locations/clinton-ms)**: Right Next Door to Clinton: Custom Contractor Systems & Local Commerce Flagships.
+- **[Flora, MS (39071)](https://powerdigitalmedia.org/locations/flora-ms)**: Hometown Madison County Web Engineering, Local Map Pack SEO & Field Apps for Flora.
+- **[Pearl, MS (39208)](https://powerdigitalmedia.org/locations/pearl-ms)**: Built for Pearl's Hardest-Working Trade Crews, Fleet Shops & Commercial Operators.
+- **[Canton, MS (39046)](https://powerdigitalmedia.org/locations/canton-ms)**: Modern Web Design, Google Maps Visibility & Field Software for Canton Businesses & Contractors.
+- **[Byram, MS (39272)](https://powerdigitalmedia.org/locations/byram-ms)**: Capture High-Intent Residential & Commercial Calls Across Byram & the I-55 South Corridor.
 
 ---
 

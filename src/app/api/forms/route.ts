@@ -5,6 +5,7 @@ import {
     buildMinimizedLeadData,
     executeDurableLeadWorkflow,
     redactPiiFromText,
+    resolveTranspondGroupIdForFormSource,
     type BoundedRetryOptions,
     type LeadPersistenceAdapter,
 } from '@/lib/durable-lead-delivery';
@@ -485,25 +486,7 @@ export async function handleFormsPostRequest(
             : body.tags
             ? [body.tags]
             : [];
-        let groupId = parseInt(process.env.TRANSPOND_GROUP_ID || '186443', 10);
-        if (formSource === 'community-event') {
-            groupId = 187780;
-        } else if (formSource === 'founders-100-reservation') {
-            groupId = parseInt(
-                process.env.TRANSPOND_FOUNDERS100_GROUP_ID || '187913',
-                10
-            );
-        } else if (formSource === 'unified-solutions-lead') {
-            groupId = parseInt(
-                process.env.TRANSPOND_SOLUTIONS_GROUP_ID || '187918',
-                10
-            );
-        } else if (formSource === 'lead-leak-check') {
-            groupId = parseInt(
-                process.env.TRANSPOND_LEAD_LEAK_CHECK_GROUP_ID || '187977',
-                10
-            );
-        }
+        const groupId = resolveTranspondGroupIdForFormSource(formSource);
 
         const softRiskTags =
             riskEvaluation.riskSignals.length > 0 ? ['soft-risk-review'] : [];
@@ -528,7 +511,20 @@ export async function handleFormsPostRequest(
         );
         const servicesValue = Array.isArray(body.services)
             ? body.services.join(', ')
-            : String(body.services || body.services_interested || '');
+            : String(
+                  body.services ||
+                      body.services_interested ||
+                      body.selected_modules ||
+                      ''
+              );
+        const estimatedMonthlyMidpointRaw = Number(
+            body.estimated_monthly_midpoint || 0
+        );
+        const estimatedMonthlyMidpoint =
+            Number.isFinite(estimatedMonthlyMidpointRaw) &&
+            estimatedMonthlyMidpointRaw > 0
+                ? estimatedMonthlyMidpointRaw
+                : undefined;
         const phoneValue = String(body.phone || body.prospect_phone || '');
         const websiteValue = String(
             body.website_url ||
@@ -668,6 +664,7 @@ export async function handleFormsPostRequest(
                     roadblockSummary: roadblockValue,
                     servicesInterested: servicesValue,
                     pagePath: pagePathValue,
+                    estimatedMonthlyValue: estimatedMonthlyMidpoint,
                     extraTags: customTags.map(String),
                     fetchImpl: fetcher,
                 }).catch(() =>

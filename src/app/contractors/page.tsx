@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import DeferredFooterSections from "@/components/ui/DeferredFooterSections";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import GoogleReviewsSection from "@/components/sections/GoogleReviewsSection";
+import GrowthScopeEstimator from "@/components/sections/GrowthScopeEstimator";
 import {
   Hammer,
   Flame,
@@ -496,6 +497,8 @@ export default function ContractorsPage() {
           ))}
         </div>
       </section>
+
+      <GrowthScopeEstimator defaultIndustryId="trades_roofing_hvac" />
 
       {/* =====================================================================
           CONTRACTOR FAQS

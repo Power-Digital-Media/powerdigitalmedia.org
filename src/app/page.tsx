@@ -15,6 +15,7 @@ import {
 const JobsitePipelineStory = dynamic(() => import("@/components/sections/JobsitePipelineStory"));
 const GoogleReviewsSection = dynamic(() => import("@/components/sections/GoogleReviewsSection"));
 const ConnectedArchitecture = dynamic(() => import("@/components/sections/ConnectedArchitecture"));
+const GrowthScopeEstimator = dynamic(() => import("@/components/sections/GrowthScopeEstimator"));
 const SpeedComparisonCard = dynamic(() => import("@/components/ui/SpeedComparisonCard"));
 const AEOFAQ = dynamic(() => import("@/components/sections/AEOFAQ"));
 
@@ -37,10 +38,14 @@ export const metadata = {
 const METRO_CITIES = [
   { name: "Jackson, MS", slug: "jackson-ms", tag: "Hinds County HQ" },
   { name: "Madison, MS", slug: "madison-ms", tag: "High-Ticket Residential" },
+  { name: "Flora, MS", slug: "flora-ms", tag: "Hwy 49 & Kearney Park" },
   { name: "Ridgeland, MS", slug: "ridgeland-ms", tag: "Commercial & Home Pros" },
   { name: "Brandon, MS", slug: "brandon-ms", tag: "Rankin County Growth" },
   { name: "Flowood, MS", slug: "flowood-ms", tag: "Lakeland Corridor" },
+  { name: "Pearl, MS", slug: "pearl-ms", tag: "I-20 & Hwy 80 Trades" },
   { name: "Clinton, MS", slug: "clinton-ms", tag: "Local Commerce & Trades" },
+  { name: "Canton, MS", slug: "canton-ms", tag: "Courthouse Sq & Nissan Pkwy" },
+  { name: "Byram, MS", slug: "byram-ms", tag: "I-55 South Residential" },
 ];
 
 export default function Home() {
@@ -181,6 +186,11 @@ export default function Home() {
       <ConnectedArchitecture />
 
       {/* =====================================================================
+          4. INTERACTIVE CENTRAL MS GROWTH & SCOPE ESTIMATOR
+      ====================================================================== */}
+      <GrowthScopeEstimator />
+
+      {/* =====================================================================
           5. SPEED BENCHMARK + CENTRAL MS SERVICE AREA SEO HUB
       ====================================================================== */}
       <SpeedComparisonCard />
@@ -205,7 +215,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
             {METRO_CITIES.map((city) => (
               <Link
                 key={city.slug}

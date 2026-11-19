@@ -197,8 +197,8 @@ export const CENTRAL_MS_LOCATIONS: CityLocationData[] = [
         a: "Yes. We structure separate, high-converting service silos for Highland Colony / commercial property managers and 39157 homeowners so each audience sees relevant proof and quote forms.",
       },
       {
-        q: "Do you integrate CRM and automated SMS lead follow-up for Ridgeland offices?",
-        a: "Yes—we connect Capsule CRM, Transpond automation, and instant SMS lead rescue so online inquiries get an automatic text response in under 20 seconds.",
+        q: "Do you integrate CRM and automated follow-up for Ridgeland offices?",
+        a: "Yes—we connect Capsule CRM, interactive quote calculators, and automated Transpond follow-up sequences so online inquiries are logged and engaged immediately.",
       },
       {
         q: "How do I see where my business currently ranks in Ridgeland?",
@@ -380,6 +380,242 @@ export const CENTRAL_MS_LOCATIONS: CityLocationData[] = [
       {
         q: "Can Clinton contractors use PinDrop™ to rank in Madison and Brandon too?",
         a: "Yes. Every time your crew completes a job in Clinton, Madison, Raymond, or Brandon, a 30-second PinDrop™ check-in builds ranking authority in that exact town.",
+      },
+    ],
+  },
+  {
+    slug: "flora-ms",
+    city: "Flora",
+    county: "Madison County",
+    zipCodes: ["39071"],
+    coordinates: {
+      lat: 32.5482,
+      lng: -90.3095,
+      display: "32.5482° N, 90.3095° W",
+    },
+    distanceFromHQ: "18 Minutes North via Highway 49",
+    heroTagline:
+      "Hometown Madison County Web Engineering, Local Map Pack SEO & Field Apps for Flora.",
+    marketSummary:
+      "Flora sits at the heart of western Madison County's Highway 49 corridor—connecting historic Main Street retailers and trusted community staples like Corner Pharmacy with acreage estates, Kearney Park homes, and fast-growing rural builds toward Bentonia and Gluckstadt. We build fast, hometown-proud digital infrastructure that helps Flora businesses and contractors stand out across Google Maps and AI search.",
+    corridors: [
+      "Highway 49 North & South Corridor",
+      "Historic Main Street & Downtown Flora",
+      "Kearney Park Rd & Cox Ferry Rd",
+      "Highway 22 West Madison / Gluckstadt Connector",
+    ],
+    neighborhoods: [
+      "Downtown Flora",
+      "Kearney Park",
+      "Cox Ferry & Big Black Corridor",
+      "Pocahontas & Hwy 49 South",
+      "Livingston / Hwy 22 Corridor",
+      "Acreage & Estate Properties (39071)",
+    ],
+    topTrades: [
+      "Land Clearing, Dirt Work, Ponds & House Pads",
+      "Estate Lawn Care, Turf & Pine Straw Routes",
+      "Residential Roofing, HVAC & Generator Installs",
+      "Hometown Healthcare, Pharmacy, Retail & Ministry",
+    ],
+    featuredProof: {
+      clientName: "Corner Pharmacy & Lungrin's Lawncare (Flora, MS)",
+      category: "Trusted Flora, MS Client Partners",
+      summary:
+        "From supporting hometown healthcare staples like Corner Pharmacy in Flora to engineering sub-second Next.js + PinDrop™ route-density growth for Lungrin's Lawncare across Flora and Pocahontas, we build right in your backyard.",
+      metric: "99/100 Mobile Speed • Hometown 39071 Proof",
+      portfolioHref: "/portfolio/lungrins-lawncare",
+      liveUrl: "https://lungrinslawncare.com",
+    },
+    faqs: [
+      {
+        q: "Do you already work with local businesses right here in Flora, MS?",
+        a: "Yes! We proudly serve Flora businesses including Corner Pharmacy and Lungrin's Lawncare, and our studio at 2914 Cynthia Rd is right down Highway 49—less than 20 minutes away.",
+      },
+      {
+        q: "How can a Flora contractor pull jobs from Madison, Gluckstadt, and Clinton too?",
+        a: "We pair dedicated city service hubs with PDM PinDrop™ GPS check-ins so every completed project in Flora, Kearney Park, Madison, or Clinton publishes verified local authority in that exact area.",
+      },
+      {
+        q: "Will PinCam™ work out on rural 39071 acreage where cell service drops?",
+        a: "Yes. PinCam™ captures Ghost-aligned before/after photos, measurements, and inspection notes offline on the crew's phone and syncs automatically once signal returns.",
+      },
+    ],
+  },
+  {
+    slug: "pearl-ms",
+    city: "Pearl",
+    county: "Rankin County",
+    zipCodes: ["39208"],
+    coordinates: {
+      lat: 32.2746,
+      lng: -90.132,
+      display: "32.2746° N, 90.1320° W",
+    },
+    distanceFromHQ: "15 Minutes Southeast via I-20",
+    heroTagline:
+      "Built for Pearl's Hardest-Working Trade Crews, Fleet Shops & Commercial Operators.",
+    marketSummary:
+      "Anchored by the I-20, Highway 80, and Airport Road commercial spine, Pearl is Central Mississippi's powerhouse hub for roofing, HVAC, electrical, plumbing, fleet service, and residential trades. When 39208 homeowners or facility managers search Google Maps on their phone, sub-second load speed and verified neighborhood proof separate booked crews from page-two competitors.",
+    corridors: [
+      "Highway 80 Commercial & Trade Spine",
+      "I-20 Industrial, Retail & Bass Pro District",
+      "Airport Rd & Flowood Connector",
+      "Pearson Rd & Old Brandon Rd",
+    ],
+    neighborhoods: [
+      "North Pearl / Old Brandon Rd",
+      "Pearson Rd Residential Corridor",
+      "McLaurin Heights",
+      "Country Place",
+      "Grandview & South Pearson",
+      "Richland / Hwy 49 South Border",
+    ],
+    topTrades: [
+      "Residential & Commercial Roof Repair & Tear-Offs",
+      "Emergency HVAC, Plumbing & Electrical Service",
+      "Concrete, Fencing, Gutters & Exterior Remodeling",
+      "Commercial Fleet, Industrial Supply & Local Dining",
+    ],
+    featuredProof: {
+      clientName: "Born Again Roofing & Rankin County Crews",
+      category: "39208 Google Map Pack & PinDrop™ Proof",
+      summary:
+        "Active GPS-verified roofing and exterior project pins across Pearl, Pearson Road, and Old Brandon Road—compounding Google Map Pack visibility and 5-star homeowner reviews.",
+      metric: "Verified 39208 Pins • 98/100 Mobile Speed",
+      portfolioHref: "/portfolio/born-again-roofing",
+      liveUrl: "https://bornagainroofing.com",
+    },
+    faqs: [
+      {
+        q: "How do Pearl trade companies win calls across both Pearl (39208) and Brandon/Flowood?",
+        a: "Many Rankin County shops are based along Highway 80 or I-20 in Pearl while running trucks into Flowood and Brandon daily. PinDrop™ maps every completed job across all three ZIP zones so Google sees real work across your entire territory.",
+      },
+      {
+        q: "Do your contractor websites include interactive estimate calculators?",
+        a: "Yes. Every custom Next.js build includes fast mobile quote capture or interactive trade calculators wired straight into Capsule CRM and automated Transpond follow-ups.",
+      },
+      {
+        q: "How quickly can we get a ballpark scope for our Pearl business?",
+        a: "Use our interactive Scope Estimator at powerdigitalmedia.org/estimate or call/text Damein directly at (601) 446-2393.",
+      },
+    ],
+  },
+  {
+    slug: "canton-ms",
+    city: "Canton",
+    county: "Madison County",
+    zipCodes: ["39046"],
+    coordinates: {
+      lat: 32.6126,
+      lng: -90.0368,
+      display: "32.6126° N, 90.0368° W",
+    },
+    distanceFromHQ: "28 Minutes North via I-55",
+    heroTagline:
+      "Modern Web Design, Google Maps Visibility & Field Software for Canton Businesses & Contractors.",
+    marketSummary:
+      "From the iconic Historic Courthouse Square and Highway 51 storefronts to the Nissan Parkway industrial corridor and surrounding Madison County land developments, Canton blends deep heritage with major commercial and residential demand. We engineer fast custom websites, 0%-fee ordering, and GPS field proof so 39046 businesses capture high-intent searchers.",
+    corridors: [
+      "Historic Canton Courthouse Square & Peace St",
+      "Nissan Parkway & I-55 Industrial Corridor",
+      "Highway 51 & Gluckstadt Connector",
+      "Highway 22 & Highway 16 East/West Corridors",
+    ],
+    neighborhoods: [
+      "Historic Downtown Canton",
+      "Deerfield",
+      "Harvey Crossing",
+      "Twin Cedars & Country Club Area",
+      "Virlilia & Hwy 22 West",
+      "South Canton / Gluckstadt Border",
+    ],
+    topTrades: [
+      "Land Clearing, Excavation, Pads & Agricultural Services",
+      "Residential & Commercial Roofing & HVAC",
+      "Industrial Facility Maintenance & Electrical",
+      "Courthouse Square Dining, Catering & Retail",
+    ],
+    featuredProof: {
+      clientName: "Madison County Contractors & Local Operators",
+      category: "Northern Madison County Speed & SEO",
+      summary:
+        "Sub-second Next.js websites, Google Map Pack optimization, and GEO/AEO structured schema engineered to capture searches from Canton Courthouse Square to Gluckstadt.",
+      metric: "0.8s Architecture • 24/7 Watchtower",
+      portfolioHref: "/portfolio/geaux-pro-outdoors",
+      liveUrl: "https://msdirt.com",
+    },
+    faqs: [
+      {
+        q: "Can a Canton business capture customers searching in Gluckstadt and Madison too?",
+        a: "Yes. We build dedicated service-area silos for Canton (39046), Gluckstadt, and Madison backed by structured LocalBusiness JSON-LD and real PinDrop™ project check-ins.",
+      },
+      {
+        q: "Can Canton restaurants and caterers accept online orders without paying 30% app commissions?",
+        a: "Yes! Just like our build for T'Beaux's Seafood & Catering, we integrate native Square Web SDK checkout directly on your own domain with 0% third-party marketplace fees.",
+      },
+      {
+        q: "Who manages our website security and uptime after launch?",
+        a: "Every managed client site is protected 24/7 by PDM Site Intelligence™—checking uptime every 5 minutes, tracking Google Search Console growth, and giving you direct cell access to Damein Donald.",
+      },
+    ],
+  },
+  {
+    slug: "byram-ms",
+    city: "Byram",
+    county: "Hinds County",
+    zipCodes: ["39272"],
+    coordinates: {
+      lat: 32.1793,
+      lng: -90.2448,
+      display: "32.1793° N, 90.2448° W",
+    },
+    distanceFromHQ: "18 Minutes South via I-55 / Siwell Rd",
+    heroTagline:
+      "Capture High-Intent Residential & Commercial Calls Across Byram & the I-55 South Corridor.",
+    marketSummary:
+      "Byram is South Hinds County's fastest-moving residential and retail market—anchoring neighborhoods along Siwell Road, Terry Road, and Davis Road while serving homeowners commuting into Jackson and Terry. Most competitors in 39272 still rely on outdated Facebook pages or slow template sites, making Google Map Pack optimization a massive advantage.",
+    corridors: [
+      "Siwell Rd Commercial & Retail Hub",
+      "I-55 South Frontage & Exit Corridors",
+      "Terry Rd North/South Residential Spine",
+      "Davis Rd & Henderson Rd Subdivisions",
+    ],
+    neighborhoods: [
+      "Lakeshore Estates",
+      "Country Woods",
+      "Timberidge & Siwell Subdivisions",
+      "Barrington & Davis Rd Estates",
+      "North Byram / Oak Forest Border",
+      "Terry & Raymond Road Corridor",
+    ],
+    topTrades: [
+      "Storm Roof Inspections, Shingles & Gutters",
+      "Residential AC Repair, Heating & Plumbing",
+      "Lawn Care, Privacy Fencing, Concrete & Tree Work",
+      "Local Dining, Healthcare, Auto & Faith Communities",
+    ],
+    featuredProof: {
+      clientName: "Born Again Roofing & Hinds County Pros",
+      category: "South Metro & 39272 Local Search",
+      summary:
+        "Fast mobile quote flows, verified GPS neighborhood pins, and automated 5-star review requests turning completed South Jackson and Byram jobs into steady homeowner phone calls.",
+      metric: "Sub-Second Mobile UX • 5.0★ Review Flow",
+      portfolioHref: "/portfolio/born-again-roofing",
+      liveUrl: "https://bornagainroofing.com",
+    },
+    faqs: [
+      {
+        q: "Why is Byram (39272) such a strong Google Map Pack opportunity right now?",
+        a: "Homeowners in Byram and Terry search specifically for south-corridor pros who can respond quickly without fighting cross-town traffic, yet very few local contractors have dedicated 39272 schema or verified neighborhood job pages.",
+      },
+      {
+        q: "Can we also target Terry, Raymond, and South Jackson from one website?",
+        a: "Yes. We architect clean city and service hubs across Byram, Terry, Raymond, Clinton, and Jackson—and PinDrop™ adds real GPS project proof wherever your trucks roll.",
+      },
+      {
+        q: "How do we check our current Google rankings in Byram?",
+        a: "Request a free 5-minute video audit at powerdigitalmedia.org/free-audit or text Damein directly at (601) 446-2393.",
       },
     ],
   },

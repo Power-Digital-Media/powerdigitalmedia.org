@@ -108,6 +108,7 @@ export default function Navbar() {
 
   const mainLinks = [
     { name: "Contractors", href: "/contractors" },
+    { name: "Instant Estimate", href: "/estimate", highlight: true },
     { name: "Our Work", href: "/our-work" },
     { name: "Reviews", href: "/reviews" },
     { name: "About", href: "/about" },
@@ -230,7 +231,11 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   prefetch={false}
-                  className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
+                  className={
+                    link.highlight
+                      ? "text-sm font-bold text-amber-300 hover:text-amber-200 transition-colors"
+                      : "text-sm font-medium text-slate-300 hover:text-white transition-colors"
+                  }
                 >
                   {link.name}
                 </Link>
@@ -367,16 +372,20 @@ export default function Navbar() {
             {/* Explore Links */}
             <div className="grid grid-cols-2 gap-2.5">
               {[
-                { name: "Client Portfolio", href: "/our-work" },
-                { name: "5.0★ Reviews", href: "/reviews" },
-                { name: "Articles & Guides", href: "/blog" },
-                { name: "About Damein", href: "/about" },
+                { name: "⚡ Instant Estimate", href: "/estimate", accent: true },
+                { name: "Client Portfolio", href: "/our-work", accent: false },
+                { name: "5.0★ Reviews", href: "/reviews", accent: false },
+                { name: "About Damein", href: "/about", accent: false },
               ].map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
                   prefetch={false}
-                  className="px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 text-sm font-medium text-slate-200 text-center"
+                  className={
+                    link.accent
+                      ? "px-4 py-3 rounded-xl bg-amber-500/15 border border-amber-500/40 text-sm font-bold text-amber-300 text-center"
+                      : "px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 text-sm font-medium text-slate-200 text-center"
+                  }
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}

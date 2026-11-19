@@ -16,6 +16,7 @@ const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 // IndexNow URLs (Canonical routes matching src/app/sitemap.ts)
 const STATIC_URLS = [
     `https://${HOST}/`,
+    `https://${HOST}/estimate`,
     `https://${HOST}/contractors`,
     `https://${HOST}/pindrop`,
     `https://${HOST}/pincam`,

@@ -4,6 +4,7 @@ const CAPSULE_TIMEOUT_MS = 4500;
 const MILESTONE_CACHE_TTL_MS = 10 * 60 * 1000;
 
 export const HIGH_INTENT_CAPSULE_OPPORTUNITY_SOURCES = new Set([
+    'interactive-growth-estimator',
     'website-audit-request',
     'lead-leak-check',
     'g-business-booking',
@@ -131,6 +132,7 @@ export interface CapsuleLeadSyncInput {
     roadblockSummary?: string;
     servicesInterested?: string;
     pagePath?: string;
+    estimatedMonthlyValue?: number;
     extraTags?: string[];
     fetchImpl?: typeof fetch;
 }
@@ -389,20 +391,35 @@ export async function syncVerifiedLeadToCapsule(
                 ].filter(Boolean);
 
                 try {
+                    const opportunityPayload: Record<string, any> = {
+                        name: `${leadLabel} — ${formattedSource}`,
+                        description:
+                            oppDescriptionParts.join(' | ') ||
+                            `Inbound ${formattedSource} inquiry from ${input.pagePath || '/'}`,
+                        party: { id: partyId },
+                        milestone: { id: milestoneId },
+                    };
+
+                    if (
+                        typeof input.estimatedMonthlyValue === 'number' &&
+                        Number.isFinite(input.estimatedMonthlyValue) &&
+                        input.estimatedMonthlyValue > 0
+                    ) {
+                        opportunityPayload.value = {
+                            amount: Math.round(input.estimatedMonthlyValue),
+                            currency: 'USD',
+                        };
+                        opportunityPayload.durationBasis = 'MONTH';
+                        opportunityPayload.duration = 12;
+                    }
+
                     const oppRes = await capsuleFetch(
                         `${baseUrl}/api/v2/opportunities`,
                         token,
                         {
                             method: 'POST',
                             body: JSON.stringify({
-                                opportunity: {
-                                    name: `${leadLabel} — ${formattedSource}`,
-                                    description:
-                                        oppDescriptionParts.join(' | ') ||
-                                        `Inbound ${formattedSource} inquiry from ${input.pagePath || '/'}`,
-                                    party: { id: partyId },
-                                    milestone: { id: milestoneId },
-                                },
+                                opportunity: opportunityPayload,
                             }),
                         },
                         fetcher

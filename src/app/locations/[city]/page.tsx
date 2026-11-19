@@ -151,10 +151,16 @@ export default async function CityLocationPage({ params }: LocationPageProps) {
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
               <Link
-                href="/free-audit"
+                href="/estimate"
                 className="px-7 py-4 rounded-xl bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black uppercase tracking-wider text-xs text-center shadow-[0_0_30px_rgba(245,158,11,0.3)] hover:brightness-110 transition-all"
               >
-                Get Free {loc.city} Rank Video →
+                Build {loc.city} Estimate →
+              </Link>
+              <Link
+                href="/free-audit"
+                className="px-6 py-4 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/15 text-white font-bold uppercase tracking-wider text-xs text-center transition-all"
+              >
+                Free {loc.city} Rank Video
               </Link>
               <a
                 href="tel:6014462393"
@@ -319,7 +325,7 @@ export default async function CityLocationPage({ params }: LocationPageProps) {
               </div>
             </div>
             <p className="text-xs text-slate-300 leading-relaxed">
-              Industries in {loc.city} seeing the fastest ROI from sub-2-second Next.js builds, automated SMS lead rescue, and field proof:
+              Industries in {loc.city} seeing the fastest ROI from sub-2-second Next.js builds, Capsule CRM automation, and field proof:
             </p>
             <ul className="space-y-2.5 pt-1">
               {loc.topTrades.map((t) => (
@@ -382,6 +388,12 @@ export default async function CityLocationPage({ params }: LocationPageProps) {
                 className="px-4 py-2 rounded-xl bg-amber-500/12 hover:bg-amber-400 hover:text-slate-950 border border-amber-500/35 text-xs font-bold text-amber-300 transition-all"
               >
                 Contractor Growth Systems →
+              </Link>
+              <Link
+                href="/estimate"
+                className="px-4 py-2 rounded-xl bg-emerald-500/12 hover:bg-emerald-400 hover:text-slate-950 border border-emerald-500/35 text-xs font-bold text-emerald-300 transition-all"
+              >
+                Instant Scope Estimator →
               </Link>
             </div>
           </div>

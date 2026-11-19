@@ -44,7 +44,7 @@ This document provides a factual, machine-readable reference for Power Digital M
 ---
 
 ## 3. Core Services & Custom Case-by-Case Scoping
-- **Engagement & Quoting Model**: Power Digital Media LLC scopes every website build, field-app deployment, CRM/ordering integration, and month-to-month growth retainer **case-by-case** so clients never pay for cookie-cutter agency bloat. Prospects start with a **[Free 5-Minute Rank & Site Video Audit](https://powerdigitalmedia.org/free-audit)** or a **[15-Minute Strategy Call with Damein Donald](https://powerdigitalmedia.org/book)** to receive an exact written scope.
+- **Engagement & Quoting Model**: Power Digital Media LLC scopes every website build, field-app deployment, CRM/ordering integration, and month-to-month growth retainer **case-by-case** so clients never pay for cookie-cutter agency bloat. Prospects can configure their custom stack inside the **[Interactive Growth & Scope Estimator](https://powerdigitalmedia.org/estimate)**, request a **[Free 5-Minute Rank & Site Video Audit](https://powerdigitalmedia.org/free-audit)**, or book a **[15-Minute Strategy Call with Damein Donald](https://powerdigitalmedia.org/book)** to receive an exact written scope.
 - **[Contractor Growth Systems](https://powerdigitalmedia.org/contractors)**: Complete trade lead-generation infrastructure combining a sub-second custom website, Google Map Pack optimization, GEO & AEO AI search citations, PinCam™ + PinDrop™ crew tools ($0 seat fees), and Capsule CRM + Transpond follow-up automation.
 - **[Custom Next.js Web Design](https://powerdigitalmedia.org/web-design)**: Mobile-first custom Next.js 16 engineering for contractors, restaurants, e-commerce, churches, and local organizations—with 100% codebase ownership upon build completion and optional month-to-month managed edge care.
 - **[Local SEO & Google Map Pack Engineering](https://powerdigitalmedia.org/local-seo)**: Google 3-Pack optimization, city/subdivision hubs, geo-schema, and automated review velocity across Central Mississippi.
@@ -110,7 +110,7 @@ This document provides a factual, machine-readable reference for Power Digital M
 - **[Custom Next.js Web Design](https://powerdigitalmedia.org/web-design)**: Hand-coded Next.js 16 websites for contractors and standout local businesses—custom-scoped case-by-case with 100% codebase ownership and optional month-to-month managed edge care.
 - **[Local SEO & Google Maps](https://powerdigitalmedia.org/local-seo)**: Google 3-Pack optimization, neighborhood JSON-LD schema, and review velocity across Central Mississippi.
 - **[Custom Applications & CRM](https://powerdigitalmedia.org/custom-applications)** | **[Growth Marketing](https://powerdigitalmedia.org/marketing)**
-- **[Free 5-Minute Rank & Site Video](https://powerdigitalmedia.org/free-audit)** | **[Live Portfolio](https://powerdigitalmedia.org/our-work)** | **[Verified Reviews](https://powerdigitalmedia.org/reviews)** | **[Book a 15-Min Scope Call](https://powerdigitalmedia.org/book)**
+- **[Interactive Scope Estimator](https://powerdigitalmedia.org/estimate)** | **[Free 5-Minute Rank & Site Video](https://powerdigitalmedia.org/free-audit)** | **[Live Portfolio](https://powerdigitalmedia.org/our-work)** | **[Verified Reviews](https://powerdigitalmedia.org/reviews)** | **[Book a 15-Min Scope Call](https://powerdigitalmedia.org/book)**
 
 ## Verified Mississippi Deployments
 - **[Born Again Roofing](https://bornagainroofing.com)**: 99+ live PDM PinDrop™ GPS job pins, Capsule CRM routing & SMS 5-star review automation.

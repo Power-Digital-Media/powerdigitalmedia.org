@@ -493,7 +493,7 @@ export default function ProjectShowcaseClient({ project }: { project: Project })
 
             <Footer />
 
-            {/* Desktop-Only Floating Conversion Pill (Mobile uses global StickyMobileDock) */}
+            {/* Desktop-Only Floating Conversion Pill (Mobile uses global MobileStickyConversionBar) */}
             <div className="hidden lg:flex fixed bottom-5 left-0 right-0 z-40 justify-center pointer-events-none">
                 <div className="pointer-events-auto rounded-full bg-[#0b0c10]/95 backdrop-blur-xl border border-amber-500/35 px-6 py-3 flex items-center gap-4 shadow-[0_20px_50px_rgba(0,0,0,0.75)]">
                     <span className="text-xs font-bold text-slate-200">

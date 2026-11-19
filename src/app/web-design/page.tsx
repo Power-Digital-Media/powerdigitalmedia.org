@@ -17,6 +17,7 @@ import Image from "next/image";
 import Portfolio from "@/components/sections/Portfolio";
 import GoogleReviewsSection from "@/components/sections/GoogleReviewsSection";
 import SpeedComparisonCard from "@/components/ui/SpeedComparisonCard";
+import GrowthScopeEstimator from "@/components/sections/GrowthScopeEstimator";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 const pillars = [
@@ -270,6 +271,8 @@ export default function WebDesignPage() {
       <Portfolio titleAs="h2" />
 
       <SpeedComparisonCard />
+
+      <GrowthScopeEstimator defaultIndustryId="local_business_ministry" />
 
       {/* 3 Core Engineering Pillars */}
       <section className="py-20 md:py-28 relative bg-[#080c16] border-t border-white/10">

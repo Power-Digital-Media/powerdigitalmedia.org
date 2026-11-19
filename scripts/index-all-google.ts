@@ -30,6 +30,7 @@ const indexing = google.indexing({
 
 const STATIC_URLS = [
     `https://${HOST}/`,
+    `https://${HOST}/estimate`,
     `https://${HOST}/contractors`,
     `https://${HOST}/pindrop`,
     `https://${HOST}/pincam`,

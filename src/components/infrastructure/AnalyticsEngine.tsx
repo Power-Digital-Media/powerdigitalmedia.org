@@ -81,6 +81,45 @@ export default function AnalyticsEngine() {
         }
     }, [pathname, PIXEL_ID]);
 
+    // Global delegated click tracking for `tel:` and `sms:` links (GA4 + Meta Pixel Contact event)
+    useEffect(() => {
+        if (typeof document === "undefined" || typeof window === "undefined") return;
+
+        const handleContactLinkClick = (event: MouseEvent) => {
+            const target = event.target as Element | null;
+            const anchor = target?.closest?.('a[href^="tel:"], a[href^="sms:"]') as HTMLAnchorElement | null;
+            if (!anchor) return;
+
+            const href = anchor.getAttribute("href") || "";
+            const currentPath = window.location.pathname || "/";
+
+            if (href.startsWith("tel:")) {
+                window.gtag?.("event", "click_to_call", {
+                    page_path: currentPath,
+                    link_url: href,
+                });
+                window.fbq?.("track", "Contact", {
+                    content_name: "click_to_call",
+                    content_category: currentPath,
+                });
+            } else if (href.startsWith("sms:")) {
+                window.gtag?.("event", "click_to_text", {
+                    page_path: currentPath,
+                    link_url: href,
+                });
+                window.fbq?.("track", "Contact", {
+                    content_name: "click_to_text",
+                    content_category: currentPath,
+                });
+            }
+        };
+
+        document.addEventListener("click", handleContactLinkClick, { passive: true });
+        return () => {
+            document.removeEventListener("click", handleContactLinkClick);
+        };
+    }, []);
+
     return (
         <>
             {/* Google Tag Manager (canonical gtm.js endpoint, single-init guarded, loaded afterInteractive without interaction gate) */}

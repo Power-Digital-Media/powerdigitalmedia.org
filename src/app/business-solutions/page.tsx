@@ -3,6 +3,7 @@
 import { ArrowRight, CheckCircle2, ShieldCheck, Database, PhoneCall, MailCheck } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import GrowthScopeEstimator from "@/components/sections/GrowthScopeEstimator";
 import FormSecurityFields from "@/components/ui/FormSecurityFields";
 import { submitVerifiedLeadForm } from "@/lib/lead-submission";
 import { useState, type FormEvent } from "react";
@@ -235,6 +236,8 @@ export default function BusinessSolutionsPage() {
           </div>
         </div>
       </section>
+
+      <GrowthScopeEstimator defaultIndustryId="local_business_ministry" />
 
       {/* Secondary CTA */}
       <section className="py-16 border-t border-white/10 bg-[#0b0c10] relative z-10">
