@@ -50,7 +50,17 @@ export function classifyBrowserSignature(): "standard_signature" | "suspected_au
     }
 
     if (
-        /MSIE\s|Trident\/|Camino\/|HeadlessChrome|PhantomJS|SlimerJS|Playwright|Puppeteer|Cypress|Scrapy|python-requests|Python-urllib|Go-http-client|curl\/|wget\//i.test(
+        /MSIE\s|Trident\/|Camino\/|BeOS|HeadlessChrome|PhantomJS|SlimerJS|Playwright|Puppeteer|Cypress|Scrapy|python-requests|Python-urllib|Go-http-client|curl\/|wget\//i.test(
+            ua
+        )
+    ) {
+        return "suspected_automated_signature";
+    }
+
+    // Bare "Mozilla/4.0" or "Mozilla/5.0 (...)" scraper strings lacking any real engine token
+    if (
+        /^Mozilla\/\d+\.\d+/i.test(ua) &&
+        !/AppleWebKit\/|Gecko\/\d|Firefox\/|FxiOS\/|Chrome\/|Chromium\/|CriOS\/|Safari\/|Edg\/|OPR\//i.test(
             ua
         )
     ) {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
 import { classifyBrowserSignature } from "@/lib/lead-submission";
@@ -11,14 +11,22 @@ export default function AnalyticsEngine() {
     const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-DSZ3N77EHQ";
     const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || "GTM-52WQVB8N";
 
+    const [allowAnalyticsScripts, setAllowAnalyticsScripts] = useState(false);
     const lastTrackedPathRef = useRef<string | null>(null);
     const lastTrackedPixelPathRef = useRef<string | null>(null);
 
     // Synchronously ensure the standard gtag queue and single-init config are queued on mount
-    // so visitors who never scroll or interact before leaving (or who convert rapidly) are 100% captured.
+    // for standard browsers while dropping defunct/impossible scraper signatures (MSIE, Camino,
+    // bare Mozilla, Safari-on-Linux/Windows, webdriver) so headless bots cannot pollute GA4.
     useEffect(() => {
         if (typeof window === "undefined") return;
+        const signatureClass = classifyBrowserSignature();
+        if (signatureClass === "suspected_automated_signature") {
+            setAllowAnalyticsScripts(false);
+            return;
+        }
 
+        setAllowAnalyticsScripts(true);
         window.dataLayer = window.dataLayer || [];
         if (typeof window.gtag !== "function") {
             window.gtag = function gtag() {
@@ -34,9 +42,12 @@ export default function AnalyticsEngine() {
         }
     }, [GA_ID]);
 
-    // Trigger exactly ONE deduplicated GA4 page_view per route navigation (queued immediately even before gtag/js finishes downloading)
+    // Trigger exactly ONE deduplicated GA4 page_view per route navigation for standard browsers
     useEffect(() => {
         if (typeof window === "undefined" || !pathname || !GA_ID) return;
+        const signatureClass = classifyBrowserSignature();
+        if (signatureClass === "suspected_automated_signature") return;
+
         if (lastTrackedPathRef.current === pathname) return;
         lastTrackedPathRef.current = pathname;
 
@@ -58,7 +69,7 @@ export default function AnalyticsEngine() {
             page_path: pathname,
             page_location: window.location.href,
             page_title: document.title,
-            browser_signature_class: classifyBrowserSignature(),
+            browser_signature_class: signatureClass,
             send_to: GA_ID,
         };
 
@@ -74,6 +85,7 @@ export default function AnalyticsEngine() {
     // Trigger deduplicated Facebook Pixel page views on route changes
     useEffect(() => {
         if (typeof window === "undefined" || !pathname || !PIXEL_ID) return;
+        if (classifyBrowserSignature() === "suspected_automated_signature") return;
         if (lastTrackedPixelPathRef.current === pathname) return;
         if (typeof window.fbq === "function") {
             lastTrackedPixelPathRef.current = pathname;
@@ -86,6 +98,7 @@ export default function AnalyticsEngine() {
         if (typeof document === "undefined" || typeof window === "undefined") return;
 
         const handleContactLinkClick = (event: MouseEvent) => {
+            if (classifyBrowserSignature() === "suspected_automated_signature") return;
             const target = event.target as Element | null;
             const anchor = target?.closest?.('a[href^="tel:"], a[href^="sms:"]') as HTMLAnchorElement | null;
             if (!anchor) return;
@@ -120,11 +133,15 @@ export default function AnalyticsEngine() {
         };
     }, []);
 
+    if (!allowAnalyticsScripts) {
+        return null;
+    }
+
     return (
         <>
-            {/* Google Tag Manager (canonical gtm.js endpoint, single-init guarded, loaded afterInteractive without interaction gate) */}
+            {/* Google Tag Manager (lazyOnload drains pre-queued window.dataLayer without blocking mobile TBT) */}
             {GTM_ID && (
-                <Script id="google-tag-manager" strategy="afterInteractive">
+                <Script id="google-tag-manager" strategy="lazyOnload">
                     {`
                         if (!window.__pdmGtmInitialized) {
                             window.__pdmGtmInitialized = true;
@@ -138,12 +155,12 @@ export default function AnalyticsEngine() {
                 </Script>
             )}
 
-            {/* Google Analytics 4 (direct gtag/js loader; drains the pre-initialized window.dataLayer queue with send_page_view: false) */}
+            {/* Google Analytics 4 (lazyOnload drains pre-initialized window.dataLayer queue with send_page_view: false) */}
             {GA_ID && (
                 <Script
                     id="google-analytics-gtag"
                     src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-                    strategy="afterInteractive"
+                    strategy="lazyOnload"
                 />
             )}
 
@@ -151,7 +168,7 @@ export default function AnalyticsEngine() {
             {PIXEL_ID && (
                 <Script
                     id="fb-pixel"
-                    strategy="afterInteractive"
+                    strategy="lazyOnload"
                     onReady={() => {
                         if (
                             pathname &&

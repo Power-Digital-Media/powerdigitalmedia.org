@@ -364,7 +364,7 @@ export const blogMetadata: BlogMetadata[] = [
   {
     "slug": "ambient-intelligence-2026-uses-risks-business-impact",
     "title": "Ambient Intelligence in 2026: Real Uses, Risks, and Business Impact",
-    "excerpt": "**Short Answer:** Ambient Intelligence in 2026 is moving from reactive devices to context-aware environments that learn and respond to human presence...",
+    "excerpt": "Ambient Intelligence in 2026 is moving from reactive devices to context-aware environments that learn and respond to human presence.",
     "date": "Feb 18, 2026",
     "category": "Analysis",
     "image": "/blog-images/ambient_intelligence_2026_hero.webp",
@@ -388,7 +388,7 @@ export const blogMetadata: BlogMetadata[] = [
   {
     "slug": "ai-llm-forecasting-the-future-of-search-intelligence-2026",
     "title": "AI LLM Forecasting: The Future of Search Intelligence (2026)",
-    "excerpt": "**Short Answer:** AI-driven LLMs are revolutionizing search with faster, context-aware results, but face challenges in scalability and real-world application....",
+    "excerpt": "AI-driven LLMs are transforming search with faster, context-aware answers while raising real architectural trade-offs around latency and accuracy.",
     "date": "Feb 17, 2026",
     "category": "AI Tech",
     "image": "/blog-images/ai-llm-forecasting-the-future-of-search-intelligence-2026-1771311448127.webp",
@@ -400,7 +400,7 @@ export const blogMetadata: BlogMetadata[] = [
   {
     "slug": "nextjs-vs-react-vite-2026-which-architecture-actually-wins",
     "title": "Next.js vs React + Vite (2026): Which Architecture Actually Wins?",
-    "excerpt": "**Short Answer:** Next.js dominates SEO and long-term scalability, while React + Vite wins for speed of development and lightweight apps....",
+    "excerpt": "Next.js leads for Google SEO, TTFB, and scalable full-stack apps, while React + Vite excels for internal dashboards and lightweight SPAs.",
     "date": "Feb 16, 2026",
     "category": "Development",
     "image": "/blog-images/nextjs-vs-react-vite-2026-which-architecture-actually-wins-1771300629799.webp",
@@ -412,7 +412,7 @@ export const blogMetadata: BlogMetadata[] = [
   {
     "slug": "nextjs-nodejs-vs-react-vite-the-2026-architectural-guide",
     "title": "Next.js & Node.js vs React + Vite: The 2026 Architectural Guide",
-    "excerpt": "**Quick Take:** Next.js and React/Vite are the dual-monoliths of 2026, optimizing for either deep SEO authority or hyper-fast developer iterations.",
+    "excerpt": "Next.js and React + Vite are the two dominant frontend stacks of 2026—here is when to pick server-rendered SEO speed vs pure client-side iteration.",
     "date": "Feb 16, 2026",
     "category": "Development",
     "image": "/blog-images/nextjs-nodejs-vs-react-vite-the-2026-architectural-guide-1771292976085.webp",
