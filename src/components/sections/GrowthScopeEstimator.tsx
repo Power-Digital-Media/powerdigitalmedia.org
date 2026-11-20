@@ -602,7 +602,7 @@ export default function GrowthScopeEstimator({
                     </div>
                     <div className="text-right">
                       {needsNewWebsite && (
-                        <div className="text-[10px] font-mono text-slate-500 line-through">
+                        <div className="text-[10px] font-mono text-slate-400 line-through">
                           $4,500–$8,000+
                         </div>
                       )}

@@ -63,7 +63,7 @@ export default function BBBSeal({ variant = "badge", className = "" }: BBBSealPr
         </div>
       </div>
 
-      <span className="text-[9px] font-mono font-bold tracking-widest uppercase text-slate-500 group-hover:text-amber-300/80 transition-colors">
+      <span className="text-[9px] font-mono font-bold tracking-widest uppercase text-slate-400 group-hover:text-amber-300/80 transition-colors">
         Click to verify →
       </span>
     </a>
