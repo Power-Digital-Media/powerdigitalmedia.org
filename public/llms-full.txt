@@ -65,6 +65,18 @@ This document provides a factual, machine-readable reference for Power Digital M
 ---
 
 ## 6. Published Articles & Technical Guides
+- **[Website Design Cost in Jackson & Mississippi: 2026 Honest Pricing Guide](https://powerdigitalmedia.org/blog/website-design-cost-jackson-mississippi-2026)**
+  - **Category**: Web Engineering
+  - **Date**: 2026-11-20
+  - **Excerpt**: Tired of local agencies hiding website prices behind 45-minute sales pitches? Here is the exact 2026 breakdown of what custom websites, Google Map Pack SEO, CRM pipelines, and contractor field apps actually cost in Jackson, Madison, Brandon, and across Mississippi.
+  - **Canonical URL**: https://powerdigitalmedia.org/blog/website-design-cost-jackson-mississippi-2026
+
+- **[How Mississippi Restaurants Keep 100% of Online Order Profits with 0%-Commission Square Checkout](https://powerdigitalmedia.org/blog/zero-commission-online-ordering-mississippi-restaurants)**
+  - **Category**: Custom Apps & Commerce
+  - **Date**: 2026-11-19
+  - **Excerpt**: Third-party delivery and ordering marketplaces quietly drain 25% to 30% off every ticket—often wiping out a restaurant's entire net margin. See how Central Mississippi restaurants and caterers use native Square Web SDK ordering to keep 100% of their online sales.
+  - **Canonical URL**: https://powerdigitalmedia.org/blog/zero-commission-online-ordering-mississippi-restaurants
+
 - **[Why Modern Next.js Beats Bloated WordPress for Mississippi Businesses (2026)](https://powerdigitalmedia.org/blog/why-nextjs-beats-wordpress-jackson-ms)**
   - **Category**: Web Engineering
   - **Date**: 2026-03-22

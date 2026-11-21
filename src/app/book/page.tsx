@@ -12,7 +12,7 @@ import {
     ArrowRight,
     User,
     Briefcase,
-    FileText,
+    MessageSquare,
     Coffee,
 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
@@ -26,11 +26,24 @@ import Link from "next/link";
 
 const BBBSeal = dynamic(() => import("@/components/ui/BBBSeal"));
 
+const BOOKING_TOPICS = [
+    "New 0.8s Website",
+    "Google Map Pack SEO",
+    "Capsule CRM / Custom App",
+    "PinDrop™ + PinCam™",
+    "0%-Fee Square Ordering",
+    "Meta Lead Ads",
+] as const;
+
 export default function BookPage() {
     const [prefilledFromFunnel, setPrefilledFromFunnel] = useState(false);
     const [step, setStep] = useState<1 | 2>(1);
     const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
     const [meetingFormat, setMeetingFormat] = useState<"phone" | "meet" | "lunch">("meet");
+    const [selectedTopics, setSelectedTopics] = useState<string[]>([
+        "New 0.8s Website",
+        "Google Map Pack SEO",
+    ]);
     const [leadInfo, setLeadInfo] = useState({
         name: "",
         email: "",
@@ -57,6 +70,15 @@ export default function BookPage() {
         }
     }, []);
 
+    const toggleTopic = (topic: string) => {
+        setSelectedTopics((prev) => {
+            if (prev.includes(topic)) {
+                return prev.length > 1 ? prev.filter((t) => t !== topic) : prev;
+            }
+            return [...prev, topic];
+        });
+    };
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setStatus("submitting");
@@ -67,6 +89,21 @@ export default function BookPage() {
         const nameVal = data.get("name")?.toString() || "";
         const emailVal = data.get("email")?.toString() || "";
         const phoneVal = data.get("phone")?.toString() || "";
+        const extraNote = data.get("optional_note")?.toString().trim() || "";
+        const topicSummary = selectedTopics.join(", ");
+
+        data.set("services", topicSummary);
+        data.set(
+            "primary_goals",
+            extraNote ? `${topicSummary} — ${extraNote}` : topicSummary
+        );
+        data.set(
+            "notes",
+            `15-Min Strategy Call (${meetingFormat.toUpperCase()}) | Topics: ${topicSummary}${
+                extraNote ? ` | Note: ${extraNote}` : ""
+            }`
+        );
+
         setLeadInfo({ name: nameVal, email: emailVal, phone: phoneVal });
 
         try {
@@ -105,6 +142,12 @@ export default function BookPage() {
 
         return BOOKING_CONFIG.calendarUrl;
     };
+
+    const smsShortcutHref = `sms:6014462393?body=${encodeURIComponent(
+        `Hi Damein, I'd like to schedule a quick 15-min call about ${selectedTopics.join(
+            " + "
+        )}. What times look good?`
+    )}`;
 
     return (
         <main className="relative min-h-screen bg-[#06080f] text-white">
@@ -149,7 +192,7 @@ export default function BookPage() {
                         <p className="text-base md:text-lg text-slate-300 max-w-xl mx-auto mb-6">
                             {prefilledFromFunnel
                                 ? "Your request is saved. Choose a phone call, Google Meet screen-share, or local Jackson coffee/lunch slot below."
-                                : "Zero agency fluff. In 15 minutes we'll look at your Google Maps rankings, website speed, and map out the fastest path to more calls."}
+                                : "Zero agency fluff. Takes 10 seconds to unlock Damein's live calendar—we'll inspect your Google Map Pack rankings, site speed, and fastest path to more calls."}
                         </p>
 
                         {!prefilledFromFunnel && (
@@ -157,7 +200,7 @@ export default function BookPage() {
                                 <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10">
                                     <span className="w-2 h-2 rounded-full bg-emerald-400" />
                                     <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-300">
-                                        95+ Mobile Speed Builds
+                                        98+ Mobile Speed Builds
                                     </span>
                                 </div>
                                 <BBBSeal variant="inline" />
@@ -193,7 +236,7 @@ export default function BookPage() {
                                         step === 1 ? "text-amber-400" : "text-slate-400"
                                     }`}
                                 >
-                                    1. Your Info
+                                    1. Quick Info (10s)
                                 </span>
                             </div>
 
@@ -234,95 +277,73 @@ export default function BookPage() {
                                     transition={{ duration: 0.35 }}
                                     className="p-5 sm:p-10 rounded-3xl bg-[#0b0c10] border border-white/10 shadow-2xl"
                                 >
-                                    <h2 className="text-xl font-black uppercase tracking-tight mb-6 flex items-center gap-2.5 text-white">
-                                        <Sparkles className="w-5 h-5 text-amber-400" />
-                                        Step 1: Tell Us Who We&apos;re Meeting With
-                                    </h2>
+                                    <div className="flex flex-wrap items-center justify-between gap-2 mb-6">
+                                        <h2 className="text-xl font-black uppercase tracking-tight flex items-center gap-2.5 text-white">
+                                            <Sparkles className="w-5 h-5 text-amber-400" />
+                                            Step 1: Unlock Live Calendar Availability
+                                        </h2>
+                                        <span className="text-[11px] font-mono font-bold text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1 rounded-full">
+                                            Takes ~10 Seconds
+                                        </span>
+                                    </div>
 
                                     <form onSubmit={handleSubmit} className="space-y-6">
                                         <FormSecurityFields />
-                                        <div className="grid gap-5 sm:grid-cols-2">
-                                            <div className="space-y-2">
-                                                <label className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
-                                                    <User className="w-3.5 h-3.5 text-amber-400" />{" "}
-                                                    Full Name *
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    name="name"
-                                                    required
-                                                    defaultValue={leadInfo.name}
-                                                    disabled={status === "submitting"}
-                                                    className="w-full px-4 py-3.5 rounded-xl bg-[#12141c] border border-white/10 focus:border-amber-400 outline-none transition-all text-white placeholder:text-slate-500 disabled:opacity-50"
-                                                    placeholder="John Smith"
-                                                />
-                                            </div>
-                                            <div className="space-y-2">
-                                                <label className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
-                                                    <Mail className="w-3.5 h-3.5 text-amber-400" />{" "}
-                                                    Email Address *
-                                                </label>
-                                                <input
-                                                    type="email"
-                                                    name="email"
-                                                    required
-                                                    defaultValue={leadInfo.email}
-                                                    disabled={status === "submitting"}
-                                                    className="w-full px-4 py-3.5 rounded-xl bg-[#12141c] border border-white/10 focus:border-amber-400 outline-none transition-all text-white placeholder:text-slate-500 disabled:opacity-50"
-                                                    placeholder="john@yourcompany.com"
-                                                />
-                                            </div>
-                                        </div>
 
-                                        <div className="grid gap-5 sm:grid-cols-2">
-                                            <div className="space-y-2">
-                                                <label className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
-                                                    <Phone className="w-3.5 h-3.5 text-amber-400" />{" "}
-                                                    Mobile / Best Phone *
-                                                </label>
-                                                <input
-                                                    type="tel"
-                                                    name="phone"
-                                                    required
-                                                    defaultValue={leadInfo.phone}
-                                                    disabled={status === "submitting"}
-                                                    className="w-full px-4 py-3.5 rounded-xl bg-[#12141c] border border-white/10 focus:border-amber-400 outline-none transition-all text-white placeholder:text-slate-500 disabled:opacity-50"
-                                                    placeholder="(601) 555-0199"
-                                                />
-                                            </div>
-                                            <div className="space-y-2">
-                                                <label className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
-                                                    <Briefcase className="w-3.5 h-3.5 text-amber-400" />{" "}
-                                                    Business Name (Optional)
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    name="company"
-                                                    disabled={status === "submitting"}
-                                                    className="w-full px-4 py-3.5 rounded-xl bg-[#12141c] border border-white/10 focus:border-amber-400 outline-none transition-all text-white placeholder:text-slate-500 disabled:opacity-50"
-                                                    placeholder="Smith Roofing & Remodeling"
-                                                />
+                                        {/* 1-Tap Topic Pills (replaces mandatory essay wall) */}
+                                        <div className="space-y-2.5">
+                                            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-300 block">
+                                                What should we focus on? (Tap 1 or more)
+                                            </span>
+                                            <div
+                                                className="flex flex-wrap gap-2"
+                                                role="group"
+                                                aria-label="Topics to discuss on your strategy call"
+                                            >
+                                                {BOOKING_TOPICS.map((topic) => {
+                                                    const active = selectedTopics.includes(topic);
+                                                    return (
+                                                        <button
+                                                            key={topic}
+                                                            type="button"
+                                                            onClick={() => toggleTopic(topic)}
+                                                            aria-pressed={active}
+                                                            disabled={status === "submitting"}
+                                                            className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer border ${
+                                                                active
+                                                                    ? "bg-amber-400 text-[#06080f] border-amber-300 shadow-[0_0_16px_rgba(245,158,11,0.28)]"
+                                                                    : "bg-[#12141c] text-slate-300 border-white/10 hover:border-amber-400/50 hover:text-white"
+                                                            }`}
+                                                        >
+                                                            {active ? `✓ ${topic}` : topic}
+                                                        </button>
+                                                    );
+                                                })}
                                             </div>
                                         </div>
 
                                         {/* Preferred Meeting Format */}
                                         <div className="space-y-2.5">
-                                            <label className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-300 block">
-                                                Preferred Meeting Format
-                                            </label>
-                                            <div className="grid gap-3.5 sm:grid-cols-3">
+                                            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-300 block">
+                                                How would you like to meet?
+                                            </span>
+                                            <div
+                                                className="grid gap-3.5 sm:grid-cols-3"
+                                                role="group"
+                                                aria-label="Preferred meeting format"
+                                            >
                                                 {[
-                                                    {
-                                                        id: "phone",
-                                                        icon: Phone,
-                                                        label: "Phone Call",
-                                                        desc: "Direct call to your cell",
-                                                    },
                                                     {
                                                         id: "meet",
                                                         icon: Video,
                                                         label: "Google Meet",
                                                         desc: "Live screen-share & audit",
+                                                    },
+                                                    {
+                                                        id: "phone",
+                                                        icon: Phone,
+                                                        label: "Phone Call",
+                                                        desc: "Direct call to your cell",
                                                     },
                                                     {
                                                         id: "lunch",
@@ -334,11 +355,12 @@ export default function BookPage() {
                                                     <button
                                                         key={opt.id}
                                                         type="button"
+                                                        aria-pressed={meetingFormat === opt.id}
                                                         onClick={() =>
                                                             setMeetingFormat(opt.id as "phone" | "meet" | "lunch")
                                                         }
                                                         disabled={status === "submitting"}
-                                                        className={`p-4 rounded-2xl border text-center transition-all flex flex-col items-center justify-center gap-2 ${
+                                                        className={`p-4 rounded-2xl border text-center transition-all flex flex-col items-center justify-center gap-2 cursor-pointer ${
                                                             meetingFormat === opt.id
                                                                 ? "border-amber-500 bg-amber-500/10 text-white"
                                                                 : "border-white/10 bg-[#12141c] text-slate-400 hover:border-white/20 hover:text-white"
@@ -371,28 +393,114 @@ export default function BookPage() {
                                             />
                                         </div>
 
+                                        <div className="grid gap-5 sm:grid-cols-2">
+                                            <div className="space-y-2">
+                                                <label
+                                                    htmlFor="book-name"
+                                                    className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5"
+                                                >
+                                                    <User className="w-3.5 h-3.5 text-amber-400" />{" "}
+                                                    Your Name *
+                                                </label>
+                                                <input
+                                                    id="book-name"
+                                                    type="text"
+                                                    name="name"
+                                                    required
+                                                    autoComplete="name"
+                                                    defaultValue={leadInfo.name}
+                                                    disabled={status === "submitting"}
+                                                    className="w-full px-4 py-3.5 rounded-xl bg-[#12141c] border border-white/10 focus:border-amber-400 outline-none transition-all text-white placeholder:text-slate-500 disabled:opacity-50"
+                                                    placeholder="John Smith"
+                                                />
+                                            </div>
+                                            <div className="space-y-2">
+                                                <label
+                                                    htmlFor="book-email"
+                                                    className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5"
+                                                >
+                                                    <Mail className="w-3.5 h-3.5 text-amber-400" />{" "}
+                                                    Best Email *
+                                                </label>
+                                                <input
+                                                    id="book-email"
+                                                    type="email"
+                                                    name="email"
+                                                    required
+                                                    autoComplete="email"
+                                                    defaultValue={leadInfo.email}
+                                                    disabled={status === "submitting"}
+                                                    className="w-full px-4 py-3.5 rounded-xl bg-[#12141c] border border-white/10 focus:border-amber-400 outline-none transition-all text-white placeholder:text-slate-500 disabled:opacity-50"
+                                                    placeholder="john@yourcompany.com"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="grid gap-5 sm:grid-cols-2">
+                                            <div className="space-y-2">
+                                                <label
+                                                    htmlFor="book-phone"
+                                                    className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5"
+                                                >
+                                                    <Phone className="w-3.5 h-3.5 text-amber-400" />{" "}
+                                                    {meetingFormat === "phone"
+                                                        ? "Cell / Best Phone *"
+                                                        : "Cell Phone (Optional — for text reminder)"}
+                                                </label>
+                                                <input
+                                                    id="book-phone"
+                                                    type="tel"
+                                                    name="phone"
+                                                    required={meetingFormat === "phone"}
+                                                    autoComplete="tel"
+                                                    defaultValue={leadInfo.phone}
+                                                    disabled={status === "submitting"}
+                                                    className="w-full px-4 py-3.5 rounded-xl bg-[#12141c] border border-white/10 focus:border-amber-400 outline-none transition-all text-white placeholder:text-slate-500 disabled:opacity-50"
+                                                    placeholder="(601) 555-0199"
+                                                />
+                                            </div>
+                                            <div className="space-y-2">
+                                                <label
+                                                    htmlFor="book-company"
+                                                    className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5"
+                                                >
+                                                    <Briefcase className="w-3.5 h-3.5 text-amber-400" />{" "}
+                                                    Business or Website (Optional)
+                                                </label>
+                                                <input
+                                                    id="book-company"
+                                                    type="text"
+                                                    name="company"
+                                                    disabled={status === "submitting"}
+                                                    className="w-full px-4 py-3.5 rounded-xl bg-[#12141c] border border-white/10 focus:border-amber-400 outline-none transition-all text-white placeholder:text-slate-500 disabled:opacity-50"
+                                                    placeholder="e.g. Smith Roofing or smithroofing.com"
+                                                />
+                                            </div>
+                                        </div>
+
                                         <div className="space-y-2">
-                                            <label className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
-                                                <FileText className="w-3.5 h-3.5 text-amber-400" />{" "}
-                                                What would you like to cover? *
+                                            <label
+                                                htmlFor="book-optional-note"
+                                                className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400 block"
+                                            >
+                                                Anything specific we should pull up beforehand? (Optional)
                                             </label>
-                                            <textarea
-                                                rows={3}
-                                                name="primary_goals"
-                                                required
+                                            <input
+                                                id="book-optional-note"
+                                                type="text"
+                                                name="optional_note"
                                                 disabled={status === "submitting"}
-                                                className="w-full px-4 py-3.5 rounded-xl bg-[#12141c] border border-white/10 focus:border-amber-400 outline-none transition-all text-white placeholder:text-slate-500 resize-none disabled:opacity-50"
-                                                placeholder="e.g. New contractor website, Google Maps 3-Pack rankings, PDM PinDrop + PinCam field apps..."
+                                                className="w-full px-4 py-3 rounded-xl bg-[#12141c] border border-white/10 focus:border-amber-400 outline-none transition-all text-sm text-white placeholder:text-slate-500 disabled:opacity-50"
+                                                placeholder="Optional — e.g. want more Brandon / Madison roofing calls"
                                             />
                                         </div>
 
-                                        {/* A2P 10DLC Compliant SMS Checkbox */}
-                                        <div className="flex items-start gap-3 p-4 rounded-2xl border border-white/[0.08] bg-[#12141c]">
+                                        {/* Optional A2P 10DLC Compliant SMS Checkbox */}
+                                        <div className="flex items-start gap-3 p-3.5 rounded-2xl border border-white/[0.08] bg-[#12141c]">
                                             <input
                                                 type="checkbox"
                                                 id="sms-opt-in"
                                                 name="sms_opt_in"
-                                                required
                                                 disabled={status === "submitting"}
                                                 className="mt-1 shrink-0 rounded border-white/20 bg-transparent text-amber-500 focus:ring-amber-500"
                                             />
@@ -400,29 +508,20 @@ export default function BookPage() {
                                                 htmlFor="sms-opt-in"
                                                 className="text-[11px] text-slate-400 leading-relaxed"
                                             >
-                                                By checking this box, you agree that you may receive
-                                                appointment reminders, support, and updates via text
-                                                messages (SMS) from Power Digital Media LLC. Msg &amp;
-                                                data rates may apply. Msg frequency varies. Mobile
-                                                information will not be shared with third
-                                                parties/affiliates for marketing/promotional purposes.
-                                                All the above categories exclude text messaging
-                                                originator opt-in data and consent; this information
-                                                will not be shared with any third parties. Unsubscribe
-                                                at any time by replying STOP. Reply HELP for support.
-                                                Review our{" "}
+                                                <strong className="text-slate-300">Optional SMS Reminder:</strong>{" "}
+                                                Check if you&apos;d like appointment reminders &amp; support updates via text (SMS) from Power Digital Media LLC. Msg &amp; data rates may apply; msg frequency varies. Mobile opt-in data is never shared with third parties. Reply STOP anytime or HELP for support.{" "}
                                                 <Link
                                                     href="/privacy"
                                                     className="text-amber-400 underline hover:text-amber-300"
                                                 >
                                                     Privacy Policy
                                                 </Link>{" "}
-                                                and{" "}
+                                                &amp;{" "}
                                                 <Link
                                                     href="/terms"
                                                     className="text-amber-400 underline hover:text-amber-300"
                                                 >
-                                                    Terms &amp; Conditions
+                                                    Terms
                                                 </Link>
                                                 .
                                             </label>
@@ -431,13 +530,33 @@ export default function BookPage() {
                                         <button
                                             type="submit"
                                             disabled={status === "submitting"}
-                                            className="w-full py-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-[#06080f] font-black text-xs uppercase tracking-[0.16em] flex items-center justify-center gap-2 disabled:opacity-70 transition-all shadow-[0_14px_34px_rgba(245,158,11,0.28)]"
+                                            className="w-full py-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-[#06080f] font-black text-xs uppercase tracking-[0.16em] flex items-center justify-center gap-2 disabled:opacity-70 transition-all shadow-[0_14px_34px_rgba(245,158,11,0.28)] cursor-pointer"
                                         >
                                             {status === "submitting"
-                                                ? "Saving Your Details..."
-                                                : "Continue To Live Calendar"}
+                                                ? "Opening Live Calendar..."
+                                                : "See Open Times On Live Calendar"}
                                             <ArrowRight className="w-4 h-4" />
                                         </button>
+
+                                        <div className="pt-3 border-t border-white/[0.08] flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400">
+                                            <span>Rather skip the calendar and talk right now?</span>
+                                            <div className="flex items-center gap-4 font-bold">
+                                                <a
+                                                    href={smsShortcutHref}
+                                                    className="text-emerald-300 hover:text-emerald-200 inline-flex items-center gap-1.5"
+                                                >
+                                                    <MessageSquare className="w-3.5 h-3.5" />
+                                                    <span>Text Damein</span>
+                                                </a>
+                                                <a
+                                                    href="tel:6014462393"
+                                                    className="text-amber-300 hover:text-amber-200 inline-flex items-center gap-1.5"
+                                                >
+                                                    <Phone className="w-3.5 h-3.5" />
+                                                    <span>(601) 446-2393</span>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </form>
                                 </motion.div>
                             ) : (
@@ -490,12 +609,13 @@ export default function BookPage() {
                                                 <button
                                                     key={opt.id}
                                                     type="button"
+                                                    aria-pressed={meetingFormat === opt.id}
                                                     onClick={() =>
                                                         setMeetingFormat(
                                                             opt.id as "phone" | "meet" | "lunch"
                                                         )
                                                     }
-                                                    className={`p-4 rounded-2xl border text-left transition-all flex items-center gap-3 ${
+                                                    className={`p-4 rounded-2xl border text-left transition-all flex items-center gap-3 cursor-pointer ${
                                                         meetingFormat === opt.id
                                                             ? "border-amber-500 bg-[#12141c] text-white"
                                                             : "border-white/10 bg-[#0b0c10] text-slate-400 hover:text-white"

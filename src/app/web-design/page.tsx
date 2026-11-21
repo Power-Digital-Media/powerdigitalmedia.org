@@ -1,5 +1,4 @@
 import React from "react";
-import type { Metadata } from "next";
 import {
   Globe,
   Zap,
@@ -20,22 +19,7 @@ import GoogleReviewsSection from "@/components/sections/GoogleReviewsSection";
 import SpeedComparisonCard from "@/components/ui/SpeedComparisonCard";
 import GrowthScopeEstimator from "@/components/sections/GrowthScopeEstimator";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
-
-export const metadata: Metadata = {
-  title: "Jackson, MS Web Design & 0.8s Websites | Power Digital",
-  description:
-    "Custom 0.8s Next.js websites in Jackson, MS for contractors, restaurants, and local brands across Madison, Ridgeland, Brandon, Flowood & Flora.",
-  alternates: {
-    canonical: "https://powerdigitalmedia.org/web-design",
-  },
-  openGraph: {
-    title: "Jackson, MS Web Design & 0.8s Websites | Power Digital",
-    description:
-      "Custom 0.8s Next.js websites, Google Map Pack optimization, 0%-fee Square ordering, and Capsule CRM automation—engineered in Jackson, Mississippi.",
-    url: "https://powerdigitalmedia.org/web-design",
-    images: ["/portfolio/growth-engine-real.webp"],
-  },
-};
+import QuickHeroLeadCard from "@/components/ui/QuickHeroLeadCard";
 
 const pillars = [
   {
@@ -176,19 +160,19 @@ export default function WebDesignPage() {
               </p>
 
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
-                <Link
-                  href="/free-audit"
+                <a
+                  href="#estimator"
                   className="px-7 py-4 bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black rounded-xl hover:brightness-110 transition-all uppercase tracking-wider text-xs shadow-[0_0_30px_rgba(245,158,11,0.3)] text-center"
                 >
-                  Get Free 5-Min Rank &amp; Site Video →
-                </Link>
-                <a
-                  href="#portfolio"
+                  See Instant Price &amp; Scope →
+                </a>
+                <Link
+                  href="/free-audit"
                   className="flex items-center justify-center gap-2 px-6 py-4 bg-white/[0.05] border border-white/15 text-white rounded-xl font-bold uppercase tracking-wider text-xs hover:bg-white/[0.1] transition-all text-center"
                 >
-                  <span>Inspect Live Builds</span>
-                  <span>↓</span>
-                </a>
+                  <span>Free 5-Min Site Video</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-amber-400" />
+                </Link>
                 <a
                   href="tel:6014462393"
                   className="flex items-center justify-center gap-2 px-6 py-4 border border-amber-500/35 bg-amber-500/10 text-amber-300 rounded-xl font-bold uppercase tracking-wider text-xs hover:bg-amber-400 hover:text-slate-950 transition-all text-center"
@@ -248,7 +232,7 @@ export default function WebDesignPage() {
                     </div>
                     <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/10">
                       <div className="text-[10px] font-mono uppercase text-slate-400">Field Proof</div>
-                      <div className="font-black text-amber-300 mt-0.5">99+ Live Job Pins</div>
+                      <div className="font-black text-amber-300 mt-0.5">800+ Live Job Pins</div>
                     </div>
                   </div>
 
@@ -273,6 +257,63 @@ export default function WebDesignPage() {
       </section>
 
       <GoogleReviewsSection variant="compact" />
+
+      {/* 20-Second Quick Project Quote & Ballpark Band */}
+      <section className="py-14 md:py-16 bg-[#070a13] border-b border-white/10">
+        <div className="container px-4 sm:px-6 mx-auto max-w-7xl">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div className="lg:col-span-7 space-y-4">
+              <span className="text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-amber-400 block">
+                Fast Straight-Talk Pricing • Built in Jackson, MS
+              </span>
+              <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-white">
+                Want a Quick Ballpark Without Playing Agency Guessing Games?
+              </h2>
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl">
+                Most custom 0.8s Next.js website builds start between{" "}
+                <strong className="text-white">$1,000 – $1,500 one-time</strong> (with 100% domain &amp; codebase ownership) and launch in{" "}
+                <strong className="text-white">7–14 business days</strong>. Use the{" "}
+                <a href="#estimator" className="text-amber-300 underline hover:text-amber-200 font-semibold">
+                  Interactive Scope Estimator below
+                </a>{" "}
+                or drop your info here for a personal reply from Damein Donald.
+              </p>
+              <div className="flex flex-wrap gap-4 pt-1 text-xs font-semibold text-slate-300">
+                <span className="inline-flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  Zero WordPress Plugin Bloat
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  Google Map Pack + AI Search Schema
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  Direct Cell Support: (601) 446-2393
+                </span>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5">
+              <QuickHeroLeadCard
+                formSource="web-design-quick-quote"
+                eyebrow="20-Second Ballpark Request"
+                heading="Ask Damein For a Quick Quote"
+                subtext="Pick your build type—get an honest written scope & 5-min teardown of your current Google rankings."
+                pills={[
+                  "Contractor Website",
+                  "Local Business Site",
+                  "0%-Fee Restaurant Site",
+                  "Redesign + Map Pack SEO",
+                ]}
+                defaultPill="Local Business Site"
+                submitLabel="Send My Website Ballpark"
+                businessPlaceholder="Business or Current URL (e.g. Smith HVAC, Ridgeland)"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
       <Portfolio titleAs="h2" />
 

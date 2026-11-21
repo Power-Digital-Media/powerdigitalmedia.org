@@ -1017,6 +1017,91 @@ export default function AllInOneSiteScanner({
                 </div>
               </div>
 
+              {/* TOP-OF-RESULTS MOBILE & DESKTOP QUICK FIX-PLAN UNLOCK BAR */}
+              <div className="rounded-2xl bg-gradient-to-r from-amber-500/[0.12] via-[#0c1120] to-emerald-500/[0.08] border border-amber-400/40 p-4 sm:p-5 shadow-[0_14px_40px_rgba(0,0,0,0.45)]">
+                {leadStatus === "success" ? (
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div className="flex items-center gap-3 text-sm text-emerald-200">
+                      <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+                      <span>
+                        <strong className="text-white">Priority Fix Plan Queued!</strong>{" "}
+                        Damein Donald in Jackson, MS received your{" "}
+                        <strong className="text-amber-300">{stage1.http.hostname}</strong>{" "}
+                        scan and will reply with your 5-minute Map Pack &amp; site breakdown.
+                      </span>
+                    </div>
+                    <Link
+                      href="/book?from=scanner-top"
+                      prefetch={false}
+                      className="px-4 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs uppercase tracking-wider text-center shrink-0 transition-all"
+                    >
+                      Book 15-Min Call →
+                    </Link>
+                  </div>
+                ) : (
+                  <div className="grid lg:grid-cols-12 gap-4 items-center">
+                    <div className="lg:col-span-5 space-y-1">
+                      <div className="text-[10px] font-mono font-extrabold uppercase tracking-widest text-amber-300">
+                        {criticalAndWarningIssues.length > 0
+                          ? `${criticalAndWarningIssues.length} Ranking & Conversion Gaps Flagged`
+                          : "Want Your Live Google Map Pack Grid?"}
+                      </div>
+                      <p className="text-sm sm:text-base font-black text-white leading-snug">
+                        Email Me the Step-by-Step Fix Plan + Free 5-Min Damein Video for{" "}
+                        <span className="text-amber-300">{stage1.http.hostname}</span>
+                      </p>
+                    </div>
+
+                    <form
+                      onSubmit={handleLeadLockSubmit}
+                      className="lg:col-span-7 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5"
+                    >
+                      <FormSecurityFields />
+                      <div className="flex-1 min-w-0">
+                        <label htmlFor={`${scannerId}-top-name`} className="sr-only">
+                          Your Name
+                        </label>
+                        <input
+                          id={`${scannerId}-top-name`}
+                          type="text"
+                          name="name"
+                          required
+                          autoComplete="name"
+                          disabled={leadStatus === "submitting"}
+                          placeholder="Your Name *"
+                          className="w-full px-3.5 py-3 rounded-xl bg-[#05070d] border border-white/15 focus:border-amber-400 outline-none text-xs sm:text-sm text-white placeholder:text-slate-500"
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <label htmlFor={`${scannerId}-top-email`} className="sr-only">
+                          Best Email Address
+                        </label>
+                        <input
+                          id={`${scannerId}-top-email`}
+                          type="email"
+                          name="email"
+                          required
+                          autoComplete="email"
+                          disabled={leadStatus === "submitting"}
+                          placeholder="Best Email *"
+                          className="w-full px-3.5 py-3 rounded-xl bg-[#05070d] border border-white/15 focus:border-amber-400 outline-none text-xs sm:text-sm text-white placeholder:text-slate-500"
+                        />
+                      </div>
+                      <button
+                        type="submit"
+                        disabled={leadStatus === "submitting"}
+                        className="px-5 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black uppercase tracking-wider text-xs flex items-center justify-center gap-1.5 shrink-0 cursor-pointer transition-all shadow-[0_0_20px_rgba(245,158,11,0.3)] disabled:opacity-50"
+                      >
+                        <span>
+                          {leadStatus === "submitting" ? "Sending…" : "Send Fix Plan"}
+                        </span>
+                        <Send className="w-3.5 h-3.5" />
+                      </button>
+                    </form>
+                  </div>
+                )}
+              </div>
+
               {/* 5 INTERACTIVE DIAGNOSTIC TABS */}
               <div className="flex flex-wrap gap-2 border-b border-white/10 pb-3">
                 {[

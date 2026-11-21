@@ -24,6 +24,7 @@ import Footer from "@/components/layout/Footer";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import AuditCTA from "@/components/sections/AuditCTA";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import QuickHeroLeadCard from "@/components/ui/QuickHeroLeadCard";
 
 interface CapabilityCard {
     title: string;
@@ -193,80 +194,97 @@ export default function CustomApplicationsPage() {
                             </div>
                         </motion.div>
 
-                        {/* Live Architecture Diagram Card */}
+                        {/* Right Column: 20-Second Quick Scope Card */}
                         <motion.div
                             initial={{ opacity: 0, y: 24 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.65, delay: 0.1 }}
                             className="lg:col-span-5"
                         >
-                            <div className="rounded-3xl bg-[#0b0c10] border border-white/10 p-6 sm:p-7 shadow-[0_28px_70px_rgba(0,0,0,0.65)]">
-                                <div className="flex items-center justify-between pb-4 mb-5 border-b border-white/[0.07]">
-                                    <div>
-                                        <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-amber-400 block">
-                                            Unified Workflow
-                                        </span>
-                                        <h2 className="text-lg font-black uppercase tracking-tight text-white">
-                                            How Your Pipeline Runs Automatically
-                                        </h2>
-                                    </div>
-                                    <span className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[10px] font-mono font-bold text-emerald-400 uppercase">
-                                        Live Sync
-                                    </span>
-                                </div>
+                            <QuickHeroLeadCard
+                                formSource="custom-apps-hero"
+                                eyebrow="Direct Jackson, MS Engineering"
+                                heading="Get a Fast CRM or App Scope"
+                                subtext="Tell Damein what system you want connected—get a straight-talk architecture & ballpark reply within 1 business day."
+                                pills={[
+                                    "Capsule CRM Setup",
+                                    "0%-Fee Square Ordering",
+                                    "Custom Portal / App",
+                                    "PinDrop™ + PinCam™",
+                                ]}
+                                defaultPill="Capsule CRM Setup"
+                                submitLabel="Send My CRM / App Gameplan"
+                                businessPlaceholder="Business or Website (e.g. Smith Mechanical, Jackson)"
+                            />
+                        </motion.div>
+                    </div>
 
-                                <div className="space-y-3.5">
-                                    {[
-                                        {
-                                            step: "01",
-                                            title: "Customer Clicks, Calls, or Orders",
-                                            desc: "Quote form, click-to-call button, or Square menu cart captures intent directly on your domain.",
-                                            badge: "Next.js Edge",
-                                        },
-                                        {
-                                            step: "02",
-                                            title: "Instant Capsule CRM Opportunity",
-                                            desc: "Creates contact record, tags service type & city, and opens a tracked deal card in <300ms.",
-                                            badge: "Capsule CRM",
-                                        },
-                                        {
-                                            step: "03",
-                                            title: "Automated Transpond Follow-Up",
-                                            desc: "Sends immediate confirmation & estimate follow-ups so prospects stay engaged.",
-                                            badge: "Transpond Automation",
-                                        },
-                                        {
-                                            step: "04",
-                                            title: "Jobsite Proof & 5-Star Review Loop",
-                                            desc: "Crews snap PinCam™ photos & drop a PDM PinDrop™ GPS pin to rank that neighborhood.",
-                                            badge: "PinCam™ + PinDrop™",
-                                        },
-                                    ].map((item) => (
-                                        <div
-                                            key={item.step}
-                                            className="p-4 rounded-2xl bg-[#12141c] border border-white/[0.07] flex items-start gap-3.5"
-                                        >
-                                            <span className="w-7 h-7 rounded-lg bg-amber-500/15 border border-amber-500/30 text-amber-400 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                    {/* Unified 4-Step Pipeline Strip */}
+                    <div className="mt-14 pt-10 border-t border-white/[0.08]">
+                        <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
+                            <div>
+                                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-amber-400 block">
+                                    Unified Workflow
+                                </span>
+                                <h2 className="text-lg sm:text-xl font-black uppercase tracking-tight text-white">
+                                    How Your Pipeline Runs Automatically
+                                </h2>
+                            </div>
+                            <span className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[10px] font-mono font-bold text-emerald-400 uppercase">
+                                Live API Sync • Zero Zapier Tax
+                            </span>
+                        </div>
+
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+                            {[
+                                {
+                                    step: "01",
+                                    title: "Customer Clicks, Calls, or Orders",
+                                    desc: "Quote form, click-to-call button, or Square menu cart captures intent directly on your domain.",
+                                    badge: "Next.js Edge",
+                                },
+                                {
+                                    step: "02",
+                                    title: "Instant Capsule CRM Opportunity",
+                                    desc: "Creates contact record, tags service type & city, and opens a tracked deal card in <300ms.",
+                                    badge: "Capsule CRM",
+                                },
+                                {
+                                    step: "03",
+                                    title: "Automated Transpond Follow-Up",
+                                    desc: "Sends immediate confirmation & estimate follow-ups so prospects stay engaged.",
+                                    badge: "Transpond",
+                                },
+                                {
+                                    step: "04",
+                                    title: "Jobsite Proof & 5-Star Review Loop",
+                                    desc: "Crews snap PinCam™ photos & drop a PDM PinDrop™ GPS pin to build local search proof.",
+                                    badge: "PinCam™ + PinDrop™",
+                                },
+                            ].map((item) => (
+                                <div
+                                    key={item.step}
+                                    className="p-4 rounded-2xl bg-[#0b0c10] border border-white/[0.08] flex flex-col justify-between gap-2"
+                                >
+                                    <div>
+                                        <div className="flex items-center justify-between gap-2 mb-2">
+                                            <span className="w-7 h-7 rounded-lg bg-amber-500/15 border border-amber-500/30 text-amber-400 font-mono font-bold text-xs flex items-center justify-center shrink-0">
                                                 {item.step}
                                             </span>
-                                            <div className="min-w-0 flex-1">
-                                                <div className="flex items-center justify-between gap-2 mb-1">
-                                                    <h3 className="text-sm font-bold text-white">
-                                                        {item.title}
-                                                    </h3>
-                                                    <span className="text-[9px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-white/[0.04] border border-white/10 text-amber-300 shrink-0">
-                                                        {item.badge}
-                                                    </span>
-                                                </div>
-                                                <p className="text-xs text-slate-400 leading-relaxed">
-                                                    {item.desc}
-                                                </p>
-                                            </div>
+                                            <span className="text-[9px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-white/[0.04] border border-white/10 text-amber-300">
+                                                {item.badge}
+                                            </span>
                                         </div>
-                                    ))}
+                                        <h3 className="text-sm font-bold text-white mb-1">
+                                            {item.title}
+                                        </h3>
+                                        <p className="text-xs text-slate-400 leading-relaxed">
+                                            {item.desc}
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </motion.div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>

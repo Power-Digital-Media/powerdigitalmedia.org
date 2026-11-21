@@ -3,7 +3,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "5.0★ Jackson, MS Web Design & 0.8s Sites | Power Digital",
   description:
-    "Custom 0.8s websites, Google Map Pack SEO & Capsule CRM built in Jackson, MS for contractors & local brands. See live builds or call (601) 446-2393.",
+    "Custom 0.8s websites, Google Map Pack SEO & Capsule CRM in Jackson, MS. Instant Scope Estimator • 7–14 Day Launch • Call (601) 446-2393.",
   alternates: {
     canonical: "https://powerdigitalmedia.org/web-design",
   },

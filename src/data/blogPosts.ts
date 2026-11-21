@@ -23,6 +23,137 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
     {
+        slug: "website-design-cost-jackson-mississippi-2026",
+        title: "Website Design Cost in Jackson & Mississippi: 2026 Honest Pricing Guide",
+        seoTitle: "Website Design Cost in Jackson, MS (2026 Pricing Guide)",
+        metaDescription: "Honest 2026 website design pricing in Jackson & Central MS: $1,000–$1,500 custom 0.8s Next.js builds vs $5,000+ WordPress agencies. See instant scope.",
+        excerpt: "Tired of local agencies hiding website prices behind 45-minute sales pitches? Here is the exact 2026 breakdown of what custom websites, Google Map Pack SEO, CRM pipelines, and contractor field apps actually cost in Jackson, Madison, Brandon, and across Mississippi.",
+        date: "2026-11-20",
+        category: "Web Engineering",
+        image: "/blog-images/modern-web-design-jackson-ms-nextjs-edge-v3.webp",
+        ogImage: "/blog-images/modern-web-design-jackson-ms-nextjs-edge-v3.webp",
+        author: {
+            name: "Damein Wayne Donald",
+            role: "Lead Infrastructure Architect & Founder"
+        },
+        keywords: [
+            "website design cost Jackson MS",
+            "how much does a website cost in Mississippi",
+            "custom web design pricing Jackson Mississippi",
+            "contractor website cost MS",
+            "Next.js web design vs WordPress cost"
+        ],
+        content: `
+### Why Most Web Agencies Hide Their Pricing
+
+If you run a roofing crew in Brandon, an excavation company in Flora, a restaurant in Flowood, or a growing clinic in Madison, asking *"How much does a good website cost?"* usually gets you a vague *"It depends—hop on a 45-minute discovery call."*
+
+At **Power Digital Media LLC** in Jackson, MS, we publish real numbers right inside our [Interactive Growth & Scope Estimator](/estimate) because business owners deserve straight answers before picking up the phone.
+
+---
+
+### 2026 Website Design Cost Comparison in Central Mississippi
+
+Here is what Mississippi small and mid-sized businesses actually encounter across the three main options on the market today:
+
+| Build Option | Typical Upfront Cost | Ongoing Monthly Cost | Mobile Speed | Code & Domain Ownership |
+| :--- | :--- | :--- | :--- | :--- |
+| **DIY Page Builders (Wix / Squarespace)** | $0 – $300 (your own nights & weekends) | $35 – $95/mo | 2.8s – 5.2s (slow scripts) | Locked to platform |
+| **Traditional WordPress Agency** | $4,500 – $8,500+ | $150 – $1,500/mo | 3.2s – 6.5s (plugin bloat) | Often leased or plugin-bound |
+| **Power Digital Media (Custom 0.8s Next.js)** | **$1,000 – $1,500 one-time** | **$550 – $650/mo Core Growth Partner** (optional) | **Sub-second (98–100 Lighthouse)** | **100% yours upon completion** |
+
+---
+
+### What Is Included in a $1,000 – $1,500 Custom Website Build?
+
+Because we engineer directly on **Next.js 16 edge architecture** instead of stitching together 25 fragile WordPress plugins, our builds launch faster (**7 to 14 business days**) without bloated agency overhead:
+
+1. **Sub-Second Mobile Load Speed (0.8s):** Built for cellular connections on job sites and neighborhoods across Hinds, Madison, and Rankin counties so mobile callers never bounce.
+2. **Built-In Conversion Tools:** Interactive project/acreage quote calculators (like we built for **Geaux Pro Outdoors** at \`msdirt.com\`), roof inspection funnels (**Born Again Roofing & Remodeling** at \`bornagainroofing.com\`), ministry hubs (**Church 244** at \`church244.com\`), or [0%-commission Square online ordering](/custom-applications) (**T'Beaux's Seafood & Catering** at \`tbeauxs.com\`).
+3. **Google Map Pack & AI Search Schema (GEO + AEO):** Clean \`LocalBusiness\`, \`Service\`, \`BreadcrumbList\`, and \`/llms.txt\` structured data so Google Maps, ChatGPT, Gemini, and Perplexity understand exactly which Mississippi cities you serve.
+4. **100% Ownership:** You own your domain name and custom codebase outright—never held hostage by proprietary agency contracts.
+
+---
+
+### Ongoing Growth, Watchtower Monitoring & Field App Modules
+
+A fast website is the engine; ongoing local authority and lead follow-up are the fuel. Businesses that partner with us monthly choose only what fits their operation:
+
+* **Core Growth & Watchtower Foundation ($550 – $650/mo):** Includes **PDM Site Intelligence™** 24/7 monitoring (5-minute uptime/SSL probes, daily broken-link crawls, Search Console + GA4 conversion tracking), ongoing **Google Map Pack optimization**, **Capsule CRM + Transpond** automated lead follow-ups, **PDM Site Manager** updates, and direct cell access to Damein Donald at **(601) 446-2393**.
+* **PDM PinDrop™ (+$400 – $500/mo):** Turns 10-second crew check-ins into GPS-verified neighborhood project pins, Google Business Profile updates, and automated homeowner 5-star review texts.
+* **PinCam™ (+$350 – $450/mo with $0 Per-Seat Fees):** Native iOS & Android jobsite camera with Ghost before/after alignment, damage markups, homeowner PDF reports, and 9:16 reel creation for your entire crew—saving **$50/mo** when bundled with PinDrop™.
+
+---
+
+### Configure Your Exact Ballpark in 30 Seconds
+
+Want to see how a new website or Map Pack system pencils out for your exact trade and city?
+
+* **[Open the Interactive Scope Estimator →](/estimate)** to toggle modules and see live ballpark numbers immediately.
+* **[Inspect Our Custom Web Design Builds →](/web-design)** to test live Mississippi client websites yourself.
+* **[Request Damein's Free 5-Minute Video Review →](/free-audit)** and get a personal screen-share teardown of your current Google Map Pack rankings and website speed within 1 business day.
+`
+    },
+    {
+        slug: "zero-commission-online-ordering-mississippi-restaurants",
+        title: "How Mississippi Restaurants Keep 100% of Online Order Profits with 0%-Commission Square Checkout",
+        seoTitle: "0%-Commission Online Ordering for MS Restaurants | Square",
+        metaDescription: "Stop losing 25–30% per ticket to marketplace apps. See how Mississippi restaurants run 0%-commission native Square ordering & catering calculators.",
+        excerpt: "Third-party delivery and ordering marketplaces quietly drain 25% to 30% off every ticket—often wiping out a restaurant's entire net margin. See how Central Mississippi restaurants and caterers use native Square Web SDK ordering to keep 100% of their online sales.",
+        date: "2026-11-19",
+        category: "Custom Apps & Commerce",
+        image: "/portfolio/tbeauxs-square-checkout.webp",
+        ogImage: "/portfolio/tbeauxs-square-checkout.webp",
+        author: {
+            name: "Damein Wayne Donald",
+            role: "Lead Infrastructure Architect & Founder"
+        },
+        keywords: [
+            "zero commission online ordering Mississippi",
+            "Square online ordering website Jackson MS",
+            "restaurant website design Mississippi",
+            "catering calculator web app",
+            "avoid DoorDash commission restaurant website"
+        ],
+        content: `
+### The 30% Marketplace Tax Eating Local Restaurant Margins
+
+Independent restaurants, seafood boil houses, food trucks, and caterers across Jackson, Flowood, Ridgeland, Madison, Brandon, and Flora work on tight food and labor margins. When a loyal regular searches your restaurant name on their phone and clicks a third-party marketplace button first, **25% to 30% of that ticket vanishes in platform commissions**—even when the customer picks up the order at your counter themselves.
+
+Let's look at the real math on just **$10,000/month** in online takeout and catering orders:
+
+| Ordering Channel | Platform Commission | Monthly Commission Lost | Annual Profit Kept by Restaurant |
+| :--- | :--- | :--- | :--- |
+| **3rd-Party Marketplace Redirect** | 25% – 30% per order | **$2,500 – $3,000 / mo lost** | Loses **$30,000 – $36,000 / yr** |
+| **Generic Redirect Subdomain** | Slow UX + extra monthly SaaS tier fees | High cart abandonment on cell phones | Customer data stays fragmented |
+| **PDM Native Square Web SDK Checkout** | **0% platform commission** (standard Square card rate only) | **$0 marketplace cut** | **Keeps $30,000+ / yr in-house** |
+
+---
+
+### Case Study: How T'Beaux's Crawfish & Catering Runs 0%-Fee Ordering
+
+When we engineered the custom digital storefront and ordering platform for **[T'Beaux's Seafood & Catering](/portfolio/tbeaux)** (\`tbeauxs.com\`), the goal was simple: make ordering platters, boils, and large family feasts faster on a smartphone than any national app—while keeping **100% of the order revenue** flowing straight into their existing Square POS.
+
+Here is how the architecture works under the hood:
+
+1. **Native On-Domain Checkout (Zero Redirects):** Customers browse live items, modifiers, and poundage options directly on the restaurant's sub-second Next.js website and pay via Apple Pay, Google Pay, Cash App Pay, or card using the **Square Web Payments SDK**.
+2. **Interactive Feast & Catering Calculators:** Instead of playing phone tag on Friday afternoon for a 40-person tailgate or church catering order, customers enter their headcount and get instant portion recommendations and live pricing.
+3. **Instant Menu & Sold-Out Control via PDM Site Manager:** Sold out of jumbo Gulf shrimp at 6:30 PM? Toggle availability or update market pricing from your phone in seconds without calling a web developer.
+4. **Google Map Pack & AI Chatbot Discovery:** Structured menu and \`LocalBusiness\` schema ensure hungry locals searching Google Maps, ChatGPT, or Gemini find your **direct 0%-commission ordering link** first.
+5. **You Own the Customer List:** Every online order and catering inquiry feeds your own **Capsule CRM** and **Transpond** VIP text/email list so you can announce weekend specials directly to past buyers.
+
+---
+
+### Ready to Stop Paying 30% Rent on Your Own Regulars?
+
+If your restaurant, food truck, bakery, or catering kitchen already uses Square (or wants a clean POS + web checkout cutover), we can launch your custom 0%-commission ordering site in **7 to 14 business days**.
+
+* **[Inspect the T'Beaux's Case Study →](/portfolio/tbeaux)** to see native Square ordering & feast planning in action.
+* **[Explore Custom CRM & Checkout Engineering →](/custom-applications)** or **[Run Instant Ballpark Numbers →](/estimate)**.
+* **[Get a Free 5-Minute Restaurant Website & Google Maps Video Review →](/free-audit)** from Damein Donald in Jackson, MS, or call/text **(601) 446-2393**.
+`
+    },
+    {
         slug: "why-nextjs-beats-wordpress-jackson-ms",
         title: "Why Modern Next.js Beats Bloated WordPress for Mississippi Businesses (2026)",
         seoTitle: "Why Next.js Beats WordPress in Jackson, MS | Power Digital",

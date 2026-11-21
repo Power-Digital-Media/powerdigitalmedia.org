@@ -11,6 +11,7 @@ export const metadata: Metadata = {
         title: "Book a 15-Minute Strategy Call | Power Digital Media",
         description: "Schedule a direct 15-minute strategy call with Damein Donald in Jackson, MS to review custom Next.js web design, Map Pack SEO, or CRM integration.",
         url: "https://powerdigitalmedia.org/book",
+        images: ["/images/og-image.png"],
     },
 };
 

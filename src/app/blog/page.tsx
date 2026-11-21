@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     description:
       "Actionable playbooks on Google Map Pack optimization, custom 0.8s Next.js web design, PDM PinDrop™ field apps, and CRM setup for Mississippi businesses.",
     url: "https://powerdigitalmedia.org/blog",
+    images: ["/images/og-image.png"],
   },
 };
 

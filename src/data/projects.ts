@@ -52,10 +52,10 @@ export const projects: Project[] = [
         economicImpact: {
             before: "A slow legacy website with zero field integration, manual phone inquiries, and no way to showcase neighborhood storm repair work across Central Mississippi.",
             built: "Custom Next.js platform with proprietary PinDrop™ GPS field mapping, automated post-completion SMS review routing, and multi-city local service schema.",
-            result: "100+ live job pins dropped across the Jackson metro, automated 5-star Google review capture, and instant storm damage lead dispatch directly into Capsule CRM.",
+            result: "800+ live job pins dropped across the Jackson metro, automated 5-star Google review capture, and instant storm damage lead dispatch directly into Capsule CRM.",
             metrics: [
                 { label: "Performance Score", value: "98/100", highlight: true },
-                { label: "Field Pins Mapped", value: "100+ Live Pins" },
+                { label: "Field Pins Mapped", value: "800+ Live Pins" },
                 { label: "Mobile Load Speed", value: "< 1.0s", highlight: true },
                 { label: "Review Automation", value: "Automated SMS" }
             ]
@@ -68,7 +68,7 @@ export const projects: Project[] = [
         ],
         netlifyUrl: "https://www.bornagainroofing.com/",
         glowColor: "234, 179, 8",
-        metricBadge: "99+ Live Job Pins",
+        metricBadge: "800+ Live Job Pins",
         integrations: [
             {
                 title: "PinDrop™ Field App & Interactive Job Map",
@@ -156,7 +156,7 @@ export const projects: Project[] = [
         id: "pindrop-saas",
         title: "PDM PinDrop™ & PinCam™ Field Suite",
         description: "Our proprietary contractor field apps built in Jackson, MS. Crews snap aligned before/after & damage-marked photos with PinCam™ and drop a 1-tap GPS pin in PDM PinDrop™—automatically updating the live website map, boosting neighborhood Google Map Pack rankings, and texting homeowners for 5-star reviews.",
-        image: "/pindrop/bar-live-pins.jpg",
+        image: "/pindrop/bar-live-pins.webp",
         mobileImage: "/portfolio/Power_Digial_Growth_mobile.webp",
         tags: ["PDM PinDrop™", "PinCam™ Field Camera", "Google Maps SEO", "Automated Reviews"],
         client: "Power Digital Media Proprietary Apps",
@@ -165,7 +165,7 @@ export const projects: Project[] = [
         economicImpact: {
             before: "Contractor crews finished jobs with scattered camera-roll photos, zero neighborhood SEO signal, and had to manually chase homeowners for Google reviews weeks later.",
             built: "PinCam™ 5-mode jobsite camera + PDM PinDrop™ GPS check-in engine that publishes geo-verified project proof to your site map and triggers instant SMS review requests.",
-            result: "99+ live Central Mississippi job pins mapped in production, instant customer PDF photo reports, and 3.4x higher 5-star Google review capture with zero office paperwork.",
+            result: "800+ live Central Mississippi job pins mapped in production, instant customer PDF photo reports, and 3.4x higher 5-star Google review capture with zero office paperwork.",
             metrics: [
                 { label: "Check-In Speed", value: "< 15 Seconds", highlight: true },
                 { label: "Review Capture Rate", value: "3.4x Higher" },

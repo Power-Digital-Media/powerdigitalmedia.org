@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     description:
       "Instant live website, schema, llms.txt & Google speed audit—paired with a personal 5-minute Map Pack heatmap video recorded by Damein Donald in Jackson, MS.",
     url: "https://powerdigitalmedia.org/free-audit",
+    images: ["/images/og-image.png"],
   },
 };
 
