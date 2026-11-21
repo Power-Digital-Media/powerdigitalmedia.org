@@ -135,17 +135,20 @@ export default function Navbar() {
             {/* Logo */}
             <Link
               href="/"
+              prefetch={false}
               className="flex items-center group shrink-0"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <div className="relative flex items-center h-11 sm:h-12 w-44 sm:w-52 xl:w-56">
-                <Image
-                  src="/images/pdm-logo-transparent.png"
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/pdm-logo-transparent.webp"
                   alt="Power Digital Media LLC"
-                  fill
-                  sizes="(max-width: 640px) 176px, 224px"
-                  className="object-contain object-left group-hover:scale-[1.02] transition-transform"
-                  priority
+                  width={448}
+                  height={84}
+                  fetchPriority="high"
+                  decoding="async"
+                  className="h-10 sm:h-11 w-auto object-contain object-left group-hover:scale-[1.02] transition-transform"
                 />
               </div>
             </Link>

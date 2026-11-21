@@ -3,7 +3,9 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import ContractorHeroStage from "@/components/sections/ContractorHeroStage";
 import QuickScanBanner from "@/components/scanner/QuickScanBanner";
+import DeferredBelowFoldHome from "@/components/ui/DeferredBelowFoldHome";
 import DeferredFooterSections from "@/components/ui/DeferredFooterSections";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import {
   Phone,
   ArrowRight,
@@ -13,24 +15,19 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
-const JobsitePipelineStory = dynamic(() => import("@/components/sections/JobsitePipelineStory"));
-const GoogleReviewsSection = dynamic(() => import("@/components/sections/GoogleReviewsSection"));
-const ConnectedArchitecture = dynamic(() => import("@/components/sections/ConnectedArchitecture"));
-const GrowthScopeEstimator = dynamic(() => import("@/components/sections/GrowthScopeEstimator"));
-const SpeedComparisonCard = dynamic(() => import("@/components/ui/SpeedComparisonCard"));
 const AEOFAQ = dynamic(() => import("@/components/sections/AEOFAQ"));
 
 export const metadata = {
-  title: "Jackson, MS Web Design, SEO & CRM | Power Digital Media",
+  title: "Power Digital Media | Web Design, SEO & CRM in Jackson, MS",
   description:
-    "Custom 0.8s websites, 24/7 managed hosting, Google Map Pack SEO, and Capsule CRM systems built in Jackson, MS. Get an instant estimate or free scan.",
+    "5.0★ Jackson, MS studio building 0.8s custom websites, Google Map Pack SEO, Capsule CRM pipelines & PinDrop™ field apps. Call (601) 446-2393.",
   alternates: {
     canonical: "https://powerdigitalmedia.org",
   },
   openGraph: {
-    title: "Jackson, MS Web Design, SEO & CRM | Power Digital Media",
+    title: "Power Digital Media | Web Design, SEO & CRM in Jackson, MS",
     description:
-      "Custom 0.8s websites, 24/7 managed hosting, Google Map Pack SEO, and Capsule CRM systems built in Jackson, MS. Get an instant estimate or free scan.",
+      "5.0★ Jackson, MS studio building 0.8s custom websites, Google Map Pack SEO, Capsule CRM pipelines & PinDrop™ field apps. Call (601) 446-2393.",
     url: "https://powerdigitalmedia.org",
     images: ["/images/og-image.png"],
   },
@@ -52,6 +49,21 @@ const METRO_CITIES = [
 export default function Home() {
   return (
     <main className="relative flex flex-col min-h-screen bg-[#06080f] text-white">
+      <BreadcrumbSchema items={[{ name: "Home", url: "https://powerdigitalmedia.org/" }]} />
+      <link
+        rel="preload"
+        as="image"
+        href="/portfolio/bornagain-hero-mobile.webp"
+        media="(max-width: 680px)"
+        fetchPriority="high"
+      />
+      <link
+        rel="preload"
+        as="image"
+        href="/portfolio/bornagain-hero-16-10.webp"
+        media="(min-width: 681px)"
+        fetchPriority="high"
+      />
       <Navbar />
 
       {/* =====================================================================
@@ -94,6 +106,7 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto mb-7">
                 <Link
                   href="/free-audit"
+                  prefetch={false}
                   className="px-7 py-4 bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black rounded-xl hover:brightness-110 transition-all uppercase tracking-wider text-xs shadow-[0_0_32px_rgba(245,158,11,0.32)] text-center flex items-center justify-center gap-2 active:scale-95"
                 >
                   <span>Get Free 5-Min Rank &amp; Site Check</span>
@@ -144,24 +157,28 @@ export default function Home() {
             <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 font-bold text-slate-200 text-xs">
               <Link
                 href="/portfolio/born-again-roofing"
+                prefetch={false}
                 className="px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:text-amber-300 transition-colors"
               >
-                Born Again Roofing (99+ Pins)
+                Born Again Roofing (800+ Pins)
               </Link>
               <Link
                 href="/portfolio/geaux-pro-outdoors"
+                prefetch={false}
                 className="px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:text-amber-300 transition-colors"
               >
                 Geaux Pro Outdoors (MS Dirt)
               </Link>
               <Link
                 href="/portfolio/tbeaux"
+                prefetch={false}
                 className="px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:text-amber-300 transition-colors"
               >
                 T&apos;Beaux&apos;s Seafood (0% Fee Ordering)
               </Link>
               <Link
                 href="/our-work"
+                prefetch={false}
                 className="px-3.5 py-1.5 rounded-full bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 transition-colors"
               >
                 View All 10+ Builds →
@@ -177,29 +194,9 @@ export default function Home() {
       <QuickScanBanner />
 
       {/* =====================================================================
-          1. IMMERSIVE 3-STAGE JOBSITE-TO-LEAD INTERACTIVE STORY
+          1–5. VIEWPORT-DEFERRED INTERACTIVE PROOF, ESTIMATOR & BENCHMARK SUITE
       ====================================================================== */}
-      <JobsitePipelineStory />
-
-      {/* =====================================================================
-          2. VERIFIED 5.0★ GOOGLE & FACEBOOK REVIEWS (IMMEDIATE SOCIAL PROOF)
-      ====================================================================== */}
-      <GoogleReviewsSection />
-
-      {/* =====================================================================
-          3. LIVE CLIENT ARCHITECTURE & STANDOUT LOCAL BUILDS (T'BEAUX'S, ETC.)
-      ====================================================================== */}
-      <ConnectedArchitecture />
-
-      {/* =====================================================================
-          4. INTERACTIVE CENTRAL MS GROWTH & SCOPE ESTIMATOR
-      ====================================================================== */}
-      <GrowthScopeEstimator />
-
-      {/* =====================================================================
-          5. SPEED BENCHMARK + CENTRAL MS SERVICE AREA SEO HUB
-      ====================================================================== */}
-      <SpeedComparisonCard />
+      <DeferredBelowFoldHome />
 
       <section className="py-20 bg-[#05070d] border-t border-white/10">
         <div className="container px-4 sm:px-6 mx-auto max-w-7xl">
@@ -214,6 +211,7 @@ export default function Home() {
             </div>
             <Link
               href="/local-seo"
+              prefetch={false}
               className="text-xs font-mono font-bold uppercase tracking-wider text-amber-400 hover:text-amber-300 flex items-center gap-1.5"
             >
               <span>See Our Google Map Pack System</span>
@@ -226,6 +224,7 @@ export default function Home() {
               <Link
                 key={city.slug}
                 href={`/locations/${city.slug}`}
+                prefetch={false}
                 className="group p-4 rounded-2xl bg-white/[0.03] hover:bg-amber-500/[0.08] border border-white/10 hover:border-amber-500/40 transition-all"
               >
                 <div className="flex items-center justify-between mb-2">

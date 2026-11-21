@@ -1,14 +1,14 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Jackson, MS Web Design & 0.8s Websites | Power Digital",
+  title: "5.0★ Jackson, MS Web Design & 0.8s Sites | Power Digital",
   description:
-    "Custom 0.8s Next.js websites in Jackson, MS for contractors, restaurants, and local brands across Madison, Ridgeland, Brandon, Flowood & Flora.",
+    "Custom 0.8s websites, Google Map Pack SEO & Capsule CRM built in Jackson, MS for contractors & local brands. See live builds or call (601) 446-2393.",
   alternates: {
     canonical: "https://powerdigitalmedia.org/web-design",
   },
   openGraph: {
-    title: "Jackson, MS Web Design & 0.8s Websites | Power Digital",
+    title: "5.0★ Jackson, MS Web Design & 0.8s Sites | Power Digital",
     description:
       "Custom 0.8s Next.js websites, Google Map Pack optimization, 0%-fee Square ordering, and Capsule CRM automation—engineered in Jackson, Mississippi.",
     url: "https://powerdigitalmedia.org/web-design",

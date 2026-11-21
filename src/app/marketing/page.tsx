@@ -271,7 +271,7 @@ export default function MarketingPage() {
 
                                 <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-[#06080f] border border-white/[0.06]">
                                     <Image
-                                        src="/images/marketing_telemetry_system.png"
+                                        src="/images/marketing_telemetry_system.webp"
                                         alt="Automated paid social funnel routing directly into Capsule CRM"
                                         fill
                                         sizes="(max-width: 768px) 100vw, 400px"

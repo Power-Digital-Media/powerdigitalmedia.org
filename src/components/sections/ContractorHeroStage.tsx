@@ -43,7 +43,7 @@ const SHOWCASES: ShowcaseItem[] = [
     image: "/portfolio/bornagain-hero-16-10.webp",
     imageAlt: "Born Again Roofing & Remodeling custom Next.js website and PinDrop map",
     caseStudyHref: "/portfolio/born-again-roofing",
-    liveRankBadge: "99+ Live GPS Job Pins Mapped",
+    liveRankBadge: "800+ Live GPS Job Pins Mapped",
     speedScore: "98/100 Mobile",
     engineBadge: "PinDrop™ + Storm Lead CRM",
     proofQuote:
@@ -74,7 +74,7 @@ const SHOWCASES: ShowcaseItem[] = [
     domain: "PinCam™ + PinDrop™ Suite",
     clientName: "HVAC, Plumbing & Electrical System",
     location: "Madison, Ridgeland & Flowood, MS",
-    image: "/pincam/hvac-install.jpg",
+    image: "/pincam/hvac-install.webp",
     imageAlt: "HVAC condenser field installation documented with PinCam and PinDrop",
     caseStudyHref: "/pincam",
     liveRankBadge: "Auto-Publishes Neighborhood SEO",
@@ -171,15 +171,34 @@ export default function ContractorHeroStage() {
 
         {/* Live Visual Viewport (100% Unobstructed Screenshot) */}
         <div className="relative aspect-[16/10] w-full bg-[#05070c] overflow-hidden">
-          <Image
-            key={current.image}
-            src={current.image}
-            alt={current.imageAlt}
-            fill
-            sizes="(max-width: 640px) 94vw, (max-width: 1024px) 85vw, 580px"
-            className="object-cover object-top transition-all duration-500"
-            priority={activeIndex === 0}
-          />
+          {activeIndex === 0 ? (
+            <picture>
+              <source
+                media="(max-width: 680px)"
+                srcSet="/portfolio/bornagain-hero-mobile.webp"
+                type="image/webp"
+              />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/portfolio/bornagain-hero-16-10.webp"
+                alt={current.imageAlt}
+                width={1200}
+                height={716}
+                fetchPriority="high"
+                decoding="async"
+                className="w-full h-full object-cover object-top"
+              />
+            </picture>
+          ) : (
+            <Image
+              key={current.image}
+              src={current.image}
+              alt={current.imageAlt}
+              fill
+              sizes="(max-width: 640px) 94vw, (max-width: 1024px) 85vw, 580px"
+              className="object-cover object-top transition-all duration-500"
+            />
+          )}
         </div>
 
         {/* Clean Non-Overlapping Identity, Telemetry & Proof Dock */}

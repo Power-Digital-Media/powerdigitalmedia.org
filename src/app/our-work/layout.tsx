@@ -1,14 +1,14 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Mississippi Web Design & App Portfolio | Power Digital",
-    description: "Explore live 0.8s Next.js websites, contractor PinDrop™ deployments, 0%-fee Square ordering, and custom web apps built for Mississippi business owners.",
+    title: "Live Mississippi Websites & App Builds | Power Digital",
+    description: "Inspect 10+ live 0.8s Mississippi websites, Born Again Roofing (800+ pins), Geaux Pro Outdoors, T'Beaux's 0%-fee ordering & Church 244 builds.",
     alternates: {
         canonical: "https://powerdigitalmedia.org/our-work",
     },
     openGraph: {
-        title: "Mississippi Web Design & App Portfolio | Power Digital",
-        description: "Explore live 0.8s Next.js websites, contractor PinDrop™ deployments, 0%-fee Square ordering, and custom web apps built for Mississippi business owners.",
+        title: "Live Mississippi Websites & App Builds | Power Digital",
+        description: "Inspect 10+ live 0.8s Mississippi websites, Born Again Roofing (800+ pins), Geaux Pro Outdoors, T'Beaux's 0%-fee ordering & Church 244 builds.",
         url: "https://powerdigitalmedia.org/our-work",
         images: ["/portfolio/growth-engine-real.webp"],
     },

@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import dynamic from "next/dynamic";
-import { Suspense } from "react";
 import AnalyticsEngine from "@/components/infrastructure/AnalyticsEngine";
 import MotionProvider from "@/components/infrastructure/MotionProvider";
 import SmoothScrollProvider from "@/components/infrastructure/SmoothScrollProvider";
 import MobileStickyConversionBar from "@/components/layout/MobileStickyConversionBar";
-
-const ExitIntentPopup = dynamic(() => import("@/components/ui/ExitIntentPopup"));
+import DeferredExitIntent from "@/components/ui/DeferredExitIntent";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -26,10 +23,12 @@ const spaceGrotesk = Space_Grotesk({
   fallback: ["system-ui", "sans-serif"],
 });
 
+import { Suspense } from "react";
+
 export const metadata: Metadata = {
-  title: "Jackson, MS Web Design, SEO & CRM | Power Digital Media",
+  title: "Power Digital Media | Web Design, SEO & CRM in Jackson, MS",
   description:
-    "Custom 0.8s websites, 24/7 managed hosting, Google Map Pack SEO, and Capsule CRM systems built in Jackson, MS. Get an instant estimate or free scan.",
+    "5.0★ Jackson, MS studio building 0.8s custom websites, Google Map Pack SEO, Capsule CRM pipelines & PinDrop™ field apps. Call (601) 446-2393.",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -46,9 +45,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jackson, MS Web Design, SEO & CRM | Power Digital Media",
+    title: "Power Digital Media | Web Design, SEO & CRM in Jackson, MS",
     description:
-      "Custom 0.8s websites, 24/7 managed hosting, Google Map Pack SEO, and Capsule CRM systems built in Jackson, MS. Get an instant estimate or free scan.",
+      "5.0★ Jackson, MS studio building 0.8s custom websites, Google Map Pack SEO, Capsule CRM pipelines & PinDrop™ field apps. Call (601) 446-2393.",
     images: ["/images/og-image.png"],
     creator: "@PowerDigitalMS",
     site: "@PowerDigitalMS",
@@ -78,7 +77,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://connect.facebook.net" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
@@ -266,7 +264,7 @@ export default function RootLayout({
           <SmoothScrollProvider>
             {children}
             <MobileStickyConversionBar />
-            <ExitIntentPopup />
+            <DeferredExitIntent />
           </SmoothScrollProvider>
         </MotionProvider>
       </body>

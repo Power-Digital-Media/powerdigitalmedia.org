@@ -6,7 +6,7 @@ import DeferredFooterSections from "@/components/ui/DeferredFooterSections";
 import { Bot, Code2, Gauge } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Free Live Website, SEO & AI Scanner | Power Digital Media",
+  title: "Free Live Website, SEO & AI Scanner | Power Digital",
   description:
     "Run a free live audit on any website: Google Mobile Lighthouse speed, CrUX vitals, Schema.org JSON-LD validation, /llms.txt AI readiness, and local SEO.",
   alternates: {

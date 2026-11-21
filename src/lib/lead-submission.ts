@@ -50,7 +50,7 @@ export function classifyBrowserSignature(): "standard_signature" | "suspected_au
     }
 
     if (
-        /MSIE\s|Trident\/|Camino\/|BeOS|HeadlessChrome|PhantomJS|SlimerJS|Playwright|Puppeteer|Cypress|Scrapy|python-requests|Python-urllib|Go-http-client|curl\/|wget\//i.test(
+        /MSIE\s|Trident\/|Camino\/|BeOS|OpenBSD|Chrome-Lighthouse|PageSpeed|Google-InspectionTool|PTST\/|GTmetrix|Pingdom|Screaming Frog|HeadlessChrome|PhantomJS|SlimerJS|Playwright|Puppeteer|Cypress|Scrapy|python-requests|Python-urllib|Go-http-client|curl\/|wget\//i.test(
             ua
         )
     ) {

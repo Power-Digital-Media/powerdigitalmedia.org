@@ -21,18 +21,18 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Local SEO & Google Map Pack in Jackson, MS | Power Digital",
+  title: "Local SEO & Google Map Pack Jackson, MS | Power Digital",
   description:
-    "Google Map Pack optimization, LocalBusiness schema, PinDrop™ GPS job pins, and automated 5-star reviews across Jackson, Madison, Ridgeland & Brandon, MS.",
+    "Google Map Pack optimization, LocalBusiness schema, PinDrop™ GPS job pins & automated 5-star reviews in Jackson, Madison & Brandon, MS: (601) 446-2393.",
   alternates: {
     canonical: "https://powerdigitalmedia.org/local-seo",
   },
   openGraph: {
-    title: "Local SEO & Google Map Pack in Jackson, MS | Power Digital",
+    title: "Local SEO & Google Map Pack Jackson, MS | Power Digital",
     description:
       "Over 70% of local service calls go to the Google 3-Pack. See how we optimize Google Map Pack visibility for Mississippi contractors and local businesses.",
     url: "https://powerdigitalmedia.org/local-seo",
-    images: ["/pindrop/bar-live-pins.jpg"],
+    images: ["/pindrop/bar-live-pins.webp"],
   },
 };
 

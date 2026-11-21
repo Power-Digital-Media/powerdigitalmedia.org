@@ -14,6 +14,13 @@ interface FAQItem {
 
 const FAQS: FAQItem[] = [
   {
+    id: "power-digital-jackson-ms",
+    category: "About Power Digital",
+    icon: Sparkles,
+    q: "Where is Power Digital Media located, and who builds our system?",
+    a: "Power Digital Media LLC (Power Digital) is an independent web engineering, SEO, and software studio headquartered in Jackson, Mississippi (2914 Cynthia Rd, (601) 446-2393). Every custom website, Capsule CRM integration, and PinCam™ + PinDrop™ deployment is architected directly in-house by Founder & Lead Engineer Damein Donald.",
+  },
+  {
     id: "timeline-turnaround",
     category: "Launch Speed",
     icon: Zap,

@@ -30,6 +30,14 @@ export const metadata: Metadata = {
       "Every managed Power Digital website is protected around the clock by multi-probe uptime checks, CrUX cellular speed tracking, and Search Console telemetry.",
     url: "https://powerdigitalmedia.org/site-intelligence",
     type: "website",
+    images: [
+      {
+        url: "/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "PDM Site Intelligence™ 24/7 Website & SEO Monitoring",
+      },
+    ],
   },
 };
 

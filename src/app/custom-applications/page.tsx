@@ -439,14 +439,15 @@ export default function CustomApplicationsPage() {
                                         </span>
                                     </div>
                                     <span className="text-[10px] font-mono text-emerald-300 font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30">
-                                        99+ Live GPS Pins
+                                        800+ Live GPS Pins
                                     </span>
                                 </div>
                                 <div className="relative w-full aspect-[16/9] bg-[#06080f]">
                                     <Image
-                                        src="/pindrop/bar-live-pins.jpg"
+                                        src="/pindrop/bar-live-pins.webp"
                                         alt="Born Again Roofing Live PDM PinDrop Map"
                                         fill
+                                        sizes="(max-width: 768px) 100vw, 560px"
                                         className="object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
                                     />
                                 </div>
@@ -615,6 +616,11 @@ export default function CustomApplicationsPage() {
 
             <FAQAccordion
                 faqs={[
+                    {
+                        question: "What is included in your Mississippi CRM setup and integration services in Jackson, MS?",
+                        answer:
+                            "Our turnkey CRM setup and integration service in Jackson, MS configures your custom sales pipeline stages in Capsule CRM, migrates existing customer lists, connects every website form and quote calculator via direct server-side API, sets up automated Transpond SMS/email follow-up sequences, and trains your local team live.",
+                    },
                     {
                         question: "Why connect Capsule CRM directly instead of using Zapier?",
                         answer:

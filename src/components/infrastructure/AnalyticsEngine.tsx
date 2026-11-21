@@ -9,17 +9,25 @@ export default function AnalyticsEngine() {
     const pathname = usePathname();
     const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID || "781583678297161";
     const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-DSZ3N77EHQ";
-    const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || "GTM-52WQVB8N";
+
+    const isInternalRoute = Boolean(
+        pathname && (pathname.startsWith("/admin") || pathname.startsWith("/dashboard"))
+    );
 
     const [allowAnalyticsScripts, setAllowAnalyticsScripts] = useState(false);
+    const [scriptsArmed, setScriptsArmed] = useState(false);
     const lastTrackedPathRef = useRef<string | null>(null);
     const lastTrackedPixelPathRef = useRef<string | null>(null);
 
     // Synchronously ensure the standard gtag queue and single-init config are queued on mount
     // for standard browsers while dropping defunct/impossible scraper signatures (MSIE, Camino,
-    // bare Mozilla, Safari-on-Linux/Windows, webdriver) so headless bots cannot pollute GA4.
+    // bare Mozilla, Safari-on-Linux/Windows, Chrome-Lighthouse, webdriver) and /admin routes.
     useEffect(() => {
         if (typeof window === "undefined") return;
+        if (isInternalRoute) {
+            setAllowAnalyticsScripts(false);
+            return;
+        }
         const signatureClass = classifyBrowserSignature();
         if (signatureClass === "suspected_automated_signature") {
             setAllowAnalyticsScripts(false);
@@ -40,11 +48,36 @@ export default function AnalyticsEngine() {
             window.gtag("js", new Date());
             window.gtag("config", GA_ID, { send_page_view: false });
         }
-    }, [GA_ID]);
+
+        let cancelled = false;
+        const armNow = () => {
+            if (cancelled) return;
+            setScriptsArmed(true);
+        };
+
+        const interactionEvents: Array<keyof WindowEventMap> = [
+            "pointerdown",
+            "keydown",
+            "touchstart",
+            "scroll",
+        ];
+        interactionEvents.forEach((evt) =>
+            window.addEventListener(evt, armNow, { once: true, passive: true })
+        );
+        const fallbackTimer = window.setTimeout(armNow, 5000);
+
+        return () => {
+            cancelled = true;
+            window.clearTimeout(fallbackTimer);
+            interactionEvents.forEach((evt) =>
+                window.removeEventListener(evt, armNow)
+            );
+        };
+    }, [GA_ID, isInternalRoute]);
 
     // Trigger exactly ONE deduplicated GA4 page_view per route navigation for standard browsers
     useEffect(() => {
-        if (typeof window === "undefined" || !pathname || !GA_ID) return;
+        if (typeof window === "undefined" || !pathname || !GA_ID || isInternalRoute) return;
         const signatureClass = classifyBrowserSignature();
         if (signatureClass === "suspected_automated_signature") return;
 
@@ -80,7 +113,7 @@ export default function AnalyticsEngine() {
             ...pageViewPayload,
             emittedAt: new Date().toISOString(),
         });
-    }, [pathname, GA_ID]);
+    }, [pathname, GA_ID, isInternalRoute]);
 
     // Trigger deduplicated Facebook Pixel page views on route changes
     useEffect(() => {
@@ -133,34 +166,18 @@ export default function AnalyticsEngine() {
         };
     }, []);
 
-    if (!allowAnalyticsScripts) {
+    if (!allowAnalyticsScripts || !scriptsArmed) {
         return null;
     }
 
     return (
         <>
-            {/* Google Tag Manager (lazyOnload drains pre-queued window.dataLayer without blocking mobile TBT) */}
-            {GTM_ID && (
-                <Script id="google-tag-manager" strategy="lazyOnload">
-                    {`
-                        if (!window.__pdmGtmInitialized) {
-                            window.__pdmGtmInitialized = true;
-                            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                            })(window,document,'script','dataLayer','${GTM_ID}');
-                        }
-                    `}
-                </Script>
-            )}
-
-            {/* Google Analytics 4 (lazyOnload drains pre-initialized window.dataLayer queue with send_page_view: false) */}
+            {/* Google Analytics 4 (single tag — drains pre-initialized window.dataLayer queue with send_page_view: false) */}
             {GA_ID && (
                 <Script
                     id="google-analytics-gtag"
                     src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-                    strategy="lazyOnload"
+                    strategy="afterInteractive"
                 />
             )}
 
@@ -168,7 +185,7 @@ export default function AnalyticsEngine() {
             {PIXEL_ID && (
                 <Script
                     id="fb-pixel"
-                    strategy="lazyOnload"
+                    strategy="afterInteractive"
                     onReady={() => {
                         if (
                             pathname &&

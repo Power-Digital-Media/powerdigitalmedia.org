@@ -2,10 +2,11 @@
 
 import { Instagram, Twitter, Youtube, Mail, Phone, MapPin, Facebook } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
+import dynamic from "next/dynamic";
 import { useState } from "react";
-import BookingModal from "../ui/BookingModal";
 import BBBSeal from "../ui/BBBSeal";
+
+const BookingModal = dynamic(() => import("../ui/BookingModal"), { ssr: false });
 
 export default function Footer() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -17,14 +18,17 @@ export default function Footer() {
         <div className="grid gap-10 mb-14 sm:grid-cols-2 lg:grid-cols-12">
           {/* Brand Column */}
           <div className="lg:col-span-4">
-            <Link href="/" className="flex items-center mb-5 group w-fit">
+            <Link href="/" prefetch={false} className="flex items-center mb-5 group w-fit">
               <div className="relative flex items-center h-13 w-60">
-                <Image
-                  src="/images/pdm-logo-transparent.png"
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/pdm-logo-transparent.webp"
                   alt="Power Digital Media LLC"
-                  fill
-                  unoptimized
-                  className="object-contain object-left group-hover:scale-105 transition-transform"
+                  width={448}
+                  height={84}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-12 w-auto object-contain object-left group-hover:scale-105 transition-transform"
                 />
               </div>
             </Link>
@@ -235,7 +239,9 @@ export default function Footer() {
         </div>
       </div>
 
-      <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
+      {isBookingOpen && (
+        <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
+      )}
     </footer>
   );
 }
