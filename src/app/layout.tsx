@@ -49,8 +49,6 @@ export const metadata: Metadata = {
     description:
       "5.0★ Jackson, MS studio building 0.8s custom websites, Google Map Pack SEO, Capsule CRM pipelines & PinDrop™ field apps. Call (601) 446-2393.",
     images: ["/images/og-image.png"],
-    creator: "@PowerDigitalMS",
-    site: "@PowerDigitalMS",
   },
   robots: {
     index: true,

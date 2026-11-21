@@ -1,6 +1,6 @@
 "use client";
 
-import { Instagram, Twitter, Youtube, Mail, Phone, MapPin, Facebook } from "lucide-react";
+import { Instagram, Youtube, Mail, Phone, MapPin, Facebook } from "lucide-react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useState } from "react";
@@ -54,15 +54,6 @@ export default function Footer() {
                 className="w-10 h-10 rounded-full bg-white/[0.04] border border-white/10 flex items-center justify-center text-slate-400 hover:text-amber-400 hover:border-amber-500/40 transition-all"
               >
                 <Youtube className="w-4 h-4" />
-              </a>
-              <a
-                href="https://twitter.com/powerdigitalms"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Follow us on X"
-                className="w-10 h-10 rounded-full bg-white/[0.04] border border-white/10 flex items-center justify-center text-slate-400 hover:text-amber-400 hover:border-amber-500/40 transition-all"
-              >
-                <Twitter className="w-4 h-4" />
               </a>
               <a
                 href="https://www.facebook.com/PowerDigitalMediaLLC"
