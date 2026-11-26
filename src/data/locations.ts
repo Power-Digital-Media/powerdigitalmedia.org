@@ -68,8 +68,8 @@ export const CENTRAL_MS_LOCATIONS: CityLocationData[] = [
       clientName: "Born Again Roofing & Remodeling",
       category: "Jackson Metro Contractor Growth Build",
       summary:
-        "Custom sub-2-second Next.js website integrated with PinDrop™—showcasing 99+ verified roofing and exterior remodeling project pins across Jackson and surrounding suburbs.",
-      metric: "99+ Live Metro Pins • 98/100 Speed",
+        "Custom sub-2-second Next.js website integrated with PinDrop™—showcasing 800+ verified roofing and exterior remodeling project pins across Jackson and surrounding suburbs.",
+      metric: "800+ Live Metro Pins • 98/100 Speed",
       portfolioHref: "/portfolio/born-again-roofing",
       liveUrl: "https://www.bornagainroofing.com/",
     },

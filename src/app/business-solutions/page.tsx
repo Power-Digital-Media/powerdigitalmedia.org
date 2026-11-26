@@ -60,7 +60,7 @@ export default function BusinessSolutionsPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-40 z-10">
+      <section className="relative pt-[114px] pb-12 sm:pt-36 md:pt-40 md:pb-20 z-10">
         <div className="container px-4 sm:px-6 mx-auto max-w-6xl">
           <div className="grid gap-12 lg:grid-cols-12 items-center">
             {/* Value Prop Column */}
@@ -237,29 +237,31 @@ export default function BusinessSolutionsPage() {
         </div>
       </section>
 
-      <GrowthScopeEstimator defaultIndustryId="local_business_ministry" />
+      <div className="hidden lg:block">
+        <GrowthScopeEstimator defaultIndustryId="local_business_ministry" />
+      </div>
 
       {/* Secondary CTA */}
-      <section className="py-16 border-t border-white/10 bg-[#0b0c10] relative z-10">
-        <div className="container px-4 sm:px-6 mx-auto max-w-4xl text-center space-y-5">
-          <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-white">
-            Want Us to Check Your Lead Leaks First?
+      <section className="py-12 sm:py-16 border-t border-white/10 bg-[#0b0c10] relative z-10">
+        <div className="container px-4 sm:px-6 mx-auto max-w-4xl text-center space-y-4 sm:space-y-5">
+          <h2 className="text-xl sm:text-4xl font-black uppercase tracking-tight text-white">
+            Want Ballpark Pricing or a Free Lead Leak Check?
           </h2>
-          <p className="text-slate-300 text-sm sm:text-base max-w-xl mx-auto">
-            Request a free manual check of your website speed, Google Map Pack visibility, AI search readiness, and quote lead routing.
+          <p className="text-slate-300 text-xs sm:text-base max-w-xl mx-auto">
+            Configure your instant Central MS ballpark scope or request a free 5-minute check of your website speed and Google Map Pack visibility.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-1">
+          <div className="grid grid-cols-2 sm:flex sm:flex-row items-center justify-center gap-2.5 sm:gap-3 pt-1">
             <Link
-              href="/free-audit"
-              className="w-full sm:w-auto px-7 py-4 bg-amber-400 text-slate-950 font-black rounded-xl hover:bg-amber-300 transition-colors uppercase tracking-wider text-xs"
+              href="/estimate"
+              className="w-full sm:w-auto px-4 sm:px-7 py-3.5 sm:py-4 bg-amber-400 text-slate-950 font-black rounded-xl hover:bg-amber-300 transition-colors uppercase tracking-wider text-[11px] sm:text-xs"
             >
-              Get Free 5-Min Rank Check
+              Instant Estimator →
             </Link>
             <Link
-              href="/lead-leak-check"
-              className="w-full sm:w-auto px-7 py-4 bg-[#12141c] border border-white/15 hover:border-amber-400/50 rounded-xl font-bold uppercase tracking-wider text-xs text-white transition-colors"
+              href="/free-audit"
+              className="w-full sm:w-auto px-4 sm:px-7 py-3.5 sm:py-4 bg-[#12141c] border border-white/15 hover:border-amber-400/50 rounded-xl font-bold uppercase tracking-wider text-[11px] sm:text-xs text-white transition-colors"
             >
-              Run Lead Leak Diagnostic
+              Free 5-Min Check
             </Link>
           </div>
         </div>

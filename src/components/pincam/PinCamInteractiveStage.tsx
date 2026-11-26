@@ -100,7 +100,7 @@ export default function PinCamInteractiveStage() {
     <div className="w-full">
       {/* Mobile Single-Row Horizontal Snap Tab Strip (< 640px) */}
       <div
-        className="sm:hidden flex items-center gap-2 overflow-x-auto no-scrollbar snap-x snap-mandatory mb-3.5 pb-1"
+        className="sm:hidden flex items-center gap-2 overflow-x-auto no-scrollbar snap-x snap-mandatory mb-3.5 pb-1 pr-6"
         role="tablist"
         aria-label="PinCam interactive app features"
       >

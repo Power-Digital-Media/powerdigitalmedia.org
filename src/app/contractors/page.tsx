@@ -6,6 +6,7 @@ import DeferredFooterSections from "@/components/ui/DeferredFooterSections";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import GoogleReviewsSection from "@/components/sections/GoogleReviewsSection";
 import GrowthScopeEstimator from "@/components/sections/GrowthScopeEstimator";
+import MobileSnapCarousel from "@/components/ui/MobileSnapCarousel";
 import {
   Hammer,
   Flame,
@@ -148,55 +149,61 @@ export default function ContractorsPage() {
       {/* =====================================================================
           HERO SECTION
       ====================================================================== */}
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 px-4 sm:px-6 overflow-hidden border-b border-white/10">
+      <section className="relative pt-[114px] pb-8 sm:pt-36 md:pt-40 md:pb-24 px-4 sm:px-6 overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 blueprint-grid opacity-55 pointer-events-none" aria-hidden="true" />
         <div
           className="absolute top-12 left-1/4 w-[680px] h-[420px] bg-amber-500/[0.09] rounded-full blur-[150px] pointer-events-none"
           aria-hidden="true"
         />
 
-        <div className="max-w-7xl mx-auto relative z-10 grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          <div className="lg:col-span-7 space-y-6 text-left">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/35 text-amber-300 text-xs font-mono font-bold uppercase tracking-wider">
-              <Wrench className="w-3.5 h-3.5 text-amber-400" />
-              Built for Roofers, HVAC, Dirt Work, Plumbing &amp; Service Trades
+        <div className="max-w-7xl mx-auto relative z-10 grid lg:grid-cols-12 gap-5 sm:gap-10 lg:gap-12 items-center">
+          <div className="lg:col-span-7 space-y-3 sm:space-y-6 text-left">
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-amber-500/10 border border-amber-500/35 text-amber-300 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider">
+              <Wrench className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+              <span className="sm:hidden">Roofing, HVAC, Dirt Work &amp; Service Trades</span>
+              <span className="hidden sm:inline">Built for Roofers, HVAC, Dirt Work, Plumbing &amp; Service Trades</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight leading-[1.0] text-white">
+            <h1 className="text-[1.78rem] sm:text-5xl md:text-6xl font-black uppercase tracking-tight leading-[1.03] sm:leading-[1.0] text-white">
               Own Your Backyard on Google.{" "}
-              <span className="text-amber-400">Keep Crews Booked Without Buying Shared Leads.</span>
+              <span className="text-amber-400">Keep Crews Booked.</span>
             </h1>
 
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
+            <p className="sm:hidden text-[13px] text-slate-300 leading-snug">
+              Sub-2s contractor websites wired to <strong className="text-white">PinCam™</strong>,{" "}
+              <strong className="text-white">PinDrop™</strong> neighborhood Google pins, and{" "}
+              <strong className="text-white">Capsule CRM</strong>.
+            </p>
+            <p className="hidden sm:block text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
               Stop paying shared-lead marketplaces to bid against five other trucks. We engineer sub-2-second contractor websites wired directly to{" "}
               <strong className="text-white">PinCam™</strong> jobsite cameras,{" "}
               <strong className="text-white">PinDrop™</strong> neighborhood Google pins, and{" "}
               <strong className="text-white">Capsule CRM + automated follow-ups</strong> so high-intent homeowners hire you first.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-1">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-0.5 sm:pt-1">
               <Link
                 href="/free-audit"
-                className="px-7 py-4 rounded-xl bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black uppercase tracking-wider text-xs text-center shadow-[0_0_32px_rgba(245,158,11,0.32)] hover:brightness-110 transition-all"
+                className="px-5 sm:px-7 py-3 sm:py-4 rounded-xl bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black uppercase tracking-wider text-xs text-center shadow-[0_0_32px_rgba(245,158,11,0.32)] hover:brightness-110 transition-all"
               >
                 Get Free 5-Min Rank &amp; Site Video →
               </Link>
               <a
                 href="tel:6014462393"
-                className="px-6 py-4 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/15 text-white font-bold uppercase tracking-wider text-xs text-center flex items-center justify-center gap-2 transition-all"
+                className="hidden sm:flex px-6 py-4 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/15 text-white font-bold uppercase tracking-wider text-xs text-center items-center justify-center gap-2 transition-all"
               >
                 <PhoneCall className="w-4 h-4 text-amber-400" />
                 (601) 446-2393
               </a>
             </div>
 
-            <div className="grid grid-cols-3 gap-3 pt-4 border-t border-white/10 max-w-xl">
+            <div className="hidden sm:grid grid-cols-3 gap-3 pt-4 border-t border-white/10 max-w-xl">
               <div>
                 <div className="text-xl sm:text-2xl font-black text-amber-400">100%</div>
                 <div className="text-[11px] font-mono uppercase text-slate-400">Exclusive Calls</div>
               </div>
               <div>
-                <div className="text-xl sm:text-2xl font-black text-emerald-400">99+ Pins</div>
+                <div className="text-xl sm:text-2xl font-black text-emerald-400">800+ Pins</div>
                 <div className="text-[11px] font-mono uppercase text-slate-400">Live MS Proof</div>
               </div>
               <div>
@@ -262,20 +269,26 @@ export default function ContractorsPage() {
       {/* =====================================================================
           THE 3-PART CONTRACTOR LEAD MACHINE
       ====================================================================== */}
-      <section className="py-20 md:py-28 px-4 sm:px-6 max-w-7xl mx-auto w-full">
-        <div className="max-w-3xl mb-14">
-          <span className="text-amber-400 font-mono text-xs uppercase tracking-[0.25em] font-bold block mb-3">
+      <section className="py-11 md:py-28 px-4 sm:px-6 max-w-7xl mx-auto w-full">
+        <div className="max-w-3xl mb-6 md:mb-14">
+          <span className="text-amber-400 font-mono text-[10px] sm:text-xs uppercase tracking-[0.22em] sm:tracking-[0.25em] font-bold block mb-2 sm:mb-3">
             The Complete Contractor Engine
           </span>
-          <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mb-4">
+          <h2 className="text-2xl sm:text-5xl font-black uppercase tracking-tight text-white mb-2 sm:mb-4">
             Three Systems Working Together While You Run Crews.
           </h2>
-          <p className="text-slate-300 text-base leading-relaxed">
+          <p className="hidden sm:block text-slate-300 text-base leading-relaxed">
             A pretty brochure website won&apos;t move the needle if nobody finds it—or if calls go to voicemail while you&apos;re on a jobsite. We build the entire revenue loop.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-6">
+        <MobileSnapCarousel
+          itemCount={3}
+          ariaLabel="Three contractor growth pillars"
+          desktopGridClass="lg:grid lg:grid-cols-3 gap-6"
+          breakpoint="lg"
+          itemLabel="pillars"
+        >
           {[
             {
               step: "Pillar 01",
@@ -342,43 +355,48 @@ export default function ContractorsPage() {
               </div>
             );
           })}
-        </div>
+        </MobileSnapCarousel>
       </section>
 
       {/* =====================================================================
           TRADES WE SPECIALIZE IN
       ====================================================================== */}
-      <section className="py-20 px-4 sm:px-6 bg-[#080c16] border-y border-white/10">
+      <section className="py-11 md:py-20 px-4 sm:px-6 bg-[#080c16] border-y border-white/10">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="text-emerald-400 font-mono text-xs uppercase tracking-[0.25em] font-bold block mb-3">
+          <div className="text-center max-w-3xl mx-auto mb-6 md:mb-14">
+            <span className="text-emerald-400 font-mono text-[10px] sm:text-xs uppercase tracking-[0.22em] sm:tracking-[0.25em] font-bold block mb-2 sm:mb-3">
               Built by Trade
             </span>
-            <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white">
+            <h2 className="text-2xl sm:text-5xl font-black uppercase tracking-tight text-white">
               Tailored Playbooks for Blue-Collar &amp; Commercial Pros
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <MobileSnapCarousel
+            itemCount={TRADES.length}
+            ariaLabel="Contractor trade playbooks"
+            desktopGridClass="md:grid md:grid-cols-2 gap-6"
+            itemLabel="trades"
+          >
             {TRADES.map((trade) => {
               const Icon = trade.icon;
               return (
                 <div
                   key={trade.title}
-                  className="rounded-3xl bg-[#06080f] border border-white/10 p-7 sm:p-8 space-y-4"
+                  className="rounded-3xl bg-[#06080f] border border-white/10 p-6 sm:p-8 space-y-3.5 sm:space-y-4"
                 >
                   <div className="flex items-center gap-3.5">
                     <div className="w-11 h-11 rounded-2xl bg-amber-500/12 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0">
                       <Icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-black uppercase text-white">{trade.title}</h3>
+                      <h3 className="text-lg sm:text-xl font-black uppercase text-white">{trade.title}</h3>
                       <span className="text-xs font-mono text-amber-300">{trade.subtitle}</span>
                     </div>
                   </div>
                   <ul className="space-y-2.5 pt-2">
                     {trade.points.map((pt) => (
-                      <li key={pt} className="flex items-start gap-2.5 text-sm text-slate-300">
+                      <li key={pt} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
                         <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                         <span>{pt}</span>
                       </li>
@@ -387,20 +405,20 @@ export default function ContractorsPage() {
                 </div>
               );
             })}
-          </div>
+          </MobileSnapCarousel>
         </div>
       </section>
 
       {/* =====================================================================
           REAL MISSISSIPPI CONTRACTOR CASE STUDIES
       ====================================================================== */}
-      <section className="py-20 px-4 sm:px-6 max-w-7xl mx-auto w-full">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+      <section className="py-11 md:py-20 px-4 sm:px-6 max-w-7xl mx-auto w-full">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 sm:gap-4 mb-6 md:mb-12">
           <div>
-            <span className="text-amber-400 font-mono text-xs uppercase tracking-[0.25em] font-bold block mb-2">
+            <span className="text-amber-400 font-mono text-[10px] sm:text-xs uppercase tracking-[0.22em] sm:tracking-[0.25em] font-bold block mb-1.5 sm:mb-2">
               Real Builds • Real Mississippi Crews
             </span>
-            <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white">
+            <h2 className="text-2xl sm:text-5xl font-black uppercase tracking-tight text-white">
               Inspect Our Live Contractor Deployments
             </h2>
           </div>
@@ -412,13 +430,19 @@ export default function ContractorsPage() {
           </Link>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-6">
+        <MobileSnapCarousel
+          itemCount={3}
+          ariaLabel="Live Mississippi contractor case studies"
+          desktopGridClass="lg:grid lg:grid-cols-3 gap-6"
+          breakpoint="lg"
+          itemLabel="deployments"
+        >
           {[
             {
               name: "Born Again Roofing & Remodeling",
               trade: "Roofing & Storm Restoration",
               area: "Brandon, Madison & Jackson Metro",
-              stat: "99+ Live GPS Job Pins",
+              stat: "800+ Live GPS Job Pins",
               image: "/portfolio/bornagain-hero-16-10.webp",
               href: "/portfolio/born-again-roofing",
               liveUrl: "https://www.bornagainroofing.com/",
@@ -480,38 +504,46 @@ export default function ContractorsPage() {
               </div>
             </div>
           ))}
-        </div>
+        </MobileSnapCarousel>
       </section>
 
-      <GrowthScopeEstimator defaultIndustryId="trades_roofing_hvac" />
+      <div className="hidden lg:block">
+        <GrowthScopeEstimator defaultIndustryId="trades_roofing_hvac" />
+      </div>
 
       {/* =====================================================================
           CONTRACTOR FAQS
       ====================================================================== */}
-      <section className="py-20 px-4 sm:px-6 bg-[#080c16] border-t border-white/10">
+      <section className="py-12 md:py-20 px-4 sm:px-6 bg-[#080c16] border-t border-white/10">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <span className="text-amber-400 font-mono text-xs uppercase tracking-[0.25em] font-bold block mb-3">
+          <div className="text-center mb-8 sm:mb-12">
+            <span className="text-amber-400 font-mono text-[10px] sm:text-xs uppercase tracking-[0.22em] sm:tracking-[0.25em] font-bold block mb-2 sm:mb-3">
               Straight Answers
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black uppercase text-white">
+            <h2 className="text-2xl sm:text-4xl font-black uppercase text-white">
               Contractor Website &amp; Lead Generation FAQs
             </h2>
           </div>
 
-          <div className="space-y-4">
-            {CONTRACTOR_FAQS.map((faq) => (
-              <div
+          <div className="space-y-3">
+            {CONTRACTOR_FAQS.map((faq, idx) => (
+              <details
                 key={faq.q}
-                className="p-6 rounded-2xl bg-[#06080f] border border-white/10 space-y-2"
+                open={idx === 0}
+                className="group rounded-2xl bg-[#06080f] border border-white/10 open:border-amber-500/35 overflow-hidden transition-colors"
               >
-                <h3 className="text-base sm:text-lg font-bold text-white">{faq.q}</h3>
-                <p className="text-sm text-slate-300 leading-relaxed">{faq.a}</p>
-              </div>
+                <summary className="list-none cursor-pointer p-4 sm:p-6 flex items-center justify-between gap-3">
+                  <h3 className="text-sm sm:text-lg font-bold text-white text-left">{faq.q}</h3>
+                  <span className="text-amber-400 font-mono font-bold text-sm shrink-0 transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <div className="px-4 pb-4 sm:px-6 sm:pb-6 pt-0 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  {faq.a}
+                </div>
+              </details>
             ))}
           </div>
 
-          <div className="mt-10 p-6 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="hidden sm:flex mt-10 p-6 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3 text-left">
               <ShieldCheck className="w-6 h-6 text-amber-400 shrink-0" />
               <p className="text-sm text-slate-200">
@@ -528,7 +560,7 @@ export default function ContractorsPage() {
         </div>
       </section>
 
-      <DeferredFooterSections />
+      <DeferredFooterSections mode="inner" />
     </main>
   );
 }

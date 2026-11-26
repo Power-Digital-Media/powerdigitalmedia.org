@@ -17,6 +17,8 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import AuditCTA from "@/components/sections/AuditCTA";
+import MobileSnapCarousel from "@/components/ui/MobileSnapCarousel";
+import MobileCompactConversionBanner from "@/components/ui/MobileCompactConversionBanner";
 
 const capabilities = [
     {
@@ -67,7 +69,7 @@ export default function AboutClient() {
             <Navbar />
 
             {/* HERO */}
-            <section className="relative pt-36 pb-20 overflow-hidden border-b border-white/[0.06] blueprint-grid">
+            <section className="relative pt-[114px] pb-10 sm:pt-36 sm:pb-20 overflow-hidden border-b border-white/[0.06] blueprint-grid">
                 <div className="absolute top-12 left-1/2 -translate-x-1/2 w-[720px] h-[340px] bg-amber-500/10 rounded-full blur-[150px] pointer-events-none" />
 
                 <div className="container px-4 mx-auto text-center relative z-10">
@@ -77,17 +79,18 @@ export default function AboutClient() {
                         transition={{ duration: 0.6 }}
                         className="max-w-4xl mx-auto"
                     >
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-6">
+                        <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-3 sm:mb-6">
                             <MapPin className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                            <span className="text-[11px] font-mono font-bold text-amber-300 tracking-[0.16em] uppercase">
-                                Jackson, MS Studio • Central MS • BBB Accredited
+                            <span className="text-[10px] sm:text-[11px] font-mono font-bold text-amber-300 tracking-[0.14em] sm:tracking-[0.16em] uppercase">
+                                <span className="sm:hidden">Jackson, MS Studio • BBB Accredited</span>
+                                <span className="hidden sm:inline">Jackson, MS Studio • Central MS • BBB Accredited</span>
                             </span>
                         </div>
-                        <h1 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight mb-6 leading-[0.95] uppercase">
+                        <h1 className="text-[1.85rem] sm:text-5xl md:text-7xl font-black tracking-tight mb-3 sm:mb-6 leading-[1.02] sm:leading-[0.95] uppercase">
                             Built In Mississippi For{" "}
                             <span className="text-amber-400">People Who Actually Work.</span>
                         </h1>
-                        <p className="text-base sm:text-lg md:text-xl text-slate-300 leading-relaxed max-w-3xl mx-auto">
+                        <p className="text-xs sm:text-lg md:text-xl text-slate-300 leading-snug sm:leading-relaxed max-w-3xl mx-auto">
                             Power Digital Media LLC was founded on one conviction: Mississippi
                             roofers, dirt-work contractors, HVAC pros, restaurants, and ministries
                             work too hard to get stuck with slow, overpriced agency brochure sites
@@ -98,7 +101,7 @@ export default function AboutClient() {
             </section>
 
             {/* FOUNDER & STUDIO STORY */}
-            <section className="py-24 bg-[#080a12] border-b border-white/[0.06]">
+            <section className="py-12 md:py-24 bg-[#080a12] border-b border-white/[0.06]">
                 <div className="container px-4 mx-auto max-w-6xl">
                     <div className="grid gap-14 lg:grid-cols-12 items-center">
                         <motion.div
@@ -222,18 +225,23 @@ export default function AboutClient() {
             </section>
 
             {/* 4 PILLARS */}
-            <section className="py-24 bg-[#06080f] border-b border-white/[0.06]">
+            <section className="py-12 md:py-24 bg-[#06080f] border-b border-white/[0.06]">
                 <div className="container px-4 mx-auto max-w-6xl">
-                    <div className="text-center max-w-3xl mx-auto mb-16">
-                        <span className="text-amber-400 font-mono font-bold tracking-[0.22em] uppercase text-xs mb-3 block">
+                    <div className="text-center max-w-3xl mx-auto mb-7 sm:mb-16">
+                        <span className="text-amber-400 font-mono font-bold tracking-[0.22em] uppercase text-xs mb-2 sm:mb-3 block">
                             Full-Stack Local Growth
                         </span>
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight uppercase text-white">
+                        <h2 className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight uppercase text-white">
                             The 4 Systems Behind Every Build.
                         </h2>
                     </div>
 
-                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                    <MobileSnapCarousel
+                        itemCount={capabilities.length}
+                        ariaLabel="Four core Power Digital systems"
+                        desktopGridClass="sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+                        itemLabel="systems"
+                    >
                         {capabilities.map((cap, index) => (
                             <motion.div
                                 key={cap.title}
@@ -254,7 +262,7 @@ export default function AboutClient() {
                                 </p>
                             </motion.div>
                         ))}
-                    </div>
+                    </MobileSnapCarousel>
                 </div>
             </section>
 
@@ -317,7 +325,10 @@ export default function AboutClient() {
                 </div>
             </section>
 
-            <AuditCTA />
+            <MobileCompactConversionBanner variant="audit" />
+            <div className="hidden lg:block">
+                <AuditCTA />
+            </div>
 
             <Footer />
         </main>

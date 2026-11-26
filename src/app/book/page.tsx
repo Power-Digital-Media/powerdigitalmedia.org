@@ -154,7 +154,7 @@ export default function BookPage() {
             <Navbar />
 
             {/* HERO */}
-            <section className="relative pt-32 pb-8 overflow-hidden blueprint-grid border-b border-white/[0.06]">
+            <section className="relative pt-[114px] pb-5 sm:pt-32 sm:pb-8 overflow-hidden blueprint-grid border-b border-white/[0.06]">
                 <div className="absolute top-8 left-1/2 -translate-x-1/2 w-[680px] h-[320px] bg-amber-500/10 blur-[140px] pointer-events-none" />
 
                 <div className="container px-4 mx-auto text-center relative z-10">
@@ -165,18 +165,19 @@ export default function BookPage() {
                         className="max-w-3xl mx-auto"
                     >
                         {prefilledFromFunnel ? (
-                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-[11px] font-mono font-bold uppercase tracking-[0.18em] mb-5">
-                                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                                Details Received • Pick Your Time Below
+                            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.15em] sm:tracking-[0.18em] mb-3 sm:mb-5">
+                                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                                <span>Details Received • Pick Your Time</span>
                             </div>
                         ) : (
-                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[11px] font-mono font-bold uppercase tracking-[0.18em] mb-5">
-                                <CalendarCheck className="w-3.5 h-3.5 text-amber-400" />
-                                Direct With Damein Donald • Jackson, MS
+                            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.15em] sm:tracking-[0.18em] mb-3 sm:mb-5">
+                                <CalendarCheck className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                                <span className="sm:hidden">Direct With Damein • Jackson, MS</span>
+                                <span className="hidden sm:inline">Direct With Damein Donald • Jackson, MS</span>
                             </div>
                         )}
 
-                        <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-4 leading-[0.96]">
+                        <h1 className="text-[1.82rem] md:text-6xl font-black uppercase tracking-tight mb-2.5 sm:mb-4 leading-[1.02] md:leading-[0.96]">
                             {prefilledFromFunnel ? (
                                 <>
                                     Lock In Your{" "}
@@ -189,18 +190,18 @@ export default function BookPage() {
                                 </>
                             )}
                         </h1>
-                        <p className="text-base md:text-lg text-slate-300 max-w-xl mx-auto mb-6">
+                        <p className="text-xs sm:text-base md:text-lg text-slate-300 max-w-xl mx-auto mb-3.5 sm:mb-6 leading-snug sm:leading-relaxed">
                             {prefilledFromFunnel
                                 ? "Your request is saved. Choose a phone call, Google Meet screen-share, or local Jackson coffee/lunch slot below."
-                                : "Zero agency fluff. Takes 10 seconds to unlock Damein's live calendar—we'll inspect your Google Map Pack rankings, site speed, and fastest path to more calls."}
+                                : "Takes 10 seconds to unlock Damein's live calendar—we'll inspect your Google Map Pack rankings, site speed, and fastest path to more calls."}
                         </p>
 
                         {!prefilledFromFunnel && (
-                            <div className="flex flex-wrap items-center justify-center gap-3">
-                                <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10">
-                                    <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                                    <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-300">
-                                        98+ Mobile Speed Builds
+                            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+                                <div className="flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10">
+                                    <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
+                                    <span className="text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-300">
+                                        98+ Speed Builds
                                     </span>
                                 </div>
                                 <BBBSeal variant="inline" />
@@ -328,7 +329,7 @@ export default function BookPage() {
                                                 How would you like to meet?
                                             </span>
                                             <div
-                                                className="grid gap-3.5 sm:grid-cols-3"
+                                                className="grid grid-cols-3 gap-2 sm:gap-3.5"
                                                 role="group"
                                                 aria-label="Preferred meeting format"
                                             >
@@ -337,18 +338,21 @@ export default function BookPage() {
                                                         id: "meet",
                                                         icon: Video,
                                                         label: "Google Meet",
+                                                        shortLabel: "Video Meet",
                                                         desc: "Live screen-share & audit",
                                                     },
                                                     {
                                                         id: "phone",
                                                         icon: Phone,
                                                         label: "Phone Call",
+                                                        shortLabel: "Phone Call",
                                                         desc: "Direct call to your cell",
                                                     },
                                                     {
                                                         id: "lunch",
                                                         icon: Coffee,
                                                         label: "Jackson Coffee / Lunch",
+                                                        shortLabel: "In-Person",
                                                         desc: "In-person in Jackson Metro",
                                                     },
                                                 ].map((opt) => (
@@ -360,26 +364,27 @@ export default function BookPage() {
                                                             setMeetingFormat(opt.id as "phone" | "meet" | "lunch")
                                                         }
                                                         disabled={status === "submitting"}
-                                                        className={`p-4 rounded-2xl border text-center transition-all flex flex-col items-center justify-center gap-2 cursor-pointer ${
+                                                        className={`p-2.5 sm:p-4 rounded-2xl border text-center transition-all flex flex-col items-center justify-center gap-1.5 sm:gap-2 cursor-pointer ${
                                                             meetingFormat === opt.id
                                                                 ? "border-amber-500 bg-amber-500/10 text-white"
                                                                 : "border-white/10 bg-[#12141c] text-slate-400 hover:border-white/20 hover:text-white"
                                                         }`}
                                                     >
                                                         <div
-                                                            className={`w-8 h-8 rounded-xl flex items-center justify-center ${
+                                                            className={`w-7 h-7 sm:w-8 sm:h-8 rounded-xl flex items-center justify-center ${
                                                                 meetingFormat === opt.id
                                                                     ? "bg-amber-500 text-[#06080f]"
                                                                     : "bg-white/[0.05] text-amber-400"
                                                             }`}
                                                         >
-                                                            <opt.icon className="w-4 h-4" />
+                                                            <opt.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                                                         </div>
                                                         <div>
-                                                            <p className="text-xs font-bold">
-                                                                {opt.label}
+                                                            <p className="text-[11px] sm:text-xs font-bold leading-tight">
+                                                                <span className="sm:hidden">{opt.shortLabel}</span>
+                                                                <span className="hidden sm:inline">{opt.label}</span>
                                                             </p>
-                                                            <p className="text-[10px] opacity-75 mt-0.5">
+                                                            <p className="hidden sm:block text-[10px] opacity-75 mt-0.5">
                                                                 {opt.desc}
                                                             </p>
                                                         </div>
@@ -727,8 +732,8 @@ export default function BookPage() {
                 </div>
             </section>
 
-            {/* Direct Contact Strip */}
-            <section className="pb-24 relative z-10">
+            {/* Direct Contact Strip (Desktop Only — Step 1 footer & sticky bar already provide 1-tap Call/Text on mobile) */}
+            <section className="hidden lg:block pb-24 relative z-10">
                 <div className="container px-4 mx-auto text-center">
                     <p className="text-sm text-slate-400 mb-4">
                         Prefer to call or email Damein directly right now?

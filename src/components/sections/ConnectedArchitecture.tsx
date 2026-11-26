@@ -101,7 +101,7 @@ const clientArchitectures: ClientArchitecture[] = [
         id: "pindrop",
         title: "PDM PinDrop™ Field Map",
         category: "Field Automation",
-        badge: "99+ Live Job Pins",
+        badge: "800+ Live Job Pins",
         description:
           "Field crews snap a job photo on their phone and drop a GPS pin. The job publishes to the website's live satellite map and neighborhood SEO feed.",
         icon: MapPin,
@@ -533,7 +533,7 @@ function PinDropMapScreen({ client }: { client: ClientArchitecture }) {
           </span>
         </div>
         <span className="text-[10px] font-mono bg-[#e2b047]/15 text-[#e2b047] border border-[#e2b047]/35 px-2.5 py-0.5 rounded-full font-bold">
-          {isGeaux ? "Verified MS Dirt Sites" : "99+ Verified Job Pins"}
+          {isGeaux ? "Verified MS Dirt Sites" : "800+ Verified Job Pins"}
         </span>
       </div>
 
@@ -1019,7 +1019,7 @@ export default function ConnectedArchitecture() {
   return (
     <section
       id="architecture"
-      className="py-24 md:py-32 bg-[#06080f] border-t border-b border-white/10 relative overflow-hidden"
+      className="py-12 md:py-32 bg-[#06080f] border-t border-b border-white/10 relative overflow-hidden"
     >
       {/* Dynamic ambient backdrop glow based on active client accent */}
       <div
@@ -1031,26 +1031,26 @@ export default function ConnectedArchitecture() {
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-7xl">
         {/* Section Header */}
-        <div className="text-center max-w-4xl mx-auto mb-14 md:mb-20">
-          <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-4">
+        <div className="text-center max-w-4xl mx-auto mb-6 md:mb-20">
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-3 sm:mb-4">
             <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />
             <span className="text-amber-300 font-bold tracking-wider sm:tracking-widest uppercase text-[10px] md:text-xs">
               System Architecture &amp; Live Integrations
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-white uppercase tracking-tight leading-[1.05]">
+          <h2 className="text-2xl sm:text-4xl md:text-6xl font-black text-white uppercase tracking-tight leading-[1.05]">
             We Don&apos;t Just Build Websites. <br className="hidden sm:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-500">
               We Wire Your Entire Business.
             </span>
           </h2>
-          <p className="text-slate-300 text-base md:text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
+          <p className="hidden sm:block text-slate-300 text-base md:text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
             A website without integrations is just a digital brochure. We connect your website directly to Square SDK payments, Capsule CRM pipelines, DoorDash delivery dispatch, and PinDrop™ field mapping.
           </p>
         </div>
 
         {/* Client Selection Switcher Tabs (Single-Row Snap Strip on Mobile, Single-Row Flex Pills on Desktop) */}
-        <div className="flex sm:flex-wrap items-center justify-start sm:justify-center gap-2 sm:gap-2.5 overflow-x-auto no-scrollbar snap-x snap-mandatory mb-8 sm:mb-12 max-w-5xl mx-auto p-1.5 rounded-2xl bg-slate-900/90 border border-white/10 backdrop-blur-xl shadow-2xl">
+        <div className="flex sm:flex-wrap items-center justify-start sm:justify-center gap-2 sm:gap-2.5 overflow-x-auto no-scrollbar snap-x snap-mandatory mb-4 sm:mb-12 max-w-5xl mx-auto p-1.5 rounded-2xl bg-slate-900/90 border border-white/10 backdrop-blur-xl shadow-2xl">
           {clientArchitectures.map((client) => {
             const isActive = client.id === activeClient.id;
             return (
@@ -1076,34 +1076,34 @@ export default function ConnectedArchitecture() {
         <div className="rounded-3xl bg-slate-900/80 border border-white/15 p-4 sm:p-7 md:p-10 backdrop-blur-2xl shadow-2xl relative">
           
           {/* Active Client Info Banner */}
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-6 sm:pb-8 mb-6 sm:mb-8 border-b border-white/10">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-2.5 sm:gap-4 pb-3.5 sm:pb-8 mb-3.5 sm:mb-8 border-b border-white/10">
             <div>
-              <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-1.5">
-                <span className="text-[11px] sm:text-xs font-mono uppercase tracking-widest text-slate-400">
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-0.5 sm:mb-1.5">
+                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-slate-400">
                   {activeClient.industry}
                 </span>
                 <span className="text-slate-600 hidden sm:inline">•</span>
-                <span className="text-[11px] sm:text-xs font-mono text-amber-400 font-bold">
+                <span className="text-[10px] sm:text-xs font-mono text-amber-400 font-bold">
                   {activeClient.location}
                 </span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight">
+              <h3 className="text-lg sm:text-3xl font-black text-white uppercase tracking-tight">
                 {activeClient.name}
               </h3>
             </div>
 
-            <div className="flex flex-wrap items-center gap-2.5">
-              <span className="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-3 py-1.5 rounded-full border border-emerald-500/30 whitespace-nowrap">
-                ⚡ Speed: {activeClient.speedScore}
+            <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+              <span className="text-[11px] sm:text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border border-emerald-500/30 whitespace-nowrap">
+                ⚡ {activeClient.speedScore}
               </span>
               <a
                 href={activeClient.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white hover:text-slate-950 text-white text-xs font-bold uppercase tracking-wider transition-all border border-white/15 whitespace-nowrap"
+                className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-white/10 hover:bg-white hover:text-slate-950 text-white text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all border border-white/15 whitespace-nowrap"
               >
                 <span>{activeClient.domain}</span>
-                <ExternalLink className="w-3.5 h-3.5 shrink-0" />
+                <ExternalLink className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
               </a>
             </div>
           </div>
@@ -1414,8 +1414,8 @@ export default function ConnectedArchitecture() {
               })}
             </div>
 
-            {/* Mobile/Tablet Single-Layer Horizontal Snap Carousel of All 4 Integration Cards */}
-            <div className="lg:hidden w-full pt-1">
+            {/* Tablet Single-Layer Horizontal Snap Carousel (Phones Use Top Pill Bar + Live Dock Above) */}
+            <div className="hidden sm:block lg:hidden w-full pt-1">
               <MobileSnapCarousel
                 itemCount={activeClient.nodes.length}
                 ariaLabel={`${activeClient.shortName} connected integrations`}
@@ -1476,25 +1476,25 @@ export default function ConnectedArchitecture() {
 
           {/* Testimonial Banner if present for this client */}
           {activeClient.testimonial && (
-            <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white/[0.02] p-4 sm:p-5 rounded-2xl border border-white/5">
-              <div className="flex flex-wrap items-center gap-3">
-                <div className="flex items-center gap-1 text-amber-400">
+            <div className="mt-4 sm:mt-8 pt-4 sm:pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-4 bg-white/[0.02] p-3.5 sm:p-5 rounded-2xl border border-white/5">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                <div className="flex items-center gap-0.5 sm:gap-1 text-amber-400">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                    <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-amber-400 text-amber-400" />
                   ))}
                 </div>
-                <span className="text-xs font-bold text-slate-300 bg-white/10 px-2.5 py-0.5 rounded-full border border-white/10">
+                <span className="text-[10px] sm:text-xs font-bold text-slate-300 bg-white/10 px-2 sm:px-2.5 py-0.5 rounded-full border border-white/10">
                   {activeClient.testimonial.source === "Google" ? (
                     <span className="text-amber-400 font-black">Google Review</span>
                   ) : (
                     <span className="text-sky-400 font-black">Facebook Review</span>
                   )}
                 </span>
-                <p className="text-xs italic text-white/90">
+                <p className="text-xs italic text-white/90 line-clamp-2 sm:line-clamp-none">
                   &ldquo;{activeClient.testimonial.quote}&rdquo;
                 </p>
               </div>
-              <span className="text-xs font-bold text-amber-400 shrink-0">
+              <span className="text-[11px] sm:text-xs font-bold text-amber-400 shrink-0">
                 — {activeClient.testimonial.author},{" "}
                 <span className="text-slate-400 font-normal">
                   {activeClient.testimonial.role}
@@ -1504,20 +1504,20 @@ export default function ConnectedArchitecture() {
           )}
 
           {/* Bottom Action Ribbon */}
-          <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="text-xs text-slate-400">
+          <div className="mt-4 sm:mt-8 pt-4 sm:pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+            <div className="hidden sm:block text-xs text-slate-400">
               Need custom Square checkout, CRM sync, or field software for your business?
             </div>
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full sm:w-auto">
+            <div className="grid grid-cols-2 sm:flex sm:flex-row items-stretch sm:items-center gap-2 sm:gap-2.5 w-full sm:w-auto">
               <Link
                 href={`/portfolio/${activeClient.caseStudySlug || activeClient.id}`}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold uppercase tracking-wider transition-colors border border-white/15 text-center whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-colors border border-white/15 text-center whitespace-nowrap"
               >
-                Deep-Dive Case Study <ArrowRight className="w-3.5 h-3.5" />
+                <span>Case Study</span> <ArrowRight className="w-3.5 h-3.5" />
               </Link>
               <Link
                 href="/book"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black uppercase tracking-wider transition-all shadow-lg active:scale-95 text-center whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-[11px] sm:text-xs font-black uppercase tracking-wider transition-all shadow-lg active:scale-95 text-center whitespace-nowrap"
               >
                 Build My System
               </Link>
@@ -1527,7 +1527,7 @@ export default function ConnectedArchitecture() {
         </div>
 
         {/* Link to Full Portfolio */}
-        <div className="mt-12 text-center">
+        <div className="mt-6 sm:mt-12 text-center">
           <Link
             href="/our-work"
             className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-300 hover:text-amber-400 transition-colors py-2.5 px-5 rounded-full border border-white/15 hover:border-amber-400/40"

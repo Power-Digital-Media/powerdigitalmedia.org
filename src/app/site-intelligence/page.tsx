@@ -5,6 +5,7 @@ import {
   ArrowRight,
   BarChart3,
   CheckCircle2,
+  ChevronDown,
   Gauge,
   Lock,
   PhoneCall,
@@ -14,6 +15,7 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import DeferredFooterSections from "@/components/ui/DeferredFooterSections";
+import MobileSnapCarousel from "@/components/ui/MobileSnapCarousel";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import SiteIntelligenceInteractiveStage from "@/components/site-intelligence/SiteIntelligenceInteractiveStage";
 
@@ -96,7 +98,7 @@ export default function SiteIntelligencePage() {
       {/* =====================================================================
           HERO SECTION
       ====================================================================== */}
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 px-4 sm:px-6 overflow-hidden border-b border-white/10">
+      <section className="relative pt-[114px] pb-8 sm:pt-36 md:pt-40 md:pb-24 px-4 sm:px-6 overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 blueprint-grid opacity-55 pointer-events-none" aria-hidden="true" />
         <div
           className="absolute top-16 left-1/2 -translate-x-1/2 w-[820px] h-[420px] bg-cyan-500/[0.08] rounded-full blur-[150px] pointer-events-none"
@@ -104,37 +106,41 @@ export default function SiteIntelligencePage() {
         />
 
         <div className="max-w-7xl mx-auto relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/35 bg-cyan-500/10 text-cyan-300 text-xs font-mono font-bold uppercase tracking-widest mb-6">
-            <Activity className="w-4 h-4 text-cyan-400" />
-            Proprietary 24/7 Engineering Watchtower • Built in Jackson, MS
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border border-cyan-500/35 bg-cyan-500/10 text-cyan-300 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider sm:tracking-widest mb-3 sm:mb-6">
+            <Activity className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-400 shrink-0" />
+            <span className="sm:hidden">24/7 Engineering Watchtower • Jackson, MS</span>
+            <span className="hidden sm:inline">Proprietary 24/7 Engineering Watchtower • Built in Jackson, MS</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight leading-[0.98] max-w-5xl mx-auto mb-6">
-            We Know If Your Website Slows Down or Drops Rank{" "}
-            <span className="text-amber-400">Before Your Customers Ever Do.</span>
+          <h1 className="text-[1.72rem] sm:text-6xl md:text-7xl font-black uppercase tracking-tight leading-[1.03] sm:leading-[0.98] max-w-5xl mx-auto mb-3 sm:mb-6">
+            We Catch Speed &amp; Ranking Drops{" "}
+            <span className="text-amber-400">Before Customers Ever Do.</span>
           </h1>
 
-          <p className="text-slate-300 max-w-3xl mx-auto text-base sm:text-xl leading-relaxed mb-9">
+          <p className="sm:hidden text-slate-300 text-[13px] leading-snug mb-4 max-w-md mx-auto">
+            Every managed website runs inside <strong className="text-white">PDM Site Intelligence™</strong>—5-minute uptime/SSL probes, cellular speed checks, and live Google Search Console tracking.
+          </p>
+          <p className="hidden sm:block text-slate-300 max-w-3xl mx-auto text-base sm:text-xl leading-relaxed mb-9">
             Other agencies launch your website and forget it exists until something breaks. Every managed client build at Power Digital Media is wired into{" "}
             <strong className="text-white">PDM Site Intelligence™</strong>—our in-house watchtower running 5-minute uptime &amp; SSL probes, broken-link crawls, cellular Core Web Vitals checks, and live Google Search Console growth tracking.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-12">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3.5 mb-6 sm:mb-12">
             <a
               href="#watchtower-console"
-              className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black uppercase tracking-wider text-xs shadow-[0_0_32px_rgba(245,158,11,0.32)] hover:brightness-110 transition-all"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black uppercase tracking-wider text-xs shadow-[0_0_32px_rgba(245,158,11,0.32)] hover:brightness-110 transition-all"
             >
               Explore Live Watchtower Console ↓
             </a>
             <Link
               href="/free-audit"
-              className="w-full sm:w-auto px-7 py-4 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/15 text-white font-bold uppercase tracking-wider text-xs transition-all"
+              className="w-full sm:w-auto px-6 sm:px-7 py-3 sm:py-4 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/15 text-white font-bold uppercase tracking-wider text-xs transition-all"
             >
               Scan My Current Website Free →
             </Link>
             <a
               href="tel:6014462393"
-              className="w-full sm:w-auto px-6 py-4 rounded-xl border border-amber-500/35 bg-amber-500/10 text-amber-300 font-bold uppercase tracking-wider text-xs hover:bg-amber-400 hover:text-slate-950 transition-all flex items-center justify-center gap-2"
+              className="hidden sm:flex w-full sm:w-auto px-6 py-4 rounded-xl border border-amber-500/35 bg-amber-500/10 text-amber-300 font-bold uppercase tracking-wider text-xs hover:bg-amber-400 hover:text-slate-950 transition-all items-center justify-center gap-2"
             >
               <PhoneCall className="w-3.5 h-3.5" />
               (601) 446-2393
@@ -142,28 +148,28 @@ export default function SiteIntelligencePage() {
           </div>
 
           {/* Telemetry Proof Strip */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5 max-w-4xl mx-auto text-left">
-            <div className="p-4 sm:p-5 rounded-2xl bg-[#090d18] border border-white/10">
-              <div className="text-2xl sm:text-3xl font-black text-cyan-400 mb-1">Every 5m</div>
-              <div className="text-xs text-slate-400 font-mono uppercase tracking-wider">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3.5 max-w-4xl mx-auto text-left">
+            <div className="p-3 sm:p-5 rounded-2xl bg-[#090d18] border border-white/10">
+              <div className="text-lg sm:text-3xl font-black text-cyan-400 mb-0.5 sm:mb-1 whitespace-nowrap">Every 5m</div>
+              <div className="text-[10px] sm:text-xs text-slate-400 font-mono uppercase tracking-wider">
                 HTTP, Latency &amp; SSL Probes
               </div>
             </div>
-            <div className="p-4 sm:p-5 rounded-2xl bg-[#090d18] border border-white/10">
-              <div className="text-2xl sm:text-3xl font-black text-emerald-400 mb-1">CrUX + GSC</div>
-              <div className="text-xs text-slate-400 font-mono uppercase tracking-wider">
+            <div className="p-3 sm:p-5 rounded-2xl bg-[#090d18] border border-white/10">
+              <div className="text-lg sm:text-3xl font-black text-emerald-400 mb-0.5 sm:mb-1 whitespace-nowrap">CrUX + GSC</div>
+              <div className="text-[10px] sm:text-xs text-slate-400 font-mono uppercase tracking-wider">
                 Real Google Speed &amp; Clicks
               </div>
             </div>
-            <div className="p-4 sm:p-5 rounded-2xl bg-[#090d18] border border-white/10">
-              <div className="text-2xl sm:text-3xl font-black text-amber-400 mb-1">2-Stage</div>
-              <div className="text-xs text-slate-400 font-mono uppercase tracking-wider">
+            <div className="p-3 sm:p-5 rounded-2xl bg-[#090d18] border border-white/10">
+              <div className="text-lg sm:text-3xl font-black text-amber-400 mb-0.5 sm:mb-1 whitespace-nowrap">2-Stage</div>
+              <div className="text-[10px] sm:text-xs text-slate-400 font-mono uppercase tracking-wider">
                 Human-Approved Fixes Only
               </div>
             </div>
-            <div className="p-4 sm:p-5 rounded-2xl bg-[#090d18] border border-white/10">
-              <div className="text-2xl sm:text-3xl font-black text-white mb-1">Zero Work</div>
-              <div className="text-xs text-slate-400 font-mono uppercase tracking-wider">
+            <div className="p-3 sm:p-5 rounded-2xl bg-[#090d18] border border-white/10">
+              <div className="text-lg sm:text-3xl font-black text-white mb-0.5 sm:mb-1 whitespace-nowrap">Zero Work</div>
+              <div className="text-[10px] sm:text-xs text-slate-400 font-mono uppercase tracking-wider">
                 Managed For You In-House
               </div>
             </div>
@@ -174,15 +180,15 @@ export default function SiteIntelligencePage() {
       {/* =====================================================================
           AUTHENTIC INTERACTIVE WATCHTOWER CONSOLE
       ====================================================================== */}
-      <section className="py-20 md:py-28 px-4 sm:px-6 max-w-7xl mx-auto w-full">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <span className="text-cyan-400 font-mono text-xs uppercase tracking-[0.25em] font-bold block mb-3">
+      <section id="watchtower-console" className="scroll-mt-28 py-10 md:py-28 px-4 sm:px-6 max-w-7xl mx-auto w-full">
+        <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-12">
+          <span className="text-cyan-400 font-mono text-[10px] sm:text-xs uppercase tracking-[0.22em] sm:tracking-[0.25em] font-bold block mb-2 sm:mb-3">
             Authentic In-House Platform Preview
           </span>
-          <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mb-4">
+          <h2 className="text-2xl sm:text-5xl font-black uppercase tracking-tight text-white mb-2 sm:mb-4">
             See Inside <span className="text-amber-400">PDM Site Intelligence™.</span>
           </h2>
-          <p className="text-slate-300 text-base">
+          <p className="hidden sm:block text-slate-300 text-base">
             Switch between all 4 live telemetry tabs below—run a real-time fleet check, inspect 28-day Google Search Console gains, verify CrUX cellular speed, and test our 2-stage staged approval workflow.
           </p>
         </div>
@@ -260,8 +266,13 @@ export default function SiteIntelligencePage() {
       {/* =====================================================================
           4-LAYER ARCHITECTURE SUMMARY
       ====================================================================== */}
-      <section className="py-20 md:py-24 px-4 sm:px-6 max-w-7xl mx-auto w-full">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+      <section className="py-12 md:py-24 px-4 sm:px-6 max-w-7xl mx-auto w-full">
+        <MobileSnapCarousel
+          itemCount={4}
+          ariaLabel="Four Watchtower monitoring phases"
+          desktopGridClass="md:grid md:grid-cols-2 lg:grid-cols-4 gap-5"
+          itemLabel="phases"
+        >
           {[
             {
               icon: ShieldAlert,
@@ -307,41 +318,47 @@ export default function SiteIntelligencePage() {
               </div>
             );
           })}
-        </div>
+        </MobileSnapCarousel>
       </section>
 
       {/* =====================================================================
           FAQS
       ====================================================================== */}
-      <section className="py-20 px-4 sm:px-6 bg-[#080c16] border-t border-white/10">
+      <section className="py-12 md:py-20 px-4 sm:px-6 bg-[#080c16] border-t border-white/10">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <span className="text-amber-400 font-mono font-bold tracking-[0.25em] uppercase text-xs mb-3 block">
+          <div className="text-center mb-8 sm:mb-12">
+            <span className="text-amber-400 font-mono font-bold tracking-[0.22em] sm:tracking-[0.25em] uppercase text-[10px] sm:text-xs mb-2 sm:mb-3 block">
               Straight Answers
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black uppercase text-white tracking-tight">
+            <h2 className="text-2xl sm:text-4xl font-black uppercase text-white tracking-tight">
               PDM Site Intelligence™ FAQs
             </h2>
           </div>
 
-          <div className="space-y-4">
-            {WATCHTOWER_FAQS.map((faq) => (
-              <div
+          <div className="space-y-3">
+            {WATCHTOWER_FAQS.map((faq, idx) => (
+              <details
                 key={faq.q}
-                className="p-6 rounded-2xl bg-[#06080f] border border-white/10 space-y-2"
+                open={idx === 0}
+                className="group rounded-2xl bg-[#06080f] border border-white/10 open:border-amber-500/35 overflow-hidden transition-colors"
               >
-                <h3 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>{faq.q}</span>
-                </h3>
-                <p className="text-slate-300 text-sm leading-relaxed">{faq.a}</p>
-              </div>
+                <summary className="list-none cursor-pointer p-4 sm:p-6 flex items-center justify-between gap-3">
+                  <h3 className="text-sm sm:text-lg font-bold text-white flex items-center gap-2 text-left">
+                    <ShieldCheck className="w-4 h-4 text-amber-400 shrink-0" />
+                    <span>{faq.q}</span>
+                  </h3>
+                  <ChevronDown className="w-4 h-4 text-amber-400 shrink-0 transition-transform group-open:rotate-180" />
+                </summary>
+                <div className="px-4 pb-4 sm:px-6 sm:pb-6 pt-0 text-slate-300 text-xs sm:text-sm leading-relaxed">
+                  {faq.a}
+                </div>
+              </details>
             ))}
           </div>
         </div>
       </section>
 
-      <DeferredFooterSections />
+      <DeferredFooterSections mode="inner" />
     </main>
   );
 }

@@ -464,7 +464,7 @@ export default function PinDropDemoExplorer() {
     <div id="interactive-engine" className="w-full scroll-mt-28">
       {/* Mobile Single-Row Screen Switcher (< 640px) */}
       <div
-        className="sm:hidden flex items-center gap-2 overflow-x-auto no-scrollbar snap-x snap-mandatory mb-3.5 pb-1"
+        className="sm:hidden flex items-center gap-2 overflow-x-auto no-scrollbar snap-x snap-mandatory mb-3.5 pb-1 pr-6"
         role="tablist"
         aria-label="PinDrop interactive screens"
       >
@@ -595,7 +595,7 @@ export default function PinDropDemoExplorer() {
                   onClick={() => setActiveTab("live_map")}
                   className="px-3.5 py-1.5 rounded-full bg-[#12141c] hover:bg-white/10 border border-[#e2b047]/50 text-[#e2b047] text-xs font-bold cursor-pointer transition-all"
                 >
-                  ← View Public Project Map ({pins.length + 95} Pins)
+                  ← View Public Project Map ({pins.length + 796} Pins)
                 </button>
               )}
               <a
@@ -1656,7 +1656,7 @@ export default function PinDropDemoExplorer() {
                   <div className="rounded-2xl overflow-hidden bg-[#12141c] border border-[#e2b047]/35">
                     <div className="px-3.5 sm:px-4 py-2.5 bg-[#090b10] border-b border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs">
                       <span className="font-bold text-white">
-                        Live Production Proof: Born Again Roofing (99+ Pins)
+                        Live Production Proof: Born Again Roofing (800+ Pins)
                       </span>
                       <a
                         href="https://www.bornagainroofing.com/pins/"

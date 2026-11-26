@@ -18,19 +18,25 @@ import {
     ArrowRight,
     PhoneCall,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Project } from "@/data/projects";
 import Footer from "@/components/layout/Footer";
+import MobileSnapCarousel from "@/components/ui/MobileSnapCarousel";
 
 export default function ProjectShowcaseClient({ project }: { project: Project }) {
     const hasExternalUrl = Boolean(project.netlifyUrl && project.netlifyUrl.startsWith("http"));
     const hasInternalUrl = Boolean(project.netlifyUrl && project.netlifyUrl.startsWith("/"));
     const canEmbed = hasExternalUrl && !project.embedBlocked;
-    const [viewMode, setViewMode] = useState<"interactive" | "screenshot">(
-        canEmbed ? "interactive" : "screenshot"
-    );
+    // Default to instant HD Snapshot on SSR/Mobile (< 768px) to avoid a 540px blank loading iframe & double scrollbars; upgrade to interactive on Desktop
+    const [viewMode, setViewMode] = useState<"interactive" | "screenshot">("screenshot");
     const [iframeKey, setIframeKey] = useState(0);
     const [iframeLoaded, setIframeLoaded] = useState(false);
+
+    useEffect(() => {
+        if (canEmbed && typeof window !== "undefined" && window.innerWidth >= 768) {
+            setViewMode("interactive");
+        }
+    }, [canEmbed]);
 
     const displayUrl = project.netlifyUrl
         ? hasExternalUrl
@@ -41,23 +47,24 @@ export default function ProjectShowcaseClient({ project }: { project: Project })
     return (
         <main className="relative min-h-screen bg-[#06080f] text-white overflow-x-hidden">
             {/* Presentation Header */}
-            <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between gap-2 px-3.5 sm:px-6 md:px-8 py-3 bg-[#06080f]/95 backdrop-blur-xl border-b border-white/[0.08]">
+            <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between gap-2 px-3 sm:px-6 md:px-8 py-2.5 sm:py-3 bg-[#06080f]/95 backdrop-blur-xl border-b border-white/[0.08]">
                 <Link
                     href="/our-work"
+                    aria-label="Back to Our Work"
                     className="group shrink-0 flex items-center gap-2 md:gap-3 text-xs font-bold uppercase tracking-wider text-slate-200 hover:text-amber-400 transition-colors"
                 >
                     <div className="w-8 h-8 md:w-9 md:h-9 rounded-xl border border-white/10 flex items-center justify-center group-hover:border-amber-400 transition-colors bg-[#12141c]">
                         <ArrowLeft className="w-4 h-4" />
                     </div>
                     <span className="hidden sm:inline">Back to Our Work</span>
-                    <span className="sm:hidden">Back</span>
                 </Link>
 
                 <div className="flex flex-col items-center min-w-0 flex-1 px-1">
-                    <span className="text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-[0.16em] text-amber-400 mb-0.5 text-center truncate max-w-full">
-                        {project.client}
+                    <span className="text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-[0.14em] sm:tracking-[0.16em] text-amber-400 mb-0.5 text-center truncate max-w-full">
+                        <span className="sm:hidden">Verified Case Study</span>
+                        <span className="hidden sm:inline">{project.client}</span>
                     </span>
-                    <h1 className="text-xs md:text-sm font-black uppercase tracking-tight text-center text-white truncate max-w-full">
+                    <h1 className="text-[11px] sm:text-xs md:text-sm font-black uppercase tracking-tight text-center text-white truncate max-w-full">
                         {project.title}
                     </h1>
                 </div>
@@ -68,17 +75,19 @@ export default function ProjectShowcaseClient({ project }: { project: Project })
                             href={project.netlifyUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 whitespace-nowrap px-3 sm:px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-[#06080f] text-[11px] sm:text-xs font-black uppercase tracking-wider transition-colors"
+                            className="inline-flex items-center gap-1.5 whitespace-nowrap px-2.5 sm:px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-[#06080f] text-[11px] sm:text-xs font-black uppercase tracking-wider transition-colors"
                         >
-                            <span>Visit Site</span>
+                            <span className="sm:hidden">Live</span>
+                            <span className="hidden sm:inline">Visit Site</span>
                             <ExternalLink className="w-3.5 h-3.5 shrink-0" />
                         </a>
                     ) : hasInternalUrl && project.netlifyUrl ? (
                         <Link
                             href={project.netlifyUrl}
-                            className="inline-flex items-center gap-1.5 whitespace-nowrap px-3 sm:px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-[#06080f] text-[11px] sm:text-xs font-black uppercase tracking-wider transition-colors"
+                            className="inline-flex items-center gap-1.5 whitespace-nowrap px-2.5 sm:px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-[#06080f] text-[11px] sm:text-xs font-black uppercase tracking-wider transition-colors"
                         >
-                            <span>Open App</span>
+                            <span className="sm:hidden">App</span>
+                            <span className="hidden sm:inline">Open App</span>
                             <ArrowRight className="w-3.5 h-3.5 shrink-0" />
                         </Link>
                     ) : null}
@@ -86,38 +95,51 @@ export default function ProjectShowcaseClient({ project }: { project: Project })
             </header>
 
             {/* Main Content */}
-            <div className="pt-24 sm:pt-28 md:pt-32 pb-24 container mx-auto px-4 lg:px-12 max-w-6xl">
+            <div className="pt-20 sm:pt-28 md:pt-32 pb-24 container mx-auto px-4 lg:px-12 max-w-6xl">
                 {/* 1. Interactive Hero Browser Frame */}
                 <motion.div
                     initial={{ opacity: 0, y: 24 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="mb-14 sm:mb-16"
+                    className="mb-8 sm:mb-16"
                 >
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-3 px-0.5">
+                    <div className="flex flex-wrap items-center justify-between gap-2 mb-3 px-0.5">
                         {canEmbed ? (
-                            <div className="flex items-center gap-2 text-[11px] sm:text-xs font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-3.5 py-1.5 rounded-full">
+                            <div className="flex items-center gap-2 text-[10px] sm:text-xs font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full">
                                 <span className="relative flex h-2 w-2 shrink-0">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                                 </span>
-                                <span>
+                                <span className="sm:hidden">Live Client Build</span>
+                                <span className="hidden sm:inline">
                                     Live Interactive Client Build &bull; Scroll &amp; Tap Below
                                 </span>
                             </div>
                         ) : (
-                            <div className="flex items-center gap-2 text-[11px] sm:text-xs font-mono font-bold text-amber-300 bg-amber-500/10 border border-amber-500/25 px-3.5 py-1.5 rounded-full">
+                            <div className="flex items-center gap-2 text-[10px] sm:text-xs font-mono font-bold text-amber-300 bg-amber-500/10 border border-amber-500/25 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full">
                                 <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                                <span>Verified Production Deployment Showcase</span>
+                                <span>Verified Production Build</span>
                             </div>
                         )}
 
                         {canEmbed ? (
-                            <div className="flex items-center gap-1.5 bg-[#0b0c10] border border-white/10 p-1 rounded-xl">
+                            <div className="flex items-center gap-1 bg-[#0b0c10] border border-white/10 p-1 rounded-xl">
+                                <button
+                                    type="button"
+                                    onClick={() => setViewMode("screenshot")}
+                                    className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
+                                        viewMode === "screenshot"
+                                            ? "bg-amber-500 text-[#06080f]"
+                                            : "text-slate-400 hover:text-white"
+                                    }`}
+                                >
+                                    <Monitor className="w-3.5 h-3.5" />
+                                    <span>HD Snapshot</span>
+                                </button>
                                 <button
                                     type="button"
                                     onClick={() => setViewMode("interactive")}
-                                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                                    className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
                                         viewMode === "interactive"
                                             ? "bg-amber-500 text-[#06080f]"
                                             : "text-slate-400 hover:text-white"
@@ -125,18 +147,6 @@ export default function ProjectShowcaseClient({ project }: { project: Project })
                                 >
                                     <MousePointerClick className="w-3.5 h-3.5" />
                                     <span>Live Interactive</span>
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={() => setViewMode("screenshot")}
-                                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                                        viewMode === "screenshot"
-                                            ? "bg-[#12141c] text-white border border-white/15"
-                                            : "text-slate-400 hover:text-white"
-                                    }`}
-                                >
-                                    <Monitor className="w-3.5 h-3.5" />
-                                    <span>HD Snapshot</span>
                                 </button>
                             </div>
                         ) : hasExternalUrl ? (
@@ -395,7 +405,12 @@ export default function ProjectShowcaseClient({ project }: { project: Project })
                             </h3>
                         </div>
 
-                        <div className="grid md:grid-cols-2 gap-8">
+                        <MobileSnapCarousel
+                            itemCount={project.integrations.length}
+                            ariaLabel="Custom project systems in action"
+                            desktopGridClass="md:grid md:grid-cols-2 gap-8"
+                            itemLabel="systems"
+                        >
                             {project.integrations.map((item, idx) => (
                                 <motion.div
                                     key={idx}
@@ -405,13 +420,13 @@ export default function ProjectShowcaseClient({ project }: { project: Project })
                                     transition={{ duration: 0.5, delay: idx * 0.08 }}
                                     className="flex flex-col justify-between rounded-3xl bg-[#0b0c10] border border-white/10 overflow-hidden shadow-2xl hover:border-amber-500/40 transition-all group"
                                 >
-                                    <div className="flex items-center justify-between px-4 py-3 bg-[#12141c] border-b border-white/[0.08]">
-                                        <div className="flex items-center gap-1.5">
+                                    <div className="flex items-center justify-between gap-2 px-4 py-3 bg-[#12141c] border-b border-white/[0.08]">
+                                        <div className="flex items-center gap-1.5 shrink-0">
                                             <span className="w-2 h-2 rounded-full bg-red-500/80" />
                                             <span className="w-2 h-2 rounded-full bg-yellow-500/80" />
                                             <span className="w-2 h-2 rounded-full bg-green-500/80" />
                                         </div>
-                                        <span className="text-[10px] font-mono text-amber-300 font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/25">
+                                        <span className="text-[10px] font-mono text-amber-300 font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/25 whitespace-nowrap">
                                             {item.badge}
                                         </span>
                                     </div>
@@ -425,7 +440,7 @@ export default function ProjectShowcaseClient({ project }: { project: Project })
                                         />
                                     </div>
 
-                                    <div className="p-6 md:p-8 flex-1">
+                                    <div className="p-5 sm:p-6 md:p-8 flex-1">
                                         <h4 className="text-lg md:text-xl font-black text-white uppercase tracking-tight mb-2">
                                             {item.title}
                                         </h4>
@@ -435,7 +450,7 @@ export default function ProjectShowcaseClient({ project }: { project: Project })
                                     </div>
                                 </motion.div>
                             ))}
-                        </div>
+                        </MobileSnapCarousel>
                     </div>
                 )}
 

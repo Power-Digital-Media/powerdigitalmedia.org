@@ -28,7 +28,7 @@ export const liveSites: LiveSite[] = [
         category: "Contractors & Trades",
         publishedAt: "Active Client • Brandon, MS",
         description:
-            "Heavy-duty roofing and remodeling platform powered by 99+ live PDM PinDrop™ GPS pins, storm-damage CRM routing, and automated homeowner review requests.",
+            "Heavy-duty roofing and remodeling platform powered by 800+ live PDM PinDrop™ GPS pins, storm-damage CRM routing, and automated homeowner review requests.",
         techStack: ["Next.js", "PDM PinDrop™", "Capsule CRM", "Local Map Schema"],
         performanceScore: 98,
         accessibilityScore: 99,

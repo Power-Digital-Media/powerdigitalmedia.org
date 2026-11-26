@@ -9,10 +9,13 @@ import {
   Camera,
   ArrowRight,
   Activity,
+  Calculator,
+  ChevronDown,
 } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import DeferredFooterSections from "@/components/ui/DeferredFooterSections";
+import MobileSnapCarousel from "@/components/ui/MobileSnapCarousel";
 import Image from "next/image";
 import Portfolio from "@/components/sections/Portfolio";
 import GoogleReviewsSection from "@/components/sections/GoogleReviewsSection";
@@ -131,7 +134,7 @@ export default function WebDesignPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden border-b border-white/10">
+      <section className="relative pt-[114px] pb-8 sm:pt-36 md:pt-40 md:pb-24 overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 blueprint-grid opacity-55 pointer-events-none" aria-hidden="true" />
         <div
           className="absolute top-1/4 left-1/4 w-[560px] h-[420px] bg-amber-500/[0.08] rounded-full blur-[150px] pointer-events-none"
@@ -139,50 +142,55 @@ export default function WebDesignPage() {
         />
 
         <div className="container relative z-10 px-4 sm:px-6 mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-10 lg:gap-12 items-center">
             {/* Left Column */}
-            <div className="lg:col-span-7 text-left space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/35">
-                <span className="text-amber-400 text-xs">★★★★★</span>
-                <span className="text-amber-300 font-mono font-bold tracking-wider uppercase text-[11px]">
-                  Jackson, MS Custom Web Engineering • Zero WordPress
+            <div className="lg:col-span-7 text-left space-y-3 sm:space-y-6">
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-amber-500/10 border border-amber-500/35">
+                <span className="text-amber-400 text-[11px] sm:text-xs">★★★★★</span>
+                <span className="text-amber-300 font-mono font-bold tracking-wider uppercase text-[10px] sm:text-[11px]">
+                  <span className="sm:hidden">Custom Next.js Builds • Zero WordPress</span>
+                  <span className="hidden sm:inline">Jackson, MS Custom Web Engineering • Zero WordPress</span>
                 </span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight uppercase text-white leading-[1.02]">
+              <h1 className="text-[1.82rem] sm:text-5xl md:text-6xl font-black tracking-tight uppercase text-white leading-[1.03] sm:leading-[1.02]">
                 Custom Websites Engineered to Turn{" "}
                 <span className="text-amber-400">Clicks Into Phone Calls.</span>
               </h1>
 
-              <p className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
+              <p className="sm:hidden text-[13px] text-slate-300 leading-snug">
+                Hand-coded 0.8s Next.js websites wired to Google Map Pack schema, Capsule CRM, and 0%-fee Square checkout.
+              </p>
+              <p className="hidden sm:block text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
                 Whether you run a multi-truck roofing, HVAC, or excavation crew—or a high-volume local restaurant like{" "}
                 <strong className="text-white">T&apos;Beaux&apos;s Seafood</strong>—we hand-code sub-2-second websites wired to Google Maps, CRM follow-up, and direct cell support from Damein Donald.
               </p>
 
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+              <div className="grid grid-cols-2 sm:flex sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3.5">
                 <a
                   href="#estimator"
-                  className="px-7 py-4 bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black rounded-xl hover:brightness-110 transition-all uppercase tracking-wider text-xs shadow-[0_0_30px_rgba(245,158,11,0.3)] text-center"
+                  className="px-3.5 sm:px-7 py-3.5 sm:py-4 bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black rounded-xl hover:brightness-110 transition-all uppercase tracking-wider text-[11px] sm:text-xs shadow-[0_0_30px_rgba(245,158,11,0.3)] text-center flex items-center justify-center"
                 >
-                  See Instant Price &amp; Scope →
+                  <span className="sm:hidden">Instant Pricing →</span>
+                  <span className="hidden sm:inline">See Instant Price &amp; Scope →</span>
                 </a>
                 <Link
                   href="/free-audit"
-                  className="flex items-center justify-center gap-2 px-6 py-4 bg-white/[0.05] border border-white/15 text-white rounded-xl font-bold uppercase tracking-wider text-xs hover:bg-white/[0.1] transition-all text-center"
+                  className="flex items-center justify-center gap-1.5 sm:gap-2 px-3.5 sm:px-6 py-3.5 sm:py-4 bg-white/[0.05] border border-white/15 text-white rounded-xl font-bold uppercase tracking-wider text-[11px] sm:text-xs hover:bg-white/[0.1] transition-all text-center"
                 >
-                  <span>Free 5-Min Site Video</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Free 5-Min Video</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                 </Link>
                 <a
                   href="tel:6014462393"
-                  className="flex items-center justify-center gap-2 px-6 py-4 border border-amber-500/35 bg-amber-500/10 text-amber-300 rounded-xl font-bold uppercase tracking-wider text-xs hover:bg-amber-400 hover:text-slate-950 transition-all text-center"
+                  className="hidden sm:flex items-center justify-center gap-2 px-6 py-4 border border-amber-500/35 bg-amber-500/10 text-amber-300 rounded-xl font-bold uppercase tracking-wider text-xs hover:bg-amber-400 hover:text-slate-950 transition-all text-center"
                 >
                   <PhoneCall className="w-3.5 h-3.5" />
                   (601) 446-2393
                 </a>
               </div>
 
-              <div className="grid grid-cols-2 gap-3 pt-4 border-t border-white/10 max-w-xl">
+              <div className="hidden sm:grid grid-cols-2 gap-3 pt-4 border-t border-white/10 max-w-xl">
                 <div className="flex items-center gap-2 text-xs font-semibold text-slate-200">
                   <span className="text-emerald-400 font-bold">✓</span> Sub-2s Mobile Load Speeds
                 </div>
@@ -256,13 +264,15 @@ export default function WebDesignPage() {
         </div>
       </section>
 
-      <GoogleReviewsSection variant="compact" />
+      <div className="hidden lg:block">
+        <GoogleReviewsSection variant="compact" />
+      </div>
 
       {/* 20-Second Quick Project Quote & Ballpark Band */}
-      <section className="py-14 md:py-16 bg-[#070a13] border-b border-white/10">
+      <section className="py-10 md:py-16 bg-[#070a13] border-b border-white/10">
         <div className="container px-4 sm:px-6 mx-auto max-w-7xl">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            <div className="lg:col-span-7 space-y-4">
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-center">
+            <div className="lg:col-span-7 space-y-3 sm:space-y-4">
               <span className="text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-amber-400 block">
                 Fast Straight-Talk Pricing • Built in Jackson, MS
               </span>
@@ -274,11 +284,11 @@ export default function WebDesignPage() {
                 <strong className="text-white">$1,000 – $1,500 one-time</strong> (with 100% domain &amp; codebase ownership) and launch in{" "}
                 <strong className="text-white">7–14 business days</strong>. Use the{" "}
                 <a href="#estimator" className="text-amber-300 underline hover:text-amber-200 font-semibold">
-                  Interactive Scope Estimator below
+                  Interactive Scope Estimator
                 </a>{" "}
                 or drop your info here for a personal reply from Damein Donald.
               </p>
-              <div className="flex flex-wrap gap-4 pt-1 text-xs font-semibold text-slate-300">
+              <div className="hidden sm:flex flex-wrap gap-4 pt-1 text-xs font-semibold text-slate-300">
                 <span className="inline-flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                   Zero WordPress Plugin Bloat
@@ -317,44 +327,77 @@ export default function WebDesignPage() {
 
       <Portfolio titleAs="h2" />
 
-      <SpeedComparisonCard />
+      <div className="hidden lg:block">
+        <SpeedComparisonCard />
+      </div>
 
-      <GrowthScopeEstimator defaultIndustryId="local_business_ministry" />
+      {/* Mobile Launchpad vs Desktop Full Estimator (Eliminates 2,500px mobile repeat while keeping #estimator working) */}
+      <div id="estimator" className="scroll-mt-28">
+        <section className="lg:hidden py-10 px-4 bg-[#06080f] border-t border-white/10">
+          <div className="max-w-xl mx-auto rounded-3xl bg-[#090d18] border border-amber-500/35 p-5 space-y-3">
+            <div className="inline-flex items-center gap-1.5 text-[10px] font-mono font-bold uppercase tracking-wider text-amber-300">
+              <Calculator className="w-3.5 h-3.5 text-amber-400" />
+              Interactive Price &amp; Module Configurator
+            </div>
+            <h2 className="text-xl font-black uppercase text-white leading-tight">
+              Configure Your Custom Website &amp; Monthly Growth Scope
+            </h2>
+            <p className="text-xs text-slate-300 leading-relaxed">
+              Toggle your industry, Central MS market, and optional PinCam™ / PinDrop™ / Meta modules to see instant ballpark pricing.
+            </p>
+            <Link
+              href="/estimate"
+              className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black uppercase tracking-wider text-xs flex items-center justify-center gap-2 shadow-[0_0_24px_rgba(245,158,11,0.28)]"
+            >
+              <span>Open Live Scope Estimator</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </section>
+        <div className="hidden lg:block">
+          <GrowthScopeEstimator defaultIndustryId="local_business_ministry" />
+        </div>
+      </div>
 
       {/* 3 Core Engineering Pillars */}
-      <section className="py-20 md:py-28 relative bg-[#080c16] border-t border-white/10">
+      <section className="py-12 md:py-28 relative bg-[#080c16] border-t border-white/10">
         <div className="container px-4 sm:px-6 mx-auto max-w-7xl">
-          <div className="max-w-3xl mx-auto text-center mb-14">
-            <span className="text-amber-400 font-mono font-bold tracking-[0.25em] uppercase text-xs mb-3 block">
+          <div className="max-w-3xl mx-auto text-center mb-7 sm:mb-14">
+            <span className="text-amber-400 font-mono font-bold tracking-[0.22em] sm:tracking-[0.25em] uppercase text-[10px] sm:text-xs mb-2 sm:mb-3 block">
               The Power Digital Standard
             </span>
-            <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mb-4">
+            <h2 className="text-2xl sm:text-5xl font-black uppercase tracking-tight text-white mb-2 sm:mb-4">
               Built to Rank Fast &amp; Convert Mobile Callers.
             </h2>
-            <p className="text-slate-300 text-base">
+            <p className="hidden sm:block text-slate-300 text-base">
               Modern engineering paired with local SEO and automated lead rescue so your website pays for itself.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <MobileSnapCarousel
+            itemCount={pillars.length}
+            ariaLabel="Three web engineering pillars"
+            desktopGridClass="md:grid md:grid-cols-3 gap-6"
+            itemLabel="pillars"
+          >
             {pillars.map((pillar) => {
               const Icon = pillar.icon;
               return (
                 <div
                   key={pillar.title}
-                  className="p-7 sm:p-8 rounded-3xl bg-[#06080f] border border-white/10 flex flex-col justify-between"
+                  className="p-6 sm:p-8 rounded-3xl bg-[#06080f] border border-white/10 flex flex-col justify-between"
                 >
                   <div>
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="w-12 h-12 rounded-2xl bg-amber-500/12 border border-amber-500/30 flex items-center justify-center text-amber-400">
-                        <Icon className="w-6 h-6" />
+                    <div className="flex items-center justify-between gap-2 mb-5 sm:mb-6">
+                      <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-amber-500/12 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0">
+                        <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                       </div>
-                      <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-amber-300 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/25">
+                      <span className="text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-wider text-amber-300 bg-amber-500/10 px-2.5 sm:px-3 py-1 rounded-full border border-amber-500/25 whitespace-nowrap">
                         {pillar.subtitle}
                       </span>
                     </div>
-                    <h3 className="text-xl font-black uppercase text-white mb-3">{pillar.title}</h3>
-                    <p className="text-slate-300 text-sm leading-relaxed mb-6">
+                    <h3 className="text-lg sm:text-xl font-black uppercase text-white mb-2.5 sm:mb-3">{pillar.title}</h3>
+                    <p className="text-slate-300 text-sm leading-relaxed mb-5 sm:mb-6">
                       {pillar.description}
                     </p>
                     <ul className="space-y-2.5">
@@ -372,7 +415,7 @@ export default function WebDesignPage() {
                 </div>
               );
             })}
-          </div>
+          </MobileSnapCarousel>
 
           {/* Proprietary Field App Callout Bar */}
           <div className="mt-10 p-6 sm:p-8 rounded-3xl bg-[#090d18] border border-amber-500/30 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
@@ -430,32 +473,38 @@ export default function WebDesignPage() {
       </section>
 
       {/* Plain-English FAQs */}
-      <section className="py-20 md:py-24 bg-[#06080f] border-t border-white/10">
+      <section className="py-12 md:py-24 bg-[#06080f] border-t border-white/10">
         <div className="container px-4 sm:px-6 mx-auto max-w-4xl">
-          <div className="text-center mb-12">
-            <span className="text-amber-400 font-mono font-bold tracking-[0.25em] uppercase text-xs mb-3 block">
+          <div className="text-center mb-8 sm:mb-12">
+            <span className="text-amber-400 font-mono font-bold tracking-[0.22em] sm:tracking-[0.25em] uppercase text-[10px] sm:text-xs mb-2 sm:mb-3 block">
               Straight Answers
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black uppercase text-white tracking-tight">
+            <h2 className="text-2xl sm:text-4xl font-black uppercase text-white tracking-tight">
               Custom Web Design FAQs
             </h2>
           </div>
 
-          <div className="space-y-4">
-            {faqs.map((faq) => (
-              <div
+          <div className="space-y-3">
+            {faqs.map((faq, idx) => (
+              <details
                 key={faq.q}
-                className="p-6 rounded-2xl bg-[#090d18] border border-white/10 space-y-2"
+                open={idx === 0}
+                className="group rounded-2xl bg-[#090d18] border border-white/10 open:border-amber-500/35 overflow-hidden transition-colors"
               >
-                <h3 className="text-base sm:text-lg font-bold text-white">{faq.q}</h3>
-                <p className="text-slate-300 text-sm leading-relaxed">{faq.a}</p>
-              </div>
+                <summary className="list-none cursor-pointer p-4 sm:p-6 flex items-center justify-between gap-3">
+                  <h3 className="text-sm sm:text-lg font-bold text-white text-left">{faq.q}</h3>
+                  <ChevronDown className="w-4 h-4 text-amber-400 shrink-0 transition-transform group-open:rotate-180" />
+                </summary>
+                <div className="px-4 pb-4 sm:px-6 sm:pb-6 pt-0 text-slate-300 text-xs sm:text-sm leading-relaxed">
+                  {faq.a}
+                </div>
+              </details>
             ))}
           </div>
         </div>
       </section>
 
-      <DeferredFooterSections />
+      <DeferredFooterSections mode="inner" />
     </main>
   );
 }

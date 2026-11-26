@@ -69,7 +69,7 @@ export default function Home() {
       {/* =====================================================================
           IMMERSIVE INDUSTRIAL-LUXURY HERO
       ====================================================================== */}
-      <section className="relative overflow-hidden pt-28 pb-16 sm:pt-36 md:pt-40 md:pb-24 bg-[#06080f] border-b border-white/10">
+      <section className="relative overflow-hidden pt-[114px] pb-7 sm:pt-36 md:pt-40 lg:pb-24 bg-[#06080f] border-b border-white/10">
         {/* Architectural Blueprint Grid + Focused Copper/Amber Lighting */}
         <div className="absolute inset-0 blueprint-grid opacity-55 pointer-events-none" aria-hidden="true" />
         <div
@@ -82,47 +82,53 @@ export default function Home() {
         />
 
         <div className="container relative z-10 px-4 sm:px-6 mx-auto max-w-7xl">
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <div className="grid lg:grid-cols-12 gap-4 sm:gap-8 lg:gap-12 items-center">
             {/* Left Column: High-Impact Contractor & Local Business Pitch */}
             <div className="lg:col-span-6 flex flex-col items-start text-left">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-5">
-                <span className="text-amber-400 text-xs">★★★★★</span>
-                <span className="text-amber-300 font-mono font-bold tracking-wider uppercase text-[11px]">
-                  5.0★ Jackson, MS Studio • Built for Contractors &amp; Local Pros
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-2.5 sm:mb-5">
+                <span className="text-amber-400 text-[11px] sm:text-xs">★★★★★</span>
+                <span className="text-amber-300 font-mono font-bold tracking-wider uppercase text-[10px] sm:text-[11px]">
+                  <span className="sm:hidden">5.0★ Jackson, MS • Contractors &amp; Local Pros</span>
+                  <span className="hidden sm:inline">5.0★ Jackson, MS Studio • Built for Contractors &amp; Local Pros</span>
                 </span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl xl:text-[3.65rem] font-black tracking-tight leading-[1.02] uppercase text-white mb-5">
+              <h1 className="text-[1.82rem] sm:text-5xl xl:text-[3.65rem] font-black tracking-tight leading-[1.03] sm:leading-[1.02] uppercase text-white mb-2.5 sm:mb-5">
                 Websites &amp; Field Tech That{" "}
                 <span className="text-amber-400">Keep Your Crews Booked.</span>
               </h1>
 
-              <p className="text-slate-300 text-base sm:text-lg leading-relaxed mb-7 max-w-xl">
+              {/* Concise 2-Line Mobile Subcopy vs Full Desktop Pitch */}
+              <p className="sm:hidden text-slate-300 text-[13px] leading-snug mb-3.5">
+                0.8s custom websites, <strong className="text-white">Google Map Pack + AI search</strong>, and{" "}
+                <strong className="text-amber-300">$0-seat crew apps</strong> built in Jackson, MS.
+              </p>
+              <p className="hidden sm:block text-slate-300 text-base sm:text-lg leading-relaxed mb-7 max-w-xl">
                 Stop losing high-value jobs to slower competitors on Google. We engineer sub-2-second custom websites,{" "}
                 <strong className="text-white">Google Map Pack rankings</strong>, and proprietary crew software for Mississippi contractors and standout local businesses.
               </p>
 
-              {/* Clean, High-Converting 2-Button CTA Row */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto mb-7">
+              {/* Clean CTA Row (1 Primary Button on Mobile since Bottom Bar Has Call/Text; 2 Buttons on Desktop) */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto mb-1 sm:mb-7">
                 <Link
                   href="/free-audit"
                   prefetch={false}
-                  className="px-7 py-4 bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black rounded-xl hover:brightness-110 transition-all uppercase tracking-wider text-xs shadow-[0_0_32px_rgba(245,158,11,0.32)] text-center flex items-center justify-center gap-2 active:scale-95"
+                  className="px-5 sm:px-7 py-3 sm:py-4 bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black rounded-xl hover:brightness-110 transition-all uppercase tracking-wider text-xs shadow-[0_0_32px_rgba(245,158,11,0.32)] text-center flex items-center justify-center gap-2 active:scale-95"
                 >
                   <span>Get Free 5-Min Rank &amp; Site Check</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <a
                   href="tel:6014462393"
-                  className="flex items-center justify-center gap-2 px-6 py-4 rounded-xl border border-white/15 bg-white/[0.04] hover:bg-white/[0.09] text-white font-bold uppercase tracking-wider text-xs transition-all active:scale-95"
+                  className="hidden sm:flex items-center justify-center gap-2 px-6 py-4 rounded-xl border border-white/15 bg-white/[0.04] hover:bg-white/[0.09] text-white font-bold uppercase tracking-wider text-xs transition-all active:scale-95"
                 >
                   <Phone className="w-3.5 h-3.5 text-amber-400" />
                   <span>(601) 446-2393</span>
                 </a>
               </div>
 
-              {/* Outcome Proof Bullets (Zero Dev Jargon) */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-5 border-t border-white/10 w-full text-xs font-semibold text-slate-200">
+              {/* Outcome Proof Bullets (Shown on Tablet/Desktop so Fold 1 on Phone Shows Live Visual Proof Immediately) */}
+              <div className="hidden sm:grid sm:grid-cols-2 gap-2.5 pt-5 border-t border-white/10 w-full text-xs font-semibold text-slate-200">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
                   <span>Google Map Pack + GEO &amp; AEO Search</span>
@@ -148,38 +154,38 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Verified Client Proof Strip */}
-          <div className="mt-14 pt-6 border-t border-white/[0.08] flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-            <span className="font-mono font-bold uppercase tracking-widest text-slate-400 flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-amber-400" />
+          {/* Verified Client Proof Strip (Single-Row Snap Strip on Mobile, Flex Row on Desktop) */}
+          <div className="mt-5 lg:mt-14 pt-4 lg:pt-6 border-t border-white/[0.08] flex flex-col md:flex-row items-start md:items-center justify-between gap-2.5 md:gap-4 text-xs text-slate-400">
+            <span className="font-mono font-bold uppercase tracking-widest text-[10px] sm:text-xs text-slate-400 flex items-center gap-1.5">
+              <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 shrink-0" />
               Powering Real Mississippi Operators:
             </span>
-            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 font-bold text-slate-200 text-xs">
+            <div className="flex sm:flex-wrap items-center gap-2 overflow-x-auto sm:overflow-visible no-scrollbar w-full md:w-auto font-bold text-slate-200 text-xs pb-0.5 sm:pb-0">
               <Link
                 href="/portfolio/born-again-roofing"
                 prefetch={false}
-                className="px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:text-amber-300 transition-colors"
+                className="shrink-0 whitespace-nowrap px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:text-amber-300 transition-colors"
               >
                 Born Again Roofing (800+ Pins)
               </Link>
               <Link
                 href="/portfolio/geaux-pro-outdoors"
                 prefetch={false}
-                className="px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:text-amber-300 transition-colors"
+                className="shrink-0 whitespace-nowrap px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:text-amber-300 transition-colors"
               >
                 Geaux Pro Outdoors (MS Dirt)
               </Link>
               <Link
                 href="/portfolio/tbeaux"
                 prefetch={false}
-                className="px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:text-amber-300 transition-colors"
+                className="shrink-0 whitespace-nowrap px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:text-amber-300 transition-colors"
               >
                 T&apos;Beaux&apos;s Seafood (0% Fee Ordering)
               </Link>
               <Link
                 href="/our-work"
                 prefetch={false}
-                className="px-3.5 py-1.5 rounded-full bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 transition-colors"
+                className="shrink-0 whitespace-nowrap px-3.5 py-1.5 rounded-full bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 transition-colors"
               >
                 View All 10+ Builds →
               </Link>
@@ -198,9 +204,9 @@ export default function Home() {
       ====================================================================== */}
       <DeferredBelowFoldHome />
 
-      <section className="py-20 bg-[#05070d] border-t border-white/10">
+      <section className="py-10 sm:py-20 bg-[#05070d] border-t border-white/10">
         <div className="container px-4 sm:px-6 mx-auto max-w-7xl">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 sm:gap-6 mb-5 sm:mb-10">
             <div>
               <span className="text-amber-400 font-mono text-xs font-bold uppercase tracking-widest block mb-2">
                 Central Mississippi Local Search Coverage

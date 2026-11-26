@@ -6,6 +6,7 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import AuditCTA from "@/components/sections/AuditCTA";
+import MobileCompactConversionBanner from "@/components/ui/MobileCompactConversionBanner";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import { liveSites } from "@/data/liveSites";
 import {
@@ -55,22 +56,27 @@ export default function OurWorkPage() {
             <Navbar />
 
             {/* HERO */}
-            <section className="relative z-10 pt-32 pb-12 px-4 sm:px-6 md:px-12 border-b border-white/[0.06] blueprint-grid overflow-hidden">
+            <section className="relative z-10 pt-[114px] pb-7 sm:pt-36 md:pb-12 px-4 sm:px-6 md:px-12 border-b border-white/[0.06] blueprint-grid overflow-hidden">
                 <div className="absolute top-12 left-1/2 -translate-x-1/2 w-[720px] h-[320px] bg-amber-500/10 rounded-full blur-[150px] pointer-events-none" />
 
                 <div className="max-w-[1300px] mx-auto relative z-10">
-                    <div className="text-center max-w-3xl mx-auto mb-12">
-                        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-5">
-                            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                            <span className="text-amber-300 font-mono font-bold text-[11px] tracking-[0.18em] uppercase">
-                                Live Production Portfolio • Central Mississippi
+                    <div className="text-center max-w-3xl mx-auto mb-5 sm:mb-12">
+                        <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-3 sm:mb-5">
+                            <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                            <span className="text-amber-300 font-mono font-bold text-[10px] sm:text-[11px] tracking-[0.15em] sm:tracking-[0.18em] uppercase">
+                                <span className="sm:hidden">12+ Live Builds • Central MS</span>
+                                <span className="hidden sm:inline">Live Production Portfolio • Central Mississippi</span>
                             </span>
                         </div>
-                        <h1 className="text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-tight leading-[0.95] mb-5">
+                        <h1 className="text-[1.82rem] sm:text-5xl md:text-7xl font-black uppercase tracking-tight leading-[1.02] sm:leading-[0.95] mb-2.5 sm:mb-5">
                             Websites &amp; Field Apps{" "}
                             <span className="text-amber-400">Built To Win Jobs.</span>
                         </h1>
-                        <p className="text-slate-300 text-base md:text-lg leading-relaxed">
+                        <p className="sm:hidden text-slate-300 text-[13px] leading-snug">
+                            Inspect live Mississippi websites, 0%-fee ordering, and{" "}
+                            <strong className="text-white">PinDrop™ + PinCam™</strong> crew apps.
+                        </p>
+                        <p className="hidden sm:block text-slate-300 text-base md:text-lg leading-relaxed">
                             Inspect live client platforms, 0%-commission ordering engines, and our
                             proprietary{" "}
                             <strong className="text-white">PDM PinDrop™ + PinCam™</strong>{" "}
@@ -79,7 +85,7 @@ export default function OurWorkPage() {
                     </div>
 
                     {/* Filter & Search Bar */}
-                    <div className="flex flex-col lg:flex-row gap-4 items-center justify-between bg-[#0b0c10] border border-white/10 rounded-2xl p-4">
+                    <div className="flex flex-col lg:flex-row gap-3 sm:gap-4 items-center justify-between bg-[#0b0c10] border border-white/10 rounded-2xl p-3 sm:p-4">
                         <div className="relative w-full lg:w-80">
                             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                             <input
@@ -91,13 +97,13 @@ export default function OurWorkPage() {
                             />
                         </div>
 
-                        <div className="flex flex-wrap gap-2 w-full lg:w-auto">
+                        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-0.5 w-full sm:flex-wrap sm:overflow-visible lg:w-auto">
                             {CATEGORIES.map((cat) => (
                                 <button
                                     key={cat}
                                     type="button"
                                     onClick={() => setSelectedCategory(cat)}
-                                    className={`px-4 py-2 rounded-xl text-xs font-bold transition-all uppercase tracking-wider ${
+                                    className={`shrink-0 whitespace-nowrap px-3.5 sm:px-4 py-2 rounded-xl text-[11px] sm:text-xs font-bold transition-all uppercase tracking-wider cursor-pointer ${
                                         selectedCategory === cat
                                             ? "bg-amber-500 text-[#06080f] shadow-[0_8px_20px_rgba(245,158,11,0.25)]"
                                             : "bg-[#12141c] text-slate-300 border border-white/10 hover:border-amber-500/35 hover:text-white"
@@ -112,7 +118,7 @@ export default function OurWorkPage() {
             </section>
 
             {/* CARDS GRID */}
-            <section className="py-16 px-4 sm:px-6 md:px-12 max-w-[1300px] mx-auto w-full">
+            <section className="py-8 sm:py-16 px-4 sm:px-6 md:px-12 max-w-[1300px] mx-auto w-full">
                 {filteredSites.length === 0 ? (
                     <div className="text-center py-16 bg-[#0b0c10] border border-white/10 rounded-3xl">
                         <h2 className="text-xl font-bold text-white mb-2">
@@ -248,7 +254,10 @@ export default function OurWorkPage() {
                 )}
             </section>
 
-            <AuditCTA />
+            <MobileCompactConversionBanner variant="audit" />
+            <div className="hidden lg:block">
+                <AuditCTA />
+            </div>
 
             <Footer />
         </main>

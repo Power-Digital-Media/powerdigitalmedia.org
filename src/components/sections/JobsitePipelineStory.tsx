@@ -61,7 +61,7 @@ export default function JobsitePipelineStory() {
   return (
     <section
       id="jobsite-engine"
-      className="relative py-24 md:py-32 bg-[#05070d] border-y border-white/10 overflow-hidden"
+      className="relative py-12 md:py-32 bg-[#05070d] border-y border-white/10 overflow-hidden"
     >
       {/* Architectural Blueprint Grid + Warm Spotlight */}
       <div className="absolute inset-0 blueprint-grid opacity-55 pointer-events-none" aria-hidden="true" />
@@ -72,15 +72,15 @@ export default function JobsitePipelineStory() {
 
       <div className="container relative z-10 px-4 sm:px-6 mx-auto max-w-7xl">
         {/* Centered Architectural Header — Distinct from Left-Aligned Hero */}
-        <div className="max-w-3xl mx-auto text-center mb-12 md:mb-14">
-          <span className="text-amber-400 font-mono text-xs font-bold uppercase tracking-[0.28em] block mb-3">
+        <div className="max-w-3xl mx-auto text-center mb-6 md:mb-14">
+          <span className="text-amber-400 font-mono text-[10px] sm:text-xs font-bold uppercase tracking-[0.22em] sm:tracking-[0.28em] block mb-2 sm:mb-3">
             Interactive 3-Stage System Walkthrough
           </span>
-          <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight leading-[1.04] text-white mb-4">
+          <h2 className="text-2xl sm:text-5xl font-black uppercase tracking-tight leading-[1.05] text-white mb-2 sm:mb-4">
             How One Finished Job{" "}
             <span className="text-amber-400">Sparks Your Next Wave of Calls.</span>
           </h2>
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+          <p className="hidden sm:block text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
             Most websites sit static for years while your crew does great work every single day. Click any stage below to test-drive how our connected field-to-phone pipeline works in real life.
           </p>
         </div>
@@ -310,19 +310,19 @@ export default function JobsitePipelineStory() {
                 </div>
               </div>
 
-              {/* Copy & Real App Capabilities */}
-              <div className="lg:col-span-5 space-y-6">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-bold">
+              {/* Copy & Real App Capabilities (Compact on Mobile, Full Prose on Desktop) */}
+              <div className="lg:col-span-5 space-y-3 sm:space-y-6">
+                <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-bold">
                   Proprietary App #1 • PinCam™
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-black text-white leading-tight uppercase">
+                <h3 className="text-lg sm:text-3xl font-black text-white leading-tight uppercase">
                   Document Every Job Like a Million-Dollar Operation.
                 </h3>
-                <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                <p className="text-slate-300 text-xs sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
                   Crews use <strong className="text-white">PinCam™</strong> on their phone to align perfect before-and-after shots, draw hail/leak arrows &amp; measurements, record dual-camera PiP walkthroughs, and hand homeowners or insurance adjusters a branded PDF report on the spot.
                 </p>
 
-                <ul className="space-y-3 text-sm text-slate-200">
+                <ul className="hidden md:block space-y-3 text-sm text-slate-200">
                   <li className="flex items-start gap-2.5">
                     <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
                     <span>
@@ -343,17 +343,17 @@ export default function JobsitePipelineStory() {
                   </li>
                 </ul>
 
-                <div className="pt-2 flex flex-wrap gap-3">
+                <div className="pt-1 sm:pt-2 flex flex-wrap gap-2.5 sm:gap-3">
                   <Link
                     href="/pincam"
-                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs uppercase tracking-wider transition-all shadow-[0_0_24px_rgba(245,158,11,0.28)]"
+                    className="flex-1 sm:flex-initial justify-center inline-flex items-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs uppercase tracking-wider transition-all shadow-[0_0_24px_rgba(245,158,11,0.28)]"
                   >
                     <span>Test-Drive PinCam™ App</span>
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                   <Link
                     href="/contractors"
-                    className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-white font-bold text-xs uppercase tracking-wider transition-all"
+                    className="hidden sm:inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-white font-bold text-xs uppercase tracking-wider transition-all"
                   >
                     Contractor Packages
                   </Link>
@@ -372,7 +372,7 @@ export default function JobsitePipelineStory() {
                     <span className="font-mono font-extrabold uppercase tracking-wider text-[#e2b047]">
                       LIVE JOB FEED • Local Project Pins
                     </span>
-                    <span className="font-mono text-emerald-400">99+ Active Pins</span>
+                    <span className="font-mono text-emerald-400">800+ Active Pins</span>
                   </div>
                   <div className="relative aspect-[16/10] sm:aspect-auto sm:h-56 rounded-xl overflow-hidden border border-white/10">
                     <Image
@@ -460,34 +460,34 @@ export default function JobsitePipelineStory() {
                 </div>
               </div>
 
-              <div className="lg:col-span-5 space-y-6">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-bold">
+              <div className="lg:col-span-5 space-y-3 sm:space-y-6">
+                <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-bold">
                   Proprietary App #2 • PDM PinDrop™
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-black text-white leading-tight uppercase">
-                  Turn Completed Jobs Into #1 Neighborhood Google Rankings.
+                <h3 className="text-lg sm:text-3xl font-black text-white leading-tight uppercase">
+                  Turn Completed Jobs Into Neighborhood Google Rankings.
                 </h3>
-                <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                <p className="text-slate-300 text-xs sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
                   Instead of paying an agency to write generic blog posts nobody reads, <strong className="text-white">PDM PinDrop™</strong> turns every real HVAC install, roof replacement, or dirt-work job in Madison, Brandon, or Clinton into a live satellite map pin, an Answer Engine Google page, and a 1-tap homeowner review text.
                 </p>
-                <div className="grid grid-cols-3 gap-3 pt-1">
-                  <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/10">
-                    <div className="text-xl font-black text-amber-400">99+</div>
-                    <div className="text-[11px] text-slate-400">Live Pins on BAR</div>
+                <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-0.5 sm:pt-1">
+                  <div className="p-2.5 sm:p-3.5 rounded-xl bg-white/[0.04] border border-white/10">
+                    <div className="text-base sm:text-xl font-black text-amber-400">800+</div>
+                    <div className="text-[10px] sm:text-[11px] text-slate-400">Live Pins</div>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/10">
-                    <div className="text-xl font-black text-emerald-400">15 Min</div>
-                    <div className="text-[11px] text-slate-400">Auto-SMS Review</div>
+                  <div className="p-2.5 sm:p-3.5 rounded-xl bg-white/[0.04] border border-white/10">
+                    <div className="text-base sm:text-xl font-black text-emerald-400">15 Min</div>
+                    <div className="text-[10px] sm:text-[11px] text-slate-400">Auto-SMS</div>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/10">
-                    <div className="text-xl font-black text-white">Crew-Wide</div>
-                    <div className="text-[11px] text-slate-400">No Per-Tech Tax</div>
+                  <div className="p-2.5 sm:p-3.5 rounded-xl bg-white/[0.04] border border-white/10">
+                    <div className="text-base sm:text-xl font-black text-white">$0</div>
+                    <div className="text-[10px] sm:text-[11px] text-slate-400">Seat Fees</div>
                   </div>
                 </div>
-                <div className="pt-2 flex flex-wrap gap-3">
+                <div className="pt-1 sm:pt-2 flex flex-wrap gap-2.5 sm:gap-3">
                   <Link
                     href="/pindrop"
-                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs uppercase tracking-wider transition-all shadow-[0_0_24px_rgba(245,158,11,0.28)]"
+                    className="flex-1 sm:flex-initial justify-center inline-flex items-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs uppercase tracking-wider transition-all shadow-[0_0_24px_rgba(245,158,11,0.28)]"
                   >
                     <span>Test-Drive Real PinDrop™ App</span>
                     <ArrowRight className="w-4 h-4" />
@@ -496,7 +496,7 @@ export default function JobsitePipelineStory() {
                     href="https://www.bornagainroofing.com/pins/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-white font-bold text-xs uppercase tracking-wider transition-all"
+                    className="hidden sm:inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-white font-bold text-xs uppercase tracking-wider transition-all"
                   >
                     <span>See Live BAR Map ↗</span>
                   </a>
@@ -560,27 +560,27 @@ export default function JobsitePipelineStory() {
                 </div>
               </div>
 
-              <div className="lg:col-span-5 space-y-6">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-bold">
+              <div className="lg:col-span-5 space-y-3 sm:space-y-6">
+                <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-bold">
                   CRM &amp; Automated Follow-Up
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-black text-white leading-tight uppercase">
+                <h3 className="text-lg sm:text-3xl font-black text-white leading-tight uppercase">
                   78% of Homeowners Hire the First Contractor Who Responds.
                 </h3>
-                <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                <p className="text-slate-300 text-xs sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
                   When you&apos;re in an attic, on a roof, or running an excavator, scattered inbox leads cost thousands. We wire your interactive quote calculators, lead forms, <strong className="text-white">Capsule CRM</strong>, and automated Transpond sequences together so every inquiry is logged, tagged, and followed up automatically.
                 </p>
                 <div className="flex flex-wrap items-center gap-3 pt-1">
                   <Link
                     href="/free-audit"
-                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs uppercase tracking-wider transition-all shadow-[0_0_24px_rgba(245,158,11,0.28)]"
+                    className="flex-1 sm:flex-initial justify-center inline-flex items-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs uppercase tracking-wider transition-all shadow-[0_0_24px_rgba(245,158,11,0.28)]"
                   >
                     <span>Check My Website &amp; Lead Leaks</span>
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                   <a
                     href="tel:6014462393"
-                    className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-white font-bold text-xs uppercase tracking-wider transition-all"
+                    className="hidden sm:inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-white font-bold text-xs uppercase tracking-wider transition-all"
                   >
                     <MessageSquare className="w-4 h-4 text-amber-400" />
                     (601) 446-2393
@@ -590,8 +590,8 @@ export default function JobsitePipelineStory() {
             </div>
           )}
 
-          {/* Direct Flagship App Promotion Bar (Standalone Embed OR Website Bundle) */}
-          <div className="mt-8 pt-6 border-t border-white/10 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          {/* Direct Flagship App Promotion Bar (Desktop Only — Mobile Has Quick-Jump Pills Above) */}
+          <div className="hidden md:flex mt-8 pt-6 border-t border-white/10 flex-col lg:flex-row lg:items-center justify-between gap-4">
             <div className="text-xs sm:text-sm text-slate-300">
               <strong className="text-white">Want PDM PinDrop™ or PinCam™ for your crew?</strong>{" "}
               Bundled <strong className="text-amber-300">with zero per-seat fees</strong> on our Contractor Growth Websites—or install on your existing WordPress/Wix/custom site with a guided 14-day trial.

@@ -115,15 +115,23 @@ export default function ContractorHeroStage() {
         aria-hidden="true"
       />
 
-      {/* Interactive Trade Switcher Tabs */}
+      {/* Interactive Trade Switcher Tabs (Single 4-Col Row on Mobile & Desktop) */}
       <div
-        className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 mb-3 p-1.5 rounded-2xl bg-[#0a0e19]/90 border border-white/10 backdrop-blur-xl"
+        className="grid grid-cols-4 gap-1 sm:gap-1.5 mb-2 sm:mb-3 p-1 sm:p-1.5 rounded-2xl bg-[#0a0e19]/90 border border-white/10 backdrop-blur-xl"
         role="tablist"
         aria-label="Select industry showcase"
       >
         {SHOWCASES.map((item, idx) => {
           const Icon = item.icon;
           const isActive = idx === activeIndex;
+          const mobileShort =
+            item.id === "dirtwork"
+              ? "Dirt"
+              : item.id === "hvac"
+              ? "HVAC"
+              : item.id === "commerce"
+              ? "Local"
+              : item.tabLabel;
           return (
             <button
               key={item.id}
@@ -131,23 +139,24 @@ export default function ContractorHeroStage() {
               role="tab"
               aria-selected={isActive}
               onClick={() => setActiveIndex(idx)}
-              className={`flex items-center justify-center gap-1.5 py-2.5 px-2.5 rounded-xl text-[11px] font-extrabold uppercase tracking-wider transition-all cursor-pointer ${
+              className={`flex items-center justify-center gap-1 sm:gap-1.5 py-2 sm:py-2.5 px-1.5 sm:px-2.5 rounded-xl text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider transition-all cursor-pointer ${
                 isActive
                   ? "bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 shadow-[0_0_20px_rgba(245,158,11,0.3)]"
                   : "text-slate-400 hover:text-white hover:bg-white/[0.04]"
               }`}
             >
-              <Icon className="w-3.5 h-3.5 shrink-0" />
-              <span className="truncate">{item.tabLabel}</span>
+              <Icon className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
+              <span className="sm:hidden truncate">{mobileShort}</span>
+              <span className="hidden sm:inline truncate">{item.tabLabel}</span>
             </button>
           );
         })}
       </div>
 
       {/* Main Tactical Browser & Telemetry Console */}
-      <div className="relative rounded-3xl obsidian-surface overflow-hidden">
+      <div className="relative rounded-2xl sm:rounded-3xl obsidian-surface overflow-hidden">
         {/* Top Browser Chrome */}
-        <div className="flex items-center justify-between px-4 py-3 bg-[#070a12] border-b border-white/10">
+        <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 bg-[#070a12] border-b border-white/10">
           <div className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-red-500/75" />
             <span className="w-2.5 h-2.5 rounded-full bg-amber-400/75" />
@@ -202,27 +211,39 @@ export default function ContractorHeroStage() {
         </div>
 
         {/* Clean Non-Overlapping Identity, Telemetry & Proof Dock */}
-        <div className="p-4 sm:p-5 bg-[#070a12] border-t border-white/10 space-y-3.5">
-          {/* Client Identity & Speed Row (Moved off screenshot for 100% visual clarity) */}
-          <div className="flex flex-wrap items-start justify-between gap-2.5 pb-3 border-b border-white/[0.08]">
+        <div className="p-3 sm:p-5 bg-[#070a12] border-t border-white/10 space-y-2 sm:space-y-3.5">
+          {/* Client Identity & Speed Row */}
+          <div className="flex items-center justify-between gap-2 sm:pb-3 sm:border-b sm:border-white/[0.08]">
             <div className="min-w-0">
-              <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-amber-300">
+              <div className="hidden sm:block text-[10px] font-mono font-bold uppercase tracking-widest text-amber-300">
                 Verified Mississippi Deployment
               </div>
-              <div className="text-base sm:text-xl font-black text-white tracking-tight leading-snug mt-0.5">
+              <div className="text-sm sm:text-xl font-black text-white tracking-tight leading-snug truncate">
                 {current.clientName}
               </div>
-              <div className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-slate-300 mt-1">
-                <MapPin className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                <span>{current.location}</span>
+              <div className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-semibold text-amber-300 sm:text-slate-300 mt-0.5">
+                <Star className="w-3 h-3 text-amber-400 fill-amber-400 shrink-0 sm:hidden" />
+                <span className="sm:hidden truncate">{current.liveRankBadge}</span>
+                <MapPin className="hidden sm:inline w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <span className="hidden sm:inline">{current.location}</span>
               </div>
             </div>
-            <span className="px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/35 text-emerald-300 text-[11px] font-extrabold shrink-0">
-              ⚡ {current.speedScore}
-            </span>
+            <div className="flex flex-col items-end gap-1 shrink-0">
+              <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-emerald-500/15 border border-emerald-400/35 text-emerald-300 text-[10px] sm:text-[11px] font-extrabold">
+                ⚡ {current.speedScore}
+              </span>
+              <Link
+                href={current.caseStudyHref}
+                prefetch={false}
+                className="sm:hidden text-[10px] font-mono font-bold text-amber-400 flex items-center gap-0.5"
+              >
+                <span>See Proof</span>
+                <ArrowUpRight className="w-3 h-3" />
+              </Link>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          <div className="hidden sm:grid sm:grid-cols-2 gap-2.5">
             <div className="px-3.5 py-2.5 rounded-xl bg-amber-500/[0.08] border border-amber-500/25 flex items-center gap-2 text-xs font-bold text-amber-200">
               <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400 shrink-0" />
               <span className="truncate">{current.liveRankBadge}</span>
@@ -233,8 +254,8 @@ export default function ContractorHeroStage() {
             </div>
           </div>
 
-          {/* Integrated Verified Proof Strip (Zero Overlapping Collisions) */}
-          <div className="pt-3 border-t border-white/[0.07] flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          {/* Integrated Verified Proof Strip (Desktop & Tablet) */}
+          <div className="hidden sm:flex pt-3 border-t border-white/[0.07] flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div className="space-y-0.5">
               <p className="text-xs text-slate-200 leading-snug font-medium">
                 {current.proofQuote}

@@ -191,8 +191,8 @@ export default function GrowthScopeEstimator({
       id="estimator"
       className={`relative overflow-hidden bg-[#06080f] text-white ${
         isStandalonePage
-          ? "pt-32 pb-20 md:pt-40 md:pb-28"
-          : "py-20 md:py-28 border-t border-white/10"
+          ? "pt-[114px] pb-14 sm:pt-36 md:pt-40 md:pb-28"
+          : "py-12 md:py-28 border-t border-white/10"
       }`}
     >
       {/* Blueprint Grid & Industrial Amber/Emerald Ambient Lighting */}
@@ -211,24 +211,27 @@ export default function GrowthScopeEstimator({
 
       <div className="container relative z-10 px-4 sm:px-6 mx-auto max-w-7xl">
         {/* Section Header */}
-        <div className="max-w-3xl mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/35 text-amber-300 text-xs font-mono font-bold uppercase tracking-wider mb-4">
+        <div className="max-w-3xl mb-5 sm:mb-12">
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-amber-500/10 border border-amber-500/35 text-amber-300 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider mb-3 sm:mb-4">
             <Calculator className="w-3.5 h-3.5 text-amber-400" />
             Interactive Central MS Growth &amp; Scope Estimator
           </div>
 
-          <HeadingTag className="text-3xl sm:text-5xl font-black uppercase tracking-tight leading-[1.03] text-white mb-4">
+          <HeadingTag className="text-2xl sm:text-5xl font-black uppercase tracking-tight leading-[1.04] text-white mb-2 sm:mb-4">
             See Your Ballpark Investment &amp;{" "}
             <span className="text-amber-400">Everything Included Upfront.</span>
           </HeadingTag>
 
-          <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+          <p className="sm:hidden text-xs text-slate-300 leading-relaxed">
+            Tap your trade, city, and modules below to see your live Central MS ballpark instantly.
+          </p>
+          <p className="hidden sm:block text-slate-300 text-base sm:text-lg leading-relaxed">
             No mystery agency retainers or per-technician SaaS seat traps. Toggle your trade, hometown market, and growth modules below to see your starting Central Mississippi range in seconds—then text or lock in your custom 1-on-1 scope with Damein Donald.
           </p>
         </div>
 
-        {/* Mobile Sticky Live Ballpark Bar (Updates Instantly While Toggling Below) */}
-        <div className="lg:hidden sticky top-[60px] sm:top-[68px] z-30 mb-6 -mx-1">
+        {/* Mobile Sticky Live Ballpark Bar (Clears Navbar + Quick-Jump Strip) */}
+        <div className="lg:hidden sticky top-[92px] z-30 mb-4 -mx-1">
           <div className="rounded-2xl bg-[#0b0f1c]/95 backdrop-blur-xl border border-amber-400/50 px-3.5 py-2.5 shadow-[0_14px_34px_rgba(0,0,0,0.75),0_0_20px_rgba(245,158,11,0.18)] flex items-center justify-between gap-2.5">
             <div className="min-w-0">
               <div className="text-[10px] font-mono font-extrabold uppercase tracking-wider text-amber-300 truncate">
@@ -252,11 +255,11 @@ export default function GrowthScopeEstimator({
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+        <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-start">
           {/* =================================================================
               LEFT COLUMN (7 COLS): MODULAR CONFIGURATOR
           ================================================================== */}
-          <div className="lg:col-span-7 space-y-6 sm:space-y-7">
+          <div className="lg:col-span-7 min-w-0 space-y-5 sm:space-y-7">
             {/* STEP 1: BUSINESS TYPE */}
             <div className="rounded-3xl bg-[#090d18] border border-white/10 p-4 sm:p-7 space-y-4">
               <div className="flex flex-wrap items-center justify-between gap-2">
@@ -305,8 +308,8 @@ export default function GrowthScopeEstimator({
                 })}
               </div>
 
-              {/* Dynamic Industry ROI Banner */}
-              <div className="p-4 rounded-2xl bg-emerald-500/[0.08] border border-emerald-500/30 flex items-start gap-3">
+              {/* Dynamic Industry ROI Banner (Desktop/Tablet — Shown in Summary on Mobile) */}
+              <div className="hidden sm:flex p-4 rounded-2xl bg-emerald-500/[0.08] border border-emerald-500/30 items-start gap-3">
                 <Sparkles className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                 <div className="space-y-0.5">
                   <div className="text-xs sm:text-sm font-black text-emerald-300 uppercase tracking-wide">
@@ -319,19 +322,19 @@ export default function GrowthScopeEstimator({
               </div>
             </div>
 
-            {/* STEP 2: HOMETOWN AREA */}
-            <div className="rounded-3xl bg-[#090d18] border border-white/10 p-5 sm:p-7 space-y-4">
+            {/* STEP 2: HOMETOWN AREA (Single-Row Snap Strip on Mobile) */}
+            <div className="rounded-3xl bg-[#090d18] border border-white/10 p-4 sm:p-7 space-y-3 sm:space-y-4">
               <div className="flex items-center justify-between gap-2">
                 <span className="text-[11px] font-mono font-extrabold uppercase tracking-widest text-amber-400 flex items-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5 text-amber-400" />
                   Step 02 • Primary Hometown Market
                 </span>
-                <span className="text-[11px] text-slate-400 font-mono">
+                <span className="hidden sm:inline text-[11px] text-slate-400 font-mono">
                   Central MS Local Priority
                 </span>
               </div>
 
-              <div className="flex flex-wrap gap-2">
+              <div className="flex sm:flex-wrap gap-2 overflow-x-auto sm:overflow-visible no-scrollbar snap-x pb-0.5 sm:pb-0">
                 {ESTIMATOR_HOMETOWN_AREAS.map((area) => {
                   const active = city === area;
                   return (
@@ -339,7 +342,7 @@ export default function GrowthScopeEstimator({
                       key={area}
                       type="button"
                       onClick={() => setCity(area)}
-                      className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer border ${
+                      className={`shrink-0 snap-start px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer border ${
                         active
                           ? "bg-amber-400 text-slate-950 border-amber-300 shadow-[0_0_16px_rgba(245,158,11,0.28)]"
                           : "bg-[#06080f] text-slate-300 border-white/10 hover:border-amber-400/40 hover:text-white"
@@ -353,34 +356,34 @@ export default function GrowthScopeEstimator({
             </div>
 
             {/* STEP 3: ONE-TIME CUSTOM WEBSITE BUILD TOGGLE */}
-            <div className="rounded-3xl bg-[#090d18] border border-white/10 p-5 sm:p-7 space-y-4">
+            <div className="rounded-3xl bg-[#090d18] border border-white/10 p-4 sm:p-7 space-y-3 sm:space-y-4">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <span className="text-[11px] font-mono font-extrabold uppercase tracking-widest text-amber-400 flex items-center gap-1.5">
                   <Layers className="w-3.5 h-3.5 text-amber-400" />
-                  Step 03 • Custom Website Engineering Build
+                  Step 03 • Website Build
                 </span>
-                <span className="text-[11px] font-mono text-slate-400 line-through">
+                <span className="hidden sm:inline text-[11px] font-mono text-slate-400 line-through">
                   {ONE_TIME_WEBSITE_BUILD_CONFIG.typicalAgencyComparison}
                 </span>
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
                 <button
                   type="button"
                   onClick={() => setNeedsNewWebsite(true)}
-                  className={`p-4 rounded-2xl border text-left transition-all cursor-pointer ${
+                  className={`p-3 sm:p-4 rounded-2xl border text-left transition-all cursor-pointer ${
                     needsNewWebsite
                       ? "bg-amber-500/[0.11] border-amber-400"
                       : "bg-[#06080f] border-white/10 hover:border-white/25"
                   }`}
                 >
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-xs font-mono font-bold uppercase text-amber-300">
-                      Need a New 0.8s Website
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-0.5 mb-1">
+                    <span className="text-[10px] sm:text-xs font-mono font-bold uppercase text-amber-300">
+                      New 0.8s Site
                     </span>
-                    <span className="text-sm font-black text-white">$1,000 – $1,500</span>
+                    <span className="text-xs sm:text-sm font-black text-white">$1,000 – $1,500</span>
                   </div>
-                  <p className="text-xs text-slate-300">
+                  <p className="hidden sm:block text-xs text-slate-300">
                     One-time custom Next.js build • 100% code &amp; domain ownership
                   </p>
                 </button>
@@ -388,26 +391,26 @@ export default function GrowthScopeEstimator({
                 <button
                   type="button"
                   onClick={() => setNeedsNewWebsite(false)}
-                  className={`p-4 rounded-2xl border text-left transition-all cursor-pointer ${
+                  className={`p-3 sm:p-4 rounded-2xl border text-left transition-all cursor-pointer ${
                     !needsNewWebsite
                       ? "bg-emerald-500/[0.11] border-emerald-400"
                       : "bg-[#06080f] border-white/10 hover:border-white/25"
                   }`}
                 >
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-xs font-mono font-bold uppercase text-emerald-300">
-                      Already Have a PDM Site
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-0.5 mb-1">
+                    <span className="text-[10px] sm:text-xs font-mono font-bold uppercase text-emerald-300">
+                      Have PDM Site
                     </span>
-                    <span className="text-sm font-black text-white">$0 Build</span>
+                    <span className="text-xs sm:text-sm font-black text-white">$0 Build</span>
                   </div>
-                  <p className="text-xs text-slate-300">
+                  <p className="hidden sm:block text-xs text-slate-300">
                     Plug monthly SEO, Watchtower, Field Apps, or Meta Ads straight in
                   </p>
                 </button>
               </div>
 
               {needsNewWebsite && (
-                <ul className="grid sm:grid-cols-2 gap-2 pt-1">
+                <ul className="hidden sm:grid sm:grid-cols-2 gap-2 pt-1">
                   {ONE_TIME_WEBSITE_BUILD_CONFIG.highlights.map((item) => (
                     <li
                       key={item}
@@ -422,39 +425,67 @@ export default function GrowthScopeEstimator({
             </div>
 
             {/* STEP 4: MONTHLY GROWTH & INFRASTRUCTURE STACK */}
-            <div className="rounded-3xl bg-[#090d18] border border-white/10 p-5 sm:p-7 space-y-5">
+            <div className="rounded-3xl bg-[#090d18] border border-white/10 p-4 sm:p-7 space-y-4 sm:space-y-5">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <span className="text-[11px] font-mono font-extrabold uppercase tracking-widest text-amber-400">
-                  Step 04 • Monthly Growth &amp; Watchtower Stack
+                  Step 04 • Monthly Growth Stack
                 </span>
-                <span className="text-[11px] font-mono text-emerald-400 font-bold">
-                  Month-to-Month • Zero Hostage Contracts
+                <span className="text-[10px] sm:text-[11px] font-mono text-emerald-400 font-bold">
+                  Zero Hostage Contracts
                 </span>
               </div>
 
-              {/* 1. ALWAYS INCLUDED CORE FOUNDATION */}
-              <div className="rounded-2xl bg-[#06080f] border border-emerald-500/40 p-5 space-y-4 relative overflow-hidden">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-white/10">
+              {/* 1. ALWAYS INCLUDED CORE FOUNDATION (Compact Chips on Mobile, Full Breakdown on Desktop) */}
+              <div className="rounded-2xl bg-[#06080f] border border-emerald-500/40 p-3.5 sm:p-5 space-y-3 sm:space-y-4 relative overflow-hidden">
+                <div className="flex items-center justify-between gap-2 pb-2.5 sm:pb-3 border-b border-white/10">
                   <div>
-                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/35 text-emerald-300 text-[10px] font-mono font-extrabold uppercase mb-1.5">
+                    <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/35 text-emerald-300 text-[9px] sm:text-[10px] font-mono font-extrabold uppercase mb-1">
                       <Activity className="w-3 h-3 text-emerald-400" />
-                      Always Included Base Foundation
+                      Always Included Base
                     </div>
-                    <CoreHeadingTag className="text-lg sm:text-xl font-black uppercase text-white">
+                    <CoreHeadingTag className="text-sm sm:text-xl font-black uppercase text-white">
                       {CORE_FOUNDATION_CONFIG.title}
                     </CoreHeadingTag>
                   </div>
-                  <div className="sm:text-right shrink-0">
-                    <div className="text-[11px] font-mono text-slate-400 line-through">
+                  <div className="text-right shrink-0">
+                    <div className="hidden sm:block text-[11px] font-mono text-slate-400 line-through">
                       ~$1,850/mo standalone value
                     </div>
-                    <div className="text-lg font-black text-emerald-400">
-                      $550 – $650 / mo
+                    <div className="text-sm sm:text-lg font-black text-emerald-400">
+                      $550 – $650/mo
                     </div>
                   </div>
                 </div>
 
-                <div className="grid gap-3">
+                {/* Mobile Compact Foundation Chips + Expand Toggle */}
+                <div className="sm:hidden space-y-2">
+                  <div className="flex flex-wrap gap-1.5">
+                    {CORE_FOUNDATION_CONFIG.features.map((feat) => (
+                      <span
+                        key={`chip-${feat.id}`}
+                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/10 text-[11px] font-semibold text-slate-200"
+                      >
+                        <CheckCircle2 className="w-3 h-3 text-emerald-400 shrink-0" />
+                        <span>{feat.title}</span>
+                      </span>
+                    ))}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => toggleMobileDetails("core_foundation")}
+                    className="text-[11px] font-mono font-bold text-emerald-300 underline underline-offset-4 cursor-pointer"
+                  >
+                    {expandedMobileDetails["core_foundation"]
+                      ? "Hide foundation details ▲"
+                      : "See full foundation details ▼"}
+                  </button>
+                </div>
+
+                <div
+                  className={`${
+                    expandedMobileDetails["core_foundation"] ? "grid" : "hidden"
+                  } sm:grid gap-3`}
+                >
                   {CORE_FOUNDATION_CONFIG.features.map((feat) => (
                     <div
                       key={feat.id}
@@ -592,11 +623,11 @@ export default function GrowthScopeEstimator({
                   );
                 })}
 
-                {/* Modular Custom-Scope Extensions (e.g., PDM ClipCraft™) */}
+                {/* Modular Custom-Scope Extensions (Desktop/Tablet) */}
                 {CUSTOM_SCOPE_EXTENSIONS.map((ext) => (
                   <div
                     key={ext.id}
-                    className="rounded-2xl p-4 bg-white/[0.02] border border-dashed border-white/15 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                    className="hidden sm:flex rounded-2xl p-4 bg-white/[0.02] border border-dashed border-white/15 flex-col sm:flex-row sm:items-center justify-between gap-3"
                   >
                     <div className="flex items-start gap-3">
                       <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-center text-amber-300 shrink-0 mt-0.5">
@@ -627,7 +658,7 @@ export default function GrowthScopeEstimator({
           ================================================================== */}
           <div
             id="estimator-summary-card"
-            className="lg:col-span-5 lg:sticky lg:top-28 scroll-mt-32"
+            className="lg:col-span-5 min-w-0 lg:sticky lg:top-28 scroll-mt-32"
           >
             <div className="rounded-3xl bg-[#0b0e18] border-2 border-amber-500/45 shadow-[0_24px_80px_rgba(0,0,0,0.8),0_0_40px_rgba(245,158,11,0.12)] overflow-hidden">
               {/* Top Telemetry Header */}
@@ -731,6 +762,28 @@ export default function GrowthScopeEstimator({
                   </p>
                 </div>
 
+                {/* Mobile 1-Tap Email Form Expander (Always Expanded on Desktop) */}
+                {status !== "success" && (
+                  <button
+                    type="button"
+                    onClick={() => toggleMobileDetails("email_scope_form")}
+                    className="sm:hidden w-full py-3 px-4 rounded-xl bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black uppercase tracking-wider text-xs flex items-center justify-center gap-2 shadow-[0_0_24px_rgba(245,158,11,0.3)] cursor-pointer"
+                  >
+                    <span>
+                      {expandedMobileDetails["email_scope_form"]
+                        ? "Hide Email Form ▲"
+                        : "Lock Scope Online (30s) ▼"}
+                    </span>
+                  </button>
+                )}
+
+                <div
+                  className={`${
+                    status === "success" || expandedMobileDetails["email_scope_form"]
+                      ? "block"
+                      : "hidden"
+                  } sm:block`}
+                >
                 {/* CONVERSION PATH 1: INLINE LEAD LOCK FORM */}
                 {status === "success" ? (
                   <div className="p-5 rounded-2xl bg-emerald-500/12 border border-emerald-500/35 text-center space-y-2.5">
@@ -819,11 +872,12 @@ export default function GrowthScopeEstimator({
                 )}
 
                 {/* CONVERSION PATHS 2 & 3: INSTANT SMS & CALL */}
+                </div>
                 <div className="pt-3 border-t border-white/10 space-y-2.5">
                   <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 text-center">
                     Or Reach Damein Directly in Jackson Right Now:
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <div className="grid grid-cols-2 gap-2.5">
                     <a
                       href={smsHref}
                       className="py-3 px-4 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/40 text-emerald-200 font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all active:scale-95 text-center"

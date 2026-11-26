@@ -122,7 +122,7 @@ export default function FreeAuditPage() {
       {/* =====================================================================
           1. ABOVE-THE-FOLD HERO: DAMEIN'S PERSONAL 5-MINUTE VIDEO TEARDOWN
       ====================================================================== */}
-      <section className="relative pt-28 pb-16 sm:pt-36 md:pt-40 md:pb-24 border-b border-white/10 bg-[#06080f]">
+      <section className="relative pt-[114px] pb-12 sm:pt-36 md:pt-40 md:pb-24 border-b border-white/10 bg-[#06080f]">
         <div
           className="absolute inset-0 blueprint-grid opacity-45 pointer-events-none"
           aria-hidden="true"
@@ -133,23 +133,26 @@ export default function FreeAuditPage() {
         />
 
         <div className="container px-4 sm:px-6 mx-auto relative z-10 max-w-6xl">
-          <div className="grid gap-10 lg:grid-cols-12 items-start">
+          <div className="grid gap-5 sm:gap-10 lg:grid-cols-12 items-start">
             {/* Left Copy & Proof Column */}
-            <div className="lg:col-span-7 space-y-6 pt-1">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono font-bold uppercase tracking-widest">
-                <Video className="w-4 h-4 text-amber-400" />
-                Free Personal 5-Minute Video • Jackson, MS
+            <div className="lg:col-span-7 space-y-3 sm:space-y-6 pt-0.5 sm:pt-1">
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider sm:tracking-widest">
+                <Video className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 shrink-0" />
+                <span className="sm:hidden">Free 5-Min Rank Video • Jackson, MS</span>
+                <span className="hidden sm:inline">Free Personal 5-Minute Video • Jackson, MS</span>
               </div>
 
-              <div className="space-y-4">
-                <h1 className="text-3xl sm:text-5xl lg:text-[3.35rem] font-black uppercase tracking-tight leading-[1.02]">
+              <div className="space-y-2.5 sm:space-y-4">
+                <h1 className="text-[1.72rem] sm:text-5xl lg:text-[3.35rem] font-black uppercase tracking-tight leading-[1.03] sm:leading-[1.02]">
                   Get a Free 5-Minute{" "}
                   <span className="text-amber-400">
-                    Google Map Pack &amp; Website Video
-                  </span>{" "}
-                  Recorded For Your Business.
+                    Google Map Pack &amp; Website Video.
+                  </span>
                 </h1>
-                <p className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
+                <p className="sm:hidden text-[13px] text-slate-300 leading-snug">
+                  Enter your business below—<strong className="text-white">Damein Donald</strong> will record a personal 5-minute Central MS ranking &amp; speed action plan within 1 business day.
+                </p>
+                <p className="hidden sm:block text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
                   Skip the awkward sales pitch. Enter your business name and email—{" "}
                   <strong className="text-white">Damein Donald</strong> will pull up your
                   exact neighborhood rankings across Central MS, compare your top 3 local
@@ -161,7 +164,7 @@ export default function FreeAuditPage() {
                 </p>
               </div>
 
-              <div className="grid gap-3.5 sm:grid-cols-3">
+              <div className="hidden lg:grid gap-3.5 sm:grid-cols-3">
                 <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-1.5">
                   <div className="w-8 h-8 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400">
                     <MapPin className="w-4 h-4" />
@@ -194,7 +197,7 @@ export default function FreeAuditPage() {
               </div>
 
               {/* Real Client Proof Card */}
-              <div className="p-5 rounded-2xl bg-[#0a0f1c] border border-amber-500/20 space-y-1.5">
+              <div className="hidden lg:block p-5 rounded-2xl bg-[#0a0f1c] border border-amber-500/20 space-y-1.5">
                 <div className="flex items-center gap-1 text-amber-400 text-xs">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-3.5 h-3.5 fill-amber-400" />
@@ -211,7 +214,7 @@ export default function FreeAuditPage() {
                 </span>
               </div>
 
-              <div className="flex flex-wrap items-center justify-between gap-3 pt-1 text-xs text-slate-400">
+              <div className="hidden lg:flex flex-wrap items-center justify-between gap-3 pt-1 text-xs text-slate-400">
                 <span className="inline-flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
                   No credit card • Recorded in Jackson, MS
@@ -346,7 +349,7 @@ export default function FreeAuditPage() {
                           autoComplete="email"
                           disabled={status === "submitting"}
                           placeholder="john@company.com"
-                          className="w-full px-4 py-3.5 bg-[#06080f] border border-white/15 focus:border-amber-400 outline-none transition-all placeholder:text-slate-500 text-white text-sm"
+                          className="w-full px-4 py-3.5 bg-[#06080f] border border-white/15 focus:border-amber-400 rounded-xl outline-none transition-all placeholder:text-slate-500 text-white text-sm"
                         />
                       </div>
 
@@ -423,7 +426,29 @@ export default function FreeAuditPage() {
       {/* =====================================================================
           2. BONUS INSTANT AUTOMATED CODE & SPEED SCANNER
       ====================================================================== */}
-      <div id="live-scanner" className="scroll-mt-20">
+      <section className="lg:hidden py-8 px-4 bg-[#070a13] border-b border-white/10">
+        <div className="max-w-xl mx-auto rounded-3xl bg-[#0b0f1b] border border-cyan-500/30 p-5 space-y-3">
+          <div className="inline-flex items-center gap-1.5 text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-300">
+            <Activity className="w-3.5 h-3.5 text-cyan-400" />
+            PDM Site Intelligence™ Instant Engine
+          </div>
+          <h2 className="text-lg font-black uppercase text-white leading-snug">
+            Want Automated Speed &amp; Schema Scores Right Now?
+          </h2>
+          <p className="text-xs text-slate-300 leading-relaxed">
+            Already have a live site? Test mobile Google Lighthouse, Schema.org JSON-LD, and /llms.txt AI search readiness in seconds.
+          </p>
+          <Link
+            href="/scanner"
+            className="w-full py-3 px-4 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-400/40 text-cyan-200 font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-2 transition-colors"
+          >
+            <Search className="w-3.5 h-3.5" />
+            <span>Open Live Website Scanner</span>
+          </Link>
+        </div>
+      </section>
+
+      <div id="live-scanner" className="hidden lg:block scroll-mt-20">
         <AllInOneSiteScanner
           isStandalonePage={false}
           headlineOverride="Want Instant Automated Scores Right Now?"

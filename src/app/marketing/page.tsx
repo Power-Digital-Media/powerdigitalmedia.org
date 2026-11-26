@@ -23,6 +23,8 @@ import BookingModal from "@/components/ui/BookingModal";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import Portfolio from "@/components/sections/Portfolio";
 import AuditCTA from "@/components/sections/AuditCTA";
+import MobileSnapCarousel from "@/components/ui/MobileSnapCarousel";
+import MobileCompactConversionBanner from "@/components/ui/MobileCompactConversionBanner";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 const tiers = [
@@ -120,23 +122,27 @@ export default function MarketingPage() {
             />
 
             {/* HERO */}
-            <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden border-b border-white/[0.06] blueprint-grid">
+            <section className="relative pt-[114px] pb-10 sm:pt-36 md:pt-40 md:pb-28 overflow-hidden border-b border-white/[0.06] blueprint-grid">
                 <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[780px] h-[360px] bg-amber-500/10 rounded-full blur-[150px] pointer-events-none" />
 
                 <div className="container relative z-10 px-4 mx-auto max-w-5xl text-center">
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-6">
-                        <Target className="w-3.5 h-3.5 text-amber-400" />
-                        <span className="text-[11px] font-mono font-bold uppercase tracking-[0.18em] text-amber-300">
-                            Targeted Local Lead Generation • Jackson, MS
+                    <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-3 sm:mb-6">
+                        <Target className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                        <span className="text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.15em] sm:tracking-[0.18em] text-amber-300">
+                            <span className="sm:hidden">Meta Lead Funnels • Jackson, MS</span>
+                            <span className="hidden sm:inline">Targeted Local Lead Generation • Jackson, MS</span>
                         </span>
                     </div>
 
-                    <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-[0.95] text-white mb-6">
+                    <h1 className="text-[1.85rem] sm:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-[1.02] sm:leading-[0.95] text-white mb-3 sm:mb-6">
                         Stop Donating Money To{" "}
                         <span className="text-amber-400">&ldquo;Boosted Posts.&rdquo;</span>
                     </h1>
 
-                    <p className="text-slate-300 max-w-3xl mx-auto text-base md:text-xl leading-relaxed mb-10">
+                    <p className="sm:hidden text-slate-300 text-[13px] leading-snug mb-4 max-w-md mx-auto">
+                        We engineer precision <strong className="text-white">Facebook &amp; Instagram lead funnels</strong> targeted to Central MS homeowners and sync every quote straight into your CRM.
+                    </p>
+                    <p className="hidden sm:block text-slate-300 max-w-3xl mx-auto text-base md:text-xl leading-relaxed mb-10">
                         Boosting a Facebook post gets likes from people three states away—not
                         paying jobs. We engineer precision{" "}
                         <strong className="text-white">Facebook &amp; Instagram lead funnels</strong>{" "}
@@ -144,24 +150,26 @@ export default function MarketingPage() {
                         straight into your phone and CRM.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <div className="grid grid-cols-2 sm:flex sm:flex-row items-center justify-center gap-2.5 sm:gap-4">
                         <Link
                             href="/free-audit"
-                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-[#06080f] font-black uppercase tracking-[0.16em] text-xs transition-all shadow-[0_14px_34px_rgba(245,158,11,0.28)]"
+                            className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 sm:gap-2.5 px-3.5 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-[#06080f] font-black uppercase tracking-[0.12em] sm:tracking-[0.16em] text-[11px] sm:text-xs transition-all shadow-[0_14px_34px_rgba(245,158,11,0.28)]"
                         >
-                            Get Free Ad &amp; Funnel Audit
-                            <ArrowRight className="w-4 h-4" />
+                            <span className="sm:hidden">Free Ad Audit</span>
+                            <span className="hidden sm:inline">Get Free Ad &amp; Funnel Audit</span>
+                            <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                         </Link>
                         <button
                             type="button"
                             onClick={() => setIsBookingOpen(true)}
-                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/15 text-white font-bold uppercase tracking-[0.15em] text-xs transition-all"
+                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-3.5 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/15 text-white font-bold uppercase tracking-[0.12em] sm:tracking-[0.15em] text-[11px] sm:text-xs transition-all cursor-pointer"
                         >
-                            Book 15-Min Strategy Call
+                            <span className="sm:hidden">15-Min Call</span>
+                            <span className="hidden sm:inline">Book 15-Min Strategy Call</span>
                         </button>
                         <a
                             href="tel:6014462393"
-                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl border border-white/10 text-slate-300 hover:text-amber-300 font-mono font-bold uppercase tracking-wider text-xs transition-colors"
+                            className="hidden sm:inline-flex w-full sm:w-auto items-center justify-center gap-2 px-6 py-4 rounded-xl border border-white/10 text-slate-300 hover:text-amber-300 font-mono font-bold uppercase tracking-wider text-xs transition-colors"
                         >
                             <PhoneCall className="w-3.5 h-3.5 text-amber-400" />
                             (601) 446-2393
@@ -169,16 +177,16 @@ export default function MarketingPage() {
                     </div>
 
                     {/* Trust Strip */}
-                    <div className="mt-12 pt-8 border-t border-white/[0.07] flex flex-wrap items-center justify-center gap-4 text-xs">
-                        <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0b0c10] border border-white/10 text-slate-300 font-medium">
-                            <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                            Month-to-Month • Zero Long-Term Lock-In
+                    <div className="mt-6 sm:mt-12 pt-5 sm:pt-8 border-t border-white/[0.07] flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 text-[11px] sm:text-xs">
+                        <span className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#0b0c10] border border-white/10 text-slate-300 font-medium">
+                            <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
+                            Month-to-Month • Zero Lock-In
                         </span>
-                        <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0b0c10] border border-white/10 text-slate-300 font-medium">
-                            <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-                            BBB A+ Accredited Studio
+                        <span className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#0b0c10] border border-white/10 text-slate-300 font-medium">
+                            <ShieldCheck className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                            BBB Accredited Studio
                         </span>
-                        <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0b0c10] border border-white/10 text-slate-300 font-medium">
+                        <span className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0b0c10] border border-white/10 text-slate-300 font-medium">
                             <MapPin className="w-3.5 h-3.5 text-amber-400" />
                             Madison • Brandon • Clinton • Flowood • Pearl
                         </span>
@@ -285,18 +293,23 @@ export default function MarketingPage() {
             </section>
 
             {/* VERIFIED CLIENT REVIEWS */}
-            <section className="py-24 bg-[#06080f] border-b border-white/[0.06]">
+            <section className="py-12 md:py-24 bg-[#06080f] border-b border-white/[0.06]">
                 <div className="container px-4 mx-auto max-w-6xl">
-                    <div className="text-center mb-14">
-                        <span className="text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-amber-400 block mb-3">
+                    <div className="text-center mb-7 sm:mb-14">
+                        <span className="text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-amber-400 block mb-2 sm:mb-3">
                             Verified Mississippi Results
                         </span>
-                        <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white">
+                        <h2 className="text-2xl md:text-5xl font-black uppercase tracking-tight text-white">
                             5.0★ Rated By Local Operators.
                         </h2>
                     </div>
 
-                    <div className="grid gap-6 md:grid-cols-3">
+                    <MobileSnapCarousel
+                        itemCount={3}
+                        ariaLabel="Verified Mississippi client reviews"
+                        desktopGridClass="md:grid md:grid-cols-3 gap-6"
+                        itemLabel="reviews"
+                    >
                         {[
                             {
                                 quote:
@@ -319,7 +332,7 @@ export default function MarketingPage() {
                         ].map((rev) => (
                             <div
                                 key={rev.author}
-                                className="p-7 rounded-3xl bg-[#0b0c10] border border-white/10 flex flex-col justify-between"
+                                className="p-6 sm:p-7 rounded-3xl bg-[#0b0c10] border border-white/10 flex flex-col justify-between"
                             >
                                 <div>
                                     <div className="flex items-center justify-between mb-4">
@@ -345,26 +358,32 @@ export default function MarketingPage() {
                                 </div>
                             </div>
                         ))}
-                    </div>
+                    </MobileSnapCarousel>
                 </div>
             </section>
 
             {/* CUSTOM CAMPAIGN SCOPES */}
-            <section id="tiers" className="py-24 bg-[#080a12] border-b border-white/[0.06]">
+            <section id="tiers" className="py-12 md:py-24 bg-[#080a12] border-b border-white/[0.06]">
                 <div className="container px-4 mx-auto max-w-6xl">
-                    <div className="text-center max-w-3xl mx-auto mb-16">
-                        <span className="text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-amber-400 block mb-3">
+                    <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-16">
+                        <span className="text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-amber-400 block mb-2 sm:mb-3">
                             Scoped Case-by-Case • Month-to-Month
                         </span>
-                        <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white mb-4">
+                        <h2 className="text-2xl md:text-5xl font-black uppercase tracking-tight text-white mb-2 sm:mb-4">
                             Campaign Engagement Options.
                         </h2>
-                        <p className="text-slate-300 text-base md:text-lg">
+                        <p className="hidden sm:block text-slate-300 text-base md:text-lg">
                             Every campaign is custom-scoped around your service area, season, and growth targets. Ad spend goes 100% directly to Meta from your own ad account—no hidden media markups and no 12-month contracts.
                         </p>
                     </div>
 
-                    <div className="grid gap-8 lg:grid-cols-3">
+                    <MobileSnapCarousel
+                        itemCount={tiers.length}
+                        ariaLabel="Campaign engagement tiers"
+                        desktopGridClass="lg:grid lg:grid-cols-3 gap-8"
+                        breakpoint="lg"
+                        itemLabel="scopes"
+                    >
                         {tiers.map((tier, index) => (
                             <motion.div
                                 key={tier.id}
@@ -372,14 +391,14 @@ export default function MarketingPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.45, delay: index * 0.08 }}
-                                className={`relative p-8 rounded-3xl border flex flex-col justify-between transition-all ${
+                                className={`relative p-6 sm:p-8 rounded-3xl border flex flex-col justify-between transition-all ${
                                     tier.popular
                                         ? "bg-[#12141c] border-2 border-amber-500/50 shadow-[0_24px_60px_rgba(0,0,0,0.6)] lg:-translate-y-2"
                                         : "bg-[#0b0c10] border-white/10 hover:border-white/20"
                                 }`}
                             >
                                 {tier.popular && (
-                                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-amber-500 text-[#06080f] px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.18em]">
+                                    <div className="inline-flex self-start mb-3 lg:mb-0 lg:absolute lg:-top-3.5 lg:left-1/2 lg:-translate-x-1/2 bg-amber-500 text-[#06080f] px-3.5 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.16em] whitespace-nowrap">
                                         Most Popular For Contractors
                                     </div>
                                 )}
@@ -388,22 +407,22 @@ export default function MarketingPage() {
                                     <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-amber-400 block mb-2">
                                         {tier.badge}
                                     </span>
-                                    <h3 className="text-2xl font-black uppercase tracking-tight text-white mb-4">
+                                    <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-white mb-3 sm:mb-4">
                                         {tier.name}
                                     </h3>
-                                    <div className="pb-5 mb-5 border-b border-white/[0.08]">
-                                        <span className="text-2xl font-black text-amber-400 uppercase tracking-tight block">
+                                    <div className="pb-4 sm:pb-5 mb-4 sm:mb-5 border-b border-white/[0.08]">
+                                        <span className="text-xl sm:text-2xl font-black text-amber-400 uppercase tracking-tight block">
                                             {tier.scopeLabel}
                                         </span>
                                         <span className="text-xs text-slate-400 block mt-1 font-medium">
                                             {tier.cadence}
                                         </span>
                                     </div>
-                                    <p className="text-sm text-slate-300 leading-relaxed mb-6">
+                                    <p className="text-sm text-slate-300 leading-relaxed mb-5 sm:mb-6">
                                         {tier.description}
                                     </p>
 
-                                    <ul className="space-y-3 mb-8">
+                                    <ul className="space-y-2.5 sm:space-y-3 mb-6 sm:mb-8">
                                         {tier.features.map((feature) => (
                                             <li
                                                 key={feature}
@@ -416,11 +435,11 @@ export default function MarketingPage() {
                                     </ul>
                                 </div>
 
-                                <div className="space-y-3">
+                                <div className="space-y-2.5 sm:space-y-3">
                                     <button
                                         type="button"
                                         onClick={() => setIsBookingOpen(true)}
-                                        className={`w-full py-4 rounded-xl font-black uppercase tracking-[0.15em] text-xs transition-all flex items-center justify-center gap-2 ${
+                                        className={`w-full py-3.5 sm:py-4 rounded-xl font-black uppercase tracking-[0.15em] text-xs transition-all flex items-center justify-center gap-2 cursor-pointer ${
                                             tier.popular
                                                 ? "bg-amber-500 hover:bg-amber-400 text-[#06080f] shadow-[0_12px_28px_rgba(245,158,11,0.25)]"
                                                 : "bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-white"
@@ -438,13 +457,14 @@ export default function MarketingPage() {
                                 </div>
                             </motion.div>
                         ))}
-                    </div>
+                    </MobileSnapCarousel>
                 </div>
             </section>
 
-            <Portfolio titleAs="h2" />
-
-            <AuditCTA />
+            <div className="hidden lg:block">
+                <Portfolio titleAs="h2" />
+                <AuditCTA />
+            </div>
 
             <FAQAccordion
                 faqs={[
@@ -466,6 +486,7 @@ export default function MarketingPage() {
                 ]}
             />
 
+            <MobileCompactConversionBanner variant="audit" />
             <Footer />
 
             <BookingModal

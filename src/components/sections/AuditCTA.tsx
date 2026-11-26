@@ -86,7 +86,7 @@ export default function AuditCTA() {
   return (
     <section
       id="audit"
-      className="py-20 md:py-28 relative overflow-hidden bg-[#05070d] border-t border-white/10"
+      className="py-11 md:py-28 relative overflow-hidden bg-[#05070d] border-t border-white/10"
     >
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[380px] bg-amber-500/[0.07] rounded-full blur-[150px] pointer-events-none"
@@ -96,24 +96,24 @@ export default function AuditCTA() {
       <div className="container px-4 sm:px-6 mx-auto relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="relative overflow-hidden rounded-3xl obsidian-surface p-4 sm:p-10 md:p-14">
-            <div className="grid gap-10 lg:grid-cols-12 items-center">
+            <div className="grid gap-5 sm:gap-10 lg:grid-cols-12 items-center">
               {/* Left Copy Column */}
-              <div className="lg:col-span-6 space-y-5 text-left">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-300 text-xs font-mono font-bold uppercase tracking-wider">
+              <div className="lg:col-span-6 space-y-3 sm:space-y-5 text-left">
+                <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-300 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider">
                   <Video className="w-3.5 h-3.5 text-amber-400" />
                   100% Free • Recorded Personally by Damein
                 </div>
 
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-[1.05] uppercase text-white">
+                <h2 className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight leading-[1.05] uppercase text-white">
                   Get Your Free 5-Minute{" "}
                   <span className="text-amber-400">Google Rank &amp; Website Breakdown.</span>
                 </h2>
 
-                <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                  Enter your business name or website below. Damein Donald will personally pull up your Google Map Pack rankings, test your mobile speed, and text/email you a plain-English 5-minute video showing exactly how to win more local calls.
+                <p className="text-xs sm:text-base text-slate-300 leading-relaxed">
+                  Enter your business name or website below. Damein Donald will personally check your Google Map Pack rankings &amp; mobile speed and text/email you a 5-minute video game plan.
                 </p>
 
-                <div className="space-y-2.5 pt-1">
+                <div className="hidden sm:block space-y-2.5 pt-1">
                   {[
                     "Live Google Map Pack check in your exact Mississippi service area",
                     "Mobile speed & lead-leak review (even if you don't have a website yet)",
@@ -300,7 +300,22 @@ export default function AuditCTA() {
                       )}
                     </button>
 
-                    <p className="text-[11px] text-center text-slate-500">
+                    <div className="lg:hidden pt-1 flex items-center justify-center gap-4 text-xs">
+                      <Link
+                        href="/book"
+                        className="font-bold text-amber-300 underline underline-offset-4"
+                      >
+                        Book 15-Min Call →
+                      </Link>
+                      <span className="text-slate-600">•</span>
+                      <Link
+                        href="/contact"
+                        className="font-semibold text-slate-300 underline underline-offset-4"
+                      >
+                        Direct Contact Page
+                      </Link>
+                    </div>
+                    <p className="hidden lg:block text-[11px] text-center text-slate-500">
                       100% free. Recorded personally in Jackson, MS by Damein Donald.
                     </p>
                   </form>

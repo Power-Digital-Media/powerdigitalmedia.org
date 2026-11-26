@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import DeferredFooterSections from "@/components/ui/DeferredFooterSections";
+import MobileSnapCarousel from "@/components/ui/MobileSnapCarousel";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import PinDropDemoExplorer from "@/components/pindrop/PinDropDemoExplorer";
 import {
@@ -69,7 +70,7 @@ export default function PinDropPage() {
       {/* =====================================================================
           HERO SECTION
       ====================================================================== */}
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 px-4 sm:px-6 overflow-hidden border-b border-white/10">
+      <section className="relative pt-[114px] pb-8 sm:pt-36 md:pt-40 md:pb-24 px-4 sm:px-6 overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 blueprint-grid opacity-55 pointer-events-none" aria-hidden="true" />
         <div
           className="absolute top-16 left-1/2 -translate-x-1/2 w-[820px] h-[420px] bg-emerald-500/[0.08] rounded-full blur-[150px] pointer-events-none"
@@ -77,70 +78,78 @@ export default function PinDropPage() {
         />
 
         <div className="max-w-7xl mx-auto relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-500/35 bg-emerald-500/10 text-emerald-300 text-xs font-mono font-bold uppercase tracking-widest mb-6">
-            <MapPin className="w-4 h-4 text-emerald-400" />
-            Proprietary Field-to-Google Software • Built in Jackson, MS
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border border-emerald-500/35 bg-emerald-500/10 text-emerald-300 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider sm:tracking-widest mb-3 sm:mb-6">
+            <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400 shrink-0" />
+            <span className="sm:hidden">Field-to-Google SEO App • Jackson, MS</span>
+            <span className="hidden sm:inline">Proprietary Field-to-Google Software • Built in Jackson, MS</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight leading-[0.98] max-w-5xl mx-auto mb-6">
+          <h1 className="text-[1.8rem] sm:text-6xl md:text-7xl font-black uppercase tracking-tight leading-[1.03] sm:leading-[0.98] max-w-5xl mx-auto mb-3 sm:mb-6">
             Turn Every Finished Job Into{" "}
             <span className="text-amber-400">
               Neighborhood Google Rankings &amp; 5-Star Reviews.
             </span>
           </h1>
 
-          <p className="text-slate-300 max-w-3xl mx-auto text-base sm:text-xl leading-relaxed mb-9">
+          <p className="sm:hidden text-slate-300 text-[13px] leading-snug mb-4 max-w-md mx-auto">
+            One 30-second check-in from the truck publishes a neighborhood SEO page, drops a live map pin, and texts the homeowner for a 5-star review.
+          </p>
+          <p className="hidden sm:block text-slate-300 max-w-3xl mx-auto text-base sm:text-xl leading-relaxed mb-9">
             Most contractors finish a great job in Madison, Brandon, or Flowood and drive away—and Google never knows they were there. With{" "}
             <strong className="text-white">PinDrop™</strong>, one 30-second check-in from the truck publishes a neighborhood SEO page, drops a verified map pin on your website, updates your Google Business Profile, and texts the homeowner for a 5-star review.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-12">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3.5 mb-6 sm:mb-12">
             <a
               href="#interactive-engine"
-              className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black uppercase tracking-wider text-xs shadow-[0_0_32px_rgba(245,158,11,0.32)] hover:brightness-110 transition-all"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black uppercase tracking-wider text-xs shadow-[0_0_32px_rgba(245,158,11,0.32)] hover:brightness-110 transition-all"
             >
               Test-Drive Real PinDrop™ App ↓
             </a>
-            <Link
-              href="/book"
-              className="w-full sm:w-auto px-7 py-4 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/15 text-white font-bold uppercase tracking-wider text-xs transition-all"
-            >
-              Start 14-Day Crew Trial / Demo
-            </Link>
-            <a
-              href="https://www.bornagainroofing.com/pins/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto px-6 py-4 rounded-xl border border-amber-500/35 bg-amber-500/10 text-amber-300 font-bold uppercase tracking-wider text-xs hover:bg-amber-400 hover:text-slate-950 transition-all flex items-center justify-center gap-2"
-            >
-              <MapPin className="w-3.5 h-3.5" />
-              See 99+ Live Pins (BAR) ↗
-            </a>
+            <div className="grid grid-cols-2 sm:contents gap-2.5 w-full">
+              <Link
+                href="/book"
+                className="w-full sm:w-auto px-3 sm:px-7 py-3 sm:py-4 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/15 text-white font-bold uppercase tracking-wider text-[11px] sm:text-xs transition-all flex items-center justify-center"
+              >
+                <span className="sm:hidden">14-Day Demo</span>
+                <span className="hidden sm:inline">Start 14-Day Crew Trial / Demo</span>
+              </Link>
+              <a
+                href="https://www.bornagainroofing.com/pins/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-3 sm:px-6 py-3 sm:py-4 rounded-xl border border-amber-500/35 bg-amber-500/10 text-amber-300 font-bold uppercase tracking-wider text-[11px] sm:text-xs hover:bg-amber-400 hover:text-slate-950 transition-all flex items-center justify-center gap-1.5 sm:gap-2"
+              >
+                <MapPin className="w-3.5 h-3.5 shrink-0" />
+                <span className="sm:hidden">800+ Live Pins ↗</span>
+                <span className="hidden sm:inline">See 800+ Live Pins (BAR) ↗</span>
+              </a>
+            </div>
           </div>
 
           {/* Telemetry Proof Strip */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5 max-w-4xl mx-auto text-left">
-            <div className="p-4 sm:p-5 rounded-2xl bg-[#090d18] border border-white/10">
-              <div className="text-2xl sm:text-3xl font-black text-amber-400 mb-1">99+ Pins</div>
-              <div className="text-xs text-slate-400 font-mono uppercase tracking-wider">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3.5 max-w-4xl mx-auto text-left">
+            <div className="p-3 sm:p-5 rounded-2xl bg-[#090d18] border border-white/10">
+              <div className="text-lg sm:text-3xl font-black text-amber-400 mb-0.5 sm:mb-1 whitespace-nowrap">800+ Pins</div>
+              <div className="text-[10px] sm:text-xs text-slate-400 font-mono uppercase tracking-wider">
                 Live on Born Again Roofing
               </div>
             </div>
-            <div className="p-4 sm:p-5 rounded-2xl bg-[#090d18] border border-white/10">
-              <div className="text-2xl sm:text-3xl font-black text-emerald-400 mb-1">&lt; 30 Sec</div>
-              <div className="text-xs text-slate-400 font-mono uppercase tracking-wider">
+            <div className="p-3 sm:p-5 rounded-2xl bg-[#090d18] border border-white/10">
+              <div className="text-lg sm:text-3xl font-black text-emerald-400 mb-0.5 sm:mb-1 whitespace-nowrap">&lt; 30 Sec</div>
+              <div className="text-[10px] sm:text-xs text-slate-400 font-mono uppercase tracking-wider">
                 Truck Check-In Time
               </div>
             </div>
-            <div className="p-4 sm:p-5 rounded-2xl bg-[#090d18] border border-white/10">
-              <div className="text-2xl sm:text-3xl font-black text-white mb-1">15 Min</div>
-              <div className="text-xs text-slate-400 font-mono uppercase tracking-wider">
+            <div className="p-3 sm:p-5 rounded-2xl bg-[#090d18] border border-white/10">
+              <div className="text-lg sm:text-3xl font-black text-white mb-0.5 sm:mb-1 whitespace-nowrap">15 Min</div>
+              <div className="text-[10px] sm:text-xs text-slate-400 font-mono uppercase tracking-wider">
                 Auto-SMS Review Dispatch
               </div>
             </div>
-            <div className="p-4 sm:p-5 rounded-2xl bg-[#090d18] border border-white/10">
-              <div className="text-2xl sm:text-3xl font-black text-amber-300 mb-1">Crew-Wide</div>
-              <div className="text-xs text-slate-400 font-mono uppercase tracking-wider">
+            <div className="p-3 sm:p-5 rounded-2xl bg-[#090d18] border border-white/10">
+              <div className="text-lg sm:text-3xl font-black text-amber-300 mb-0.5 sm:mb-1 whitespace-nowrap">Crew-Wide</div>
+              <div className="text-[10px] sm:text-xs text-slate-400 font-mono uppercase tracking-wider">
                 No Per-Tech Seat Tax
               </div>
             </div>
@@ -151,15 +160,15 @@ export default function PinDropPage() {
       {/* =====================================================================
           INTERACTIVE 5-STAGE PINDROP SANDBOX
       ====================================================================== */}
-      <section className="py-20 md:py-28 px-4 sm:px-6 max-w-7xl mx-auto w-full">
-        <div className="text-center mb-12">
-          <span className="text-emerald-400 font-mono text-xs uppercase tracking-[0.25em] font-bold block mb-3">
+      <section id="interactive-engine" className="scroll-mt-28 py-10 md:py-28 px-4 sm:px-6 max-w-7xl mx-auto w-full">
+        <div className="text-center mb-6 sm:mb-12">
+          <span className="text-emerald-400 font-mono text-[10px] sm:text-xs uppercase tracking-[0.22em] sm:tracking-[0.25em] font-bold block mb-2 sm:mb-3">
             Authentic Live Product Preview
           </span>
-          <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white">
+          <h2 className="text-2xl sm:text-5xl font-black uppercase tracking-tight text-white">
             Explore the Real PDM PinDrop™ App
           </h2>
-          <p className="text-slate-300 max-w-3xl mx-auto mt-4 text-sm sm:text-base">
+          <p className="hidden sm:block text-slate-300 max-w-3xl mx-auto mt-4 text-sm sm:text-base">
             Filter the live Central Mississippi satellite map, switch to the Crew Truck Portal to drop a live test pin onto the map, and inspect the auto-generated Answer Engine SEO page.
           </p>
         </div>
@@ -170,21 +179,26 @@ export default function PinDropPage() {
       {/* =====================================================================
           WHAT'S UNDER THE HOOD (AUTHENTIC SAAS ENGINE MODULES)
       ====================================================================== */}
-      <section className="py-20 px-4 sm:px-6 border-y border-white/10 bg-[#080c16]">
+      <section className="py-12 md:py-20 px-4 sm:px-6 border-y border-white/10 bg-[#080c16]">
         <div className="max-w-7xl mx-auto">
-          <div className="max-w-3xl mb-14">
-            <span className="text-amber-400 font-mono text-xs uppercase tracking-[0.25em] font-bold block mb-3">
+          <div className="max-w-3xl mb-7 sm:mb-14">
+            <span className="text-amber-400 font-mono text-[10px] sm:text-xs uppercase tracking-[0.22em] sm:tracking-[0.25em] font-bold block mb-2 sm:mb-3">
               Engineered Specifically for Service Pros
             </span>
-            <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mb-4">
+            <h2 className="text-2xl sm:text-5xl font-black uppercase tracking-tight text-white mb-2 sm:mb-4">
               Six Automated Modules Running Behind Every Check-In.
             </h2>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+            <p className="hidden sm:block text-slate-300 text-sm sm:text-base leading-relaxed">
               Traditional SEO agencies write generic blog posts nobody reads. PinDrop™ turns your actual daily crew activity into verifiable local proof Google rewards.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <MobileSnapCarousel
+            itemCount={6}
+            ariaLabel="Six PinDrop automated modules"
+            desktopGridClass="md:grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+            itemLabel="modules"
+          >
             {[
               {
                 icon: Camera,
@@ -227,10 +241,10 @@ export default function PinDropPage() {
               return (
                 <div
                   key={item.title}
-                  className="rounded-3xl bg-[#06080f] border border-white/10 p-7 flex flex-col justify-between hover:border-amber-500/40 transition-colors"
+                  className="rounded-3xl bg-[#06080f] border border-white/10 p-6 sm:p-7 flex flex-col justify-between hover:border-amber-500/40 transition-colors"
                 >
                   <div>
-                    <div className="flex items-center justify-between mb-5">
+                    <div className="flex items-center justify-between mb-4 sm:mb-5">
                       <div className="w-11 h-11 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
                         <Icon className="w-5 h-5" />
                       </div>
@@ -238,7 +252,7 @@ export default function PinDropPage() {
                         {item.badge}
                       </span>
                     </div>
-                    <h3 className="text-xl font-black uppercase tracking-tight text-white mb-2.5">
+                    <h3 className="text-lg sm:text-xl font-black uppercase tracking-tight text-white mb-2.5">
                       {item.title}
                     </h3>
                     <p className="text-sm text-slate-300 leading-relaxed">{item.desc}</p>
@@ -246,20 +260,20 @@ export default function PinDropPage() {
                 </div>
               );
             })}
-          </div>
+          </MobileSnapCarousel>
         </div>
       </section>
 
       {/* =====================================================================
           LIVE MISSISSIPPI PRODUCTION CASE STUDIES + PINCAM BRIDGE
       ====================================================================== */}
-      <section className="py-20 px-4 sm:px-6 max-w-7xl mx-auto w-full">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+      <section className="py-12 md:py-20 px-4 sm:px-6 max-w-7xl mx-auto w-full">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-7 sm:mb-12">
           <div>
-            <span className="text-emerald-400 font-mono text-xs uppercase tracking-[0.25em] font-bold block mb-2">
+            <span className="text-emerald-400 font-mono text-[10px] sm:text-xs uppercase tracking-[0.22em] sm:tracking-[0.25em] font-bold block mb-2">
               Proven in Central Mississippi
             </span>
-            <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white">
+            <h2 className="text-2xl sm:text-5xl font-black uppercase tracking-tight text-white">
               Live on Real Contractor Websites Today
             </h2>
           </div>
@@ -271,97 +285,105 @@ export default function PinDropPage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
-          <div className="rounded-3xl bg-[#090d18] border border-white/10 p-7 flex flex-col justify-between">
-            <div>
-              <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
-                <span className="px-3 py-1 rounded-full bg-amber-500/10 text-amber-300 text-[10px] font-mono font-bold uppercase tracking-wider border border-amber-500/25">
-                  Roofing &amp; Storm Restoration
-                </span>
-                <span className="text-xs text-slate-400 font-mono">Brandon &amp; Metro MS</span>
+        <div className="mb-10 sm:mb-12">
+          <MobileSnapCarousel
+            itemCount={3}
+            ariaLabel="Live PinDrop contractor deployments"
+            desktopGridClass="lg:grid lg:grid-cols-3 gap-6"
+            breakpoint="lg"
+            itemLabel="builds"
+          >
+            <div className="rounded-3xl bg-[#090d18] border border-white/10 p-6 sm:p-7 flex flex-col justify-between">
+              <div>
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-4 sm:mb-5">
+                  <span className="px-3 py-1 rounded-full bg-amber-500/10 text-amber-300 text-[10px] font-mono font-bold uppercase tracking-wider border border-amber-500/25">
+                    Roofing &amp; Storm Restoration
+                  </span>
+                  <span className="text-xs text-slate-400 font-mono">Brandon &amp; Metro MS</span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-white mb-3">
+                  Born Again Roofing &amp; Remodeling
+                </h3>
+                <p className="text-sm text-slate-300 leading-relaxed mb-6">
+                  Replaced a sluggish legacy site with a custom Next.js build + PinDrop™. Their crews have logged{" "}
+                  <strong className="text-white">800+ verified roofing and remodeling pins</strong> across Brandon, Madison, Ridgeland, Clinton, and Jackson.
+                </p>
               </div>
-              <h3 className="text-2xl font-black uppercase tracking-tight text-white mb-3">
-                Born Again Roofing &amp; Remodeling
-              </h3>
-              <p className="text-sm text-slate-300 leading-relaxed mb-6">
-                Replaced a sluggish legacy site with a custom Next.js build + PinDrop™. Their crews have logged{" "}
-                <strong className="text-white">99+ verified roofing and remodeling pins</strong> across Brandon, Madison, Ridgeland, Clinton, and Jackson.
-              </p>
+              <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+                <span className="text-xs text-emerald-400 font-mono font-bold">
+                  800+ Live Job Pins
+                </span>
+                <a
+                  href="https://www.bornagainroofing.com/pins/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-amber-400 font-bold uppercase tracking-wider hover:text-white transition-colors"
+                >
+                  Inspect Live Pin Map →
+                </a>
+              </div>
             </div>
-            <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-              <span className="text-xs text-emerald-400 font-mono font-bold">
-                99+ Live Job Pins
-              </span>
-              <a
-                href="https://www.bornagainroofing.com/pins/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs text-amber-400 font-bold uppercase tracking-wider hover:text-white transition-colors"
-              >
-                Inspect Live Pin Map →
-              </a>
-            </div>
-          </div>
 
-          <div className="rounded-3xl bg-[#090d18] border border-white/10 p-7 flex flex-col justify-between">
-            <div>
-              <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
-                <span className="px-3 py-1 rounded-full bg-amber-500/10 text-amber-300 text-[10px] font-mono font-bold uppercase tracking-wider border border-amber-500/25">
-                  Excavation &amp; Land Clearing
-                </span>
-                <span className="text-xs text-slate-400 font-mono">Bentonia &amp; Central MS</span>
+            <div className="rounded-3xl bg-[#090d18] border border-white/10 p-6 sm:p-7 flex flex-col justify-between">
+              <div>
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-4 sm:mb-5">
+                  <span className="px-3 py-1 rounded-full bg-amber-500/10 text-amber-300 text-[10px] font-mono font-bold uppercase tracking-wider border border-amber-500/25">
+                    Excavation &amp; Land Clearing
+                  </span>
+                  <span className="text-xs text-slate-400 font-mono">Bentonia &amp; Central MS</span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-white mb-3">
+                  Geaux Pro Outdoors (MS Dirt)
+                </h3>
+                <p className="text-sm text-slate-300 leading-relaxed mb-6">
+                  Showcases heavy equipment earthmoving, pond construction, laser-graded house pads, and commercial land clearing across Bentonia, Yazoo City, and Madison County.
+                </p>
               </div>
-              <h3 className="text-2xl font-black uppercase tracking-tight text-white mb-3">
-                Geaux Pro Outdoors (MS Dirt)
-              </h3>
-              <p className="text-sm text-slate-300 leading-relaxed mb-6">
-                Showcases heavy equipment earthmoving, pond construction, laser-graded house pads, and commercial land clearing across Bentonia, Yazoo City, and Madison County.
-              </p>
+              <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+                <span className="text-xs text-emerald-400 font-mono font-bold">
+                  Heavy Civil Showcase
+                </span>
+                <a
+                  href="https://www.msdirt.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-amber-400 font-bold uppercase tracking-wider hover:text-white transition-colors"
+                >
+                  Inspect Live Site →
+                </a>
+              </div>
             </div>
-            <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-              <span className="text-xs text-emerald-400 font-mono font-bold">
-                Heavy Civil Showcase
-              </span>
-              <a
-                href="https://www.msdirt.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs text-amber-400 font-bold uppercase tracking-wider hover:text-white transition-colors"
-              >
-                Inspect Live Site →
-              </a>
-            </div>
-          </div>
 
-          <div className="rounded-3xl bg-[#090d18] border border-white/10 p-7 flex flex-col justify-between">
-            <div>
-              <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
-                <span className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-300 text-[10px] font-mono font-bold uppercase tracking-wider border border-emerald-500/25">
-                  Lawn Care &amp; Property Maintenance
-                </span>
-                <span className="text-xs text-slate-400 font-mono">Flora &amp; Madison County</span>
+            <div className="rounded-3xl bg-[#090d18] border border-white/10 p-6 sm:p-7 flex flex-col justify-between">
+              <div>
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-4 sm:mb-5">
+                  <span className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-300 text-[10px] font-mono font-bold uppercase tracking-wider border border-emerald-500/25">
+                    Lawn Care &amp; Property Maintenance
+                  </span>
+                  <span className="text-xs text-slate-400 font-mono">Flora &amp; Madison County</span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-white mb-3">
+                  Lungrin&apos;s Lawncare LLC
+                </h3>
+                <p className="text-sm text-slate-300 leading-relaxed mb-6">
+                  Built for recurring residential &amp; commercial turf maintenance, seasonal cleanups, and pine straw installs—turning neighborhood route density into local search dominance.
+                </p>
               </div>
-              <h3 className="text-2xl font-black uppercase tracking-tight text-white mb-3">
-                Lungrin&apos;s Lawncare LLC
-              </h3>
-              <p className="text-sm text-slate-300 leading-relaxed mb-6">
-                Built for recurring residential &amp; commercial turf maintenance, seasonal cleanups, and pine straw installs—turning neighborhood route density into local search dominance.
-              </p>
+              <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+                <span className="text-xs text-emerald-400 font-mono font-bold">
+                  Route-Density SEO
+                </span>
+                <a
+                  href="https://lungrinslawncare.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-amber-400 font-bold uppercase tracking-wider hover:text-white transition-colors"
+                >
+                  Inspect Live Site →
+                </a>
+              </div>
             </div>
-            <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-              <span className="text-xs text-emerald-400 font-mono font-bold">
-                Route-Density SEO
-              </span>
-              <a
-                href="https://lungrinslawncare.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs text-amber-400 font-bold uppercase tracking-wider hover:text-white transition-colors"
-              >
-                Inspect Live Site →
-              </a>
-            </div>
-          </div>
+          </MobileSnapCarousel>
         </div>
 
         {/* PinCam Ecosystem Bridge Banner */}
@@ -494,7 +516,7 @@ export default function PinDropPage() {
         </div>
       </section>
 
-      <DeferredFooterSections />
+      <DeferredFooterSections mode="inner" />
     </main>
   );
 }

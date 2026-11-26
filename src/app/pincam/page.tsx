@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import DeferredFooterSections from "@/components/ui/DeferredFooterSections";
+import MobileSnapCarousel from "@/components/ui/MobileSnapCarousel";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import PinCamInteractiveStage from "@/components/pincam/PinCamInteractiveStage";
 import {
@@ -70,7 +71,7 @@ export default function PinCamPage() {
       {/* =====================================================================
           HERO SECTION
       ====================================================================== */}
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden border-b border-white/10">
+      <section className="relative pt-[114px] pb-8 sm:pt-36 md:pt-40 md:pb-24 overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 blueprint-grid opacity-55 pointer-events-none" aria-hidden="true" />
         <div
           className="absolute top-12 left-1/2 -translate-x-1/2 w-[820px] h-[420px] bg-amber-500/[0.09] rounded-full blur-[150px] pointer-events-none"
@@ -78,36 +79,40 @@ export default function PinCamPage() {
         />
 
         <div className="container px-4 sm:px-6 mx-auto max-w-7xl relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/35 text-amber-300 text-xs font-mono font-bold uppercase tracking-widest mb-6">
-            <Camera className="w-4 h-4 text-amber-400" />
-            Proprietary Contractor Field Software • Built in Jackson, MS
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-amber-500/10 border border-amber-500/35 text-amber-300 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider sm:tracking-widest mb-3 sm:mb-6">
+            <Camera className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 shrink-0" />
+            <span className="sm:hidden">5-Mode Contractor Camera • Jackson, MS</span>
+            <span className="hidden sm:inline">Proprietary Contractor Field Software • Built in Jackson, MS</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight leading-[0.98] max-w-5xl mx-auto mb-6">
+          <h1 className="text-[1.8rem] sm:text-6xl md:text-7xl font-black uppercase tracking-tight leading-[1.03] sm:leading-[0.98] max-w-5xl mx-auto mb-3 sm:mb-6">
             Jobsite Proof That{" "}
             <span className="text-amber-400">Closes Claims, Protects Crews &amp; Ranks You on Google.</span>
           </h1>
 
-          <p className="text-slate-300 max-w-3xl mx-auto text-base sm:text-xl leading-relaxed mb-9">
+          <p className="sm:hidden text-slate-300 text-[13px] leading-snug mb-4 max-w-md mx-auto">
+            Align 1:1 before/after shots, mark up damage, send instant PDF customer reports, and sync straight to <strong className="text-white">PinDrop™</strong>.
+          </p>
+          <p className="hidden sm:block text-slate-300 max-w-3xl mx-auto text-base sm:text-xl leading-relaxed mb-9">
             Meet <strong className="text-white">PinCam™</strong>—the contractor camera &amp; documentation app engineered specifically to plug straight into your website and Google Business Profile. Align 1:1 before/after shots, mark up damage, send instant PDF customer reports, and turn every job into new phone calls.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-12">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3.5 mb-6 sm:mb-12">
             <a
               href="#interactive-app"
-              className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black uppercase tracking-wider text-xs shadow-[0_0_32px_rgba(245,158,11,0.32)] hover:brightness-110 transition-all"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black uppercase tracking-wider text-xs shadow-[0_0_32px_rgba(245,158,11,0.32)] hover:brightness-110 transition-all"
             >
               Test-Drive Interactive App Below ↓
             </a>
             <Link
               href="/book"
-              className="w-full sm:w-auto px-7 py-4 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/15 text-white font-bold uppercase tracking-wider text-xs transition-all"
+              className="w-full sm:w-auto px-6 sm:px-7 py-3 sm:py-4 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/15 text-white font-bold uppercase tracking-wider text-xs transition-all"
             >
               Book 15-Min Crew Demo
             </Link>
             <a
               href="tel:6014462393"
-              className="w-full sm:w-auto px-6 py-4 rounded-xl border border-amber-500/35 bg-amber-500/10 text-amber-300 font-bold uppercase tracking-wider text-xs hover:bg-amber-400 hover:text-slate-950 transition-all flex items-center justify-center gap-2"
+              className="hidden sm:flex w-full sm:w-auto px-6 py-4 rounded-xl border border-amber-500/35 bg-amber-500/10 text-amber-300 font-bold uppercase tracking-wider text-xs hover:bg-amber-400 hover:text-slate-950 transition-all items-center justify-center gap-2"
             >
               <Phone className="w-3.5 h-3.5" />
               (601) 446-2393
@@ -115,16 +120,16 @@ export default function PinCamPage() {
           </div>
 
           {/* Key Spec Pills */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto text-left">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3 max-w-4xl mx-auto text-left">
             {[
               { top: "Ghost Lens", sub: "1:1 Before/After Alignment" },
-              { top: "0 Seat Fees", sub: "No Per-Tech Price Gouging" },
+              { top: "$0 Seat Fees", sub: "No Per-Tech Price Gouging" },
               { top: "Offline Safe", sub: "Rural Jobsite Auto-Recovery" },
-              { top: "PinDrop™ Wired", sub: "1-Tap Website & Google Sync" },
+              { top: "PinDrop™ Sync", sub: "1-Tap Website & Google Map" },
             ].map((stat) => (
-              <div key={stat.top} className="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
-                <div className="text-xl sm:text-2xl font-black text-amber-400">{stat.top}</div>
-                <div className="text-xs text-slate-400 font-semibold mt-0.5">{stat.sub}</div>
+              <div key={stat.top} className="p-3 sm:p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                <div className="text-base sm:text-2xl font-black text-amber-400 whitespace-nowrap">{stat.top}</div>
+                <div className="text-[11px] sm:text-xs text-slate-400 font-semibold mt-0.5">{stat.sub}</div>
               </div>
             ))}
           </div>
@@ -134,15 +139,15 @@ export default function PinCamPage() {
       {/* =====================================================================
           HANDS-ON INTERACTIVE APP STAGE
       ====================================================================== */}
-      <section id="interactive-app" className="py-20 md:py-28 px-4 sm:px-6 max-w-7xl mx-auto w-full">
-        <div className="max-w-3xl mb-10">
-          <span className="text-amber-400 font-mono text-xs font-bold uppercase tracking-widest block mb-2">
+      <section id="interactive-app" className="scroll-mt-28 py-10 md:py-28 px-4 sm:px-6 max-w-7xl mx-auto w-full">
+        <div className="max-w-3xl mb-6 sm:mb-10">
+          <span className="text-amber-400 font-mono text-[10px] sm:text-xs font-bold uppercase tracking-widest block mb-2">
             ⚡ Hands-On App Preview
           </span>
-          <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white">
+          <h2 className="text-2xl sm:text-5xl font-black uppercase tracking-tight text-white">
             Click Through All 5 Real PinCam™ Modes.
           </h2>
-          <p className="text-slate-300 text-sm sm:text-base mt-3">
+          <p className="hidden sm:block text-slate-300 text-sm sm:text-base mt-3">
             Drag the Ghost Camera opacity slider, toggle measurement &amp; inspection layers, switch PiP camera corners, and inspect a live homeowner PDF report.
           </p>
         </div>
@@ -153,18 +158,23 @@ export default function PinCamPage() {
       {/* =====================================================================
           6 CORE CAPABILITIES BUILT FOR REAL FIELD CREWS
       ====================================================================== */}
-      <section className="py-20 md:py-24 bg-[#05070d] border-y border-white/10">
+      <section className="py-12 md:py-24 bg-[#05070d] border-y border-white/10">
         <div className="container px-4 sm:px-6 mx-auto max-w-7xl">
-          <div className="max-w-3xl mb-14">
-            <span className="text-amber-400 font-mono text-xs font-bold uppercase tracking-widest block mb-2">
+          <div className="max-w-3xl mb-7 sm:mb-14">
+            <span className="text-amber-400 font-mono text-[10px] sm:text-xs font-bold uppercase tracking-widest block mb-2">
               Engineered for Roofers, HVAC, Plumbing, Dirt Work &amp; Remodelers
             </span>
-            <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white">
+            <h2 className="text-2xl sm:text-5xl font-black uppercase tracking-tight text-white">
               Everything Your Crew Needs on Site. Nothing Clunky.
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <MobileSnapCarousel
+            itemCount={6}
+            ariaLabel="Six PinCam field capabilities"
+            desktopGridClass="md:grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+            itemLabel="capabilities"
+          >
             {[
               {
                 icon: Camera,
@@ -199,16 +209,16 @@ export default function PinCamPage() {
             ].map((feat) => {
               const Icon = feat.icon;
               return (
-                <div key={feat.title} className="p-7 rounded-3xl obsidian-surface space-y-3.5">
+                <div key={feat.title} className="p-6 sm:p-7 rounded-3xl obsidian-surface space-y-3.5">
                   <div className="w-11 h-11 rounded-2xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400">
                     <Icon className="w-5 h-5" />
                   </div>
-                  <h3 className="text-xl font-black uppercase text-white">{feat.title}</h3>
+                  <h3 className="text-lg sm:text-xl font-black uppercase text-white">{feat.title}</h3>
                   <p className="text-sm text-slate-300 leading-relaxed">{feat.desc}</p>
                 </div>
               );
             })}
-          </div>
+          </MobileSnapCarousel>
         </div>
       </section>
 
@@ -321,7 +331,7 @@ export default function PinCamPage() {
         </div>
       </section>
 
-      <DeferredFooterSections />
+      <DeferredFooterSections mode="inner" />
     </main>
   );
 }

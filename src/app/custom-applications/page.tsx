@@ -23,6 +23,8 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import AuditCTA from "@/components/sections/AuditCTA";
+import MobileSnapCarousel from "@/components/ui/MobileSnapCarousel";
+import MobileCompactConversionBanner from "@/components/ui/MobileCompactConversionBanner";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import QuickHeroLeadCard from "@/components/ui/QuickHeroLeadCard";
 
@@ -119,30 +121,34 @@ export default function CustomApplicationsPage() {
             <Navbar />
 
             {/* HERO */}
-            <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden border-b border-white/[0.06] blueprint-grid">
+            <section className="relative pt-[114px] pb-10 sm:pt-36 md:pt-40 md:pb-28 overflow-hidden border-b border-white/[0.06] blueprint-grid">
                 <div className="absolute top-12 left-1/2 -translate-x-1/2 w-[760px] h-[380px] bg-amber-500/10 rounded-full blur-[150px] pointer-events-none" />
 
                 <div className="container relative z-10 px-4 mx-auto max-w-6xl">
-                    <div className="grid lg:grid-cols-12 gap-12 items-center">
+                    <div className="grid lg:grid-cols-12 gap-6 sm:gap-12 items-center">
                         <motion.div
                             initial={{ opacity: 0, y: 24 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6 }}
                             className="lg:col-span-7"
                         >
-                            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-6">
-                                <Workflow className="w-3.5 h-3.5 text-amber-400" />
-                                <span className="text-[11px] font-mono font-bold uppercase tracking-[0.18em] text-amber-300">
-                                    CRM Setup &amp; Integration • Custom Checkout • Field Apps
+                            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-3 sm:mb-6">
+                                <Workflow className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                                <span className="text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.14em] sm:tracking-[0.18em] text-amber-300">
+                                    <span className="sm:hidden">Capsule CRM • 0%-Fee Checkout • Apps</span>
+                                    <span className="hidden sm:inline">CRM Setup &amp; Integration • Custom Checkout • Field Apps</span>
                                 </span>
                             </div>
 
-                            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-[0.96] text-white mb-6">
+                            <h1 className="text-[1.82rem] sm:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-[1.03] sm:leading-[0.96] text-white mb-3 sm:mb-6">
                                 CRM Setup, Integration &amp;{" "}
                                 <span className="text-amber-400">Custom Apps in Jackson, MS.</span>
                             </h1>
 
-                            <p className="text-slate-300 text-base md:text-xl leading-relaxed mb-8 max-w-2xl">
+                            <p className="sm:hidden text-slate-300 text-[13px] leading-snug mb-4">
+                                Turnkey <strong className="text-white">Capsule CRM</strong> pipelines, <strong className="text-white">0%-fee Square ordering</strong>, and custom field software—zero fragile Zapier duct tape.
+                            </p>
+                            <p className="hidden sm:block text-slate-300 text-base md:text-xl leading-relaxed mb-8 max-w-2xl">
                                 Stop running your business on duct-tape spreadsheets. We deliver turnkey{" "}
                                 <strong className="text-white">CRM setup and integration in Jackson and across Mississippi</strong>—wiring your website into{" "}
                                 <strong className="text-white">Capsule CRM</strong>, building{" "}
@@ -150,43 +156,45 @@ export default function CustomApplicationsPage() {
                                 and deploying custom field apps so every call, quote, and job site flows into one clean pipeline.
                             </p>
 
-                            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-8">
+                            <div className="grid grid-cols-2 sm:flex sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3.5 mb-5 sm:mb-8">
                                 <Link
                                     href="/free-audit"
-                                    className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-[#06080f] font-black text-xs uppercase tracking-[0.16em] transition-all shadow-[0_14px_34px_rgba(245,158,11,0.28)]"
+                                    className="inline-flex items-center justify-center gap-1.5 sm:gap-2.5 px-3.5 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-[#06080f] font-black text-[11px] sm:text-xs uppercase tracking-[0.12em] sm:tracking-[0.16em] transition-all shadow-[0_14px_34px_rgba(245,158,11,0.28)]"
                                 >
-                                    Get Free System Audit
-                                    <ArrowRight className="w-4 h-4" />
+                                    <span className="sm:hidden">System Audit</span>
+                                    <span className="hidden sm:inline">Get Free System Audit</span>
+                                    <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                                 </Link>
                                 <Link
                                     href="/book"
-                                    className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/15 text-white font-bold text-xs uppercase tracking-[0.15em] transition-all"
+                                    className="inline-flex items-center justify-center gap-2 px-3.5 sm:px-7 py-3.5 sm:py-4 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/15 text-white font-bold text-[11px] sm:text-xs uppercase tracking-[0.12em] sm:tracking-[0.15em] transition-all"
                                 >
-                                    Book 15-Min Strategy Call
+                                    <span className="sm:hidden">15-Min Call</span>
+                                    <span className="hidden sm:inline">Book 15-Min Strategy Call</span>
                                 </Link>
                                 <a
                                     href="tel:6014462393"
-                                    className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl border border-white/10 text-slate-300 hover:text-amber-300 text-xs font-mono font-bold uppercase tracking-wider transition-colors"
+                                    className="hidden sm:inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl border border-white/10 text-slate-300 hover:text-amber-300 text-xs font-mono font-bold uppercase tracking-wider transition-colors"
                                 >
                                     <PhoneCall className="w-3.5 h-3.5 text-amber-400" />
                                     (601) 446-2393
                                 </a>
                             </div>
 
-                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-6 border-t border-white/[0.08]">
+                            <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-4 sm:pt-6 border-t border-white/[0.08]">
                                 {[
-                                    { value: "< 300ms", label: "Direct API Lead Sync" },
-                                    { value: "No Zapier", label: "Zero Fragile Middlemen" },
-                                    { value: "0% Fees", label: "Direct Square/Stripe SDK" },
+                                    { value: "< 300ms", label: "Direct API Sync" },
+                                    { value: "No Zapier", label: "Zero Middlemen" },
+                                    { value: "0% Fees", label: "Direct Square SDK" },
                                 ].map((stat) => (
                                     <div
                                         key={stat.label}
-                                        className="p-3.5 rounded-xl bg-[#0b0c10] border border-white/[0.07]"
+                                        className="p-2.5 sm:p-3.5 rounded-xl bg-[#0b0c10] border border-white/[0.07]"
                                     >
-                                        <div className="text-lg md:text-xl font-black text-amber-400">
+                                        <div className="text-sm sm:text-lg md:text-xl font-black text-amber-400 whitespace-nowrap">
                                             {stat.value}
                                         </div>
-                                        <div className="text-[11px] text-slate-400 font-medium">
+                                        <div className="text-[10px] sm:text-[11px] text-slate-400 font-medium leading-tight mt-0.5">
                                             {stat.label}
                                         </div>
                                     </div>
@@ -235,7 +243,12 @@ export default function CustomApplicationsPage() {
                             </span>
                         </div>
 
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+                        <MobileSnapCarousel
+                            itemCount={4}
+                            ariaLabel="Unified workflow steps"
+                            desktopGridClass="sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-3.5"
+                            itemLabel="steps"
+                        >
                             {[
                                 {
                                     step: "01",
@@ -284,29 +297,35 @@ export default function CustomApplicationsPage() {
                                     </div>
                                 </div>
                             ))}
-                        </div>
+                        </MobileSnapCarousel>
                     </div>
                 </div>
             </section>
 
             {/* CORE CAPABILITIES */}
-            <section className="py-24 bg-[#080a12] border-b border-white/[0.06]">
+            <section className="py-12 md:py-24 bg-[#080a12] border-b border-white/[0.06]">
                 <div className="container px-4 mx-auto max-w-6xl">
-                    <div className="max-w-3xl mb-14">
-                        <span className="text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-amber-400 block mb-3">
+                    <div className="max-w-3xl mb-7 sm:mb-14">
+                        <span className="text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-amber-400 block mb-2 sm:mb-3">
                             Custom Engineering Pillars
                         </span>
-                        <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white mb-4">
+                        <h2 className="text-2xl md:text-5xl font-black uppercase tracking-tight text-white mb-2 sm:mb-4">
                             Software Built Around How You Actually Work.
                         </h2>
-                        <p className="text-slate-300 text-base md:text-lg leading-relaxed">
+                        <p className="hidden sm:block text-slate-300 text-base md:text-lg leading-relaxed">
                             Instead of forcing your crew into five disconnected subscriptions, we
                             connect your website, phones, payments, and field tools into one clean
                             system.
                         </p>
                     </div>
 
-                    <div className="grid gap-6 lg:grid-cols-3">
+                    <MobileSnapCarousel
+                        itemCount={capabilities.length}
+                        ariaLabel="Custom software capabilities"
+                        desktopGridClass="lg:grid lg:grid-cols-3 gap-6"
+                        breakpoint="lg"
+                        itemLabel="capabilities"
+                    >
                         {capabilities.map((cap, index) => (
                             <motion.div
                                 key={cap.title}
@@ -314,16 +333,16 @@ export default function CustomApplicationsPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="rounded-3xl bg-[#12141c] border border-white/[0.08] hover:border-amber-500/35 p-8 flex flex-col justify-between transition-all shadow-xl"
+                                className="rounded-3xl bg-[#12141c] border border-white/[0.08] hover:border-amber-500/35 p-6 sm:p-8 flex flex-col justify-between transition-all shadow-xl"
                             >
                                 <div>
-                                    <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-center text-amber-400 mb-6">
+                                    <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-center text-amber-400 mb-5 sm:mb-6">
                                         <cap.icon className="w-6 h-6" />
                                     </div>
                                     <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-amber-400 block mb-2">
                                         {cap.subtitle}
                                     </span>
-                                    <h3 className="text-2xl font-black uppercase tracking-tight text-white mb-3">
+                                    <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-white mb-3">
                                         {cap.title}
                                     </h3>
                                     <p className="text-slate-300 text-sm leading-relaxed mb-6">
@@ -355,41 +374,42 @@ export default function CustomApplicationsPage() {
                                 )}
                             </motion.div>
                         ))}
-                    </div>
+                    </MobileSnapCarousel>
                 </div>
             </section>
 
             {/* LIVE INTEGRATIONS IN ACTION */}
-            <section className="py-24 bg-[#06080f] border-b border-white/[0.06]">
+            <section className="py-12 md:py-24 bg-[#06080f] border-b border-white/[0.06]">
                 <div className="container px-4 mx-auto max-w-6xl">
-                    <div className="text-center max-w-3xl mx-auto mb-16">
-                        <span className="text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-amber-400 block mb-3">
+                    <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-16">
+                        <span className="text-[11px] font-mono font-bold uppercase tracking-[0.22em] text-amber-400 block mb-2 sm:mb-3">
                             Live Production Proof
                         </span>
-                        <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white mb-4">
+                        <h2 className="text-2xl md:text-5xl font-black uppercase tracking-tight text-white mb-2 sm:mb-4">
                             Custom Integrations In Action.
                         </h2>
-                        <p className="text-slate-300 text-base md:text-lg leading-relaxed">
+                        <p className="hidden sm:block text-slate-300 text-base md:text-lg leading-relaxed">
                             Real software running right now for Mississippi contractors and local
                             operators—built in Jackson, MS.
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-8 mb-10">
+                    <div className="grid md:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-10">
                         {/* Card 1: Square SDK */}
                         <div className="rounded-3xl bg-[#0b0c10] border border-white/10 overflow-hidden shadow-2xl flex flex-col justify-between group hover:border-amber-500/40 transition-all">
                             <div>
-                                <div className="flex items-center justify-between px-5 py-3.5 bg-[#12141c] border-b border-white/[0.08]">
-                                    <div className="flex items-center gap-1.5">
-                                        <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                                        <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-                                        <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
-                                        <span className="text-xs text-white/50 font-mono ml-2">
+                                <div className="flex items-center justify-between gap-2 px-4 sm:px-5 py-3 sm:py-3.5 bg-[#12141c] border-b border-white/[0.08]">
+                                    <div className="flex items-center gap-1.5 min-w-0">
+                                        <span className="w-2.5 h-2.5 rounded-full bg-red-500/80 shrink-0" />
+                                        <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80 shrink-0" />
+                                        <span className="w-2.5 h-2.5 rounded-full bg-green-500/80 shrink-0" />
+                                        <span className="text-xs text-white/50 font-mono ml-1.5 sm:ml-2 truncate">
                                             tbeauxs.com/menu
                                         </span>
                                     </div>
-                                    <span className="text-[10px] font-mono text-amber-300 font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30">
-                                        Square SDK In-App Checkout
+                                    <span className="text-[10px] font-mono text-amber-300 font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 whitespace-nowrap shrink-0">
+                                        <span className="sm:hidden">Square SDK</span>
+                                        <span className="hidden sm:inline">Square SDK In-App Checkout</span>
                                     </span>
                                 </div>
                                 <div className="relative w-full aspect-[16/9] bg-[#06080f]">
@@ -630,7 +650,9 @@ export default function CustomApplicationsPage() {
                 </div>
             </section>
 
-            <AuditCTA />
+            <div className="hidden lg:block">
+                <AuditCTA />
+            </div>
 
             <FAQAccordion
                 faqs={[
@@ -662,6 +684,7 @@ export default function CustomApplicationsPage() {
                 ]}
             />
 
+            <MobileCompactConversionBanner variant="book" />
             <Footer />
         </main>
     );

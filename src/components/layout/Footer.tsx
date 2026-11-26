@@ -1,6 +1,6 @@
 "use client";
 
-import { Instagram, Youtube, Mail, Phone, MapPin, Facebook } from "lucide-react";
+import { Instagram, Youtube, Mail, Phone, MapPin, Facebook, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useState } from "react";
@@ -13,9 +13,9 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative pt-20 pb-28 lg:pb-12 overflow-hidden border-t border-white/10 bg-[#04060b]">
+    <footer className="relative pt-10 pb-24 lg:pt-20 lg:pb-12 overflow-hidden border-t border-white/10 bg-[#04060b]">
       <div className="container relative z-10 px-4 sm:px-6 mx-auto max-w-7xl">
-        <div className="grid gap-10 mb-14 sm:grid-cols-2 lg:grid-cols-12">
+        <div className="grid gap-6 lg:gap-10 mb-8 lg:mb-14 sm:grid-cols-2 lg:grid-cols-12">
           {/* Brand Column */}
           <div className="lg:col-span-4">
             <Link href="/" prefetch={false} className="flex items-center mb-5 group w-fit">
@@ -75,98 +75,150 @@ export default function Footer() {
             <BBBSeal variant="badge" />
           </div>
 
-          {/* Solutions & Apps */}
+          {/* Solutions & Apps (Collapsible on Mobile, Always Open on Desktop) */}
           <div className="lg:col-span-3">
-            <div className="font-mono font-bold mb-5 uppercase tracking-widest text-[11px] text-amber-400">
-              Apps &amp; Services
-            </div>
-            <ul className="space-y-3 text-sm text-slate-400">
-              <li>
-                <Link href="/estimate" className="hover:text-amber-300 transition-colors font-semibold text-amber-300">
-                  Instant Scope Estimator
-                </Link>
-              </li>
-              <li>
-                <Link href="/scanner" className="hover:text-amber-300 transition-colors font-semibold text-emerald-300">
-                  Free Site Scanner
-                </Link>
-              </li>
-              <li>
-                <Link href="/pincam" className="hover:text-amber-300 transition-colors font-semibold text-white">
-                  PinCam™ Field Camera App
-                </Link>
-              </li>
-              <li>
-                <Link href="/pindrop" className="hover:text-amber-300 transition-colors font-semibold text-white">
-                  PinDrop™ Local SEO Engine
-                </Link>
-              </li>
-              <li>
-                <Link href="/site-intelligence" className="hover:text-amber-300 transition-colors font-semibold text-cyan-300">
-                  PDM Site Intelligence™ Watchtower
-                </Link>
-              </li>
-              <li>
-                <Link href="/contractors" className="hover:text-amber-300 transition-colors">
-                  Contractor Growth Websites
-                </Link>
-              </li>
-              <li>
-                <Link href="/web-design" className="hover:text-amber-300 transition-colors">
-                  Custom Next.js Web Design
-                </Link>
-              </li>
-              <li>
-                <Link href="/local-seo" className="hover:text-amber-300 transition-colors">
-                  Local SEO &amp; Google Map Pack
-                </Link>
-              </li>
-              <li>
-                <Link href="/custom-applications" className="hover:text-amber-300 transition-colors">
-                  CRM &amp; Online Ordering Systems
-                </Link>
-              </li>
-              <li>
-                <Link href="/our-work" className="hover:text-amber-300 transition-colors">
-                  Live Client Portfolio
-                </Link>
-              </li>
-              <li>
-                <Link href="/reviews" className="hover:text-amber-300 transition-colors">
-                  Verified 5.0★ Reviews
-                </Link>
-              </li>
-            </ul>
-          </div>
+            <details className="group lg:hidden rounded-2xl bg-white/[0.02] border border-white/10 px-4 py-3">
+              <summary className="list-none flex items-center justify-between cursor-pointer font-mono font-bold uppercase tracking-widest text-[11px] text-amber-400">
+                <span>Apps &amp; Services</span>
+                <ChevronDown className="w-4 h-4 text-amber-400 transition-transform group-open:rotate-180" />
+              </summary>
+              <div className="grid grid-cols-2 gap-2.5 pt-3 mt-3 border-t border-white/10 text-xs text-slate-300">
+                <Link href="/estimate" className="font-semibold text-amber-300">Instant Estimator</Link>
+                <Link href="/scanner" className="font-semibold text-emerald-300">Free Site Scanner</Link>
+                <Link href="/pincam" className="font-semibold text-white">PinCam™ App</Link>
+                <Link href="/pindrop" className="font-semibold text-white">PinDrop™ SEO</Link>
+                <Link href="/site-intelligence" className="font-semibold text-cyan-300">Site Intelligence™</Link>
+                <Link href="/contractors">Contractor Sites</Link>
+                <Link href="/web-design">Custom Web Design</Link>
+                <Link href="/local-seo">Map Pack + AI SEO</Link>
+                <Link href="/custom-applications">CRM &amp; Ordering</Link>
+                <Link href="/our-work">Client Portfolio</Link>
+                <Link href="/reviews">5.0★ Reviews</Link>
+                <Link href="/about">About Damein</Link>
+              </div>
+            </details>
 
-          {/* Central MS SEO Service Areas */}
-          <div className="lg:col-span-2">
-            <div className="font-mono font-bold mb-5 uppercase tracking-widest text-[11px] text-amber-400">
-              Service Areas
-            </div>
-            <ul className="grid grid-cols-2 lg:grid-cols-1 gap-2.5 text-sm text-slate-400">
-              {[
-                { name: "Jackson, MS", slug: "jackson-ms" },
-                { name: "Madison, MS", slug: "madison-ms" },
-                { name: "Flora, MS", slug: "flora-ms" },
-                { name: "Ridgeland, MS", slug: "ridgeland-ms" },
-                { name: "Brandon, MS", slug: "brandon-ms" },
-                { name: "Flowood, MS", slug: "flowood-ms" },
-                { name: "Pearl, MS", slug: "pearl-ms" },
-                { name: "Clinton, MS", slug: "clinton-ms" },
-                { name: "Canton, MS", slug: "canton-ms" },
-                { name: "Byram, MS", slug: "byram-ms" },
-              ].map((loc) => (
-                <li key={loc.slug}>
-                  <Link
-                    href={`/locations/${loc.slug}`}
-                    className="hover:text-amber-300 transition-colors"
-                  >
-                    {loc.name}
+            <div className="hidden lg:block">
+              <div className="font-mono font-bold mb-5 uppercase tracking-widest text-[11px] text-amber-400">
+                Apps &amp; Services
+              </div>
+              <ul className="space-y-3 text-sm text-slate-400">
+                <li>
+                  <Link href="/estimate" className="hover:text-amber-300 transition-colors font-semibold text-amber-300">
+                    Instant Scope Estimator
                   </Link>
                 </li>
-              ))}
-            </ul>
+                <li>
+                  <Link href="/scanner" className="hover:text-amber-300 transition-colors font-semibold text-emerald-300">
+                    Free Site Scanner
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/pincam" className="hover:text-amber-300 transition-colors font-semibold text-white">
+                    PinCam™ Field Camera App
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/pindrop" className="hover:text-amber-300 transition-colors font-semibold text-white">
+                    PinDrop™ Local SEO Engine
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/site-intelligence" className="hover:text-amber-300 transition-colors font-semibold text-cyan-300">
+                    PDM Site Intelligence™ Watchtower
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/contractors" className="hover:text-amber-300 transition-colors">
+                    Contractor Growth Websites
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/web-design" className="hover:text-amber-300 transition-colors">
+                    Custom Next.js Web Design
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/local-seo" className="hover:text-amber-300 transition-colors">
+                    Local SEO &amp; Google Map Pack
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/custom-applications" className="hover:text-amber-300 transition-colors">
+                    CRM &amp; Online Ordering Systems
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/our-work" className="hover:text-amber-300 transition-colors">
+                    Live Client Portfolio
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/reviews" className="hover:text-amber-300 transition-colors">
+                    Verified 5.0★ Reviews
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Central MS SEO Service Areas (Collapsible on Mobile, Always Open on Desktop) */}
+          <div className="lg:col-span-2">
+            <details className="group lg:hidden rounded-2xl bg-white/[0.02] border border-white/10 px-4 py-3">
+              <summary className="list-none flex items-center justify-between cursor-pointer font-mono font-bold uppercase tracking-widest text-[11px] text-amber-400">
+                <span>Mississippi Service Areas (10)</span>
+                <ChevronDown className="w-4 h-4 text-amber-400 transition-transform group-open:rotate-180" />
+              </summary>
+              <ul className="grid grid-cols-2 gap-2.5 pt-3 mt-3 border-t border-white/10 text-xs text-slate-300">
+                {[
+                  { name: "Jackson, MS", slug: "jackson-ms" },
+                  { name: "Madison, MS", slug: "madison-ms" },
+                  { name: "Flora, MS", slug: "flora-ms" },
+                  { name: "Ridgeland, MS", slug: "ridgeland-ms" },
+                  { name: "Brandon, MS", slug: "brandon-ms" },
+                  { name: "Flowood, MS", slug: "flowood-ms" },
+                  { name: "Pearl, MS", slug: "pearl-ms" },
+                  { name: "Clinton, MS", slug: "clinton-ms" },
+                  { name: "Canton, MS", slug: "canton-ms" },
+                  { name: "Byram, MS", slug: "byram-ms" },
+                ].map((loc) => (
+                  <li key={`mob-${loc.slug}`}>
+                    <Link href={`/locations/${loc.slug}`} className="hover:text-amber-300 transition-colors">
+                      {loc.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </details>
+
+            <div className="hidden lg:block">
+              <div className="font-mono font-bold mb-5 uppercase tracking-widest text-[11px] text-amber-400">
+                Service Areas
+              </div>
+              <ul className="grid grid-cols-2 lg:grid-cols-1 gap-2.5 text-sm text-slate-400">
+                {[
+                  { name: "Jackson, MS", slug: "jackson-ms" },
+                  { name: "Madison, MS", slug: "madison-ms" },
+                  { name: "Flora, MS", slug: "flora-ms" },
+                  { name: "Ridgeland, MS", slug: "ridgeland-ms" },
+                  { name: "Brandon, MS", slug: "brandon-ms" },
+                  { name: "Flowood, MS", slug: "flowood-ms" },
+                  { name: "Pearl, MS", slug: "pearl-ms" },
+                  { name: "Clinton, MS", slug: "clinton-ms" },
+                  { name: "Canton, MS", slug: "canton-ms" },
+                  { name: "Byram, MS", slug: "byram-ms" },
+                ].map((loc) => (
+                  <li key={loc.slug}>
+                    <Link
+                      href={`/locations/${loc.slug}`}
+                      className="hover:text-amber-300 transition-colors"
+                    >
+                      {loc.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           {/* Direct Contact */}

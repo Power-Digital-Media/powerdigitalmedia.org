@@ -90,36 +90,52 @@ export default function GoogleReviewsSection({ variant = "full" }: { variant?: "
   }
 
   return (
-    <section id="reviews" className="py-20 md:py-28 bg-[#080a12] border-t border-b border-white/10 relative overflow-hidden select-none">
+    <section id="reviews" className="py-11 md:py-28 bg-[#080a12] border-t border-b border-white/10 relative overflow-hidden select-none">
       {/* Subtle ambient golden background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-amber-500/5 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Section Header with 5.0 Google Badge & Stats */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-8 mb-6 md:mb-12 max-w-7xl mx-auto">
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-4">
+            <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-3 sm:mb-4">
               <span className="text-amber-400 text-xs flex items-center">
                 ★★★★★
               </span>
-              <span className="text-amber-300 font-bold tracking-wider uppercase text-[11px]">
+              <span className="text-amber-300 font-bold tracking-wider uppercase text-[10px] sm:text-[11px]">
                 100% 5-Star Verified Client Reviews
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight uppercase leading-[1.08]">
-              What Mississippi Business Owners <br className="hidden sm:block" />
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-white tracking-tight uppercase leading-[1.06]">
+              What Mississippi Owners <br className="hidden sm:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-500">
                 Say About Working With Us
               </span>
             </h2>
-            <p className="text-slate-300 text-base md:text-lg mt-3 max-w-2xl">
+            <p className="hidden sm:block text-slate-300 text-base md:text-lg mt-3 max-w-2xl">
               Real feedback from local contractors, business leaders, and ministries across the Jackson metro area. We build long-term relationships through speed, trust, and real results.
             </p>
           </div>
 
-          {/* Quick Summary Card & Direct Review Action */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 bg-slate-900/90 border border-white/15 p-5 rounded-2xl backdrop-blur-md shadow-xl shrink-0">
+          {/* Mobile Compact Rating Bar vs Desktop Summary Card */}
+          <div className="flex sm:hidden items-center justify-between gap-2 p-3 rounded-2xl bg-slate-900/90 border border-white/15">
+            <div className="flex items-center gap-2">
+              <span className="px-2 py-1 rounded-lg bg-amber-400 text-slate-950 font-black text-xs">5.0★</span>
+              <span className="text-xs font-bold text-slate-200">Google &amp; BBB Verified</span>
+            </div>
+            <a
+              href={GOOGLE_REVIEW_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-1.5 rounded-lg bg-amber-500/15 border border-amber-400/40 text-amber-300 text-[11px] font-extrabold"
+            >
+              Leave Review ↗
+            </a>
+          </div>
+
+          {/* Quick Summary Card & Direct Review Action (Tablet & Desktop) */}
+          <div className="hidden sm:flex flex-col sm:flex-row items-start sm:items-center gap-4 bg-slate-900/90 border border-white/15 p-5 rounded-2xl backdrop-blur-md shadow-xl shrink-0">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center font-black text-slate-950 shadow-md">
                 <span className="text-xl">5★</span>
@@ -176,7 +192,7 @@ export default function GoogleReviewsSection({ variant = "full" }: { variant?: "
           {duplicatedReviews.map((review, idx) => (
             <div
               key={`${review.id}-${idx}`}
-              className="w-[320px] sm:w-[380px] md:w-[420px] shrink-0 flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-[#12141c] border border-white/10 hover:border-amber-400/50 transition-all duration-300 shadow-xl group hover:shadow-[0_15px_40px_-10px_rgba(245,158,11,0.2)] hover:-translate-y-1.5 cursor-grab active:cursor-grabbing"
+              className="w-[290px] sm:w-[380px] md:w-[420px] shrink-0 flex flex-col justify-between p-4 sm:p-7 rounded-2xl bg-[#12141c] border border-white/10 hover:border-amber-400/50 transition-all duration-300 shadow-xl group hover:shadow-[0_15px_40px_-10px_rgba(245,158,11,0.2)] hover:-translate-y-1.5 cursor-grab active:cursor-grabbing"
             >
               <div>
                 {/* Header: Stars & Platform Badge */}
@@ -253,13 +269,13 @@ export default function GoogleReviewsSection({ variant = "full" }: { variant?: "
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Marquee Navigation Tip */}
-        <div className="mt-4 mb-10 text-center flex items-center justify-center gap-2 text-xs text-slate-400 font-mono">
+        <div className="mt-2 md:mt-4 md:mb-10 text-center flex items-center justify-center gap-2 text-[11px] sm:text-xs text-slate-400 font-mono">
           <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-          <span>Continuous Live Feed • Hover or Touch to Pause</span>
+          <span>Continuous Live Feed • Touch or Hover to Pause</span>
         </div>
 
-        {/* Bottom Callout & Trust Links */}
-        <div className="rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900/90 to-slate-950 border border-amber-500/30 p-6 sm:p-8 max-w-5xl mx-auto shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+        {/* Bottom Callout & Trust Links (Desktop Only to Prevent Mobile CTA Fatigue) */}
+        <div className="hidden md:flex rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900/90 to-slate-950 border border-amber-500/30 p-6 sm:p-8 max-w-5xl mx-auto shadow-2xl flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-left">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold mb-2">
               <ThumbsUp className="w-3.5 h-3.5" />
@@ -290,8 +306,8 @@ export default function GoogleReviewsSection({ variant = "full" }: { variant?: "
           </div>
         </div>
 
-        {/* Footer Trust Pill Links (Zero Orphan Bullets or Raw URLs) */}
-        <div className="mt-8 grid grid-cols-1 sm:flex sm:flex-wrap items-center justify-center gap-2.5 sm:gap-3 max-w-3xl mx-auto text-xs">
+        {/* Footer Trust Pill Links (Desktop/Tablet) */}
+        <div className="hidden md:flex md:flex-wrap mt-8 items-center justify-center gap-3 max-w-3xl mx-auto text-xs">
           <a
             href={GOOGLE_PROFILE_URL}
             target="_blank"

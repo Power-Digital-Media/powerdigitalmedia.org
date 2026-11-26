@@ -57,21 +57,21 @@ export default function Contact({
     <section
       id="contact"
       className={`relative ${
-        isStandalonePage ? "pt-32 pb-20 md:pt-40 md:pb-28" : "py-20 md:py-28 border-t border-white/10"
+        isStandalonePage ? "pt-[114px] pb-14 sm:pt-36 md:pt-40 md:pb-28" : "py-20 md:py-28 border-t border-white/10"
       } overflow-hidden bg-[#06080f]`}
     >
       <div className="absolute inset-0 blueprint-grid opacity-35 pointer-events-none" aria-hidden="true" />
 
       <div className="container relative z-10 px-4 sm:px-6 mx-auto max-w-6xl">
         {/* Header */}
-        <div className="mb-12 md:mb-16 text-center">
-          <span className="text-amber-400 font-mono font-bold tracking-[0.25em] uppercase text-xs mb-3 block">
-            Direct Jackson, MS Access • Zero Call Centers
+        <div className="mb-7 sm:mb-12 md:mb-16 text-center">
+          <span className="text-amber-400 font-mono font-bold tracking-[0.16em] sm:tracking-[0.25em] uppercase text-[10px] sm:text-xs mb-2 sm:mb-3 block">
+            Direct Jackson, MS Studio • Zero Call Centers
           </span>
-          <HeadingTag className="text-3xl sm:text-5xl md:text-6xl font-black mb-4 tracking-tight uppercase leading-[1.02] text-white">
+          <HeadingTag className="text-[1.82rem] sm:text-5xl md:text-6xl font-black mb-2.5 sm:mb-4 tracking-tight uppercase leading-[1.02] text-white">
             Talk Directly With <span className="text-amber-400">Damein Donald.</span>
           </HeadingTag>
-          <p className="text-sm sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-lg text-slate-300 max-w-2xl mx-auto leading-snug sm:leading-relaxed">
             Questions about a contractor growth website, deploying{" "}
             <strong className="text-white">PinCam™ + PinDrop™</strong> for your crew, or ranking in the Google Map Pack? Call, text, or send a note below.
           </p>

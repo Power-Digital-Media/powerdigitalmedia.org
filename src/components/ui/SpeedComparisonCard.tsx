@@ -6,7 +6,7 @@ import MobileSnapCarousel from "@/components/ui/MobileSnapCarousel";
 
 export default function SpeedComparisonCard() {
   return (
-    <section className="py-20 md:py-28 bg-[#06080f] border-t border-white/10 relative overflow-hidden">
+    <section className="py-11 md:py-28 bg-[#06080f] border-t border-white/10 relative overflow-hidden">
       {/* Subtle Industrial-Luxury Blueprint & Warm Glow */}
       <div className="absolute inset-0 blueprint-grid opacity-30 pointer-events-none" aria-hidden="true" />
       <div
@@ -16,20 +16,20 @@ export default function SpeedComparisonCard() {
 
       <div className="container px-4 md:px-6 mx-auto relative z-10 max-w-6xl">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-4">
+        <div className="text-center max-w-3xl mx-auto mb-6 md:mb-14">
+          <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 mb-3 sm:mb-4">
             <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            <span className="text-[11px] font-mono font-bold text-amber-300 uppercase tracking-widest">
+            <span className="text-[10px] sm:text-[11px] font-mono font-bold text-amber-300 uppercase tracking-widest">
               Why Mobile Speed Wins Local Jobs
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase tracking-tight leading-[1.05]">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-white uppercase tracking-tight leading-[1.05]">
             The 3-Second Rule:{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-yellow-500">
               Slow Sites Lose Calls. Fast Sites Book Crews.
             </span>
           </h2>
-          <p className="text-slate-300 text-base md:text-lg mt-4 leading-relaxed">
+          <p className="hidden sm:block text-slate-300 text-base md:text-lg mt-4 leading-relaxed">
             When a Mississippi homeowner has a roof leak, a dead AC unit, or needs dinner catered tonight, they search on their phone. If your site takes 6 seconds to load, they tap &ldquo;Back&rdquo; and call the next company on Google Maps.
           </p>
         </div>
@@ -151,8 +151,8 @@ export default function SpeedComparisonCard() {
           </div>
         </MobileSnapCarousel>
 
-        {/* Quick Call Out Strip */}
-        <div className="mt-10 p-5 sm:p-6 rounded-2xl bg-[#0b0c10] border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+        {/* Quick Call Out Strip (Desktop/Tablet) */}
+        <div className="hidden sm:flex mt-10 p-5 sm:p-6 rounded-2xl bg-[#0b0c10] border border-white/10 flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <div className="flex items-center gap-3">
             <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399] shrink-0" />
             <span className="text-xs sm:text-sm text-slate-200 font-medium">

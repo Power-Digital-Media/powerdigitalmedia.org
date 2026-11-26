@@ -65,10 +65,11 @@ const FAQS: FAQItem[] = [
 ];
 
 export default function AEOFAQ() {
-  const [activeId, setActiveId] = useState<string | null>("timeline-turnaround");
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const [showAllMobile, setShowAllMobile] = useState<boolean>(false);
 
   return (
-    <section className="py-20 md:py-24 bg-[#06080f] relative overflow-hidden border-t border-white/10" id="faq">
+    <section className="py-11 md:py-24 bg-[#06080f] relative overflow-hidden border-t border-white/10" id="faq">
 
       <div
         className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[520px] h-[420px] bg-amber-500/[0.05] rounded-full blur-[130px] pointer-events-none"
@@ -76,22 +77,22 @@ export default function AEOFAQ() {
       />
 
       <div className="container px-4 sm:px-6 mx-auto max-w-6xl relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-12 items-start">
           {/* Header Panel */}
-          <div className="lg:col-span-5 flex flex-col gap-5 text-left">
-            <span className="text-amber-400 font-mono font-bold tracking-widest uppercase text-xs block">
+          <div className="lg:col-span-5 flex flex-col gap-2.5 sm:gap-5 text-left">
+            <span className="text-amber-400 font-mono font-bold tracking-widest uppercase text-[10px] sm:text-xs block">
               Straight Answers • Zero Jargon
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight leading-[1.05] text-white">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight leading-[1.05] text-white">
               Common Questions From{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-yellow-500">
                 Local Owners.
               </span>
             </h2>
-            <p className="text-slate-300 text-sm md:text-base leading-relaxed max-w-md">
+            <p className="hidden sm:block text-slate-300 text-sm md:text-base leading-relaxed max-w-md">
               Everything you need to know about turnaround times, pricing options, Google Map Pack rankings, and our proprietary field apps.
             </p>
-            <div className="flex flex-col gap-3 mt-2 p-5 bg-[#0b0c10] border border-white/10 rounded-2xl">
+            <div className="hidden lg:flex flex-col gap-3 mt-2 p-5 bg-[#0b0c10] border border-white/10 rounded-2xl">
               <div className="text-white font-bold text-xs uppercase tracking-wider font-mono text-amber-300">
                 Want to ask Damein directly?
               </div>
@@ -109,15 +110,18 @@ export default function AEOFAQ() {
           </div>
 
           {/* Accordion Panel */}
-          <div className="lg:col-span-7 flex flex-col gap-3.5 w-full">
-            {FAQS.map((faq) => {
+          <div className="lg:col-span-7 flex flex-col gap-2.5 sm:gap-3.5 w-full">
+            {FAQS.map((faq, idx) => {
               const Icon = faq.icon;
               const isOpen = activeId === faq.id;
+              const hiddenOnCollapsedMobile = idx >= 4 && !showAllMobile;
 
               return (
                 <div
                   key={faq.id}
-                  className={`group relative overflow-hidden transition-all duration-300 rounded-2xl border ${
+                  className={`${
+                    hiddenOnCollapsedMobile ? "hidden sm:block" : "block"
+                  } group relative overflow-hidden transition-all duration-300 rounded-2xl border ${
                     isOpen
                       ? "bg-[#12141c] border-amber-500/40 shadow-[0_12px_36px_rgba(0,0,0,0.45)]"
                       : "bg-[#0b0c10] border-white/[0.08] hover:border-white/20"
@@ -125,7 +129,7 @@ export default function AEOFAQ() {
                 >
                   <button
                     onClick={() => setActiveId(isOpen ? null : faq.id)}
-                    className="w-full px-5 sm:px-6 py-5 flex items-start gap-4 text-left transition-colors cursor-pointer"
+                    className="w-full px-4 sm:px-6 py-3.5 sm:py-5 flex items-start gap-3 sm:gap-4 text-left transition-colors cursor-pointer"
                   >
                     <div
                       className={`p-2.5 rounded-xl border transition-all duration-300 shrink-0 ${
@@ -169,6 +173,14 @@ export default function AEOFAQ() {
                 </div>
               );
             })}
+
+            <button
+              type="button"
+              onClick={() => setShowAllMobile((prev) => !prev)}
+              className="sm:hidden mt-1 py-2.5 px-4 rounded-xl bg-white/[0.04] border border-white/10 text-xs font-bold text-amber-300 text-center cursor-pointer"
+            >
+              {showAllMobile ? "Show Fewer Questions ▲" : `View All ${FAQS.length} Answers ▼`}
+            </button>
           </div>
         </div>
       </div>

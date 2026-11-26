@@ -8,7 +8,7 @@ const PROJECT_SEO_OVERRIDES: Record<string, { title: string; description: string
   "born-again-roofing": {
     title: "Born Again Roofing Case Study | Power Digital Media",
     description:
-      "See how we built a 0.8s Next.js website, 99+ live PinDrop™ GPS job pins, Capsule CRM routing, and SMS reviews for Born Again Roofing in Brandon, MS.",
+      "See how we built a 0.8s Next.js website, 800+ live PinDrop™ GPS job pins, Capsule CRM routing, and SMS reviews for Born Again Roofing in Brandon, MS.",
   },
   tbeaux: {
     title: "T'Beaux's Seafood Case Study | Power Digital Media",

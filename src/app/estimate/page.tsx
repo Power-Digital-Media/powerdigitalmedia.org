@@ -60,9 +60,11 @@ export default function EstimatePage() {
 
       <GrowthScopeEstimator isStandalonePage />
 
-      <GoogleReviewsSection variant="compact" />
+      <div className="hidden lg:block">
+        <GoogleReviewsSection variant="compact" />
+      </div>
 
-      <DeferredFooterSections />
+      <DeferredFooterSections mode="tool" />
     </main>
   );
 }

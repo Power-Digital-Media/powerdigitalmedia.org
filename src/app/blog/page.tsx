@@ -53,17 +53,22 @@ export default function BlogPage() {
       />
 
       {/* Hero + Interactive Explorer */}
-      <section className="relative pt-32 pb-20 md:pt-40">
+      <section className="relative pt-[114px] pb-14 sm:pt-36 md:pt-40 md:pb-20">
         <div className="container px-4 sm:px-6 mx-auto max-w-7xl">
-          <div className="max-w-3xl mx-auto text-center mb-10">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-300 text-xs font-mono font-bold uppercase tracking-wider mb-5">
-              <BookOpen className="w-3.5 h-3.5 text-amber-400" /> Field-Tested Local Growth Playbooks
+          <div className="max-w-3xl mx-auto text-center mb-6 sm:mb-10">
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-300 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider mb-3 sm:mb-5">
+              <BookOpen className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+              <span className="sm:hidden">Local Growth Playbooks • Jackson, MS</span>
+              <span className="hidden sm:inline">Field-Tested Local Growth Playbooks</span>
             </div>
-            <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tight mb-5 leading-[1.03]">
+            <h1 className="text-[1.82rem] sm:text-6xl font-black uppercase tracking-tight mb-2.5 sm:mb-5 leading-[1.03]">
               Web Speed, Map Pack SEO &amp;{" "}
               <span className="text-amber-400">Contractor Systems.</span>
             </h1>
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
+            <p className="sm:hidden text-[13px] text-slate-300 leading-snug">
+              Practical playbooks written in Jackson, MS for contractors &amp; local owners.
+            </p>
+            <p className="hidden sm:block text-base sm:text-lg text-slate-300 leading-relaxed">
               Practical guides written in Jackson, Mississippi for roofers, HVAC pros, dirt-work operators, and local business owners who want their website to actually generate calls.
             </p>
           </div>

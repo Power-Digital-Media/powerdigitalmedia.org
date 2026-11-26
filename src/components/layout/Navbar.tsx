@@ -18,17 +18,37 @@ import {
   Phone,
   ArrowUpRight,
   Activity,
+  Home,
+  Calculator,
+  Briefcase,
+  Star,
 } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 import { useAuth } from "@/context/AuthContext";
 import { isAdmin } from "@/lib/auth-constants";
 
 export default function Navbar() {
   const { user } = useAuth();
+  const pathname = usePathname() || "/";
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const hideQuickStrip = ["/admin", "/dashboard", "/login", "/logout", "/client-setup"].some((p) =>
+    pathname.startsWith(p)
+  );
+
+  const mobileQuickTabs = [
+    { name: "Overview", href: "/", icon: Home },
+    { name: "Contractors", href: "/contractors", icon: Hammer },
+    { name: "PinDrop™", href: "/pindrop", icon: MapPin },
+    { name: "PinCam™", href: "/pincam", icon: Camera },
+    { name: "Pricing", href: "/estimate", icon: Calculator },
+    { name: "Our Work", href: "/our-work", icon: Briefcase },
+    { name: "Site Scan", href: "/scanner", icon: Search },
+    { name: "Watchtower", href: "/site-intelligence", icon: Activity },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -126,12 +146,12 @@ export default function Navbar() {
       <nav
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
           isScrolled
-            ? "py-2.5 bg-[#05070d]/92 backdrop-blur-xl border-b border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.65)]"
-            : "py-4 bg-[#05070d]/70 backdrop-blur-md border-b border-white/[0.06]"
+            ? "py-2 lg:py-2.5 bg-[#05070d]/95 backdrop-blur-xl border-b border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.65)]"
+            : "py-2 lg:py-4 bg-[#05070d]/85 lg:bg-[#05070d]/70 backdrop-blur-xl border-b border-white/[0.08]"
         }`}
       >
-        <div className="container px-4 sm:px-6 mx-auto relative z-50">
-          <div className="flex items-center justify-between gap-4">
+        <div className="container px-3.5 sm:px-6 mx-auto relative z-50">
+          <div className="flex items-center justify-between gap-3 sm:gap-4">
             {/* Logo */}
             <Link
               href="/"
@@ -139,7 +159,7 @@ export default function Navbar() {
               className="flex items-center group shrink-0"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              <div className="relative flex items-center h-11 sm:h-12 w-44 sm:w-52 xl:w-56">
+              <div className="relative flex items-center h-9 sm:h-11 lg:h-12 w-40 sm:w-52 xl:w-56">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/images/pdm-logo-amber.webp"
@@ -148,7 +168,7 @@ export default function Navbar() {
                   height={84}
                   fetchPriority="high"
                   decoding="async"
-                  className="h-10 sm:h-11 w-auto object-contain object-left group-hover:scale-[1.02] transition-transform"
+                  className="h-9 sm:h-11 w-auto object-contain object-left group-hover:scale-[1.02] transition-transform"
                 />
               </div>
             </Link>
@@ -302,14 +322,14 @@ export default function Navbar() {
 
             {/* Mobile Toggle */}
             <div className="flex items-center gap-2 lg:hidden">
-              <a
-                href="tel:6014462393"
-                className="px-3 py-1.5 rounded-full bg-amber-500/15 border border-amber-500/35 text-amber-300 text-[11px] font-extrabold tracking-wide flex items-center gap-1.5"
-                aria-label="Call Damein at (601) 446-2393"
+              <Link
+                href="/free-audit"
+                prefetch={false}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="px-3 py-1.5 rounded-full bg-amber-400 text-slate-950 text-[11px] font-black uppercase tracking-wide"
               >
-                <Phone className="w-3 h-3 text-amber-400" />
-                Call
-              </a>
+                Free Check
+              </Link>
               <button
                 className="text-foreground p-2 rounded-full hover:bg-white/5 border border-white/10"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -320,37 +340,70 @@ export default function Navbar() {
               </button>
             </div>
           </div>
+
+          {/* App-Style Horizontal Quick-Jump Strip (1-Tap Page-to-Page Navigation Without Opening Hamburger) */}
+          {!hideQuickStrip && !isMobileMenuOpen && (
+            <div
+              className="lg:hidden flex items-center gap-1.5 overflow-x-auto no-scrollbar mt-2 pt-1.5 border-t border-white/[0.06] -mx-3.5 px-3.5"
+              aria-label="Mobile quick page switcher"
+            >
+              {mobileQuickTabs.map((tab) => {
+                const TabIcon = tab.icon;
+                const active =
+                  tab.href === "/"
+                    ? pathname === "/"
+                    : pathname === tab.href || pathname.startsWith(`${tab.href}/`);
+                return (
+                  <Link
+                    key={tab.href}
+                    href={tab.href}
+                    prefetch={false}
+                    className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-bold whitespace-nowrap transition-all ${
+                      active
+                        ? "bg-amber-400 text-slate-950 font-black shadow-[0_0_14px_rgba(245,158,11,0.3)]"
+                        : "bg-white/[0.04] text-slate-300 border border-white/[0.08] active:bg-white/10"
+                    }`}
+                  >
+                    <TabIcon className={`w-3 h-3 shrink-0 ${active ? "text-slate-950" : "text-amber-400"}`} />
+                    <span>{tab.name}</span>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
         </div>
       </nav>
 
-      {/* Mobile Menu Full Screen Overlay */}
+      {/* Mobile Menu Single-Screen Bento Drawer (Zero Scroll Fatigue, Zero Duplicate Links) */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-[99] bg-[#05070d]/98 backdrop-blur-2xl lg:hidden flex flex-col pt-24 pb-28 px-5 overflow-y-auto animate-fadeIn">
-          <div className="flex flex-col gap-6 flex-1">
-            {/* Proprietary Apps Spotlight */}
-            <div className="flex flex-col gap-2.5">
-              <span className="text-[11px] font-mono font-bold tracking-widest text-amber-400 uppercase px-2">
-                Proprietary Contractor Apps
+        <div className="fixed inset-0 z-[99] bg-[#05070d]/98 backdrop-blur-2xl lg:hidden flex flex-col justify-between pt-18 pb-24 px-4 overflow-y-auto animate-fadeIn">
+          <div className="flex flex-col gap-4">
+            {/* 1. Proprietary Apps Trio (1-Row Bento) */}
+            <div>
+              <span className="text-[10px] font-mono font-bold tracking-widest text-amber-400 uppercase px-1 mb-2 block">
+                Proprietary Software ($0 Seat Fees)
               </span>
-              <div className="grid grid-cols-1 gap-2.5">
-                {appLinks.map((app) => {
-                  const Icon = app.icon;
+              <div className="grid grid-cols-3 gap-2">
+                {[
+                  { name: "PinDrop™", sub: "GPS SEO Map", href: "/pindrop", icon: MapPin, color: "text-amber-400 bg-amber-500/12 border-amber-500/30" },
+                  { name: "PinCam™", sub: "Job Camera", href: "/pincam", icon: Camera, color: "text-indigo-300 bg-indigo-500/15 border-indigo-400/35" },
+                  { name: "Watchtower", sub: "24/7 Health", href: "/site-intelligence", icon: Activity, color: "text-cyan-300 bg-cyan-500/12 border-cyan-400/30" },
+                ].map((app) => {
+                  const AppIcon = app.icon;
                   return (
                     <Link
-                      key={app.name}
+                      key={app.href}
                       href={app.href}
                       prefetch={false}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="p-4 rounded-2xl bg-white/[0.04] border border-amber-500/25 flex items-start gap-3.5 active:scale-[0.99]"
+                      className="p-3 rounded-2xl bg-white/[0.04] border border-white/10 flex flex-col items-start gap-2 active:scale-[0.98]"
                     >
-                      <div className={`w-10 h-10 rounded-xl border flex items-center justify-center shrink-0 ${app.accent}`}>
-                        <Icon className="w-5 h-5" />
+                      <div className={`w-8 h-8 rounded-xl border flex items-center justify-center ${app.color}`}>
+                        <AppIcon className="w-4 h-4" />
                       </div>
                       <div>
-                        <div className="text-base font-bold text-white flex items-center gap-2">
-                          {app.name}
-                        </div>
-                        <p className="text-xs text-slate-400 mt-0.5 leading-snug">{app.desc}</p>
+                        <div className="text-xs font-black text-white leading-tight">{app.name}</div>
+                        <div className="text-[10px] text-slate-400 mt-0.5">{app.sub}</div>
                       </div>
                     </Link>
                   );
@@ -358,79 +411,102 @@ export default function Navbar() {
               </div>
             </div>
 
-            {/* Services Group */}
-            <div className="flex flex-col gap-2.5">
-              <span className="text-[11px] font-mono font-bold tracking-widest text-slate-400 uppercase px-2">
-                Growth Services
-              </span>
-              <div className="rounded-2xl bg-white/[0.03] border border-white/10 divide-y divide-white/[0.06]">
-                {serviceLinks.map((link) => (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    prefetch={false}
-                    className="px-4 py-3.5 flex items-center justify-between text-base font-semibold text-white hover:bg-white/5 transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <span>{link.name}</span>
-                    <ArrowUpRight className="w-4 h-4 text-amber-400" />
-                  </Link>
-                ))}
-              </div>
+            {/* 2. Interactive Self-Serve Tools */}
+            <div className="grid grid-cols-2 gap-2">
+              <Link
+                href="/estimate"
+                prefetch={false}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="p-3 rounded-2xl bg-amber-500/15 border border-amber-400/40 flex items-center gap-2.5"
+              >
+                <Calculator className="w-4 h-4 text-amber-400 shrink-0" />
+                <div>
+                  <div className="text-xs font-black text-amber-300">Instant Pricing</div>
+                  <div className="text-[10px] text-slate-300">Ballpark Scope</div>
+                </div>
+              </Link>
+              <Link
+                href="/scanner"
+                prefetch={false}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="p-3 rounded-2xl bg-emerald-500/12 border border-emerald-400/35 flex items-center gap-2.5"
+              >
+                <Search className="w-4 h-4 text-emerald-400 shrink-0" />
+                <div>
+                  <div className="text-xs font-black text-emerald-300">Free Site Scan</div>
+                  <div className="text-[10px] text-slate-300">Speed &amp; AI Check</div>
+                </div>
+              </Link>
             </div>
 
-            {/* Explore Links */}
-            <div className="grid grid-cols-2 gap-2.5">
-              {[
-                { name: "⚡ Instant Estimate", href: "/estimate", accent: true },
-                { name: "🔍 Free Site Scanner", href: "/scanner", accent: true },
-                { name: "Client Portfolio", href: "/our-work", accent: false },
-                { name: "5.0★ Reviews", href: "/reviews", accent: false },
-                { name: "About Damein", href: "/about", accent: false },
-                { name: "5-Min Video Audit", href: "/free-audit", accent: false },
-              ].map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  prefetch={false}
-                  className={
-                    link.accent
-                      ? "px-4 py-3 rounded-xl bg-amber-500/15 border border-amber-500/40 text-sm font-bold text-amber-300 text-center"
-                      : "px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 text-sm font-medium text-slate-200 text-center"
-                  }
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              ))}
+            {/* 3. Core Services & Proof (Clean 2x3 Grid) */}
+            <div>
+              <span className="text-[10px] font-mono font-bold tracking-widest text-slate-400 uppercase px-1 mb-2 block">
+                Services &amp; Proof
+              </span>
+              <div className="grid grid-cols-2 gap-2">
+                {[
+                  { name: "Contractors", href: "/contractors", icon: Hammer },
+                  { name: "Web Design", href: "/web-design", icon: Globe },
+                  { name: "Map Pack SEO", href: "/local-seo", icon: TrendingUp },
+                  { name: "CRM & Square", href: "/custom-applications", icon: Workflow },
+                  { name: "Our Work", href: "/our-work", icon: Briefcase },
+                  { name: "5.0★ Reviews", href: "/reviews", icon: Star },
+                ].map((item) => {
+                  const ItemIcon = item.icon;
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      prefetch={false}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="px-3.5 py-3 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between gap-2 text-xs font-bold text-white active:bg-white/10"
+                    >
+                      <span className="inline-flex items-center gap-2 truncate">
+                        <ItemIcon className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                        <span className="truncate">{item.name}</span>
+                      </span>
+                      <ArrowUpRight className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                    </Link>
+                  );
+                })}
+              </div>
             </div>
           </div>
 
-          {/* Utilities & CTAs */}
-          <div className="mt-6 flex flex-col gap-3 pt-5 border-t border-white/10 shrink-0">
-            <div className="grid grid-cols-2 gap-2.5">
+          {/* Bottom Utility & Primary CTA */}
+          <div className="mt-4 pt-3.5 border-t border-white/10 flex flex-col gap-2.5 shrink-0">
+            <div className="grid grid-cols-3 gap-2">
+              <Link
+                href="/about"
+                prefetch={false}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="py-2.5 text-center text-[11px] font-bold text-slate-200 bg-white/[0.04] border border-white/10 rounded-xl"
+              >
+                About Damein
+              </Link>
               <Link
                 href="/book"
                 prefetch={false}
-                className="py-3 text-center text-xs font-bold uppercase tracking-wider text-white bg-white/[0.06] border border-white/10 rounded-xl"
                 onClick={() => setIsMobileMenuOpen(false)}
+                className="py-2.5 text-center text-[11px] font-bold text-slate-200 bg-white/[0.04] border border-white/10 rounded-xl"
               >
-                Book 15-Min Call
+                Book 15m Call
               </Link>
               <Link
                 href={user ? "/dashboard" : "/login"}
                 prefetch={false}
-                className="py-3 text-center text-xs font-bold uppercase tracking-wider text-slate-300 bg-white/[0.03] border border-white/10 rounded-xl"
                 onClick={() => setIsMobileMenuOpen(false)}
+                className="py-2.5 text-center text-[11px] font-bold text-amber-300 bg-amber-500/10 border border-amber-500/25 rounded-xl"
               >
-                {user ? "Dashboard" : "Client Login"}
+                {user ? "Portal" : "Client Login"}
               </Link>
             </div>
 
             {isAdmin(user?.email) && (
               <Link
                 href="/admin"
-                className="w-full py-3 text-center text-xs font-black uppercase tracking-wider text-amber-300 bg-amber-500/10 border border-amber-500/30 rounded-xl flex items-center justify-center gap-2"
+                className="w-full py-2.5 text-center text-xs font-black uppercase tracking-wider text-amber-300 bg-amber-500/10 border border-amber-500/30 rounded-xl flex items-center justify-center gap-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <Terminal className="w-4 h-4" />
@@ -442,9 +518,9 @@ export default function Navbar() {
               href="/free-audit"
               prefetch={false}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="w-full py-4 text-center text-xs font-black uppercase tracking-widest text-slate-950 bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 rounded-xl shadow-[0_0_30px_rgba(245,158,11,0.3)]"
+              className="w-full py-3.5 text-center text-xs font-black uppercase tracking-widest text-slate-950 bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 rounded-xl shadow-[0_0_26px_rgba(245,158,11,0.3)]"
             >
-              Get Free 5-Min Rank &amp; Website Check
+              Get Free 5-Min Rank &amp; Site Video →
             </Link>
           </div>
         </div>

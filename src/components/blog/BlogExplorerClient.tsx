@@ -39,16 +39,16 @@ export default function BlogExplorerClient({ posts }: { posts: BlogCardItem[] })
   return (
     <div>
       {/* Search + Category Filter Bar */}
-      <div className="max-w-4xl mx-auto mb-14 space-y-5">
+      <div className="max-w-4xl mx-auto mb-7 sm:mb-14 space-y-3 sm:space-y-5">
         <div className="relative max-w-xl mx-auto">
-          <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          <Search className="absolute left-4 sm:left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search guides on Local SEO, Next.js speed, CRM, or contractors..."
+            placeholder="Search guides on Local SEO, Next.js speed, CRM..."
             aria-label="Search blog articles"
-            className="w-full pl-12 pr-11 py-4 rounded-2xl bg-[#0b0c10] border border-white/15 focus:border-amber-400 outline-none transition-colors text-sm text-white placeholder:text-slate-500"
+            className="w-full pl-11 sm:pl-12 pr-10 py-3 sm:py-4 rounded-2xl bg-[#0b0c10] border border-white/15 focus:border-amber-400 outline-none transition-colors text-xs sm:text-sm text-white placeholder:text-slate-500"
           />
           {query && (
             <button
@@ -62,7 +62,7 @@ export default function BlogExplorerClient({ posts }: { posts: BlogCardItem[] })
           )}
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-2">
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 sm:flex-wrap sm:justify-center sm:overflow-visible">
           {categories.map((cat) => {
             const active = activeCategory === cat;
             return (
@@ -70,7 +70,7 @@ export default function BlogExplorerClient({ posts }: { posts: BlogCardItem[] })
                 key={cat}
                 type="button"
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                className={`shrink-0 whitespace-nowrap px-3.5 sm:px-4 py-2 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
                   active
                     ? "bg-amber-400 text-slate-950 shadow-[0_0_20px_rgba(245,158,11,0.3)]"
                     : "bg-[#0b0c10] border border-white/10 text-slate-300 hover:border-amber-400/40 hover:text-white"

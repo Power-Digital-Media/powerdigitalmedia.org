@@ -521,7 +521,7 @@ export default function AllInOneSiteScanner({
     <section
       id="live-scanner"
       className={`relative overflow-hidden bg-[#06080f] text-white ${
-        isStandalonePage ? "pt-32 pb-20 md:pt-40 md:pb-24" : "py-20 md:py-24"
+        isStandalonePage ? "pt-[114px] pb-12 sm:pt-36 md:pt-40 md:pb-24" : "py-14 md:py-24"
       }`}
     >
       <div
@@ -541,27 +541,32 @@ export default function AllInOneSiteScanner({
         {/* ===================================================================
             HEADER & TOP WATCHTOWER INPUT CONSOLE
         ==================================================================== */}
-        <div className="max-w-4xl mx-auto text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/35 text-cyan-300 text-xs font-mono font-bold uppercase tracking-widest mb-5">
-            <Activity className="w-3.5 h-3.5 text-cyan-400" />
-            Powered by PDM Site Intelligence™ Unified Engine
+        <div className="max-w-4xl mx-auto text-center mb-5 sm:mb-10">
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/35 text-cyan-300 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider sm:tracking-widest mb-3 sm:mb-5">
+            <Activity className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+            <span className="sm:hidden">PDM Site Intelligence™ Live Scanner</span>
+            <span className="hidden sm:inline">Powered by PDM Site Intelligence™ Unified Engine</span>
           </div>
 
-          <HeadingTag className="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight leading-[1.02] text-white mb-4">
+          <HeadingTag className="text-[1.75rem] sm:text-5xl md:text-6xl font-black uppercase tracking-tight leading-[1.03] sm:leading-[1.02] text-white mb-2.5 sm:mb-4">
             {headlineOverride ? (
               headlineOverride
             ) : (
               <>
                 Scan Your Website,{" "}
                 <span className="text-amber-400">
-                  Google Schema, llms.txt &amp; Agentic Browsing
+                  Google Schema &amp; AI Search
                 </span>{" "}
                 in Seconds.
               </>
             )}
           </HeadingTag>
 
-          <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-3xl mx-auto">
+          <p className="sm:hidden text-slate-300 text-[13px] leading-snug max-w-md mx-auto">
+            {subheadlineOverride ||
+              "Live Google Mobile Lighthouse, Schema.org JSON-LD, /llms.txt AI readiness, and Central MS ranking checks."}
+          </p>
+          <p className="hidden sm:block text-slate-300 text-base sm:text-lg leading-relaxed max-w-3xl mx-auto">
             {subheadlineOverride ||
               "Zero fake vanity grades. Test any website live against Google Lighthouse Mobile & Agentic Browsing (X/4), /.well-known/ard.json, /llms.txt, Schema.org JSON-LD validation, Chrome UX cellular vitals, and Central MS local ranking signals."}
           </p>

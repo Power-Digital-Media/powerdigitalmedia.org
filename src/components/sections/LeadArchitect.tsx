@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function LeadArchitect() {
   return (
     <section
-      className="relative w-full py-20 md:py-28 overflow-hidden bg-[#060912] border-t border-white/10"
+      className="relative w-full py-11 md:py-28 overflow-hidden bg-[#060912] border-t border-white/10"
       id="about"
     >
       <div
@@ -16,10 +16,10 @@ export default function LeadArchitect() {
       />
 
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+        <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-16">
           {/* Image Column (Uncropped 16:10 Studio Frame + Clean Caption Below) */}
           <div className="w-full lg:w-5/12 relative">
-            <div className="rounded-3xl overflow-hidden border border-white/15 bg-[#090d18] shadow-2xl">
+            <div className="rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-[#090d18] shadow-2xl">
               <div className="relative aspect-[16/10] w-full bg-[#060912]">
                 <Image
                   src="/images/founder-booth.webp"
@@ -30,7 +30,7 @@ export default function LeadArchitect() {
                 />
               </div>
 
-              <div className="bg-[#070a12] border-t border-white/10 p-4 sm:p-5 flex flex-wrap items-center justify-between gap-2.5">
+              <div className="bg-[#070a12] border-t border-white/10 p-3.5 sm:p-5 flex flex-wrap items-center justify-between gap-2">
                 <div>
                   <div className="flex items-center gap-1.5 mb-0.5">
                     <div className="text-white font-bold text-sm">Damein Donald</div>
@@ -44,7 +44,7 @@ export default function LeadArchitect() {
                     Founder &amp; Lead Engineer • Power Digital Media
                   </p>
                 </div>
-                <div className="flex items-center gap-1.5 text-xs text-amber-300 font-bold bg-amber-500/15 px-3 py-1.5 rounded-full border border-amber-500/30 shrink-0">
+                <div className="flex items-center gap-1.5 text-[11px] sm:text-xs text-amber-300 font-bold bg-amber-500/15 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border border-amber-500/30 shrink-0">
                   <MapPin className="w-3.5 h-3.5 text-amber-400" /> Jackson, MS
                 </div>
               </div>
@@ -52,21 +52,21 @@ export default function LeadArchitect() {
           </div>
 
           {/* Text Column */}
-          <div className="w-full lg:w-7/12 space-y-6 text-left">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30">
+          <div className="w-full lg:w-7/12 space-y-4 sm:space-y-6 text-left">
+            <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30">
               <ShieldCheck className="w-4 h-4 text-amber-400" />
-              <span className="text-xs font-mono font-bold text-amber-300 tracking-wider uppercase">
+              <span className="text-[10px] sm:text-xs font-mono font-bold text-amber-300 tracking-wider uppercase">
                 No Call Centers • No Overseas Handoffs
               </span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-[1.06] uppercase tracking-tight">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-white leading-[1.06] uppercase tracking-tight">
               Built Right Here in Jackson.{" "}
               <span className="text-amber-400">Backed By My Direct Cell Number.</span>
             </h2>
 
-            <div className="space-y-4 text-slate-300 text-base sm:text-lg leading-relaxed">
-              <p>
+            <div className="space-y-3 sm:space-y-4 text-slate-300 text-sm sm:text-lg leading-relaxed">
+              <p className="hidden sm:block">
                 Most local business owners have been burned at least once by an agency that charged thousands for a slow template, locked them into a confusing contract, and vanished when something broke.
               </p>
               <p>
@@ -76,41 +76,42 @@ export default function LeadArchitect() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-1">
-              <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
-                <Code2 className="w-5 h-5 text-amber-400 mb-2" />
-                <h3 className="font-bold text-white text-sm">7–14 Day Launch</h3>
-                <p className="text-xs text-slate-400 mt-1">
+            {/* Compact 3-Col Strip on Mobile, Full Cards on Tablet/Desktop */}
+            <div className="grid grid-cols-3 gap-2 sm:gap-3.5 pt-1">
+              <div className="p-2.5 sm:p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                <Code2 className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 mb-1.5 sm:mb-2" />
+                <h3 className="font-bold text-white text-xs sm:text-sm leading-tight">7–14d Launch</h3>
+                <p className="hidden sm:block text-xs text-slate-400 mt-1">
                   Hand-coded in-house for speed, security, and local rankings.
                 </p>
               </div>
-              <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
-                <Smartphone className="w-5 h-5 text-amber-400 mb-2" />
-                <h3 className="font-bold text-white text-sm">Proprietary Field Apps</h3>
-                <p className="text-xs text-slate-400 mt-1">
+              <div className="p-2.5 sm:p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                <Smartphone className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 mb-1.5 sm:mb-2" />
+                <h3 className="font-bold text-white text-xs sm:text-sm leading-tight">$0-Seat Apps</h3>
+                <p className="hidden sm:block text-xs text-slate-400 mt-1">
                   PinCam™ + PinDrop™ wired straight into your website.
                 </p>
               </div>
-              <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
-                <PhoneCall className="w-5 h-5 text-amber-400 mb-2" />
-                <h3 className="font-bold text-white text-sm">Direct Cell Support</h3>
-                <p className="text-xs text-slate-400 mt-1">
+              <div className="p-2.5 sm:p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                <PhoneCall className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 mb-1.5 sm:mb-2" />
+                <h3 className="font-bold text-white text-xs sm:text-sm leading-tight">Direct Cell</h3>
+                <p className="hidden sm:block text-xs text-slate-400 mt-1">
                   Call or text me directly at (601) 446-2393 anytime.
                 </p>
               </div>
             </div>
 
-            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+            <div className="pt-1 sm:pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
               <Link
                 href="/free-audit"
-                className="px-7 py-4 bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 hover:brightness-110 transition-all shadow-[0_0_24px_rgba(245,158,11,0.28)]"
+                className="px-6 sm:px-7 py-3.5 sm:py-4 bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 hover:brightness-110 transition-all shadow-[0_0_24px_rgba(245,158,11,0.28)]"
               >
                 <span>Get Free 5-Min Video Breakdown</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <a
                 href="tel:6014462393"
-                className="px-6 py-4 rounded-xl border border-white/15 bg-white/[0.04] hover:bg-white/[0.09] text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all"
+                className="hidden sm:flex px-6 py-4 rounded-xl border border-white/15 bg-white/[0.04] hover:bg-white/[0.09] text-white font-bold text-xs uppercase tracking-wider items-center justify-center gap-2 transition-all"
               >
                 <PhoneCall className="w-4 h-4 text-amber-400" />
                 Call/Text (601) 446-2393

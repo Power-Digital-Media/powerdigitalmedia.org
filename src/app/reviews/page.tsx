@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import DeferredFooterSections from "@/components/ui/DeferredFooterSections";
+import MobileSnapCarousel from "@/components/ui/MobileSnapCarousel";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import {
     Star,
@@ -74,106 +75,112 @@ export default function ReviewsPage() {
             />
             <Navbar />
 
-            <section className="relative pt-36 pb-20 px-4 md:px-8 border-b border-white/[0.06] blueprint-grid overflow-hidden">
+            <section className="relative pt-[114px] pb-12 sm:pt-36 sm:pb-20 px-4 md:px-8 border-b border-white/[0.06] blueprint-grid overflow-hidden">
                 <div className="absolute top-16 left-1/2 -translate-x-1/2 w-[620px] h-[320px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none" />
 
                 <div className="max-w-5xl mx-auto w-full flex flex-col items-center text-center relative z-10">
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-300 text-[11px] font-mono font-bold uppercase tracking-[0.18em] mb-6">
-                        <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                        5.0★ Verified Reputation • Jackson, MS
+                    <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-300 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.14em] sm:tracking-[0.18em] mb-3 sm:mb-6 whitespace-nowrap">
+                        <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                        <span>5.0★ Verified Reviews • Jackson, MS</span>
                     </div>
 
-                    <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tight leading-[0.96] mb-4">
+                    <h1 className="text-[1.85rem] md:text-6xl font-black uppercase tracking-tight leading-[1.02] md:leading-[0.96] mb-3 sm:mb-4">
                         Trusted By Real{" "}
                         <span className="text-amber-400">Mississippi Operators.</span>
                     </h1>
 
-                    <p className="text-slate-300 max-w-2xl text-base md:text-lg mb-8 leading-relaxed">
+                    <p className="text-slate-300 max-w-2xl text-xs sm:text-base md:text-lg mb-4 sm:mb-8 leading-snug sm:leading-relaxed">
                         Every review below comes from a real local contractor, ministry leader, or
-                        business owner we work with directly. Already a client? Leaving a quick
-                        60-second Google review helps our Jackson studio tremendously!
+                        business owner we work with directly.
                     </p>
 
-                    <div className="flex items-center justify-center gap-2 mb-12">
+                    <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-6 sm:mb-12">
                         {[1, 2, 3, 4, 5].map((s) => (
                             <Star
                                 key={s}
-                                className="w-8 h-8 md:w-9 md:h-9 fill-amber-400 text-amber-400"
+                                className="w-6 h-6 sm:w-8 sm:h-8 md:w-9 md:h-9 fill-amber-400 text-amber-400"
                             />
                         ))}
                     </div>
 
                     {/* Direct Action Cards */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5 w-full mb-16 text-left">
-                        <a
-                            href={GOOGLE_REVIEW_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group rounded-3xl bg-[#12141c] border-2 border-amber-500/50 hover:border-amber-400 p-7 flex flex-col justify-between transition-all shadow-2xl"
+                    <div className="w-full mb-10 sm:mb-16 text-left">
+                        <MobileSnapCarousel
+                            itemCount={3}
+                            ariaLabel="Review and contact options"
+                            desktopGridClass="md:grid md:grid-cols-3 gap-5"
+                            itemLabel="actions"
                         >
-                            <div>
-                                <div className="flex items-center justify-between mb-4">
-                                    <div className="w-11 h-11 rounded-2xl bg-white flex items-center justify-center text-[#06080f] font-black text-lg">
-                                        G
-                                    </div>
-                                    <span className="px-3 py-1 rounded-full bg-amber-500/10 text-amber-300 font-mono font-bold text-xs border border-amber-500/30">
-                                        5.0 ★
-                                    </span>
-                                </div>
-                                <h2 className="text-lg font-black uppercase tracking-tight mb-2 text-white">
-                                    Leave a Google Review
-                                </h2>
-                                <p className="text-xs text-slate-300 mb-6 leading-relaxed">
-                                    Direct 1-click link to our verified Google Business Profile.
-                                    Takes under 60 seconds.
-                                </p>
-                            </div>
-                            <span className="w-full py-3.5 px-5 rounded-xl bg-amber-500 group-hover:bg-amber-400 text-[#06080f] font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-colors">
-                                Write Google Review <ExternalLink className="w-3.5 h-3.5" />
-                            </span>
-                        </a>
-
-                        <div className="rounded-3xl bg-[#0b0c10] border border-white/10 p-7 flex flex-col justify-between">
-                            <div>
-                                <div className="w-11 h-11 rounded-2xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-center mb-4 text-amber-400">
-                                    <Sparkles className="w-5 h-5" />
-                                </div>
-                                <h2 className="text-lg font-black uppercase tracking-tight mb-2 text-white">
-                                    Not A Client Yet?
-                                </h2>
-                                <p className="text-xs text-slate-300 mb-6 leading-relaxed">
-                                    See why your competitors outrank you on Google Maps with a free
-                                    5-minute site &amp; rank check.
-                                </p>
-                            </div>
-                            <Link
-                                href="/free-audit"
-                                className="w-full py-3.5 px-5 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-white font-bold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2"
-                            >
-                                Get Free Rank Check <ArrowRight className="w-3.5 h-3.5 text-amber-400" />
-                            </Link>
-                        </div>
-
-                        <div className="rounded-3xl bg-[#0b0c10] border border-white/10 p-7 flex flex-col justify-between">
-                            <div>
-                                <div className="w-11 h-11 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center mb-4">
-                                    <MessageSquare className="w-5 h-5 text-amber-400" />
-                                </div>
-                                <h2 className="text-lg font-black uppercase tracking-tight mb-2 text-white">
-                                    Direct Line To Damein
-                                </h2>
-                                <p className="text-xs text-slate-300 mb-6 leading-relaxed">
-                                    Need an update, speed boost, or want to talk through a new build?
-                                    Damein answers directly in Jackson.
-                                </p>
-                            </div>
                             <a
-                                href="tel:6014462393"
-                                className="w-full py-3.5 px-5 rounded-xl border border-white/15 text-white font-mono font-bold text-xs uppercase tracking-wider hover:bg-white/[0.08] transition-colors flex items-center justify-center gap-2"
+                                href={GOOGLE_REVIEW_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group rounded-3xl bg-[#12141c] border-2 border-amber-500/50 hover:border-amber-400 p-6 sm:p-7 flex flex-col justify-between transition-all shadow-2xl"
                             >
-                                Call (601) 446-2393
+                                <div>
+                                    <div className="flex items-center justify-between mb-4">
+                                        <div className="w-11 h-11 rounded-2xl bg-white flex items-center justify-center text-[#06080f] font-black text-lg">
+                                            G
+                                        </div>
+                                        <span className="px-3 py-1 rounded-full bg-amber-500/10 text-amber-300 font-mono font-bold text-xs border border-amber-500/30">
+                                            5.0 ★
+                                        </span>
+                                    </div>
+                                    <h2 className="text-lg font-black uppercase tracking-tight mb-2 text-white">
+                                        Leave a Google Review
+                                    </h2>
+                                    <p className="text-xs text-slate-300 mb-5 sm:mb-6 leading-relaxed">
+                                        Direct 1-click link to our verified Google Business Profile.
+                                        Takes under 60 seconds.
+                                    </p>
+                                </div>
+                                <span className="w-full py-3.5 px-5 rounded-xl bg-amber-500 group-hover:bg-amber-400 text-[#06080f] font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-colors">
+                                    Write Google Review <ExternalLink className="w-3.5 h-3.5" />
+                                </span>
                             </a>
-                        </div>
+
+                            <div className="rounded-3xl bg-[#0b0c10] border border-white/10 p-6 sm:p-7 flex flex-col justify-between">
+                                <div>
+                                    <div className="w-11 h-11 rounded-2xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-center mb-4 text-amber-400">
+                                        <Sparkles className="w-5 h-5" />
+                                    </div>
+                                    <h2 className="text-lg font-black uppercase tracking-tight mb-2 text-white">
+                                        Not A Client Yet?
+                                    </h2>
+                                    <p className="text-xs text-slate-300 mb-5 sm:mb-6 leading-relaxed">
+                                        See why your competitors outrank you on Google Maps with a free
+                                        5-minute site &amp; rank check.
+                                    </p>
+                                </div>
+                                <Link
+                                    href="/free-audit"
+                                    className="w-full py-3.5 px-5 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-white font-bold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2"
+                                >
+                                    Get Free Rank Check <ArrowRight className="w-3.5 h-3.5 text-amber-400" />
+                                </Link>
+                            </div>
+
+                            <div className="rounded-3xl bg-[#0b0c10] border border-white/10 p-6 sm:p-7 flex flex-col justify-between">
+                                <div>
+                                    <div className="w-11 h-11 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center mb-4">
+                                        <MessageSquare className="w-5 h-5 text-amber-400" />
+                                    </div>
+                                    <h2 className="text-lg font-black uppercase tracking-tight mb-2 text-white">
+                                        Direct Line To Damein
+                                    </h2>
+                                    <p className="text-xs text-slate-300 mb-5 sm:mb-6 leading-relaxed">
+                                        Need an update, speed boost, or want to talk through a new build?
+                                        Damein answers directly in Jackson.
+                                    </p>
+                                </div>
+                                <a
+                                    href="tel:6014462393"
+                                    className="w-full py-3.5 px-5 rounded-xl border border-white/15 text-white font-mono font-bold text-xs uppercase tracking-wider hover:bg-white/[0.08] transition-colors flex items-center justify-center gap-2"
+                                >
+                                    Call (601) 446-2393
+                                </a>
+                            </div>
+                        </MobileSnapCarousel>
                     </div>
 
                     {/* Verified Reviews Grid */}
@@ -202,7 +209,7 @@ export default function ReviewsPage() {
                                     rel="noopener noreferrer"
                                     className="text-emerald-400 hover:underline flex items-center gap-1"
                                 >
-                                    BBB A+ Accredited <ExternalLink className="w-3 h-3" />
+                                    BBB Accredited <ExternalLink className="w-3 h-3" />
                                 </a>
                             </div>
                         </div>
@@ -263,7 +270,7 @@ export default function ReviewsPage() {
                 </div>
             </section>
 
-            <DeferredFooterSections />
+            <DeferredFooterSections mode="inner" />
         </main>
     );
 }
