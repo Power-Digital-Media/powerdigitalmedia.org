@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink, ArrowRight, PhoneCall, Sparkles, Star } from "lucide-react";
 import { projects, Project } from "@/data/projects";
+import MobileSnapCarousel from "@/components/ui/MobileSnapCarousel";
 
 export default function Portfolio({ titleAs: Title = "h2" }: { titleAs?: "h1" | "h2" }) {
     return (
@@ -32,8 +33,13 @@ export default function Portfolio({ titleAs: Title = "h2" }: { titleAs?: "h1" | 
                     </p>
                 </div>
 
-                {/* 2-Column Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10">
+                {/* Mobile Snap Carousel (< 768px) / 2-Column Grid (Desktop) */}
+                <MobileSnapCarousel
+                    itemCount={projects.length}
+                    ariaLabel="Mississippi client websites and apps"
+                    desktopGridClass="md:grid md:grid-cols-2 gap-8 md:gap-10"
+                    itemLabel="builds"
+                >
                     {projects.map((project: Project) => {
                         const isExternal = Boolean(
                             project.netlifyUrl && project.netlifyUrl.startsWith("http")
@@ -172,7 +178,7 @@ export default function Portfolio({ titleAs: Title = "h2" }: { titleAs?: "h1" | 
                             </div>
                         );
                     })}
-                </div>
+                </MobileSnapCarousel>
 
                 {/* Bottom Callout Banner */}
                 <div className="mt-16 md:mt-20 p-6 sm:p-8 md:p-12 rounded-3xl bg-[#12141c] border border-amber-500/30 text-center max-w-4xl mx-auto flex flex-col items-center shadow-2xl">

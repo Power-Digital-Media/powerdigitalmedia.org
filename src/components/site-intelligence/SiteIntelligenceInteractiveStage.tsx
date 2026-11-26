@@ -2,6 +2,7 @@
 
 import React, { useCallback, useEffect, useState } from "react";
 import type { WatchtowerFleetSiteCard } from "@/lib/scanner-types";
+import MobileSnapCarousel from "@/components/ui/MobileSnapCarousel";
 import {
   Activity,
   AlertTriangle,
@@ -598,9 +599,9 @@ export default function SiteIntelligenceInteractiveStage() {
       )}
 
       <div className="p-4 sm:p-6 lg:p-8 space-y-6">
-        {/* Authentic 6-Card KPI Telemetry Row */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-          <div className="rounded-xl border border-slate-800 bg-slate-900/75 p-3.5">
+        {/* Authentic 6-Card KPI Telemetry Row (Single-Row Snap Strip on Mobile, 6-Col on Desktop) */}
+        <div className="flex sm:grid sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3 overflow-x-auto sm:overflow-visible no-scrollbar snap-x snap-mandatory pb-1 sm:pb-0">
+          <div className="shrink-0 w-[148px] sm:w-auto snap-start rounded-xl border border-slate-800 bg-slate-900/75 p-3 sm:p-3.5">
             <div className="flex items-center justify-between text-[11px] text-slate-400 mb-1">
               <span>Monitored Sites</span>
               <Globe className="w-3.5 h-3.5 text-cyan-400" />
@@ -611,7 +612,7 @@ export default function SiteIntelligenceInteractiveStage() {
             <p className="text-[10px] text-slate-400 mt-1">100% ownership verified</p>
           </div>
 
-          <div className="rounded-xl border border-emerald-500/25 bg-emerald-950/20 p-3.5">
+          <div className="shrink-0 w-[148px] sm:w-auto snap-start rounded-xl border border-emerald-500/25 bg-emerald-950/20 p-3 sm:p-3.5">
             <div className="flex items-center justify-between text-[11px] text-emerald-300 mb-1">
               <span>Healthy</span>
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
@@ -620,7 +621,7 @@ export default function SiteIntelligenceInteractiveStage() {
             <p className="text-[10px] text-emerald-300/75 mt-1">Zero technical errors</p>
           </div>
 
-          <div className="rounded-xl border border-amber-500/20 bg-amber-950/15 p-3.5">
+          <div className="shrink-0 w-[148px] sm:w-auto snap-start rounded-xl border border-amber-500/20 bg-amber-950/15 p-3 sm:p-3.5">
             <div className="flex items-center justify-between text-[11px] text-amber-300 mb-1">
               <span>Warnings</span>
               <AlertTriangle className="w-3.5 h-3.5 text-amber-400" />
@@ -629,7 +630,7 @@ export default function SiteIntelligenceInteractiveStage() {
             <p className="text-[10px] text-amber-300/75 mt-1">SSL &amp; links clean</p>
           </div>
 
-          <div className="rounded-xl border border-red-500/20 bg-red-950/15 p-3.5">
+          <div className="shrink-0 w-[148px] sm:w-auto snap-start rounded-xl border border-red-500/20 bg-red-950/15 p-3 sm:p-3.5">
             <div className="flex items-center justify-between text-[11px] text-red-300 mb-1">
               <span>Critical Outages</span>
               <XCircle className="w-3.5 h-3.5 text-red-400" />
@@ -638,7 +639,7 @@ export default function SiteIntelligenceInteractiveStage() {
             <p className="text-[10px] text-red-300/75 mt-1">Multi-probe confirmed</p>
           </div>
 
-          <div className="rounded-xl border border-slate-800 bg-slate-900/75 p-3.5">
+          <div className="shrink-0 w-[148px] sm:w-auto snap-start rounded-xl border border-slate-800 bg-slate-900/75 p-3 sm:p-3.5">
             <div className="flex items-center justify-between text-[11px] text-slate-400 mb-1">
               <span>Truth Policy</span>
               <Clock className="w-3.5 h-3.5 text-amber-400" />
@@ -647,7 +648,7 @@ export default function SiteIntelligenceInteractiveStage() {
             <p className="text-[10px] text-slate-400 mt-1">Zero invented scores</p>
           </div>
 
-          <div className="rounded-xl border border-slate-800 bg-slate-900/75 p-3.5">
+          <div className="shrink-0 w-[148px] sm:w-auto snap-start rounded-xl border border-slate-800 bg-slate-900/75 p-3 sm:p-3.5">
             <div className="flex items-center justify-between text-[11px] text-slate-400 mb-1">
               <span>Firestore Health</span>
               <Server className="w-3.5 h-3.5 text-cyan-400" />
@@ -657,8 +658,8 @@ export default function SiteIntelligenceInteractiveStage() {
           </div>
         </div>
 
-        {/* 4 Authentic Capability Tabs */}
-        <div className="flex flex-wrap items-center gap-2 border-b border-slate-800 pb-3">
+        {/* 4 Authentic Capability Tabs (Single-Row Snap Strip on Mobile) */}
+        <div className="flex sm:flex-wrap items-center gap-2 overflow-x-auto sm:overflow-visible no-scrollbar snap-x snap-mandatory border-b border-slate-800 pb-3">
           {[
             {
               id: "portfolio" as const,
@@ -688,13 +689,13 @@ export default function SiteIntelligenceInteractiveStage() {
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-3.5 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 cursor-pointer ${
+                className={`shrink-0 snap-start whitespace-nowrap px-3.5 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 cursor-pointer ${
                   active
                     ? "bg-cyan-500/15 text-cyan-300 border border-cyan-500/35 shadow-[0_0_20px_rgba(6,182,212,0.12)]"
                     : "text-slate-400 hover:text-slate-200 bg-slate-900/60 border border-slate-800"
                 }`}
               >
-                <Icon className="w-4 h-4" />
+                <Icon className="w-4 h-4 shrink-0" />
                 <span>{tab.label}</span>
               </button>
             );
@@ -713,7 +714,13 @@ export default function SiteIntelligenceInteractiveStage() {
               </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <MobileSnapCarousel
+              itemCount={sites.length}
+              ariaLabel="Monitored Mississippi client websites"
+              desktopGridClass="md:grid md:grid-cols-2 gap-4"
+              contained
+              itemLabel="sites"
+            >
               {sites.map((site) => {
                 const isScanning = scanningId === site.id;
                 return (
@@ -845,7 +852,7 @@ export default function SiteIntelligenceInteractiveStage() {
                   </div>
                 );
               })}
-            </div>
+            </MobileSnapCarousel>
           </div>
         )}
 

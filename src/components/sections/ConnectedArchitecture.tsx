@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import MobileSnapCarousel from "@/components/ui/MobileSnapCarousel";
 import {
   CreditCard,
   Truck,
@@ -1048,16 +1049,15 @@ export default function ConnectedArchitecture() {
           </p>
         </div>
 
-        {/* Client Selection Switcher Tabs */}
-        <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10 sm:mb-12 max-w-4xl mx-auto p-1.5 rounded-2xl bg-slate-900/90 border border-white/10 backdrop-blur-xl shadow-2xl">
-          {clientArchitectures.map((client, idx) => {
+        {/* Client Selection Switcher Tabs (Single-Row Snap Strip on Mobile, Single-Row Flex Pills on Desktop) */}
+        <div className="flex sm:flex-wrap items-center justify-start sm:justify-center gap-2 sm:gap-2.5 overflow-x-auto no-scrollbar snap-x snap-mandatory mb-8 sm:mb-12 max-w-5xl mx-auto p-1.5 rounded-2xl bg-slate-900/90 border border-white/10 backdrop-blur-xl shadow-2xl">
+          {clientArchitectures.map((client) => {
             const isActive = client.id === activeClient.id;
-            const isLastOdd = idx === clientArchitectures.length - 1 && clientArchitectures.length % 2 === 1;
             return (
               <button
                 key={client.id}
                 onClick={() => handleSelectClient(client)}
-                className={`${isLastOdd ? "col-span-2 sm:col-span-1" : ""} sm:flex-1 px-3 sm:px-4 py-3 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider transition-all duration-300 text-center relative cursor-pointer ${
+                className={`shrink-0 snap-start sm:shrink px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl text-xs sm:text-[13px] font-black uppercase tracking-wider whitespace-nowrap transition-all duration-300 text-center relative cursor-pointer ${
                   isActive
                     ? "bg-white text-slate-950 shadow-lg"
                     : "text-slate-400 hover:text-white hover:bg-white/5"
@@ -1108,11 +1108,63 @@ export default function ConnectedArchitecture() {
             </div>
           </div>
 
+          {/* Mobile/Tablet Single-Row System View Pill Bar (Keeps Switcher + Live Preview in 1 Screen) */}
+          <div className="lg:hidden mb-3.5 space-y-2.5">
+            <div
+              className="flex items-center gap-1.5 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-1"
+              role="tablist"
+              aria-label="Select live architecture view"
+            >
+              <button
+                type="button"
+                role="tab"
+                aria-selected={selectedNode === null}
+                onClick={() => setSelectedNode(null)}
+                className={`shrink-0 snap-start inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-[11px] font-extrabold uppercase tracking-wider border transition-all cursor-pointer ${
+                  selectedNode === null
+                    ? "bg-amber-400 text-slate-950 border-amber-300 shadow-[0_0_16px_rgba(245,158,11,0.35)]"
+                    : "bg-slate-950/80 text-slate-300 border-white/15 hover:text-white"
+                }`}
+              >
+                <Home className="w-3.5 h-3.5 shrink-0" />
+                <span>Core Hub</span>
+              </button>
+              {activeClient.nodes.map((node) => {
+                const NodeIcon = node.icon;
+                const isSelected = selectedNode?.id === node.id;
+                const shortTitle = node.title
+                  .replace(/^PDM\s+/i, "")
+                  .replace(/\s+(Field Map|Lead Pipeline|& Review Flows|Checkout)$/i, "");
+                return (
+                  <button
+                    key={`pill-${node.id}`}
+                    type="button"
+                    role="tab"
+                    aria-selected={isSelected}
+                    onClick={() => handleToggleNode(node)}
+                    className={`shrink-0 snap-start inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-[11px] font-extrabold uppercase tracking-wider border transition-all cursor-pointer ${
+                      isSelected
+                        ? "bg-amber-400 text-slate-950 border-amber-300 shadow-[0_0_16px_rgba(245,158,11,0.35)]"
+                        : "bg-slate-950/80 text-slate-300 border-white/15 hover:text-white"
+                    }`}
+                  >
+                    <NodeIcon
+                      className={`w-3.5 h-3.5 shrink-0 ${
+                        isSelected ? "text-slate-950" : node.iconColor
+                      }`}
+                    />
+                    <span className="max-w-[165px] truncate">{shortTitle}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
           {/* Interactive Schematic Grid (Central Engine + 4 Branching Integration Nodes) */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center">
             
-            {/* Left Column: 2 Connected Nodes */}
-            <div className="lg:col-span-3 flex flex-col gap-3.5 sm:gap-4">
+            {/* Desktop Left Column: 2 Connected Nodes */}
+            <div className="hidden lg:flex lg:col-span-3 flex-col gap-3.5 sm:gap-4">
               {activeClient.nodes.slice(0, 2).map((node) => {
                 const IconComponent = node.icon;
                 const isSelected = selectedNode?.id === node.id;
@@ -1153,11 +1205,11 @@ export default function ConnectedArchitecture() {
 
             {/* Center Column: Interactive Core Engine Browser / Smartphone Mockup */}
             <div className="lg:col-span-6 flex flex-col items-center">
-              {/* Centered Controls: View Homepage Pill Button + Device Mode Toggle */}
-              <div className="mb-4 flex flex-wrap items-center justify-center gap-2.5 w-full">
+              {/* Centered Controls: View Homepage Pill Button (Desktop) + Device Mode Toggle */}
+              <div className="mb-3.5 sm:mb-4 flex flex-wrap items-center justify-between lg:justify-center gap-2.5 w-full">
                 <button
                   onClick={() => setSelectedNode(null)}
-                  className={`inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full text-[11px] sm:text-xs font-mono font-bold transition-all duration-300 border cursor-pointer ${
+                  className={`hidden lg:inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full text-[11px] sm:text-xs font-mono font-bold transition-all duration-300 border cursor-pointer ${
                     selectedNode === null
                       ? "bg-amber-400 text-slate-950 border-amber-400 shadow-[0_0_18px_rgba(245,158,11,0.35)]"
                       : "bg-slate-900/90 hover:bg-slate-800 text-slate-300 hover:text-white border-white/15 hover:border-amber-400/50 hover:shadow-lg"
@@ -1172,29 +1224,35 @@ export default function ConnectedArchitecture() {
                   )}
                 </button>
 
+                <span className="lg:hidden text-[11px] font-mono font-bold text-amber-300 truncate">
+                  {selectedNode ? `Active: ${selectedNode.badge}` : "Viewing: Core Hub"}
+                </span>
+
                 {/* Desktop (16:10) vs Smartphone (9:16) Device Toggle */}
-                <div className="inline-flex items-center p-1 rounded-full bg-slate-950/90 border border-white/15 shadow-inner">
+                <div className="inline-flex items-center p-1 rounded-full bg-slate-950/90 border border-white/15 shadow-inner ml-auto lg:ml-0">
                   <button
                     onClick={() => setDeviceMode("desktop")}
-                    className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-bold transition-all duration-200 cursor-pointer ${
+                    className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full text-[11px] font-mono font-bold transition-all duration-200 cursor-pointer ${
                       deviceMode === "desktop"
                         ? "bg-white/20 text-white shadow-sm border border-white/20"
                         : "text-slate-400 hover:text-white"
                     }`}
                   >
                     <Monitor className="w-3.5 h-3.5" />
-                    <span>Desktop (16:10)</span>
+                    <span>Desktop</span>
+                    <span className="hidden sm:inline">(16:10)</span>
                   </button>
                   <button
                     onClick={() => setDeviceMode("mobile")}
-                    className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-bold transition-all duration-200 cursor-pointer ${
+                    className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full text-[11px] font-mono font-bold transition-all duration-200 cursor-pointer ${
                       deviceMode === "mobile"
                         ? "bg-amber-400 text-slate-950 font-black shadow-[0_0_12px_rgba(245,158,11,0.4)]"
                         : "text-slate-400 hover:text-amber-400"
                     }`}
                   >
                     <Smartphone className="w-3.5 h-3.5" />
-                    <span>Mobile (9:16)</span>
+                    <span>Mobile</span>
+                    <span className="hidden sm:inline">(9:16)</span>
                   </button>
                 </div>
               </div>
@@ -1252,10 +1310,10 @@ export default function ConnectedArchitecture() {
 
                   {/* 100% Unobstructed Screenshot / Live System View Display */}
                   <div
-                    className={`relative w-full bg-slate-900 overflow-hidden ${
+                    className={`relative w-full bg-slate-900 ${
                       selectedNode && selectedNode.displayType && selectedNode.displayType !== "image"
-                        ? "min-h-[260px] sm:aspect-[16/10]"
-                        : "aspect-[16/10]"
+                        ? "min-h-[240px] max-h-[295px] overflow-y-auto sm:max-h-none sm:overflow-hidden sm:aspect-[16/10]"
+                        : "aspect-[16/10] overflow-hidden"
                     }`}
                   >
                     <AnimatePresence mode="wait">
@@ -1291,7 +1349,7 @@ export default function ConnectedArchitecture() {
                   </div>
 
                   {/* Clean Non-Overlapping Architecture Summary Dock Below Screenshot */}
-                  <div className="p-3.5 sm:p-4 bg-slate-950 border-t border-white/10">
+                  <div className="p-3 sm:p-4 bg-slate-950 border-t border-white/10">
                     <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
                       <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1">
                         <CheckCircle2 className="w-3 h-3 text-amber-400 shrink-0" />
@@ -1301,14 +1359,14 @@ export default function ConnectedArchitecture() {
                         {selectedNode ? selectedNode.techTag : activeClient.industry}
                       </span>
                     </div>
-                    <p className="text-xs text-slate-200 leading-relaxed">
+                    <p className="text-xs text-slate-200 leading-relaxed line-clamp-2 sm:line-clamp-none">
                       {selectedNode ? selectedNode.description : activeClient.summary}
                     </p>
                   </div>
                 </div>
               )}
 
-              <div className="mt-4 flex items-center justify-center gap-2 text-xs text-slate-400 text-center">
+              <div className="hidden lg:flex mt-4 items-center justify-center gap-2 text-xs text-slate-400 text-center">
                 <Layers className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                 <span>
                   {selectedNode ? "Tap card again or 'Return to Core Homepage' to view hub" : "Tap any integration card to inspect its live system & pages"}
@@ -1316,8 +1374,8 @@ export default function ConnectedArchitecture() {
               </div>
             </div>
 
-            {/* Right Column: 2 Connected Nodes */}
-            <div className="lg:col-span-3 flex flex-col gap-3.5 sm:gap-4">
+            {/* Desktop Right Column: 2 Connected Nodes */}
+            <div className="hidden lg:flex lg:col-span-3 flex-col gap-3.5 sm:gap-4">
               {activeClient.nodes.slice(2, 4).map((node) => {
                 const IconComponent = node.icon;
                 const isSelected = selectedNode?.id === node.id;
@@ -1354,6 +1412,64 @@ export default function ConnectedArchitecture() {
                   </button>
                 );
               })}
+            </div>
+
+            {/* Mobile/Tablet Single-Layer Horizontal Snap Carousel of All 4 Integration Cards */}
+            <div className="lg:hidden w-full pt-1">
+              <MobileSnapCarousel
+                itemCount={activeClient.nodes.length}
+                ariaLabel={`${activeClient.shortName} connected integrations`}
+                desktopGridClass=""
+                breakpoint="lg"
+                contained
+                itemLabel="integrations"
+                resetKey={activeClient.id}
+                activeIndexOverride={
+                  selectedNode
+                    ? activeClient.nodes.findIndex((n) => n.id === selectedNode.id)
+                    : null
+                }
+              >
+                {activeClient.nodes.map((node) => {
+                  const IconComponent = node.icon;
+                  const isSelected = selectedNode?.id === node.id;
+                  return (
+                    <button
+                      key={`mob-${node.id}`}
+                      type="button"
+                      onClick={() => handleToggleNode(node)}
+                      className={`text-left p-4 rounded-2xl border transition-all duration-300 cursor-pointer flex flex-col justify-between ${
+                        isSelected
+                          ? "bg-slate-800/95 border-amber-400 shadow-[0_0_22px_rgba(245,158,11,0.2)]"
+                          : "bg-slate-950/75 border-white/10 hover:border-white/25"
+                      }`}
+                    >
+                      <div>
+                        <div className="flex items-center justify-between gap-2 mb-2.5">
+                          <div
+                            className={`w-9 h-9 rounded-xl flex items-center justify-center border shrink-0 ${node.iconBg}`}
+                          >
+                            <IconComponent className={`w-4 h-4 ${node.iconColor}`} />
+                          </div>
+                          <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-md bg-white/5 text-slate-300 border border-white/10 truncate">
+                            {node.badge}
+                          </span>
+                        </div>
+                        <h4 className="text-sm font-black text-white uppercase tracking-tight mb-1">
+                          {node.title}
+                        </h4>
+                        <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed">
+                          {node.description}
+                        </p>
+                      </div>
+                      <div className="mt-2.5 flex items-center justify-between gap-2 text-[10px] font-mono font-bold text-amber-400">
+                        <span>{node.techTag}</span>
+                        <span>{isSelected ? "✓ Viewing Above" : "Tap to Inspect ↑"}</span>
+                      </div>
+                    </button>
+                  );
+                })}
+              </MobileSnapCarousel>
             </div>
 
           </div>

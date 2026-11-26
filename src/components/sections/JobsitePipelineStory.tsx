@@ -14,7 +14,36 @@ import {
   ShieldCheck,
   MessageSquare,
   FileText,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
+
+const PIPELINE_STAGES = [
+  {
+    idx: 0 as const,
+    mobilePill: "01 · PinCam™",
+    step: "STEP 01 • ON THE JOB SITE",
+    title: "Capture & Prove With PinCam™",
+    desc: "Ghost before/after alignment, damage markups, GPS watermarks & instant PDF customer reports.",
+    icon: Camera,
+  },
+  {
+    idx: 1 as const,
+    mobilePill: "02 · PinDrop™",
+    step: "STEP 02 • GOOGLE MAP PACK",
+    title: "Rank the Neighborhood With PinDrop™",
+    desc: "1 tap publishes a geo-tagged project page to your website and texts the homeowner for a 5-star review.",
+    icon: MapPin,
+  },
+  {
+    idx: 2 as const,
+    mobilePill: "03 · CRM",
+    step: "STEP 03 • AUTOMATED CRM & FOLLOW-UPS",
+    title: "Route Every Quote Into Capsule CRM",
+    desc: "Interactive quote calculators & web forms sync straight into Capsule CRM with automated Transpond follow-ups.",
+    icon: PhoneIncoming,
+  },
+];
 
 export default function JobsitePipelineStory() {
   const [ghostSplit, setGhostSplit] = useState(0);
@@ -56,31 +85,38 @@ export default function JobsitePipelineStory() {
           </p>
         </div>
 
-        {/* Interactive 3-Stage Selector Bar */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-          {[
-            {
-              idx: 0 as const,
-              step: "STEP 01 • ON THE JOB SITE",
-              title: "Capture & Prove With PinCam™",
-              desc: "Ghost before/after alignment, damage markups, GPS watermarks & instant PDF customer reports.",
-              icon: Camera,
-            },
-            {
-              idx: 1 as const,
-              step: "STEP 02 • GOOGLE MAP PACK",
-              title: "Rank the Neighborhood With PinDrop™",
-              desc: "1 tap publishes a geo-tagged project page to your website and texts the homeowner for a 5-star review.",
-              icon: MapPin,
-            },
-            {
-              idx: 2 as const,
-              step: "STEP 03 • AUTOMATED CRM & FOLLOW-UPS",
-              title: "Route Every Quote Into Capsule CRM",
-              desc: "Interactive quote calculators & web forms sync straight into Capsule CRM with automated Transpond follow-ups.",
-              icon: PhoneIncoming,
-            },
-          ].map((item) => {
+        {/* Mobile Single-Row Thumb Switcher (Keeps Switcher + Live Stage in 1 Screen) */}
+        <div
+          className="md:hidden grid grid-cols-3 gap-1.5 mb-3 p-1.5 rounded-2xl bg-[#090d18]/95 border border-white/10 backdrop-blur-xl shadow-xl"
+          role="tablist"
+          aria-label="Select pipeline stage"
+        >
+          {PIPELINE_STAGES.map((item) => {
+            const Icon = item.icon;
+            const selected = activeStage === item.idx;
+            return (
+              <button
+                key={item.step}
+                type="button"
+                role="tab"
+                aria-selected={selected}
+                onClick={() => setActiveStage(item.idx)}
+                className={`flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-[11px] font-extrabold tracking-tight transition-all cursor-pointer ${
+                  selected
+                    ? "bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 shadow-[0_0_18px_rgba(245,158,11,0.3)]"
+                    : "text-slate-300 hover:text-white bg-white/[0.03]"
+                }`}
+              >
+                <Icon className="w-3.5 h-3.5 shrink-0" />
+                <span className="truncate">{item.mobilePill}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Desktop Interactive 3-Stage Selector Bar */}
+        <div className="hidden md:grid md:grid-cols-3 gap-4 mb-10">
+          {PIPELINE_STAGES.map((item) => {
             const Icon = item.icon;
             const selected = activeStage === item.idx;
             return (
@@ -122,7 +158,43 @@ export default function JobsitePipelineStory() {
         </div>
 
         {/* Live Interactive Stage Viewport */}
-        <div className="rounded-3xl obsidian-surface p-4 sm:p-8 lg:p-10">
+        <div className="rounded-3xl obsidian-surface p-3.5 sm:p-8 lg:p-10">
+          {/* Compact Mobile Stage Context & Prev/Next Stepper */}
+          <div className="md:hidden flex items-center justify-between gap-2 pb-3 mb-3.5 border-b border-white/10">
+            <div className="min-w-0">
+              <div className="text-[10px] font-mono font-extrabold uppercase tracking-widest text-amber-400">
+                {PIPELINE_STAGES[activeStage].step}
+              </div>
+              <div className="text-xs font-bold text-white truncate">
+                {PIPELINE_STAGES[activeStage].title}
+              </div>
+            </div>
+            <div className="inline-flex items-center gap-1 shrink-0">
+              <button
+                type="button"
+                aria-label="Previous pipeline stage"
+                onClick={() =>
+                  setActiveStage(((activeStage + 2) % 3) as 0 | 1 | 2)
+                }
+                className="w-7 h-7 rounded-full border border-white/15 bg-white/[0.04] text-white flex items-center justify-center active:scale-95 cursor-pointer"
+              >
+                <ChevronLeft className="w-3.5 h-3.5" />
+              </button>
+              <span className="text-[10px] font-mono font-bold text-slate-300 px-1">
+                {activeStage + 1}/3
+              </span>
+              <button
+                type="button"
+                aria-label="Next pipeline stage"
+                onClick={() =>
+                  setActiveStage(((activeStage + 1) % 3) as 0 | 1 | 2)
+                }
+                className="w-7 h-7 rounded-full border border-white/15 bg-white/[0.04] text-white flex items-center justify-center active:scale-95 cursor-pointer"
+              >
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          </div>
           {activeStage === 0 && (
             <div className="grid lg:grid-cols-12 gap-7 lg:gap-12 items-center">
               {/* Interactive Before/After Ghost Camera Preview */}
@@ -362,25 +434,25 @@ export default function JobsitePipelineStory() {
                   <p className="text-xs sm:text-sm text-slate-200 italic font-serif mb-3.5">
                     &ldquo;Completed full tear-off, synthetic underlayment &amp; 30-yr charcoal architectural shingles.&rdquo;
                   </p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div className="relative aspect-[16/10] sm:aspect-auto sm:h-32 rounded-xl overflow-hidden border border-white/10">
+                  <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
+                    <div className="relative h-24 sm:h-32 rounded-xl overflow-hidden border border-white/10">
                       <Image
                         src="/pindrop/sat-madison.jpg"
                         alt="Madison MS satellite neighborhood mini-map"
                         fill
-                        sizes="(max-width: 640px) 90vw, 280px"
+                        sizes="(max-width: 640px) 45vw, 280px"
                         className="object-cover"
                       />
-                      <span className="absolute bottom-2 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-[#0b0c10]/90 border border-white/15 text-[10px] font-extrabold text-white">
+                      <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full bg-[#0b0c10]/90 border border-white/15 text-[9px] sm:text-[10px] font-extrabold text-white whitespace-nowrap">
                         Madison, MS
                       </span>
                     </div>
-                    <div className="relative aspect-[16/10] sm:aspect-auto sm:h-32 rounded-xl overflow-hidden border border-white/10">
+                    <div className="relative h-24 sm:h-32 rounded-xl overflow-hidden border border-white/10">
                       <Image
                         src="/pincam/roof-after.jpg"
                         alt="Completed roof photo"
                         fill
-                        sizes="(max-width: 640px) 90vw, 280px"
+                        sizes="(max-width: 640px) 45vw, 280px"
                         className="object-cover"
                       />
                     </div>

@@ -2,6 +2,7 @@
 
 import { Zap, XCircle, CheckCircle2, AlertTriangle, Sparkles, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import MobileSnapCarousel from "@/components/ui/MobileSnapCarousel";
 
 export default function SpeedComparisonCard() {
   return (
@@ -33,8 +34,14 @@ export default function SpeedComparisonCard() {
           </p>
         </div>
 
-        {/* Side-by-Side Comparison Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-stretch">
+        {/* Side-by-Side Comparison Cards (Swipeable Single-Layer on Mobile) */}
+        <MobileSnapCarousel
+          itemCount={2}
+          ariaLabel="Website speed comparison"
+          desktopGridClass="lg:grid lg:grid-cols-2 gap-6 md:gap-8 items-stretch"
+          breakpoint="lg"
+          itemLabel="comparisons"
+        >
           {/* The Slow Template Site */}
           <div className="rounded-3xl p-6 sm:p-8 bg-[#0b0c10] border border-red-500/20 flex flex-col justify-between relative overflow-hidden shadow-xl">
             <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/5 rounded-full blur-2xl pointer-events-none" />
@@ -142,7 +149,7 @@ export default function SpeedComparisonCard() {
               </Link>
             </div>
           </div>
-        </div>
+        </MobileSnapCarousel>
 
         {/* Quick Call Out Strip */}
         <div className="mt-10 p-5 sm:p-6 rounded-2xl bg-[#0b0c10] border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">

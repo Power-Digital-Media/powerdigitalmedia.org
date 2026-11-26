@@ -219,13 +219,13 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          <div className="flex sm:grid sm:grid-cols-3 lg:grid-cols-5 gap-3 overflow-x-auto sm:overflow-visible no-scrollbar snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0 pb-2 sm:pb-0">
             {METRO_CITIES.map((city) => (
               <Link
                 key={city.slug}
                 href={`/locations/${city.slug}`}
                 prefetch={false}
-                className="group p-4 rounded-2xl bg-white/[0.03] hover:bg-amber-500/[0.08] border border-white/10 hover:border-amber-500/40 transition-all"
+                className="shrink-0 w-[185px] sm:w-auto snap-start group p-4 rounded-2xl bg-white/[0.03] hover:bg-amber-500/[0.08] border border-white/10 hover:border-amber-500/40 transition-all"
               >
                 <div className="flex items-center justify-between mb-2">
                   <MapPin className="w-4 h-4 text-amber-400" />

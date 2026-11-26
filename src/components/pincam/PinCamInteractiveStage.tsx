@@ -98,9 +98,38 @@ export default function PinCamInteractiveStage() {
 
   return (
     <div className="w-full">
-      {/* Interactive Feature Tab Selector */}
+      {/* Mobile Single-Row Horizontal Snap Tab Strip (< 640px) */}
       <div
-        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 mb-7 sm:mb-8"
+        className="sm:hidden flex items-center gap-2 overflow-x-auto no-scrollbar snap-x snap-mandatory mb-3.5 pb-1"
+        role="tablist"
+        aria-label="PinCam interactive app features"
+      >
+        {TABS.map((tab) => {
+          const Icon = tab.icon;
+          const active = activeTab === tab.id;
+          return (
+            <button
+              key={`mob-${tab.id}`}
+              type="button"
+              role="tab"
+              aria-selected={active}
+              onClick={() => setActiveTab(tab.id)}
+              className={`shrink-0 snap-start inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl border text-xs font-extrabold transition-all cursor-pointer ${
+                active
+                  ? "bg-amber-400 text-slate-950 border-amber-300 shadow-[0_0_18px_rgba(245,158,11,0.3)]"
+                  : "bg-[#080c16]/90 text-slate-300 border-white/15"
+              }`}
+            >
+              <Icon className="w-3.5 h-3.5 shrink-0" />
+              <span className="whitespace-nowrap">{tab.label}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Tablet & Desktop Interactive Feature Tab Selector */}
+      <div
+        className="hidden sm:grid sm:grid-cols-3 lg:grid-cols-5 gap-2.5 mb-7 sm:mb-8"
         role="tablist"
         aria-label="PinCam interactive app features"
       >

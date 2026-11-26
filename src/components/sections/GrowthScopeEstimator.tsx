@@ -74,6 +74,13 @@ export default function GrowthScopeEstimator({
   const [selectedAddOns, setSelectedAddOns] = useState<EstimatorAddOnId[]>(
     defaultAddOns ?? initialIndustry.recommendedAddOns
   );
+  const [expandedMobileDetails, setExpandedMobileDetails] = useState<
+    Record<string, boolean>
+  >({});
+
+  const toggleMobileDetails = (key: string) => {
+    setExpandedMobileDetails((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
 
   const [status, setStatus] = useState<
     "idle" | "submitting" | "success" | "error"
@@ -220,13 +227,38 @@ export default function GrowthScopeEstimator({
           </p>
         </div>
 
+        {/* Mobile Sticky Live Ballpark Bar (Updates Instantly While Toggling Below) */}
+        <div className="lg:hidden sticky top-[60px] sm:top-[68px] z-30 mb-6 -mx-1">
+          <div className="rounded-2xl bg-[#0b0f1c]/95 backdrop-blur-xl border border-amber-400/50 px-3.5 py-2.5 shadow-[0_14px_34px_rgba(0,0,0,0.75),0_0_20px_rgba(245,158,11,0.18)] flex items-center justify-between gap-2.5">
+            <div className="min-w-0">
+              <div className="text-[10px] font-mono font-extrabold uppercase tracking-wider text-amber-300 truncate">
+                Live Scope • {city}, MS
+              </div>
+              <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                <span className="text-base sm:text-lg font-black text-amber-400 tracking-tight">
+                  {totals.monthlyRangeLabel}
+                </span>
+                <span className="text-[11px] font-semibold text-slate-300">
+                  {needsNewWebsite ? `+ ${totals.oneTimeRangeLabel} build` : "• $0 build"}
+                </span>
+              </div>
+            </div>
+            <a
+              href="#estimator-summary-card"
+              className="shrink-0 px-3.5 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-[11px] font-black uppercase tracking-wider shadow-md active:scale-95 transition-all"
+            >
+              Lock Scope ↓
+            </a>
+          </div>
+        </div>
+
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           {/* =================================================================
               LEFT COLUMN (7 COLS): MODULAR CONFIGURATOR
           ================================================================== */}
-          <div className="lg:col-span-7 space-y-7">
+          <div className="lg:col-span-7 space-y-6 sm:space-y-7">
             {/* STEP 1: BUSINESS TYPE */}
-            <div className="rounded-3xl bg-[#090d18] border border-white/10 p-5 sm:p-7 space-y-4">
+            <div className="rounded-3xl bg-[#090d18] border border-white/10 p-4 sm:p-7 space-y-4">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <span className="text-[11px] font-mono font-extrabold uppercase tracking-widest text-amber-400">
                   Step 01 • Select Your Industry
@@ -236,7 +268,7 @@ export default function GrowthScopeEstimator({
                 </span>
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
                 {ESTIMATOR_BUSINESS_TYPES.map((b) => {
                   const Icon = INDUSTRY_ICONS[b.id];
                   const active = b.id === industryId;
@@ -245,26 +277,26 @@ export default function GrowthScopeEstimator({
                       key={b.id}
                       type="button"
                       onClick={() => handleSelectIndustry(b.id)}
-                      className={`text-left p-4 rounded-2xl border transition-all cursor-pointer flex items-start gap-3.5 ${
+                      className={`text-left p-3 sm:p-4 rounded-2xl border transition-all cursor-pointer flex flex-col sm:flex-row items-start gap-2.5 sm:gap-3.5 ${
                         active
                           ? "bg-amber-500/[0.11] border-amber-400 shadow-[0_0_28px_rgba(245,158,11,0.16)]"
                           : "bg-[#06080f] border-white/10 hover:border-white/25"
                       }`}
                     >
                       <div
-                        className={`w-10 h-10 rounded-xl border flex items-center justify-center shrink-0 mt-0.5 ${
+                        className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl border flex items-center justify-center shrink-0 ${
                           active
                             ? "bg-amber-400 text-slate-950 border-amber-300"
                             : "bg-white/[0.04] text-amber-400 border-white/10"
                         }`}
                       >
-                        <Icon className="w-5 h-5" />
+                        <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
                       </div>
                       <div className="min-w-0">
-                        <div className="text-sm font-black text-white leading-snug">
+                        <div className="text-xs sm:text-sm font-black text-white leading-snug">
                           {b.title}
                         </div>
-                        <div className="text-[11px] text-slate-400 mt-0.5 leading-snug">
+                        <div className="hidden sm:block text-[11px] text-slate-400 mt-0.5 leading-snug">
                           {b.subtitle}
                         </div>
                       </div>
@@ -522,7 +554,26 @@ export default function GrowthScopeEstimator({
                         </span>
                       </div>
 
-                      <div className="space-y-2.5 pl-0 sm:pl-9">
+                      <div className="sm:hidden pt-1">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleMobileDetails(mod.id);
+                          }}
+                          className="text-[11px] font-mono font-bold text-amber-300 underline underline-offset-4 cursor-pointer"
+                        >
+                          {expandedMobileDetails[mod.id]
+                            ? "Hide included deliverables ▲"
+                            : `View ${mod.bullets.length} included deliverables ▼`}
+                        </button>
+                      </div>
+
+                      <div
+                        className={`${
+                          expandedMobileDetails[mod.id] ? "block" : "hidden"
+                        } sm:block space-y-2.5 pl-0 sm:pl-9 mt-2.5 sm:mt-0`}
+                      >
                         {mod.bullets.map((b) => (
                           <div
                             key={b.heading}
@@ -574,7 +625,10 @@ export default function GrowthScopeEstimator({
           {/* =================================================================
               RIGHT COLUMN (5 COLS): STICKY LIVE BALLPARK & 3 CONVERSION PATHS
           ================================================================== */}
-          <div className="lg:col-span-5 lg:sticky lg:top-28">
+          <div
+            id="estimator-summary-card"
+            className="lg:col-span-5 lg:sticky lg:top-28 scroll-mt-32"
+          >
             <div className="rounded-3xl bg-[#0b0e18] border-2 border-amber-500/45 shadow-[0_24px_80px_rgba(0,0,0,0.8),0_0_40px_rgba(245,158,11,0.12)] overflow-hidden">
               {/* Top Telemetry Header */}
               <div className="px-6 py-4 bg-gradient-to-r from-amber-500/15 via-amber-500/5 to-emerald-500/10 border-b border-white/10 flex items-center justify-between gap-2">

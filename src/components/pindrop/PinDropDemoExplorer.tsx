@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import MobileSnapCarousel from "@/components/ui/MobileSnapCarousel";
 import {
   MapPin,
   Search,
@@ -461,8 +462,40 @@ export default function PinDropDemoExplorer() {
 
   return (
     <div id="interactive-engine" className="w-full scroll-mt-28">
-      {/* Top Real-App Switcher Bar */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 mb-6">
+      {/* Mobile Single-Row Screen Switcher (< 640px) */}
+      <div
+        className="sm:hidden flex items-center gap-2 overflow-x-auto no-scrollbar snap-x snap-mandatory mb-3.5 pb-1"
+        role="tablist"
+        aria-label="PinDrop interactive screens"
+      >
+        {[
+          { id: "live_map" as const, pill: "01 · Live Map" },
+          { id: "drop_portal" as const, pill: "02 · Drop Pin" },
+          { id: "seo_page" as const, pill: "03 · Google Page" },
+          { id: "embed_trades" as const, pill: "04 · 7 Trades" },
+        ].map((tab) => {
+          const active = activeTab === tab.id;
+          return (
+            <button
+              key={`mob-${tab.id}`}
+              type="button"
+              role="tab"
+              aria-selected={active}
+              onClick={() => setActiveTab(tab.id)}
+              className={`shrink-0 snap-start px-3.5 py-2.5 rounded-xl border text-xs font-extrabold whitespace-nowrap transition-all cursor-pointer ${
+                active
+                  ? "bg-[#e2b047] text-[#0b0c10] border-[#fde047] shadow-[0_0_18px_rgba(226,176,71,0.3)]"
+                  : "bg-[#0b0c10] text-slate-300 border-white/15"
+              }`}
+            >
+              {tab.pill}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Tablet & Desktop Real-App Switcher Bar */}
+      <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-2.5 mb-6">
         {[
           {
             id: "live_map" as const,
@@ -804,8 +837,16 @@ export default function PinDropDemoExplorer() {
                 )}
               </div>
 
-              {/* Authentic 2-Column `.pin-feed-card` Grid (Exact match to `src/app/pins/page.tsx`) */}
-              <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+              {/* Authentic 2-Column `.pin-feed-card` Grid (Horizontal Snap Carousel on Mobile) */}
+              <div className="max-w-5xl mx-auto">
+                <MobileSnapCarousel
+                  itemCount={filteredPins.length}
+                  ariaLabel="Verified neighborhood project pins"
+                  desktopGridClass="md:grid md:grid-cols-2 gap-5 sm:gap-6"
+                  contained
+                  itemLabel="pins"
+                  resetKey={`${cityFilter}-${serviceFilter}-${searchQuery}-${pins.length}`}
+                >
                 {filteredPins.map((pin) => (
                   <div
                     key={pin.id}
@@ -839,37 +880,37 @@ export default function PinDropDemoExplorer() {
                         &ldquo;{pin.quote}&rdquo;
                       </p>
 
-                      {/* Signature PinDrop Split Media Row: Stacked uncropped 16:10 on mobile, 2-col on sm+ */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 sm:mb-5">
+                      {/* Signature PinDrop Split Media Row: Compact 2-col side-by-side on mobile & desktop */}
+                      <div className="grid grid-cols-2 gap-2.5 sm:gap-3 mb-4 sm:mb-5">
                         {/* Left: IndividualProjectMap Satellite View */}
-                        <div className="relative aspect-[16/10] sm:aspect-auto sm:h-44 rounded-xl overflow-hidden border border-white/10 bg-[#0b0c10]">
+                        <div className="relative h-28 sm:h-44 rounded-xl overflow-hidden border border-white/10 bg-[#0b0c10]">
                           <Image
                             src={pin.mapThumb}
                             alt={`Verified neighborhood satellite view in ${pin.city}`}
                             fill
-                            sizes="(max-width: 640px) 90vw, 240px"
+                            sizes="(max-width: 640px) 45vw, 240px"
                             className="object-cover"
                           />
                           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                            <GoldTeardropPin size={26} />
+                            <GoldTeardropPin size={24} />
                           </div>
-                          <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#0b0c10]/90 border border-white/15 text-[11px] font-extrabold text-white whitespace-nowrap shadow-md">
+                          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-[#0b0c10]/90 border border-white/15 text-[10px] sm:text-[11px] font-extrabold text-white whitespace-nowrap shadow-md">
                             {pin.city}
                           </div>
                         </div>
 
                         {/* Right: Job Photo + Secondary Thumbnails */}
                         <div className="flex flex-col gap-2">
-                          <div className="relative aspect-[16/10] sm:aspect-auto sm:h-32 rounded-xl overflow-hidden border border-white/10">
+                          <div className="relative h-28 sm:h-32 rounded-xl overflow-hidden border border-white/10">
                             <Image
                               src={pin.mainPhoto}
                               alt={`${pin.service} in ${pin.city}`}
                               fill
-                              sizes="(max-width: 640px) 90vw, 240px"
+                              sizes="(max-width: 640px) 45vw, 240px"
                               className="object-cover"
                             />
                           </div>
-                          <div className="flex items-center gap-2">
+                          <div className="hidden sm:flex items-center gap-2">
                             {pin.extraThumbs.map((thumb, tIdx) => (
                               <div
                                 key={tIdx}
@@ -911,6 +952,7 @@ export default function PinDropDemoExplorer() {
                     </div>
                   </div>
                 ))}
+                </MobileSnapCarousel>
               </div>
             </div>
           )}
