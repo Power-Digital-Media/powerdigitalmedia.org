@@ -22,7 +22,7 @@ export default function Footer() {
               <div className="relative flex items-center h-13 w-60">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/pdm-logo-transparent.webp"
+                  src="/images/pdm-logo-amber.webp"
                   alt="Power Digital Media LLC"
                   width={448}
                   height={84}

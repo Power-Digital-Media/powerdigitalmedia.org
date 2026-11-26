@@ -142,7 +142,7 @@ export default function Navbar() {
               <div className="relative flex items-center h-11 sm:h-12 w-44 sm:w-52 xl:w-56">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/pdm-logo-transparent.webp"
+                  src="/images/pdm-logo-amber.webp"
                   alt="Power Digital Media LLC"
                   width={448}
                   height={84}
